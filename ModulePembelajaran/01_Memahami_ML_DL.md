@@ -1,0 +1,271 @@
+# 01 · Memahami Sistem ML/DL Secara Praktis
+
+> *Arsitektur bukan daftar definisi untuk dihafal. Ia adalah keputusan desain yang berangkat dari pertanyaan: bentuk apa yang melekat pada datamu, dan struktur apa yang paling alami mengikutinya?*
+
+---
+
+## 0. Peta Bab
+
+Bab ini membekali kamu dengan kerangka pikir untuk membaca sistem ML/DL seperti seorang peneliti: mengenali empat keluarga arsitektur berdasarkan bentuk data, memahami peran layer sebagai transformasi representasi, dan membaca loss serta optimizer sebagai pilihan yang memiliki konsekuensi. Setelah menyelesaikan bab ini, kamu dapat membuka repository riset dan menebak secara masuk akal mengapa arsitektur tertentu dipilih, bukan hanya menyebut namanya.
+
+---
+
+## 1. Motivasi: Tiga Dataset di Meja Kamu
+
+Seorang rekan baru mengirim tiga dataset sekaligus dengan pesan: "coba klasifikasi dulu, pakai arsitektur yang menurutmu paling masuk akal". Ketiganya:
+
+- **A**: tabel medis - 20 kolom berisi hasil lab darah pasien, target diabetes ya/tidak.
+- **B**: 10.000 gambar daun sawit, label *sehat* atau *terkena penyakit*, resolusi 224×224.
+- **C**: 30.000 review produk berbahasa Indonesia, target sentimen positif/negatif.
+
+Tanpa memilih framework atau membuka paper apapun, kamu sudah bisa menebak keluarga arsitektur yang paling mungkin cocok. Dataset A punya struktur *flat* - setiap kolom adalah fitur yang relatif independen; feed-forward network klasik sudah masuk akal. Dataset B berupa grid piksel 2D dengan *translation invariance* (daun yang sama miring ke kiri atau ke kanan tetap daun yang sama); CNN alami di sini. Dataset C adalah urutan kata dengan ketergantungan jangka panjang (kata di awal kalimat memodifikasi arti kata di akhir); transformer atau RNN yang cocok.
+
+Poinnya bukan "tiga jawaban di atas adalah jawaban tunggal yang benar". Poinnya: setiap keluarga arsitektur dibangun dengan *asumsi tertentu* tentang bentuk data. Memilih arsitektur berarti memilih asumsi mana yang paling tepat. Ketika asumsi cocok, model belajar efisien. Ketika tidak, kamu memaksanya bekerja lebih keras tanpa bayaran.
+
+---
+
+## 2. Konsep Inti
+
+### 2.1 Arsitektur sebagai Asumsi tentang Data
+
+Empat keluarga yang paling sering kamu temui di paper dan kode riset.
+
+**Feed-Forward Neural Network (FFN).** Lapisan linear berturut-turut dengan non-linearitas (ReLU, GELU) di antaranya. Asumsi: tidak ada struktur khusus pada fitur input - urutan kolom tidak bermakna, tidak ada kedekatan spasial atau temporal yang perlu dipertahankan. Cocok untuk data tabular, embedding yang sudah diproses, atau tugas klasifikasi kecil. Kelemahan utama: tidak efisien ketika data punya struktur yang bisa dimanfaatkan; jumlah parameter meledak untuk input besar.
+
+**Convolutional Neural Network (CNN).** Inti idenya: satu *filter* (kernel) kecil digeser ke seluruh input, berbagi bobot di semua lokasi. Asumsi: pola yang relevan dapat muncul di lokasi manapun (translation invariance) dan bersifat lokal (piksel berdekatan lebih terkait daripada piksel jauh). Komponen khas: `Conv2d → BatchNorm → ReLU → MaxPool`. Kekuatan: sangat efisien parameter untuk gambar dan data grid (spektrogram, citra medis). Kelemahan: asumsi lokalitas gagal ketika pola penting justru menyebar luas.
+
+**Recurrent Neural Network (RNN), LSTM, GRU.** Memproses urutan satu langkah waktu demi satu langkah waktu, menyimpan *hidden state* yang merangkum masa lalu. Asumsi: urutan penting, dan informasi dari langkah-langkah sebelumnya membantu memprediksi langkah berikutnya. LSTM dan GRU memperkenalkan *gate* untuk mengatasi *vanishing gradient* pada RNN polos, memungkinkan pembelajaran ketergantungan jarak menengah. Kelemahan: komputasi sekuensial (tidak bisa diparalelkan sepanjang urutan), ketergantungan yang sangat panjang tetap sulit ditangkap.
+
+**Transformer.** Menggantikan rekursi dengan *self-attention*: setiap elemen urutan secara langsung "melihat" semua elemen lain dan memutuskan mana yang relevan. Asumsi: urutan penting, tetapi lebih efisien memodelkan relasi sebagai *set* dengan *positional encoding* daripada mengalir satu per satu. Komponen utama: `Multi-Head Attention`, `Positional Encoding`, `Feed-Forward` per posisi. Dominan di NLP modern (BERT, GPT), kini juga di visi (Vision Transformer) dan audio. Biaya utama: self-attention kuadratik terhadap panjang urutan, walaupun varian baru (linear attention, sparse attention) menguranginya.
+
+### 2.2 Layer sebagai Transformasi Representasi
+
+Satu cara kuat membaca model dalam: anggap setiap layer adalah *fungsi* yang mengubah representasi data menjadi bentuk yang lebih berguna bagi lapisan berikutnya. Di CNN, layer awal belajar detail kecil - tepi, sudut, tekstur - sementara layer dalam menggabungkannya menjadi konsep yang lebih tinggi seperti "bulu", "mata", "roda mobil". Di transformer, layer awal sering fokus pada hubungan sintaktik lokal, sedangkan layer dalam memodelkan relasi semantik jarak jauh.
+
+Implikasi praktis: ketika kamu *fine-tune* model yang sudah terlatih, layer awal biasanya berisi fitur umum yang lebih aman di-freeze, sementara layer akhir perlu beradaptasi dengan domain baru. Aturan ini bukan hukum, tetapi titik awal yang masuk akal ketika kamu mendapat instruksi "freeze layer pertama".
+
+Non-linearitas seperti ReLU atau GELU adalah mesin yang membuat semua ini bekerja. Tanpa mereka, menumpuk layer linear hanya menghasilkan satu transformasi linear besar - tidak lebih kuat dari regresi biasa. Non-linearitas memperkenalkan tekukan dalam fungsi yang dipelajari, memungkinkan model menangkap pola kompleks.
+
+### 2.3 Loss sebagai Sinyal Pembelajaran
+
+Loss menentukan *apa yang dianggap salah*. Mengganti loss berarti mengubah arah yang dianggap model sebagai "perbaikan". Dua kelas loss yang paling sering kamu temui:
+
+**Untuk klasifikasi:** *cross-entropy* adalah pilihan default - ia mengukur jarak antara distribusi probabilitas prediksi dan label. *Focal loss* (Lin et al., 2017) memodifikasi cross-entropy dengan faktor `(1-p)^γ` yang menurunkan bobot sampel mudah dan menaikkan bobot sampel sulit; berguna pada kelas sangat tidak seimbang. *Label smoothing* mengganti label one-hot dengan distribusi sedikit kabur, membantu mencegah model terlalu percaya diri.
+
+**Untuk regresi:** *mean squared error (MSE)* memberi hukuman kuadratik - sensitif terhadap outlier, cocok ketika residu kecil sudah sangat bermasalah. *Mean absolute error (MAE)* linear, lebih robust tetapi kurang tajam di sekitar nol. *Huber loss* menggabungkan keduanya.
+
+Pertanyaan yang selalu relevan sebelum mengganti loss: *apa jenis kesalahan yang paling mahal di aplikasi kamu?* Jika false negative pada kelas minor lebih mahal daripada false positive, focal loss atau pembobotan kelas langsung membantu. Jika semua sampel setara, cross-entropy polos sudah cukup. Mengganti loss tanpa alasan jelas menambah satu variabel yang harus dijelaskan di laporan.
+
+### 2.4 Optimizer: Bagaimana Langkah Diputuskan
+
+Optimizer mengubah gradien menjadi langkah konkret pada parameter. Empat yang patut kamu kenali:
+
+- **SGD (+ momentum).** Tertua, paling sederhana, sering paling kuat hasilnya setelah tuning yang tekun. Membutuhkan *learning rate schedule* yang dirancang dengan hati-hati. Banyak paper *state-of-the-art* di visi komputer tetap memakai SGD.
+- **Adam dan AdamW.** Adaptif - setiap parameter mendapat learning rate yang disesuaikan. Sangat cepat konvergen di epoch awal, umum dipakai untuk prototyping. AdamW memperbaiki Adam dengan memisahkan *weight decay* dari gradien momentum.
+- **LAMB.** Varian yang didesain untuk *batch size* besar (ribuan sampel). Relevan di training pre-training besar (BERT, GPT), jarang diperlukan di proyek kuliah.
+
+Dipasangkan dengan optimizer adalah *scheduler*: mekanisme menurunkan (atau menaikkan lalu menurunkan) learning rate selama training. `OneCycleLR`, `CosineAnnealingLR`, dan `ReduceLROnPlateau` adalah tiga pola yang paling sering kamu temui.
+
+### 2.5 Evaluasi: Bukan Satu Angka
+
+Satu kesalahan klasik pemula: membanggakan akurasi 95%, tanpa menyadari kelas positif hanya muncul 5% di data - sehingga *dummy classifier* yang selalu memprediksi "negatif" juga mencapai 95%. Evaluasi yang jujur memakai beberapa metrik, dipilih menurut tujuan.
+
+| Metrik | Kapan dipakai | Kelemahan |
+|---|---|---|
+| Accuracy | Kelas seimbang | Menyesatkan pada imbalance |
+| Precision / Recall / F1 | Kelas imbalance, fokus pada satu kelas | Perlu memilih ambang batas |
+| ROC-AUC | Evaluasi probabilistik binary | Tidak mencerminkan performa pada ambang tertentu |
+| PR-AUC | Imbalance ekstrem | Lebih sulit diinterpretasikan non-teknis |
+| Perplexity | Model bahasa | Hanya bermakna relatif antar model |
+
+Di samping metrik, kamu juga perlu strategi validasi:
+
+- **Hold-out split.** Bagi data menjadi train/val/test sekali, pakai val untuk tuning, test untuk pengukuran final. Cepat tetapi sensitif terhadap keberuntungan pembagian.
+- **K-fold cross-validation.** Bagi data menjadi k bagian; training k kali dengan tiap bagian jadi validasi bergantian. Estimasi lebih stabil, biaya k kali training.
+- **Stratified split/fold.** Pastikan distribusi kelas sama di setiap bagian; wajib untuk klasifikasi dengan imbalance.
+
+---
+
+## 3. Worked Example: SimpleCNN pada CIFAR-10
+
+Tujuan: membangun CNN minimal yang dapat training penuh pada CIFAR-10, menjelaskan setiap keputusan desain, dan mengevaluasi dengan metrik yang tepat.
+
+### 3.1 Definisi Model
+
+```python
+import torch
+import torch.nn as nn
+
+class SimpleCNN(nn.Module):
+    """CNN dua blok konvolusi - dibuat sederhana agar kamu bisa melacak dimensi
+    dan jumlah parameter tanpa bantuan debugger."""
+
+    def __init__(self, num_classes: int = 10):
+        super().__init__()
+        # Blok 1: 3 channel input (RGB) -> 32 channel; resolusi 32 -> 16 setelah pool
+        self.block1 = nn.Sequential(
+            nn.Conv2d(3, 32, kernel_size=3, padding=1),
+            nn.BatchNorm2d(32),
+            nn.ReLU(inplace=True),
+            nn.MaxPool2d(2),
+        )
+        # Blok 2: 32 -> 64 channel; resolusi 16 -> 8
+        self.block2 = nn.Sequential(
+            nn.Conv2d(32, 64, kernel_size=3, padding=1),
+            nn.BatchNorm2d(64),
+            nn.ReLU(inplace=True),
+            nn.MaxPool2d(2),
+        )
+        # Classifier: flatten lalu dua linear
+        self.classifier = nn.Sequential(
+            nn.Flatten(),
+            nn.Linear(64 * 8 * 8, 256),
+            nn.ReLU(inplace=True),
+            nn.Dropout(0.3),
+            nn.Linear(256, num_classes),
+        )
+
+    def forward(self, x: torch.Tensor) -> torch.Tensor:
+        x = self.block1(x)
+        x = self.block2(x)
+        return self.classifier(x)
+```
+
+Alasan tiap pilihan, dibaca baris demi baris:
+
+- **`Conv2d(3, 32, ...)` dengan `padding=1`**: padding mempertahankan dimensi spasial setelah konvolusi; tanpa padding resolusi menyusut dan kamu harus mengimbangi dengan kernel/pool berbeda.
+- **`BatchNorm2d` sebelum ReLU**: menstabilkan distribusi input tiap layer, mempercepat konvergensi. Urutan Conv → BN → ReLU adalah konvensi yang paling umum.
+- **`MaxPool2d(2)`** setelah tiap blok: menurunkan resolusi setengah, memperluas *receptive field* layer berikutnya.
+- **`Dropout(0.3)`** di classifier: regularisasi ringan; tanpa ini model mudah overfitting pada dataset kecil.
+- **Classifier tidak memakai `Softmax`**: output adalah *logits* mentah. `CrossEntropyLoss` di PyTorch sudah melakukan log-softmax secara numerik stabil di dalamnya.
+
+### 3.2 Setup Training Minimal
+
+```python
+from torch.utils.data import DataLoader
+from torchvision import datasets, transforms
+
+# Transform: normalisasi dengan statistik CIFAR-10 yang dikenal
+transform_train = transforms.Compose([
+    transforms.RandomCrop(32, padding=4),       # augmentasi sederhana
+    transforms.RandomHorizontalFlip(),          # CIFAR-10: kelas simetris
+    transforms.ToTensor(),
+    transforms.Normalize((0.4914, 0.4822, 0.4465),
+                         (0.2470, 0.2435, 0.2616)),
+])
+
+trainset = datasets.CIFAR10(root='./data', train=True,
+                            download=True, transform=transform_train)
+trainloader = DataLoader(trainset, batch_size=128, shuffle=True, num_workers=2)
+
+device = 'cuda' if torch.cuda.is_available() else 'cpu'
+model = SimpleCNN().to(device)
+criterion = nn.CrossEntropyLoss()
+optimizer = torch.optim.AdamW(model.parameters(), lr=3e-4, weight_decay=1e-4)
+```
+
+Lima keputusan yang perlu kamu pahami:
+
+1. **Augmentasi hanya pada training set.** Random crop dan flip memaksa model melihat variasi yang tidak ada di data asli, mengurangi overfitting. Pada validation/test set, *jangan* dipakai - kamu ingin mengukur performa pada data apa adanya.
+2. **Normalisasi dengan statistik yang tepat.** Angka di atas adalah mean dan std per channel yang dihitung dari training set CIFAR-10. Pakai statistik yang sama di validation/test.
+3. **Batch size 128.** Cukup besar agar gradien tidak terlalu berisik, cukup kecil agar muat di GPU kecil. Batch size yang sangat kecil (< 16) sering membuat BatchNorm tidak stabil.
+4. **AdamW dengan lr=3e-4.** Nilai "default yang sering berhasil" dari blog Karpathy. Weight decay kecil agar ada regularisasi tanpa menahan model terlalu kuat.
+5. **`device` otomatis.** Kode yang sama jalan di laptop tanpa GPU dan di server; tidak ada alasan menulisnya *hard-coded*.
+
+### 3.3 Training Loop
+
+```python
+def train_one_epoch(model, loader, criterion, optimizer, device):
+    model.train()
+    total_loss, correct, total = 0.0, 0, 0
+    for xb, yb in loader:
+        xb, yb = xb.to(device), yb.to(device)
+        optimizer.zero_grad()
+        logits = model(xb)
+        loss = criterion(logits, yb)
+        loss.backward()
+        optimizer.step()
+        total_loss += loss.item() * xb.size(0)
+        correct += (logits.argmax(1) == yb).sum().item()
+        total += xb.size(0)
+    return total_loss / total, correct / total
+
+for epoch in range(20):
+    train_loss, train_acc = train_one_epoch(
+        model, trainloader, criterion, optimizer, device)
+    print(f"epoch {epoch+1:2d}  loss={train_loss:.4f}  acc={train_acc:.4f}")
+```
+
+Empat hal yang layak diperhatikan:
+
+- **`model.train()` vs `model.eval()`.** Mode memengaruhi perilaku Dropout dan BatchNorm. Lupa memanggil `.eval()` saat evaluasi adalah bug yang sangat umum.
+- **`optimizer.zero_grad()` di awal iterasi.** PyTorch mengakumulasi gradien secara default; jika tidak di-reset, kamu akan meng-update dengan gradien campuran beberapa batch.
+- **`loss.item() * xb.size(0)`.** Kita rata-ratakan di akhir, jadi kalikan dengan ukuran batch di tengah agar hasil konsisten ketika ukuran batch tidak seragam (batch terakhir sering lebih kecil).
+- **Tidak ada validasi di loop ini.** Sengaja dibuat minimal; Lab 1 akan menambah validasi set dan tracking loss/accuracy per epoch.
+
+### 3.4 Evaluasi yang Jujur
+
+Setelah training, jangan langsung menulis "model berhasil mencapai akurasi X%". Tiga pemeriksaan:
+
+1. **Apakah model mengalami overfitting?** Bandingkan train accuracy dengan val accuracy. Selisih > 10% biasanya sinyal overfitting.
+2. **Akurasi per kelas.** Kelas yang lebih sulit (pada CIFAR-10, biasanya `cat` vs `dog`) mengalami akurasi lebih rendah. Confusion matrix menunjukkan pola kesalahan.
+3. **Sampel yang salah.** Visualisasikan 10 gambar yang paling *confident* salah. Sering kali ada pola yang bisa dijelaskan - misalnya, kucing yang berpose seperti anjing, atau gambar yang terlalu gelap.
+
+---
+
+## 4. Pitfalls & Miskonsepsi
+
+**"Arsitektur yang lebih dalam selalu lebih baik."** Tidak. Tanpa data cukup banyak, model dalam cenderung overfitting. Tanpa *residual connection* atau teknik stabilisasi, training model sangat dalam juga sering gagal konvergen. Aturan praktis: mulai dari arsitektur sederhana yang konvergen, lalu tingkatkan kedalaman hanya jika bottleneck terbukti adalah kapasitas model.
+
+**"Adam selalu lebih baik dari SGD."** Pada banyak tugas, Adam konvergen lebih cepat di epoch awal tetapi SGD (dengan momentum dan learning rate schedule yang tepat) sering menang di akhir. Keputusan bergantung pada tugas; jangan menganggap salah satunya superior tanpa data.
+
+**"Accuracy 99% berarti model hebat."** Selalu periksa baseline naif - dummy classifier yang memprediksi kelas mayoritas. Jika akurasinya juga tinggi, kamu sedang mengukur kesamaan dengan distribusi kelas, bukan kemampuan model. Pelajaran ini akan kembali di Bab 04 dalam konteks *leakage*.
+
+**"Loss turun berarti model membaik."** Turunnya training loss tanpa validation yang terpantau bisa berarti model menghafal, bukan belajar. Validation loss yang stagnan atau naik sementara training loss turun adalah tanda klasik overfitting.
+
+**"Mengganti loss pasti akan meningkatkan performa jika diimplementasi benar."** Tidak ada loss yang unggul secara universal. Focal loss, misalnya, membantu pada imbalance ekstrem tetapi dapat memperburuk performa pada kelas seimbang karena menurunkan sinyal dari mayoritas sampel. Selalu uji terhadap baseline yang sama.
+
+---
+
+## 5. Lab 1 - Baseline CNN pada CIFAR-10
+
+Buka `template_repo/notebooks/lab1_baseline_cnn.ipynb`. Lab ini meminta kamu menyelesaikan empat tugas:
+
+1. Melengkapi training loop dengan evaluasi pada validation set setiap epoch.
+2. Menyimpan daftar `train_loss`, `val_loss`, `train_acc`, `val_acc` per epoch ke list, lalu memplotnya.
+3. Mengitung dan memplot confusion matrix pada test set.
+4. Memilih 10 kesalahan paling *confident*, memvisualisasikannya, dan menulis 3-4 kalimat amatan tentang pola kesalahan.
+
+**Checklist verifikasi** sebelum lab dianggap selesai:
+
+- [ ] Train accuracy ≥ 75%, val accuracy ≥ 70% setelah 20 epoch.
+- [ ] Selisih train - val accuracy dilaporkan; jika > 10% dijelaskan.
+- [ ] Confusion matrix tersimpan sebagai gambar di `experiments/lab1/`.
+- [ ] Notebook dapat dijalankan ulang dari atas ke bawah tanpa error.
+
+---
+
+## 6. Refleksi
+
+1. Kamu diberi dataset baru: 500 sinyal EKG satu dimensi, panjang masing-masing 5000 titik, target empat kelas aritmia. Keluarga arsitektur apa yang paling masuk akal untuk kamu coba pertama kali, dan mengapa? Pilihan kedua kamu apa, dan di kondisi apa ia lebih cocok daripada pilihan pertama?
+
+2. Bayangkan kamu sudah training SimpleCNN dan mendapat train accuracy 95% tetapi val accuracy 68%. Tanpa melihat kodenya, sebutkan tiga hipotesis paling mungkin tentang penyebabnya, lalu tiga eksperimen pendek yang bisa membedakan satu hipotesis dari yang lain.
+
+3. Ketika kamu mengganti `CrossEntropyLoss` menjadi `FocalLoss`, apa saja variabel yang *secara implisit* juga berubah, walaupun kamu tidak menyentuhnya? (Petunjuk: pikirkan learning rate efektif, tekanan pada kelas minor, stabilitas awal training.) Bagaimana ini memengaruhi cara kamu merancang perbandingan?
+
+---
+
+## 7. Bacaan Lanjutan
+
+- **Andrej Karpathy - *A Recipe for Training Neural Networks*** (2019). Menunjukkan ritme kerja seorang peneliti berpengalaman; bagian "overfit a single batch" adalah pengujian yang sangat kuat untuk mendeteksi bug di loop training kamu.
+- **Christopher Olah - *Understanding LSTM Networks*** (blog, 2015). Penjelasan visual paling jelas tentang mengapa LSTM ada dan mekanisme gate-nya bekerja. Dibaca ringan sebelum kamu perlu bekerja dengan urutan panjang.
+- **Lin et al. - *Focal Loss for Dense Object Detection*** (ICCV 2017). Paper asli focal loss; baca bagian 3 saja untuk intuisi, lewati eksperimen detection.
+- **The Deep Learning Book (Goodfellow et al.), Bab 6 & 9**. Bab 6 untuk FFN, Bab 9 untuk CNN. Bacaan rujukan yang tidak perlu dibaca sekaligus.
+
+---
+
+## Lanjut ke Bab 02
+
+Kamu sudah bisa memilih arsitektur dan membangun baseline. Bab 02 mengubah fokus dari *memahami sistem* menjadi *merancang eksperimen*: bagaimana menerjemahkan instruksi seperti "coba ubah loss ke focal, freeze conv1" menjadi rancangan konkret dengan variabel, baseline, hipotesis, dan metrik sukses yang dapat dipertanggungjawabkan.
+
+Buka [`02_Ide_Ke_Eksperimen.md`](02_Ide_Ke_Eksperimen.md) ketika siap.

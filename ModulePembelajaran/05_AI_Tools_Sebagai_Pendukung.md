@@ -1,0 +1,377 @@
+# 05 · AI Tools Sebagai Pendukung Riset
+
+> *LLM adalah rubber duck yang sangat cerdas, bukan oracle. Ia menambah kecepatan kamu, bukan menggantikan pemahaman kamu. Ketika hasil akhir ditandatangani dengan namamu, penjelasan yang menyertainya juga harus milikmu sepenuhnya.*
+
+---
+
+## 0. Peta Bab
+
+Bab ini membahas cara memakai *large language model* - ChatGPT, Claude, Copilot, Cursor - dan asisten pemrograman lain untuk mempercepat kerja riset tanpa menyerahkan pemahaman dan tanggung jawab. Kamu akan belajar memisahkan tugas yang cocok untuk LLM dari yang berbahaya dijadikan *outsource*, menulis *prompt* yang menghasilkan bantuan presisi, dan menjalankan protokol verifikasi yang memastikan setiap output dapat dipertanggungjawabkan. Setelah bab ini, kamu punya alur kerja yang memakai AI tools secara produktif tetapi memperkuat - bukan melemahkan - kemampuan teknis kamu sendiri.
+
+---
+
+## 1. Motivasi: Dua Cara Memakai LLM
+
+**Cara A - operator prompt.** Kamu menerima tugas "implementasikan training loop dengan early stopping". Kamu ketik prompt panjang ke ChatGPT: "write a PyTorch training loop with early stopping, tensorboard logging, checkpoint saving, and type hints". Output 80 baris kode keluar. Kamu tempel ke `train.py`. Beberapa run ternyata menyimpan checkpoint yang salah; kamu tidak tahu mengapa; kamu ketik prompt baru: "the checkpoint doesn't load, please fix"; ChatGPT menghasilkan kode baru yang agak berbeda. Siklus berulang. Pada saat pekerjaan selesai, kamu tidak bisa menjelaskan mengapa pilihan tertentu dibuat.
+
+**Cara B - kolaborator.** Kamu baca draft `train.py` kamu sendiri, mengidentifikasi bagian yang terasa repetitif (penulisan log, penyimpanan checkpoint). Kamu minta LLM: "berikan skeleton early stopping yang mempertahankan signature fungsi `train_one_epoch(model, loader, criterion, optimizer)` saya; cukup potongan utilitas, bukan loop penuh". Output 15 baris. Kamu baca baris per baris, memahami, memodifikasi variabel nama agar cocok dengan konvensi kode kamu, menambahkan satu assert yang memastikan state `best_val_loss` diperbarui. Kamu commit. Ketika nanti ada bug, kamu tahu tepatnya 15 baris mana yang perlu diperiksa.
+
+Perbedaan kedua cara bukan kecerdasan atau produktivitas jangka pendek. Perbedaannya adalah *kapabilitas* yang terbangun. Cara A menghasilkan kode yang jalan hari ini; Cara B menghasilkan pemrogram yang lebih baik enam bulan dari sekarang.
+
+Bab ini melatih Cara B menjadi default.
+
+---
+
+## 2. Konsep Inti
+
+### 2.1 Apa yang LLM Baik dan Kurang Baik
+
+Setelah jutaan interaksi kolektif, komunitas riset telah mengumpulkan konsensus tentang kekuatan dan keterbatasan LLM untuk pekerjaan teknis.
+
+**LLM baik untuk:**
+
+- **Boilerplate berulang.** Menulis argparse, skeleton kelas, one-liner pandas. Kamu tahu apa yang kamu inginkan, LLM mempercepat pengetikan.
+- **Menjelaskan kode atau error.** "Apa arti pesan error RuntimeError ini?" sering menghasilkan penjelasan yang lebih cepat daripada googling. "Apa yang dilakukan fungsi ini?" berguna ketika membaca kode orang lain.
+- **Konversi format.** Mengubah YAML ke dict Python, JSON ke CSV, skema SQL ke migration. Tugas yang mekanis.
+- **Menyarankan nama.** Meminta "5 alternatif nama yang lebih deskriptif untuk variabel ini" sering menghasilkan pilihan yang tidak terpikir.
+- **Memo pertama dokumentasi.** Draft docstring atau README awal; kamu edit dan rapikan.
+- **Exploring API yang tidak familiar.** "Bagaimana cara melakukan X di library Y?" menghasilkan contoh yang bisa kamu uji dan pelajari.
+
+**LLM kurang baik untuk:**
+
+- **Logika yang halus.** LLM sering menghasilkan kode yang *terlihat* benar tetapi punya bug subtle: off-by-one, boundary case tidak ditangani, race condition. Semakin kritis logikanya, semakin penting kamu yang menulis.
+- **Memilih hyperparameter spesifik.** "Learning rate apa yang paling baik untuk tugas saya?" akan menghasilkan tebakan yang terdengar meyakinkan tetapi tidak berdasarkan data kamu.
+- **Interpretasi hasil eksperimen.** "Mengapa akurasi saya 78%?" tidak bisa dijawab LLM tanpa akses ke konteks penuh. Interpretasi adalah pekerjaan kamu.
+- **Klaim yang memerlukan presisi.** LLM bisa *membuat-buat* referensi ("Paper Smith et al. 2019 membahas ini") yang tidak ada. Setiap klaim sumber harus diverifikasi.
+- **Kode keamanan-kritis.** Kode yang menangani kredensial, otentikasi, atau input dari internet. Kesalahan di sini punya konsekuensi serius.
+- **Memutuskan arsitektur proyek.** "Bagaimana saya sebaiknya menyusun proyek ini?" menghasilkan saran generik; keputusan arsitektur memerlukan pemahaman konstraint spesifik yang tidak bisa diringkas dalam prompt.
+
+Aturan jempol: LLM baik untuk percepatan *eksekusi* tugas yang kamu sudah tahu, kurang baik untuk *pengambilan keputusan* yang belum kamu kuasai.
+
+### 2.2 Prompt yang Menghasilkan Bantuan Presisi
+
+Prompt yang buruk menghasilkan output panjang, generik, dan sulit diverifikasi. Prompt yang baik membatasi scope dan memberi konteks yang cukup agar output relevan.
+
+**Pola prompt yang bekerja:**
+
+1. **Konteks ringkas.** Satu atau dua kalimat tentang proyek dan tujuan.
+2. **Ruang lingkup eksplisit.** Apa yang kamu inginkan, apa yang tidak.
+3. **Contoh input/output.** Dua atau tiga jika bentuk output tidak trivial.
+4. **Batasan teknis.** Versi library, gaya kode, konstraint (tidak ada library tambahan, harus compatible dengan Python 3.10, dll).
+
+Contoh kontras:
+
+*Prompt buruk:*
+> "implement focal loss in PyTorch"
+
+*Prompt baik:*
+> Saya sedang menulis `src/losses.py` untuk modul kuliah PyTorch. Saya ingin kelas `FocalLoss(nn.Module)` multi-class (bukan binary), dengan parameter `gamma: float = 2.0` dan `weight: Tensor | None`. Harus compatible dengan `torch.nn.CrossEntropyLoss` sebagai drop-in replacement - signature `forward(logits, targets)` dengan `logits` berbentuk `(N, C)` dan `targets` berbentuk `(N,)`. Gunakan `F.cross_entropy(..., reduction='none')` internal agar pembobotan kelas bekerja. Sertakan docstring satu paragraf yang menjelaskan formula dan kapan dipakai. Tidak perlu unit test.
+
+Prompt kedua menghasilkan 20 baris yang langsung dapat kamu baca, modifikasi, dan tempel. Prompt pertama menghasilkan 50+ baris dengan keputusan-keputusan yang kamu tidak minta.
+
+Untuk debugging error:
+
+*Prompt buruk:*
+> "my code doesn't work, here's the error"
+
+*Prompt baik:*
+> Saya dapat error berikut ketika menjalankan `python -m src.train --config configs/focal.yaml`:
+> ```
+> RuntimeError: CUDA error: device-side assert triggered
+> ...
+> ```
+> Saya menduga ini terkait pemilihan kelas di loss saya. Berikut kode `FocalLoss.forward`:
+> ```python
+> ...
+> ```
+> Dan berikut konfigurasi dataset saya:
+> ```yaml
+> num_classes: 9
+> ```
+> Mohon jelaskan penyebab paling mungkin dan bagaimana mendiagnosis, bukan langsung memberi kode pengganti.
+
+Kunci: *minta diagnosis, bukan ganti*. Output diagnosis membuat kamu belajar; output penggantian kode membuat kamu bergantung.
+
+### 2.3 Protokol Verifikasi: Tiga Lapis
+
+Setiap output LLM yang kamu masukkan ke kode kamu harus melewati tiga lapis verifikasi, dari murah ke mahal.
+
+**Lapis 1 - Baca baris per baris.** Sebelum commit, baca output dari atas ke bawah. Jangan sekadar skim. Pertanyaan untuk tiap blok:
+- Apa yang dilakukan?
+- Apakah saya bisa menulisnya sendiri jika diminta?
+- Apakah ada identifier yang tidak saya kenali? (Jika ya, cari dokumentasinya.)
+- Apakah ada asumsi implicit? (Dimensi tensor, tipe data, nilai default.)
+
+**Lapis 2 - Uji minimal.** Bagian terpenting: jalankan kode pada kasus yang kamu tahu jawabannya.
+- `FocalLoss(gamma=0)` harus identik dengan `CrossEntropyLoss`.
+- Fungsi normalisasi dengan input konstan harus menghasilkan output nol.
+- Loader dengan `batch_size=1` dan shuffle=False harus menghasilkan sampel yang sama di tiap panggilan.
+
+Uji minimal bukan unit test lengkap; mereka adalah *sanity check* yang harus kamu lakukan *sebelum* kode dianggap layak pakai.
+
+**Lapis 3 - Integrasi dan cross-check.** Jalankan di pipeline aslinya, bandingkan dengan baseline yang sudah kamu verifikasi. Jika kamu mengganti implementasi loss, akurasi pada seed yang sama harus sama (jika fungsinya ekuivalen) atau berbeda dengan alasan yang dapat dijelaskan.
+
+Lapis mana yang dilewati = kode yang tidak dipercaya.
+
+### 2.4 Mencatat Interaksi LLM
+
+Rubrik di Bab 11 menilai "penggunaan AI tools" sebagian berdasarkan *dokumentasi* interaksi kamu. Bukan karena dokumentasi itu sendiri berharga, tetapi karena tindakan mencatat memaksa refleksi tentang proses.
+
+Format minimal untuk setiap interaksi LLM yang menghasilkan kode yang masuk ke repo:
+
+```markdown
+## 2025-10-18 - FocalLoss implementation
+
+**Tool:** ChatGPT-4o
+**Goal:** Kerangka kelas FocalLoss multi-class untuk src/losses.py.
+
+**Prompt:** [lihat section 2.2 contoh "prompt baik"]
+
+**Output ringkas:** 22 baris kode; kelas FocalLoss dengan forward memakai
+F.cross_entropy(reduction='none') lalu ((1-pt)**gamma * ce).mean().
+
+**Modifikasi saya:** 
+- Ganti nama argumen `weight` jadi `class_weights` untuk konsisten dengan
+  kode proyek.
+- Tambahkan assert untuk dim logits (harus 2D).
+- Tambahkan uji minimal: gamma=0 reproduksi CrossEntropyLoss (commit abc123).
+
+**Catatan:** Output awal pakai `torch.gather` manual yang lebih verbose;
+saya minta versi ringkas dengan F.cross_entropy. Lebih mudah dibaca.
+```
+
+Catatan ini disimpan di folder eksperimen atau di `docs/llm_log.md`. Tidak perlu mewah; penting jujur.
+
+### 2.5 Copilot dan Inline Completion
+
+*Copilot*, *Cursor*, atau fitur serupa menyarankan kode saat kamu mengetik. Interaksi berbeda dari chat karena lebih cepat dan lebih halus - kamu bisa menerima saran dengan satu tombol tanpa refleksi.
+
+Bahaya utama Copilot: *autocomplete drift*. Setiap saran terlihat kecil, tetapi akumulasi ratusan saran mengubah gaya kode kamu menjadi rata-rata kode dunia, bukan gaya yang kamu pilih sengaja. Beberapa strategi:
+
+- **Aktifkan hanya saat kamu menulis kode yang kamu sudah tahu.** Matikan saat mempelajari library baru - suggestion akan mendahului pemahaman kamu.
+- **Tolak saran multi-baris kecuali kamu menyetujui tiap baris.** Copilot sering menyarankan blok 10 baris; menerimanya buta adalah memasukkan kode yang belum kamu baca.
+- **Periksa import tersembunyi.** Saran sering memakai library yang Copilot asumsikan tersedia. Periksa `pyproject.toml` atau `requirements.txt`; kamu mungkin tidak sadar menambah dependency.
+
+### 2.6 Menyusun Alur Kerja Harian
+
+Contoh alur kerja yang produktif dan sehat:
+
+```
+Pagi (90 menit):
+- Baca ulang protokol eksperimen kamu (Bab 02).
+- Tulis pseudocode manual untuk komponen baru yang kamu rencanakan.
+- Review git diff dari sesi kemarin - pastikan kamu masih memahami
+  semua yang kamu tulis.
+
+Siang (2 jam):
+- Implementasi komponen. Tulis sendiri bagian logika inti.
+  Pakai LLM untuk: boilerplate argparse, konversi format, docstring.
+- Commit kecil-kecil dengan pesan yang jelas.
+
+Sore (1 jam):
+- Debug dengan LLM: tempel error, minta diagnosis (bukan perbaikan).
+- Terapkan perbaikan sendiri setelah kamu mengerti penyebab.
+- Update log LLM dan log eksperimen harian.
+
+Akhir hari (15 menit):
+- Tulis satu paragraf: apa yang saya pelajari hari ini yang tidak
+  saya tahu kemarin?
+```
+
+Alur ini tidak kaku; sesuaikan dengan ritme kamu. Prinsipnya: LLM menambah, tidak menggantikan, waktu kerja-sendiri.
+
+---
+
+## 3. Worked Example: Menambah Mixup Augmentation dengan Bantuan LLM
+
+Tujuan: menambah teknik *mixup* (Zhang et al., 2018) ke pipeline Lab 3 - sebuah teknik augmentasi yang membuat batch dari kombinasi linear dua sampel dengan label-nya juga dikombinasikan. Kamu tidak pernah mengimplementasikan ini sebelumnya, tetapi kamu tahu konsepnya dari paper.
+
+### 3.1 Tahap 1: Menulis Pseudocode Manual
+
+Sebelum prompt apapun, tulis niat di kertas atau komentar:
+
+```python
+# Mixup: untuk tiap batch, sample lambda ~ Beta(alpha, alpha).
+# Permutasi batch secara acak; mix input: x_mix = lambda*x + (1-lambda)*x[perm]
+# Label jadi soft: untuk loss, hitung CE pada x_mix dengan target original (y)
+# dan dengan target permutasi (y[perm]), ambil kombinasi lambda.
+# Hanya dipakai di training, bukan validation.
+```
+
+Menulis ini memaksa kamu memahami mekanisme sebelum minta bantuan.
+
+### 3.2 Tahap 2: Prompt yang Presisi
+
+```
+Saya sedang menambah mixup augmentation ke training loop PyTorch.
+Saya sudah paham konsepnya (sample lambda, permute batch, mix input,
+loss = lambda*CE(y) + (1-lambda)*CE(y[perm])).
+
+Mohon berikan:
+1. Fungsi `mixup_batch(x, y, alpha=0.2) -> (x_mix, y_a, y_b, lam)`.
+2. Modifikasi minimal pada fungsi `train_one_epoch` berikut untuk
+   mengintegrasikan mixup hanya di training:
+   
+   [tempel 10 baris train_one_epoch saya]
+
+Konstraint:
+- Tidak menambah dependency baru.
+- Signature luar `train_one_epoch` tidak berubah.
+- Berikan komentar singkat pada dua baris yang paling mudah keliru.
+
+Jangan beri kode test.
+```
+
+### 3.3 Tahap 3: Membaca Output
+
+Misalkan output:
+
+```python
+def mixup_batch(x, y, alpha=0.2):
+    lam = np.random.beta(alpha, alpha) if alpha > 0 else 1.0
+    idx = torch.randperm(x.size(0), device=x.device)
+    x_mix = lam * x + (1 - lam) * x[idx]
+    y_a, y_b = y, y[idx]
+    return x_mix, y_a, y_b, lam
+
+def train_one_epoch(model, loader, criterion, optimizer, use_mixup=False):
+    model.train()
+    total_loss = 0.0
+    for xb, yb in loader:
+        xb, yb = xb.to(device), yb.to(device)
+        optimizer.zero_grad()
+        if use_mixup:
+            xb, ya, yb_perm, lam = mixup_batch(xb, yb)
+            logits = model(xb)
+            loss = lam * criterion(logits, ya) + (1 - lam) * criterion(logits, yb_perm)
+        else:
+            logits = model(xb)
+            loss = criterion(logits, yb)
+        loss.backward()
+        optimizer.step()
+        total_loss += loss.item() * xb.size(0)
+    return total_loss / len(loader.dataset)
+```
+
+Baca baris per baris:
+
+- `np.random.beta`: OK, menghasilkan lambda. Tetapi - ini pakai `numpy`, bukan `torch`. Untuk konsistensi seed (Bab 03), sebaiknya `torch`.
+- `idx` di device yang sama dengan `x`: bagus, mencegah transfer host-device.
+- Kombinasi loss memakai `criterion` yang dipassing: OK, agnostik terhadap pilihan loss.
+- `yb` dipakai sebagai nama argumen *dan* variabel permutasi (`yb_perm`). Nama membingungkan.
+
+### 3.4 Tahap 4: Modifikasi dan Uji Minimal
+
+```python
+# Revisi: pakai torch, perbaiki naming
+def mixup_batch(x: torch.Tensor, y: torch.Tensor, alpha: float = 0.2
+                ) -> tuple[torch.Tensor, torch.Tensor, torch.Tensor, float]:
+    """Mixup dua sampel per batch posisi. Kembalikan x_mix, label_a, label_b, lam."""
+    if alpha <= 0:
+        return x, y, y, 1.0
+    # Sampling dari Beta(alpha, alpha) pakai torch agar konsisten seed
+    lam = float(torch.distributions.Beta(alpha, alpha).sample())
+    perm = torch.randperm(x.size(0), device=x.device)
+    x_mix = lam * x + (1 - lam) * x[perm]
+    return x_mix, y, y[perm], lam
+```
+
+Uji minimal:
+
+```python
+# Uji 1: alpha=0 harus identitas (tidak ada mix)
+x = torch.randn(4, 3, 32, 32)
+y = torch.tensor([0, 1, 2, 3])
+x_mix, y_a, y_b, lam = mixup_batch(x, y, alpha=0)
+assert torch.allclose(x_mix, x)
+assert (y_a == y).all() and (y_b == y).all()
+assert lam == 1.0
+
+# Uji 2: alpha > 0 menghasilkan lambda di [0, 1]
+for _ in range(10):
+    _, _, _, lam = mixup_batch(x, y, alpha=0.2)
+    assert 0 <= lam <= 1
+
+# Uji 3: target permutasi berbeda dari target asli (dengan alpha>0)
+torch.manual_seed(0)
+_, y_a, y_b, _ = mixup_batch(x, y, alpha=0.2)
+# dengan seed 0, permutasi pasti non-identitas
+assert not (y_a == y_b).all()
+```
+
+Ketiga uji lolos → kode dianggap benar untuk integrasi. Commit.
+
+### 3.5 Tahap 5: Catat Interaksi
+
+Tulis entry log sesuai template di bagian 2.4. Tiga modifikasi kamu (torch Beta, penamaan, type hints) dicatat - ini adalah bukti ownership.
+
+---
+
+## 4. Pitfalls & Miskonsepsi
+
+**"Kode LLM yang lulus test pasti benar."** Tidak. Test yang kamu tulis mungkin tidak menguji kasus yang rusak. LLM sering menghasilkan kode yang lulus test bodoh tetapi salah di kasus tepi. Uji minimal adalah *syarat perlu*, bukan *syarat cukup*.
+
+**"Saya akan belajar sambil LLM menulis."** Sulit. Pembelajaran terjadi saat kamu menulis, gagal, dan memperbaiki - siklus yang LLM pintas. Jika kamu belajar topik baru, matikan Copilot untuk topik itu. Pakai LLM untuk boilerplate setelahnya.
+
+**"LLM tahu library terbaru."** Seringkali tidak. Model dilatih pada snapshot data, sering tertinggal 6-12 bulan. Saran yang memakai API usang adalah umum. Periksa dokumentasi resmi untuk library yang kamu pakai.
+
+**"Referensi paper yang LLM sebut pasti ada."** LLM sering *mengarang* referensi - penulis, judul, tahun yang terdengar masuk akal tetapi tidak ada. Jangan pernah kutip paper tanpa verifikasi langsung (Google Scholar, arXiv, perpustakaan institusi).
+
+**"Saya akan pakai LLM hanya untuk hal tidak penting."** Definisi "tidak penting" bergeser. Hari ini argparse, besok logging, minggu depan training loop. Tanpa disiplin, keseluruhan kode jadi hasil LLM. Pilih mana *kamu* ingin menulis sendiri, bukan mana yang LLM "boleh" tulis.
+
+**"LLM tidak bisa bohong."** Bisa. Output percaya diri yang salah adalah kegagalan mode LLM yang sangat umum - disebut *hallucination*. Ciri: klaim spesifik (nama fungsi, nomor versi, nilai default) yang tidak dapat diverifikasi dengan cepat. Verifikasi sebelum percaya.
+
+**"Copilot gratis, pakai sebanyak mungkin."** Biaya bukan uang; biaya adalah atrofi skill. Mahasiswa yang terus-menerus menerima saran Copilot tanpa refleksi sering kesulitan menulis kode dari kertas kosong. Gunakan hemat.
+
+---
+
+## 5. Lab 5 - Menambah Fitur ke Repo dengan Protokol LLM
+
+Buka `template_repo/notebooks/lab5_llm_assisted_loop.ipynb`.
+
+Tugas:
+
+1. Pilih satu fitur untuk ditambahkan ke `template_repo`:
+   - Early stopping berdasarkan val loss.
+   - Mixup augmentation (seperti worked example).
+   - Gradient clipping untuk stabilitas.
+   - Learning rate warmup.
+2. Ikuti alur lima tahap: pseudocode manual → prompt presisi → baca output → modifikasi + uji minimal → catat interaksi.
+3. Commit pekerjaan kamu dalam dua tahap: commit pertama adalah output LLM verbatim dengan pesan "llm raw"; commit kedua adalah versi kamu dengan pesan "review + modify".
+4. Tulis `docs/llm_log.md` yang mencatat interaksi (sesuai template 2.4).
+5. Jalankan ablation: dengan fitur vs tanpa fitur, dua seed. Laporkan hasil singkat.
+
+**Checklist verifikasi**:
+
+- [ ] Pseudocode manual ada di komentar sebelum kode implementasi.
+- [ ] Commit "llm raw" dan "review + modify" terpisah (lihat `git log`).
+- [ ] Uji minimal ada dan lolos (sebagai fungsi terpisah di kode atau notebook).
+- [ ] `llm_log.md` berisi prompt, ringkasan output, dan modifikasi kamu.
+- [ ] Ablation fitur berjalan; hasilnya dilaporkan ringkas.
+
+---
+
+## 6. Refleksi
+
+1. Bayangkan LLM yang kamu pakai tiba-tiba tidak dapat diakses seminggu. Apa dari pekerjaan kamu sekarang yang berhenti, dan apa yang tetap berjalan? Apa yang pergeseran ini katakan tentang ketergantungan kamu?
+
+2. Kamu diminta menulis paper pendek berdasarkan eksperimen di modul ini. Bagian mana dari tulisan itu *pantas* dibantu LLM, dan bagian mana *harus* ditulis sendiri? Berikan kriteria batas yang dapat kamu pakai di proyek lain.
+
+3. Dosen pembimbing bertanya tentang satu fungsi di kode kamu yang sebenarnya ditulis LLM. Kamu tidak ingat detailnya. Apa langkah yang paling profesional dalam situasi ini, dan bagaimana melindungi diri dari situasi serupa di masa depan?
+
+---
+
+## 7. Bacaan Lanjutan
+
+- **Simon Willison - *Prompt injection and jailbreaking are not the same thing*** dan tulisannya yang lain di simonwillison.net. Perspektif jernih tentang cara kerja LLM dan batasan praktisnya.
+- **Anthropic - *Prompting Guide*** (docs.anthropic.com/prompt-engineering). Panduan resmi Anthropic untuk Claude; prinsipnya berlaku luas untuk LLM lain.
+- **Andy Matuschak - *How can we develop transformative tools for thought?*** (esai, 2019). Bacaan filosofis tentang bagaimana alat membentuk pikiran; membantu kamu memikirkan ketergantungan jangka panjang.
+- **Peter Norvig - *On Chomsky and the Two Cultures of Statistical Learning*** (2011). Tidak langsung tentang LLM, tetapi fondasi pemikiran tentang apa yang bisa dan tidak bisa dijawab oleh model statistik.
+
+---
+
+## Lanjut ke Bab 06
+
+Kamu sekarang punya protokol bekerja dengan AI tools yang menjaga ownership. Keterampilan berikutnya adalah membaca dan memodifikasi kode *orang lain* - repository riset yang sering minim dokumentasi, ditulis dengan gaya berbeda, dan berisi puluhan file yang tidak langsung jelas hubungannya. Kemampuan ini membedakan mahasiswa yang hanya bisa bekerja di kode sendiri dari peneliti yang dapat berdiri di atas bahu orang lain.
+
+Buka [`06_Adopsi_Repo_Riset.md`](06_Adopsi_Repo_Riset.md) ketika siap.
