@@ -1,23 +1,24 @@
-<details>
-<summary>📂 Navigasi Modul (klik untuk buka)</summary>
+📂 Navigasi Modul (klik untuk buka)
 
-| # | Modul | Minggu |
-|---|-------|--------|
-| 00 | [Pendahuluan](00_Pendahuluan.md) | 1 |
-| ▶ 01 | Memahami ML/DL | 2–3 |
-| 02 | [Ide ke Eksperimen](02_Ide_Ke_Eksperimen.md) | 4 |
-| 03 | [Eksperimen Reproduksibel](03_Eksperimen_Reproduksibel.md) | 5–6 |
-| 04 | [Validasi Data](04_Validasi_Data.md) | 7 |
-| 05 | [AI Tools Sebagai Pendukung](05_AI_Tools_Sebagai_Pendukung.md) | 8 |
-| 06 | [Adopsi Repo Riset](06_Adopsi_Repo_Riset.md) | 9 |
-| 07 | [Alat Pendukung Ringan](07_Alat_Pendukung_Ringan.md) | 10 |
-| 08 | [Platform & Tool Baru](08_Platform_Dan_Tool_Baru.md) | 11 |
-| 09 | [Pengembangan Mandiri](09_Pengembangan_Mandiri.md) | 12 |
-| 10 | [Capstone Project](10_Capstone_Project.md) | 13–14 |
-| 11 | [Rubrik Penilaian](11_Rubrik_Penilaian.md) | – |
-| 12 | [Lampiran](12_Lampiran.md) | – |
 
-</details>
+| #    | Modul                                                          | Minggu |
+| ---- | -------------------------------------------------------------- | ------ |
+| 00   | [Pendahuluan](00_Pendahuluan.md)                               | 1      |
+| ▶ 01 | Memahami ML/DL                                                 | 2–3    |
+| 02   | [Ide ke Eksperimen](02_Ide_Ke_Eksperimen.md)                   | 4      |
+| 03   | [Eksperimen Reproduksibel](03_Eksperimen_Reproduksibel.md)     | 5–6    |
+| 04   | [Validasi Data](04_Validasi_Data.md)                           | 7      |
+| 05   | [AI Tools Sebagai Pendukung](05_AI_Tools_Sebagai_Pendukung.md) | 8      |
+| 06   | [Adopsi Repo Riset](06_Adopsi_Repo_Riset.md)                   | 9      |
+| 07   | [Alat Pendukung Ringan](07_Alat_Pendukung_Ringan.md)           | 10     |
+| 08   | [Platform & Tool Baru](08_Platform_Dan_Tool_Baru.md)           | 11     |
+| 09   | [Pengembangan Mandiri](09_Pengembangan_Mandiri.md)             | 12     |
+| 10   | [Capstone Project](10_Capstone_Project.md)                     | 13–14  |
+| 11   | [Rubrik Penilaian](11_Rubrik_Penilaian.md)                     | –      |
+| 12   | [Lampiran](12_Lampiran.md)                                     | –      |
+
+
+
 
 ---
 
@@ -29,7 +30,7 @@
 
 ## 0. Peta Bab
 
-Bab ini membekali Anda dengan kerangka pikir untuk membaca sistem ML/DL seperti seorang peneliti: mengenali empat keluarga arsitektur berdasarkan bentuk data, memahami peran layer sebagai transformasi representasi, dan membaca loss serta optimizer sebagai pilihan yang memiliki konsekuensi. Setelah menyelesaikan bab ini, Anda dapat membuka repository riset dan menebak secara masuk akal mengapa arsitektur tertentu dipilih, bukan hanya menyebut namanya.
+Bab ini membekali Anda dengan kerangka pikir untuk membaca sistem ML/DL seperti seorang peneliti: membaca setiap masalah sebagai pasangan tensor input → output, mengenali empat keluarga arsitektur berdasarkan bentuk data tersebut, memahami peran layer sebagai transformasi representasi, membaca loss serta optimizer sebagai pilihan yang memiliki konsekuensi, dan mengenali tiga pilihan representasi fitur - *engineered*, *extracted*, *learned* - beserta keputusan turunannya. Setelah menyelesaikan bab ini, Anda dapat membuka repository riset dan menebak secara masuk akal mengapa arsitektur dan strategi representasi tertentu dipilih, bukan hanya menyebut namanya.
 
 ---
 
@@ -48,6 +49,37 @@ Poinnya bukan "tiga jawaban di atas adalah jawaban tunggal yang benar". Poinnya:
 ---
 
 ## 2. Konsep Inti
+
+### 2.0 Peta Besar: Tensor Masuk, Tensor Keluar
+
+Sebelum membahas keluarga arsitektur, ada satu kerangka mental yang menyederhanakan hampir semua keputusan desain di deep learning: setiap masalah dapat dibaca hanya dengan menjawab dua pertanyaan - *bentuk tensor apa yang masuk ke model*, dan *bentuk tensor apa yang keluar dari model*. Tensor input merangkum struktur data mentah: vektor fitur pada data tabular, grid piksel pada gambar, urutan token pada teks, matriks waktu-kali-sensor pada deret waktu. Tensor output merangkum bentuk prediksi yang diminta: satu angka pada regresi, distribusi kelas pada klasifikasi, urutan label pada *token classification*, atau grid kotak pada deteksi objek. Segala sesuatu di antara keduanya - MLP, CNN, RNN, Transformer, layer apapun yang Anda tumpuk - hanyalah mesin transformasi yang memetakan satu bentuk ke bentuk yang lain.
+
+Kerangka ini terlihat sederhana, tetapi bekerja ampuh dalam praktik. Ketika Anda membaca kode repositori yang asing, yang pertama dicari bukan nama model, melainkan bentuk batch di `DataLoader` dan bentuk tensor tepat sebelum loss dihitung. Dari dua angka itu saja, Anda sudah dapat menebak keluarga arsitektur yang masuk akal dan memeriksa apakah pilihan paper tersebut konsisten dengan bentuk tugasnya. Sebaliknya, ketika Anda merancang eksperimen untuk domain yang belum familiar, menuliskan pasangan tensor input → output di kertas - sebelum satu baris kode pun ditulis - sering kali mempersempit pilihan arsitektur dari "semua model di dunia" menjadi "satu atau dua keluarga yang masuk akal".
+
+Tabel berikut merangkum pasangan tensor input → output untuk domain yang akan sering Anda temui sepanjang semester. Bacalah setiap baris sebagai sebuah cerita singkat: dari bentuk data mentah, ke bentuk yang dipakai model, ke bentuk prediksi yang diminta.
+
+
+| Domain      | Contoh Data                                       | Tensor Input                            | Tensor Output   | Contoh Tugas                             |
+| ----------- | ------------------------------------------------- | --------------------------------------- | --------------- | ---------------------------------------- |
+| Tabular     | Umur, luas rumah, jumlah kamar, lokasi            | `(F,)` - vektor fitur                   | `(1,)`          | Prediksi harga rumah                     |
+| Tabular     | Umur, tekanan darah, kolesterol, BMI              | `(F,)` - vektor fitur                   | `(N,)`          | Klasifikasi risiko penyakit              |
+| Gambar      | Foto RGB 224×224                                  | `(C, H, W)` - kanal, tinggi, lebar      | `(N,)`          | Klasifikasi kucing vs anjing             |
+| Gambar      | Foto makanan                                      | `(C, H, W)`                             | `(1,)`          | Prediksi jumlah kalori                   |
+| Gambar      | Foto makanan                                      | `(C, H, W)`                             | `(K,)`          | Prediksi beberapa nilai gizi             |
+| Gambar      | Foto kebun / jalan / ruang parkir                 | `(C, H, W)`                             | `(G, G, 5 + N)` | Deteksi objek                            |
+| Teks        | Ulasan produk: "Barangnya bagus dan cepat sampai" | `(T,)` - urutan token                   | `(N,)`          | Klasifikasi sentimen                     |
+| Teks        | Ulasan film atau hotel                            | `(T,)` - urutan token                   | `(1,)`          | Prediksi rating                          |
+| Teks        | Kalimat berita atau artikel                       | `(T,)` - urutan token                   | `(T, N)`        | Penandaan entitas / token classification |
+| Deret waktu | Detak jantung atau sinyal sensor per detik        | `(T, F)` - waktu × fitur/sensor         | `(1,)`          | Prediksi satu nilai berikutnya           |
+| Deret waktu | Sinyal ECG beberapa detik                         | `(T, F)` - waktu × fitur/sensor         | `(N,)`          | Klasifikasi aritmia                      |
+| Deret waktu | Data glukosa atau suhu dari waktu ke waktu        | `(T, F)` - waktu × fitur/sensor         | `(T', 1)`       | Prediksi urutan masa depan               |
+| Multimodal  | Foto produk + deskripsi teks                      | dua tensor, mis. `(C, H, W)` dan `(T,)` | `(N,)`          | Klasifikasi produk                       |
+| Multimodal  | Gambar + caption media sosial                     | dua tensor, mis. `(C, H, W)` dan `(T,)` | `(N,)`          | Klasifikasi hoaks / bukan hoaks          |
+
+
+Perhatikan bahwa bentuk output tidak selalu sekadar `(N,)` untuk klasifikasi; deteksi objek menghasilkan tensor tiga dimensi karena setiap sel grid memprediksi beberapa kotak dan kelas, sedangkan prediksi urutan masa depan mengembalikan satu tensor waktu penuh - bukan satu angka. Transisi dari "tugas apa yang ingin saya selesaikan" menjadi "bentuk output apa yang benar" adalah keputusan yang perlu Anda selesaikan sebelum memilih arsitektur; keliru di sini akan membuat semua pilihan berikutnya terasa aneh dan sulit dijustifikasi.
+
+Kerangka tensor masuk → tensor keluar inilah yang mendasari bagian berikutnya. Empat keluarga arsitektur yang dibahas di 2.1 pada dasarnya adalah empat asumsi berbeda tentang struktur tensor input, dan masing-masing keluarga dirancang untuk memanfaatkan asumsi itu seefisien mungkin.
 
 ### 2.1 Arsitektur sebagai Asumsi tentang Data
 
@@ -93,19 +125,51 @@ Dipasangkan dengan optimizer adalah *scheduler*: mekanisme menurunkan (atau mena
 
 Satu kesalahan klasik pemula: membanggakan akurasi 95%, tanpa menyadari kelas positif hanya muncul 5% di data - sehingga *dummy classifier* yang selalu memprediksi "negatif" juga mencapai 95%. Evaluasi yang jujur memakai beberapa metrik, dipilih menurut tujuan.
 
-| Metrik | Kapan dipakai | Kelemahan |
-|---|---|---|
-| Accuracy | Kelas seimbang | Menyesatkan pada imbalance |
-| Precision / Recall / F1 | Kelas imbalance, fokus pada satu kelas | Perlu memilih ambang batas |
-| ROC-AUC | Evaluasi probabilistik binary | Tidak mencerminkan performa pada ambang tertentu |
-| PR-AUC | Imbalance ekstrem | Lebih sulit diinterpretasikan non-teknis |
-| Perplexity | Model bahasa | Hanya bermakna relatif antar model |
+
+| Metrik                  | Kapan dipakai                          | Kelemahan                                        |
+| ----------------------- | -------------------------------------- | ------------------------------------------------ |
+| Accuracy                | Kelas seimbang                         | Menyesatkan pada imbalance                       |
+| Precision / Recall / F1 | Kelas imbalance, fokus pada satu kelas | Perlu memilih ambang batas                       |
+| ROC-AUC                 | Evaluasi probabilistik binary          | Tidak mencerminkan performa pada ambang tertentu |
+| PR-AUC                  | Imbalance ekstrem                      | Lebih sulit diinterpretasikan non-teknis         |
+| Perplexity              | Model bahasa                           | Hanya bermakna relatif antar model               |
+
 
 Di samping metrik, Anda juga perlu strategi validasi:
 
 - **Hold-out split.** Bagi data menjadi train/val/test sekali, pakai val untuk tuning, test untuk pengukuran final. Cepat tetapi sensitif terhadap keberuntungan pembagian.
 - **K-fold cross-validation.** Bagi data menjadi k bagian; training k kali dengan tiap bagian jadi validasi bergantian. Estimasi lebih stabil, biaya k kali training.
 - **Stratified split/fold.** Pastikan distribusi kelas sama di setiap bagian; wajib untuk klasifikasi dengan imbalance.
+
+### 2.6 Representasi Fitur: Tiga Pilihan Desain
+
+Metrik evaluasi memberi tahu Anda *apakah* model bekerja, tetapi salah satu keputusan yang paling sering menentukan *seberapa baik* model bekerja adalah keputusan yang diambil jauh sebelum training dimulai: bagaimana data mentah diubah menjadi vektor yang akan masuk ke model? Pada modalitas yang sama dan tugas yang sama, pilihan representasi yang berbeda kerap menghasilkan selisih performa yang lebih besar daripada mengganti arsitektur atau loss. Karena itu, ketika seorang peneliti membandingkan dua metode, pertanyaan pertama yang pantas ditanyakan adalah "representasi apa yang dipakai", bukan "model apa yang dipakai".
+
+Secara praktis, Anda akan menemui tiga jenis representasi yang berulang di paper dan repositori riset.
+
+**Engineered.** Fitur dirancang oleh manusia dengan pengetahuan domain - statistik agregat, transformasi matematis, atau fitur klasik yang sudah terbukti berguna. Di gambar contohnya histogram warna, HOG, atau SIFT. Di sinyal fisiologis seperti *continuous glucose monitor*, contohnya mean, koefisien variasi, atau *time-in-range*. Representasi *engineered* murah secara komputasi, mudah diinterpretasi, dan sering menjadi *baseline* yang mengejutkan kuat ketika data latih terbatas atau ketika dosen penguji meminta penjelasan "kenapa model mengambil keputusan ini".
+
+**Extracted.** Fitur diambil dari lapisan tersembunyi model *pretrained* yang dibekukan - tidak satu parameter pun ikut dilatih ulang. Di visi, ini berarti mengambil *hidden states* dari CNN atau ViT yang di-*pretrain* pada ImageNet. Di teks, memanfaatkan token `[CLS]` atau *mean pooling* dari BERT. Di sinyal deret waktu, memakai *embedding* dari model seperti Chronos atau TimesFM. Pendekatan ini menjanjikan kompromi menarik: Anda mendapat representasi kaya dari model besar tanpa biaya training penuh, dengan syarat domain target tidak terlalu jauh dari domain *pretraining*.
+
+**Learned.** Representasi dipelajari langsung dari data melalui training *end-to-end* atau *self-supervised*. Model tidak menerima petunjuk fitur eksplisit; ia harus menemukan sendiri mana bagian input yang berguna bagi tugas hilir. *Fine-tuning* BERT untuk klasifikasi, melatih 1D CNN dari nol pada sinyal ECG, atau me-*fine-tune* ResNet pada dataset medis semuanya termasuk kategori ini. Representasi *learned* biasanya paling kuat ketika data latih memadai, tetapi paling haus data dan paling mahal dilatih.
+
+Tabel di bawah menunjukkan bagaimana ketiga pilihan tampak di beberapa domain yang sama. Bacalah menurun per kolom untuk memahami *gradasi kebebasan* - dari fitur yang sepenuhnya dirancang manusia, ke fitur yang diambil apa adanya dari model besar, ke fitur yang dipelajari langsung dari data target.
+
+
+| Domain          | Engineered                                   | Extracted                                      | Learned                                  |
+| --------------- | -------------------------------------------- | ---------------------------------------------- | ---------------------------------------- |
+| Gambar          | Histogram warna, HOG, SIFT                   | Hidden states dari CNN/ViT pretrained (frozen) | CNN di-fine-tune end-to-end              |
+| Teks            | TF-IDF, n-gram, panjang kalimat              | `[CLS]` atau mean pooling dari BERT (frozen)   | BERT di-fine-tune untuk task hilir       |
+| Sinyal CGM      | Mean, CV, TIR, TBR, daily pattern            | Hidden states dari Chronos / TimesFM (frozen)  | 1D CNN / transformer dilatih dari nol    |
+| Audio           | MFCC, spectral centroid, ZCR                 | Embedding dari Wav2Vec2 / AST (frozen)         | CNN di atas spektrogram, end-to-end      |
+| Ulasan / review | Panjang teks, rasio kata positif, skor VADER | Sentence embedding dari Sentence Transformers  | Transformer fine-tuned untuk klasifikasi |
+
+
+Pilihan di antara ketiganya jarang hitam-putih. Setelah Anda memutuskan jalur utama, beberapa keputusan turunan segera mengikuti. Jika memakai model *pretrained*, apakah ia sepenuhnya dibekukan atau ikut di-*fine-tune*, dan jika hanya sebagian, layer mana yang dibuka? Layer awal umumnya menyimpan fitur umum (tepi, tekstur, *part-of-speech*) yang lebih aman diwariskan, sementara layer dalam berisi fitur yang lebih spesifik domain. Jika mengambil *hidden states* sebagai representasi, bagaimana cara mereduksinya menjadi satu vektor - token `[CLS]`, *mean pooling*, *attention pooling*, atau konkatenasi beberapa layer sekaligus? Dan akhirnya, apakah satu representasi tunggal cukup, atau lebih bijak menggabungkan *engineered* dan *extracted* sebagai ansambel untuk menangkap dua sudut pandang berbeda terhadap data yang sama?
+
+**Implikasi untuk eksperimen.** Taksonomi ini akan menjadi penting di Bab 02 ketika Anda merumuskan variabel eksperimen. Membandingkan "BERT *frozen* + *head* kecil" dengan "BERT di-*fine-tune* penuh" bukan sekadar membandingkan dua model; Anda sesungguhnya membandingkan dua strategi representasi - *extracted* vs. *learned* - dengan tingkat kebebasan yang sangat berbeda. Demikian pula, mengganti "fitur statistik CGM + XGBoost" dengan "1D CNN *end-to-end*" adalah lompatan dari *engineered* ke *learned*, bukan sekadar "pakai deep learning". Menyadari perbedaan ini sejak awal menyelamatkan Anda dari klaim yang keliru di laporan - misalnya mengaitkan peningkatan performa pada "model yang lebih canggih", padahal yang sebenarnya berubah adalah tingkat kebebasan representasi. Keputusan *freeze vs. fine-tune* yang akan Anda lakukan di Bab 02 pada dasarnya adalah keputusan geser satu kotak ke kanan di tabel di atas.
+
+Dengan fondasi ini berdiri lengkap - pasangan tensor input → output, empat keluarga arsitektur, layer sebagai transformasi, loss sebagai sinyal, optimizer sebagai mekanisme langkah, evaluasi yang jujur, dan tiga pilihan representasi - Anda siap membangun model konkret. Bagian berikutnya menurunkan semua ini pada satu kasus *hands-on*: CNN sederhana pada CIFAR-10.
 
 ---
 
@@ -156,10 +220,10 @@ class SimpleCNN(nn.Module):
 
 Alasan tiap pilihan, dibaca baris demi baris:
 
-- **`Conv2d(3, 32, ...)` dengan `padding=1`**: padding mempertahankan dimensi spasial setelah konvolusi; tanpa padding resolusi menyusut dan Anda harus mengimbangi dengan kernel/pool berbeda.
-- **`BatchNorm2d` sebelum ReLU**: menstabilkan distribusi input tiap layer, mempercepat konvergensi. Urutan Conv → BN → ReLU adalah konvensi yang paling umum.
-- **`MaxPool2d(2)`** setelah tiap blok: menurunkan resolusi setengah, memperluas *receptive field* layer berikutnya.
-- **`Dropout(0.3)`** di classifier: regularisasi ringan; tanpa ini model mudah overfitting pada dataset kecil.
+- `**Conv2d(3, 32, ...)` dengan `padding=1**`: padding mempertahankan dimensi spasial setelah konvolusi; tanpa padding resolusi menyusut dan Anda harus mengimbangi dengan kernel/pool berbeda.
+- `**BatchNorm2d` sebelum ReLU**: menstabilkan distribusi input tiap layer, mempercepat konvergensi. Urutan Conv → BN → ReLU adalah konvensi yang paling umum.
+- `**MaxPool2d(2)`** setelah tiap blok: menurunkan resolusi setengah, memperluas *receptive field* layer berikutnya.
+- `**Dropout(0.3)*`* di classifier: regularisasi ringan; tanpa ini model mudah overfitting pada dataset kecil.
 - **Classifier tidak memakai `Softmax`**: output adalah *logits* mentah. `CrossEntropyLoss` di PyTorch sudah melakukan log-softmax secara numerik stabil di dalamnya.
 
 ### 3.2 Setup Training Minimal
@@ -193,7 +257,7 @@ Lima keputusan yang perlu Anda pahami:
 2. **Normalisasi dengan statistik yang tepat.** Angka di atas adalah mean dan std per channel yang dihitung dari training set CIFAR-10. Pakai statistik yang sama di validation/test.
 3. **Batch size 128.** Cukup besar agar gradien tidak terlalu berisik, cukup kecil agar muat di GPU kecil. Batch size yang sangat kecil (< 16) sering membuat BatchNorm tidak stabil.
 4. **AdamW dengan lr=3e-4.** Nilai "default yang sering berhasil" dari blog Karpathy. Weight decay kecil agar ada regularisasi tanpa menahan model terlalu kuat.
-5. **`device` otomatis.** Kode yang sama jalan di laptop tanpa GPU dan di server; tidak ada alasan menulisnya *hard-coded*.
+5. `**device` otomatis.** Kode yang sama jalan di laptop tanpa GPU dan di server; tidak ada alasan menulisnya *hard-coded*.
 
 ### 3.3 Training Loop
 
@@ -221,9 +285,9 @@ for epoch in range(20):
 
 Empat hal yang layak diperhatikan:
 
-- **`model.train()` vs `model.eval()`.** Mode memengaruhi perilaku Dropout dan BatchNorm. Lupa memanggil `.eval()` saat evaluasi adalah bug yang sangat umum.
-- **`optimizer.zero_grad()` di awal iterasi.** PyTorch mengakumulasi gradien secara default; jika tidak di-reset, Anda akan meng-update dengan gradien campuran beberapa batch.
-- **`loss.item() * xb.size(0)`.** Kita rata-ratakan di akhir, jadi kalikan dengan ukuran batch di tengah agar hasil konsisten ketika ukuran batch tidak seragam (batch terakhir sering lebih kecil).
+- `**model.train()` vs `model.eval()`.** Mode memengaruhi perilaku Dropout dan BatchNorm. Lupa memanggil `.eval()` saat evaluasi adalah bug yang sangat umum.
+- `**optimizer.zero_grad()` di awal iterasi.** PyTorch mengakumulasi gradien secara default; jika tidak di-reset, Anda akan meng-update dengan gradien campuran beberapa batch.
+- `**loss.item() * xb.size(0)`.** Kita rata-ratakan di akhir, jadi kalikan dengan ukuran batch di tengah agar hasil konsisten ketika ukuran batch tidak seragam (batch terakhir sering lebih kecil).
 - **Tidak ada validasi di loop ini.** Sengaja dibuat minimal; Lab 1 akan menambah validasi set dan tracking loss/accuracy per epoch.
 
 ### 3.4 Evaluasi yang Jujur
@@ -261,20 +325,20 @@ Buka [Lab 1 - Baseline CNN pada CIFAR-10](template_repo/notebooks/lab1_baseline_
 
 **Checklist verifikasi** sebelum lab dianggap selesai:
 
-- [ ] Train accuracy ≥ 75%, val accuracy ≥ 70% setelah 20 epoch.
-- [ ] Selisih train - val accuracy dilaporkan; jika > 10% dijelaskan.
-- [ ] Confusion matrix tersimpan sebagai gambar di `experiments/lab1/`.
-- [ ] Notebook dapat dijalankan ulang dari atas ke bawah tanpa error.
+- Train accuracy ≥ 75%, val accuracy ≥ 70% setelah 20 epoch.
+- Selisih train - val accuracy dilaporkan; jika > 10% dijelaskan.
+- Confusion matrix tersimpan sebagai gambar di `experiments/lab1/`.
+- Notebook dapat dijalankan ulang dari atas ke bawah tanpa error.
 
 ---
 
 ## 6. Refleksi
 
 1. Anda diberi dataset baru: 500 sinyal EKG satu dimensi, panjang masing-masing 5000 titik, target empat kelas aritmia. Keluarga arsitektur apa yang paling masuk akal untuk Anda coba pertama kali, dan mengapa? Pilihan kedua Anda apa, dan di kondisi apa ia lebih cocok daripada pilihan pertama?
-
 2. Bayangkan Anda sudah training SimpleCNN dan mendapat train accuracy 95% tetapi val accuracy 68%. Tanpa melihat kodenya, sebutkan tiga hipotesis paling mungkin tentang penyebabnya, lalu tiga eksperimen pendek yang bisa membedakan satu hipotesis dari yang lain.
-
 3. Ketika Anda mengganti `CrossEntropyLoss` menjadi `FocalLoss`, apa saja variabel yang *secara implisit* juga berubah, walaupun Anda tidak menyentuhnya? (Petunjuk: pikirkan learning rate efektif, tekanan pada kelas minor, stabilitas awal training.) Bagaimana ini memengaruhi cara Anda merancang perbandingan?
+4. Seorang kolaborator mengirim dataset baru: rekaman suara tangisan bayi sepanjang tiga detik pada *sampling rate* 16 kHz, dilabeli empat kategori (lapar, mengantuk, tidak nyaman, kesakitan). Tuliskan pasangan tensor input → output yang paling alami menurut Anda, jelaskan mengapa bentuk tersebut paling cocok, lalu ajukan satu alternatif representasi input (misalnya mel-spektrogram 2D) yang mengubah bentuk tensor input. Diskusikan bagaimana perubahan bentuk tersebut menggeser pilihan keluarga arsitektur yang masuk akal dicoba pertama kali.
+5. Anda ditugaskan membangun klasifikasi kualitas biji kopi dari foto *close-up*. Dataset tersedia hanya 300 gambar per kelas untuk empat kelas. Bandingkan tiga strategi representasi - *engineered* (misalnya histogram warna + statistik tekstur), *extracted* (misalnya *hidden states* dari ViT pretrained yang dibekukan), dan *learned* (CNN kecil dilatih dari nol). Manakah yang paling masuk akal Anda coba terlebih dahulu dan mengapa? Pada titik penambahan data sejumlah berapa Anda akan mempertimbangkan berpindah strategi, dan apa bukti yang akan mendorong perpindahan itu?
 
 ---
 
