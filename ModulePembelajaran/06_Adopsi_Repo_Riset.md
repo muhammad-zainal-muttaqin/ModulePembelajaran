@@ -1,3 +1,26 @@
+<details>
+<summary>📂 Navigasi Modul (klik untuk buka)</summary>
+
+| # | Modul | Minggu |
+|---|-------|--------|
+| 00 | [Pendahuluan](00_Pendahuluan.md) | 1 |
+| 01 | [Memahami ML/DL](01_Memahami_ML_DL.md) | 2–3 |
+| 02 | [Ide ke Eksperimen](02_Ide_Ke_Eksperimen.md) | 4 |
+| 03 | [Eksperimen Reproduksibel](03_Eksperimen_Reproduksibel.md) | 5–6 |
+| 04 | [Validasi Data](04_Validasi_Data.md) | 7 |
+| 05 | [AI Tools Sebagai Pendukung](05_AI_Tools_Sebagai_Pendukung.md) | 8 |
+| ▶ 06 | Adopsi Repo Riset | 9 |
+| 07 | [Alat Pendukung Ringan](07_Alat_Pendukung_Ringan.md) | 10 |
+| 08 | [Platform & Tool Baru](08_Platform_Dan_Tool_Baru.md) | 11 |
+| 09 | [Pengembangan Mandiri](09_Pengembangan_Mandiri.md) | 12 |
+| 10 | [Capstone Project](10_Capstone_Project.md) | 13–14 |
+| 11 | [Rubrik Penilaian](11_Rubrik_Penilaian.md) | – |
+| 12 | [Lampiran](12_Lampiran.md) | – |
+
+</details>
+
+---
+
 # 06 · Adopsi Repository Riset
 
 > *Kemampuan membaca kode orang lain dengan cepat adalah penggandaan kekuatan terbesar yang bisa Anda miliki sebagai peneliti. Proyek kuliah boleh dimulai dari nol; riset nyata hampir selalu dimulai dari repo yang sudah ada - dengan puluhan file, konvensi asing, dan README satu paragraf yang tidak cukup.*

@@ -1,3 +1,26 @@
+<details>
+<summary>📂 Navigasi Modul (klik untuk buka)</summary>
+
+| # | Modul | Minggu |
+|---|-------|--------|
+| 00 | [Pendahuluan](00_Pendahuluan.md) | 1 |
+| 01 | [Memahami ML/DL](01_Memahami_ML_DL.md) | 2–3 |
+| 02 | [Ide ke Eksperimen](02_Ide_Ke_Eksperimen.md) | 4 |
+| 03 | [Eksperimen Reproduksibel](03_Eksperimen_Reproduksibel.md) | 5–6 |
+| 04 | [Validasi Data](04_Validasi_Data.md) | 7 |
+| 05 | [AI Tools Sebagai Pendukung](05_AI_Tools_Sebagai_Pendukung.md) | 8 |
+| 06 | [Adopsi Repo Riset](06_Adopsi_Repo_Riset.md) | 9 |
+| 07 | [Alat Pendukung Ringan](07_Alat_Pendukung_Ringan.md) | 10 |
+| 08 | [Platform & Tool Baru](08_Platform_Dan_Tool_Baru.md) | 11 |
+| 09 | [Pengembangan Mandiri](09_Pengembangan_Mandiri.md) | 12 |
+| 10 | [Capstone Project](10_Capstone_Project.md) | 13–14 |
+| ▶ 11 | Rubrik Penilaian | – |
+| 12 | [Lampiran](12_Lampiran.md) | – |
+
+</details>
+
+---
+
 # 11 · Rubrik Penilaian
 
 > *Rubrik yang baik bukan alat menghakimi, melainkan cermin yang memantulkan arah. Tiap level menggambarkan kebiasaan yang dapat diamati - bukan nilai yang harus dicapai dengan cara apa pun.*
