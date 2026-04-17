@@ -86,6 +86,27 @@ Aturan wajib saat menambah atau mengedit konten `.md` dan sel markdown notebook:
 - Passive prefix `di-` pada kata asing pakai hyphen: `di-fine-tune`, `di-pretrain`, `di-freeze`.
 - Kata "apapun", "siapapun" ditulis menyatu (gaya yang konsisten di seluruh modul).
 
+**Diksi Natural (hindari rasa "terjemahan literal"):**
+
+Penulis modul adalah penutur asli Indonesia. Prosa harus terasa ditulis langsung dalam Indonesia, bukan diterjemahkan dari English academic prose. Pakai pasangan diksi berikut sebagai default; kaku di kiri, natural di kanan:
+
+| Kaku (hindari) | Natural (pakai) | Catatan |
+|---|---|---|
+| `secara praktis` | `dalam praktiknya` | |
+| `bekerja ampuh / bekerja kuat` | `sangat efektif` / `sangat ampuh` | |
+| `ada untuk` (= "exists to") | `dirancang untuk` | |
+| `menunjuk ke` (= "points to" abstrak) | `mengacu pada` | Kecuali makna spasial/matematis literal (mis. "gradien menunjuk ke arah") |
+| `Ketika Anda` (awal kalimat) | `Saat Anda` | "Ketika" boleh dipertahankan jika konteks butuh formalitas tinggi |
+| `yang asing` | `yang belum dikenal` | |
+| `Aturan jempol` | `Aturan praktisnya` | |
+| `kerangka mental` | `kerangka berpikir` | |
+| `menemui` (= "encounter") | `menjumpai` | |
+| `mengintimidasi` | `membuat gentar` | |
+
+Pola pembuka section pengantar yang melibatkan pembaca: pakai "kita" sebagai penanda inklusif (mis. "Sebelum **kita** membahas..."), terutama saat menjembatani konsep baru.
+
+Hindari konstruksi bertingkat khas English ("there is one X that Y, which Z, so that W..."). Pecah jadi 2-3 kalimat pendek dengan penanda kohesi natural ("justru", "memang", "sebaliknya", "nah"). Reduplikasi untuk jamak emphasis ("kompetensi-kompetensi", "pertanyaan-pertanyaan") lebih natural daripada artikel kuantitatif ("berbagai kompetensi").
+
 **Format Markdown:**
 
 - Inline code di dalam bold: `**\`Conv2d(...)`**, bukan ``` **Conv2d(...)**` `` (backtick di luar bold).

@@ -69,7 +69,7 @@ Setelah jutaan interaksi kolektif, komunitas riset telah mengumpulkan konsensus 
 - **Kode keamanan-kritis.** Kode yang menangani kredensial, otentikasi, atau input dari internet. Kesalahan di sini punya konsekuensi serius.
 - **Memutuskan arsitektur proyek.** "Bagaimana saya sebaiknya menyusun proyek ini?" menghasilkan saran generik; keputusan arsitektur memerlukan pemahaman konstraint spesifik yang tidak bisa diringkas dalam prompt.
 
-Aturan jempol: LLM baik untuk percepatan *eksekusi* tugas yang Anda sudah tahu, kurang baik untuk *pengambilan keputusan* yang belum Anda kuasai.
+Aturan praktisnya: LLM sangat efektif dalam mempercepat *eksekusi* tugas yang sudah Anda pahami, namun kurang efektif dalam *pengambilan keputusan* yang belum Anda kuasai.
 
 ### 2.2 Prompt yang Menghasilkan Bantuan Presisi
 

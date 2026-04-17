@@ -24,7 +24,7 @@ Jika dua prasyarat pertama belum solid, kerjakan lebih dulu *primer* pada [Lampi
 | Minggu | Topik                                 | Bab | Lab      | Sikap Dominan         |
 | ------ | ------------------------------------- | --- | -------- | --------------------- |
 | 1      | Orientasi & kontrak belajar           | 00  | –        | Curiosity             |
-| 2–3    | Memahami sistem ML/DL secara praktis  | 01  | Lab 1    | Curiosity             |
+| 2–3    | Memahami sistem ML/DL dalam praktiknya | 01  | Lab 1    | Curiosity             |
 | 4      | Menerjemahkan ide menjadi eksperimen  | 02  | Lab 2    | Curiosity → Rigor     |
 | 5–6    | Eksperimen reproduksibel              | 03  | Lab 3    | Rigor                 |
 | 7      | Validasi data & pra-pemrosesan        | 04  | Lab 4    | Skepticism            |

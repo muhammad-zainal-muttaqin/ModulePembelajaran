@@ -198,7 +198,7 @@ Jika satu bagian membingungkan, lihat siapa yang menulisnya dan commit apa yang 
 
 ### 2.5 Modifikasi Minimal-Invasif
 
-Ketika Anda menambah fitur atau mengubah perilaku, pilih pola yang *tidak mengganggu* kode orang lain. Ini penting untuk:
+Saat Anda menambah fitur atau mengubah perilaku, pilih pola yang *tidak mengganggu* kode orang lain. Ini penting untuk:
 
 - Memudahkan *upstream merge* jika repo berubah.
 - Membuat pekerjaanmu dapat dibalik (revert) dengan bersih.

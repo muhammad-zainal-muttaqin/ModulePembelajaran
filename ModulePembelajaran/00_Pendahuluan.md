@@ -50,7 +50,7 @@ Jawaban yang terdengar percaya diri - "ya, saya coba" - sering kali menyembunyik
 - Berapa lama satu training run? Apakah cukup waktu untuk mengulang beberapa kali?
 - Apakah Anda memahami arsitektur backbone cukup baik untuk membekukan layer yang benar?
 
-Setiap pertanyaan di atas menunjuk ke satu kompetensi yang berbeda. Modul ini ada untuk membangun kompetensi-kompetensi tersebut secara sistematis, sehingga email seperti itu tidak lagi mengintimidasi - sebaliknya, menjadi titik awal eksperimen yang rapi, hasil yang dapat dipertahankan, dan laporan yang menjelaskan lebih dari sekadar angka.
+Setiap pertanyaan di atas mengacu pada kompetensi yang berbeda. Modul ini dirancang untuk mengembangkan kompetensi-kompetensi tersebut secara sistematis, sehingga email semacam itu tidak lagi membuat Anda gentar - justru menjadi titik awal eksperimen yang terstruktur, hasil yang dapat dipertanggungjawabkan, dan laporan yang tidak sekadar memaparkan angka.
 
 ---
 
@@ -58,7 +58,7 @@ Setiap pertanyaan di atas menunjuk ke satu kompetensi yang berbeda. Modul ini ad
 
 Email di atas menyentuh sembilan kompetensi yang menjadi tulang punggung modul. Setiap kompetensi dibahas satu bab penuh dengan satu lab pendamping.
 
-1. **Memahami sistem ML/DL secara praktis** (Bab 01). Mengetahui apa yang dilakukan arsitektur, loss, optimizer, dan evaluasi cukup dalam untuk menilai di mana perubahan bermakna.
+1. **Memahami sistem ML/DL dalam praktiknya** (Bab 01). Mengetahui apa yang dilakukan arsitektur, loss, optimizer, dan evaluasi cukup dalam untuk menilai di mana perubahan bermakna.
 2. **Menerjemahkan ide menjadi eksperimen** (Bab 02). Mengubah instruksi terbuka menjadi rancangan konkret dengan variabel, baseline, hipotesis, dan metrik.
 3. **Eksperimen reproduksibel** (Bab 03). Menulis konfigurasi, mengunci seed, mencatat jejak, dan menyusun ablation yang bisa diverifikasi orang lain.
 4. **Validasi data dan pra-pemrosesan** (Bab 04). Memeriksa data sebelum mempercayai hasilnya - mulai dari distribusi kelas hingga *leakage* yang tersembunyi.
@@ -140,7 +140,7 @@ Sebelum melangkah ke Bab 01, luangkan waktu sepuluh menit untuk menulis jawaban 
 
 1. Dari sembilan kompetensi, mana yang Anda duga paling asing? Apa yang Anda harapkan berubah pada akhir semester?
 2. Dari empat sikap riset, mana yang sudah Anda rasakan secara alami, dan mana yang terasa paling sulit untuk Anda lakukan secara konsisten?
-3. Ketika Anda menerima email PI seperti di pembuka bab ini *hari ini*, apa tiga langkah pertama yang akan Anda ambil? Bandingkan dengan jawaban Anda nanti di minggu 14.
+3. Saat Anda menerima email PI seperti di pembuka bab ini *hari ini*, apa tiga langkah pertama yang akan Anda ambil? Bandingkan dengan jawaban Anda nanti di minggu 14.
 
 ---
 
