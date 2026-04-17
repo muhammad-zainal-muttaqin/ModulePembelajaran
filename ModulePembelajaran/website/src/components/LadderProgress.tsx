@@ -66,12 +66,11 @@ export default function LadderProgress({ interactive = false, compact = false }:
           const cell = (
             <div className="flex flex-col items-center">
               <div
-                className={`w-full rounded-md border-2 transition-all ${
+                className={`w-full h-14 rounded-md border-2 transition-all ${
                   done
                     ? `${accent} border-transparent text-white`
                     : "bg-white dark:bg-white/5 border-black/10 dark:border-white/10 text-ink/80 dark:text-parchment/80"
                 }`}
-                style={{ height: `${24 + w * 3}px` }}
               >
                 <div className="h-full flex items-center justify-center font-mono text-xs font-semibold">
                   M{w}

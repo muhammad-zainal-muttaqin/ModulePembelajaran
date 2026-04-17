@@ -11,8 +11,8 @@ export default function EmailHero() {
             Modul 14 minggu untuk asisten riset ML/DL
           </div>
           <h1 className="font-serif font-semibold text-display-lg tracking-tight mb-6">
-            Hari ketiga di lab.<br />
-            <span className="text-rigor dark:text-curiosity">Tujuh hari menuju Kamis.</span>
+            Dua kalimat dari dosen.<br />
+            <span className="text-rigor dark:text-curiosity">Tiga puluh keputusan riset.</span>
           </h1>
           <p className="text-lg md:text-xl text-ink/75 dark:text-parchment/80 max-w-xl mb-8 leading-relaxed">
             Satu email dua kalimat dari dosen pembimbing bisa membuka tiga puluh file Python, satu paper yang belum sempat dibaca, dan satu hipotesis yang belum Anda rumuskan. Modul ini mengajar Anda menjawabnya dengan tenang.
@@ -42,7 +42,7 @@ export default function EmailHero() {
             </div>
             <div className="p-6 font-serif">
               <div className="text-xs text-ink/50 dark:text-parchment/50 uppercase tracking-wider mb-1">Dari</div>
-              <div className="text-sm mb-3 font-sans">dosen.pembimbing@lab.ac.id</div>
+              <div className="text-sm mb-3 font-sans">dosen.pembimbing@labdatascience.ac.id</div>
               <div className="text-xs text-ink/50 dark:text-parchment/50 uppercase tracking-wider mb-1">Subjek</div>
               <div className="text-base mb-5 font-sans font-medium">eksperimen minggu ini</div>
               <blockquote className="border-l-4 border-rigor pl-4 py-1 text-base md:text-lg italic leading-relaxed">

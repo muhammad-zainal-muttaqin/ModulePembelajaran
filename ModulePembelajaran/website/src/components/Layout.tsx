@@ -81,8 +81,8 @@ export default function Layout({ children }: { children: ReactNode }) {
       <header className="sticky top-0 z-40 bg-cream/90 dark:bg-charcoal/90 backdrop-blur border-b border-black/5 dark:border-white/5 no-print">
         <nav className="max-w-7xl mx-auto flex items-center gap-3 px-4 sm:px-6 py-3">
           <Link to="/" className="flex items-center gap-2 font-serif font-semibold text-lg shrink-0" aria-label="Beranda">
-            <span className="inline-flex items-center justify-center w-8 h-8 rounded-md bg-rigor text-white text-sm" aria-hidden="true">
-              📂
+            <span className="inline-flex items-center justify-center w-8 h-8 rounded-md bg-rigor text-white text-sm font-mono font-bold" aria-hidden="true">
+              MP
             </span>
             <span className="hidden sm:inline">Modul Pembelajaran</span>
           </Link>

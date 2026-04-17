@@ -101,7 +101,7 @@ export default function ModuleReader() {
         </article>
 
         <aside className="hidden lg:block no-print">
-          <div className="sticky top-20 max-h-[calc(100vh-6rem)] overflow-y-auto pr-2">
+          <div className="sticky top-20 max-h-[calc(100vh-6rem)] overflow-y-auto scrollbar-hidden">
             <TableOfContents headings={headings} />
             <div className="mt-6 pt-4 border-t border-black/10 dark:border-white/10">
               <div className="text-xs font-mono text-ink/60 dark:text-parchment/60 mb-2">Semua bab</div>
