@@ -171,7 +171,7 @@ Plot yang tidak jujur sering kali justru lebih cantik: gradien warna, bayangan, 
 
 ### 2.5 Inspeksi Data Interaktif
 
-Ketika Anda menemukan anomali di metrik - misalnya test accuracy turun 5% dari epoch 10 ke epoch 20 - Anda butuh perkakas untuk mencari *mengapa*. Perkakas paling sederhana adalah notebook Jupyter dengan beberapa fungsi helper:
+Saat Anda menemukan anomali di metrik - misalnya test accuracy turun 5% dari epoch 10 ke epoch 20 - Anda butuh perkakas untuk mencari *mengapa*. Perkakas paling sederhana adalah notebook Jupyter dengan beberapa fungsi helper:
 
 ```python
 def show_worst_k(model, loader, k=16, device="cuda"):

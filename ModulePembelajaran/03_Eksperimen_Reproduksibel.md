@@ -29,7 +29,7 @@
 
 ## 0. Peta Bab
 
-Bab ini mengubah cara Anda mencatat, menjalankan, dan menyimpan eksperimen sehingga hasil apapun yang Anda laporkan dapat diulang persis oleh orang lain. Anda akan belajar mengunci sumber-sumber acak, memindahkan konfigurasi dari kode ke file deklaratif, menghubungkan log ke konfigurasi dan kode yang menghasilkannya, serta merancang ablation yang bisa dibaca ulang berbulan-bulan kemudian. Setelah bab ini, folder eksperimen Anda punya struktur yang sama, disiplin penamaan yang konsisten, dan jejak yang cukup untuk menjawab pertanyaan "bagaimana tepatnya angka ini didapat?" tanpa ragu.
+Bab ini mengubah cara Anda mencatat, menjalankan, dan menyimpan eksperimen, sehingga hasil apapun yang Anda laporkan dapat direproduksi persis sama oleh orang lain. Anda akan belajar mengunci sumber-sumber acak, memindahkan konfigurasi dari kode ke file deklaratif, menghubungkan log ke konfigurasi dan kode yang menghasilkannya, serta merancang ablation yang bisa dibaca ulang berbulan-bulan kemudian. Setelah bab ini, folder eksperimen Anda punya struktur yang sama, disiplin penamaan yang konsisten, dan jejak yang cukup untuk menjawab pertanyaan "bagaimana tepatnya angka ini didapat?" tanpa ragu.
 
 ---
 
@@ -59,7 +59,7 @@ Skenario ini bukan fiksi - ini pengalaman hampir setiap peneliti pemula minimal 
 
 ### 2.1 Empat Sumber Non-Determinisme
 
-Ketika Anda menjalankan kode yang sama dua kali dan mendapat hasil berbeda, salah satu dari empat sumber berikut yang bertanggung jawab:
+Saat Anda menjalankan kode yang sama dua kali dan mendapat hasil berbeda, salah satu dari empat sumber berikut yang bertanggung jawab:
 
 **1. Inisialisasi acak parameter model.** Bobot awal diacak. Kontrol dengan `torch.manual_seed`.
 
