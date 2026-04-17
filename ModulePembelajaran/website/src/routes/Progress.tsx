@@ -71,31 +71,31 @@ export default function ProgressPage() {
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 py-12">
-      <header className="mb-10 max-w-3xl">
-        <h1 className="font-serif text-display font-semibold mb-3">Progres Saya</h1>
-        <p className="text-lg text-ink/75 dark:text-parchment/80 leading-relaxed">
+    <div className="page">
+      <header className="page-header">
+        <h1 className="page-title">Progres Saya</h1>
+        <p className="page-lead">
           Semua data tersimpan lokal di peramban ini. Export ke JSON/Markdown untuk backup atau serahkan ke dosen.
         </p>
       </header>
 
-      <div className="grid gap-4 sm:grid-cols-3 mb-10">
-        <div className="rounded-xl border border-black/10 dark:border-white/10 bg-white dark:bg-white/[0.03] p-5">
+      <div className="grid gap-4 sm:grid-cols-3 mb-12">
+        <div className="card p-6">
           <div className="text-xs font-mono text-ink/60 dark:text-parchment/60 uppercase tracking-wider">Minggu</div>
           <div className="font-serif text-3xl font-semibold mt-1">{weekCount} <span className="text-base text-ink/50 dark:text-parchment/50">/ 14</span></div>
         </div>
-        <div className="rounded-xl border border-black/10 dark:border-white/10 bg-white dark:bg-white/[0.03] p-5">
+        <div className="card p-6">
           <div className="text-xs font-mono text-ink/60 dark:text-parchment/60 uppercase tracking-wider">Kompetensi dinilai</div>
           <div className="font-serif text-3xl font-semibold mt-1">{masteryFilled} <span className="text-base text-ink/50 dark:text-parchment/50">/ 9</span></div>
         </div>
-        <div className="rounded-xl border border-black/10 dark:border-white/10 bg-white dark:bg-white/[0.03] p-5">
+        <div className="card p-6">
           <div className="text-xs font-mono text-ink/60 dark:text-parchment/60 uppercase tracking-wider">Bab berjurnal</div>
           <div className="font-serif text-3xl font-semibold mt-1">{journalChapters.length}</div>
         </div>
       </div>
 
-      <section className="mb-12 rounded-xl border border-black/10 dark:border-white/10 bg-white dark:bg-white/[0.03] p-6">
-        <h2 className="font-serif text-2xl font-semibold mb-2">Tangga 14 Minggu</h2>
+      <section className="section-gap card p-6">
+        <h2 className="card-title mb-2">Tangga 14 Minggu</h2>
         <p className="text-sm text-ink/70 dark:text-parchment/70 mb-5">
           Klik anak tangga untuk menandai minggu yang sudah selesai. Warna mengikuti sikap dominan bab minggu itu.
         </p>
@@ -109,9 +109,9 @@ export default function ProgressPage() {
         </div>
       </section>
 
-      <section className="mb-12 rounded-xl border border-black/10 dark:border-white/10 bg-white dark:bg-white/[0.03] p-6">
+      <section className="section-gap card p-6">
         <div className="flex items-baseline justify-between flex-wrap gap-3 mb-4">
-          <h2 className="font-serif text-2xl font-semibold">Self-assessment 9 Kompetensi</h2>
+          <h2 className="card-title">Self-assessment 9 Kompetensi</h2>
           <Link to="/rubrik" className="text-sm text-rigor dark:text-curiosity hover:underline">
             Buka rubrik lengkap →
           </Link>
@@ -140,8 +140,8 @@ export default function ProgressPage() {
         </ul>
       </section>
 
-      <section className="mb-12 rounded-xl border border-black/10 dark:border-white/10 bg-white dark:bg-white/[0.03] p-6">
-        <h2 className="font-serif text-2xl font-semibold mb-4">Jurnal Refleksi</h2>
+      <section className="section-gap card p-6">
+        <h2 className="card-title mb-4">Jurnal Refleksi</h2>
         {journalChapters.length === 0 ? (
           <p className="text-sm text-ink/70 dark:text-parchment/70">
             Belum ada jurnal. Buka sembarang bab dan isi bagian refleksi di bawah konten.
@@ -156,7 +156,7 @@ export default function ProgressPage() {
                 <li key={chId}>
                   <Link
                     to={`/modul/${chId}#refleksi`}
-                    className="block rounded-lg border border-black/10 dark:border-white/10 px-4 py-3 hover:border-rigor/40 dark:hover:border-curiosity/40 transition-colors"
+                    className="card-link px-4 py-3"
                   >
                     <div className="font-medium text-sm">Bab {ch.id} - {ch.title}</div>
                     <div className="text-xs text-ink/60 dark:text-parchment/60 mt-1">
@@ -170,8 +170,8 @@ export default function ProgressPage() {
         )}
       </section>
 
-      <section className="rounded-xl border border-black/10 dark:border-white/10 bg-white dark:bg-white/[0.03] p-6">
-        <h2 className="font-serif text-2xl font-semibold mb-4">Export & Reset</h2>
+      <section className="card p-6">
+        <h2 className="card-title mb-4">Export & Reset</h2>
         <div className="flex flex-wrap gap-3">
           <button type="button" onClick={onExportJournal} className="btn-primary" disabled={journalChapters.length === 0}>
             Unduh jurnal (.md)

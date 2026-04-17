@@ -20,19 +20,19 @@ export default function Labs() {
   const labs = CHAPTERS.filter((c) => NOTEBOOKS[c.id]);
 
   return (
-    <div className="max-w-5xl mx-auto px-4 sm:px-6 py-12">
-      <header className="mb-10">
-        <h1 className="font-serif text-display font-semibold mb-3">Lab Notebook</h1>
-        <p className="text-lg text-ink/75 dark:text-parchment/80 leading-relaxed max-w-3xl">
+    <div className="page-narrow">
+      <header className="page-header">
+        <h1 className="page-title">Lab Notebook</h1>
+        <p className="page-lead">
           Sembilan Jupyter notebook pendamping bab. Jalankan di Google Colab, inspeksi di nbviewer, atau clone repo dan jalankan lokal.
         </p>
       </header>
 
-      <ul className="grid gap-3">
+      <ul className="grid gap-4">
         {labs.map((c) => {
           const nb = NOTEBOOKS[c.id];
           return (
-            <li key={c.id} className="rounded-lg border border-black/10 dark:border-white/10 bg-white dark:bg-white/[0.03] p-5">
+            <li key={c.id} className="card p-6">
               <div className="flex flex-wrap items-start justify-between gap-3">
                 <div>
                   <div className="text-xs font-mono text-ink/60 dark:text-parchment/60">
@@ -76,7 +76,7 @@ export default function Labs() {
         })}
       </ul>
 
-      <aside className="mt-10 rounded-lg border border-curiosity/30 bg-curiosity-soft/30 dark:bg-curiosity/10 p-5 text-sm">
+      <aside className="mt-10 rounded-xl border border-curiosity/30 bg-curiosity-soft/30 dark:bg-curiosity/10 p-6 text-sm">
         <div className="font-semibold mb-2">Catatan setup lokal</div>
         <p className="mb-2">
           Clone repo, masuk ke <code className="font-mono bg-white/60 dark:bg-white/10 px-1 py-0.5 rounded">template_repo/</code>, aktifkan venv, dan install paket editable:

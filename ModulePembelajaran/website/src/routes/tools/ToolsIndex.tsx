@@ -33,10 +33,10 @@ const TOOLS = [
 
 export default function ToolsIndex() {
   return (
-    <div className="max-w-5xl mx-auto px-4 sm:px-6 py-12">
-      <header className="mb-10 max-w-3xl">
-        <h1 className="font-serif text-display font-semibold mb-3">Alat Bantu</h1>
-        <p className="text-lg text-ink/75 dark:text-parchment/80 leading-relaxed">
+    <div className="page-narrow">
+      <header className="page-header">
+        <h1 className="page-title">Alat Bantu</h1>
+        <p className="page-lead">
           Utilitas interaktif yang mengubah konsep di bab menjadi artefak konkret - protokol, diff, jurnal, self-assessment.
         </p>
       </header>

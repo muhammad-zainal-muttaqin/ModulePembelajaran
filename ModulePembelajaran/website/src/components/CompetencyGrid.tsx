@@ -3,12 +3,12 @@ import { COMPETENCIES } from "../lib/chapters";
 
 export default function CompetencyGrid() {
   return (
-    <ol className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+    <ol className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
       {COMPETENCIES.map((c) => (
         <li key={c.n}>
           <Link
             to={`/modul/${c.chapter}`}
-            className="group block h-full rounded-lg border border-black/10 dark:border-white/10 bg-white dark:bg-white/[0.03] hover:border-rigor/40 dark:hover:border-curiosity/40 hover:shadow-card p-4 transition-all"
+            className="group card-link hover:shadow-card p-5 h-full"
           >
             <div className="flex items-start gap-3">
               <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-rigor text-white font-mono text-sm shrink-0">

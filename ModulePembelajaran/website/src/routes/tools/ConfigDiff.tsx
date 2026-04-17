@@ -43,11 +43,11 @@ export default function ConfigDiff() {
   const changedCount = diff.filter((d) => d.kind !== "same").length;
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 py-12">
-      <header className="mb-8 max-w-3xl">
-        <div className="text-sm font-mono text-rigor dark:text-curiosity mb-2">Bab 03 · Rigor</div>
-        <h1 className="font-serif text-display font-semibold mb-3">Diff Config YAML</h1>
-        <p className="text-lg text-ink/75 dark:text-parchment/80 leading-relaxed">
+    <div className="page">
+      <header className="page-header">
+        <div className="eyebrow">Bab 03 · Rigor</div>
+        <h1 className="page-title">Diff Config YAML</h1>
+        <p className="page-lead">
           Bandingkan <code className="font-mono">baseline.yaml</code> dengan <code className="font-mono">focal_freeze.yaml</code>. Baris berbeda di-highlight. Ini contoh config untuk satu run ablation.
         </p>
         <div className="mt-3 text-sm text-ink/60 dark:text-parchment/60">
@@ -83,7 +83,7 @@ export default function ConfigDiff() {
         </div>
       </div>
 
-      <div className="rounded-xl border border-black/10 dark:border-white/10 overflow-hidden bg-white dark:bg-white/[0.03]">
+      <div className="card overflow-hidden">
         <div className="grid grid-cols-2 text-xs font-mono bg-parchment/60 dark:bg-white/[0.06] border-b border-black/10 dark:border-white/10">
           <div className="px-4 py-2 border-r border-black/10 dark:border-white/10">baseline.yaml</div>
           <div className="px-4 py-2">focal_freeze.yaml</div>
@@ -114,7 +114,7 @@ export default function ConfigDiff() {
         </div>
       </div>
 
-      <aside className="mt-8 rounded-lg border border-rigor/30 bg-rigor-soft/40 dark:bg-rigor/10 p-5 text-sm">
+      <aside className="mt-10 rounded-xl border border-rigor/30 bg-rigor-soft/40 dark:bg-rigor/10 p-6 text-sm">
         <div className="font-semibold mb-2">Satu variabel berubah per run</div>
         <p className="text-ink/80 dark:text-parchment/85">
           Aturan Rigor: satu ablation mengubah satu hal saja. Jika Anda ganti loss <em>dan</em> freeze di satu config, sulit menisbahkan perubahan ke penyebab. <code className="font-mono">focal_freeze.yaml</code> di sini sengaja mengubah dua variabel sebagai contoh pedagogis; dalam praktik nyata, pisahkan menjadi <code className="font-mono">focal_only.yaml</code> dan <code className="font-mono">freeze_only.yaml</code>.

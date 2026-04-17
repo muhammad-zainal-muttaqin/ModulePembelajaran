@@ -35,18 +35,18 @@ export default function Rubric() {
   }, [mastery]);
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 py-12">
-      <header className="max-w-3xl mb-10">
-        <h1 className="font-serif text-display font-semibold mb-3">Rubrik Penilaian</h1>
-        <p className="text-lg text-ink/75 dark:text-parchment/80 leading-relaxed">
+    <div className="page">
+      <header className="page-header">
+        <h1 className="page-title">Rubrik Penilaian</h1>
+        <p className="page-lead">
           Sembilan kompetensi, empat level. Gunakan self-assessment di bawah untuk mengukur posisi Anda minggu ini - jujur tanpa menghukum.
         </p>
       </header>
 
-      <section className="mb-12 rounded-xl border border-black/10 dark:border-white/10 bg-white dark:bg-white/[0.03] p-6">
+      <section className="section-gap card p-6">
         <div className="flex items-start justify-between flex-wrap gap-4 mb-6">
           <div>
-            <h2 className="font-serif text-2xl font-semibold mb-1">Self-assessment 9 kompetensi</h2>
+            <h2 className="card-title mb-1">Self-assessment 9 kompetensi</h2>
             <p className="text-sm text-ink/70 dark:text-parchment/70">
               Pilih level yang paling mencerminkan kebiasaan Anda, bukan angan-angan.
             </p>
@@ -120,7 +120,7 @@ export default function Rubric() {
       </section>
 
       <section>
-        <h2 className="font-serif text-2xl font-semibold mb-6">Rubrik lengkap (sumber Bab 11)</h2>
+        <h2 className="card-title mb-6">Rubrik lengkap (sumber Bab 11)</h2>
         <MarkdownRenderer markdown={markdown} />
       </section>
     </div>

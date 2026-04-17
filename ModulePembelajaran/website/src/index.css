@@ -34,6 +34,40 @@
 }
 
 @layer components {
+  .page {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16;
+  }
+  .page-narrow {
+    @apply max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16;
+  }
+  .page-header {
+    @apply mb-10 md:mb-12 max-w-3xl;
+  }
+  .page-title {
+    @apply font-serif text-display font-semibold tracking-tight mb-3;
+  }
+  .page-lead {
+    @apply text-lg text-ink/75 dark:text-parchment/80 leading-relaxed;
+  }
+  .eyebrow {
+    @apply text-sm font-mono text-rigor dark:text-curiosity mb-2;
+  }
+  .section-title {
+    @apply font-serif text-3xl md:text-4xl font-semibold tracking-tight mb-4;
+  }
+  .card-title {
+    @apply font-serif text-2xl font-semibold;
+  }
+  .card {
+    @apply rounded-xl border border-black/10 dark:border-white/10 bg-white dark:bg-white/[0.03];
+  }
+  .card-link {
+    @apply block rounded-xl border border-black/10 dark:border-white/10 bg-white dark:bg-white/[0.03] hover:border-rigor/40 dark:hover:border-curiosity/40 transition-colors;
+  }
+  .section-gap {
+    @apply mb-12;
+  }
+
   .prose-modul {
     @apply max-w-prose text-[17px] leading-[1.75];
   }

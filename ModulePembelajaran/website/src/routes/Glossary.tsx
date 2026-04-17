@@ -16,10 +16,10 @@ export default function Glossary() {
   }, [query]);
 
   return (
-    <div className="max-w-5xl mx-auto px-4 sm:px-6 py-12">
-      <header className="mb-8">
-        <h1 className="font-serif text-display font-semibold mb-3">Glosarium ID - EN</h1>
-        <p className="text-lg text-ink/75 dark:text-parchment/80 leading-relaxed">
+    <div className="page-narrow">
+      <header className="page-header">
+        <h1 className="page-title">Glosarium ID - EN</h1>
+        <p className="page-lead">
           Terjemahan istilah teknis ML/DL. Istilah asing yang lazim tidak diterjemahkan paksa - catatan di kolom ketiga menjelaskan nuansa.
         </p>
       </header>
@@ -32,7 +32,7 @@ export default function Glossary() {
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder="Cari istilah dalam Indonesia, English, atau catatan..."
-          className="w-full rounded-lg border border-black/15 dark:border-white/15 bg-white dark:bg-white/5 px-4 py-2.5 text-base focus:outline-none focus:ring-2 focus:ring-rigor focus:border-transparent"
+          className="w-full rounded-md border border-black/15 dark:border-white/15 bg-white dark:bg-white/5 px-4 py-2.5 text-base focus:outline-none focus:ring-2 focus:ring-rigor focus:border-transparent"
         />
       </div>
 
@@ -41,11 +41,11 @@ export default function Glossary() {
       </div>
 
       {filtered.length === 0 ? (
-        <div className="rounded-lg border border-dashed border-black/10 dark:border-white/10 p-12 text-center text-ink/60 dark:text-parchment/60">
+        <div className="rounded-xl border border-dashed border-black/10 dark:border-white/10 p-12 text-center text-ink/60 dark:text-parchment/60">
           Tidak ada yang cocok dengan "{query}".
         </div>
       ) : (
-        <div className="rounded-lg border border-black/10 dark:border-white/10 overflow-hidden">
+        <div className="card overflow-hidden">
           <table className="w-full">
             <thead>
               <tr className="bg-parchment dark:bg-white/5 text-left text-sm">

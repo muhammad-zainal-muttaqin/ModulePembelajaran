@@ -11,10 +11,10 @@ const SIKAP_CHIP: Record<string, string> = {
 
 export default function ModuleList() {
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 py-12">
-      <header className="mb-10 max-w-3xl">
-        <h1 className="font-serif text-display font-semibold mb-3">Daftar Modul</h1>
-        <p className="text-lg text-ink/75 dark:text-parchment/80 leading-relaxed">
+    <div className="page">
+      <header className="page-header">
+        <h1 className="page-title">Daftar Modul</h1>
+        <p className="page-lead">
           13 bab, dibaca berurutan dari Bab 00. Setiap bab mengikuti urutan tetap: Peta → Motivasi → Konsep → Worked Example → Pitfalls → Lab → Refleksi → Bacaan.
         </p>
       </header>
@@ -26,7 +26,7 @@ export default function ModuleList() {
             <li key={ch.id}>
               <Link
                 to={`/modul/${ch.id}`}
-                className="group block h-full rounded-xl border border-black/10 dark:border-white/10 bg-white dark:bg-white/[0.03] hover:border-rigor/40 dark:hover:border-curiosity/40 hover:shadow-card p-5 transition-all"
+                className="group card-link hover:shadow-card p-6 h-full"
               >
                 <div className="flex items-start justify-between gap-2 mb-3">
                   <span className="font-mono text-xs text-ink/60 dark:text-parchment/60">Bab {ch.id}</span>

@@ -29,15 +29,15 @@ export default function ModuleReader() {
 
   if (!chapter) {
     return (
-      <div className="max-w-3xl mx-auto px-4 py-20 text-center">
-        <h1 className="font-serif text-3xl mb-4">Bab tidak ditemukan</h1>
+      <div className="max-w-2xl mx-auto px-4 py-24 text-center">
+        <h1 className="font-serif text-display font-semibold tracking-tight mb-4">Bab tidak ditemukan</h1>
         <Link to="/modul" className="btn-primary">Kembali ke daftar</Link>
       </div>
     );
   }
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8 lg:py-12">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
       <div className="grid lg:grid-cols-[minmax(0,1fr)_16rem] xl:grid-cols-[minmax(0,1fr)_18rem] gap-10">
         <article className="min-w-0">
           <header className="mb-8 pb-6 border-b border-black/5 dark:border-white/5">
@@ -50,10 +50,10 @@ export default function ModuleReader() {
               <span aria-hidden="true">·</span>
               <span>{mins} min baca</span>
             </div>
-            <h1 className="font-serif text-4xl md:text-5xl font-semibold tracking-tight mb-2">
+            <h1 className="font-serif text-display font-semibold tracking-tight mb-2">
               {chapter.title}
             </h1>
-            <p className="text-lg text-ink/70 dark:text-parchment/75">{chapter.subtitle}</p>
+            <p className="text-lg text-ink/70 dark:text-parchment/75 leading-relaxed">{chapter.subtitle}</p>
             <div className="mt-4 flex flex-wrap gap-2">
               {chapter.sikap.map((s) => (
                 <span key={s} className="chip bg-parchment dark:bg-white/10 text-ink/80 dark:text-parchment/90">
@@ -75,24 +75,24 @@ export default function ModuleReader() {
           <nav className="mt-12 pt-6 border-t border-black/10 dark:border-white/10 grid grid-cols-2 gap-4" aria-label="Navigasi bab">
             <div>
               {prev ? (
-                <Link to={`/modul/${prev.id}`} className="group block rounded-lg border border-black/10 dark:border-white/10 p-4 hover:border-rigor/40 dark:hover:border-curiosity/40 transition-colors">
+                <Link to={`/modul/${prev.id}`} className="group card-link p-4">
                   <div className="text-xs font-mono text-ink/60 dark:text-parchment/60">← Bab sebelumnya</div>
                   <div className="font-serif font-semibold mt-1 group-hover:text-rigor dark:group-hover:text-curiosity">{prev.title}</div>
                 </Link>
               ) : (
-                <div className="rounded-lg border border-dashed border-black/10 dark:border-white/10 p-4 text-sm text-ink/50 dark:text-parchment/50">
+                <div className="rounded-xl border border-dashed border-black/10 dark:border-white/10 p-4 text-sm text-ink/50 dark:text-parchment/50">
                   Ini bab pertama.
                 </div>
               )}
             </div>
             <div>
               {next ? (
-                <Link to={`/modul/${next.id}`} className="group block rounded-lg border border-black/10 dark:border-white/10 p-4 hover:border-rigor/40 dark:hover:border-curiosity/40 transition-colors text-right">
+                <Link to={`/modul/${next.id}`} className="group card-link p-4 text-right">
                   <div className="text-xs font-mono text-ink/60 dark:text-parchment/60">Bab berikutnya →</div>
                   <div className="font-serif font-semibold mt-1 group-hover:text-rigor dark:group-hover:text-curiosity">{next.title}</div>
                 </Link>
               ) : (
-                <div className="rounded-lg border border-dashed border-black/10 dark:border-white/10 p-4 text-sm text-ink/50 dark:text-parchment/50 text-right">
+                <div className="rounded-xl border border-dashed border-black/10 dark:border-white/10 p-4 text-sm text-ink/50 dark:text-parchment/50 text-right">
                   Ini bab terakhir.
                 </div>
               )}

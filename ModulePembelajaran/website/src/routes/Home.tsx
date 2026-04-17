@@ -12,13 +12,13 @@ export default function Home() {
     <div>
       <EmailHero />
 
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 py-16">
-        <div className="max-w-3xl mb-10">
-          <div className="text-sm font-mono text-rigor dark:text-curiosity mb-2">Empat sikap riset</div>
-          <h2 className="font-serif text-display font-semibold mb-4">
+      <section className="page">
+        <div className="page-header">
+          <div className="eyebrow">Empat sikap riset</div>
+          <h2 className="section-title">
             Kompetensi teknis tidak bertahan tanpa sikap yang benar.
           </h2>
-          <p className="text-lg text-ink/75 dark:text-parchment/80 leading-relaxed">
+          <p className="page-lead">
             Empat sikap berikut mengalir di seluruh modul - sering tanpa disebut eksplisit - melalui pilihan contoh, pitfall, dan pertanyaan refleksi.
           </p>
         </div>
@@ -30,13 +30,13 @@ export default function Home() {
       </section>
 
       <section className="bg-parchment/40 dark:bg-white/[0.02] border-y border-black/5 dark:border-white/5">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-16">
-          <div className="max-w-3xl mb-10">
-            <div className="text-sm font-mono text-rigor dark:text-curiosity mb-2">Peta 14 minggu</div>
-            <h2 className="font-serif text-display font-semibold mb-4">
+        <div className="page">
+          <div className="page-header">
+            <div className="eyebrow">Peta 14 minggu</div>
+            <h2 className="section-title">
               Satu semester sebagai tangga, bukan daftar tugas.
             </h2>
-            <p className="text-lg text-ink/75 dark:text-parchment/80 leading-relaxed">
+            <p className="page-lead">
               Setiap anak tangga mewakili satu minggu. Anak tangga lebih tinggi ke kanan: beban konsep menumpuk, tetapi kebiasaan yang di-bangun di minggu sebelumnya menopang.
             </p>
           </div>
@@ -55,13 +55,13 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 py-16">
-        <div className="max-w-3xl mb-10">
-          <div className="text-sm font-mono text-rigor dark:text-curiosity mb-2">Sembilan kompetensi</div>
-          <h2 className="font-serif text-display font-semibold mb-4">
+      <section className="page">
+        <div className="page-header">
+          <div className="eyebrow">Sembilan kompetensi</div>
+          <h2 className="section-title">
             Dari memahami sistem sampai berkembang mandiri.
           </h2>
-          <p className="text-lg text-ink/75 dark:text-parchment/80 leading-relaxed">
+          <p className="page-lead">
             Setiap kompetensi dibahas satu bab penuh dengan satu lab pendamping. Klik untuk membuka babnya langsung.
           </p>
         </div>
@@ -69,18 +69,18 @@ export default function Home() {
       </section>
 
       <section className="bg-rigor text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-16 text-center">
-          <h2 className="font-serif text-display font-semibold mb-4">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20 text-center">
+          <h2 className="font-serif text-3xl md:text-4xl font-semibold tracking-tight mb-4">
             Hari Kamis akan datang.
           </h2>
-          <p className="text-lg text-white/85 mb-8 max-w-2xl mx-auto">
+          <p className="text-lg text-white/85 mb-8 max-w-2xl mx-auto leading-relaxed">
             Bukan dengan panik, tetapi dengan protokol, baseline, dan seed yang terkunci. Modul ini adalah tangga menuju ke sana.
           </p>
           <div className="flex flex-wrap justify-center gap-3">
-            <Link to="/modul/00" className="inline-flex items-center justify-center gap-2 rounded-md px-5 py-2.5 font-medium bg-curiosity text-ink hover:bg-curiosity-deep hover:text-white transition-colors">
+            <Link to="/modul/00" className="btn bg-curiosity text-ink hover:bg-curiosity-deep hover:text-white">
               Mulai dari Bab 00
             </Link>
-            <Link to="/alat/protokol" className="inline-flex items-center justify-center gap-2 rounded-md px-5 py-2.5 font-medium bg-white/10 hover:bg-white/20 text-white border border-white/20">
+            <Link to="/alat/protokol" className="btn bg-white/10 hover:bg-white/20 text-white border border-white/20">
               Buka Generator Protokol
             </Link>
           </div>

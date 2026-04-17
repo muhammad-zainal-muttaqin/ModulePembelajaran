@@ -120,11 +120,11 @@ export default function ProtocolGenerator() {
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 py-12">
-      <header className="mb-8 max-w-3xl">
-        <div className="text-sm font-mono text-rigor dark:text-curiosity mb-2">Bab 02 · Rigor</div>
-        <h1 className="font-serif text-display font-semibold mb-3">Generator Protokol Eksperimen</h1>
-        <p className="text-lg text-ink/75 dark:text-parchment/80 leading-relaxed">
+    <div className="page">
+      <header className="page-header">
+        <div className="eyebrow">Bab 02 · Rigor</div>
+        <h1 className="page-title">Generator Protokol Eksperimen</h1>
+        <p className="page-lead">
           Isi 9 bagian di bawah. Preview berkas .md muncul di kanan secara live. Unduh, commit ke repo eksperimen Anda sebelum run pertama.
         </p>
       </header>
@@ -157,7 +157,7 @@ export default function ProtocolGenerator() {
         </form>
 
         <div className="lg:sticky lg:top-20 lg:self-start">
-          <div className="rounded-xl border border-black/10 dark:border-white/10 bg-white dark:bg-white/[0.03] overflow-hidden">
+          <div className="card overflow-hidden">
             <div className="flex items-center justify-between px-4 py-3 border-b border-black/10 dark:border-white/10 bg-parchment/50 dark:bg-white/[0.04]">
               <div className="text-xs font-mono text-ink/60 dark:text-parchment/60">{slug}.md</div>
               <div className="flex gap-2">
