@@ -86,8 +86,8 @@ Setiap baris di bawah adalah kompetensi; setiap kolom adalah level. Deskriptor d
 | ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Novice      | Menyebut nama arsitektur dan loss, tetapi ragu saat diminta memilih untuk kasus tertentu.                                                                             |
 | Developing  | Memilih arsitektur/loss yang umum untuk jenis data tertentu (CNN untuk gambar, cross-entropy untuk klasifikasi), menjelaskan alasan singkat.                          |
-| Proficient  | Membandingkan dua pilihan arsitektur/loss untuk satu kasus, menjelaskan trade-off (mis. focal loss pada kelas imbalance). Menjelaskan peran layer dalam representasi. |
-| Masterpiece | Merumuskan pilihan arsitektur/loss yang tidak standar untuk dataset atau constraint yang tidak biasa, menjelaskan mengapa pilihan umum tidak cocok.                   |
+| Proficient  | Membaca pasangan tensor input → output langsung dari kode atau deskripsi arsitektur yang asing dalam beberapa menit. Membandingkan dua pilihan arsitektur/loss untuk satu kasus, menjelaskan trade-off (mis. focal loss pada kelas imbalance). Menjelaskan peran layer dalam representasi dan membedakan tiga strategi representasi (engineered / extracted / learned) dengan alasan pemilihan yang jelas. |
+| Masterpiece | Merumuskan pilihan arsitektur, loss, atau strategi representasi yang tidak standar untuk dataset atau constraint yang tidak biasa, menjelaskan mengapa pilihan umum tidak cocok, dan mengargumentasikan kombinasi representasi (mis. engineered + extracted sebagai ansambel) yang tidak disebut eksplisit di modul. |
 
 
 ### Kompetensi 2 - Menerjemahkan Ide Menjadi Eksperimen
