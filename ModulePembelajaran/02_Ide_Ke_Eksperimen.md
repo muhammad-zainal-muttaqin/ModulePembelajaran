@@ -245,12 +245,12 @@ Laporan satu paragraf seperti di atas memberi PI informasi yang bisa dia pakai u
 
 ## 5. Lab 2 - Focal Loss + Freeze Layer dengan Ablation
 
-Buka [`template_repo/notebooks/lab2_loss_freeze_ablation.ipynb`](template_repo/notebooks/lab2_loss_freeze_ablation.ipynb).
+Buka [Lab 2 - Focal Loss dan Freeze Layer](template_repo/notebooks/lab2_loss_freeze_ablation.ipynb).
 
 Tugas:
 
 1. Tulis `protocol.md` di `experiments/lab2/` dengan lima bagian (variabel, hipotesis, metrik, eksekusi, waktu) *sebelum* menyentuh kode training.
-2. Implementasi `FocalLoss` di [`template_repo/src/losses.py`](template_repo/src/losses.py), sertakan uji: ketika γ=0 hasilnya identik dengan `CrossEntropyLoss`.
+2. Implementasi `FocalLoss` di [src/losses.py](template_repo/src/losses.py), sertakan uji: ketika γ=0 hasilnya identik dengan `CrossEntropyLoss`.
 3. Jalankan enam run (3 seed × 2 kondisi) memakai `SimpleCNN` pada CIFAR-10.
 4. Hasilkan tabel agregat dan plot F1 per kelas (baseline vs focal+freeze).
 5. Tulis laporan singkat (1 halaman): hipotesis, hasil, interpretasi, langkah berikutnya.
@@ -285,4 +285,4 @@ Tugas:
 
 Anda kini bisa merancang eksperimen yang *layak* dijalankan. Pertanyaan berikutnya: ketika hasil keluar, apakah mahasiswa lain - atau diri Anda sendiri tiga bulan kemudian - dapat mereproduksi hasil yang sama? Bab 03 membahas reproduksibilitas: konfigurasi, seed, logging, dan checkpoint sebagai kebiasaan yang menyelamatkan waktu dan menyelamatkan kejujuran hasil.
 
-Buka `[03_Eksperimen_Reproduksibel.md](03_Eksperimen_Reproduksibel.md)` ketika siap.
+Buka [Bab 03 - Eksperimen Reproduksibel](03_Eksperimen_Reproduksibel.md) ketika siap.

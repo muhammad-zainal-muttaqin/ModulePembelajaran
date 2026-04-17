@@ -460,7 +460,7 @@ Tabel inilah yang masuk laporan. Setiap angka dapat dilacak kembali ke folder ru
 
 ## 5. Lab 3 - Refaktor Lab 2 Menjadi Reproduksibel
 
-Buka [`template_repo/notebooks/lab3_config_logging.ipynb`](template_repo/notebooks/lab3_config_logging.ipynb). Lab ini memaksa Anda mengadopsi seluruh infrastruktur reproduksibilitas.
+Buka [Lab 3 - Config, Logging, dan Reproduksibilitas](template_repo/notebooks/lab3_config_logging.ipynb). Lab ini memaksa Anda mengadopsi seluruh infrastruktur reproduksibilitas.
 
 Tugas:
 
@@ -473,14 +473,14 @@ Tugas:
    - Menyimpan checkpoint dengan metadata lengkap (config + git hash + metrics).
    - Menulis log TensorBoard ke `<run>/tb/`.
 4. Jalankan enam run (ulangi Lab 2). Pastikan tiap run dengan seed sama menghasilkan metrik identik ketika dijalankan ulang.
-5. Tulis skrip [`template_repo/scripts/aggregate.py`](template_repo/scripts/aggregate.py) yang membaca semua run di `experiments/lab3/` dan menghasilkan tabel mean ± std.
+5. Tulis skrip [scripts/aggregate.py](template_repo/scripts/aggregate.py) yang membaca semua run di `experiments/lab3/` dan menghasilkan tabel mean ± std.
 
 **Checklist verifikasi**:
 
 - [ ] Tidak ada angka hyperparameter di kode Python - semua dari config.
 - [ ] Run kedua dengan seed, config, dan git hash sama menghasilkan val accuracy ±0.001 dari run pertama.
 - [ ] Setiap folder run berisi: `config.yaml`, `git_hash.txt`, `metrics.csv`, `ckpts/`, `tb/`.
-- [ ] [`template_repo/scripts/aggregate.py`](template_repo/scripts/aggregate.py) menghasilkan tabel yang identik dengan tabel di laporan Lab 2.
+- [ ] [scripts/aggregate.py](template_repo/scripts/aggregate.py) menghasilkan tabel yang identik dengan tabel di laporan Lab 2.
 - [ ] Tidak ada folder run bernama `final`, `test`, atau `v2`.
 
 ---
@@ -508,4 +508,4 @@ Tugas:
 
 Anda sekarang bisa menjamin bahwa setiap angka dalam laporanmu dapat direproduksi. Tetapi reproduksibilitas memastikan kebenaran *pipa komputasi* - bukan kebenaran *data* yang masuk ke pipa itu. Data yang salah, label yang bocor, distribusi yang berubah diam-diam: semua akan memproduksi hasil yang *konsisten salah*. Bab 04 mengajarkan Anda melihat data dengan curiga - kebiasaan yang mencegah eksperimen berbulan-bulan dikubur oleh asumsi yang seharusnya diuji di minggu pertama.
 
-Buka [`04_Validasi_Data.md`](04_Validasi_Data.md) ketika siap.
+Buka [Bab 04 - Validasi Data](04_Validasi_Data.md) ketika siap.

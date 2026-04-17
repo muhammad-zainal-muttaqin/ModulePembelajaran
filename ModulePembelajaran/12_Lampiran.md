@@ -422,7 +422,7 @@ Anda perlu pernah melatih setidaknya satu model klasifikasi dengan scikit-learn:
 - **Prasyarat Python/Kalkulus belum solid?** → Lampiran §F
 - **Cara menulis pre-registration?** → Bab 9 §2.5 + Lampiran §C.1
 - **Cara memilih GPU cloud?** → Bab 8 §2.2, §2.6
-- **Rubrik penilaian?** → [`11_Rubrik_Penilaian.md`](11_Rubrik_Penilaian.md)
+- **Rubrik penilaian?** → [Rubrik Penilaian](11_Rubrik_Penilaian.md)
 - **Template laporan capstone?** → Lampiran §C.2
 - **Memilih template capstone?** → Bab 10 §2.2
 - **Membaca paper dalam tiga putaran?** → Bab 9 §2.2

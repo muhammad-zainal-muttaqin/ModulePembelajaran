@@ -213,7 +213,7 @@ Rani telah menjadi peneliti aktif. Dalam satu minggu - tanpa pembimbing memberi 
 
 ## 5. Lab Hands-on
 
-**Lab 9 - Paper to Experiment.** Kerjakan notebook [`template_repo/notebooks/lab9_paper_to_experiment.ipynb`](template_repo/notebooks/lab9_paper_to_experiment.ipynb). Target:
+**Lab 9 - Paper to Experiment.** Kerjakan notebook [Lab 9 - Paper to Experiment](template_repo/notebooks/lab9_paper_to_experiment.ipynb). Target:
 
 1. Pilih satu paper dari tiga hari terakhir di arXiv dalam bidang yang menarik (kriteria: kode tersedia atau metode sederhana untuk ditiru dari pseudocode).
 2. Baca putaran 1 + 2; tulis catatan lengkap dalam format yang diajarkan (TL;DR, metode, bukti, pertanyaan, relevansi).
@@ -257,4 +257,4 @@ Target waktu: 6-8 jam sepanjang satu minggu (paper: 1 jam; 5-Whys + pre-reg: 1 j
 
 Sembilan kompetensi inti selesai. Bab terakhir mengajak Anda mengintegrasikan semuanya dalam satu proyek empat minggu: dari pertanyaan riset yang Anda rumuskan sendiri, sampai demo yang bisa ditunjukkan, dari pre-registration sampai laporan teknis yang jujur.
 
-Buka [`10_Capstone_Project.md`](10_Capstone_Project.md) ketika siap.
+Buka [Bab 10 - Capstone Project](10_Capstone_Project.md) ketika siap.

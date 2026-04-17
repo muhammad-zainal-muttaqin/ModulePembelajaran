@@ -437,7 +437,7 @@ Total: ~3 jam dari clone sampai laporan pertama. Bandingkan dengan "dua minggu" 
 
 ## 5. Lab 6 - Mengadopsi dan Memodifikasi Repo Eksternal
 
-Buka [`template_repo/notebooks/lab6_adopt_external_repo.ipynb`](template_repo/notebooks/lab6_adopt_external_repo.ipynb).
+Buka [Lab 6 - Adopsi dan Modifikasi Repo Eksternal](template_repo/notebooks/lab6_adopt_external_repo.ipynb).
 
 Tugas:
 
@@ -479,4 +479,4 @@ Tugas:
 
 Anda kini bisa masuk ke kode orang lain dan keluar dengan modifikasi yang bersih. Keterampilan selanjutnya melengkapi kemampuan eksperimen Anda dengan alat inspeksi ringan: demo yang memungkinkan dosen melihat model bekerja tanpa harus menjalankan kode, visualizer hasil yang mempercepat analisis, dan UI sederhana untuk anotasi data ketika dataset Anda sendiri perlu dibangun.
 
-Buka `[07_Alat_Pendukung_Ringan.md](07_Alat_Pendukung_Ringan.md)` ketika siap.
+Buka [Bab 07 - Alat Pendukung Ringan](07_Alat_Pendukung_Ringan.md) ketika siap.

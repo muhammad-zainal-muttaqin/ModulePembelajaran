@@ -14,7 +14,7 @@ Modul ini menyasar mahasiswa semester 4–6 yang sudah:
 - Mengenal dasar kalkulus turunan dan aljabar linear (perkalian matriks, gradien).
 - Pernah setidaknya sekali menjalankan model ML (regresi atau klasifikasi scikit-learn).
 
-Jika dua prasyarat pertama belum solid, kerjakan lebih dulu *primer* pada [`12_Lampiran.md § F. Prasyarat`](12_Lampiran.md#f-prasyarat). Modul tidak mengulang dasar Python atau kalkulus di dalam bab utama.
+Jika dua prasyarat pertama belum solid, kerjakan lebih dulu *primer* pada [Lampiran F - Prasyarat](12_Lampiran.md#f-prasyarat). Modul tidak mengulang dasar Python atau kalkulus di dalam bab utama.
 
 ---
 
@@ -103,4 +103,4 @@ Rubrik evaluasi ada di `11_Rubrik_Penilaian.md`. Rubrik memetakan setiap *expect
 
 ## Langkah Selanjutnya
 
-Mulai dari `[00_Pendahuluan.md](00_Pendahuluan.md)`. Bab tersebut menjelaskan mengapa sembilan kompetensi ini dipilih, dan kontrak kecil yang perlu dipahami sebelum masuk ke materi teknis.
+Mulai dari [00 - Pendahuluan](00_Pendahuluan.md). Bab tersebut menjelaskan mengapa sembilan kompetensi ini dipilih, dan kontrak kecil yang perlu dipahami sebelum masuk ke materi teknis.

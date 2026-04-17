@@ -272,10 +272,10 @@ Total waktu aktif Anda: mungkin 1-2 jam (setup + tarik). Training 22 jam berjala
 
 ## 5. Lab Hands-on
 
-**Lab 8 - RunPod Remote Training.** Kerjakan notebook [`template_repo/notebooks/lab8_runpod_remote.ipynb`](template_repo/notebooks/lab8_runpod_remote.ipynb) dan script pendamping. Target:
+**Lab 8 - RunPod Remote Training.** Kerjakan notebook [Lab 8 - RunPod Remote Training](template_repo/notebooks/lab8_runpod_remote.ipynb) dan script pendamping. Target:
 
 1. Daftar akun RunPod (gratis; biaya minimal ~$5 untuk lab ini).
-2. Siapkan network volume 20 GB; unggah dataset PathMNIST via script [`template_repo/scripts/download_data.py`](template_repo/scripts/download_data.py).
+2. Siapkan network volume 20 GB; unggah dataset PathMNIST via script [scripts/download_data.py](template_repo/scripts/download_data.py).
 3. Nyalakan pod RTX 3090 spot instance, setup repo dari commit tertentu (sebut hash di laporan).
 4. Jalankan smoke test `--dry-run`, lalu training penuh 1 seed (30 menit) dengan `tmux`.
 5. Monitor via TensorBoard SSH tunnel dari laptop.
@@ -316,4 +316,4 @@ Target waktu: 3-4 jam hands-on + ~$3 biaya.
 
 Anda kini bisa menjalankan training di GPU cloud dan membawa hasilnya pulang dengan aman. Kompetensi terakhir menggeser pertanyaan dari "bagaimana saya menjalankan eksperimen ini" ke "eksperimen apa yang seharusnya saya jalankan" - membaca paper, memformulasikan pertanyaan sendiri, dan berkembang tanpa menunggu instruksi.
 
-Buka [`09_Pengembangan_Mandiri.md`](09_Pengembangan_Mandiri.md) ketika siap.
+Buka [Bab 09 - Pengembangan Mandiri](09_Pengembangan_Mandiri.md) ketika siap.

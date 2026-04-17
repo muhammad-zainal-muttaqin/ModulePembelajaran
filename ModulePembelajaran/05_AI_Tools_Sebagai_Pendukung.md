@@ -327,7 +327,7 @@ Tulis entry log sesuai template di bagian 2.4. Tiga modifikasi Anda (torch Beta,
 
 ## 5. Lab 5 - Menambah Fitur ke Repo dengan Protokol LLM
 
-Buka [`template_repo/notebooks/lab5_llm_assisted_loop.ipynb`](template_repo/notebooks/lab5_llm_assisted_loop.ipynb).
+Buka [Lab 5 - LLM-Assisted Development](template_repo/notebooks/lab5_llm_assisted_loop.ipynb).
 
 Tugas:
 
@@ -374,4 +374,4 @@ Tugas:
 
 Anda sekarang punya protokol bekerja dengan AI tools yang menjaga ownership. Keterampilan berikutnya adalah membaca dan memodifikasi kode *orang lain* - repository riset yang sering minim dokumentasi, ditulis dengan gaya berbeda, dan berisi puluhan file yang tidak langsung jelas hubungannya. Kemampuan ini membedakan mahasiswa yang hanya bisa bekerja di kode sendiri dari peneliti yang dapat berdiri di atas bahu orang lain.
 
-Buka [`06_Adopsi_Repo_Riset.md`](06_Adopsi_Repo_Riset.md) ketika siap.
+Buka [Bab 06 - Adopsi Repo Riset](06_Adopsi_Repo_Riset.md) ketika siap.

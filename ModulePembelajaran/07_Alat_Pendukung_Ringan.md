@@ -242,7 +242,7 @@ Hasil: aplikasi 120 baris, jalan lokal, cukup baik untuk dua bulan ke depan. Tid
 
 ## 5. Lab Hands-on
 
-**Lab 7 - Streamlit Demo + Gradio Annotation.** Kerjakan notebook [`template_repo/notebooks/lab7_streamlit_demo.ipynb`](template_repo/notebooks/lab7_streamlit_demo.ipynb) bersama file `app.py` pendamping. Target:
+**Lab 7 - Streamlit Demo + Gradio Annotation.** Kerjakan notebook [Lab 7 - Streamlit Demo dan Gradio Annotation](template_repo/notebooks/lab7_streamlit_demo.ipynb) bersama file `app.py` pendamping. Target:
 
 1. Demo Streamlit untuk model Lab 3 (baseline CIFAR-10) dengan upload, top-3, dan Grad-CAM.
 2. Galeri sepuluh contoh satu per kelas, di-load dari test set.
@@ -282,4 +282,4 @@ Target waktu: 4-6 jam. Ingat aturan batas: berhenti ketika aplikasi *berguna*, b
 
 Anda kini bisa membangun alat inspeksi ringan yang membuat riset lebih mudah dikomunikasikan. Keterampilan berikutnya menggeser konteks kerja: ketika laptop tidak cukup, bagaimana Anda pindah training ke GPU cloud tanpa kehilangan disiplin reproduksibilitas dan tanpa membakar anggaran?
 
-Buka [`08_Platform_Dan_Tool_Baru.md`](08_Platform_Dan_Tool_Baru.md) ketika siap.
+Buka [Bab 08 - Platform dan Tool Baru](08_Platform_Dan_Tool_Baru.md) ketika siap.

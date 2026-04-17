@@ -369,7 +369,7 @@ Laporan ini masuk ke `experiments/lab4/audit.md`, dibaca bersama protokol eksper
 
 ## 5. Lab 4 - Audit PathMNIST dan Pipeline Pra-pemrosesan
 
-Buka [`template_repo/notebooks/lab4_eda_leakage.ipynb`](template_repo/notebooks/lab4_eda_leakage.ipynb).
+Buka [Lab 4 - EDA dan Audit Leakage](template_repo/notebooks/lab4_eda_leakage.ipynb).
 
 Tugas:
 
@@ -413,4 +413,4 @@ Tugas:
 
 Anda sudah bisa merancang, mengeksekusi, dan memverifikasi eksperimen dari sisi data dan sisi komputasi. Bab berikutnya membahas alat yang dua tahun terakhir ini mengubah cara semua peneliti bekerja: *large language model* seperti ChatGPT, Copilot, dan Claude. Pertanyaannya bukan "apakah kita memakainya" - kita semua memakainya - tetapi "bagaimana kita memakainya tanpa kehilangan kemampuan dan tanggung jawab kita sendiri?".
 
-Buka [`05_AI_Tools_Sebagai_Pendukung.md`](05_AI_Tools_Sebagai_Pendukung.md) ketika siap.
+Buka [Bab 05 - AI Tools sebagai Pendukung](05_AI_Tools_Sebagai_Pendukung.md) ketika siap.

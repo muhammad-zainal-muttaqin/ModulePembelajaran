@@ -229,7 +229,7 @@ Setelah training, jangan langsung menulis "model berhasil mencapai akurasi X%". 
 
 ## 5. Lab 1 - Baseline CNN pada CIFAR-10
 
-Buka [`template_repo/notebooks/lab1_baseline_cnn.ipynb`](template_repo/notebooks/lab1_baseline_cnn.ipynb). Lab ini meminta Anda menyelesaikan empat tugas:
+Buka [Lab 1 - Baseline CNN pada CIFAR-10](template_repo/notebooks/lab1_baseline_cnn.ipynb). Lab ini meminta Anda menyelesaikan empat tugas:
 
 1. Melengkapi training loop dengan evaluasi pada validation set setiap epoch.
 2. Menyimpan daftar `train_loss`, `val_loss`, `train_acc`, `val_acc` per epoch ke list, lalu memplotnya.
@@ -268,4 +268,4 @@ Buka [`template_repo/notebooks/lab1_baseline_cnn.ipynb`](template_repo/notebooks
 
 Anda sudah bisa memilih arsitektur dan membangun baseline. Bab 02 mengubah fokus dari *memahami sistem* menjadi *merancang eksperimen*: bagaimana menerjemahkan instruksi seperti "coba ubah loss ke focal, freeze conv1" menjadi rancangan konkret dengan variabel, baseline, hipotesis, dan metrik sukses yang dapat dipertanggungjawabkan.
 
-Buka [`02_Ide_Ke_Eksperimen.md`](02_Ide_Ke_Eksperimen.md) ketika siap.
+Buka [Bab 02 - Ide ke Eksperimen](02_Ide_Ke_Eksperimen.md) ketika siap.

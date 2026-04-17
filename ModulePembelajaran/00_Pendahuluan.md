@@ -131,4 +131,4 @@ Sebelum melangkah ke Bab 01, luangkan waktu sepuluh menit untuk menulis jawaban 
 
 ## Lanjut ke Bab 01
 
-Setelah menyelesaikan refleksi, buka `[01_Memahami_ML_DL.md](01_Memahami_ML_DL.md)`. Bab tersebut memperkenalkan empat keluarga arsitektur yang paling sering Anda temui di paper dan repository - tidak sebagai daftar definisi, tetapi sebagai *keputusan desain* yang dibingkai oleh pertanyaan: data seperti apa yang sedang kita olah, dan struktur apa yang paling alami mengikutinya?
+Setelah menyelesaikan refleksi, buka [Bab 01 - Memahami ML/DL](01_Memahami_ML_DL.md). Bab tersebut memperkenalkan empat keluarga arsitektur yang paling sering Anda temui di paper dan repository - tidak sebagai daftar definisi, tetapi sebagai *keputusan desain* yang dibingkai oleh pertanyaan: data seperti apa yang sedang kita olah, dan struktur apa yang paling alami mengikutinya?
