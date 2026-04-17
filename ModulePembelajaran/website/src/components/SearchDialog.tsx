@@ -76,7 +76,7 @@ export default function SearchDialog({ open, onClose }: Props) {
           </kbd>
         </div>
 
-        <div className="max-h-[60vh] overflow-y-auto">
+        <div className="max-h-[60vh] overflow-y-auto scrollbar-hidden">
           {query.trim() && results.length === 0 && (
             <div className="px-4 py-8 text-center text-ink/60 dark:text-parchment/60">
               Tidak ada hasil untuk "{query}".

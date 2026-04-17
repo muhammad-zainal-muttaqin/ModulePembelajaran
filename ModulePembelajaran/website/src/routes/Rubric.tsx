@@ -59,7 +59,7 @@ export default function Rubric() {
           )}
         </div>
 
-        <div className="overflow-x-auto">
+        <div className="overflow-x-auto scrollbar-hidden">
           <table className="w-full text-sm">
             <thead>
               <tr className="text-left border-b border-black/10 dark:border-white/10">

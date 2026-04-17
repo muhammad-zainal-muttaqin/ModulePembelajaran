@@ -88,7 +88,7 @@ export default function ConfigDiff() {
           <div className="px-4 py-2 border-r border-black/10 dark:border-white/10">baseline.yaml</div>
           <div className="px-4 py-2">focal_freeze.yaml</div>
         </div>
-        <div className="overflow-x-auto">
+        <div className="overflow-x-auto scrollbar-hidden">
           <div className="grid grid-cols-2 font-mono text-xs leading-relaxed">
             <div className="border-r border-black/10 dark:border-white/10">
               {diff.map((d, i) => (

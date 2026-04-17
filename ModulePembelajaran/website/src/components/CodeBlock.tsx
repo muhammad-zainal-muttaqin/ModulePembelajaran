@@ -57,7 +57,7 @@ export default function CodeBlock({ code, lang }: Props) {
           dangerouslySetInnerHTML={{ __html: html }}
         />
       ) : (
-        <pre className="rounded-lg p-4 text-sm overflow-x-auto border border-black/5 dark:border-white/10 bg-white dark:bg-black/40">
+        <pre className="rounded-lg p-4 text-sm overflow-x-auto scrollbar-hidden border border-black/5 dark:border-white/10 bg-white dark:bg-black/40">
           <code>{code}</code>
         </pre>
       )}

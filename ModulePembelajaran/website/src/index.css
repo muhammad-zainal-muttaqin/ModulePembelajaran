@@ -119,6 +119,11 @@
   }
   .prose-modul pre {
     @apply rounded-lg overflow-x-auto text-sm my-5 p-4 border border-black/5 dark:border-white/10;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .prose-modul pre::-webkit-scrollbar {
+    display: none;
   }
   .prose-modul table {
     @apply w-full border-collapse my-6 text-sm;

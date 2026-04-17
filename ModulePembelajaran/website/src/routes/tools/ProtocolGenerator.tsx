@@ -169,7 +169,7 @@ export default function ProtocolGenerator() {
                 </button>
               </div>
             </div>
-            <pre className="p-4 text-xs font-mono overflow-auto max-h-[70vh] leading-relaxed bg-white dark:bg-transparent">
+            <pre className="p-4 text-xs font-mono overflow-auto scrollbar-hidden max-h-[70vh] leading-relaxed bg-white dark:bg-transparent">
               {md}
             </pre>
           </div>

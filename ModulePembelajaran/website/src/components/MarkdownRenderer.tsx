@@ -57,7 +57,7 @@ export default function MarkdownRenderer({ markdown }: Props) {
           },
           table({ children }) {
             return (
-              <div className="overflow-x-auto">
+              <div className="overflow-x-auto scrollbar-hidden">
                 <table>{children}</table>
               </div>
             );

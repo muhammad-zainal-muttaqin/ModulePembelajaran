@@ -81,7 +81,7 @@ export default function Labs() {
         <p className="mb-2">
           Clone repo, masuk ke <code className="font-mono bg-white/60 dark:bg-white/10 px-1 py-0.5 rounded">template_repo/</code>, aktifkan venv, dan install paket editable:
         </p>
-        <pre className="bg-ink/90 text-parchment font-mono text-xs p-3 rounded overflow-x-auto">
+        <pre className="bg-ink/90 text-parchment font-mono text-xs p-3 rounded overflow-x-auto scrollbar-hidden">
 {`python -m venv .venv
 source .venv/bin/activate  # Windows: .venv\\Scripts\\activate
 pip install -e ".[dev]"`}
