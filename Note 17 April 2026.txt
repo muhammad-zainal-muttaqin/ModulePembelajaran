@@ -1,0 +1,4 @@
+Berdasarkan pengalaman ini bbrp aspek yg sering lemah tapi dibutuhkan untuk mendukung riset
+1. peta high level DL
+2. representasi fitur
+Jika memungkinkan sebagian diincorporate ke plan yg ada (sebagai contoh atau praktek). Atau dibuatkan pertemuan sendiri.
