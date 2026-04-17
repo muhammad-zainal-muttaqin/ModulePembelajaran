@@ -49,3 +49,7 @@ ModulePembelajaran/website/node_modules/
 ModulePembelajaran/website/dist/
 ModulePembelajaran/website/.vite/
 ModulePembelajaran/website/src/content/
+
+# Override Python `lib/` rule for website source
+!ModulePembelajaran/website/src/lib/
+!ModulePembelajaran/website/src/lib/**
