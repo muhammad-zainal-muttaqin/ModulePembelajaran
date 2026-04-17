@@ -201,6 +201,6 @@ Tiga prinsip menjaga rubrik tetap adil dan konsisten.
 
 ## 7. Untuk Mahasiswa
 
-Rubrik ini bukan kejutan di akhir semester. Setiap awal bab, kamu akan tahu kompetensi apa yang sedang dilatih dan level mana yang wajar dicapai pada minggu itu. Jika kamu merasa tertinggal, bicarakan dengan dosen pada titik tinjauan terdekat - lebih cepat selalu lebih baik daripada menunggu akhir semester.
+Rubrik ini bukan kejutan di akhir semester. Setiap awal bab, Anda akan tahu kompetensi apa yang sedang dilatih dan level mana yang wajar dicapai pada minggu itu. Jika Anda merasa tertinggal, bicarakan dengan dosen pada titik tinjauan terdekat - lebih cepat selalu lebih baik daripada menunggu akhir semester.
 
 Baca `10_Capstone_Project.md` di akhir modul untuk memahami bagaimana seluruh kompetensi akan diuji secara terintegrasi.

@@ -1,18 +1,18 @@
 # 03 · Eksperimen Reproduksibel
 
-> *Hasil yang tidak dapat direproduksi hanyalah anekdot. Reproduksibilitas bukan beban tambahan di akhir pekerjaan - ia adalah kerangka yang membuat pekerjaanmu bertahan ketika diuji oleh diri sendiri tiga bulan kemudian, oleh mahasiswa lain yang melanjutkan, atau oleh reviewer paper kamu nanti.*
+> *Hasil yang tidak dapat direproduksi hanyalah anekdot. Reproduksibilitas bukan beban tambahan di akhir pekerjaan - ia adalah kerangka yang membuat pekerjaanmu bertahan ketika diuji oleh diri sendiri tiga bulan kemudian, oleh mahasiswa lain yang melanjutkan, atau oleh reviewer paper Anda nanti.*
 
 ---
 
 ## 0. Peta Bab
 
-Bab ini mengubah cara kamu mencatat, menjalankan, dan menyimpan eksperimen sehingga hasil apapun yang kamu laporkan dapat diulang persis oleh orang lain. Kamu akan belajar mengunci sumber-sumber acak, memindahkan konfigurasi dari kode ke file deklaratif, menghubungkan log ke konfigurasi dan kode yang menghasilkannya, serta merancang ablation yang bisa dibaca ulang berbulan-bulan kemudian. Setelah bab ini, folder eksperimen kamu punya struktur yang sama, disiplin penamaan yang konsisten, dan jejak yang cukup untuk menjawab pertanyaan "bagaimana tepatnya angka ini didapat?" tanpa ragu.
+Bab ini mengubah cara Anda mencatat, menjalankan, dan menyimpan eksperimen sehingga hasil apapun yang Anda laporkan dapat diulang persis oleh orang lain. Anda akan belajar mengunci sumber-sumber acak, memindahkan konfigurasi dari kode ke file deklaratif, menghubungkan log ke konfigurasi dan kode yang menghasilkannya, serta merancang ablation yang bisa dibaca ulang berbulan-bulan kemudian. Setelah bab ini, folder eksperimen Anda punya struktur yang sama, disiplin penamaan yang konsisten, dan jejak yang cukup untuk menjawab pertanyaan "bagaimana tepatnya angka ini didapat?" tanpa ragu.
 
 ---
 
-## 1. Motivasi: Kamu Tiga Bulan dari Sekarang
+## 1. Motivasi: Anda Tiga Bulan dari Sekarang
 
-Bayangkan tiga bulan dari hari ini, dosen meminta kamu mengekstrak kembali hasil salah satu eksperimen untuk paper yang sedang ditulis. Kamu membuka folder `experiments/` dan menemukan:
+Bayangkan tiga bulan dari hari ini, dosen meminta Anda mengekstrak kembali hasil salah satu eksperimen untuk paper yang sedang ditulis. Anda membuka folder `experiments/` dan menemukan:
 
 ```
 experiments/
@@ -26,9 +26,9 @@ experiments/
 
 Folder `run_final` berisi checkpoint tetapi tidak ada config. Folder `run_focal_v2` berisi config tetapi file `train.py` di repo sudah banyak berubah sejak eksperimen itu. Tidak ada catatan seed. Log TensorBoard ada, tetapi loss plot saja tidak cukup untuk menjawab pertanyaan PI.
 
-Kamu mencoba meregenerasi hasil: menjalankan `train.py` dengan config yang tersisa, hasilnya akurasi 75%, padahal laporan menyebut 80%. Lima jam dihabiskan mencari sebabnya. Ternyata kamu dulu menjalankan dengan augmentasi berbeda yang sudah tidak ada lagi di kode.
+Anda mencoba meregenerasi hasil: menjalankan `train.py` dengan config yang tersisa, hasilnya akurasi 75%, padahal laporan menyebut 80%. Lima jam dihabiskan mencari sebabnya. Ternyata Anda dulu menjalankan dengan augmentasi berbeda yang sudah tidak ada lagi di kode.
 
-Skenario ini bukan fiksi - ini pengalaman hampir setiap peneliti pemula minimal sekali. Reproduksibilitas adalah tentang melindungi dirimu tiga bulan dari sekarang. Investasi waktu 30 menit di awal proyek menyelamatkan berjam-jam di kemudian hari, dan sering kali menyelamatkan paper itu sendiri.
+Skenario ini bukan fiksi - ini pengalaman hampir setiap peneliti pemula minimal sekali. Reproduksibilitas adalah tentang melindungi diri Anda tiga bulan dari sekarang. Investasi waktu 30 menit di awal proyek menyelamatkan berjam-jam di kemudian hari, dan sering kali menyelamatkan paper itu sendiri.
 
 ---
 
@@ -36,7 +36,7 @@ Skenario ini bukan fiksi - ini pengalaman hampir setiap peneliti pemula minimal 
 
 ### 2.1 Empat Sumber Non-Determinisme
 
-Ketika kamu menjalankan kode yang sama dua kali dan mendapat hasil berbeda, salah satu dari empat sumber berikut yang bertanggung jawab:
+Ketika Anda menjalankan kode yang sama dua kali dan mendapat hasil berbeda, salah satu dari empat sumber berikut yang bertanggung jawab:
 
 **1. Inisialisasi acak parameter model.** Bobot awal diacak. Kontrol dengan `torch.manual_seed`.
 
@@ -85,7 +85,7 @@ Ada trade-off: `cudnn.deterministic = True` kadang memperlambat training 10-20%.
 
 ### 2.2 Konfigurasi: Memisahkan Parameter dari Kode
 
-Hyperparameter yang tersebar di dalam kode (di variabel, di argumen `__init__`, di argumen fungsi) menimbulkan dua masalah: kamu harus membaca semua kode untuk tahu konfigurasi apa yang dijalankan, dan kamu tidak bisa membandingkan dua eksperimen tanpa diff kode.
+Hyperparameter yang tersebar di dalam kode (di variabel, di argumen `__init__`, di argumen fungsi) menimbulkan dua masalah: Anda harus membaca semua kode untuk tahu konfigurasi apa yang dijalankan, dan Anda tidak bisa membandingkan dua eksperimen tanpa diff kode.
 
 Solusinya: pindahkan semua hyperparameter ke file konfigurasi deklaratif. YAML adalah pilihan populer karena mudah dibaca manusia.
 
@@ -184,9 +184,9 @@ def get_git_hash() -> str:
         return 'unknown'
 ```
 
-Mengapa git hash penting: ia menjawab pertanyaan "kode mana tepatnya yang menghasilkan checkpoint ini?". Dengan hash, kamu dapat `git checkout <hash>` untuk kembali ke keadaan kode persis saat eksperimen dijalankan.
+Mengapa git hash penting: ia menjawab pertanyaan "kode mana tepatnya yang menghasilkan checkpoint ini?". Dengan hash, Anda dapat `git checkout <hash>` untuk kembali ke keadaan kode persis saat eksperimen dijalankan.
 
-Bendera `dirty` memperingatkan kamu ketika ada uncommitted changes - sebaiknya commit dulu sebelum eksperimen yang akan dilaporkan.
+Bendera `dirty` memperingatkan Anda ketika ada uncommitted changes - sebaiknya commit dulu sebelum eksperimen yang akan dilaporkan.
 
 ### 2.4 Logging: Dari Print ke Struktur
 
@@ -226,7 +226,7 @@ wandb.log({'loss/train': train_loss, 'loss/val': val_loss,
            'acc/train': train_acc, 'acc/val': val_acc})
 ```
 
-Untuk modul ini, TensorBoard cukup. Pindah ke wandb ketika kamu mulai bekerja dalam tim atau menjalankan puluhan run.
+Untuk modul ini, TensorBoard cukup. Pindah ke wandb ketika Anda mulai bekerja dalam tim atau menjalankan puluhan run.
 
 ### 2.5 Struktur Folder Eksperimen
 
@@ -260,7 +260,7 @@ Pola penamaan `run_id`: `<kondisi>_s<seed>` atau `<kondisi>_lr<lr>_s<seed>`. Con
 
 Protokol ablation yang rapi:
 
-1. **Tentukan faktor.** Daftar komponen yang ingin kamu uji pengaruhnya.
+1. **Tentukan faktor.** Daftar komponen yang ingin Anda uji pengaruhnya.
 2. **Mulai dari versi penuh.** Baseline adalah konfigurasi dengan semua komponen aktif.
 3. **Matikan satu faktor pada satu waktu.** N faktor = N+1 konfigurasi (baseline + N ablasi).
 4. **Jalankan replikasi.** Tiga seed per konfigurasi.
@@ -275,11 +275,11 @@ Tabel ablation yang informatif:
 | – BN | 0.769 ± 0.015 | −5.5 |
 | – dropout | 0.818 ± 0.009 | −0.6 |
 
-Dari tabel ini, kamu bisa mengatakan: augmentasi dan BN berkontribusi signifikan; dropout kontribusinya kecil pada setting ini. Informasi yang mustahil kamu dapat tanpa ablation.
+Dari tabel ini, Anda bisa mengatakan: augmentasi dan BN berkontribusi signifikan; dropout kontribusinya kecil pada setting ini. Informasi yang mustahil Anda dapat tanpa ablation.
 
 ### 2.7 Catatan Eksperimen Harian
 
-Di luar file teknis, miliki satu file manusia-ke-manusia: `experiment_log.md` yang kamu isi setiap hari.
+Di luar file teknis, miliki satu file manusia-ke-manusia: `experiment_log.md` yang Anda isi setiap hari.
 
 ```markdown
 ## 2025-10-14, Selasa
@@ -305,13 +305,13 @@ Di luar file teknis, miliki satu file manusia-ke-manusia: `experiment_log.md` ya
 - Mulai Bab 04 untuk persiapan EDA dataset baru.
 ```
 
-Format ini tidak wajib. Yang penting: tulis sesuatu, setiap hari, dengan tangan (atau keyboard) sendiri. Log eksperimen yang kamu tulis sendiri selama enam bulan adalah bahan tulisan pertama thesis atau paper kamu.
+Format ini tidak wajib. Yang penting: tulis sesuatu, setiap hari, dengan tangan (atau keyboard) sendiri. Log eksperimen yang Anda tulis sendiri selama enam bulan adalah bahan tulisan pertama thesis atau paper Anda.
 
 ---
 
 ## 3. Worked Example: Refaktor Lab 2 menjadi Reproduksibel
 
-Di akhir Bab 02, kamu menjalankan Lab 2 dengan enam run (3 seed × 2 kondisi). Sekarang kamu merefaktor agar seluruh eksperimen reproduksibel.
+Di akhir Bab 02, Anda menjalankan Lab 2 dengan enam run (3 seed × 2 kondisi). Sekarang Anda merefaktor agar seluruh eksperimen reproduksibel.
 
 ### 3.1 Struktur Kode yang Ditargetkan
 
@@ -448,19 +448,19 @@ Tabel inilah yang masuk laporan. Setiap angka dapat dilacak kembali ke folder ru
 
 **"Run terakhir cukup; yang gagal dihapus saja."** Jangan menghapus. Folder run yang "gagal" sering memuat data penting - misalnya, konfigurasi yang terbukti tidak bekerja adalah hasil riset juga. Arsipkan, jangan hapus.
 
-**"Git commit tidak perlu jika kodenya tidak bug."** Justru karena kode tidak bug-lah kamu ingin mengingat persis versinya. Commit hash di checkpoint adalah time capsule - tanpanya kamu tidak bisa kembali ke keadaan pasti.
+**"Git commit tidak perlu jika kodenya tidak bug."** Justru karena kode tidak bug-lah Anda ingin mengingat persis versinya. Commit hash di checkpoint adalah time capsule - tanpanya Anda tidak bisa kembali ke keadaan pasti.
 
-**"Konfigurasi YAML + CLI override terlalu ribet untuk satu eksperimen kecil."** Ribet di awal, menyelamatkan setelah kamu punya dua puluh eksperimen. Bangun kebiasaan sejak run pertama.
+**"Konfigurasi YAML + CLI override terlalu ribet untuk satu eksperimen kecil."** Ribet di awal, menyelamatkan setelah Anda punya dua puluh eksperimen. Bangun kebiasaan sejak run pertama.
 
 **"TensorBoard cukup; CSV tidak perlu."** TensorBoard bagus untuk visualisasi interaktif, tetapi tidak mudah diimpor kembali. CSV adalah format arsip; keduanya saling melengkapi.
 
-**"Saya belum commit; saya akan commit setelah eksperimen selesai."** Jika kamu menjalankan eksperimen dari kode *dirty* (uncommitted), checkpoint kamu tidak dapat direkonstruksi. Commit dulu - atau setidaknya simpan `git diff` ke file bersama checkpoint.
+**"Saya belum commit; saya akan commit setelah eksperimen selesai."** Jika Anda menjalankan eksperimen dari kode *dirty* (uncommitted), checkpoint Anda tidak dapat direkonstruksi. Commit dulu - atau setidaknya simpan `git diff` ke file bersama checkpoint.
 
 ---
 
 ## 5. Lab 3 - Refaktor Lab 2 Menjadi Reproduksibel
 
-Buka `template_repo/notebooks/lab3_config_logging.ipynb`. Lab ini memaksa kamu mengadopsi seluruh infrastruktur reproduksibilitas.
+Buka [`template_repo/notebooks/lab3_config_logging.ipynb`](template_repo/notebooks/lab3_config_logging.ipynb). Lab ini memaksa Anda mengadopsi seluruh infrastruktur reproduksibilitas.
 
 Tugas:
 
@@ -473,25 +473,25 @@ Tugas:
    - Menyimpan checkpoint dengan metadata lengkap (config + git hash + metrics).
    - Menulis log TensorBoard ke `<run>/tb/`.
 4. Jalankan enam run (ulangi Lab 2). Pastikan tiap run dengan seed sama menghasilkan metrik identik ketika dijalankan ulang.
-5. Tulis skrip `scripts/aggregate.py` yang membaca semua run di `experiments/lab3/` dan menghasilkan tabel mean ± std.
+5. Tulis skrip [`template_repo/scripts/aggregate.py`](template_repo/scripts/aggregate.py) yang membaca semua run di `experiments/lab3/` dan menghasilkan tabel mean ± std.
 
 **Checklist verifikasi**:
 
 - [ ] Tidak ada angka hyperparameter di kode Python - semua dari config.
 - [ ] Run kedua dengan seed, config, dan git hash sama menghasilkan val accuracy ±0.001 dari run pertama.
 - [ ] Setiap folder run berisi: `config.yaml`, `git_hash.txt`, `metrics.csv`, `ckpts/`, `tb/`.
-- [ ] `scripts/aggregate.py` menghasilkan tabel yang identik dengan tabel di laporan Lab 2.
+- [ ] [`template_repo/scripts/aggregate.py`](template_repo/scripts/aggregate.py) menghasilkan tabel yang identik dengan tabel di laporan Lab 2.
 - [ ] Tidak ada folder run bernama `final`, `test`, atau `v2`.
 
 ---
 
 ## 6. Refleksi
 
-1. Tim riset kamu memutuskan memakai wandb alih-alih TensorBoard. Apa keuntungan dan kerugian yang perlu dipertimbangkan dari sisi reproduksibilitas? Jika proyek akan diserahkan ke mahasiswa baru tahun depan, pilihan mana yang lebih aman, dan mengapa?
+1. Tim riset Anda memutuskan memakai wandb alih-alih TensorBoard. Apa keuntungan dan kerugian yang perlu dipertimbangkan dari sisi reproduksibilitas? Jika proyek akan diserahkan ke mahasiswa baru tahun depan, pilihan mana yang lebih aman, dan mengapa?
 
-2. Kamu menemukan bahwa hasil run dengan seed sama berbeda 0.3% antar mesin (laptop kamu vs server lab). Tanpa mengubah kode, sebutkan tiga penyebab potensial dan bagaimana kamu mendeteksinya.
+2. Anda menemukan bahwa hasil run dengan seed sama berbeda 0.3% antar mesin (laptop Anda vs server lab). Tanpa mengubah kode, sebutkan tiga penyebab potensial dan bagaimana Anda mendeteksinya.
 
-3. Dosen bertanya: "berapa angka akurasi persis untuk eksperimen focal_freeze_s42?" Kamu membuka folder dan menemukan tiga checkpoint (epoch 10, 15, 20). Angka mana yang benar untuk dilaporkan, dan bagaimana kamu memutuskannya? Bagaimana kebiasaan ini sebaiknya ditulis di protokol?
+3. Dosen bertanya: "berapa angka akurasi persis untuk eksperimen focal_freeze_s42?" Anda membuka folder dan menemukan tiga checkpoint (epoch 10, 15, 20). Angka mana yang benar untuk dilaporkan, dan bagaimana Anda memutuskannya? Bagaimana kebiasaan ini sebaiknya ditulis di protokol?
 
 ---
 
@@ -500,12 +500,12 @@ Tugas:
 - **Joelle Pineau - *Reproducible, Reusable, and Robust Reinforcement Learning*** (NeurIPS 2018 keynote, rekamannya ada di YouTube). Membahas pelajaran keras dari komunitas RL yang berlaku luas di ML.
 - **The Turing Way - *Guide for Reproducible Research***. Bab "Reproducibility" adalah rujukan hidup yang terus diperbarui oleh komunitas.
 - **PyTorch Docs - *Reproducibility*** (pytorch.org/docs/stable/notes/randomness.html). Dokumentasi resmi dengan daftar pitfall non-determinisme, termasuk yang spesifik per operasi.
-- **Weights & Biases Docs - *Experiment Tracking*** (docs.wandb.ai). Dibaca ringkas ketika kamu siap beralih dari TensorBoard.
+- **Weights & Biases Docs - *Experiment Tracking*** (docs.wandb.ai). Dibaca ringkas ketika Anda siap beralih dari TensorBoard.
 
 ---
 
 ## Lanjut ke Bab 04
 
-Kamu sekarang bisa menjamin bahwa setiap angka dalam laporanmu dapat direproduksi. Tetapi reproduksibilitas memastikan kebenaran *pipa komputasi* - bukan kebenaran *data* yang masuk ke pipa itu. Data yang salah, label yang bocor, distribusi yang berubah diam-diam: semua akan memproduksi hasil yang *konsisten salah*. Bab 04 mengajarkan kamu melihat data dengan curiga - kebiasaan yang mencegah eksperimen berbulan-bulan dikubur oleh asumsi yang seharusnya diuji di minggu pertama.
+Anda sekarang bisa menjamin bahwa setiap angka dalam laporanmu dapat direproduksi. Tetapi reproduksibilitas memastikan kebenaran *pipa komputasi* - bukan kebenaran *data* yang masuk ke pipa itu. Data yang salah, label yang bocor, distribusi yang berubah diam-diam: semua akan memproduksi hasil yang *konsisten salah*. Bab 04 mengajarkan Anda melihat data dengan curiga - kebiasaan yang mencegah eksperimen berbulan-bulan dikubur oleh asumsi yang seharusnya diuji di minggu pertama.
 
 Buka [`04_Validasi_Data.md`](04_Validasi_Data.md) ketika siap.

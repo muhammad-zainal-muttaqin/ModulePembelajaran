@@ -6,7 +6,7 @@
 
 ## 0. Peta Bab
 
-Bab ini melatih kamu memeriksa data sebelum mempercayai hasil yang diturunkan darinya. Kamu akan belajar melakukan EDA sebagai *investigasi* bukan ritual, mendeteksi berbagai jenis *data leakage* yang dapat diam-diam menggembungkan metrik, mengaudit kualitas label dengan pemeriksaan sampel individu, dan memverifikasi bahwa pipeline pra-pemrosesan tidak membocorkan informasi dari test set ke train set. Setelah bab ini, kamu tidak lagi meneruskan dataset yang tidak kamu periksa sendiri - sebuah kebiasaan yang menyelamatkan banyak eksperimen dari hasil yang tampaknya spektakuler tetapi sebenarnya palsu.
+Bab ini melatih Anda memeriksa data sebelum mempercayai hasil yang diturunkan darinya. Anda akan belajar melakukan EDA sebagai *investigasi* bukan ritual, mendeteksi berbagai jenis *data leakage* yang dapat diam-diam menggembungkan metrik, mengaudit kualitas label dengan pemeriksaan sampel individu, dan memverifikasi bahwa pipeline pra-pemrosesan tidak membocorkan informasi dari test set ke train set. Setelah bab ini, Anda tidak lagi meneruskan dataset yang tidak Anda periksa sendiri - sebuah kebiasaan yang menyelamatkan banyak eksperimen dari hasil yang tampaknya spektakuler tetapi sebenarnya palsu.
 
 ---
 
@@ -24,7 +24,7 @@ Dua kisah berbeda, satu pelajaran sama: *data yang terlihat baik mungkin sedang 
 
 ### 2.1 EDA sebagai Investigasi
 
-*Exploratory Data Analysis* sering diajarkan sebagai daftar langkah: "jalankan `df.describe()`, plot histogram, hitung korelasi, selesai". Praktik yang benar adalah sebaliknya - EDA dipandu oleh pertanyaan, bukan daftar. Setiap angka atau plot yang kamu lihat harus memicu pertanyaan baru, bukan tanda centang.
+*Exploratory Data Analysis* sering diajarkan sebagai daftar langkah: "jalankan `df.describe()`, plot histogram, hitung korelasi, selesai". Praktik yang benar adalah sebaliknya - EDA dipandu oleh pertanyaan, bukan daftar. Setiap angka atau plot yang Anda lihat harus memicu pertanyaan baru, bukan tanda centang.
 
 Kerangka kerja yang produktif: tiga lapis pertanyaan.
 
@@ -79,7 +79,7 @@ from ydata_profiling import ProfileReport
 ProfileReport(df, title='EDA Report').to_file('eda.html')
 ```
 
-Ingat: laporan otomatis adalah titik awal, bukan akhir. Ia menunjukkan *apa*; kamu yang bertanya *mengapa*.
+Ingat: laporan otomatis adalah titik awal, bukan akhir. Ia menunjukkan *apa*; Anda yang bertanya *mengapa*.
 
 ### 2.2 Jenis-Jenis Data Leakage
 
@@ -107,13 +107,13 @@ Tabel deteksi:
 
 ### 2.3 Audit Label: Kualitas Data yang Sering Diabaikan
 
-Label yang salah 5% tidak akan membatasi akurasi di 95%, tetapi akan menyesatkan pilihan arsitektur dan loss. Model yang "gagal" mencapai 100% pada data noisy sebenarnya sedang benar-benar mengenali pola; kamu menghukumnya karena gagal menghafal kesalahan.
+Label yang salah 5% tidak akan membatasi akurasi di 95%, tetapi akan menyesatkan pilihan arsitektur dan loss. Model yang "gagal" mencapai 100% pada data noisy sebenarnya sedang benar-benar mengenali pola; Anda menghukumnya karena gagal menghafal kesalahan.
 
 Protokol audit label untuk dataset klasifikasi:
 
 1. **Periksa distribusi label.** `value_counts()`. Kelas dengan frekuensi sangat rendah (< 1%) mungkin tidak praktis untuk model klasifikasi biasa - pertimbangkan menggabung ke kelas lain atau memakai pendekatan *few-shot*.
 2. **Periksa ejaan/konsistensi kategori.** `df['label'].unique()`. Sering ditemukan 'Positif', 'positif', 'Positive', 'POS' yang seharusnya satu kelas.
-3. **Sampel inspeksi manual.** Ambil 50 sampel acak, periksa labelnya dengan pemahaman domain. Jika kamu bukan ahli domain, minta bantuan.
+3. **Sampel inspeksi manual.** Ambil 50 sampel acak, periksa labelnya dengan pemahaman domain. Jika Anda bukan ahli domain, minta bantuan.
 4. **Inspeksi kesalahan model sebagai audit tambahan.** Setelah baseline training, ambil 20 "kesalahan paling percaya diri" - prediksi di mana model yakin tetapi salah. Sering kali *labelnya* yang salah, bukan modelnya.
 
 Contoh pada dataset gambar:
@@ -216,9 +216,9 @@ Data di dunia nyata sering berbeda dari data training. Tiga bentuk perubahan:
 
 **Concept drift** - hubungan fitur→target itu sendiri berubah. Paling sulit. Contoh: perilaku pengguna berubah setelah fitur aplikasi diubah; pola churn lama tidak berlaku lagi.
 
-Diagnosis awal: bandingkan histogram tiap fitur antara train dan test/produksi. Jika histogram berbeda signifikan, kamu menghadapi shift. Uji statistik seperti Kolmogorov-Smirnov dapat memformalkan.
+Diagnosis awal: bandingkan histogram tiap fitur antara train dan test/produksi. Jika histogram berbeda signifikan, Anda menghadapi shift. Uji statistik seperti Kolmogorov-Smirnov dapat memformalkan.
 
-Di proyek kuliah, shift sering sengaja diperkenalkan sebagai latihan. Lab 4 akan memindahkan model yang dilatih di CIFAR-10 ke dataset medis PathMNIST - *domain shift* yang akan membuat akurasi turun drastis, memberi kamu kesempatan menyaksikan dan mendeteksinya.
+Di proyek kuliah, shift sering sengaja diperkenalkan sebagai latihan. Lab 4 akan memindahkan model yang dilatih di CIFAR-10 ke dataset medis PathMNIST - *domain shift* yang akan membuat akurasi turun drastis, memberi Anda kesempatan menyaksikan dan mendeteksinya.
 
 ---
 
@@ -279,7 +279,7 @@ plt.tight_layout()
 plt.savefig('experiments/lab4/samples_per_class.png')
 ```
 
-Inspeksi visual ini penting: kamu akan melihat perbedaan antar kelas, menilai apakah tugas tampak "masuk akal", dan menemukan anomali (gambar hitam, gambar kosong, gambar dengan artefak).
+Inspeksi visual ini penting: Anda akan melihat perbedaan antar kelas, menilai apakah tugas tampak "masuk akal", dan menemukan anomali (gambar hitam, gambar kosong, gambar dengan artefak).
 
 ### 3.4 Cek Leakage: Duplikasi Antar Split
 
@@ -351,17 +351,17 @@ Laporan ini masuk ke `experiments/lab4/audit.md`, dibaca bersama protokol eksper
 
 ## 4. Pitfalls & Miskonsepsi
 
-**"EDA cukup sekali di awal proyek."** Tidak. Setiap kali kamu memutuskan mengubah subset data, menambah sumber, atau memfilter sampel, jalankan EDA ulang pada data hasil perubahan. Distribusi bisa berubah tanpa kamu sadari.
+**"EDA cukup sekali di awal proyek."** Tidak. Setiap kali Anda memutuskan mengubah subset data, menambah sumber, atau memfilter sampel, jalankan EDA ulang pada data hasil perubahan. Distribusi bisa berubah tanpa Anda sadari.
 
-**"Saya akan periksa leakage nanti."** Sama seperti "saya akan simpan config nanti" - tidak pernah terjadi. Periksa leakage sebelum run training pertama. Akurasi tinggi yang ternyata karena leakage membuat kamu membuang waktu di eksperimen turunan yang semua berdasarkan metrik palsu.
+**"Saya akan periksa leakage nanti."** Sama seperti "saya akan simpan config nanti" - tidak pernah terjadi. Periksa leakage sebelum run training pertama. Akurasi tinggi yang ternyata karena leakage membuat Anda membuang waktu di eksperimen turunan yang semua berdasarkan metrik palsu.
 
 **"Dataset publik sudah bersih."** Hampir tidak pernah. ImageNet punya label salah; CIFAR-10 punya duplikasi antar split; dataset medis publik sering punya *patient leakage*. Jangan anggap dataset publik bebas dari pemeriksaan.
 
 **"Imbalance berarti harus pakai SMOTE/oversampling."** Tidak selalu. Imbalance yang sesuai dengan realita (misalnya 5% pasien positif kanker) adalah informasi yang valid. Oversampling menipu model agar menganggap distribusi seimbang, yang bisa menurunkan performa di distribusi nyata. Pertimbangkan dulu: apakah loss yang sadar imbalance (focal, weighted CE) atau *metrik* yang tepat (PR-AUC) sudah cukup?
 
-**"Normalisasi dilakukan di awal, aman."** Periksa apakah `fit` pada train saja. Jika `fit_transform` dipanggil pada seluruh data sebelum split, kamu punya preprocessing leakage - halus tetapi nyata.
+**"Normalisasi dilakukan di awal, aman."** Periksa apakah `fit` pada train saja. Jika `fit_transform` dipanggil pada seluruh data sebelum split, Anda punya preprocessing leakage - halus tetapi nyata.
 
-**"Test set tidak perlu diinspeksi, kita hanya mengukur di sana."** Salah. Kamu perlu memastikan test set punya distribusi yang sama dengan apa yang akan kamu temui di produksi. Jika test set menyimpang, hasilnya tidak dapat diekstrapolasi.
+**"Test set tidak perlu diinspeksi, kita hanya mengukur di sana."** Salah. Anda perlu memastikan test set punya distribusi yang sama dengan apa yang akan Anda temui di produksi. Jika test set menyimpang, hasilnya tidak dapat diekstrapolasi.
 
 **"Model saya overfitting parah, kurangi parameter."** Bisa jadi. Tetapi sebelum itu, periksa apakah training set cukup bersih dari label salah. Overfitting "buatan" sering terjadi ketika model memaksa diri menghafal label yang saling bertentangan.
 
@@ -369,7 +369,7 @@ Laporan ini masuk ke `experiments/lab4/audit.md`, dibaca bersama protokol eksper
 
 ## 5. Lab 4 - Audit PathMNIST dan Pipeline Pra-pemrosesan
 
-Buka `template_repo/notebooks/lab4_eda_leakage.ipynb`.
+Buka [`template_repo/notebooks/lab4_eda_leakage.ipynb`](template_repo/notebooks/lab4_eda_leakage.ipynb).
 
 Tugas:
 
@@ -392,11 +392,11 @@ Tugas:
 
 ## 6. Refleksi
 
-1. Kamu mewarisi proyek dari senior yang sudah pindah. Dataset siap, kode siap, akurasi test terlaporkan 91%. Apa tiga pemeriksaan pertama yang akan kamu lakukan sebelum *memakai ulang* angka 91% tersebut di laporan kamu sendiri?
+1. Anda mewarisi proyek dari senior yang sudah pindah. Dataset siap, kode siap, akurasi test terlaporkan 91%. Apa tiga pemeriksaan pertama yang akan Anda lakukan sebelum *memakai ulang* angka 91% tersebut di laporan Anda sendiri?
 
-2. Model kamu mencapai 99% akurasi pada val set di hari pertama. Apa lima hipotesis paling mungkin tentang penyebabnya, diurutkan dari yang paling membosankan ke yang paling mengejutkan? Untuk tiga hipotesis teratas, bagaimana kamu menguji masing-masing dalam waktu satu jam?
+2. Model Anda mencapai 99% akurasi pada val set di hari pertama. Apa lima hipotesis paling mungkin tentang penyebabnya, diurutkan dari yang paling membosankan ke yang paling mengejutkan? Untuk tiga hipotesis teratas, bagaimana Anda menguji masing-masing dalam waktu satu jam?
 
-3. Dataset PathMNIST yang kamu pakai di Lab 4 tidak memiliki informasi pasien - setiap sampel dianggap independen. Bagaimana kamu akan menangani ini jika dataset memiliki ID pasien dan setiap pasien memiliki beberapa slide? Jelaskan protokol split yang benar dan mengapa random split biasa akan gagal.
+3. Dataset PathMNIST yang Anda pakai di Lab 4 tidak memiliki informasi pasien - setiap sampel dianggap independen. Bagaimana Anda akan menangani ini jika dataset memiliki ID pasien dan setiap pasien memiliki beberapa slide? Jelaskan protokol split yang benar dan mengapa random split biasa akan gagal.
 
 ---
 
@@ -411,6 +411,6 @@ Tugas:
 
 ## Lanjut ke Bab 05
 
-Kamu sudah bisa merancang, mengeksekusi, dan memverifikasi eksperimen dari sisi data dan sisi komputasi. Bab berikutnya membahas alat yang dua tahun terakhir ini mengubah cara semua peneliti bekerja: *large language model* seperti ChatGPT, Copilot, dan Claude. Pertanyaannya bukan "apakah kita memakainya" - kita semua memakainya - tetapi "bagaimana kita memakainya tanpa kehilangan kemampuan dan tanggung jawab kita sendiri?".
+Anda sudah bisa merancang, mengeksekusi, dan memverifikasi eksperimen dari sisi data dan sisi komputasi. Bab berikutnya membahas alat yang dua tahun terakhir ini mengubah cara semua peneliti bekerja: *large language model* seperti ChatGPT, Copilot, dan Claude. Pertanyaannya bukan "apakah kita memakainya" - kita semua memakainya - tetapi "bagaimana kita memakainya tanpa kehilangan kemampuan dan tanggung jawab kita sendiri?".
 
 Buka [`05_AI_Tools_Sebagai_Pendukung.md`](05_AI_Tools_Sebagai_Pendukung.md) ketika siap.

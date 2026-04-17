@@ -1,12 +1,12 @@
 # 12 · Lampiran
 
-> *Lampiran yang baik adalah alat bantu, bukan hiasan. Bagian ini berisi glosarium istilah, checklist eksperimen, dan template yang dapat kamu salin-pakai langsung sepanjang semester.*
+> *Lampiran yang baik adalah alat bantu, bukan hiasan. Bagian ini berisi glosarium istilah, checklist eksperimen, dan template yang dapat Anda salin-pakai langsung sepanjang semester.*
 
 ---
 
 ## A. Glosarium Indonesia ↔ Inggris
 
-Istilah teknis ML/DL sebagian besar berasal dari Bahasa Inggris. Glosarium ini menyatukan *pilihan terjemahan* yang direkomendasikan dalam modul, untuk mencegah inkonsistensi dan membantu kamu berkomunikasi lintas konteks (tulisan akademik vs diskusi informal).
+Istilah teknis ML/DL sebagian besar berasal dari Bahasa Inggris. Glosarium ini menyatukan *pilihan terjemahan* yang direkomendasikan dalam modul, untuk mencegah inkonsistensi dan membantu Anda berkomunikasi lintas konteks (tulisan akademik vs diskusi informal).
 
 ### A.1 Arsitektur & Model
 
@@ -239,7 +239,7 @@ Tanggal: <YYYY-MM-DD>
 
 ## 3. Method
 - Deskripsikan baseline dan intervensi dengan cukup detail untuk replikasi.
-- Notasi matematis jika membantu; hindari rumus yang hanya kamu sendiri mengerti.
+- Notasi matematis jika membantu; hindari rumus yang hanya Anda sendiri mengerti.
 - Sertakan gambar arsitektur bila relevan.
 
 ## 4. Experimental Setup
@@ -366,12 +366,12 @@ Salin ke `docs/papers/<short_title>.md`. Format Bab 9.
 
 ## D. Ringkasan Cepat Empat Sikap Riset
 
-Tabel rujukan saat kamu kehilangan arah.
+Tabel rujukan saat Anda kehilangan arah.
 
 
 | Sikap      | Pertanyaan yang menjaga sikap                       | Tanda sikap ini hadir                                                            |
 | ---------- | --------------------------------------------------- | -------------------------------------------------------------------------------- |
-| Curiosity  | "Mengapa model berperilaku begini?"                 | Kamu menghabiskan waktu mempertanyakan *yang aneh*, bukan hanya mengejar metrik. |
+| Curiosity  | "Mengapa model berperilaku begini?"                 | Anda menghabiskan waktu mempertanyakan *yang aneh*, bukan hanya mengejar metrik. |
 | Rigor      | "Bisakah orang lain mereproduksi ini?"              | Seed, config, git hash, pre-reg.                                                 |
 | Skepticism | "Apa penjelasan paling membosankan dari hasil ini?" | Audit leakage, baseline-kuat, error analysis.                                    |
 | Ownership  | "Siapa yang akan menjawab jika saya tidak?"         | Dokumen lengkap, verifikasi LLM, repo yang runnable.                             |
@@ -379,11 +379,50 @@ Tabel rujukan saat kamu kehilangan arah.
 
 ---
 
+## F. Prasyarat
+
+Bagian ini adalah *primer* singkat untuk mahasiswa yang belum solid pada tiga prasyarat masuk modul. Kerjakan bagian yang relevan sebelum membaca Bab 01. Jika sudah solid, lewati.
+
+### F.1 Python Tingkat Menengah
+
+Anda perlu nyaman dengan: fungsi (termasuk `*args`, `**kwargs`, default parameter), kelas dan pewarisan, modul dan impor relatif, virtual environment (`venv` atau `conda`), dan membaca traceback.
+
+**Uji mandiri.** Bisa Anda menulis kelas `Dataset` sederhana dengan `__len__` dan `__getitem__`, lalu mengimpornya dari modul lain di folder yang sama tanpa error `ModuleNotFoundError`? Jika tidak, kerjakan satu tutorial Python OOP (Python docs atau Real Python) sebelum melanjutkan.
+
+**Sumber rujukan.**
+- Python Tutorial resmi - bagian *Classes* dan *Modules* (docs.python.org/3/tutorial).
+- Real Python - "Object-Oriented Programming (OOP) in Python 3".
+- `venv` quickstart: `python -m venv .venv && source .venv/bin/activate` (Linux/Mac) atau `.venv\Scripts\activate` (Windows).
+
+### F.2 Kalkulus Dasar dan Aljabar Linear
+
+Anda perlu memahami: turunan fungsi satu variabel, aturan rantai (*chain rule*), gradien (turunan parsial), dan perkalian matriks.
+
+**Uji mandiri.** Tanpa membuka referensi, bisa Anda turunkan `d/dx [x² + 3x]` dan jelaskan mengapa gradien menunjuk ke arah kenaikan paling curam? Bisa Anda mengalikan matriks 2×3 dengan matriks 3×2 secara manual? Jika tidak, kerjakan dua modul pertama Khan Academy Calculus dan Linear Algebra.
+
+**Sumber rujukan.**
+- Khan Academy - *Derivatives* (khanacademy.org/math/calculus-1).
+- Khan Academy - *Vectors and spaces*, *Matrix transformations* (khanacademy.org/math/linear-algebra).
+- 3Blue1Brown - "Essence of Calculus" dan "Essence of Linear Algebra" (YouTube). Visual, 15-20 menit per video.
+
+### F.3 Model ML Pertama
+
+Anda perlu pernah melatih setidaknya satu model klasifikasi dengan scikit-learn: `fit`, `predict`, `score`. Anda perlu tahu apa itu train/test split dan mengapa diperlukan.
+
+**Uji mandiri.** Bisa Anda melatih `LogisticRegression` pada Iris dataset dan mencetak akurasi test set dalam 15 baris kode? Jika tidak, kerjakan tutorial scikit-learn Getting Started sebelum Bab 01.
+
+**Sumber rujukan.**
+- scikit-learn - *Getting Started* (scikit-learn.org/stable/getting_started.html).
+- Kaggle - *Intro to Machine Learning* (gratis, 3 jam, hands-on Jupyter).
+
+---
+
 ## E. Indeks Cepat - Di Mana Mencari Apa
 
+- **Prasyarat Python/Kalkulus belum solid?** → Lampiran §F
 - **Cara menulis pre-registration?** → Bab 9 §2.5 + Lampiran §C.1
 - **Cara memilih GPU cloud?** → Bab 8 §2.2, §2.6
-- **Rubrik penilaian?** → Bab 11
+- **Rubrik penilaian?** → [`11_Rubrik_Penilaian.md`](11_Rubrik_Penilaian.md)
 - **Template laporan capstone?** → Lampiran §C.2
 - **Memilih template capstone?** → Bab 10 §2.2
 - **Membaca paper dalam tiga putaran?** → Bab 9 §2.2
@@ -394,4 +433,4 @@ Tabel rujukan saat kamu kehilangan arah.
 
 ---
 
-*Modul ini selesai ketika kamu merasa cukup percaya diri untuk memulai proyek riset sendiri - bukan ketika setiap halaman sudah kamu baca. Semoga kamu membawa empat sikap itu lebih lama dari satu semester.*
+*Modul ini selesai ketika Anda merasa cukup percaya diri untuk memulai proyek riset sendiri - bukan ketika setiap halaman sudah Anda baca. Semoga Anda membawa empat sikap itu lebih lama dari satu semester.*

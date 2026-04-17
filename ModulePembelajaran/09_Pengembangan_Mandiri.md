@@ -6,13 +6,13 @@
 
 ## 0. Peta Bab
 
-Bab ini melatih kamu untuk bergerak dari peran "mahasiswa yang mengerjakan tugas" menjadi "peneliti yang mengusulkan arah". Kamu akan belajar cara memilih paper yang layak dibaca di tengah banjir publikasi arXiv, cara membaca paper dalam tiga putaran yang masing-masing punya tujuan berbeda, teknik *5 Whys* untuk menggali motivasi di balik pertanyaan penelitian, dan pola *pre-registration* ringan yang memaksa kamu merencanakan sebelum menjalankan. Bab ini mengintegrasikan keempat sikap riset - *curiosity* untuk mencari, *rigor* untuk merencanakan, *skepticism* untuk menilai, *ownership* untuk mengeksekusi - sebagai satu disiplin harian, bukan empat kompartemen terpisah. Setelah bab ini, kamu punya rutinitas mingguan yang dapat kamu pertahankan sendiri setelah kelas berakhir, dan templat pre-registration yang dapat kamu pakai untuk setiap eksperimen di masa depan.
+Bab ini melatih Anda untuk bergerak dari peran "mahasiswa yang mengerjakan tugas" menjadi "peneliti yang mengusulkan arah". Anda akan belajar cara memilih paper yang layak dibaca di tengah banjir publikasi arXiv, cara membaca paper dalam tiga putaran yang masing-masing punya tujuan berbeda, teknik *5 Whys* untuk menggali motivasi di balik pertanyaan penelitian, dan pola *pre-registration* ringan yang memaksa Anda merencanakan sebelum menjalankan. Bab ini mengintegrasikan keempat sikap riset - *curiosity* untuk mencari, *rigor* untuk merencanakan, *skepticism* untuk menilai, *ownership* untuk mengeksekusi - sebagai satu disiplin harian, bukan empat kompartemen terpisah. Setelah bab ini, Anda punya rutinitas mingguan yang dapat Anda pertahankan sendiri setelah kelas berakhir, dan templat pre-registration yang dapat Anda pakai untuk setiap eksperimen di masa depan.
 
 ---
 
 ## 1. Motivasi: Satu Tahun Setelah Kelas
 
-Bayangkan setahun dari sekarang. Kamu sudah lulus atau sedang TA semester akhir. Tidak ada lagi silabus, tidak ada lagi dosen yang mengirim email "minggu ini coba ini". Kamu tertarik pada satu bidang - katakanlah *medical image segmentation* - dan ingin menjadi kompeten di dalamnya.
+Bayangkan setahun dari sekarang. Anda sudah lulus atau sedang TA semester akhir. Tidak ada lagi silabus, tidak ada lagi dosen yang mengirim email "minggu ini coba ini". Anda tertarik pada satu bidang - katakanlah *medical image segmentation* - dan ingin menjadi kompeten di dalamnya.
 
 Dua mahasiswa menghadapi situasi yang sama dengan dua strategi.
 
@@ -34,11 +34,11 @@ Empat tingkat filter, dari kasar ke halus:
 
 **Filter 1 - Kategori + kata kunci.** Di arXiv, berlangganan kategori spesifik (`cs.CV`, `cs.LG`, `eess.IV` untuk medical imaging). Tambahkan filter kata kunci dari minat spesifik. Alat: Google Scholar Alerts, arxiv-sanity, Papers with Code RSS.
 
-**Filter 2 - Judul.** 80% paper dapat kamu tolak dari judul: bukan bidangmu, bukan tipe pertanyaan yang kamu cari. Proses 50 judul dalam 5 menit; yang tersisa mungkin 10.
+**Filter 2 - Judul.** 80% paper dapat Anda tolak dari judul: bukan bidangmu, bukan tipe pertanyaan yang Anda cari. Proses 50 judul dalam 5 menit; yang tersisa mungkin 10.
 
 **Filter 3 - Abstrak.** Baca abstrak dari 10 paper. Tanya: apakah *klaim* mereka menarik bagiku? Apakah *metodenya* terasa belajar atau mainstream? Pilih top 5.
 
-**Filter 4 - Pembaca cepat.** Baca introduction + figure pertama + tabel hasil dari 5 paper. Sekarang kamu tahu: mana yang worth deep-dive, mana yang cukup diingat sebagai "ada di luar sana".
+**Filter 4 - Pembaca cepat.** Baca introduction + figure pertama + tabel hasil dari 5 paper. Sekarang Anda tahu: mana yang worth deep-dive, mana yang cukup diingat sebagai "ada di luar sana".
 
 Dari 500 paper/minggu → 5 paper dibaca cepat → 1-2 paper dibaca penuh. Rasio 1:250. Awalnya terasa membuang, sebenarnya itu efisiensi.
 
@@ -48,19 +48,19 @@ Paper akademik tidak dirancang untuk dibaca linear. Tiga putaran membantu menyer
 
 **Putaran 1 - Peta (10 menit).** Baca: judul, abstrak, introduction pertama paragraf, headings sections, figure 1, tabel hasil utama, conclusion. Target: jawab tiga pertanyaan - (a) apa yang mereka *klaim* mereka lakukan? (b) apa yang mereka ukur? (c) apakah hasilnya meyakinkan dari tabel saja?
 
-Bila setelah 10 menit kamu tidak bisa menjawab ketiganya, paper mungkin tidak ditulis dengan baik - atau bidangnya terlalu jauh dari kamu. Putuskan: lanjut putaran 2, atau berhenti dan pilih paper lain.
+Bila setelah 10 menit Anda tidak bisa menjawab ketiganya, paper mungkin tidak ditulis dengan baik - atau bidangnya terlalu jauh dari Anda. Putuskan: lanjut putaran 2, atau berhenti dan pilih paper lain.
 
 **Putaran 2 - Detail (30-45 menit).** Baca linear tetapi *aktif*: catat pertanyaan di margin. Fokus: method section (bagaimana tepatnya mereka melakukannya?), experimental setup (dataset, baseline, metrik, ablation), dan figure/tabel satu per satu. Lewati related work kecuali bidangnya baru bagimu.
 
-Catat 3-5 pertanyaan yang kamu punya: detail yang tidak jelas, pilihan yang aneh, baseline yang kurang, asumsi yang tidak diuji. Pertanyaan-pertanyaan ini bernilai lebih dari ringkasan paper-nya sendiri; simpan di jurnal pribadimu.
+Catat 3-5 pertanyaan yang Anda punya: detail yang tidak jelas, pilihan yang aneh, baseline yang kurang, asumsi yang tidak diuji. Pertanyaan-pertanyaan ini bernilai lebih dari ringkasan paper-nya sendiri; simpan di jurnal pribadimu.
 
-**Putaran 3 - Kritis (30-60 menit, opsional).** Hanya untuk paper yang benar-benar penting untukmu. Cari: apa yang paper *tidak* bahas? Apakah ada eksperimen yang "harus ada" tetapi hilang? Apakah klaim yang diekstrapolasi melampaui data? Jika kamu akan mereview paper ini untuk konferensi, apa yang kamu minta untuk rebuttal?
+**Putaran 3 - Kritis (30-60 menit, opsional).** Hanya untuk paper yang benar-benar penting untukmu. Cari: apa yang paper *tidak* bahas? Apakah ada eksperimen yang "harus ada" tetapi hilang? Apakah klaim yang diekstrapolasi melampaui data? Jika Anda akan mereview paper ini untuk konferensi, apa yang Anda minta untuk rebuttal?
 
-Output ideal putaran 3: satu paragraf critique yang akan kamu kirim ke teman satu grup riset. Keterampilan ini - mengkritik paper dengan fair - adalah alat utama meningkatkan rasa peneliti.
+Output ideal putaran 3: satu paragraf critique yang akan Anda kirim ke teman satu grup riset. Keterampilan ini - mengkritik paper dengan fair - adalah alat utama meningkatkan rasa peneliti.
 
 ### 2.3 Catatan Paper yang Berguna
 
-Catatan yang kamu tidak pernah buka lagi tidak berguna. Empat bagian yang cukup untuk setiap paper yang kamu putar-2:
+Catatan yang Anda tidak pernah buka lagi tidak berguna. Empat bagian yang cukup untuk setiap paper yang Anda putar-2:
 
 ```markdown
 # <judul ringkas> (authors, venue, year)
@@ -75,13 +75,13 @@ Bagaimana mereka melakukannya. Sisipkan sketsa atau rumus penting.
 Dataset + metrik + hasil utama. Sebut angka konkret.
 
 ## Pertanyaan / Kritik (3-5 poin)
-Yang mengganggumu atau yang ingin kamu gali.
+Yang mengganggumu atau yang ingin Anda gali.
 
 ## Hubungan dengan proyek saya
 Satu kalimat: mengapa paper ini relevan (atau tidak).
 ```
 
-Simpan di `docs/papers/<short_title>.md`. Setelah 20 paper, kamu punya literatur pribadi yang bisa di-grep. Dalam tiga bulan, kamu akan terkejut seberapa sering kamu mencari kembali.
+Simpan di `docs/papers/<short_title>.md`. Setelah 20 paper, Anda punya literatur pribadi yang bisa di-grep. Dalam tiga bulan, Anda akan terkejut seberapa sering Anda mencari kembali.
 
 ### 2.4 5 Whys: Dari Minat ke Pertanyaan yang Dapat Dikerjakan
 
@@ -102,7 +102,7 @@ Setelah 5 langkah, pertanyaan berubah dari "aku tertarik X" menjadi "apakah gaya
 
 ### 2.5 Pre-Registration Ringan
 
-Pre-registration berarti menulis *apa yang akan kamu lakukan dan apa yang akan kamu anggap sebagai sukses* **sebelum** kamu menjalankan eksperimen. Ini kebiasaan yang lazim di bidang yang lebih tua (psikologi, kedokteran) untuk mencegah *outcome switching* - mengganti metrik ketika hasil tidak sesuai harapan.
+Pre-registration berarti menulis *apa yang akan Anda lakukan dan apa yang akan Anda anggap sebagai sukses* **sebelum** Anda menjalankan eksperimen. Ini kebiasaan yang lazim di bidang yang lebih tua (psikologi, kedokteran) untuk mencegah *outcome switching* - mengganti metrik ketika hasil tidak sesuai harapan.
 
 Di ML, pre-reg ringan adalah dokumen satu halaman dengan lima bagian:
 
@@ -125,19 +125,19 @@ Mengapa pertanyaan ini layak dijawab sekarang.
 - Kriteria sukses: Δ >... dengan |metrik ablation| <...
 
 ## 4. Hasil yang diharapkan (satu paragraf)
-Tulis apa yang kamu tebak hasilnya. Ini menjaga kejujuran intuisi.
+Tulis apa yang Anda tebak hasilnya. Ini menjaga kejujuran intuisi.
 
 ## 5. Kapan aku akan menganggap hipotesis gagal
 Kondisi konkret yang membuatmu menyatakan H nol benar.
 ```
 
-Setelah eksperimen selesai, buka pre-reg, bandingkan dengan hasil aktual, tulis *amendment* bila ada deviasi. Sering kali kamu akan menemukan diri sendiri tergoda mengubah metrik atau menambah baseline baru - pre-reg menjaga disiplin untuk melaporkan *ketika itu terjadi*, bukan menyembunyikannya.
+Setelah eksperimen selesai, buka pre-reg, bandingkan dengan hasil aktual, tulis *amendment* bila ada deviasi. Sering kali Anda akan menemukan diri sendiri tergoda mengubah metrik atau menambah baseline baru - pre-reg menjaga disiplin untuk melaporkan *ketika itu terjadi*, bukan menyembunyikannya.
 
-Jangan jadikan pre-reg birokrasi. Tujuannya bukan dokumen sempurna; tujuannya adalah kamu-tiga-jam-kemudian tidak bisa menipu kamu-sekarang.
+Jangan jadikan pre-reg birokrasi. Tujuannya bukan dokumen sempurna; tujuannya adalah Anda-tiga-jam-kemudian tidak bisa menipu Anda-sekarang.
 
 ### 2.6 Rutinitas Mingguan: Sistem yang Bertahan
 
-Rutinitas praktis yang dapat kamu pakai sendiri setelah kelas berakhir:
+Rutinitas praktis yang dapat Anda pakai sendiri setelah kelas berakhir:
 
 | Hari | Aktivitas | Durasi |
 |---|---|---|
@@ -199,29 +199,29 @@ Rani telah menjadi peneliti aktif. Dalam satu minggu - tanpa pembimbing memberi 
 
 ## 4. Pitfalls & Miskonsepsi
 
-**Pitfall 1 - Membaca untuk merasa pintar, bukan untuk membangun sesuatu.** Kamu mengonsumsi paper sebanyak 5/minggu tetapi tidak pernah menjalankan eksperimen sendiri. *Cara deteksi:* buka jurnal pertanyaanmu. Jika semua poin berupa ringkasan paper, bukan pertanyaanmu sendiri yang diuji atau akan diuji, kamu sedang mengonsumsi.
+**Pitfall 1 - Membaca untuk merasa pintar, bukan untuk membangun sesuatu.** Anda mengonsumsi paper sebanyak 5/minggu tetapi tidak pernah menjalankan eksperimen sendiri. *Cara deteksi:* buka jurnal pertanyaanmu. Jika semua poin berupa ringkasan paper, bukan pertanyaanmu sendiri yang diuji atau akan diuji, Anda sedang mengonsumsi.
 
 **Pitfall 2 - Paper baru dikejar, paper fondasi dilewat.** Hanya membaca paper 2024-2025 tanpa paper 2015-2018 yang membangun field. *Cara deteksi:* saat membaca related work paper baru, perhatikan rujukan yang muncul berulang di banyak paper modern - itu paper fondasi; sisakan satu slot/bulan untuknya.
 
-**Pitfall 3 - Pre-reg ditulis setelah melihat hasil.** "Oh ternyata hasilnya begini - biar saya tulis pre-reg yang cocok." Ini mengalahkan tujuan. *Cara deteksi:* tanggal file pre-reg harus lebih tua dari tanggal commit pertama kode eksperimen. Bila tidak, kamu sedang membohongi diri.
+**Pitfall 3 - Pre-reg ditulis setelah melihat hasil.** "Oh ternyata hasilnya begini - biar saya tulis pre-reg yang cocok." Ini mengalahkan tujuan. *Cara deteksi:* tanggal file pre-reg harus lebih tua dari tanggal commit pertama kode eksperimen. Bila tidak, Anda sedang membohongi diri.
 
 **Pitfall 4 - 5 Whys berhenti di "karena menarik".** Lima whys yang semuanya tentang *motivasi emosional* tidak pernah mendarat ke variabel yang diukur. *Cara deteksi:* di pertanyaan akhir, harus ada kata kerja konkret ("ukur", "bandingkan", "ablasi") dan variabel konkret ("loss", "augmentasi", "arsitektur"). Bila tidak ada, gali lagi satu why.
 
-**Pitfall 5 - Rutinitas yang tidak proporsional dengan hidupmu.** 6 jam/minggu adalah rekomendasi mahasiswa dengan beban kuliah normal. Pekerja full-time mungkin hanya 3 jam. *Cara deteksi:* jika setelah sebulan rutinitas terhenti, bukan kamu yang malas - target-nya yang terlalu tinggi. Pangkas 50%; apa yang bertahan lebih berharga dari apa yang sempurna di atas kertas.
+**Pitfall 5 - Rutinitas yang tidak proporsional dengan hidupmu.** 6 jam/minggu adalah rekomendasi mahasiswa dengan beban kuliah normal. Pekerja full-time mungkin hanya 3 jam. *Cara deteksi:* jika setelah sebulan rutinitas terhenti, bukan Anda yang malas - target-nya yang terlalu tinggi. Pangkas 50%; apa yang bertahan lebih berharga dari apa yang sempurna di atas kertas.
 
 ---
 
 ## 5. Lab Hands-on
 
-**Lab 9 - Paper to Experiment.** Kerjakan notebook `notebooks/lab9_paper_to_experiment.ipynb`. Target:
+**Lab 9 - Paper to Experiment.** Kerjakan notebook [`template_repo/notebooks/lab9_paper_to_experiment.ipynb`](template_repo/notebooks/lab9_paper_to_experiment.ipynb). Target:
 
 1. Pilih satu paper dari tiga hari terakhir di arXiv dalam bidang yang menarik (kriteria: kode tersedia atau metode sederhana untuk ditiru dari pseudocode).
 2. Baca putaran 1 + 2; tulis catatan lengkap dalam format yang diajarkan (TL;DR, metode, bukti, pertanyaan, relevansi).
-3. Terapkan 5 Whys: turunkan dari minat umum ke satu pertanyaan spesifik yang dapat diuji dengan template repo kamu (CIFAR-10 atau PathMNIST).
+3. Terapkan 5 Whys: turunkan dari minat umum ke satu pertanyaan spesifik yang dapat diuji dengan template repo Anda (CIFAR-10 atau PathMNIST).
 4. Tulis pre-registration lengkap (5 bagian) sebelum menjalankan kode apapun.
 5. Eksekusi eksperimen mini. Bolehkan diri sendiri mengeksekusi paling lama 3 jam training.
 6. Tulis *experiment report* satu halaman: hipotesis, protokol aktual, hasil, perbandingan dengan pre-reg, deviasi (bila ada), pertanyaan berikutnya.
-7. Refleksi: apa yang sulit di bagian mana? Di mana kamu tergoda menyimpang dari pre-reg?
+7. Refleksi: apa yang sulit di bagian mana? Di mana Anda tergoda menyimpang dari pre-reg?
 
 **Checklist verifikasi:**
 - [ ] `docs/papers/<paper>.md` ada, lima bagian terisi substantif (bukan satu kalimat per bagian).
@@ -237,9 +237,9 @@ Target waktu: 6-8 jam sepanjang satu minggu (paper: 1 jam; 5-Whys + pre-reg: 1 j
 
 ## 6. Refleksi
 
-1. Apa satu pertanyaan riset yang *hanya kamu* yang menanyakan di lingkunganmu saat ini? Jika jawabannya "tidak ada", apa yang perlu kamu kerjakan untuk menemukannya - lebih banyak paper yang dibaca, lebih banyak orang yang diajak bicara, atau lebih banyak eksperimen untuk menyingkap celah?
-2. Setelah menjalankan Lab 9, bandingkan pre-reg dengan experiment report. Di mana kamu paling tergoda menyimpang? Apa yang bisa kamu ubah di pre-reg berikutnya agar godaan itu lebih sulit dilakukan?
-3. Setelah kelas ini berakhir, apa yang menjadi satu kalimat komitmen belajar mingguanmu - yang realistis dengan jadwalmu dan masih menantang? Tulis, tempel di tempat yang kamu lihat setiap hari. Kembali enam bulan lagi, evaluasi.
+1. Apa satu pertanyaan riset yang *hanya Anda* yang menanyakan di lingkunganmu saat ini? Jika jawabannya "tidak ada", apa yang perlu Anda kerjakan untuk menemukannya - lebih banyak paper yang dibaca, lebih banyak orang yang diajak bicara, atau lebih banyak eksperimen untuk menyingkap celah?
+2. Setelah menjalankan Lab 9, bandingkan pre-reg dengan experiment report. Di mana Anda paling tergoda menyimpang? Apa yang bisa Anda ubah di pre-reg berikutnya agar godaan itu lebih sulit dilakukan?
+3. Setelah kelas ini berakhir, apa yang menjadi satu kalimat komitmen belajar mingguanmu - yang realistis dengan jadwalmu dan masih menantang? Tulis, tempel di tempat yang Anda lihat setiap hari. Kembali enam bulan lagi, evaluasi.
 
 ---
 
@@ -247,10 +247,14 @@ Target waktu: 6-8 jam sepanjang satu minggu (paper: 1 jam; 5-Whys + pre-reg: 1 j
 
 - **"How to Read a Paper"** oleh S. Keshav (2007, 3 halaman). Metode tiga-pass original; sumber populer dari teknik yang diadaptasi di bab ini. Baca sekali dalam hidupmu, tempel di dekat meja.
 - **"The Researcher's Bible"** oleh Alan Bundy (University of Edinburgh notes). Bab tentang memformulasikan pertanyaan dan menulis proposal. Tidak spesifik ML tetapi aplicable.
-- **arxiv-sanity-lite** (Andrej Karpathy). Alat kurasi paper sederhana yang kamu host sendiri. Kalau kamu suka mengkurasi dengan preferensi unik, ini menghemat waktu.
+- **arxiv-sanity-lite** (Andrej Karpathy). Alat kurasi paper sederhana yang Anda host sendiri. Kalau Anda suka mengkurasi dengan preferensi unik, ini menghemat waktu.
 - **Andrej Karpathy - "A Recipe for Training Neural Networks"** (karpathy.github.io, 2019). Bukan tentang membaca paper, tetapi mewakili sikap ilmiah-harian yang diajarkan bab ini: cek unit, bangun baseline yang keras, percaya yang terukur.
-- **OpenReview.net** - baca review publik dari ICLR/NeurIPS untuk paper yang kamu suka. Melihat bagaimana reviewer profesional mengkritik paper adalah satu dari sedikit cara terbaik mempertajam *taste* riset.
+- **OpenReview.net** - baca review publik dari ICLR/NeurIPS untuk paper yang Anda suka. Melihat bagaimana reviewer profesional mengkritik paper adalah satu dari sedikit cara terbaik mempertajam *taste* riset.
 
 ---
 
-*Sembilan bab inti selesai. Bab berikutnya, Capstone, mengajak kamu mengintegrasikan semuanya dalam satu proyek empat-minggu - dari pertanyaan sampai demo, dari pre-reg sampai laporan.*
+## Lanjut ke Bab 10
+
+Sembilan kompetensi inti selesai. Bab terakhir mengajak Anda mengintegrasikan semuanya dalam satu proyek empat minggu: dari pertanyaan riset yang Anda rumuskan sendiri, sampai demo yang bisa ditunjukkan, dari pre-registration sampai laporan teknis yang jujur.
+
+Buka [`10_Capstone_Project.md`](10_Capstone_Project.md) ketika siap.

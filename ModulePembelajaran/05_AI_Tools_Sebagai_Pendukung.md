@@ -1,20 +1,20 @@
 # 05 · AI Tools Sebagai Pendukung Riset
 
-> *LLM adalah rubber duck yang sangat cerdas, bukan oracle. Ia menambah kecepatan kamu, bukan menggantikan pemahaman kamu. Ketika hasil akhir ditandatangani dengan namamu, penjelasan yang menyertainya juga harus milikmu sepenuhnya.*
+> *LLM adalah rubber duck yang sangat cerdas, bukan oracle. Ia menambah kecepatan Anda, bukan menggantikan pemahaman Anda. Ketika hasil akhir ditandatangani dengan namamu, penjelasan yang menyertainya juga harus milikmu sepenuhnya.*
 
 ---
 
 ## 0. Peta Bab
 
-Bab ini membahas cara memakai *large language model* - ChatGPT, Claude, Copilot, Cursor - dan asisten pemrograman lain untuk mempercepat kerja riset tanpa menyerahkan pemahaman dan tanggung jawab. Kamu akan belajar memisahkan tugas yang cocok untuk LLM dari yang berbahaya dijadikan *outsource*, menulis *prompt* yang menghasilkan bantuan presisi, dan menjalankan protokol verifikasi yang memastikan setiap output dapat dipertanggungjawabkan. Setelah bab ini, kamu punya alur kerja yang memakai AI tools secara produktif tetapi memperkuat - bukan melemahkan - kemampuan teknis kamu sendiri.
+Bab ini membahas cara memakai *large language model* - ChatGPT, Claude, Copilot, Cursor - dan asisten pemrograman lain untuk mempercepat kerja riset tanpa menyerahkan pemahaman dan tanggung jawab. Anda akan belajar memisahkan tugas yang cocok untuk LLM dari yang berbahaya dijadikan *outsource*, menulis *prompt* yang menghasilkan bantuan presisi, dan menjalankan protokol verifikasi yang memastikan setiap output dapat dipertanggungjawabkan. Setelah bab ini, Anda punya alur kerja yang memakai AI tools secara produktif tetapi memperkuat - bukan melemahkan - kemampuan teknis Anda sendiri.
 
 ---
 
 ## 1. Motivasi: Dua Cara Memakai LLM
 
-**Cara A - operator prompt.** Kamu menerima tugas "implementasikan training loop dengan early stopping". Kamu ketik prompt panjang ke ChatGPT: "write a PyTorch training loop with early stopping, tensorboard logging, checkpoint saving, and type hints". Output 80 baris kode keluar. Kamu tempel ke `train.py`. Beberapa run ternyata menyimpan checkpoint yang salah; kamu tidak tahu mengapa; kamu ketik prompt baru: "the checkpoint doesn't load, please fix"; ChatGPT menghasilkan kode baru yang agak berbeda. Siklus berulang. Pada saat pekerjaan selesai, kamu tidak bisa menjelaskan mengapa pilihan tertentu dibuat.
+**Cara A - operator prompt.** Anda menerima tugas "implementasikan training loop dengan early stopping". Anda ketik prompt panjang ke ChatGPT: "write a PyTorch training loop with early stopping, tensorboard logging, checkpoint saving, and type hints". Output 80 baris kode keluar. Anda tempel ke `train.py`. Beberapa run ternyata menyimpan checkpoint yang salah; Anda tidak tahu mengapa; Anda ketik prompt baru: "the checkpoint doesn't load, please fix"; ChatGPT menghasilkan kode baru yang agak berbeda. Siklus berulang. Pada saat pekerjaan selesai, Anda tidak bisa menjelaskan mengapa pilihan tertentu dibuat.
 
-**Cara B - kolaborator.** Kamu baca draft `train.py` kamu sendiri, mengidentifikasi bagian yang terasa repetitif (penulisan log, penyimpanan checkpoint). Kamu minta LLM: "berikan skeleton early stopping yang mempertahankan signature fungsi `train_one_epoch(model, loader, criterion, optimizer)` saya; cukup potongan utilitas, bukan loop penuh". Output 15 baris. Kamu baca baris per baris, memahami, memodifikasi variabel nama agar cocok dengan konvensi kode kamu, menambahkan satu assert yang memastikan state `best_val_loss` diperbarui. Kamu commit. Ketika nanti ada bug, kamu tahu tepatnya 15 baris mana yang perlu diperiksa.
+**Cara B - kolaborator.** Anda baca draft `train.py` Anda sendiri, mengidentifikasi bagian yang terasa repetitif (penulisan log, penyimpanan checkpoint). Anda minta LLM: "berikan skeleton early stopping yang mempertahankan signature fungsi `train_one_epoch(model, loader, criterion, optimizer)` saya; cukup potongan utilitas, bukan loop penuh". Output 15 baris. Anda baca baris per baris, memahami, memodifikasi variabel nama agar cocok dengan konvensi kode Anda, menambahkan satu assert yang memastikan state `best_val_loss` diperbarui. Anda commit. Ketika nanti ada bug, Anda tahu tepatnya 15 baris mana yang perlu diperiksa.
 
 Perbedaan kedua cara bukan kecerdasan atau produktivitas jangka pendek. Perbedaannya adalah *kapabilitas* yang terbangun. Cara A menghasilkan kode yang jalan hari ini; Cara B menghasilkan pemrogram yang lebih baik enam bulan dari sekarang.
 
@@ -30,23 +30,23 @@ Setelah jutaan interaksi kolektif, komunitas riset telah mengumpulkan konsensus 
 
 **LLM baik untuk:**
 
-- **Boilerplate berulang.** Menulis argparse, skeleton kelas, one-liner pandas. Kamu tahu apa yang kamu inginkan, LLM mempercepat pengetikan.
+- **Boilerplate berulang.** Menulis argparse, skeleton kelas, one-liner pandas. Anda tahu apa yang Anda inginkan, LLM mempercepat pengetikan.
 - **Menjelaskan kode atau error.** "Apa arti pesan error RuntimeError ini?" sering menghasilkan penjelasan yang lebih cepat daripada googling. "Apa yang dilakukan fungsi ini?" berguna ketika membaca kode orang lain.
 - **Konversi format.** Mengubah YAML ke dict Python, JSON ke CSV, skema SQL ke migration. Tugas yang mekanis.
 - **Menyarankan nama.** Meminta "5 alternatif nama yang lebih deskriptif untuk variabel ini" sering menghasilkan pilihan yang tidak terpikir.
-- **Memo pertama dokumentasi.** Draft docstring atau README awal; kamu edit dan rapikan.
-- **Exploring API yang tidak familiar.** "Bagaimana cara melakukan X di library Y?" menghasilkan contoh yang bisa kamu uji dan pelajari.
+- **Memo pertama dokumentasi.** Draft docstring atau README awal; Anda edit dan rapikan.
+- **Exploring API yang tidak familiar.** "Bagaimana cara melakukan X di library Y?" menghasilkan contoh yang bisa Anda uji dan pelajari.
 
 **LLM kurang baik untuk:**
 
-- **Logika yang halus.** LLM sering menghasilkan kode yang *terlihat* benar tetapi punya bug subtle: off-by-one, boundary case tidak ditangani, race condition. Semakin kritis logikanya, semakin penting kamu yang menulis.
-- **Memilih hyperparameter spesifik.** "Learning rate apa yang paling baik untuk tugas saya?" akan menghasilkan tebakan yang terdengar meyakinkan tetapi tidak berdasarkan data kamu.
-- **Interpretasi hasil eksperimen.** "Mengapa akurasi saya 78%?" tidak bisa dijawab LLM tanpa akses ke konteks penuh. Interpretasi adalah pekerjaan kamu.
+- **Logika yang halus.** LLM sering menghasilkan kode yang *terlihat* benar tetapi punya bug subtle: off-by-one, boundary case tidak ditangani, race condition. Semakin kritis logikanya, semakin penting Anda yang menulis.
+- **Memilih hyperparameter spesifik.** "Learning rate apa yang paling baik untuk tugas saya?" akan menghasilkan tebakan yang terdengar meyakinkan tetapi tidak berdasarkan data Anda.
+- **Interpretasi hasil eksperimen.** "Mengapa akurasi saya 78%?" tidak bisa dijawab LLM tanpa akses ke konteks penuh. Interpretasi adalah pekerjaan Anda.
 - **Klaim yang memerlukan presisi.** LLM bisa *membuat-buat* referensi ("Paper Smith et al. 2019 membahas ini") yang tidak ada. Setiap klaim sumber harus diverifikasi.
 - **Kode keamanan-kritis.** Kode yang menangani kredensial, otentikasi, atau input dari internet. Kesalahan di sini punya konsekuensi serius.
 - **Memutuskan arsitektur proyek.** "Bagaimana saya sebaiknya menyusun proyek ini?" menghasilkan saran generik; keputusan arsitektur memerlukan pemahaman konstraint spesifik yang tidak bisa diringkas dalam prompt.
 
-Aturan jempol: LLM baik untuk percepatan *eksekusi* tugas yang kamu sudah tahu, kurang baik untuk *pengambilan keputusan* yang belum kamu kuasai.
+Aturan jempol: LLM baik untuk percepatan *eksekusi* tugas yang Anda sudah tahu, kurang baik untuk *pengambilan keputusan* yang belum Anda kuasai.
 
 ### 2.2 Prompt yang Menghasilkan Bantuan Presisi
 
@@ -55,7 +55,7 @@ Prompt yang buruk menghasilkan output panjang, generik, dan sulit diverifikasi. 
 **Pola prompt yang bekerja:**
 
 1. **Konteks ringkas.** Satu atau dua kalimat tentang proyek dan tujuan.
-2. **Ruang lingkup eksplisit.** Apa yang kamu inginkan, apa yang tidak.
+2. **Ruang lingkup eksplisit.** Apa yang Anda inginkan, apa yang tidak.
 3. **Contoh input/output.** Dua atau tiga jika bentuk output tidak trivial.
 4. **Batasan teknis.** Versi library, gaya kode, konstraint (tidak ada library tambahan, harus compatible dengan Python 3.10, dll).
 
@@ -67,7 +67,7 @@ Contoh kontras:
 *Prompt baik:*
 > Saya sedang menulis `src/losses.py` untuk modul kuliah PyTorch. Saya ingin kelas `FocalLoss(nn.Module)` multi-class (bukan binary), dengan parameter `gamma: float = 2.0` dan `weight: Tensor | None`. Harus compatible dengan `torch.nn.CrossEntropyLoss` sebagai drop-in replacement - signature `forward(logits, targets)` dengan `logits` berbentuk `(N, C)` dan `targets` berbentuk `(N,)`. Gunakan `F.cross_entropy(..., reduction='none')` internal agar pembobotan kelas bekerja. Sertakan docstring satu paragraf yang menjelaskan formula dan kapan dipakai. Tidak perlu unit test.
 
-Prompt kedua menghasilkan 20 baris yang langsung dapat kamu baca, modifikasi, dan tempel. Prompt pertama menghasilkan 50+ baris dengan keputusan-keputusan yang kamu tidak minta.
+Prompt kedua menghasilkan 20 baris yang langsung dapat Anda baca, modifikasi, dan tempel. Prompt pertama menghasilkan 50+ baris dengan keputusan-keputusan yang Anda tidak minta.
 
 Untuk debugging error:
 
@@ -90,11 +90,11 @@ Untuk debugging error:
 > ```
 > Mohon jelaskan penyebab paling mungkin dan bagaimana mendiagnosis, bukan langsung memberi kode pengganti.
 
-Kunci: *minta diagnosis, bukan ganti*. Output diagnosis membuat kamu belajar; output penggantian kode membuat kamu bergantung.
+Kunci: *minta diagnosis, bukan ganti*. Output diagnosis membuat Anda belajar; output penggantian kode membuat Anda bergantung.
 
 ### 2.3 Protokol Verifikasi: Tiga Lapis
 
-Setiap output LLM yang kamu masukkan ke kode kamu harus melewati tiga lapis verifikasi, dari murah ke mahal.
+Setiap output LLM yang Anda masukkan ke kode Anda harus melewati tiga lapis verifikasi, dari murah ke mahal.
 
 **Lapis 1 - Baca baris per baris.** Sebelum commit, baca output dari atas ke bawah. Jangan sekadar skim. Pertanyaan untuk tiap blok:
 - Apa yang dilakukan?
@@ -102,20 +102,20 @@ Setiap output LLM yang kamu masukkan ke kode kamu harus melewati tiga lapis veri
 - Apakah ada identifier yang tidak saya kenali? (Jika ya, cari dokumentasinya.)
 - Apakah ada asumsi implicit? (Dimensi tensor, tipe data, nilai default.)
 
-**Lapis 2 - Uji minimal.** Bagian terpenting: jalankan kode pada kasus yang kamu tahu jawabannya.
+**Lapis 2 - Uji minimal.** Bagian terpenting: jalankan kode pada kasus yang Anda tahu jawabannya.
 - `FocalLoss(gamma=0)` harus identik dengan `CrossEntropyLoss`.
 - Fungsi normalisasi dengan input konstan harus menghasilkan output nol.
 - Loader dengan `batch_size=1` dan shuffle=False harus menghasilkan sampel yang sama di tiap panggilan.
 
-Uji minimal bukan unit test lengkap; mereka adalah *sanity check* yang harus kamu lakukan *sebelum* kode dianggap layak pakai.
+Uji minimal bukan unit test lengkap; mereka adalah *sanity check* yang harus Anda lakukan *sebelum* kode dianggap layak pakai.
 
-**Lapis 3 - Integrasi dan cross-check.** Jalankan di pipeline aslinya, bandingkan dengan baseline yang sudah kamu verifikasi. Jika kamu mengganti implementasi loss, akurasi pada seed yang sama harus sama (jika fungsinya ekuivalen) atau berbeda dengan alasan yang dapat dijelaskan.
+**Lapis 3 - Integrasi dan cross-check.** Jalankan di pipeline aslinya, bandingkan dengan baseline yang sudah Anda verifikasi. Jika Anda mengganti implementasi loss, akurasi pada seed yang sama harus sama (jika fungsinya ekuivalen) atau berbeda dengan alasan yang dapat dijelaskan.
 
 Lapis mana yang dilewati = kode yang tidak dipercaya.
 
 ### 2.4 Mencatat Interaksi LLM
 
-Rubrik di Bab 11 menilai "penggunaan AI tools" sebagian berdasarkan *dokumentasi* interaksi kamu. Bukan karena dokumentasi itu sendiri berharga, tetapi karena tindakan mencatat memaksa refleksi tentang proses.
+Rubrik di Bab 11 menilai "penggunaan AI tools" sebagian berdasarkan *dokumentasi* interaksi Anda. Bukan karena dokumentasi itu sendiri berharga, tetapi karena tindakan mencatat memaksa refleksi tentang proses.
 
 Format minimal untuk setiap interaksi LLM yang menghasilkan kode yang masuk ke repo:
 
@@ -144,13 +144,13 @@ Catatan ini disimpan di folder eksperimen atau di `docs/llm_log.md`. Tidak perlu
 
 ### 2.5 Copilot dan Inline Completion
 
-*Copilot*, *Cursor*, atau fitur serupa menyarankan kode saat kamu mengetik. Interaksi berbeda dari chat karena lebih cepat dan lebih halus - kamu bisa menerima saran dengan satu tombol tanpa refleksi.
+*Copilot*, *Cursor*, atau fitur serupa menyarankan kode saat Anda mengetik. Interaksi berbeda dari chat karena lebih cepat dan lebih halus - Anda bisa menerima saran dengan satu tombol tanpa refleksi.
 
-Bahaya utama Copilot: *autocomplete drift*. Setiap saran terlihat kecil, tetapi akumulasi ratusan saran mengubah gaya kode kamu menjadi rata-rata kode dunia, bukan gaya yang kamu pilih sengaja. Beberapa strategi:
+Bahaya utama Copilot: *autocomplete drift*. Setiap saran terlihat kecil, tetapi akumulasi ratusan saran mengubah gaya kode Anda menjadi rata-rata kode dunia, bukan gaya yang Anda pilih sengaja. Beberapa strategi:
 
-- **Aktifkan hanya saat kamu menulis kode yang kamu sudah tahu.** Matikan saat mempelajari library baru - suggestion akan mendahului pemahaman kamu.
-- **Tolak saran multi-baris kecuali kamu menyetujui tiap baris.** Copilot sering menyarankan blok 10 baris; menerimanya buta adalah memasukkan kode yang belum kamu baca.
-- **Periksa import tersembunyi.** Saran sering memakai library yang Copilot asumsikan tersedia. Periksa `pyproject.toml` atau `requirements.txt`; kamu mungkin tidak sadar menambah dependency.
+- **Aktifkan hanya saat Anda menulis kode yang Anda sudah tahu.** Matikan saat mempelajari library baru - suggestion akan mendahului pemahaman Anda.
+- **Tolak saran multi-baris kecuali Anda menyetujui tiap baris.** Copilot sering menyarankan blok 10 baris; menerimanya buta adalah memasukkan kode yang belum Anda baca.
+- **Periksa import tersembunyi.** Saran sering memakai library yang Copilot asumsikan tersedia. Periksa `pyproject.toml` atau `requirements.txt`; Anda mungkin tidak sadar menambah dependency.
 
 ### 2.6 Menyusun Alur Kerja Harian
 
@@ -158,10 +158,10 @@ Contoh alur kerja yang produktif dan sehat:
 
 ```
 Pagi (90 menit):
-- Baca ulang protokol eksperimen kamu (Bab 02).
-- Tulis pseudocode manual untuk komponen baru yang kamu rencanakan.
-- Review git diff dari sesi kemarin - pastikan kamu masih memahami
-  semua yang kamu tulis.
+- Baca ulang protokol eksperimen Anda (Bab 02).
+- Tulis pseudocode manual untuk komponen baru yang Anda rencanakan.
+- Review git diff dari sesi kemarin - pastikan Anda masih memahami
+  semua yang Anda tulis.
 
 Siang (2 jam):
 - Implementasi komponen. Tulis sendiri bagian logika inti.
@@ -170,7 +170,7 @@ Siang (2 jam):
 
 Sore (1 jam):
 - Debug dengan LLM: tempel error, minta diagnosis (bukan perbaikan).
-- Terapkan perbaikan sendiri setelah kamu mengerti penyebab.
+- Terapkan perbaikan sendiri setelah Anda mengerti penyebab.
 - Update log LLM dan log eksperimen harian.
 
 Akhir hari (15 menit):
@@ -178,13 +178,13 @@ Akhir hari (15 menit):
   saya tahu kemarin?
 ```
 
-Alur ini tidak kaku; sesuaikan dengan ritme kamu. Prinsipnya: LLM menambah, tidak menggantikan, waktu kerja-sendiri.
+Alur ini tidak kaku; sesuaikan dengan ritme Anda. Prinsipnya: LLM menambah, tidak menggantikan, waktu kerja-sendiri.
 
 ---
 
 ## 3. Worked Example: Menambah Mixup Augmentation dengan Bantuan LLM
 
-Tujuan: menambah teknik *mixup* (Zhang et al., 2018) ke pipeline Lab 3 - sebuah teknik augmentasi yang membuat batch dari kombinasi linear dua sampel dengan label-nya juga dikombinasikan. Kamu tidak pernah mengimplementasikan ini sebelumnya, tetapi kamu tahu konsepnya dari paper.
+Tujuan: menambah teknik *mixup* (Zhang et al., 2018) ke pipeline Lab 3 - sebuah teknik augmentasi yang membuat batch dari kombinasi linear dua sampel dengan label-nya juga dikombinasikan. Anda tidak pernah mengimplementasikan ini sebelumnya, tetapi Anda tahu konsepnya dari paper.
 
 ### 3.1 Tahap 1: Menulis Pseudocode Manual
 
@@ -198,7 +198,7 @@ Sebelum prompt apapun, tulis niat di kertas atau komentar:
 # Hanya dipakai di training, bukan validation.
 ```
 
-Menulis ini memaksa kamu memahami mekanisme sebelum minta bantuan.
+Menulis ini memaksa Anda memahami mekanisme sebelum minta bantuan.
 
 ### 3.2 Tahap 2: Prompt yang Presisi
 
@@ -303,21 +303,21 @@ Ketiga uji lolos → kode dianggap benar untuk integrasi. Commit.
 
 ### 3.5 Tahap 5: Catat Interaksi
 
-Tulis entry log sesuai template di bagian 2.4. Tiga modifikasi kamu (torch Beta, penamaan, type hints) dicatat - ini adalah bukti ownership.
+Tulis entry log sesuai template di bagian 2.4. Tiga modifikasi Anda (torch Beta, penamaan, type hints) dicatat - ini adalah bukti ownership.
 
 ---
 
 ## 4. Pitfalls & Miskonsepsi
 
-**"Kode LLM yang lulus test pasti benar."** Tidak. Test yang kamu tulis mungkin tidak menguji kasus yang rusak. LLM sering menghasilkan kode yang lulus test bodoh tetapi salah di kasus tepi. Uji minimal adalah *syarat perlu*, bukan *syarat cukup*.
+**"Kode LLM yang lulus test pasti benar."** Tidak. Test yang Anda tulis mungkin tidak menguji kasus yang rusak. LLM sering menghasilkan kode yang lulus test bodoh tetapi salah di kasus tepi. Uji minimal adalah *syarat perlu*, bukan *syarat cukup*.
 
-**"Saya akan belajar sambil LLM menulis."** Sulit. Pembelajaran terjadi saat kamu menulis, gagal, dan memperbaiki - siklus yang LLM pintas. Jika kamu belajar topik baru, matikan Copilot untuk topik itu. Pakai LLM untuk boilerplate setelahnya.
+**"Saya akan belajar sambil LLM menulis."** Sulit. Pembelajaran terjadi saat Anda menulis, gagal, dan memperbaiki - siklus yang LLM pintas. Jika Anda belajar topik baru, matikan Copilot untuk topik itu. Pakai LLM untuk boilerplate setelahnya.
 
-**"LLM tahu library terbaru."** Seringkali tidak. Model dilatih pada snapshot data, sering tertinggal 6-12 bulan. Saran yang memakai API usang adalah umum. Periksa dokumentasi resmi untuk library yang kamu pakai.
+**"LLM tahu library terbaru."** Seringkali tidak. Model dilatih pada snapshot data, sering tertinggal 6-12 bulan. Saran yang memakai API usang adalah umum. Periksa dokumentasi resmi untuk library yang Anda pakai.
 
 **"Referensi paper yang LLM sebut pasti ada."** LLM sering *mengarang* referensi - penulis, judul, tahun yang terdengar masuk akal tetapi tidak ada. Jangan pernah kutip paper tanpa verifikasi langsung (Google Scholar, arXiv, perpustakaan institusi).
 
-**"Saya akan pakai LLM hanya untuk hal tidak penting."** Definisi "tidak penting" bergeser. Hari ini argparse, besok logging, minggu depan training loop. Tanpa disiplin, keseluruhan kode jadi hasil LLM. Pilih mana *kamu* ingin menulis sendiri, bukan mana yang LLM "boleh" tulis.
+**"Saya akan pakai LLM hanya untuk hal tidak penting."** Definisi "tidak penting" bergeser. Hari ini argparse, besok logging, minggu depan training loop. Tanpa disiplin, keseluruhan kode jadi hasil LLM. Pilih mana *Anda* ingin menulis sendiri, bukan mana yang LLM "boleh" tulis.
 
 **"LLM tidak bisa bohong."** Bisa. Output percaya diri yang salah adalah kegagalan mode LLM yang sangat umum - disebut *hallucination*. Ciri: klaim spesifik (nama fungsi, nomor versi, nilai default) yang tidak dapat diverifikasi dengan cepat. Verifikasi sebelum percaya.
 
@@ -327,7 +327,7 @@ Tulis entry log sesuai template di bagian 2.4. Tiga modifikasi kamu (torch Beta,
 
 ## 5. Lab 5 - Menambah Fitur ke Repo dengan Protokol LLM
 
-Buka `template_repo/notebooks/lab5_llm_assisted_loop.ipynb`.
+Buka [`template_repo/notebooks/lab5_llm_assisted_loop.ipynb`](template_repo/notebooks/lab5_llm_assisted_loop.ipynb).
 
 Tugas:
 
@@ -337,7 +337,7 @@ Tugas:
    - Gradient clipping untuk stabilitas.
    - Learning rate warmup.
 2. Ikuti alur lima tahap: pseudocode manual → prompt presisi → baca output → modifikasi + uji minimal → catat interaksi.
-3. Commit pekerjaan kamu dalam dua tahap: commit pertama adalah output LLM verbatim dengan pesan "llm raw"; commit kedua adalah versi kamu dengan pesan "review + modify".
+3. Commit pekerjaan Anda dalam dua tahap: commit pertama adalah output LLM verbatim dengan pesan "llm raw"; commit kedua adalah versi Anda dengan pesan "review + modify".
 4. Tulis `docs/llm_log.md` yang mencatat interaksi (sesuai template 2.4).
 5. Jalankan ablation: dengan fitur vs tanpa fitur, dua seed. Laporkan hasil singkat.
 
@@ -346,18 +346,18 @@ Tugas:
 - [ ] Pseudocode manual ada di komentar sebelum kode implementasi.
 - [ ] Commit "llm raw" dan "review + modify" terpisah (lihat `git log`).
 - [ ] Uji minimal ada dan lolos (sebagai fungsi terpisah di kode atau notebook).
-- [ ] `llm_log.md` berisi prompt, ringkasan output, dan modifikasi kamu.
+- [ ] `llm_log.md` berisi prompt, ringkasan output, dan modifikasi Anda.
 - [ ] Ablation fitur berjalan; hasilnya dilaporkan ringkas.
 
 ---
 
 ## 6. Refleksi
 
-1. Bayangkan LLM yang kamu pakai tiba-tiba tidak dapat diakses seminggu. Apa dari pekerjaan kamu sekarang yang berhenti, dan apa yang tetap berjalan? Apa yang pergeseran ini katakan tentang ketergantungan kamu?
+1. Bayangkan LLM yang Anda pakai tiba-tiba tidak dapat diakses seminggu. Apa dari pekerjaan Anda sekarang yang berhenti, dan apa yang tetap berjalan? Apa yang pergeseran ini katakan tentang ketergantungan Anda?
 
-2. Kamu diminta menulis paper pendek berdasarkan eksperimen di modul ini. Bagian mana dari tulisan itu *pantas* dibantu LLM, dan bagian mana *harus* ditulis sendiri? Berikan kriteria batas yang dapat kamu pakai di proyek lain.
+2. Anda diminta menulis paper pendek berdasarkan eksperimen di modul ini. Bagian mana dari tulisan itu *pantas* dibantu LLM, dan bagian mana *harus* ditulis sendiri? Berikan kriteria batas yang dapat Anda pakai di proyek lain.
 
-3. Dosen pembimbing bertanya tentang satu fungsi di kode kamu yang sebenarnya ditulis LLM. Kamu tidak ingat detailnya. Apa langkah yang paling profesional dalam situasi ini, dan bagaimana melindungi diri dari situasi serupa di masa depan?
+3. Dosen pembimbing bertanya tentang satu fungsi di kode Anda yang sebenarnya ditulis LLM. Anda tidak ingat detailnya. Apa langkah yang paling profesional dalam situasi ini, dan bagaimana melindungi diri dari situasi serupa di masa depan?
 
 ---
 
@@ -365,13 +365,13 @@ Tugas:
 
 - **Simon Willison - *Prompt injection and jailbreaking are not the same thing*** dan tulisannya yang lain di simonwillison.net. Perspektif jernih tentang cara kerja LLM dan batasan praktisnya.
 - **Anthropic - *Prompting Guide*** (docs.anthropic.com/prompt-engineering). Panduan resmi Anthropic untuk Claude; prinsipnya berlaku luas untuk LLM lain.
-- **Andy Matuschak - *How can we develop transformative tools for thought?*** (esai, 2019). Bacaan filosofis tentang bagaimana alat membentuk pikiran; membantu kamu memikirkan ketergantungan jangka panjang.
+- **Andy Matuschak - *How can we develop transformative tools for thought?*** (esai, 2019). Bacaan filosofis tentang bagaimana alat membentuk pikiran; membantu Anda memikirkan ketergantungan jangka panjang.
 - **Peter Norvig - *On Chomsky and the Two Cultures of Statistical Learning*** (2011). Tidak langsung tentang LLM, tetapi fondasi pemikiran tentang apa yang bisa dan tidak bisa dijawab oleh model statistik.
 
 ---
 
 ## Lanjut ke Bab 06
 
-Kamu sekarang punya protokol bekerja dengan AI tools yang menjaga ownership. Keterampilan berikutnya adalah membaca dan memodifikasi kode *orang lain* - repository riset yang sering minim dokumentasi, ditulis dengan gaya berbeda, dan berisi puluhan file yang tidak langsung jelas hubungannya. Kemampuan ini membedakan mahasiswa yang hanya bisa bekerja di kode sendiri dari peneliti yang dapat berdiri di atas bahu orang lain.
+Anda sekarang punya protokol bekerja dengan AI tools yang menjaga ownership. Keterampilan berikutnya adalah membaca dan memodifikasi kode *orang lain* - repository riset yang sering minim dokumentasi, ditulis dengan gaya berbeda, dan berisi puluhan file yang tidak langsung jelas hubungannya. Kemampuan ini membedakan mahasiswa yang hanya bisa bekerja di kode sendiri dari peneliti yang dapat berdiri di atas bahu orang lain.
 
 Buka [`06_Adopsi_Repo_Riset.md`](06_Adopsi_Repo_Riset.md) ketika siap.

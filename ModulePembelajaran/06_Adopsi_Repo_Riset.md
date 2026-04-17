@@ -1,12 +1,12 @@
 # 06 · Adopsi Repository Riset
 
-> *Kemampuan membaca kode orang lain dengan cepat adalah penggandaan kekuatan terbesar yang bisa kamu miliki sebagai peneliti. Proyek kuliah boleh dimulai dari nol; riset nyata hampir selalu dimulai dari repo yang sudah ada - dengan puluhan file, konvensi asing, dan README satu paragraf yang tidak cukup.*
+> *Kemampuan membaca kode orang lain dengan cepat adalah penggandaan kekuatan terbesar yang bisa Anda miliki sebagai peneliti. Proyek kuliah boleh dimulai dari nol; riset nyata hampir selalu dimulai dari repo yang sudah ada - dengan puluhan file, konvensi asing, dan README satu paragraf yang tidak cukup.*
 
 ---
 
 ## 0. Peta Bab
 
-Bab ini membekali kamu untuk membuka repository riset yang belum kamu kenal, memetakan strukturnya dalam hitungan menit bukan hari, menyiapkan environment yang runnable, dan memodifikasi secara minimal-invasif untuk kebutuhan kamu sendiri. Kamu akan belajar urutan membaca yang efisien, strategi saat dokumentasi minim, teknik smoke test untuk verifikasi setup, dan pola modifikasi yang aman agar pekerjaanmu bisa di-merge kembali ke repo asli bila perlu. Setelah bab ini, kamu bisa mendarat di proyek asing pada hari Senin dan sudah menjalankan eksperimen sendiri pada hari Jumat.
+Bab ini membekali Anda untuk membuka repository riset yang belum Anda kenal, memetakan strukturnya dalam hitungan menit bukan hari, menyiapkan environment yang runnable, dan memodifikasi secara minimal-invasif untuk kebutuhan Anda sendiri. Anda akan belajar urutan membaca yang efisien, strategi saat dokumentasi minim, teknik smoke test untuk verifikasi setup, dan pola modifikasi yang aman agar pekerjaanmu bisa di-merge kembali ke repo asli bila perlu. Setelah bab ini, Anda bisa mendarat di proyek asing pada hari Senin dan sudah menjalankan eksperimen sendiri pada hari Jumat.
 
 ---
 
@@ -28,7 +28,7 @@ Ketika membuka repo baru, tahan godaan untuk langsung menjalankan. Baca dulu, de
 
 **1. README.md.** Baca seluruhnya, bahkan jika pendek. Fokus pada: tujuan proyek, cara install, cara jalan, format data yang diharapkan, link ke paper atau dokumentasi tambahan. Catat apa yang tidak jelas.
 
-**2. Paper atau laporan terkait.** Jika repo adalah hasil paper, baca abstrak + bagian *method*. Kamu tidak perlu paham semua detail; tujuan baca adalah mengetahui *apa yang harus ada di kode*: arsitektur utama, loss utama, dataset utama.
+**2. Paper atau laporan terkait.** Jika repo adalah hasil paper, baca abstrak + bagian *method*. Anda tidak perlu paham semua detail; tujuan baca adalah mengetahui *apa yang harus ada di kode*: arsitektur utama, loss utama, dataset utama.
 
 **3. Struktur folder.** Dari root, buka file dan direktori satu level. Konvensi umum:
 
@@ -45,15 +45,15 @@ Ketika membuka repo baru, tahan godaan untuk langsung menjalankan. Baca dulu, de
 
 **5. File model dan loss.** Dari entry point, ikuti jejak ke `models/` dan `losses/`. Baca definisi kelas utama, *jangan* dulu setiap fungsi helper. Cukup tahu input dan output-nya.
 
-**6. Data loader.** Biasanya file yang paling kompleks. Baca sampai kamu mengerti format input (shape, tipe) yang diharapkan model.
+**6. Data loader.** Biasanya file yang paling kompleks. Baca sampai Anda mengerti format input (shape, tipe) yang diharapkan model.
 
-**7. Konfigurasi.** Buka satu file config; pahami struktur. Ini memberitahu kamu rentang eksperimen yang didukung repo.
+**7. Konfigurasi.** Buka satu file config; pahami struktur. Ini memberitahu Anda rentang eksperimen yang didukung repo.
 
 Alokasi waktu tipikal untuk repo ukuran sedang (10-30 file Python): 30-60 menit membaca sebelum `pip install`.
 
 ### 2.2 Memetakan Struktur dalam 15 Menit
 
-Setelah langkah 1-3 di atas, kamu bisa menggambar peta singkat. Contoh untuk repo hipotetis:
+Setelah langkah 1-3 di atas, Anda bisa menggambar peta singkat. Contoh untuk repo hipotetis:
 
 ```
 repo/
@@ -80,7 +80,7 @@ Peta seperti ini memberimu jawaban cepat untuk pertanyaan:
 - "Bagaimana saya ganti backbone jadi ViT?" → `models/vit.py` sudah ada; cek `configs/vit.yaml`.
 - "Dataset apa yang dipakai?" → `data.py` + `scripts/download_data.sh`.
 
-Gambarkan peta di kertas atau `notes.md`. Kamu akan merujuknya berulang.
+Gambarkan peta di kertas atau `notes.md`. Anda akan merujuknya berulang.
 
 ### 2.3 Smoke Test Sebelum Training Penuh
 
@@ -175,11 +175,11 @@ Jika satu bagian membingungkan, lihat siapa yang menulisnya dan commit apa yang 
 
 ### 2.5 Modifikasi Minimal-Invasif
 
-Ketika kamu menambah fitur atau mengubah perilaku, pilih pola yang *tidak mengganggu* kode orang lain. Ini penting untuk:
+Ketika Anda menambah fitur atau mengubah perilaku, pilih pola yang *tidak mengganggu* kode orang lain. Ini penting untuk:
 
 - Memudahkan *upstream merge* jika repo berubah.
 - Membuat pekerjaanmu dapat dibalik (revert) dengan bersih.
-- Membuat pull request kamu lebih mudah di-review.
+- Membuat pull request Anda lebih mudah di-review.
 
 **Pola 1: Tambahkan opsi, jangan ubah default.**
 
@@ -210,7 +210,7 @@ def train_one_epoch(model, loader, criterion, use_mixup: bool = False):
 
 **Pola 2: Tambahkan file baru, jangan edit banyak file lama.**
 
-Jika fitur kamu melibatkan 200 baris kode, buat `src/mixup.py` baru daripada menyebar perubahan di `train.py`, `data.py`, dan `utils.py`.
+Jika fitur Anda melibatkan 200 baris kode, buat `src/mixup.py` baru daripada menyebar perubahan di `train.py`, `data.py`, dan `utils.py`.
 
 **Pola 3: Tambahkan argumen CLI, bukan hardcode.**
 
@@ -233,11 +233,11 @@ Satu commit per perubahan logis. "Add mixup augmentation support" adalah satu co
 
 ### 2.6 Ketika Dokumentasi Minim atau Tidak Ada
 
-Banyak repo riset hanya punya README satu paragraf. Taktik saat kamu harus bekerja dengannya:
+Banyak repo riset hanya punya README satu paragraf. Taktik saat Anda harus bekerja dengannya:
 
-**Baca `requirements.txt` sebagai petunjuk teknologi.** Tergantung library yang dipakai, kamu bisa menebak: `pytorch-lightning` → kode terstruktur rapi per fase; `hydra-core` → config kompleks multi-file; `wandb` → logging di cloud.
+**Baca `requirements.txt` sebagai petunjuk teknologi.** Tergantung library yang dipakai, Anda bisa menebak: `pytorch-lightning` → kode terstruktur rapi per fase; `hydra-core` → config kompleks multi-file; `wandb` → logging di cloud.
 
-**Periksa `tests/` bila ada.** Test sering mendokumentasikan ekspektasi. Satu test yang lulus memberitahu kamu setidaknya satu cara memanggil fungsi yang benar.
+**Periksa `tests/` bila ada.** Test sering mendokumentasikan ekspektasi. Satu test yang lulus memberitahu Anda setidaknya satu cara memanggil fungsi yang benar.
 
 **Cari issue dan PR di GitHub.** Pertanyaan dari user lain sering menjawab "bagaimana X dipakai" yang tidak ada di README.
 
@@ -247,21 +247,21 @@ Banyak repo riset hanya punya README satu paragraf. Taktik saat kamu harus beker
 
 ### 2.7 Menyumbang Kembali
 
-Setelah kamu memahami repo cukup baik untuk memodifikasi, kamu juga bisa menyumbang perbaikan kecil. Tiga jenis kontribusi yang hampir selalu diterima:
+Setelah Anda memahami repo cukup baik untuk memodifikasi, Anda juga bisa menyumbang perbaikan kecil. Tiga jenis kontribusi yang hampir selalu diterima:
 
-**Perbaikan dokumentasi.** README, docstring, komentar. Bug paling sering adalah dokumentasi yang keliru atau tidak lengkap. Kamu yang baru saja mengadopsi repo paling tahu apa yang membingungkan.
+**Perbaikan dokumentasi.** README, docstring, komentar. Bug paling sering adalah dokumentasi yang keliru atau tidak lengkap. Anda yang baru saja mengadopsi repo paling tahu apa yang membingungkan.
 
 **Perbaikan bug kecil.** Typo, off-by-one, import yang salah, versi library yang di-pin terlalu ketat. Satu PR per perbaikan.
 
 **Fitur yang umum diinginkan.** Jika repo belum punya `--dry-run` atau `set_seed` yang deterministik, tambahkan. Jelaskan motivasi di PR description.
 
-Etika kontribusi: sebelum mengirim PR besar, buka issue dulu menanyakan apakah kontribusi semacam itu akan diterima. Menghemat waktu kamu dan maintainer.
+Etika kontribusi: sebelum mengirim PR besar, buka issue dulu menanyakan apakah kontribusi semacam itu akan diterima. Menghemat waktu Anda dan maintainer.
 
 ---
 
 ## 3. Worked Example: Mengadopsi Repo Hipotetis `vision-baseline`
 
-Misalkan kamu menerima tugas: *"Gunakan repo `vision-baseline` dari lab kita. Tambahkan opsi memakai focal loss. Hasilkan baseline + ablation pada CIFAR-10."*
+Misalkan Anda menerima tugas: *"Gunakan repo `vision-baseline` dari lab kita. Tambahkan opsi memakai focal loss. Hasilkan baseline + ablation pada CIFAR-10."*
 
 ### 3.1 Menit 0-15: Pemetaan
 
@@ -335,7 +335,7 @@ Test level 3 (dry run):
 python -m vision_baseline.train --config configs/cifar10.yaml --dry-run
 ```
 
-Flag `--dry-run` tidak ada - kamu tambahkan (pola 3 di bagian 2.5):
+Flag `--dry-run` tidak ada - Anda tambahkan (pola 3 di bagian 2.5):
 
 ```python
 # Di argparse
@@ -419,34 +419,34 @@ Total: ~3 jam dari clone sampai laporan pertama. Bandingkan dengan "dua minggu" 
 
 ## 4. Pitfalls & Miskonsepsi
 
-**"Saya akan jalankan dulu, baru baca kalau error."** Strategi ini membuatmu terbiasa dengan bentrok permukaan (versi library, path, typo). Kamu menghabiskan hari-hari mengatasi masalah yang sebenarnya akan hilang dengan satu jam membaca.
+**"Saya akan jalankan dulu, baru baca kalau error."** Strategi ini membuatmu terbiasa dengan bentrok permukaan (versi library, path, typo). Anda menghabiskan hari-hari mengatasi masalah yang sebenarnya akan hilang dengan satu jam membaca.
 
-**"Mengedit `train.py` langsung adalah cara tercepat."** Cepat untuk eksperimen sekali, mahal untuk jangka panjang. Setiap perubahan di tengah file besar adalah utang teknis; dalam dua minggu kamu tidak akan ingat mana modifikasi kamu dan mana dari repo asli.
+**"Mengedit `train.py` langsung adalah cara tercepat."** Cepat untuk eksperimen sekali, mahal untuk jangka panjang. Setiap perubahan di tengah file besar adalah utang teknis; dalam dua minggu Anda tidak akan ingat mana modifikasi Anda dan mana dari repo asli.
 
-**"PR tidak diterima berarti pekerjaan saya sia-sia."** Tidak. Kamu belajar membaca dan memodifikasi kode, yang merupakan skill jangka panjang. PR yang ditolak seringkali tetap dipakai sebagai basis diskusi; maintainer kadang mengambil ide kamu dan mengimplementasi ulang sesuai standar repo.
+**"PR tidak diterima berarti pekerjaan saya sia-sia."** Tidak. Anda belajar membaca dan memodifikasi kode, yang merupakan skill jangka panjang. PR yang ditolak seringkali tetap dipakai sebagai basis diskusi; maintainer kadang mengambil ide Anda dan mengimplementasi ulang sesuai standar repo.
 
-**"Saya tidak perlu commit lokal sampai semua selesai."** Buruk. Commit kecil sepanjang proses adalah save-point - jika modifikasi kamu merusak sesuatu, kamu bisa `git diff HEAD~3` untuk melihat persis apa yang berubah.
+**"Saya tidak perlu commit lokal sampai semua selesai."** Buruk. Commit kecil sepanjang proses adalah save-point - jika modifikasi Anda merusak sesuatu, Anda bisa `git diff HEAD~3` untuk melihat persis apa yang berubah.
 
 **"Saya bisa selesaikan tanpa smoke test, langsung training penuh."** Training penuh 8 jam yang gagal di menit ke-10 karena bug dimensi adalah delapan jam yang hilang. Smoke test level 3 butuh 30 detik; ia menangkap 80% bug setup.
 
-**"Kode orang lain yang rumit pasti bagus."** Tidak selalu. Kadang kompleksitas adalah tumpukan patch atas bug lama. Jangan ragu menyederhanakan jika kamu memahami alasan aslinya.
+**"Kode orang lain yang rumit pasti bagus."** Tidak selalu. Kadang kompleksitas adalah tumpukan patch atas bug lama. Jangan ragu menyederhanakan jika Anda memahami alasan aslinya.
 
-**"Versi library yang di-pin di `requirements.txt` harus persis diikuti."** Kadang ya (untuk reproduksi hasil), kadang tidak (jika kamu bekerja di proyek downstream yang perlu versi lebih baru). Baca pin dengan kritis - apakah angka eksperimen yang kamu cari bergantung padanya?
+**"Versi library yang di-pin di `requirements.txt` harus persis diikuti."** Kadang ya (untuk reproduksi hasil), kadang tidak (jika Anda bekerja di proyek downstream yang perlu versi lebih baru). Baca pin dengan kritis - apakah angka eksperimen yang Anda cari bergantung padanya?
 
 ---
 
 ## 5. Lab 6 - Mengadopsi dan Memodifikasi Repo Eksternal
 
-Buka `template_repo/notebooks/lab6_adopt_external_repo.ipynb`.
+Buka [`template_repo/notebooks/lab6_adopt_external_repo.ipynb`](template_repo/notebooks/lab6_adopt_external_repo.ipynb).
 
 Tugas:
 
-1. Pilih satu repository klasifikasi image yang sederhana (pytorch/examples/mnist, atau reference implementation Fast.ai beginner). Clone ke folder kamu.
+1. Pilih satu repository klasifikasi image yang sederhana (pytorch/examples/mnist, atau reference implementation Fast.ai beginner). Clone ke folder Anda.
 2. Ikuti urutan pembacaan (README → struktur → entry point → model → data → config). Tulis peta satu halaman di `docs/repo_map.md`.
 3. Jalankan smoke test tiga level. Jika `--dry-run` tidak ada, tambahkan sendiri dan commit.
 4. Tambahkan satu fitur minimal-invasif: pilihan focal loss, atau pilihan freeze layer pertama, atau flag deterministik (set_seed + cudnn.deterministic).
-5. Jalankan baseline + variasi kamu (2 kondisi × 2 seed). Laporkan hasil dalam `docs/report.md`.
-6. Siapkan draft PR description (tidak perlu benar-benar submit kecuali kamu ingin) yang menjelaskan: motivasi, perubahan, cara pakai, cara reproduksi hasil.
+5. Jalankan baseline + variasi Anda (2 kondisi × 2 seed). Laporkan hasil dalam `docs/report.md`.
+6. Siapkan draft PR description (tidak perlu benar-benar submit kecuali Anda ingin) yang menjelaskan: motivasi, perubahan, cara pakai, cara reproduksi hasil.
 
 **Checklist verifikasi**:
 
@@ -460,9 +460,9 @@ Tugas:
 
 ## 6. Refleksi
 
-1. Kamu baru menerima akses ke repo lab dengan 150 file Python. Di mana kamu akan memulai, dan apa batasan waktu yang akan kamu tetapkan untuk fase membaca sebelum menjalankan?
-2. Setelah setup environment, kamu menemukan bahwa hasil reproduksi menyimpang 2% dari angka paper. Apa tiga hipotesis paling mungkin, dan bagaimana kamu menginvestigasinya tanpa menghubungi penulis paper?
-3. Dosen pembimbing memintamu "pakai repo X untuk dataset kita". Repo tersebut didesain untuk dataset berbeda. Bagaimana kamu mengevaluasi, dalam satu hari, apakah adaptasi lebih cepat daripada menulis ulang dari template?
+1. Anda baru menerima akses ke repo lab dengan 150 file Python. Di mana Anda akan memulai, dan apa batasan waktu yang akan Anda tetapkan untuk fase membaca sebelum menjalankan?
+2. Setelah setup environment, Anda menemukan bahwa hasil reproduksi menyimpang 2% dari angka paper. Apa tiga hipotesis paling mungkin, dan bagaimana Anda menginvestigasinya tanpa menghubungi penulis paper?
+3. Dosen pembimbing meminta Anda "pakai repo X untuk dataset kita". Repo tersebut didesain untuk dataset berbeda. Bagaimana Anda mengevaluasi, dalam satu hari, apakah adaptasi lebih cepat daripada menulis ulang dari template?
 
 ---
 
@@ -470,13 +470,13 @@ Tugas:
 
 - **Peter Seibel - *Code is not literature*** (esai, 2014). Argumen mengapa kode dibaca secara berbeda dari teks naratif; implikasinya untuk strategi membaca.
 - **Michael Feathers - *Working Effectively with Legacy Code*** (buku). Walaupun ditujukan untuk software engineering, Bab 1-3 relevan untuk siapa saja yang akan sering bekerja dengan kode warisan.
-- **Greg Wilson et al. - *Good Enough Practices in Scientific Computing*** (PLOS Comp Biol, 2017). Standar minimal yang bisa kamu harapkan - atau ikuti saat menulis repo sendiri nanti.
+- **Greg Wilson et al. - *Good Enough Practices in Scientific Computing*** (PLOS Comp Biol, 2017). Standar minimal yang bisa Anda harapkan - atau ikuti saat menulis repo sendiri nanti.
 - **GitHub - *About Pull Requests*** (docs.github.com). Panduan teknis untuk memahami workflow kontribusi.
 
 ---
 
 ## Lanjut ke Bab 07
 
-Kamu kini bisa masuk ke kode orang lain dan keluar dengan modifikasi yang bersih. Keterampilan selanjutnya melengkapi kemampuan eksperimen kamu dengan alat inspeksi ringan: demo yang memungkinkan dosen melihat model bekerja tanpa harus menjalankan kode, visualizer hasil yang mempercepat analisis, dan UI sederhana untuk anotasi data ketika dataset kamu sendiri perlu dibangun.
+Anda kini bisa masuk ke kode orang lain dan keluar dengan modifikasi yang bersih. Keterampilan selanjutnya melengkapi kemampuan eksperimen Anda dengan alat inspeksi ringan: demo yang memungkinkan dosen melihat model bekerja tanpa harus menjalankan kode, visualizer hasil yang mempercepat analisis, dan UI sederhana untuk anotasi data ketika dataset Anda sendiri perlu dibangun.
 
 Buka `[07_Alat_Pendukung_Ringan.md](07_Alat_Pendukung_Ringan.md)` ketika siap.

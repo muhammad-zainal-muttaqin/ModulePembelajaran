@@ -1,24 +1,24 @@
 # 08 · Adopsi Platform dan Tool Baru
 
-> *Kesiapan menjajal platform baru - dari GPU cloud hingga sistem eksperimen yang belum pernah kamu pakai - adalah keterampilan yang menentukan seberapa cepat riset kamu dapat berkembang. Tool tidak hilang dari hidupmu setelah kuliah selesai; kemampuan mengadopsinya dengan cepat justru makin penting.*
+> *Kesiapan menjajal platform baru - dari GPU cloud hingga sistem eksperimen yang belum pernah Anda pakai - adalah keterampilan yang menentukan seberapa cepat riset Anda dapat berkembang. Tool tidak hilang dari hidupmu setelah kuliah selesai; kemampuan mengadopsinya dengan cepat justru makin penting.*
 
 ---
 
 ## 0. Peta Bab
 
-Bab ini membekali kamu dengan pola umum untuk mengadopsi platform dan tool baru dengan aman: membaca quickstart, mereplikasi contoh, mengadaptasi ke kebutuhan sendiri, lalu mengintegrasikan ke workflow harian. Kamu akan menerapkannya secara konkret pada RunPod - platform GPU cloud yang hemat biaya - termasuk menyiapkan pod, mensinkronkan data, menjalankan training panjang, menarik checkpoint, serta mengelola biaya agar tidak meledak. Kamu juga akan mempelajari SSH port forwarding untuk memantau TensorBoard jarak jauh, manajemen checkpoint antar mesin, dan bagaimana men-scan dokumentasi tool baru dalam satu jam untuk memutuskan apakah tool itu cocok untuk pekerjaanmu. Setelah bab ini, kamu dapat memindahkan training yang gagal muat di laptop ke GPU cloud dalam satu sore - dan menyalakan pod baru kapan saja kamu perlu tanpa kehilangan arah.
+Bab ini membekali Anda dengan pola umum untuk mengadopsi platform dan tool baru dengan aman: membaca quickstart, mereplikasi contoh, mengadaptasi ke kebutuhan sendiri, lalu mengintegrasikan ke workflow harian. Anda akan menerapkannya secara konkret pada RunPod - platform GPU cloud yang hemat biaya - termasuk menyiapkan pod, mensinkronkan data, menjalankan training panjang, menarik checkpoint, serta mengelola biaya agar tidak meledak. Anda juga akan mempelajari SSH port forwarding untuk memantau TensorBoard jarak jauh, manajemen checkpoint antar mesin, dan bagaimana men-scan dokumentasi tool baru dalam satu jam untuk memutuskan apakah tool itu cocok untuk pekerjaanmu. Setelah bab ini, Anda dapat memindahkan training yang gagal muat di laptop ke GPU cloud dalam satu sore - dan menyalakan pod baru kapan saja Anda perlu tanpa kehilangan arah.
 
 ---
 
 ## 1. Motivasi: Laptop yang Tidak Cukup
 
-Bayangkan kamu sampai di Lab 5: eksperimen sudah reproducible, ablation jalan, data bersih. Kamu ingin mencoba training yang lebih serius - ResNet-50 pretrained pada PathMNIST dengan batch size 128, 100 epoch. Di laptopmu, satu epoch butuh 45 menit. Total: 75 jam. Mustahil.
+Bayangkan Anda sampai di Lab 5: eksperimen sudah reproducible, ablation jalan, data bersih. Anda ingin mencoba training yang lebih serius - ResNet-50 pretrained pada PathMNIST dengan batch size 128, 100 epoch. Di laptopmu, satu epoch butuh 45 menit. Total: 75 jam. Mustahil.
 
 Pilihan lazim mahasiswa: kurangi batch size, kurangi epoch, pakai model lebih kecil. Ini kompromi yang memudarkan kualitas eksperimen. Pilihan lain - yang tidak banyak diajarkan di kelas - adalah menggunakan GPU cloud sesuai kebutuhan. RunPod memberi GPU A40 dengan harga ~$0.35/jam; 75 jam training = $26, lebih murah dari satu buku teks.
 
-Tapi cloud GPU menghadirkan tantangan baru: biaya mengalir detik demi detik, data harus disinkronkan, koneksi SSH bisa putus, pod bisa hilang ketika kamu lupa mematikannya. Tanpa disiplin, $26 proyek bisa menjadi tagihan $400 dalam seminggu.
+Tapi cloud GPU menghadirkan tantangan baru: biaya mengalir detik demi detik, data harus disinkronkan, koneksi SSH bisa putus, pod bisa hilang ketika Anda lupa mematikannya. Tanpa disiplin, $26 proyek bisa menjadi tagihan $400 dalam seminggu.
 
-Bab ini mengajarkan cara mengadopsi tool baru ini - dan lewat contoh konkret RunPod, mengajarkan kamu pola umum yang berlaku untuk platform apapun yang akan kamu temui setelah lulus.
+Bab ini mengajarkan cara mengadopsi tool baru ini - dan lewat contoh konkret RunPod, mengajarkan Anda pola umum yang berlaku untuk platform apapun yang akan Anda temui setelah lulus.
 
 ---
 
@@ -28,37 +28,37 @@ Bab ini mengajarkan cara mengadopsi tool baru ini - dan lewat contoh konkret Run
 
 Setiap tool baru - RunPod, Weights & Biases, Modal, Hugging Face Spaces, LLM provider baru - memiliki kurva yang sama bila dijinakkan dengan disiplin:
 
-**Langkah 1: Baca quickstart, penuh.** 15-30 menit. Jangan langsung ke tutorial rumit; baca halaman "Hello World". Kamu akan tahu konsep inti dan vocab platform.
+**Langkah 1: Baca quickstart, penuh.** 15-30 menit. Jangan langsung ke tutorial rumit; baca halaman "Hello World". Anda akan tahu konsep inti dan vocab platform.
 
 **Langkah 2: Replikasi tutorial apa adanya.** Jangan modifikasi apapun di percobaan pertama. Kalau tutorial bilang `pip install x==1.2.3`, ikuti persis. Tujuan: memisahkan "tool ini bermasalah" dari "saya salah pakai".
 
 **Langkah 3: Adaptasi ke satu kebutuhan kecilmu.** Setelah tutorial jalan, coba ubah satu hal: ganti dataset, ganti model. Belum integrasi ke proyekmu - masih eksperimen terisolasi.
 
-**Langkah 4: Integrasi ke workflow.** Baru setelah tiga langkah di atas sukses, bawa ke proyek nyata. Pada titik ini kamu sudah punya cukup pemahaman untuk tahu di mana harus memasukkannya dan apa yang akan rusak.
+**Langkah 4: Integrasi ke workflow.** Baru setelah tiga langkah di atas sukses, bawa ke proyek nyata. Pada titik ini Anda sudah punya cukup pemahaman untuk tahu di mana harus memasukkannya dan apa yang akan rusak.
 
-**Langkah 5: Tulis catatan pribadi.** Setelah tool dipakai sekali untuk proyek nyata, tulis *personal cheat sheet* - lima baris command yang paling sering kamu pakai, tiga gotcha yang kamu temukan. Simpan di repo `docs/tools/<tool>.md`. Ini menghemat jam-jam di masa depan.
+**Langkah 5: Tulis catatan pribadi.** Setelah tool dipakai sekali untuk proyek nyata, tulis *personal cheat sheet* - lima baris command yang paling sering Anda pakai, tiga gotcha yang Anda temukan. Simpan di repo `docs/tools/<tool>.md`. Ini menghemat jam-jam di masa depan.
 
 Pola ini mencegah dua kesalahan umum: langsung integrasi tanpa paham (berakhir dengan debugging yang menggabungkan masalah tool + masalah proyek) dan eksplorasi tanpa batas (menghabiskan seminggu main-main dengan tool yang ternyata tidak cocok).
 
 ### 2.2 RunPod: Anatomi Penyewaan GPU
 
-RunPod adalah marketplace GPU di mana kamu menyewa *pod* - mesin virtual dengan GPU - per detik. Komponen yang perlu kamu pahami:
+RunPod adalah marketplace GPU di mana Anda menyewa *pod* - mesin virtual dengan GPU - per detik. Komponen yang perlu Anda pahami:
 
-**Pod.** Instance GPU yang kamu sewa. Punya tipe GPU (RTX 3090, A40, H100, dll), RAM, disk, dan image OS (biasanya image PyTorch resmi RunPod). Dimatikan = biaya berhenti; dihapus = data hilang.
+**Pod.** Instance GPU yang Anda sewa. Punya tipe GPU (RTX 3090, A40, H100, dll), RAM, disk, dan image OS (biasanya image PyTorch resmi RunPod). Dimatikan = biaya berhenti; dihapus = data hilang.
 
-**Network volume.** Disk persisten terpisah dari pod. Kamu bisa attach ke pod manapun. Pakai ini untuk dataset dan checkpoint agar tidak hilang ketika pod dimatikan.
+**Network volume.** Disk persisten terpisah dari pod. Anda bisa attach ke pod manapun. Pakai ini untuk dataset dan checkpoint agar tidak hilang ketika pod dimatikan.
 
-**Template.** Preset image + konfigurasi. RunPod menyediakan template "PyTorch 2.1 + CUDA 12.1"; pakai itu kecuali kamu punya kebutuhan khusus.
+**Template.** Preset image + konfigurasi. RunPod menyediakan template "PyTorch 2.1 + CUDA 12.1"; pakai itu kecuali Anda punya kebutuhan khusus.
 
-**Spot vs On-Demand.** *Spot* 50-70% lebih murah tapi bisa dihentikan sewaktu-waktu; pakai untuk eksperimen yang dapat disimpan secara bertahap (checkpoint per epoch). *On-demand* dijamin jalan sampai kamu matikan; pakai untuk debugging interaktif.
+**Spot vs On-Demand.** *Spot* 50-70% lebih murah tapi bisa dihentikan sewaktu-waktu; pakai untuk eksperimen yang dapat disimpan secara bertahap (checkpoint per epoch). *On-demand* dijamin jalan sampai Anda matikan; pakai untuk debugging interaktif.
 
 **Harga.** Dihitung per detik jalan. GPU idle = tetap terhitung. Disk persisten juga ada biaya kecil per jam. Target biaya realistis untuk proyek mahasiswa: $10-30 per eksperimen besar.
 
 ### 2.3 Workflow Sekali-Jalan di RunPod
 
-Alur yang dapat kamu ulang setiap kali butuh training yang berat:
+Alur yang dapat Anda ulang setiap kali butuh training yang berat:
 
-**1. Siapkan kode & data lokal.** Pastikan repo kamu commit, dataset yang dibutuhkan sudah ada skrip download-nya. Dataset sendiri *tidak* di-commit; hanya skripnya.
+**1. Siapkan kode & data lokal.** Pastikan repo Anda commit, dataset yang dibutuhkan sudah ada skrip download-nya. Dataset sendiri *tidak* di-commit; hanya skripnya.
 
 **2. Nyalakan pod.** Pilih GPU sesuai kebutuhan (A40 untuk sebagian besar kasus mahasiswa), template PyTorch, attach network volume jika sudah ada, 20-50 GB disk ephemeral. Klik *Deploy*.
 
@@ -72,7 +72,7 @@ python scripts/download_data.py --dest /workspace/data
 python -m src.train --config configs/baseline.yaml --dry-run
 ```
 
-Perhatikan `--dry-run` dulu: smoke test untuk memastikan semua lancar sebelum training panjang. Kamu membayar GPU setiap detik - satu menit cek sekarang menghemat 30 menit training yang gagal di tengah karena bug path.
+Perhatikan `--dry-run` dulu: smoke test untuk memastikan semua lancar sebelum training panjang. Anda membayar GPU setiap detik - satu menit cek sekarang menghemat 30 menit training yang gagal di tengah karena bug path.
 
 **4. Jalankan training dengan logging persisten.**
 
@@ -93,7 +93,7 @@ python -m src.train ...
 # Ctrl+B lalu D untuk detach
 ```
 
-Ketika kembali: `tmux attach -t train`. Training terus jalan bahkan ketika laptop kamu tidur.
+Ketika kembali: `tmux attach -t train`. Training terus jalan bahkan ketika laptop Anda tidur.
 
 **5. Tarik checkpoint dan log.** Dari laptop lokal:
 
@@ -108,23 +108,23 @@ Atau pakai `rsync` yang lebih tahan putus:
 rsync -avz -e "ssh -p <port>" root@<host>:/workspace/experiments/focal_freeze_seed42/ ./experiments/focal_freeze_seed42/
 ```
 
-**6. Matikan pod.** Ini langkah yang paling sering dilupakan mahasiswa - dan yang paling mahal. *Begitu selesai tarik data, matikan pod*. Jangan biarkan menyala "untuk jaga-jaga". Kalau kamu butuh lagi dalam satu jam, nyalakan lagi - biaya nyalakan-ulang < $0.05, biaya diam menyala = terus mengalir.
+**6. Matikan pod.** Ini langkah yang paling sering dilupakan mahasiswa - dan yang paling mahal. *Begitu selesai tarik data, matikan pod*. Jangan biarkan menyala "untuk jaga-jaga". Kalau Anda butuh lagi dalam satu jam, nyalakan lagi - biaya nyalakan-ulang < $0.05, biaya diam menyala = terus mengalir.
 
 ### 2.4 SSH Port Forwarding: TensorBoard Jarak Jauh
 
-Training berjalan di pod. TensorBoard berjalan di port 6006 pod. Kamu ingin melihatnya di browser laptop. Solusi: SSH tunnel.
+Training berjalan di pod. TensorBoard berjalan di port 6006 pod. Anda ingin melihatnya di browser laptop. Solusi: SSH tunnel.
 
 ```bash
 ssh -L 6006:localhost:6006 -p <port> root@<host>
 ```
 
-`-L 6006:localhost:6006` berarti: port 6006 di laptop kamu diteruskan ke port 6006 di pod. Lalu di pod:
+`-L 6006:localhost:6006` berarti: port 6006 di laptop Anda diteruskan ke port 6006 di pod. Lalu di pod:
 
 ```bash
 tensorboard --logdir /workspace/experiments/ --bind_all
 ```
 
-Di laptop, buka `http://localhost:6006`. Kamu melihat TensorBoard yang jalan di cloud seolah-olah ia lokal.
+Di laptop, buka `http://localhost:6006`. Anda melihat TensorBoard yang jalan di cloud seolah-olah ia lokal.
 
 Pola ini berlaku untuk semua dashboard-server: Streamlit (port 8501), Jupyter (8888), Weights & Biases local instance, dsb. Ganti nomor port; konsepnya sama.
 
@@ -138,7 +138,7 @@ Rekomendasi praktis untuk mahasiswa:
 
 **Network volume RunPod untuk data, bukan untuk arsip hasil akhir.** Network volume murah tetapi ada biaya bulanan; pakai untuk dataset yang sering diakses, bukan arsip checkpoint lama.
 
-**Backup yang penting ke cloud storage gratis.** Hasil capstone atau model yang ingin kamu jaga, push ke Hugging Face Hub atau Google Drive. Jangan mengandalkan laptop pribadi saja.
+**Backup yang penting ke cloud storage gratis.** Hasil capstone atau model yang ingin Anda jaga, push ke Hugging Face Hub atau Google Drive. Jangan mengandalkan laptop pribadi saja.
 
 **Gunakan hash git di nama checkpoint.** Lihat Bab 3. Ketika ada tiga checkpoint dari tiga pod berbeda, nama file yang menyertakan `<commit>_<seed>_<date>` menghilangkan kebingungan.
 
@@ -148,7 +148,7 @@ Rekomendasi praktis untuk mahasiswa:
 
 **Aturan 2: Pilih GPU sesuai kebutuhan, bukan yang terbesar.** H100 tiga kali lebih cepat dari A40 tetapi enam kali lebih mahal. Untuk eksperimen CIFAR-10 atau dataset kecil lainnya, RTX 3090 sering cukup.
 
-**Aturan 3: Batch job, jangan interactive lama.** Kembangkan kode di laptop; kirim ke pod hanya untuk eksekusi. Pod yang menyala dengan `jupyter notebook` saat kamu pergi makan adalah uang yang terbuang.
+**Aturan 3: Batch job, jangan interactive lama.** Kembangkan kode di laptop; kirim ke pod hanya untuk eksekusi. Pod yang menyala dengan `jupyter notebook` saat Anda pergi makan adalah uang yang terbuang.
 
 **Aturan 4: Review mingguan.** Setiap akhir minggu, buka dashboard, catat total biaya, catat eksperimen apa yang menghabiskan dana itu, tanya apakah nilainya sepadan. Ini mentransformasi biaya dari "angka abstrak" menjadi "keputusan belajar".
 
@@ -156,7 +156,7 @@ Rekomendasi praktis untuk mahasiswa:
 
 ## 3. Worked Example: Training PathMNIST di RunPod, End-to-End
 
-Skenario: kamu ingin fine-tune ResNet-18 pretrained pada PathMNIST (9 kelas, ~100k sampel), batch size 128, 30 epoch, tiga seed. Estimasi di A40: ~15 menit/epoch × 30 × 3 seed = 22 jam. Total biaya: ~$8.
+Skenario: Anda ingin fine-tune ResNet-18 pretrained pada PathMNIST (9 kelas, ~100k sampel), batch size 128, 30 epoch, tiga seed. Estimasi di A40: ~15 menit/epoch × 30 × 3 seed = 22 jam. Total biaya: ~$8.
 
 **Persiapan lokal (30 menit):**
 
@@ -227,7 +227,7 @@ ssh -L 6006:localhost:6006 -p <port> root@<host>
 tensorboard --logdir /workspace/experiments/ --bind_all
 ```
 
-Buka `localhost:6006` di browser. Kamu bisa melihat loss turun dari kantor lain, dari rumah, dari mana saja. Penting: pod tetap menyala walaupun SSH kamu putus, karena `tmux` menampung proses training.
+Buka `localhost:6006` di browser. Anda bisa melihat loss turun dari kantor lain, dari rumah, dari mana saja. Penting: pod tetap menyala walaupun SSH Anda putus, karena `tmux` menampung proses training.
 
 **Tarik hasil (5 menit):**
 
@@ -247,10 +247,10 @@ Klik *Stop* di dashboard. Verifikasi status "Stopped" - biaya pod = 0, biaya vol
 
 ```bash
 cat experiments/pathmnist/resnet18_seed42/train.log | tail -20
-python scripts/summarize.py --dir experiments/pathmnist/ > experiments/pathmnist/summary.md
+python scripts/aggregate.py --dir experiments/pathmnist/ --out experiments/pathmnist/summary.csv
 ```
 
-Total waktu aktif kamu: mungkin 1-2 jam (setup + tarik). Training 22 jam berjalan otomatis. Biaya: lihat dashboard RunPod; catat di log personal.
+Total waktu aktif Anda: mungkin 1-2 jam (setup + tarik). Training 22 jam berjalan otomatis. Biaya: lihat dashboard RunPod; catat di log personal.
 
 ---
 
@@ -260,28 +260,28 @@ Total waktu aktif kamu: mungkin 1-2 jam (setup + tarik). Training 22 jam berjala
 
 **Pitfall 2 - Data hilang karena pod dihapus, bukan dihentikan.** "Stop" menjaga disk; "Terminate" menghapusnya. *Cara deteksi:* selalu gunakan network volume untuk data/hasil penting; asumsikan disk ephemeral pod akan hilang.
 
-**Pitfall 3 - Koneksi SSH putus, training terhenti.** Menjalankan `python train.py` langsung di SSH tanpa `tmux`/`nohup` membuat proses mati ketika sesi terputus. *Cara deteksi:* biasakan selalu pakai `tmux new -s <name>` sebelum perintah panjang; jika kamu tidak ingat command `tmux`-mu, training kemungkinan besar sudah tewas.
+**Pitfall 3 - Koneksi SSH putus, training terhenti.** Menjalankan `python train.py` langsung di SSH tanpa `tmux`/`nohup` membuat proses mati ketika sesi terputus. *Cara deteksi:* biasakan selalu pakai `tmux new -s <name>` sebelum perintah panjang; jika Anda tidak ingat command `tmux`-mu, training kemungkinan besar sudah tewas.
 
 **Pitfall 4 - GPU ternyata tidak dipakai.** PyTorch diam-diam fallback ke CPU karena salah setup; training 10× lebih lambat dari estimasi. *Cara deteksi:* di awal skrip, `assert torch.cuda.is_available()` dan print `next(model.parameters()).device`; ini *fail-fast*, bukan *fail-slow*.
 
 **Pitfall 5 - Checkpoint disimpan di tempat yang hilang.** Output di `/root/` atau `/tmp/`, pod dihentikan, file hilang. *Cara deteksi:* selalu simpan di `/workspace/` (disk pod yang persisten selama pod tidak di-terminate) atau di network volume.
 
-**Pitfall 6 - "Debugging interaktif" di pod mahal.** Kamu nyalakan pod, ketemu bug, perbaiki di pod, jalan lagi, ketemu bug lagi - 3 jam berlalu, belum ada eksperimen. *Cara deteksi:* kalau kamu sedang edit kode di pod, kamu sedang membayar GPU untuk mengetik. Debug lokal, kirim ke pod hanya ketika siap.
+**Pitfall 6 - "Debugging interaktif" di pod mahal.** Anda nyalakan pod, ketemu bug, perbaiki di pod, jalan lagi, ketemu bug lagi - 3 jam berlalu, belum ada eksperimen. *Cara deteksi:* kalau Anda sedang edit kode di pod, Anda sedang membayar GPU untuk mengetik. Debug lokal, kirim ke pod hanya ketika siap.
 
 ---
 
 ## 5. Lab Hands-on
 
-**Lab 8 - RunPod Remote Training.** Kerjakan notebook `notebooks/lab8_runpod_remote.ipynb` dan script pendamping. Target:
+**Lab 8 - RunPod Remote Training.** Kerjakan notebook [`template_repo/notebooks/lab8_runpod_remote.ipynb`](template_repo/notebooks/lab8_runpod_remote.ipynb) dan script pendamping. Target:
 
 1. Daftar akun RunPod (gratis; biaya minimal ~$5 untuk lab ini).
-2. Siapkan network volume 20 GB; unggah dataset PathMNIST via script `scripts/download_data.py`.
+2. Siapkan network volume 20 GB; unggah dataset PathMNIST via script [`template_repo/scripts/download_data.py`](template_repo/scripts/download_data.py).
 3. Nyalakan pod RTX 3090 spot instance, setup repo dari commit tertentu (sebut hash di laporan).
 4. Jalankan smoke test `--dry-run`, lalu training penuh 1 seed (30 menit) dengan `tmux`.
 5. Monitor via TensorBoard SSH tunnel dari laptop.
 6. Tarik checkpoint dan log via rsync.
 7. Matikan pod; verifikasi dari dashboard.
-8. Tulis `docs/tools/runpod.md`: 5 command paling sering dipakai + 3 gotcha yang kamu temukan.
+8. Tulis `docs/tools/runpod.md`: 5 command paling sering dipakai + 3 gotcha yang Anda temukan.
 
 **Checklist verifikasi:**
 
@@ -297,19 +297,23 @@ Target waktu: 3-4 jam hands-on + ~$3 biaya.
 
 ## 6. Refleksi
 
-1. Tool apa yang akan kamu pelajari berikutnya (selain RunPod), dan mengapa? Tulis kriteria yang akan kamu pakai untuk memutuskan layak atau tidak mengalokasikan satu akhir pekan untuk menguasainya.
-2. Pod kamu menyala 18 jam, training baru berjalan 6 jam - sisanya waktu debugging. Apa tiga perubahan konkret yang akan kamu terapkan di eksperimen berikutnya untuk menekan 12 jam menjadi 2 jam?
-3. Pembimbing bertanya, "Kenapa hasilmu berbeda dengan paper aslinya?" Kamu menjalankan di A40, paper di 8× V100. Bagaimana kamu membedakan pengaruh perangkat keras (seed/non-determinisme dari cuDNN) dari pengaruh perbedaan hyperparameter? Susun pemeriksaan berurutan.
+1. Tool apa yang akan Anda pelajari berikutnya (selain RunPod), dan mengapa? Tulis kriteria yang akan Anda pakai untuk memutuskan layak atau tidak mengalokasikan satu akhir pekan untuk menguasainya.
+2. Pod Anda menyala 18 jam, training baru berjalan 6 jam - sisanya waktu debugging. Apa tiga perubahan konkret yang akan Anda terapkan di eksperimen berikutnya untuk menekan 12 jam menjadi 2 jam?
+3. Pembimbing bertanya, "Kenapa hasilmu berbeda dengan paper aslinya?" Anda menjalankan di A40, paper di 8× V100. Bagaimana Anda membedakan pengaruh perangkat keras (seed/non-determinisme dari cuDNN) dari pengaruh perbedaan hyperparameter? Susun pemeriksaan berurutan.
 
 ---
 
 ## 7. Bacaan Lanjutan
 
 - **RunPod Documentation** (docs.runpod.io). Baca bagian *Pods*, *Network Volumes*, dan *Spot Instances*. Dokumentasi singkat, dapat dibaca dalam 40 menit; sangat padat informasi.
-- **tmux cheat sheet** (oleh Ham Vocke atau serupa). Lima menit baca, dipakai seumur riset. Minimum yang perlu kamu kuasai: `new -s`, `attach -t`, `Ctrl+B D`, `Ctrl+B %`, `Ctrl+B arrow`.
+- **tmux cheat sheet** (oleh Ham Vocke atau serupa). Lima menit baca, dipakai seumur riset. Minimum yang perlu Anda kuasai: `new -s`, `attach -t`, `Ctrl+B D`, `Ctrl+B %`, `Ctrl+B arrow`.
 - **"The Twelve-Factor App"** (12factor.net) - khusus bagian *Config* dan *Logs*. Bukan tentang ML, tetapi prinsipnya langsung berlaku: jangan hardcode konfigurasi, tulis log ke stdout dan tangkap di level deployment.
-- **Modal, Lambda Labs, Paperspace Documentation.** Tidak perlu dipakai sekarang, tetapi scan satu halaman quickstart masing-masing. Kamu akan melihat pola yang sama - setelah mengenali polanya, adopsi platform keempat atau kelima hanya butuh satu sore.
+- **Modal, Lambda Labs, Paperspace Documentation.** Tidak perlu dipakai sekarang, tetapi scan satu halaman quickstart masing-masing. Anda akan melihat pola yang sama - setelah mengenali polanya, adopsi platform keempat atau kelima hanya butuh satu sore.
 
 ---
 
-*Bab berikutnya menutup rangkaian outcome: ketika kelas berakhir dan tidak ada lagi instruksi, bagaimana kamu terus belajar sendiri - membaca paper, memformulasikan pertanyaan, dan merancang eksperimen dari nol?*
+## Lanjut ke Bab 09
+
+Anda kini bisa menjalankan training di GPU cloud dan membawa hasilnya pulang dengan aman. Kompetensi terakhir menggeser pertanyaan dari "bagaimana saya menjalankan eksperimen ini" ke "eksperimen apa yang seharusnya saya jalankan" - membaca paper, memformulasikan pertanyaan sendiri, dan berkembang tanpa menunggu instruksi.
+
+Buka [`09_Pengembangan_Mandiri.md`](09_Pengembangan_Mandiri.md) ketika siap.
