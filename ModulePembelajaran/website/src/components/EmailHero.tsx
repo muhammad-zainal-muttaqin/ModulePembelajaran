@@ -25,9 +25,6 @@ export default function EmailHero() {
               Lihat 13 bab
             </Link>
           </div>
-          <p className="mt-6 text-sm text-ink/60 dark:text-parchment/60">
-            Bahasa Indonesia. Istilah teknis (loss, freeze, seed, ablation) tetap English.
-          </p>
         </div>
 
         <div className="relative lg:pl-8">
