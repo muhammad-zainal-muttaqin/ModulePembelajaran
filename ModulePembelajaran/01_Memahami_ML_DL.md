@@ -29,7 +29,7 @@
 
 ## 0. Peta Bab
 
-Bab ini membekali Anda dengan kerangka pikir untuk membaca sistem ML/DL seperti seorang peneliti: membaca setiap masalah sebagai pasangan tensor input → output, mengenali empat keluarga arsitektur berdasarkan bentuk data tersebut, memahami peran layer sebagai transformasi representasi, membaca loss serta optimizer sebagai pilihan yang memiliki konsekuensi, dan mengenali tiga pilihan representasi fitur - *engineered*, *extracted*, *learned* - beserta keputusan turunannya. Setelah menyelesaikan bab ini, Anda dapat membuka repository riset dan menebak secara masuk akal mengapa arsitektur dan strategi representasi tertentu dipilih, bukan hanya menyebut namanya.
+Bab ini membekali Anda dengan kerangka pikir untuk membaca sistem ML/DL seperti seorang peneliti: membaca setiap masalah sebagai pasangan tensor input → output, mengenali empat keluarga arsitektur berdasarkan bentuk data tersebut, memahami peran layer sebagai transformasi representasi, membaca loss serta optimizer sebagai pilihan yang memiliki konsekuensi, mengenali tiga pilihan representasi fitur - *engineered*, *extracted*, *learned* - beserta keputusan turunannya, dan mendiagnosis masalah training dari pola loss curve. Setelah menyelesaikan bab ini, Anda dapat membuka repository riset dan menebak secara masuk akal mengapa arsitektur dan strategi representasi tertentu dipilih, bukan hanya menyebut namanya - dan ketika training bermasalah, Anda punya kerangka diagnosis untuk mencari penyebab.
 
 ---
 
@@ -100,6 +100,24 @@ Implikasi praktis: ketika Anda *fine-tune* model yang sudah terlatih, layer awal
 
 Non-linearitas seperti ReLU atau GELU adalah mesin yang membuat semua ini bekerja. Tanpa mereka, menumpuk layer linear hanya menghasilkan satu transformasi linear besar - tidak lebih kuat dari regresi biasa. Non-linearitas memperkenalkan tekukan dalam fungsi yang dipelajari, memungkinkan model menangkap pola kompleks.
 
+**Inisialisasi bobot: titik awal yang sering diabaikan.** Sebelum training dimulai, setiap parameter harus diinisialisasi. Memilih nol atau nilai terlalu besar menghancurkan sinyal gradient sejak iterasi pertama. Dua inisialisasi yang hampir universal dipakai:
+
+- **Kaiming (He) initialization** - dirancang untuk layer dengan aktivasi ReLU atau variannya. Sampel dari distribusi normal/seragam dengan variansi disesuaikan berdasarkan jumlah unit input (`fan_in`): σ² = 2 / fan_in. PyTorch menerapkannya otomatis untuk `nn.Conv2d` dan `nn.Linear` sejak PyTorch 1.x via `torch.nn.init.kaiming_normal_`.
+- **Xavier (Glorot) initialization** - dirancang untuk aktivasi simetris seperti Tanh atau Sigmoid. Variansi disesuaikan berdasarkan rata-rata fan_in dan fan_out: σ² = 2 / (fan_in + fan_out). Sering dipakai di transformer.
+
+Dalam praktiknya, Anda jarang perlu menginisialisasi sendiri - PyTorch memilihkan default yang tepat per jenis layer. Tetapi mengetahui ini penting ketika Anda mendefinisikan layer kustom, mengadopsi kode yang memakai pola `model.apply(init_weights)`, atau mendebug model yang tidak mau belajar dari epoch pertama.
+
+```python
+# Contoh: inisialisasi eksplisit untuk layer kustom
+def init_weights(m):
+    if isinstance(m, (nn.Conv2d, nn.Linear)):
+        nn.init.kaiming_normal_(m.weight, nonlinearity='relu')
+        if m.bias is not None:
+            nn.init.zeros_(m.bias)
+
+model.apply(init_weights)
+```
+
 ### 2.3 Loss sebagai Sinyal Pembelajaran
 
 Loss menentukan *apa yang dianggap salah*. Mengganti loss berarti mengubah arah yang dianggap model sebagai "perbaikan". Dua kelas loss yang paling sering Anda temui:
@@ -117,6 +135,8 @@ Optimizer mengubah gradien menjadi langkah konkret pada parameter. Empat yang pa
 - **SGD (+ momentum).** Tertua, paling sederhana, sering paling kuat hasilnya setelah tuning yang tekun. Membutuhkan *learning rate schedule* yang dirancang dengan hati-hati. Banyak paper *state-of-the-art* di visi komputer tetap memakai SGD.
 - **Adam dan AdamW.** Adaptif - setiap parameter mendapat learning rate yang disesuaikan. Sangat cepat konvergen di epoch awal, umum dipakai untuk prototyping. AdamW memperbaiki Adam dengan memisahkan *weight decay* dari gradien momentum.
 - **LAMB.** Varian yang didesain untuk *batch size* besar (ribuan sampel). Relevan di training pre-training besar (BERT, GPT), jarang diperlukan di proyek kuliah.
+
+> **Catatan: `weight_decay` di AdamW bukan L2 regularisasi.** Pada SGD, menambahkan L2 regularisasi (`λ ||w||²` ke loss) ekuivalen dengan mengurangan `λw` dari setiap parameter di setiap step - keduanya identik matematis. Pada Adam, hal ini **tidak berlaku**: karena Adam membagi gradient dengan estimasi variansi, penalti L2 yang ditambahkan ke loss mendapat efek yang tidak proporsional antar parameter. AdamW memperbaiki ini dengan mengaplikasikan pengurangan weight decay **langsung** ke parameter (bukan lewat gradient), terpisah dari adaptasi momentum. Akibat praktisnya: `weight_decay=0.01` di AdamW memberi efek regularisasi yang lebih konsisten dan lebih kuat daripada `weight_decay=0.01` di Adam. Untuk BERT/GPT family, disarankan tidak menerapkan weight decay pada parameter LayerNorm dan bias.
 
 Dipasangkan dengan optimizer adalah *scheduler*: mekanisme menurunkan (atau menaikkan lalu menurunkan) learning rate selama training. `OneCycleLR`, `CosineAnnealingLR`, dan `ReduceLROnPlateau` adalah tiga pola yang paling sering Anda temui.
 
@@ -169,6 +189,31 @@ Pilihan di antara ketiganya jarang hitam-putih. Setelah Anda memutuskan jalur ut
 **Implikasi untuk eksperimen.** Taksonomi ini akan menjadi penting di Bab 02 ketika Anda merumuskan variabel eksperimen. Membandingkan "BERT *frozen* + *head* kecil" dengan "BERT di-*fine-tune* penuh" bukan sekadar membandingkan dua model; Anda sesungguhnya membandingkan dua strategi representasi - *extracted* vs. *learned* - dengan tingkat kebebasan yang sangat berbeda. Demikian pula, mengganti "fitur statistik CGM + XGBoost" dengan "1D CNN *end-to-end*" adalah lompatan dari *engineered* ke *learned*, bukan sekadar "pakai deep learning". Menyadari perbedaan ini sejak awal menyelamatkan Anda dari klaim yang keliru di laporan - misalnya mengaitkan peningkatan performa pada "model yang lebih canggih", padahal yang sebenarnya berubah adalah tingkat kebebasan representasi. Keputusan *freeze vs. fine-tune* yang akan Anda lakukan di Bab 02 pada dasarnya adalah keputusan geser satu kotak ke kanan di tabel di atas.
 
 Dengan fondasi ini berdiri lengkap - pasangan tensor input → output, empat keluarga arsitektur, layer sebagai transformasi, loss sebagai sinyal, optimizer sebagai mekanisme langkah, evaluasi yang jujur, dan tiga pilihan representasi - Anda siap membangun model konkret. Bagian berikutnya menurunkan semua ini pada satu kasus *hands-on*: CNN sederhana pada CIFAR-10.
+
+---
+
+### 2.7 Membaca Sinyal: Diagnosis dari Loss Curve
+
+Training selesai. Kurva loss muncul di layar. Inilah momen di mana banyak pemula berhenti karena tidak tahu harus membaca apa. Kurva loss bukan sekadar "turun = bagus, naik = buruk" - ia adalah *sinyal diagnostik* yang bisa memberi tahu apa yang salah bahkan sebelum Anda memeriksa kode.
+
+Lima pola yang paling sering ditemui, masing-masing dengan hipotesis dan langkah test:
+
+**Pola 1: Loss training tinggi, tidak turun dari awal.**
+Model tidak belajar sama sekali. Hipotesis paling umum: (a) learning rate terlalu kecil - gradient update tidak berarti, atau (b) bug di forward pass - cek dengan *overfit one batch* (training pada 1-4 sampel saja; model seharusnya bisa mencapai loss sangat kecil dalam beberapa iterasi). Langkah test: naikkan LR 10× dan lihat apakah loss mulai turun. Jika tidak, curigai bug di kode.
+
+**Pola 2: Loss training turun, tapi loss validasi stagnan atau lebih tinggi sejak awal.**
+Overfitting terjadi sangat cepat. Hipotesis: dataset terlalu kecil relatif terhadap kapasitas model, atau ada data leakage. Langkah test: kurangi kapasitas model (lebih sedikit layer/neuron) atau tambah regularisasi (dropout, weight decay, augmentasi). Jika val loss tidak membaik sama sekali, curigai leakage.
+
+**Pola 3: Loss training dan validasi turun sejajar, tetapi val jauh di atas train di akhir.**
+Overfitting klasik - model berhasil belajar tapi terlalu hafal data training. Hipotesis: terlalu banyak kapasitas, terlalu sedikit augmentasi, atau training terlalu lama. Langkah test: identifikasi epoch terbaik dari kurva val (biasanya sebelum titik divergen) dan gunakan *early stopping*.
+
+**Pola 4: Loss validasi turun tapi loss training stagnan di angka tinggi.**
+Ini jarang terjadi tetapi mengindikasikan *underfitting* - model terlalu kecil atau LR terlalu rendah untuk muat ke distribusi training. Paradoksnya val bisa lebih baik dari train jika val set kebetulan lebih mudah. Langkah test: periksa apakah augmentasi terlalu agresif (membuat training jauh lebih sulit dari val).
+
+**Pola 5: Loss meledak - tiba-tiba menjadi `NaN` atau naik tajam.**
+Gradient explosion. Hipotesis: (a) LR terlalu besar, atau (b) tidak ada gradient clipping. Langkah test: kurangi LR 10× atau tambahkan `grad_clip = 1.0`. Untuk RNN dan Transformer, gradient clipping hampir selalu diperlukan.
+
+Satu teknik yang wajib dikuasai untuk mendiagnosis bug (berbeda dari overfitting): **overfit satu batch**. Ambil 4-8 sampel training, jalankan ratusan iterasi hanya pada sampel itu. Jika model tidak bisa mencapai loss mendekati nol, ada bug di arsitektur atau loss function - bukan masalah data atau hiperparameter. Jika bisa, model sehat; masalahnya ada di tempat lain. Karpathy menyebut teknik ini sebagai "the most important debugging tool".
 
 ---
 
@@ -319,7 +364,7 @@ Buka [Lab 1 - Baseline CNN pada CIFAR-10](template_repo/notebooks/lab1_baseline_
 
 1. Melengkapi training loop dengan evaluasi pada validation set setiap epoch.
 2. Menyimpan daftar `train_loss`, `val_loss`, `train_acc`, `val_acc` per epoch ke list, lalu memplotnya.
-3. Mengitung dan memplot confusion matrix pada test set.
+3. Menghitung dan memplot confusion matrix pada test set.
 4. Memilih 10 kesalahan paling *confident*, memvisualisasikannya, dan menulis 3-4 kalimat amatan tentang pola kesalahan.
 
 **Checklist verifikasi** sebelum lab dianggap selesai:
@@ -328,6 +373,18 @@ Buka [Lab 1 - Baseline CNN pada CIFAR-10](template_repo/notebooks/lab1_baseline_
 - Selisih train - val accuracy dilaporkan; jika > 10% dijelaskan.
 - Confusion matrix tersimpan sebagai gambar di `experiments/lab1/`.
 - Notebook dapat dijalankan ulang dari atas ke bawah tanpa error.
+
+### 5.1 Lab 1b - Membandingkan Tiga Strategi Representasi (opsional, sangat dianjurkan)
+
+Section 2.6 membahas tiga strategi representasi secara konseptual. Lab ini mengubah diskusi itu menjadi perbandingan eksperimental konkret. Pada CIFAR-10 yang sama, Anda akan membandingkan:
+
+1. **Engineered**: ekstraksi fitur HOG manual + MLP kecil (tanpa pretrained weights apapun).
+2. **Extracted**: ResNet-18 pretrained pada ImageNet, *dibekukan seluruhnya* - hanya linear probe di atasnya yang dilatih.
+3. **Learned**: ResNet-18 pretrained, di-*fine-tune* penuh (semua layer ikut dilatih).
+
+Buka [Lab 1b - Representasi](template_repo/notebooks/lab1b_representasi.ipynb).
+
+Pertanyaan yang dijawab setelah lab: Pada dataset terbatas (500 sampel per kelas), strategi mana yang paling menguntungkan? Pada dataset penuh (5000 sampel per kelas), apakah jawabannya berubah? Apa yang membuat *extracted* lebih unggul dari *learned* di kondisi tertentu?
 
 ---
 

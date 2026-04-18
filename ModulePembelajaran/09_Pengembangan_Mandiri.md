@@ -51,6 +51,28 @@ Perbedaan bukan bakat. Perbedaannya adalah sistem: filter paper, metode membaca,
 
 ### 2.1 Kurasi Paper: Dari Banjir ke Aliran Kecil
 
+**Navigasi arXiv.** Sebelum membahas strategi kurasi, kenali antarmuka arXiv yang akan Anda pakai setiap minggu.
+
+Alamat utama: `arxiv.org`. Di halaman utama ada daftar kategori. Untuk ML/DL, tiga kategori paling relevan:
+
+| Kategori | Nama | Konten tipikal |
+| --- | --- | --- |
+| `cs.LG` | Machine Learning | Algoritma, teori, optimisasi |
+| `cs.CV` | Computer Vision | Gambar, video, deteksi, segmentasi |
+| `cs.CL` | Computation & Language | NLP, LLM, text classification |
+| `eess.IV` | Image & Video Processing | Medical imaging, rekonstruksi |
+| `stat.ML` | Machine Learning (stats) | Metode dengan analisis statistik kuat |
+
+**Cara mencari:** Gunakan `arxiv.org/search` dengan filter kategori + kata kunci. Contoh: cari `focal loss medical imaging` di kategori `cs.CV eess.IV`. Untuk paper terbaru per kategori, gunakan `arxiv.org/list/cs.CV/recent`.
+
+**Membaca ID paper.** Setiap paper punya ID seperti `2312.01234` yang artinya: `2312` = Desember 2023, `01234` = nomor urut. URL paper: `arxiv.org/abs/2312.01234`. URL PDF langsung: `arxiv.org/pdf/2312.01234`. Menyimpan nomor ID jauh lebih ringkas daripada menyimpan judul.
+
+**Versi.** Banyak paper punya beberapa versi (`v1`, `v2`, `v3`). Versi terbaru otomatis tampil di URL `/abs/`; untuk versi spesifik: `arxiv.org/abs/2312.01234v1`. Jika Anda mengutip paper dalam laporan, gunakan versi yang Anda baca - beda versi bisa punya perbedaan substansial.
+
+**Alat pendukung.** Papers With Code (`paperswithcode.com`) menghubungkan paper ke implementasi GitHub dan *leaderboard* benchmark. Jika Anda menemukan paper yang menarik, cek halaman Papers With Code-nya untuk kode resmi dan replikasi komunitas.
+
+---
+
 arXiv menerbitkan ratusan paper ML per hari. Membaca semua mustahil dan tidak berguna. Tujuan kurasi: dari banjir, saring menjadi 5-10 paper per minggu yang benar-benar layak 30 menit waktumu.
 
 Empat tingkat filter, dari kasar ke halus:

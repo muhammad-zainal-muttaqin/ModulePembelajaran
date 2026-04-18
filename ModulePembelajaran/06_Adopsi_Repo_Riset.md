@@ -280,6 +280,37 @@ Setelah Anda memahami repo cukup baik untuk memodifikasi, Anda juga bisa menyumb
 
 Etika kontribusi: sebelum mengirim PR besar, buka issue dulu menanyakan apakah kontribusi semacam itu akan diterima. Menghemat waktu Anda dan maintainer.
 
+### 2.8 Kategori Error dan Cara Tesnya
+
+Ketika adopsi repo atau eksperimen gagal, respons pertama yang paling sering adalah: "ada yang salah di suatu tempat, coba-coba sampai ketemu". Ini tidak efisien. Lebih cepat untuk mengidentifikasi *kategori* error dulu, karena tiap kategori punya diagnosis yang berbeda.
+
+**Kategori 1: Setup Error** - Environment, dependency, path, atau konfigurasi tidak benar.
+Tanda: error saat `import`, `ModuleNotFoundError`, `FileNotFoundError`, CUDA version mismatch.
+Langkah test: (1) Jalankan `python -c "import torch; print(torch.__version__)"` dan `import [nama_library]`. (2) Bandingkan output `pip freeze` dengan `requirements.txt`. (3) Cek apakah path dataset di config benar.
+
+**Kategori 2: Data Error** - Dataset tidak ada, format tidak sesuai, leakage, atau preprocessing berbeda dari yang diharapkan model.
+Tanda: error di DataLoader, akurasi terlalu tinggi dari awal, loss tidak wajar (terlalu kecil atau NaN langsung).
+Langkah test: (1) Print shape dan range nilai dari batch pertama. (2) Visualisasikan 4-8 sampel - pastikan gambar/teks kelihatan wajar. (3) Periksa label: apakah distribusinya masuk akal?
+
+**Kategori 3: Algorithmic Error** - Bug di forward pass, loss function, atau training loop.
+Tanda: loss tidak turun sama sekali, NaN loss, prediksi selalu kelas yang sama, gradient nol.
+Langkah test: *overfit one batch* - ambil 4 sampel, jalankan 100-200 iterasi hanya pada itu. Model harus mencapai loss mendekati nol. Jika tidak, ada bug di model atau loss.
+
+**Kategori 4: Experiment Error** - Konfigurasi tidak sesuai rancangan: seed tidak di-set, variabel yang seharusnya dikontrol tidak terkontrol, metrik yang dilaporkan bukan yang direncanakan.
+Tanda: hasil yang tidak bisa direproduksi, metrik berbeda dari yang ada di pre-registration, kondisi ablation tidak sesuai grid.
+Langkah test: Baca ulang pre-registration dan bandingkan dengan config YAML yang benar-benar dipakai. Cek commit hash di checkpoint.
+
+Tabel ringkas untuk referensi cepat:
+
+| Gejala | Kategori Paling Mungkin | Quick Test |
+| --- | --- | --- |
+| `ImportError` atau `ModuleNotFoundError` | Setup | `pip list` |
+| Loss NaN dari epoch pertama | Data atau Algorithmic | Print nilai batch; cek loss_fn |
+| Akurasi 99% tanpa training | Data (leakage) | Cek preprocessing |
+| Hasil tidak bisa direproduksi | Experiment | Bandingkan config + seed |
+| Loss tidak turun sama sekali | Algorithmic atau Setup | Overfit one batch |
+| Error saat membaca dataset | Data atau Setup | Print path config |
+
 ---
 
 ## 3. Worked Example: Mengadopsi Repo Hipotetis `vision-baseline`

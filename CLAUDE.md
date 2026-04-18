@@ -21,7 +21,30 @@ File sumber catatan (sudah terintegrasi ke Bab 01 sebagai Section 2.0 dan Sectio
 - `ModulePembelajaran/Notes - 17 April 2026/petabesar.md` - konsep tensor input→output lintas domain → **Section 2.0** Bab 01
 - `ModulePembelajaran/Notes - 17 April 2026/representasifitur.md` - taksonomi representasi (engineered / extracted / learned) → **Section 2.6** Bab 01
 
-Catatan: Bab 01 kini membangun fondasi konseptual berurutan - tensor masuk→keluar (2.0), arsitektur (2.1), layer (2.2), loss (2.3), optimizer (2.4), evaluasi (2.5), representasi (2.6) - dengan 5 pertanyaan refleksi (bertambah dari 3). Rubrik Kompetensi 1 (11_Rubrik_Penilaian.md) level Proficient dan Masterpiece diperbarui untuk mencerminkan kedua aspek ini.
+Catatan: Bab 01 kini membangun fondasi konseptual berurutan - tensor masuk→keluar (2.0), arsitektur (2.1), layer (2.2), loss (2.3), optimizer (2.4), evaluasi (2.5), representasi (2.6), diagnosis loss curve (2.7) - dengan 5 pertanyaan refleksi (bertambah dari 3). Rubrik Kompetensi 1 (11_Rubrik_Penilaian.md) level Proficient dan Masterpiece diperbarui untuk mencerminkan kedua aspek ini.
+
+**Section tambahan per-bab (ringkasan perubahan besar):**
+
+- Bab 01: +Section 2.7 (diagnosis loss curve, 5 pola), +inisialisasi Kaiming/Xavier di Section 2.2, +catatan weight decay vs L2 AdamW di Section 2.4, +Lab 1b (representasi fitur 3 strategi: `notebooks/lab1b_representasi.ipynb`)
+- Bab 02: +Section 2.6 (hasil negatif/hipotesis tidak terkonfirmasi), +bootstrap CI + effect size di Section 2.4, +HP search strategies + batch size/LR interaction di Section 2.3
+- Bab 03: +Section 2.8 (resume dari checkpoint + kompatibilitas antar mesin), +Section 2.9 (konvergensi dan early stopping)
+- Bab 05: +Section 2.6 (LLM untuk tugas riset non-kode), +Lab 5b (klasifikasi teks IndoNLU SmSA: `notebooks/lab5b_domain_teks.ipynb`)
+- Bab 06: +Section 2.8 (kategori error dan cara tesnya: Setup/Data/Algorithmic/Experiment)
+- Bab 08: +tabel perbandingan platform (RunPod/Colab Pro/Modal/Lambda) di Section 2.6
+- Bab 09: +panduan navigasi arXiv (kategori, ID paper, versi) di Section 2.1
+- Bab 00: +Section 5b (peta dependensi konsep antar bab), +Lab 1b dan Lab 5b di daftar lab
+
+**Template repo perubahan:**
+- `src/train.py`: bug `warmup_epochs` diperbaiki - sekarang menggunakan `SequentialLR` dengan `LinearLR` warmup sebelum scheduler utama
+- `docs/prereg_template.md`: file baru, template pre-registration lengkap
+- `notebooks/lab1_baseline_cnn.ipynb`: diisi penuh (smoke test, forward pass, log parser, confusion matrix, error analysis)
+- `notebooks/lab2_loss_freeze_ablation.ipynb`: diisi penuh (FocalLoss test, 2×2 grid ablation, bar chart dengan error bars)
+- `notebooks/lab3_config_logging.ipynb`: diisi penuh (reproducibility verification, checkpoint inspection, resume dari checkpoint, multi-seed plot)
+- `notebooks/lab4_eda_leakage.ipynb`: diisi penuh (5-layer EDA, MD5 overlap detection, leakage audit)
+- `notebooks/lab5_llm_assisted_loop.ipynb`: diisi penuh (mixup implementation, 4 sanity tests, comparison training)
+- `notebooks/lab7_streamlit_demo.ipynb`: diisi penuh (aggregation plot, Streamlit template, Gradio annotation template)
+- `notebooks/lab1b_representasi.ipynb`: file baru, Lab 1b representasi fitur 3 strategi
+- `notebooks/lab5b_domain_teks.ipynb`: file baru, Lab 5b klasifikasi sentimen teks IndoNLU SmSA
 
 ## Template Repo (`template_repo/`)
 

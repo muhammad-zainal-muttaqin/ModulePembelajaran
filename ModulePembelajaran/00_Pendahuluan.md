@@ -107,16 +107,41 @@ Modul ini bekerja paling baik ketika Anda dan modul menyepakati empat hal beriku
 Lab dalam modul ini bukan kumpulan latihan terpisah. Sembilan lab berbagi satu dataset dan satu basis kode yang berkembang bersama Anda.
 
 - **Lab 1 (Bab 01)** membangun baseline CNN pada CIFAR-10 yang dapat training penuh.
+- **Lab 1b (Bab 01, ekstensi)** membandingkan tiga strategi representasi fitur (engineered/extracted/learned) pada CIFAR-10 - memperdalam konsep Section 2.6.
 - **Lab 2 (Bab 02)** menambahkan focal loss dan mekanisme freeze layer, menjalankan ablation pertama.
 - **Lab 3 (Bab 03)** memindahkan konfigurasi ke YAML, menambahkan logging TensorBoard, dan menyimpan checkpoint dengan metadata lengkap.
 - **Lab 4 (Bab 04)** memperluas dataset ke domain medis (PathMNIST), melakukan EDA, dan mengaudit pipeline dari *leakage*.
 - **Lab 5 (Bab 05)** memakai LLM untuk membangun satu fitur baru pada basis kode, lalu mencatat proses verifikasi.
+- **Lab 5b (Bab 05, ekstensi)** klasifikasi sentimen teks Bahasa Indonesia - memperkenalkan domain non-gambar dan memparalelkan Lab 1b di domain berbeda.
 - **Lab 6 (Bab 06)** meng-clone sebuah reference implementation dari komunitas, menyiapkan lingkungan, dan menambahkan satu eksperimen kecil.
 - **Lab 7 (Bab 07)** membungkus model dalam demo Streamlit dan antarmuka Gradio untuk inspeksi prediksi.
 - **Lab 8 (Bab 08)** memindahkan training ke RunPod, mengatur port forwarding, dan mengelola checkpoint jarak jauh.
 - **Lab 9 (Bab 09)** membaca satu paper pendek, menuliskan ringkasan terstruktur, dan merancang satu eksperimen lanjutan berikut *pre-registration*-nya.
 
 Pada minggu 13–14, Anda menyelesaikan **capstone project** yang mengintegrasikan minimal enam kompetensi dan keempat sikap. Detail ada di `10_Capstone_Project.md`.
+
+---
+
+## 5b. Peta Dependensi Konsep Antar Bab
+
+Modul ini dirancang sebagai tangga, tetapi tidak semua anak tangga harus dinaiki dengan jarak yang sama. Tabel berikut menunjukkan konsep dari bab mana yang perlu Anda pahami sebelum mengerjakan bab tertentu. "Perlu dipahami" bukan berarti dihapal - cukup Anda sudah menjalankan labnya dan bisa menjelaskan ide utamanya.
+
+| Bab | Prasyarat minimum | Konsep kunci yang dibutuhkan |
+| --- | --- | --- |
+| **01** Memahami ML/DL | - (titik awal) | - |
+| **02** Ide ke Eksperimen | Bab 01 | Apa yang dilakukan loss dan optimizer |
+| **03** Eksperimen Reproduksibel | Bab 01, Bab 02 | Pipeline training dasar; apa itu konfigurasi |
+| **04** Validasi Data | Bab 01, Bab 03 | Checkpoint dan konfigurasi; evaluasi pada split berbeda |
+| **05** AI Tools | Bab 01 | Cukup punya pipeline yang berjalan untuk diverifikasi |
+| **06** Adopsi Repo Riset | Bab 01, Bab 03 | Bisa baca kode training loop; tahu cara menyimpan checkpoint |
+| **07** Alat Pendukung Ringan | Bab 01, Bab 06 | Punya model yang bisa di-load; tahu cara menjalankan inferensi |
+| **08** Platform & Tool Baru | Bab 03, Bab 06 | Checkpoint dengan metadata lengkap; bisa menjalankan repo orang lain |
+| **09** Pengembangan Mandiri | Bab 01, Bab 02 | Bisa mendeskripsikan eksperimen secara terstruktur |
+| **10** Capstone | Bab 01-09 | Seluruh pipeline: dataset → eksperimen → laporan |
+
+**Catatan**: Bab 04, 05, 06, dan 07 bersifat relatif paralel satu sama lain setelah Bab 03 selesai. Artinya, jika Anda melewatkan Bab 04 karena alasan waktu, Anda tetap bisa mengerjakan Bab 05 dan 06 dengan lancar. Sebaliknya, Bab 08 sangat bergantung pada Bab 03 dan Bab 06 - jangan melompat ke sana sebelum keduanya tuntas.
+
+**Lab 1b** (representasi fitur, ada di Bab 01) dan **Lab 5b** (domain teks, ada di Bab 05) adalah lab ekstensi - tidak memblokir bab berikutnya, tetapi memperkaya pemahaman lintas domain.
 
 ---
 

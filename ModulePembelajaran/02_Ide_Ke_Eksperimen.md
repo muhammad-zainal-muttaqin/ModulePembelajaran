@@ -136,13 +136,29 @@ Tabel konfigurasi adalah alat sederhana yang kuat:
 
 Baca secara vertikal: kolom `LR` seragam, berarti learning rate bukan variabel. Kolom `Loss` dan `Freeze` berubah bersamaan - inilah yang sedang Anda uji. Seed divariasikan sebagai *replikasi*, bukan sebagai variabel eksperimen.
 
-### 2.4 Noise, Seed, dan Replikasi
+**Variabel yang saling bergantung.** Ada satu jebakan yang sering tidak disadari: *batch size dan learning rate tidak independen*. Menggandakan batch size sambil mempertahankan LR yang sama secara efektif mengurangi ukuran update relatif - hasilnya sering lebih lambat konvergen atau performa lebih rendah. Aturan praktis yang umum diterima: jika batch size naik k kali, LR juga naik k kali (*linear scaling rule*, Goyal et al. 2017). Ini bukan hukum besi - tetapi artinya ketika Anda mengubah batch size, LR bukan variabel yang aman untuk dianggap konstan.
+
+**Tiga strategi menginisialisasi baseline hyperparameter.** Sebelum bisa mengontrol variabel, Anda perlu baseline yang konfigurasinya masuk akal. Tiga strategi umum, dari paling mudah ke paling teliti:
+
+1. **Salin dari paper.** Jika paper asli menyertakan config (LR, batch size, weight decay), gunakan itu sebagai titik mulai. Waspadai: paper sering melapor setting terbaik mereka, bukan setting yang "wajar untuk dataset lebih kecil".
+2. **Grid search kecil pada subset.** Ambil 10-20% data, jalankan grid LR × {1e-3, 3e-4, 1e-4} dengan 3 epoch. Ini jauh lebih cepat daripada training penuh dan cukup untuk menyingkirkan nilai LR yang jelas salah.
+3. **Learning rate range test.** Mulai dari LR sangat kecil (1e-7), naikkan secara eksponensial setiap batch selama 100 iterasi. Plot loss vs LR - titik di mana loss turun paling curam adalah kandidat LR yang baik (Leslie Smith, 2017). Banyak library modern punya implementasi bawaan.
+
+### 2.4 Noise, Seed, Replikasi, dan Kapan Perbedaan Bermakna
 
 Model dengan inisialisasi berbeda sering menghasilkan akurasi yang berbeda beberapa poin persen, *bahkan tanpa perubahan apapun*. Ini disebut *seed variance*. Jika Anda melaporkan "baseline 78.4% vs mod 80.1%, naik 1.7%" tetapi seed variance baseline sendiri ±1.5%, kenaikan 1.7% mungkin sekadar noise.
 
 Solusi: replikasi minimal tiga seed per kondisi, laporkan rata-rata dan standar deviasi. Idealnya lima seed, tetapi tiga sudah jauh lebih baik daripada satu. Jika Anda tidak punya waktu, akui keterbatasan ini di laporan - jangan pura-pura satu run adalah kebenaran.
 
 Di luar seed, sumber noise lain: urutan data, kernel CUDA yang non-deterministik (beberapa operasi konvolusi), optimasi compiler. Untuk reproduksibilitas ketat, Anda juga perlu mengatur `torch.backends.cudnn.deterministic = True` - bab berikutnya membahas teknik ini lebih lengkap.
+
+**Kapan perbedaan cukup besar untuk diklaim?** Mean ± std memberi gambaran variabilitas, tetapi tidak langsung menjawab pertanyaan "apakah ini nyata atau noise?" Dua aturan praktis yang berguna:
+
+1. **Aturan 2σ**: Jika Δ antara dua kondisi lebih besar dari 2 × σ gabungan keduanya, perbedaannya lebih mungkin nyata daripada sekadar variasi seed. Ini bukan uji statistik formal, tetapi cukup untuk laporan internal.
+
+2. **Effect size threshold**: Tetapkan δ minimum sebelum eksperimen berjalan (di pre-registration). Jika kenaikan yang diprediksi penting adalah 2 poin F1, kenaikan 0.3 poin tidak bermakna secara praktis meski angkanya "naik". Peningkatan < 0.5 poin pada dataset besar dengan 3 seed hampir selalu noise.
+
+Untuk publikasi atau laporan formal, pertimbangkan *paired t-test* atau *Wilcoxon signed-rank test* jika Anda punya cukup run (≥5 seed per kondisi). Namun di tahap eksplorasi awal, threshold δ yang ditetapkan sebelumnya lebih berguna daripada p-value yang dicomputasi setelah melihat data.
 
 ### 2.5 Hipotesis yang Dapat Dipalsukan vs Pengharapan
 
@@ -154,6 +170,21 @@ Hipotesis yang spesifik melindungi Anda dari dua bahaya:
 2. **Cerita setelah fakta.** Tanpa prediksi tertulis sebelum run, mudah sekali menarasikan hasil aktual sebagai "yang kita harapkan sejak awal". Protokol tertulis mencegah ini.
 
 Hipotesis tidak harus benar. Hipotesis yang ternyata salah sering lebih informatif daripada yang benar - karena ia memaksa Anda mencari penjelasan. Laboratorium yang paling produktif memperlakukan hipotesis salah bukan sebagai kegagalan, tetapi sebagai data.
+
+### 2.6 Ketika Hipotesis Tidak Terkonfirmasi
+
+Ini situasi yang hampir pasti Anda alami: eksperimen sudah berjalan, hasilnya tidak sesuai pre-registration. Apa yang dilakukan? Ada tiga skenario yang berbeda cara penanganannya.
+
+**Skenario A: Hasil hampir mencapai threshold tapi tidak sampai.**
+Misalnya hipotesis "F1 naik ≥ 3 poin" tapi hasil aktual Δ = 1.8 poin. Jangan langsung klaim "hipotesis terkonfirmasi sebagian" - itu bukan cara kerja pre-registration. Langkah yang tepat: (1) verifikasi protokol *exact match* - apakah semua variabel benar-benar dikontrol sesuai pre-reg? (2) tambah 2 seed lagi untuk memastikan angka tidak berubah arah; (3) jika tetap 1.8 poin, simpulkan hipotesis tidak terkonfirmasi dan catat sebagai temuan negatif.
+
+**Skenario B: Hasil berlawanan arah dari prediksi.**
+Hipotesis "focal loss meningkatkan F1" tapi hasilnya F1 turun 1.2 poin. Ini lebih informatif dari skenario A. Sebelum menyimpulkan "focal loss tidak bekerja", lakukan (1) audit implementasi: apakah gamma=0 menghasilkan CE yang identik? (2) cek distribusi loss tiap kelas: apakah focal loss terlalu agresif menekan kelas mudah? (3) investigasi apakah baseline yang dipakai sudah fair (sama hyperparameter kecuali variabel yang diuji). Jika semua aman, hasil negatif ini valid dan layak dilaporkan.
+
+**Skenario C: Hasil sangat bagus, jauh di atas prediksi.**
+Ini *terutama* membutuhkan skeptisisme. Jika hipotesis "naik 3 poin" tapi aktual naik 12 poin, kemungkinan ada bug atau leakage yang tidak disengaja. Langkah: (1) jalankan ulang baseline dengan seed berbeda; (2) periksa apakah test set benar-benar tidak menyentuh training; (3) verifikasi bahwa intervensi tidak secara tidak sengaja mengubah sesuatu yang lain (misal: mengubah augmentasi, mengubah normalisasi).
+
+**Catatan hasil negatif.** Hasil negatif yang didokumentasikan dengan baik adalah kontribusi nyata untuk riset - ia mencegah orang lain membuang waktu di arah yang sama. Di lab Anda sendiri, catatan negatif melindungi Anda dari mengulangi eksperimen yang sama enam bulan kemudian.
 
 ---
 

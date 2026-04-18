@@ -175,6 +175,17 @@ Rekomendasi praktis untuk mahasiswa:
 
 **Aturan 4: Review mingguan.** Setiap akhir minggu, buka dashboard, catat total biaya, catat eksperimen apa yang menghabiskan dana itu, tanya apakah nilainya sepadan. Ini mentransformasi biaya dari "angka abstrak" menjadi "keputusan belajar".
 
+**Alternatif RunPod.** Modul ini fokus pada RunPod karena antarmukanya sederhana, tapi prinsipnya sama di platform lain. Tabel singkat:
+
+| Platform | Cocok untuk | Catatan |
+| --- | --- | --- |
+| **RunPod** | Eksperimen mahasiswa; spot instance murah | Dibahas di bab ini |
+| **Google Colab Pro** | Iterasi cepat, notebook, bebas setup | Terbatas 12-24 jam/sesi; sulit untuk training multi-seed jangka panjang |
+| **Modal** | Workflow *serverless*; deploy fungsi Python ke GPU | Penagihan per milidetik; cocok untuk eksperimen kecil-sedang; API Python-native |
+| **Lambda Labs** | Training besar; instance A100/H100 lebih murah daripada AWS/GCP | Antarmuka mirip cloud besar; cocok jika sudah familiar dengan EC2 |
+
+Setelah Anda kuasai RunPod, adopsi platform lain butuh < 1 sore: polanya sama - login, sewa GPU, setup repo, jalankan training, transfer hasil.
+
 ---
 
 ## 3. Worked Example: Training PathMNIST di RunPod, End-to-End

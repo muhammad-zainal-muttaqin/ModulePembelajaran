@@ -330,6 +330,82 @@ Di luar file teknis, miliki satu file manusia-ke-manusia: `experiment_log.md` ya
 
 Format ini tidak wajib. Yang penting: tulis sesuatu, setiap hari, dengan tangan (atau keyboard) sendiri. Log eksperimen yang Anda tulis sendiri selama enam bulan adalah bahan tulisan pertama thesis atau paper Anda.
 
+### 2.8 Resume dari Checkpoint dan Kompatibilitas Antar Mesin
+
+Checkpoint yang baik bukan hanya untuk backup - ia adalah titik lanjut ketika training terputus. Spot instance di cloud (Bab 08) bisa diinterupsi kapan saja; training 8 jam yang dimulai dari epoch 1 lagi adalah pemborosan yang bisa dihindari.
+
+**Cara resume yang benar:**
+
+```python
+# Resume dari checkpoint - muat model, optimizer, DAN scheduler sekaligus
+ckpt = torch.load('experiments/baseline_seed42/ckpt_last.pt', map_location=device)
+resumed_epoch = ckpt['meta']['epoch']
+
+model = build_model(ckpt['config']['model']).to(device)
+model.load_state_dict(ckpt['model_state'])
+
+optimizer = build_optimizer(list(model.parameters()), ckpt['config']['optim'])
+optimizer.load_state_dict(ckpt['optimizer_state'])
+
+scheduler = build_scheduler(optimizer, ckpt['config']['scheduler'], total_epochs)
+if scheduler is not None and ckpt['scheduler_state'] is not None:
+    scheduler.load_state_dict(ckpt['scheduler_state'])
+
+# Lanjutkan dari epoch berikutnya
+for epoch in range(resumed_epoch + 1, total_epochs + 1):
+    # training loop seperti biasa
+    ...
+```
+
+Tiga hal yang sering dilupa dan menyebabkan resume yang salah: (1) lupa muat `optimizer_state_dict` - optimizer mulai dari nol, momentum hilang; (2) lupa muat `scheduler_state_dict` - LR kembali ke nilai awal padahal seharusnya sudah menurun; (3) lupa `resumed_epoch + 1` - epoch dihitung ulang dari satu.
+
+**Kompatibilitas checkpoint antar mesin.** Checkpoint yang dibuat di satu mesin tidak selalu langsung bisa dipakai di mesin lain. Cek daftar ini sebelum memakai checkpoint dari sumber lain:
+
+1. **Commit hash cocok** - `ckpt['meta']['commit']` harus sama dengan commit aktif. Jika berbeda, arsitektur model mungkin sudah berubah dan state_dict tidak bisa di-load.
+2. **`dirty=False`** - jika `dirty=True`, ada perubahan uncommitted saat checkpoint dibuat. Tandai hasilnya sebagai "tidak bisa direproduksi penuh".
+3. **Test load terlebih dahulu** - sebelum menggunakan checkpoint untuk eksperimen besar, lakukan `model.load_state_dict(ckpt['model_state'])` pada model yang baru diinisialisasi dan verifikasi tidak ada key error.
+4. **Versi PyTorch** - checkpoint dari PyTorch versi berbeda terkadang tidak kompatibel untuk optimizer state. Tandai versi di log.
+
+### 2.9 Konvergensi dan Early Stopping: Kapan Training Selesai?
+
+Pertanyaan ini sering diabaikan, padahal jawabannya menentukan apakah Anda membuang GPU time atau menghentikan training terlalu dini. Ada tiga kondisi yang perlu dibedakan:
+
+| Kondisi | Ciri di log | Tindakan |
+| --- | --- | --- |
+| **Konvergen** | val_loss turun lalu plateau (≤ 0.1% perubahan selama 5 epoch) | Hentikan training |
+| **Stagnan** | val_loss stagnan sejak epoch awal, train_loss masih turun | Cek learning rate (mungkin terlalu kecil), cek data |
+| **Divergen** | loss meledak atau NaN | Hentikan segera, turunkan LR |
+
+**Early stopping berbasis patience.** Pola paling umum: pantau `val_loss`, simpan checkpoint terbaik, hentikan jika tidak ada perbaikan selama `patience` epoch:
+
+```python
+best_val_loss = float("inf")
+patience = 5
+no_improve_count = 0
+
+for epoch in range(1, total_epochs + 1):
+    val_loss = run_epoch(...)
+    if val_loss < best_val_loss - 1e-4:   # threshold minimal agar noise tidak dihitung
+        best_val_loss = val_loss
+        torch.save(model.state_dict(), "ckpt_best.pt")
+        no_improve_count = 0
+    else:
+        no_improve_count += 1
+        if no_improve_count >= patience:
+            print(f"Early stopping di epoch {epoch} (patience={patience})")
+            break
+```
+
+**Penting**: selalu simpan checkpoint terpisah antara `ckpt_best.pt` (yang terbaik di val) dan `ckpt_last.pt` (epoch terakhir). Untuk resume, pakai `ckpt_last.pt`. Untuk evaluasi final, pakai `ckpt_best.pt`.
+
+**Aturan praktisnya untuk konvergensi:**
+
+- Jika val_acc tidak berubah > 0.5% selama 5 epoch berturut-turut, training bisa dihentikan.
+- Perbedaan val_acc antara epoch ke-N dan N+5 yang < 0.2% biasanya sudah masuk wilayah noise seed, bukan sinyal nyata.
+- Jangan gunakan training loss sebagai sinyal konvergensi - ia hampir selalu terus turun (model memang menghafal training set). Gunakan validation loss.
+
+**Catatan reproducibility**: epoch di mana early stopping terjadi menjadi bagian dari konfigurasi run. Simpan nilai `stopped_at_epoch` di `summary.json` agar Anda bisa membandingkan dua run yang mungkin berhenti di epoch berbeda.
+
 ---
 
 ## 3. Worked Example: Refaktor Lab 2 menjadi Reproduksibel

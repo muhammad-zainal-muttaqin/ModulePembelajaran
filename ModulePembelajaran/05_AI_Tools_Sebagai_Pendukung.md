@@ -29,7 +29,7 @@
 
 ## 0. Peta Bab
 
-Bab ini membahas cara memakai *large language model* - ChatGPT, Claude, Copilot, Cursor - dan asisten pemrograman lain untuk mempercepat kerja riset tanpa menyerahkan pemahaman dan tanggung jawab. Anda akan belajar memisahkan tugas yang cocok untuk LLM dari yang berbahaya dijadikan *outsource*, menulis *prompt* yang menghasilkan bantuan presisi, dan menjalankan protokol verifikasi yang memastikan setiap output dapat dipertanggungjawabkan. Setelah bab ini, Anda punya alur kerja yang memakai AI tools secara produktif tetapi memperkuat - bukan melemahkan - kemampuan teknis Anda sendiri.
+Bab ini membahas cara memakai *large language model* - ChatGPT, Claude, Copilot, Cursor - dan asisten pemrograman lain untuk mempercepat kerja riset tanpa menyerahkan pemahaman dan tanggung jawab. Anda akan belajar memisahkan tugas yang cocok untuk LLM dari yang berbahaya dijadikan *outsource*, menulis *prompt* yang menghasilkan bantuan presisi, menjalankan protokol verifikasi yang memastikan setiap output dapat dipertanggungjawabkan, dan memakai LLM untuk tugas riset non-kode (membaca paper, mendiskusikan hipotesis, interpretasi awal). Bab ini juga mencakup Lab 5b yang memperkenalkan domain teks sebagai jembatan ke dunia di luar gambar. Setelah bab ini, Anda punya alur kerja yang memakai AI tools secara produktif tetapi memperkuat - bukan melemahkan - kemampuan teknis Anda sendiri.
 
 ---
 
@@ -175,7 +175,41 @@ Bahaya utama Copilot: *autocomplete drift*. Setiap saran terlihat kecil, tetapi 
 - **Tolak saran multi-baris kecuali Anda menyetujui tiap baris.** Copilot sering menyarankan blok 10 baris; menerimanya buta adalah memasukkan kode yang belum Anda baca.
 - **Periksa import tersembunyi.** Saran sering memakai library yang Copilot asumsikan tersedia. Periksa `pyproject.toml` atau `requirements.txt`; Anda mungkin tidak sadar menambah dependency.
 
-### 2.6 Menyusun Alur Kerja Harian
+### 2.6 LLM untuk Tugas Riset - Bukan Hanya Kode
+
+Sebagian besar panduan pemakaian LLM di konteks teknis berfokus pada coding. Tetapi asisten riset menghabiskan sebagian besar waktunya pada aktivitas lain: membaca paper, merumuskan hipotesis, mendiskusikan interpretasi hasil, dan menulis. LLM sangat efektif sebagai *sparring partner* untuk aktivitas ini - asal protokol verifikasi tetap dijaga.
+
+**Merangkum paper baru**
+
+Saat membaca paper yang padat, coba: tempel abstrak + introduction ke LLM, lalu minta:
+> "Ringkas kontribusi utama paper ini dalam tiga poin. Untuk tiap poin, tunjukkan kalimat di abstrak yang mendukung klaim itu."
+
+Dua keuntungan: Anda mendapat ringkasan cepat *dan* LLM menunjukkan bukti klaim-nya di teks sumber, sehingga mudah diverifikasi. Jika LLM membuat klaim yang tidak ada di abstrak, itu sinyal *hallucination*.
+
+Lanjutkan dengan: "Bagian mana dari paper ini yang paling mungkin tidak berlaku untuk dataset medis kecil (< 5.000 sampel)?"  Pertanyaan kontrafaktual memaksa pemikiran kritis tentang asumsi paper.
+
+**Mendiskusikan hipotesis**
+
+Setelah menulis hipotesis untuk pre-reg Anda (Bab 02), coba:
+> "Saya memiliki hipotesis berikut: [tulis hipotesis]. Berikan tiga argumen terkuat *melawan* hipotesis ini, yaitu kondisi di mana hipotesis ini akan gagal."
+
+LLM sangat efektif sebagai *devil's advocate*. Ia tidak malu mengemukakan keberatan. Gunakan hasilnya bukan untuk mengubah hipotesis, tetapi untuk memperkuat bagian "Kondisi Revisi Pre-Reg" di template Anda.
+
+**Interpretasi hasil awal**
+
+Setelah eksperimen selesai, coba:
+> "Berikut training curve eksperimen saya [deskripsi kurva: val_acc stagnan di epoch 8-15, kemudian naik lagi]. Sebutkan 3 hipotesis mekanis yang mungkin menjelaskan pola ini, dari yang paling sampai kurang mungkin."
+
+Ini berbeda dari meminta LLM untuk *menginterpretasi* hasil Anda - LLM menghasilkan hipotesis, Anda yang memilih mana yang masuk akal berdasarkan pengetahuan tentang dataset dan arsitektur Anda.
+
+**Batas yang penting**
+
+- **Jangan** minta LLM untuk menyimpulkan apakah eksperimen Anda "berhasil" atau "membuktikan hipotesis". Interpretasi adalah pekerjaan Anda.
+- **Jangan** memasukkan hasil numerik riil ke LLM jika itu data sensitif (mis. data pasien, data komersial).
+- **Verifikasi** semua referensi paper yang LLM sebut. LLM sering *mengarang* penulis, judul, dan tahun yang terdengar plausibel.
+- LLM tidak memiliki akses ke paper terbaru (biasanya tertinggal 6-12 bulan). Untuk paper 2024-2025, cek langsung arXiv.
+
+### 2.7 Menyusun Alur Kerja Harian
 
 Contoh alur kerja yang produktif dan sehat:
 
@@ -371,6 +405,39 @@ Tugas:
 - [ ] Uji minimal ada dan lolos (sebagai fungsi terpisah di kode atau notebook).
 - [ ] `llm_log.md` berisi prompt, ringkasan output, dan modifikasi Anda.
 - [ ] Ablation fitur berjalan; hasilnya dilaporkan ringkas.
+
+---
+
+## 5b. Lab 5b - Klasifikasi Teks: Lintas Domain dari Gambar ke Teks
+
+Semua lab sejauh ini bekerja pada domain gambar. Tetapi ML/DL dipakai di banyak domain - teks, audio, tabular, multi-modal. Lab ini memperkenalkan domain baru agar Anda tidak bergantung pada intuisi visual saja.
+
+Buka [Lab 5b - Domain Teks](template_repo/notebooks/lab5b_domain_teks.ipynb).
+
+**Dataset**: IndoNLU SmSA - *SMS Sentiment Analysis* berbahasa Indonesia (positif / negatif / netral, ~11.000 sampel). Tersedia di HuggingFace; dapat dijalankan di CPU.
+
+**Tugas utama**:
+
+1. **Representasi 1 - Bag of Words + Logistic Regression**: pipeline klasik; `TfidfVectorizer` → `LogisticRegression`. Baseline tanpa GPU.
+2. **Representasi 2 - Word Embedding rata-rata**: load `fasttext-id` (50d), rata-ratakan vektor kata, train MLP kecil.
+3. **Representasi 3 - Fine-tune BERT kecil**: `indobenchmark/indobert-lite-base-p1` (hanya 2 epoch pada GPU atau Colab).
+4. Bandingkan ketiga strategi dalam tabel: akurasi, waktu training, parameter count.
+5. Tulis refleksi: dalam konteks Section 2.6 Bab 01, representasi mana yang "engineered", "extracted", dan "learned"?
+
+**Hubungan dengan konsep yang sudah dipelajari**: Tabel representasi ini adalah padanan teks dari Lab 1b (domain gambar). Pola yang sama - tradeoff antara kontrol manusia, kapasitas model, dan kebutuhan data - muncul di semua domain.
+
+**Pertanyaan panduan**:
+
+- Apakah *inductive bias* BoW berbeda dari CNN? Bagaimana ini memengaruhi jenis error yang Anda lihat?
+- Jika dataset hanya 500 sampel, representasi mana yang Anda pilih dan mengapa?
+- Bagaimana cara mengunci seed untuk reproducibility di pipeline teks? (Petunjuk: `transformers.set_seed`.)
+
+**Checklist verifikasi**:
+
+- [ ] Ketiga representasi berhasil dijalankan dan menghasilkan akurasi yang berbeda.
+- [ ] Tabel perbandingan lengkap (akurasi, waktu, parameter count).
+- [ ] Refleksi teksonomi representasi (Section 2.6) ditulis.
+- [ ] Minimal satu hipotesis tentang domain teks vs gambar yang dapat diuji di masa depan.
 
 ---
 

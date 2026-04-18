@@ -67,13 +67,28 @@ def build_scheduler(optimizer, cfg: dict, epochs: int):
     name = cfg.get("name", "none").lower()
     if name in ("none", "null"):
         return None
+
+    warmup_epochs = int(cfg.get("warmup_epochs", 0))
+    main_epochs = max(epochs - warmup_epochs, 1)
+
     if name == "cosine":
-        return torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=epochs)
-    if name == "step":
-        return torch.optim.lr_scheduler.StepLR(
+        main_sched = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=main_epochs)
+    elif name == "step":
+        main_sched = torch.optim.lr_scheduler.StepLR(
             optimizer, step_size=cfg.get("step_size", 10), gamma=cfg.get("gamma", 0.1)
         )
-    raise ValueError(f"Unknown scheduler: {name}")
+    else:
+        raise ValueError(f"Unknown scheduler: {name}")
+
+    if warmup_epochs <= 0:
+        return main_sched
+
+    warmup_sched = torch.optim.lr_scheduler.LinearLR(
+        optimizer, start_factor=1e-4, end_factor=1.0, total_iters=warmup_epochs
+    )
+    return torch.optim.lr_scheduler.SequentialLR(
+        optimizer, schedulers=[warmup_sched, main_sched], milestones=[warmup_epochs]
+    )
 
 
 def evaluate(model, loader, loss_fn, device) -> tuple[float, float]:
@@ -208,6 +223,10 @@ def main(argv: list[str] | None = None) -> int:
     optimizer = build_optimizer(trainable_params, cfg["optim"])
     epochs = int(cfg["train"]["epochs"])
     scheduler = build_scheduler(optimizer, cfg.get("scheduler"), epochs)
+    warmup_epochs = int((cfg.get("scheduler") or {}).get("warmup_epochs", 0))
+    if warmup_epochs > 0:
+        logger.info("scheduler: warmup %d epoch, then %s for %d epoch",
+                    warmup_epochs, cfg.get("scheduler", {}).get("name", "?"), epochs - warmup_epochs)
 
     writer = SummaryWriter(log_dir=str(out_dir / "tb"))
     best_val = -1.0
