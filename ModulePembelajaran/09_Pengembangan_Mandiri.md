@@ -280,6 +280,22 @@ Target waktu: 6-8 jam sepanjang satu minggu (paper: 1 jam; 5-Whys + pre-reg: 1 j
 
 ---
 
+## Komponen Mandiri (Pekan 12)
+
+**Konsep yang dilatih:** Membaca paper secara terarah, merumuskan pertanyaan yang dapat dipalsukan, dan merancang eksperimen lanjutan yang muncul dari pertanyaan jujur.
+
+Pilih **satu jalur** di bawah. Catat pilihan dan hasilnya di `notebooks/portofolio_mandiri.ipynb` pada entri Pekan 12 - ini adalah entri terakhir. Setelah mengisi entri ini, kerjakan juga sel "Refleksi Portofolio" di bagian akhir notebook: lihat kembali semua 8 entri dan tuliskan satu paragraf tentang trajektori belajar Anda. Di awal sesi Pekan 13 (Capstone), slot presentasi diperpanjang - Anda akan mempresentasikan *highlight* dari perjalanan portofolio, bukan hanya Pekan 12.
+
+| Jalur | Fokus Skill | Tugas |
+|-------|-------------|-------|
+| **A - Implementasi** | Membangun dan menguji | Dari paper yang dibaca di Lab 9, implementasikan satu bagian kecil yang belum ada di template_repo - bukan hasil utama paper, cukup satu teknik pendukung: LR *scheduler* yang mereka pakai, metrik evaluasi tambahan, atau augmentasi yang disebut di *appendix*. Laporkan apakah hasilnya sesuai klaim paper atau tidak. |
+| **B - Analisis** | Mengamati dan menginterpretasi | Pilih satu paper yang klaim utamanya terasa "terlalu bagus" atau mengejutkan. Lakukan analisis kritis 1 halaman: klaim apa yang dibuat, bukti apa yang ditunjukkan, apa yang *tidak* ditunjukkan, dan apa yang perlu diverifikasi sebelum Anda berani mengutip paper itu di laporan sendiri. |
+| **C - Desain** | Merancang dan mengargumentasi | Tulis *pre-registration* untuk ide riset yang muncul dari pengalaman Anda sendiri sepanjang semester ini - bukan dari paper orang lain, tetapi dari pertanyaan yang muncul saat mengerjakan lab atau komponen mandiri. Minimal: motivasi, hipotesis *falsifiable*, protokol, dan kondisi kegagalan. |
+
+**Deliverable:** Entri portofolio Pekan 12 + sel Refleksi Portofolio terisi di `notebooks/portofolio_mandiri.ipynb`. Siap presentasi *highlight* portofolio 10 menit di awal Pekan 13.
+
+---
+
 ## 6. Refleksi
 
 1. Apa satu pertanyaan riset yang *hanya Anda* yang menanyakan di lingkunganmu saat ini? Jika jawabannya "tidak ada", apa yang perlu Anda kerjakan untuk menemukannya - lebih banyak paper yang dibaca, lebih banyak orang yang diajak bicara, atau lebih banyak eksperimen untuk menyingkap celah?

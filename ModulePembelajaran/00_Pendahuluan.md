@@ -100,6 +100,8 @@ Modul ini bekerja paling baik ketika Anda dan modul menyepakati empat hal beriku
 
 **Keempat**, Anda mengajukan pertanyaan. Pertanyaan yang baik bukan tanda kelemahan - sebaliknya, pertanyaan yang dirumuskan dengan cermat adalah salah satu kompetensi yang dinilai di rubrik (Bab 11). Jika sesuatu terasa kabur setelah membaca dua kali, tulis pertanyaan Anda seringkas mungkin, sertakan konteks, dan bawa ke sesi tatap muka atau forum yang disediakan.
 
+**Kelima**, mulai Bab 02, Anda mengerjakan satu **Komponen Mandiri** setiap minggu - pilihan jalur eksplorasi yang Anda tentukan sendiri (dibatasi oleh konsep yang sedang dilatih). Catat pilihan dan hasilnya di `notebooks/portofolio_mandiri.ipynb`. Di awal sesi berikutnya, ada slot 10 menit per orang untuk mempresentasikan temuan. Portfolio ini tumbuh bersama Anda sepanjang semester; ia adalah catatan jujur tentang bagaimana cara berpikir Anda berkembang dari Pekan 4 hingga Pekan 12.
+
 ---
 
 ## 5. Lab dan Proyek yang Menumbuh
@@ -119,6 +121,8 @@ Lab dalam modul ini bukan kumpulan latihan terpisah. Sembilan lab berbagi satu d
 - **Lab 9 (Bab 09)** membaca satu paper pendek, menuliskan ringkasan terstruktur, dan merancang satu eksperimen lanjutan berikut *pre-registration*-nya.
 
 Pada minggu 13–14, Anda menyelesaikan **capstone project** yang mengintegrasikan minimal enam kompetensi dan keempat sikap. Detail ada di `10_Capstone_Project.md`.
+
+Mulai Bab 02, setiap bab juga memiliki satu **Komponen Mandiri** - pilihan jalur eksplorasi mingguan (Implementasi, Analisis, atau Desain) yang Anda kerjakan secara independen dan catat di `notebooks/portofolio_mandiri.ipynb`. Portfolio ini berisi 8 entri (Pekan 4–12) dan ditutup dengan refleksi trajektori belajar pada akhir Pekan 12. Template entri dan panduan presentasi 10 menit ada di `12_Lampiran.md` bagian C.6 dan C.7.
 
 ---
 

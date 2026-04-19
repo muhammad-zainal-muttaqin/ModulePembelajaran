@@ -284,6 +284,22 @@ Target waktu: 4-6 jam. Ingat aturan batas: berhenti ketika aplikasi *berguna*, b
 
 ---
 
+## Komponen Mandiri (Pekan 10)
+
+**Konsep yang dilatih:** Membuat alat pendukung riset ringan yang membantu dosen atau rekan menjelajahi hasil tanpa harus bertanya - demo, visualisasi, dan antarmuka anotasi.
+
+Pilih **satu jalur** di bawah. Catat pilihan dan hasilnya di `notebooks/portofolio_mandiri.ipynb` pada entri Pekan 10. Di awal sesi Pekan 11, ada slot 10 menit untuk presentasi. Isi bagian "Koneksi": apa yang bisa Anda visualisasikan sekarang yang tidak mungkin divisualisasikan di Pekan 4?
+
+| Jalur | Fokus Skill | Tugas |
+|-------|-------------|-------|
+| **A - Implementasi** | Membangun dan menguji | Buat demo Streamlit untuk model yang Anda latih sendiri (dari Lab 1-3 atau Komponen Mandiri sebelumnya). Demo harus menampilkan: prediksi kelas, *confidence score*, dan minimal satu *failure case* yang Anda temukan sendiri - bukan yang sudah ada di Lab 7. |
+| **B - Analisis** | Mengamati dan menginterpretasi | Pilih dua paper ML yang memakai tipe visualisasi berbeda (misalnya: *confusion matrix* vs t-SNE vs *attention map* vs *saliency map*). Evaluasi setiap visualisasi: apa yang berhasil dikomunikasikan, apa yang gagal, dan apa yang bisa disalahinterpretasikan oleh pembaca yang tidak berhati-hati. |
+| **C - Desain** | Merancang dan mengargumentasi | Rancang antarmuka anotasi untuk satu tugas baru - bukan klasifikasi gambar CIFAR-10. Pilihan: anotasi sentimen teks, *bounding box* sederhana, atau penilaian kualitas audio. Buat *wireframe* teks/ASCII dan jelaskan alasan desain setiap elemen: mengapa elemen ini ada, mengapa elemen itu tidak ada. |
+
+**Deliverable:** Entri portofolio Pekan 10 terisi di `notebooks/portofolio_mandiri.ipynb`. Siap presentasi 10 menit di awal Pekan 11.
+
+---
+
 ## 6. Refleksi
 
 1. Pembimbing bertanya, "Bisa tambahkan fitur X ke demo Anda?" Bagaimana Anda memutuskan apakah akan menambahkannya atau menolak dengan sopan? Tulis dua kriteria konkret yang akan Anda pakai.

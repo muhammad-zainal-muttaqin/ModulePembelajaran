@@ -441,6 +441,22 @@ Buka [Lab 5b - Domain Teks](template_repo/notebooks/lab5b_domain_teks.ipynb).
 
 ---
 
+## Komponen Mandiri (Pekan 8)
+
+**Konsep yang dilatih:** Memakai LLM secara terprotokol - memisahkan tugas yang cocok untuk LLM dari yang tidak, menjalankan verifikasi berlapis, dan mendokumentasikan interaksi.
+
+Pilih **satu jalur** di bawah. Catat pilihan dan hasilnya di `notebooks/portofolio_mandiri.ipynb` pada entri Pekan 8. Di awal sesi Pekan 9, ada slot 10 menit untuk presentasi. Isi bagian "Koneksi": apakah cara Anda memakai LLM berubah dibanding Pekan 4 ketika Anda pertama kali belajar merancang hipotesis?
+
+| Jalur | Fokus Skill | Tugas |
+|-------|-------------|-------|
+| **A - Implementasi** | Membangun dan menguji | Minta LLM mengimplementasikan satu fitur yang *belum pernah Anda lihat sebelumnya* - bukan mixup atau augmentasi standar. Pilihan: `GradCAM` visualizer sederhana, `EarlyStopping` *callback*, atau `WarmRestartLR` *scheduler*. Jalankan protokol verifikasi 3-layer penuh dan laporkan berapa persen kode yang perlu dimodifikasi. |
+| **B - Analisis** | Mengamati dan menginterpretasi | Buat satu *prompt* untuk LLM, lalu modifikasi tiga kali dengan cara berbeda: lebih spesifik, tambahkan contoh, ubah format permintaan. Bandingkan kualitas kode yang dihasilkan. Buat tabel: dimensi kualitas apa yang berubah dengan setiap modifikasi, dan apa yang tetap sama. |
+| **C - Desain** | Merancang dan mengargumentasi | Tulis panduan 1 halaman "Kapan pakai LLM, kapan tidak" khusus untuk riset ML. Kategorikan minimal 5 jenis tugas (boilerplate kode, verifikasi matematika, penjelasan paper, debugging, analisis error) dengan justifikasi yang dapat dipertahankan saat ditanya dosen. |
+
+**Deliverable:** Entri portofolio Pekan 8 terisi di `notebooks/portofolio_mandiri.ipynb`. Siap presentasi 10 menit di awal Pekan 9.
+
+---
+
 ## 6. Refleksi
 
 1. Bayangkan LLM yang Anda pakai tiba-tiba tidak dapat diakses seminggu. Apa dari pekerjaan Anda sekarang yang berhenti, dan apa yang tetap berjalan? Apa yang pergeseran ini katakan tentang ketergantungan Anda?

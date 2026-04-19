@@ -584,6 +584,22 @@ Tugas:
 
 ---
 
+## Komponen Mandiri (Pekan 5)
+
+**Konsep yang dilatih:** Mengunci seed, memindahkan konfigurasi ke YAML, mencatat metadata *checkpoint*, dan memverifikasi bahwa hasil dapat direproduksi persis oleh orang lain.
+
+Pilih **satu jalur** di bawah. Catat pilihan dan hasilnya di `notebooks/portofolio_mandiri.ipynb` pada entri Pekan 5. Karena Bab 03 mencakup dua minggu (Pekan 5-6), slot presentasi 10 menit dilakukan di awal Pekan 7 (Bab 04). Isi bagian "Koneksi" di entri portofolio: apa yang berubah dari cara kerja Pekan 4 ke Pekan 5?
+
+| Jalur | Fokus Skill | Tugas |
+|-------|-------------|-------|
+| **A - Implementasi** | Membangun dan menguji | Tambahkan satu *hyperparameter* baru ke `configs/baseline.yaml` yang belum ada di template - misalnya `label_smoothing`, `gradient_clip_val`, atau variasi `weight_decay`. Verifikasi bahwa dua run dengan seed dan config identik menghasilkan val accuracy ±0.001. Dokumentasikan: berapa run yang *tidak* reproduksibel dan mengapa? |
+| **B - Analisis** | Mengamati dan menginterpretasi | Jalankan dua run identik di dua lingkungan berbeda (laptop vs Google Colab, atau CPU vs GPU). Dokumentasikan perbedaan hasilnya: berapa besar deviasinya, pada metrik apa, dan pada kondisi apa. Buat hipotesis tentang sumber non-determinisme yang paling mungkin untuk masing-masing perbedaan. |
+| **C - Desain** | Merancang dan mengargumentasi | Tulis `reproducibility_contract.md` untuk proyek riset hipotetis - *bukan* template_repo yang ada di modul ini. Dokumen harus menjawab: seed apa yang dikunci (Python, NumPy, Torch, CUDA), metadata wajib apa di setiap *checkpoint*, dan bagaimana seseorang memverifikasi reproduksi dari nol tanpa bertanya ke penulis aslinya. |
+
+**Deliverable:** Entri portofolio Pekan 5 terisi di `notebooks/portofolio_mandiri.ipynb`. Siap presentasi 10 menit di awal Pekan 7.
+
+---
+
 ## 6. Refleksi
 
 1. Tim riset Anda memutuskan memakai wandb alih-alih TensorBoard. Apa keuntungan dan kerugian yang perlu dipertimbangkan dari sisi reproduksibilitas? Jika proyek akan diserahkan ke mahasiswa baru tahun depan, pilihan mana yang lebih aman, dan mengapa?

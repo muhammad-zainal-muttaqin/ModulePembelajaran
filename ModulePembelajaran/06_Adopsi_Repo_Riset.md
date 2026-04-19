@@ -512,6 +512,22 @@ Tugas:
 
 ---
 
+## Komponen Mandiri (Pekan 9)
+
+**Konsep yang dilatih:** Membaca kode orang lain dengan cepat, memetakan arsitektur repo riset, dan memodifikasi secara minimal-invasif tanpa merusak perilaku yang ada.
+
+Pilih **satu jalur** di bawah. Catat pilihan dan hasilnya di `notebooks/portofolio_mandiri.ipynb` pada entri Pekan 9. Di awal sesi Pekan 10, ada slot 10 menit untuk presentasi. Isi bagian "Koneksi": apakah Anda melihat pola yang sama antara cara repo riset eksternal distruktur dengan template_repo yang sudah Anda kenal sejak Bab 01?
+
+| Jalur | Fokus Skill | Tugas |
+|-------|-------------|-------|
+| **A - Implementasi** | Membangun dan menguji | Pilih satu paper di arXiv yang memiliki repo publik (cek Papers With Code). Coba reproduksi *satu angka* dari paper itu - tidak harus hasil utama, cukup satu metrik pada satu konfigurasi. Laporkan: berhasil atau tidak, berapa gap-nya, dan apa yang menjadi *bottleneck* utama. |
+| **B - Analisis** | Mengamati dan menginterpretasi | Buat diagram komponen arsitektur untuk repo yang diadopsi di Lab 6. Diagram harus menunjukkan: *entry point*, model, loss, optimizer, *logging*. Bandingkan dengan template_repo: apa yang lebih baik di repo eksternal, apa yang kurang, apa yang hilang. |
+| **C - Desain** | Merancang dan mengargumentasi | Tulis laporan adopsi 1 halaman untuk repo Lab 6: apa yang berhasil, apa yang gagal, dan apa yang perlu diubah agar repo ini dapat dipakai tim 5 orang selama 3 bulan. Usulkan minimal 3 perubahan konkret dengan justifikasi *effort* vs manfaat. |
+
+**Deliverable:** Entri portofolio Pekan 9 terisi di `notebooks/portofolio_mandiri.ipynb`. Siap presentasi 10 menit di awal Pekan 10.
+
+---
+
 ## 6. Refleksi
 
 1. Anda baru menerima akses ke repo lab dengan 150 file Python. Di mana Anda akan memulai, dan apa batasan waktu yang akan Anda tetapkan untuk fase membaca sebelum menjalankan?

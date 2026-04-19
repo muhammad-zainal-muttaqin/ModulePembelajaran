@@ -32,7 +32,17 @@ Catatan: Bab 01 kini membangun fondasi konseptual berurutan - tensor masuk→kel
 - Bab 06: +Section 2.8 (kategori error dan cara tesnya: Setup/Data/Algorithmic/Experiment)
 - Bab 08: +tabel perbandingan platform (RunPod/Colab Pro/Modal/Lambda) di Section 2.6
 - Bab 09: +panduan navigasi arXiv (kategori, ID paper, versi) di Section 2.1
-- Bab 00: +Section 5b (peta dependensi konsep antar bab), +Lab 1b dan Lab 5b di daftar lab
+- Bab 00: +Section 5b (peta dependensi konsep antar bab), +Lab 1b dan Lab 5b di daftar lab, +Komponen Mandiri di Kontrak Belajar (Section 4), +paragraf Komponen Mandiri di Section 5
+- Bab 02: +Komponen Mandiri (Pekan 4) - 3 jalur (Implementasi/Analisis/Desain) sebelum Refleksi
+- Bab 03: +Komponen Mandiri (Pekan 5) - 3 jalur sebelum Refleksi
+- Bab 04: +Komponen Mandiri (Pekan 7) - 3 jalur sebelum Refleksi
+- Bab 05: +Komponen Mandiri (Pekan 8) - 3 jalur sebelum Refleksi
+- Bab 06: +Komponen Mandiri (Pekan 9) - 3 jalur sebelum Refleksi
+- Bab 07: +Komponen Mandiri (Pekan 10) - 3 jalur sebelum Refleksi
+- Bab 08: +Komponen Mandiri (Pekan 11) - 3 jalur sebelum Refleksi
+- Bab 09: +Komponen Mandiri (Pekan 12) - 3 jalur + instruksi Refleksi Portofolio sebelum Refleksi
+- Rubrik (11): +Kompetensi 10 (Eksplorasi Mandiri & Komunikasi, 4 level), +baris bobot opsional 10% (*)
+- Lampiran (12): +C.6 Template Entri Portofolio, +C.7 Panduan Slot Presentasi 10 Menit, +index Section E diperbarui
 
 **Template repo perubahan:**
 - `src/train.py`: bug `warmup_epochs` diperbaiki - sekarang menggunakan `SequentialLR` dengan `LinearLR` warmup sebelum scheduler utama
@@ -45,6 +55,7 @@ Catatan: Bab 01 kini membangun fondasi konseptual berurutan - tensor masuk→kel
 - `notebooks/lab7_streamlit_demo.ipynb`: diisi penuh (aggregation plot, Streamlit template, Gradio annotation template)
 - `notebooks/lab1b_representasi.ipynb`: file baru, Lab 1b representasi fitur 3 strategi
 - `notebooks/lab5b_domain_teks.ipynb`: file baru, Lab 5b klasifikasi sentimen teks IndoNLU SmSA
+- `notebooks/portofolio_mandiri.ipynb`: file baru, portfolio running-log 8 entri (Pekan 4-12) + refleksi akhir semester; template entri per-bab dengan bagian Setup/Temuan/Kejutan/Yang-Akan-Diubah/Koneksi
 
 ## Template Repo (`template_repo/`)
 

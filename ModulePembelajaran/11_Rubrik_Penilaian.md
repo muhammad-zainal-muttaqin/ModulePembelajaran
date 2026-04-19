@@ -67,9 +67,12 @@ Bobot berikut adalah saran yang dapat disesuaikan dosen menurut fokus kelas. Tot
 | 8   | Platform & tool baru                 | 6%    |
 | 9   | Pengembangan mandiri                 | 10%   |
 | –   | **Capstone project**                 | 10%   |
+| 10  | Eksplorasi Mandiri & Komunikasi      | 10% (*) |
 
 
 Catatan: capstone dinilai **menggunakan rubrik yang sama**, tetapi dengan bobot tersendiri karena ia adalah integrasi lintas kompetensi. Rinciannya di bagian 5.
+
+(*) Kompetensi 10 bersifat opsional. Jika diaktifkan, dosen mendistribusikan ulang bobot agar total tetap 100% - misalnya mengurangi Capstone dari 10% ke 5% dan mengurangi dua kompetensi lain masing-masing 1%.
 
 Skor per kompetensi dihitung dari level yang dicapai: Novice = 50, Developing = 70, Proficient = 85, Masterpiece = 95. Nilai akhir = Σ(bobot × skor) ÷ 100.
 
@@ -176,6 +179,17 @@ Setiap baris di bawah adalah kompetensi; setiap kolom adalah level. Deskriptor d
 | Developing  | Membuat catatan terstruktur (masalah, kontribusi, metode, hasil, limitasi).                                                                                                                  |
 | Proficient  | Merumuskan pertanyaan lanjutan yang dapat dipalsukan; menulis pre-registration singkat sebelum eksperimen.                                                                                   |
 | Masterpiece | Menghubungkan dua/tiga paper untuk menemukan gap, mengusulkan eksperimen yang masuk akal untuk mengeksplorasi gap tersebut, mendiskusikan hasil yang mungkin *dan* alternatif penjelasannya. |
+
+
+### Kompetensi 10 - Eksplorasi Mandiri & Komunikasi
+
+
+| Level | Deskriptor |
+| --- | --- |
+| Novice | Mengerjakan Komponen Mandiri hanya karena diwajibkan; pilihan jalur tidak disertai alasan; presentasi hanya membacakan langkah-langkah yang dikerjakan tanpa refleksi. |
+| Developing | Memilih jalur dengan alasan singkat; dapat menjelaskan temuan; koneksi antar pekan belum terlihat dalam presentasi atau entri portofolio. |
+| Proficient | Pilihan jalur bermotivasi jelas (dikaitkan dengan *gap* skill atau pertanyaan riset sendiri); temuan disampaikan dengan konteks dan implikasi; portofolio menunjukkan perkembangan yang dapat dibaca orang lain. |
+| Masterpiece | Koneksi lintas pekan membentuk narasi belajar yang koheren; presentasi mengundang diskusi (mengajukan pertanyaan terbuka, mengakui ketidakpastian); portofolio dapat menjadi dokumentasi awal untuk proposal riset. |
 
 
 ---

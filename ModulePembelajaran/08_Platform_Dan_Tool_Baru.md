@@ -329,6 +329,22 @@ Target waktu: 3-4 jam hands-on + ~$3 biaya.
 
 ---
 
+## Komponen Mandiri (Pekan 11)
+
+**Konsep yang dilatih:** Menjalankan eksperimen di lingkungan *remote*, mengelola biaya GPU, menyinkronkan data dan *checkpoint* lintas mesin, serta mengadopsi platform baru secara mandiri dari dokumentasinya.
+
+Pilih **satu jalur** di bawah. Catat pilihan dan hasilnya di `notebooks/portofolio_mandiri.ipynb` pada entri Pekan 11. Di awal sesi Pekan 12, ada slot 10 menit untuk presentasi. Isi bagian "Koneksi": bagaimana pengalaman *remote training* ini mengubah asumsi tentang reproduksibilitas yang dibangun sejak Pekan 5?
+
+| Jalur | Fokus Skill | Tugas |
+|-------|-------------|-------|
+| **A - Implementasi** | Membangun dan menguji | Jalankan training yang sudah pernah dilakukan di platform *cloud* yang *berbeda* dari yang dibahas di Lab 8 - misalnya Google Colab Pro, Modal, atau Lambda Labs. Dokumentasikan: proses setup, kendala yang ditemui, biaya aktual, dan apakah hasilnya berbeda dari run lokal. |
+| **B - Analisis** | Mengamati dan menginterpretasi | *Benchmark* dua platform *cloud*: RunPod vs satu platform lain pilihan Anda. Buat tabel perbandingan: harga per jam, ketersediaan tipe GPU, kemudahan setup, kecepatan training aktual pada *workload* yang sama, dan dukungan *persistent storage*. Simpulkan untuk skenario kerja mana masing-masing lebih cocok. |
+| **C - Desain** | Merancang dan mengargumentasi | Rancang pipeline CI sederhana - bisa di GitHub Actions atau Gitea - yang menjalankan: *smoke test* training (`--dry-run`), verifikasi metadata *checkpoint* (seed, git_hash, config hadir), dan notifikasi ketika training di *cloud* selesai. Tulis file konfigurasi CI (`.yaml`) dan jelaskan setiap *trigger*. |
+
+**Deliverable:** Entri portofolio Pekan 11 terisi di `notebooks/portofolio_mandiri.ipynb`. Siap presentasi 10 menit di awal Pekan 12.
+
+---
+
 ## 6. Refleksi
 
 1. Tool apa yang akan Anda pelajari berikutnya (selain RunPod), dan mengapa? Tulis kriteria yang akan Anda pakai untuk memutuskan layak atau tidak mengalokasikan satu akhir pekan untuk menguasainya.

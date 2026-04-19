@@ -413,6 +413,22 @@ Tugas:
 
 ---
 
+## Komponen Mandiri (Pekan 7)
+
+**Konsep yang dilatih:** Memeriksa data sebelum mempercayai hasil - dari distribusi kelas hingga *leakage* tersembunyi dan kualitas label.
+
+Pilih **satu jalur** di bawah. Catat pilihan dan hasilnya di `notebooks/portofolio_mandiri.ipynb` pada entri Pekan 7. Di awal sesi Pekan 8, ada slot 10 menit untuk presentasi. Isi bagian "Koneksi": apakah temuan data ini mengubah cara Anda memandang eksperimen-eksperimen yang sudah dijalankan sebelumnya?
+
+| Jalur | Fokus Skill | Tugas |
+|-------|-------------|-------|
+| **A - Implementasi** | Membangun dan menguji | Pilih satu dataset klasifikasi dari HuggingFace (bukan PathMNIST). Jalankan 5-layer EDA: distribusi label, ukuran sampel, nilai hilang, duplikat, dan inspeksi sampel anomali. Laporkan satu temuan konkret yang akan mengubah cara Anda memakai dataset itu. |
+| **B - Analisis** | Mengamati dan menginterpretasi | Rancang dua skenario *leakage* hipotetis yang *tidak terdeteksi* oleh pipeline Lab 4: satu *leakage* pada split, satu pada fitur turunan. Untuk masing-masing, jelaskan mekanismenya, mengapa pipeline Lab 4 tidak menangkapnya, dan langkah tambahan apa yang diperlukan untuk mendeteksinya. |
+| **C - Desain** | Merancang dan mengargumentasi | Rancang protokol split untuk dataset yang memiliki ID entitas berulang - misalnya dataset medis dengan ID pasien atau dataset audio dengan ID pembicara. Tulis dua versi: versi yang mudah-tapi-salah (random split) dan versi yang benar. Buat argumen mengapa versi salah sering lolos tanpa disadari. |
+
+**Deliverable:** Entri portofolio Pekan 7 terisi di `notebooks/portofolio_mandiri.ipynb`. Siap presentasi 10 menit di awal Pekan 8.
+
+---
+
 ## 6. Refleksi
 
 1. Anda mewarisi proyek dari senior yang sudah pindah. Dataset siap, kode siap, akurasi test terlaporkan 91%. Apa tiga pemeriksaan pertama yang akan Anda lakukan sebelum *memakai ulang* angka 91% tersebut di laporan Anda sendiri?

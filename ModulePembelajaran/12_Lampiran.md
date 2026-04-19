@@ -385,6 +385,54 @@ Salin ke `docs/papers/<short_title>.md`. Format Bab 9.
 <Satu kalimat: mengapa paper ini relevan (atau tidak).>
 ```
 
+### C.6 Template Entri Portofolio Mandiri
+
+Salin satu blok ini ke sel markdown di `notebooks/portofolio_mandiri.ipynb` untuk setiap pekan. Isi tiap bagian dengan kalimat lengkap - hindari poin-poin kosong.
+
+```markdown
+## Entri Pekan <N> - Bab <XX>
+
+**Tanggal:** YYYY-MM-DD
+**Jalur yang dipilih:** A / B / C (lingkari salah satu)
+**Alasan memilih jalur ini:** <Satu kalimat: apa yang ingin Anda pelajari atau buktikan.>
+
+### Setup
+*Apa yang dikerjakan, tool/dataset/config yang dipakai, dan berapa lama.*
+
+### Temuan
+*Apa yang ditemukan. Sertakan angka, grafik, atau output kunci. Hindari "saya berhasil" tanpa angka.*
+
+### Kejutan
+*Apa yang tidak sesuai ekspektasi. Jika semua sesuai ekspektasi, tanyakan pada diri sendiri apakah ekspektasi awalnya cukup spesifik.*
+
+### Yang Akan Diubah
+*Jika mengulang eksperimen ini minggu depan, apa satu hal yang akan dilakukan berbeda dan mengapa.*
+
+### Koneksi ke Pekan Sebelumnya
+*Bagaimana pekerjaan pekan ini terhubung atau bertentangan dengan pekerjaan pekan lalu. Untuk Pekan 4 (entri pertama): tulis motivasi awal mengapa jalur ini dipilih.*
+```
+
+### C.7 Panduan Slot Presentasi Komponen Mandiri (10 Menit)
+
+Setiap awal sesi (mulai Pekan 5), ada slot 10 menit per orang untuk mempresentasikan Komponen Mandiri pekan sebelumnya. Panduan berikut membantu Anda menggunakan waktu secara efektif.
+
+**Struktur yang disarankan:**
+
+| Segmen | Durasi | Isi |
+| --- | --- | --- |
+| Setup | 2 menit | Jalur yang dipilih dan alasannya; apa yang ingin dibuktikan. |
+| Temuan | 5 menit | Hasil konkret (angka, grafik, kode); apa yang terkonfirmasi, apa yang tidak. |
+| Tanya jawab | 3 menit | Satu pertanyaan terbuka yang Anda ajukan ke audiens; atau satu hal yang masih membingungkan. |
+
+**Hal yang perlu disiapkan sebelum presentasi:**
+- [ ] Satu angka atau output konkret yang bisa ditunjukkan (bukan hanya narasi).
+- [ ] Satu pertanyaan terbuka atau satu hal yang masih belum jelas.
+- [ ] Entri portofolio Pekan N sudah terisi sebelum presentasi dimulai.
+
+**Hal yang tidak perlu disiapkan:**
+- Slide formal tidak diwajibkan - notebook terbuka sudah cukup.
+- Tidak perlu menampilkan seluruh kode; cukup bagian yang paling relevan dengan temuan.
+
 ---
 
 ## D. Ringkasan Cepat Empat Sikap Riset
@@ -453,6 +501,9 @@ Anda perlu pernah melatih setidaknya satu model klasifikasi dengan scikit-learn:
 - **Struktur config YAML?** → Bab 3 §2.3
 - **Adopsi repo eksternal dalam beberapa jam?** → Bab 6 §2.1-§2.3
 - **Verifikasi output LLM?** → Bab 5 §2.3
+- **Template entri portofolio mandiri?** → Lampiran §C.6
+- **Panduan presentasi Komponen Mandiri?** → Lampiran §C.7
+- **Rubrik Eksplorasi Mandiri & Komunikasi?** → [Rubrik Penilaian](11_Rubrik_Penilaian.md) §3 Kompetensi 10
 
 ---
 
