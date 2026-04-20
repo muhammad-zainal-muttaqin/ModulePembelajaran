@@ -41,7 +41,7 @@ export default function ModuleReader() {
       <div className="grid lg:grid-cols-[minmax(0,1fr)_16rem] xl:grid-cols-[minmax(0,1fr)_18rem] gap-10">
         <article className="min-w-0">
           <header className="mb-8 pb-6 border-b border-black/5 dark:border-white/5">
-            <div className="flex items-center gap-3 text-xs font-mono text-ink/60 dark:text-parchment/60 mb-3">
+            <div className="flex items-center gap-3 text-xs font-mono text-ink/70 dark:text-parchment/60 mb-3">
               <Link to="/modul" className="hover:underline">Modul</Link>
               <span aria-hidden="true">/</span>
               <span>Bab {chapter.id}</span>
@@ -76,11 +76,11 @@ export default function ModuleReader() {
             <div>
               {prev ? (
                 <Link to={`/modul/${prev.id}`} className="group card-link p-4">
-                  <div className="text-xs font-mono text-ink/60 dark:text-parchment/60">← Bab sebelumnya</div>
+                  <div className="text-xs font-mono text-ink/70 dark:text-parchment/60">← Bab sebelumnya</div>
                   <div className="font-serif font-semibold mt-1 group-hover:text-rigor dark:group-hover:text-curiosity">{prev.title}</div>
                 </Link>
               ) : (
-                <div className="rounded-xl border border-dashed border-black/10 dark:border-white/10 p-4 text-sm text-ink/50 dark:text-parchment/50">
+                <div className="rounded-xl border border-dashed border-black/10 dark:border-white/10 p-4 text-sm text-ink/70 dark:text-parchment/50">
                   Ini bab pertama.
                 </div>
               )}
@@ -88,11 +88,11 @@ export default function ModuleReader() {
             <div>
               {next ? (
                 <Link to={`/modul/${next.id}`} className="group card-link p-4 text-right">
-                  <div className="text-xs font-mono text-ink/60 dark:text-parchment/60">Bab berikutnya →</div>
+                  <div className="text-xs font-mono text-ink/70 dark:text-parchment/60">Bab berikutnya →</div>
                   <div className="font-serif font-semibold mt-1 group-hover:text-rigor dark:group-hover:text-curiosity">{next.title}</div>
                 </Link>
               ) : (
-                <div className="rounded-xl border border-dashed border-black/10 dark:border-white/10 p-4 text-sm text-ink/50 dark:text-parchment/50 text-right">
+                <div className="rounded-xl border border-dashed border-black/10 dark:border-white/10 p-4 text-sm text-ink/70 dark:text-parchment/50 text-right">
                   Ini bab terakhir.
                 </div>
               )}
@@ -101,27 +101,35 @@ export default function ModuleReader() {
         </article>
 
         <aside className="hidden lg:block no-print">
-          <div className="sticky top-20 max-h-[calc(100vh-6rem)] overflow-y-auto scrollbar-hidden">
-            <TableOfContents headings={headings} />
-            <div className="mt-6 pt-4 border-t border-black/10 dark:border-white/10">
-              <div className="text-xs font-mono text-ink/60 dark:text-parchment/60 mb-2">Semua bab</div>
-              <ul className="space-y-0.5 text-sm">
-                {CHAPTERS.map((c) => (
-                  <li key={c.id}>
-                    <Link
-                      to={`/modul/${c.id}`}
-                      className={`block px-2 py-1 rounded ${
-                        c.id === chapter.id
-                          ? "bg-rigor/10 dark:bg-rigor/20 text-rigor dark:text-curiosity font-medium"
-                          : "hover:bg-parchment dark:hover:bg-white/5 text-ink/75 dark:text-parchment/75"
-                      }`}
-                    >
-                      <span className="font-mono text-xs mr-2">{c.id}</span>
-                      {c.title}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
+          <div className="sticky top-20 max-h-[calc(100vh-6rem)] relative">
+            <div
+              className="h-full overflow-y-auto scrollbar-hidden pb-10"
+              style={{
+                maskImage: "linear-gradient(to bottom, black calc(100% - 2rem), transparent)",
+                WebkitMaskImage: "linear-gradient(to bottom, black calc(100% - 2rem), transparent)",
+              }}
+            >
+              <TableOfContents headings={headings} />
+              <div className="mt-6 pt-4 border-t border-black/10 dark:border-white/10">
+                <div className="text-xs font-mono text-ink/70 dark:text-parchment/60 mb-2">Semua bab</div>
+                <ul className="space-y-0.5 text-sm">
+                  {CHAPTERS.map((c) => (
+                    <li key={c.id}>
+                      <Link
+                        to={`/modul/${c.id}`}
+                        className={`block px-2 py-1 rounded ${
+                          c.id === chapter.id
+                            ? "bg-rigor/10 dark:bg-rigor/20 text-rigor dark:text-curiosity font-medium"
+                            : "hover:bg-parchment dark:hover:bg-white/5 text-ink/75 dark:text-parchment/75"
+                        }`}
+                      >
+                        <span className="font-mono text-xs mr-2">{c.id}</span>
+                        {c.title}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
           </div>
         </aside>

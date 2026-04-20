@@ -351,6 +351,8 @@ Pilih **satu jalur** di bawah. Catat pilihan dan hasilnya di `notebooks/portofol
 2. Pod Anda menyala 18 jam, training baru berjalan 6 jam - sisanya waktu debugging. Apa tiga perubahan konkret yang akan Anda terapkan di eksperimen berikutnya untuk menekan 12 jam menjadi 2 jam?
 3. Pembimbing bertanya, "Kenapa hasilmu berbeda dengan paper aslinya?" Anda menjalankan di A40, paper di 8× V100. Bagaimana Anda membedakan pengaruh perangkat keras (seed/non-determinisme dari cuDNN) dari pengaruh perbedaan hyperparameter? Susun pemeriksaan berurutan.
 
+4. **Koneksi ke Capstone.** Perhitungkan budget compute untuk Capstone Anda: estimasi total GPU-hour yang wajar, platform yang akan Anda pakai (Colab Pro / RunPod / Lambda / kampus), dan backup plan bila platform utama down menjelang deadline. Tuliskan angka konkret (biaya, jam) beserta asumsi yang Anda pakai - nanti bandingkan dengan realita setelah Capstone selesai.
+
 ---
 
 ## 7. Bacaan Lanjutan

@@ -41,6 +41,27 @@
     background: rgba(245, 158, 11, 0.25);
     color: inherit;
   }
+
+  a:focus-visible,
+  button:focus-visible,
+  summary:focus-visible,
+  [role="button"]:focus-visible,
+  input:focus-visible,
+  textarea:focus-visible,
+  select:focus-visible {
+    outline: 2px solid theme("colors.rigor.DEFAULT");
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+  .dark a:focus-visible,
+  .dark button:focus-visible,
+  .dark summary:focus-visible,
+  .dark [role="button"]:focus-visible,
+  .dark input:focus-visible,
+  .dark textarea:focus-visible,
+  .dark select:focus-visible {
+    outline-color: theme("colors.curiosity.DEFAULT");
+  }
 }
 
 @layer components {
@@ -63,10 +84,10 @@
     @apply text-sm font-mono text-rigor dark:text-curiosity mb-2;
   }
   .section-title {
-    @apply font-serif text-3xl md:text-4xl font-semibold tracking-tight mb-4;
+    @apply font-serif text-heading-1 font-semibold mb-4;
   }
   .card-title {
-    @apply font-serif text-2xl font-semibold;
+    @apply font-serif text-heading-2 font-semibold;
   }
   .card {
     @apply rounded-xl border border-black/10 dark:border-white/10 bg-white dark:bg-white/[0.03];
@@ -82,16 +103,16 @@
     @apply max-w-prose text-[17px] leading-[1.75];
   }
   .prose-modul h1 {
-    @apply text-4xl font-semibold mt-10 mb-6 tracking-tight;
+    @apply text-heading-1 font-semibold mt-10 mb-6;
   }
   .prose-modul h2 {
-    @apply text-2xl font-semibold mt-10 mb-4 tracking-tight scroll-mt-24;
+    @apply text-heading-2 font-semibold mt-10 mb-4 scroll-mt-24;
   }
   .prose-modul h3 {
-    @apply text-xl font-semibold mt-8 mb-3 scroll-mt-24;
+    @apply text-heading-3 font-semibold mt-8 mb-3 scroll-mt-24;
   }
   .prose-modul h4 {
-    @apply text-lg font-semibold mt-6 mb-2;
+    @apply text-heading-4 font-semibold mt-6 mb-2;
   }
   .prose-modul p {
     @apply my-4;

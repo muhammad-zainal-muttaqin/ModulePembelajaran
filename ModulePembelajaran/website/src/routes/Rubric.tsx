@@ -53,7 +53,7 @@ export default function Rubric() {
           </div>
           {avgScore !== null && (
             <div className="text-right">
-              <div className="text-xs font-mono text-ink/60 dark:text-parchment/60">Rata-rata</div>
+              <div className="text-xs font-mono text-ink/70 dark:text-parchment/60">Rata-rata</div>
               <div className="font-serif text-3xl font-semibold text-rigor dark:text-curiosity">{avgScore}</div>
             </div>
           )}
@@ -67,7 +67,7 @@ export default function Rubric() {
                 {LEVELS.map((l) => (
                   <th key={l.key} className="py-2 px-2 font-medium text-center">
                     {l.label}
-                    <div className="text-xs font-mono text-ink/50 dark:text-parchment/50 font-normal">{l.score}</div>
+                    <div className="text-xs font-mono text-ink/70 dark:text-parchment/50 font-normal">{l.score}</div>
                   </th>
                 ))}
                 <th className="py-2 pl-2 font-medium text-right">Reset</th>
@@ -82,7 +82,7 @@ export default function Rubric() {
                       <Link to={`/modul/${c.chapter}`} className="font-medium hover:underline">
                         {c.n}. {c.title}
                       </Link>
-                      <div className="text-xs font-mono text-ink/50 dark:text-parchment/50">Bab {c.chapter}</div>
+                      <div className="text-xs font-mono text-ink/70 dark:text-parchment/50">Bab {c.chapter}</div>
                     </td>
                     {LEVELS.map((l) => (
                       <td key={l.key} className="py-2 px-1 text-center align-middle">
@@ -105,7 +105,7 @@ export default function Rubric() {
                       <button
                         type="button"
                         onClick={() => setMastery(c.n, null)}
-                        className="text-xs text-ink/50 dark:text-parchment/50 hover:text-skepticism"
+                        className="text-xs text-ink/70 dark:text-parchment/50 hover:text-skepticism"
                         aria-label={`Hapus nilai ${c.title}`}
                       >
                         ×

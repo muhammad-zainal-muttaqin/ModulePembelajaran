@@ -68,7 +68,7 @@ export default function SearchDialog({ open, onClose }: Props) {
               setActiveIdx(0);
             }}
             placeholder="Cari di 13 bab modul..."
-            className="flex-1 bg-transparent outline-none text-base placeholder:text-ink/40 dark:placeholder:text-parchment/40"
+            className="flex-1 bg-transparent outline-none text-base placeholder:text-ink/55 dark:placeholder:text-parchment/40"
             aria-label="Kata kunci pencarian"
           />
           <kbd className="hidden sm:inline rounded border border-black/10 dark:border-white/20 px-1.5 text-xs font-mono">
@@ -78,12 +78,12 @@ export default function SearchDialog({ open, onClose }: Props) {
 
         <div className="max-h-[60vh] overflow-y-auto scrollbar-hidden">
           {query.trim() && results.length === 0 && (
-            <div className="px-4 py-8 text-center text-ink/60 dark:text-parchment/60">
+            <div className="px-4 py-8 text-center text-ink/70 dark:text-parchment/60">
               Tidak ada hasil untuk "{query}".
             </div>
           )}
           {!query.trim() && (
-            <div className="px-4 py-8 text-center text-ink/60 dark:text-parchment/60 text-sm">
+            <div className="px-4 py-8 text-center text-ink/70 dark:text-parchment/60 text-sm">
               Ketik kata kunci. Navigasi dengan <kbd className="font-mono">↑</kbd> <kbd className="font-mono">↓</kbd>, buka dengan <kbd className="font-mono">Enter</kbd>.
             </div>
           )}
@@ -102,7 +102,7 @@ export default function SearchDialog({ open, onClose }: Props) {
                       onClose();
                     }}
                   >
-                    <div className="flex items-center gap-2 text-xs text-ink/60 dark:text-parchment/60 mb-1">
+                    <div className="flex items-center gap-2 text-xs text-ink/70 dark:text-parchment/60 mb-1">
                       <span className="font-mono">Bab {r.chapterId}</span>
                       <span>·</span>
                       <span>{r.chapterTitle}</span>

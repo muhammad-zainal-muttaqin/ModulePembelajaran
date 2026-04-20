@@ -50,7 +50,7 @@ export default function ConfigDiff() {
         <p className="page-lead">
           Bandingkan <code className="font-mono">baseline.yaml</code> dengan <code className="font-mono">focal_freeze.yaml</code>. Baris berbeda di-highlight. Ini contoh config untuk satu run ablation.
         </p>
-        <div className="mt-3 text-sm text-ink/60 dark:text-parchment/60">
+        <div className="mt-3 text-sm text-ink/70 dark:text-parchment/60">
           {changedCount} baris berbeda dari {diff.length} total.
         </div>
       </header>
@@ -93,7 +93,7 @@ export default function ConfigDiff() {
             <div className="border-r border-black/10 dark:border-white/10">
               {diff.map((d, i) => (
                 <div key={`l-${i}`} className={`flex ${KIND_STYLE[d.kind]} min-h-[1.5rem]`}>
-                  <span className="px-2 py-0.5 text-ink/40 dark:text-parchment/40 select-none border-r border-black/5 dark:border-white/5 w-10 text-right shrink-0">
+                  <span className="px-2 py-0.5 text-ink/55 dark:text-parchment/40 select-none border-r border-black/5 dark:border-white/5 w-10 text-right shrink-0">
                     {i + 1}
                   </span>
                   <pre className="px-3 py-0.5 whitespace-pre-wrap break-all flex-1">{d.left || "\u00a0"}</pre>
@@ -103,7 +103,7 @@ export default function ConfigDiff() {
             <div>
               {diff.map((d, i) => (
                 <div key={`r-${i}`} className={`flex ${KIND_STYLE[d.kind]} min-h-[1.5rem]`}>
-                  <span className="px-2 py-0.5 text-ink/40 dark:text-parchment/40 select-none border-r border-black/5 dark:border-white/5 w-10 text-right shrink-0">
+                  <span className="px-2 py-0.5 text-ink/55 dark:text-parchment/40 select-none border-r border-black/5 dark:border-white/5 w-10 text-right shrink-0">
                     {i + 1}
                   </span>
                   <pre className="px-3 py-0.5 whitespace-pre-wrap break-all flex-1">{d.right || "\u00a0"}</pre>

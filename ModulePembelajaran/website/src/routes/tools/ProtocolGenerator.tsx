@@ -151,7 +151,7 @@ export default function ProtocolGenerator() {
                   className="w-full rounded-md border border-black/15 dark:border-white/15 bg-white dark:bg-white/5 p-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-rigor focus:border-transparent"
                 />
               )}
-              {f.help && <div className="text-xs text-ink/55 dark:text-parchment/55 mt-1">{f.help}</div>}
+              {f.help && <div className="text-xs text-ink/70 dark:text-parchment/55 mt-1">{f.help}</div>}
             </div>
           ))}
         </form>
@@ -159,7 +159,7 @@ export default function ProtocolGenerator() {
         <div className="lg:sticky lg:top-20 lg:self-start">
           <div className="card overflow-hidden">
             <div className="flex items-center justify-between px-4 py-3 border-b border-black/10 dark:border-white/10 bg-parchment/50 dark:bg-white/[0.04]">
-              <div className="text-xs font-mono text-ink/60 dark:text-parchment/60">{slug}.md</div>
+              <div className="text-xs font-mono text-ink/70 dark:text-parchment/60">{slug}.md</div>
               <div className="flex gap-2">
                 <button type="button" onClick={onCopy} className="btn-ghost text-xs">
                   {copied ? "Tersalin" : "Salin"}

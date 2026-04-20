@@ -35,7 +35,7 @@ export default function Labs() {
             <li key={c.id} className="card p-6">
               <div className="flex flex-wrap items-start justify-between gap-3">
                 <div>
-                  <div className="text-xs font-mono text-ink/60 dark:text-parchment/60">
+                  <div className="text-xs font-mono text-ink/70 dark:text-parchment/60">
                     Bab {c.id} · Minggu {c.weeks}
                   </div>
                   <div className="font-serif text-xl font-semibold mt-1">{c.labName}</div>
@@ -68,7 +68,7 @@ export default function Labs() {
                   </a>
                 </div>
               </div>
-              <div className="mt-3 text-xs font-mono text-ink/50 dark:text-parchment/50">
+              <div className="mt-3 text-xs font-mono text-ink/70 dark:text-parchment/50">
                 {nb}
               </div>
             </li>

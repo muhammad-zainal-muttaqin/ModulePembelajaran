@@ -77,6 +77,27 @@ export default function MarkdownRenderer({ markdown }: Props) {
               </div>
             );
           },
+          img({ src, alt, title, ...props }) {
+            const safeSrc = typeof src === "string" ? src : "";
+            let fallbackAlt = alt;
+            if (!fallbackAlt && safeSrc) {
+              const filename = safeSrc.split(/[\\/]/).pop() || "";
+              fallbackAlt = filename.replace(/\.[a-z0-9]+$/i, "").replace(/[-_]+/g, " ").trim();
+              if (import.meta.env?.DEV) {
+                console.warn(`[MarkdownRenderer] Image without alt text: ${safeSrc}`);
+              }
+            }
+            return (
+              <img
+                src={safeSrc}
+                alt={fallbackAlt || ""}
+                title={title}
+                loading="lazy"
+                decoding="async"
+                {...props}
+              />
+            );
+          },
         }}
       >
         {markdown}

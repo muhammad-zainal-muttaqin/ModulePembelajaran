@@ -70,9 +70,12 @@ export default function Home() {
 
       <section className="bg-rigor text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20 text-center">
-          <h2 className="font-serif text-3xl md:text-4xl font-semibold tracking-tight mb-4">
+          <h2 className="font-serif text-heading-1 font-semibold mb-4">
             Hari Kamis akan datang.
           </h2>
+          <p className="text-sm text-white/70 mb-4 max-w-2xl mx-auto">
+            <em>Callback dari hero: email dosen meminta hasil eksperimen pertama pada hari Kamis.</em>
+          </p>
           <p className="text-lg text-white/85 mb-8 max-w-2xl mx-auto leading-relaxed">
             Bukan dengan panik, tetapi dengan protokol, baseline, dan seed yang terkunci. Modul ini adalah tangga menuju ke sana.
           </p>

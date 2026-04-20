@@ -608,6 +608,8 @@ Pilih **satu jalur** di bawah. Catat pilihan dan hasilnya di `notebooks/portofol
 
 3. Dosen bertanya: "berapa angka akurasi persis untuk eksperimen focal_freeze_s42?" Anda membuka folder dan menemukan tiga checkpoint (epoch 10, 15, 20). Angka mana yang benar untuk dilaporkan, dan bagaimana Anda memutuskannya? Bagaimana kebiasaan ini sebaiknya ditulis di protokol?
 
+4. **Koneksi ke Capstone.** Capstone Bab 10 akan dinilai sebagian berdasar seberapa utuh folder `experiments/` Anda dapat dijalankan ulang oleh orang lain. Tuliskan satu paragraf "kontrak reproduksibilitas" untuk diri sendiri: bila seseorang hanya punya `config.yaml` + `commit_hash` dari run Anda, langkah apa yang harus mereka lakukan untuk mendapat angka yang sama? Poin mana yang paling mudah Anda lupa di tengah deadline Capstone?
+
 ---
 
 ## 7. Bacaan Lanjutan

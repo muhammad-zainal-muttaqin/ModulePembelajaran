@@ -122,7 +122,19 @@ Lab dalam modul ini bukan kumpulan latihan terpisah. Sembilan lab berbagi satu d
 
 Pada minggu 13–14, Anda menyelesaikan **capstone project** yang mengintegrasikan minimal enam kompetensi dan keempat sikap. Detail ada di `10_Capstone_Project.md`.
 
-Mulai Bab 02, setiap bab juga memiliki satu **Komponen Mandiri** - pilihan jalur eksplorasi mingguan (Implementasi, Analisis, atau Desain) yang Anda kerjakan secara independen dan catat di `notebooks/portofolio_mandiri.ipynb`. Portfolio ini berisi 8 entri (Pekan 4–12) dan ditutup dengan refleksi trajektori belajar pada akhir Pekan 12. Template entri dan panduan presentasi 10 menit ada di `12_Lampiran.md` bagian C.6 dan C.7.
+Mulai Bab 02, setiap bab juga memiliki satu **Komponen Mandiri** - pilihan jalur eksplorasi mingguan yang Anda kerjakan secara independen dan catat di `notebooks/portofolio_mandiri.ipynb`. Portfolio ini berisi 8 entri (Pekan 4–12) dan ditutup dengan refleksi trajektori belajar pada akhir Pekan 12. Template entri dan panduan presentasi 10 menit ada di `12_Lampiran.md` bagian C.6 dan C.7.
+
+**Tiga jalur yang tersedia tiap minggu:**
+
+| Jalur | Inti kegiatan | Contoh konkret | Artefak di portfolio |
+| --- | --- | --- | --- |
+| **Implementasi** | Menambah, mengubah, atau menguji kode pada repo eksperimen. | Tambah augmentasi baru, implementasikan scheduler yang belum ada, buat flag CLI untuk menukar komponen, tulis smoke test baru. | Cuplikan kode + angka benchmark sebelum/sesudah + 1 paragraf interpretasi. |
+| **Analisis** | Menyelidiki perilaku model, data, atau hasil yang sudah ada. | Confusion matrix per-kelas, saliency atau Grad-CAM, studi variansi antar-seed, audit contoh yang salah klasifikasi, EDA lapis kedua. | Visualisasi + 2–3 temuan spesifik + hipotesis turunan. |
+| **Desain** | Merancang eksperimen baru tanpa harus menjalankannya penuh. | Pre-registration eksperimen berikutnya, grid ablation yang belum dilakukan, rencana pengumpulan data tambahan, protokol evaluasi baru. | Protokol terstruktur (format Bab 02) + justifikasi hipotesis + estimasi biaya-waktu. |
+
+Anda tidak harus memilih jalur yang sama setiap minggu. Rotasi antar jalur justru menumbuhkan keempat sikap secara seimbang: *Implementasi* melatih Rigor dan Ownership, *Analisis* melatih Skepticism, *Desain* melatih Curiosity. Panduan memilih: pilih **Implementasi** saat ingin mendalami mekanika konsep minggu itu; **Analisis** saat hasil eksperimen mengejutkan atau belum meyakinkan; **Desain** saat Anda sudah punya pertanyaan tapi belum sempat menjalankannya.
+
+**Kriteria sukses per entri** (detail di Rubrik Kompetensi 10, Bab 11): bukti eksekusi jelas (kode commit, plot, atau dokumen), temuan dituliskan dengan skeptisisme sehat (apa yang *tidak* Anda yakini juga dicatat), dan koneksi eksplisit ke bab minggu itu. Entri yang hanya mengulang isi lab dinilai Novice; entri yang menunjukkan pilihan berdasarkan *gap* skill sendiri atau pertanyaan riset turunan dinilai Proficient.
 
 ---
 

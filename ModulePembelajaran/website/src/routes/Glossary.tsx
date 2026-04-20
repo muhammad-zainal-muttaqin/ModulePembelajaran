@@ -36,12 +36,12 @@ export default function Glossary() {
         />
       </div>
 
-      <div className="text-sm text-ink/60 dark:text-parchment/60 mb-3 font-mono">
+      <div className="text-sm text-ink/70 dark:text-parchment/60 mb-3 font-mono">
         {filtered.length} dari {GLOSSARY.length} istilah
       </div>
 
       {filtered.length === 0 ? (
-        <div className="rounded-xl border border-dashed border-black/10 dark:border-white/10 p-12 text-center text-ink/60 dark:text-parchment/60">
+        <div className="rounded-xl border border-dashed border-black/10 dark:border-white/10 p-12 text-center text-ink/70 dark:text-parchment/60">
           Tidak ada yang cocok dengan "{query}".
         </div>
       ) : (

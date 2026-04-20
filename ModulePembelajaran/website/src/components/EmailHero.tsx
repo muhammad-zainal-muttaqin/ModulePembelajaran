@@ -35,18 +35,18 @@ export default function EmailHero() {
                 <span className="w-2.5 h-2.5 rounded-full bg-curiosity/70" />
                 <span className="w-2.5 h-2.5 rounded-full bg-ownership/70" />
               </div>
-              <div className="text-xs text-ink/60 dark:text-parchment/60 ml-2 font-mono">Inbox - Kamis 10:47</div>
+              <div className="text-xs text-ink/70 dark:text-parchment/60 ml-2 font-mono">Inbox - Kamis 10:47</div>
             </div>
             <div className="p-6 font-serif">
-              <div className="text-xs text-ink/50 dark:text-parchment/50 uppercase tracking-wider mb-1">Dari</div>
+              <div className="text-xs text-ink/70 dark:text-parchment/50 uppercase tracking-wider mb-1">Dari</div>
               <div className="text-sm mb-3 font-sans">dosen.pembimbing@labdatascience.ac.id</div>
-              <div className="text-xs text-ink/50 dark:text-parchment/50 uppercase tracking-wider mb-1">Subjek</div>
+              <div className="text-xs text-ink/70 dark:text-parchment/50 uppercase tracking-wider mb-1">Subjek</div>
               <div className="text-base mb-5 font-sans font-medium">eksperimen minggu ini</div>
               <blockquote className="border-l-4 border-rigor pl-4 py-1 text-base md:text-lg italic leading-relaxed">
                 "Tolong coba ubah loss-nya jadi focal, lalu freeze conv1 pada backbone. Bandingkan dengan baseline. Saya butuh hasilnya hari Kamis."
               </blockquote>
               <div className="mt-6 flex items-center justify-between text-sm font-sans">
-                <span className="text-ink/60 dark:text-parchment/60">2 kalimat. 30 file Python. 1 paper.</span>
+                <span className="text-ink/70 dark:text-parchment/60">2 kalimat. 30 file Python. 1 paper.</span>
                 <span className="chip bg-skepticism-soft text-skepticism-deep dark:bg-skepticism/20 dark:text-skepticism">
                   7 hari
                 </span>

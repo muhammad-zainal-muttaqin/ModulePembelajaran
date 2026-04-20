@@ -89,7 +89,7 @@ export default function ReflectionPrompt({ chapterId }: Props) {
               location.reload();
             }
           }}
-          className="text-xs px-2 py-1 rounded text-ink/60 dark:text-parchment/60 hover:bg-black/5 dark:hover:bg-white/10"
+          className="text-xs px-2 py-1 rounded text-ink/70 dark:text-parchment/60 hover:bg-black/5 dark:hover:bg-white/10"
         >
           Kosongkan bab ini
         </button>

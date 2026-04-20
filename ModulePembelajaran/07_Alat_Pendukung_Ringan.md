@@ -306,6 +306,8 @@ Pilih **satu jalur** di bawah. Catat pilihan dan hasilnya di `notebooks/portofol
 2. Anda membuat plot yang menunjukkan varian Anda unggul 2% dari baseline dengan error bar yang nyaris beririsan. Apa cara paling jujur menceritakan hasil itu dalam satu paragraf - tidak overclaim, tidak underclaim?
 3. Mahasiswa lain memakai demomu dan terkesan. Ia bertanya apakah Anda berencana mempublikasikannya sebagai web app. Jawaban Anda seharusnya membedakan dua jenis pekerjaan - riset vs produk. Bagaimana Anda merumuskan perbedaannya secara singkat?
 
+4. **Koneksi ke Capstone.** Presentasi akhir Capstone kemungkinan meminta Anda mendemokan hasil. Tuliskan satu plot + satu demo Streamlit/Gradio minimal yang akan Anda siapkan sebagai *mandatory deliverable* Capstone, beserta kriteria "cukup jujur tapi tidak telanjang" untuk keduanya. Kriteria apa yang paling sulit Anda pertahankan ketika tekanan deadline muncul?
+
 ---
 
 ## 7. Bacaan Lanjutan

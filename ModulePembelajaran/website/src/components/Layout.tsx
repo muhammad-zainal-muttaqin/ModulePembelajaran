@@ -123,14 +123,14 @@ export default function Layout({ children }: { children: ReactNode }) {
 
         {menuOpen && (
           <div className="lg:hidden border-t border-black/5 dark:border-white/5 bg-cream dark:bg-charcoal">
-            <ul className="max-w-7xl mx-auto px-4 py-3 grid grid-cols-2 gap-1">
+            <ul className="max-w-7xl mx-auto px-4 py-3 grid grid-cols-2 gap-2">
               {NAV.slice(1).map((item) => (
                 <li key={item.to}>
                   <NavLink
                     to={item.to}
                     onClick={() => setMenuOpen(false)}
                     className={({ isActive }) =>
-                      `block px-3 py-2 rounded-md text-sm font-medium ${
+                      `flex items-center min-h-[48px] px-4 rounded-md text-sm font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rigor ${
                         isActive
                           ? "bg-rigor text-white"
                           : "hover:bg-parchment dark:hover:bg-white/10"
@@ -184,7 +184,7 @@ export default function Layout({ children }: { children: ReactNode }) {
             </ul>
           </div>
         </div>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 text-xs text-ink/60 dark:text-parchment/60 border-t border-black/5 dark:border-white/5">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 text-xs text-ink/70 dark:text-parchment/60 border-t border-black/5 dark:border-white/5">
           Dibuat dengan disiplin Rigor, semangat Curiosity, kewaspadaan Skepticism, dan tanggung jawab Ownership.
         </div>
       </footer>

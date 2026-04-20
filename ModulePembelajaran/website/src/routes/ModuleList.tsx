@@ -29,8 +29,8 @@ export default function ModuleList() {
                 className="group card-link hover:shadow-card p-6 h-full"
               >
                 <div className="flex items-start justify-between gap-2 mb-3">
-                  <span className="font-mono text-xs text-ink/60 dark:text-parchment/60">Bab {ch.id}</span>
-                  <span className="font-mono text-xs text-ink/60 dark:text-parchment/60">Minggu {ch.weeks}</span>
+                  <span className="font-mono text-xs text-ink/70 dark:text-parchment/60">Bab {ch.id}</span>
+                  <span className="font-mono text-xs text-ink/70 dark:text-parchment/60">Minggu {ch.weeks}</span>
                 </div>
                 <h2 className="font-serif text-xl font-semibold mb-1 group-hover:text-rigor dark:group-hover:text-curiosity transition-colors">
                   {ch.title}
@@ -45,7 +45,7 @@ export default function ModuleList() {
                     </span>
                   ))}
                 </div>
-                <div className="flex items-center justify-between text-xs text-ink/60 dark:text-parchment/60 pt-3 border-t border-black/5 dark:border-white/5">
+                <div className="flex items-center justify-between text-xs text-ink/70 dark:text-parchment/60 pt-3 border-t border-black/5 dark:border-white/5">
                   <span>{mins} min baca</span>
                   {ch.labName && <span>{ch.labName}</span>}
                 </div>

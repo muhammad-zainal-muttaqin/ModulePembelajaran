@@ -36,7 +36,7 @@ export default function LadderProgress({ interactive = false, compact = false }:
       {!compact && (
         <div className="flex items-baseline justify-between mb-4">
           <div>
-            <h3 className="font-serif text-2xl font-semibold">Tangga 14 Minggu</h3>
+            <h3 className="font-serif text-heading-2 font-semibold">Tangga 14 Minggu</h3>
             <p className="text-sm text-ink/70 dark:text-parchment/70 mt-1">
               Tiap anak tangga adalah satu minggu. Kebiasaan baru di-bangun berlapis.
             </p>
@@ -49,7 +49,7 @@ export default function LadderProgress({ interactive = false, compact = false }:
         </div>
       )}
 
-      <ol className="grid grid-cols-7 sm:grid-cols-14 gap-1.5">
+      <ol className="grid grid-cols-7 md:grid-cols-14 gap-1.5">
         {Array.from({ length: 14 }, (_, i) => i + 1).map((w) => {
           const chapterId = WEEK_MAP[w];
           const chapter = CHAPTERS.find((c) => c.id === chapterId);
@@ -77,7 +77,7 @@ export default function LadderProgress({ interactive = false, compact = false }:
                 </div>
               </div>
               {!compact && chapter && (
-                <span className="mt-1.5 text-[10px] font-mono text-ink/50 dark:text-parchment/50">
+                <span className="mt-1.5 text-[10px] font-mono text-ink/70 dark:text-parchment/50">
                   B{chapter.id}
                 </span>
               )}

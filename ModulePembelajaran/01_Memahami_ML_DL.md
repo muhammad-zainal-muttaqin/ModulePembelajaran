@@ -31,6 +31,17 @@
 
 Bab ini membekali Anda dengan kerangka pikir untuk membaca sistem ML/DL seperti seorang peneliti: membaca setiap masalah sebagai pasangan tensor input → output, mengenali empat keluarga arsitektur berdasarkan bentuk data tersebut, memahami peran layer sebagai transformasi representasi, membaca loss serta optimizer sebagai pilihan yang memiliki konsekuensi, mengenali tiga pilihan representasi fitur - *engineered*, *extracted*, *learned* - beserta keputusan turunannya, dan mendiagnosis masalah training dari pola loss curve. Setelah menyelesaikan bab ini, Anda dapat membuka repository riset dan menebak secara masuk akal mengapa arsitektur dan strategi representasi tertentu dipilih, bukan hanya menyebut namanya - dan ketika training bermasalah, Anda punya kerangka diagnosis untuk mencari penyebab.
 
+**Pembagian dua minggu.** Bab ini dirancang dua minggu penuh; jangan coba memadatkan keseluruhan section 2 ke satu pekan. Sebagai peta kasar:
+
+| Minggu | Fokus section | Deliverable akhir minggu |
+|--------|---------------|--------------------------|
+| Minggu 2 | 2.0 Tensor masuk-keluar, 2.1 Empat keluarga arsitektur, 2.2 Layer sebagai transformasi, 2.3 Loss sebagai pilihan | Lab 1 bagian baseline CNN berjalan, log parser dibaca |
+| Minggu 3 | 2.4 Optimizer, 2.5 Evaluasi, 2.6 Representasi fitur, 2.7 Diagnosis loss curve | Lab 1 penuh selesai; opsional Lab 1b representasi fitur |
+
+Section 2.7 (diagnosis loss curve) memang bisa terasa seperti bab tersendiri; itu disengaja - ia berfungsi sebagai jembatan ke Bab 03 (Eksperimen Reproduksibel) dan akan dirujuk kembali saat Anda membaca tensorboard run pertama Anda.
+
+**Lab ekstensi opsional.** Selain Lab 1 wajib, Bab ini menawarkan Lab 1b (`notebooks/lab1b_representasi.ipynb`) yang membandingkan tiga strategi representasi fitur *engineered*, *extracted*, *learned* pada dataset kecil. Ambil Lab 1b bila jadwal Minggu 3 longgar, atau tunda ke pekan refleksi.
+
 ---
 
 ## 1. Motivasi: Tiga Dataset di Meja Anda
@@ -181,7 +192,7 @@ Tabel di bawah menunjukkan bagaimana ketiga pilihan tampak di beberapa domain ya
 | Teks            | TF-IDF, n-gram, panjang kalimat              | `[CLS]` atau mean pooling dari BERT (frozen)   | BERT di-fine-tune untuk task hilir       |
 | Sinyal CGM      | Mean, CV, TIR, TBR, daily pattern            | Hidden states dari Chronos / TimesFM (frozen)  | 1D CNN / transformer dilatih dari nol    |
 | Audio           | MFCC, spectral centroid, ZCR                 | Embedding dari Wav2Vec2 / AST (frozen)         | CNN di atas spektrogram, end-to-end      |
-| Ulasan / review | Panjang teks, rasio kata positif, skor VADER | Sentence embedding dari Sentence Transformers  | Transformer fine-tuned untuk klasifikasi |
+| Ulasan / review | Panjang teks, rasio kata positif, skor VADER | Sentence embedding dari Sentence Transformers  | Transformer di-fine-tune untuk klasifikasi |
 
 
 Pilihan di antara ketiganya jarang hitam-putih. Setelah Anda memutuskan jalur utama, beberapa keputusan turunan segera mengikuti. Jika memakai model *pretrained*, apakah ia sepenuhnya dibekukan atau ikut di-*fine-tune*, dan jika hanya sebagian, layer mana yang dibuka? Layer awal umumnya menyimpan fitur umum (tepi, tekstur, *part-of-speech*) yang lebih aman diwariskan, sementara layer dalam berisi fitur yang lebih spesifik domain. Jika mengambil *hidden states* sebagai representasi, bagaimana cara mereduksinya menjadi satu vektor - token `[CLS]`, *mean pooling*, *attention pooling*, atau konkatenasi beberapa layer sekaligus? Dan akhirnya, apakah satu representasi tunggal cukup, atau lebih bijak menggabungkan *engineered* dan *extracted* sebagai ansambel untuk menangkap dua sudut pandang berbeda terhadap data yang sama?
@@ -395,6 +406,7 @@ Pertanyaan yang dijawab setelah lab: Pada dataset terbatas (500 sampel per kelas
 3. Saat Anda mengganti `CrossEntropyLoss` menjadi `FocalLoss`, apa saja variabel yang *secara implisit* juga berubah, walaupun Anda tidak menyentuhnya? (Petunjuk: pikirkan learning rate efektif, tekanan pada kelas minor, stabilitas awal training.) Bagaimana ini memengaruhi cara Anda merancang perbandingan?
 4. Seorang kolaborator mengirim dataset baru: rekaman suara tangisan bayi sepanjang tiga detik pada *sampling rate* 16 kHz, dilabeli empat kategori (lapar, mengantuk, tidak nyaman, kesakitan). Tuliskan pasangan tensor input → output yang paling alami menurut Anda, jelaskan mengapa bentuk tersebut paling cocok, lalu ajukan satu alternatif representasi input (misalnya mel-spektrogram 2D) yang mengubah bentuk tensor input. Diskusikan bagaimana perubahan bentuk tersebut menggeser pilihan keluarga arsitektur yang masuk akal dicoba pertama kali.
 5. Anda ditugaskan membangun klasifikasi kualitas biji kopi dari foto *close-up*. Dataset tersedia hanya 300 gambar per kelas untuk empat kelas. Bandingkan tiga strategi representasi - *engineered* (misalnya histogram warna + statistik tekstur), *extracted* (misalnya *hidden states* dari ViT pretrained yang dibekukan), dan *learned* (CNN kecil dilatih dari nol). Manakah yang paling masuk akal Anda coba terlebih dahulu dan mengapa? Pada titik penambahan data sejumlah berapa Anda akan mempertimbangkan berpindah strategi, dan apa bukti yang akan mendorong perpindahan itu?
+6. **Koneksi ke Capstone.** Saat Anda membuka bab 10 (Capstone), Anda akan diminta memilih topik dan membangun baseline dari repo riset nyata. Dari kerangka tensor input → output dan empat keluarga arsitektur di bab ini, bagian mana yang akan paling sering Anda pakai saat memilih baseline Capstone? Tuliskan satu kalimat yang menjawab: "Saat membaca repo Capstone nanti, pertanyaan pertama yang akan saya tanyakan ke diri sendiri adalah ...".
 
 ---
 

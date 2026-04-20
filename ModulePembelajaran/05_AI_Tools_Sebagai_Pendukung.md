@@ -29,7 +29,9 @@
 
 ## 0. Peta Bab
 
-Bab ini membahas cara memakai *large language model* - ChatGPT, Claude, Copilot, Cursor - dan asisten pemrograman lain untuk mempercepat kerja riset tanpa menyerahkan pemahaman dan tanggung jawab. Anda akan belajar memisahkan tugas yang cocok untuk LLM dari yang berbahaya dijadikan *outsource*, menulis *prompt* yang menghasilkan bantuan presisi, menjalankan protokol verifikasi yang memastikan setiap output dapat dipertanggungjawabkan, dan memakai LLM untuk tugas riset non-kode (membaca paper, mendiskusikan hipotesis, interpretasi awal). Bab ini juga mencakup Lab 5b yang memperkenalkan domain teks sebagai jembatan ke dunia di luar gambar. Setelah bab ini, Anda punya alur kerja yang memakai AI tools secara produktif tetapi memperkuat - bukan melemahkan - kemampuan teknis Anda sendiri.
+Bab ini membahas cara memakai *large language model* - ChatGPT, Claude, Copilot, Cursor - dan asisten pemrograman lain untuk mempercepat kerja riset tanpa menyerahkan pemahaman dan tanggung jawab. Anda akan belajar memisahkan tugas yang cocok untuk LLM dari yang berbahaya dijadikan *outsource*, menulis *prompt* yang menghasilkan bantuan presisi, menjalankan protokol verifikasi yang memastikan setiap output dapat dipertanggungjawabkan, dan memakai LLM untuk tugas riset non-kode (membaca paper, mendiskusikan hipotesis, interpretasi awal). Setelah bab ini, Anda punya alur kerja yang memakai AI tools secara produktif tetapi memperkuat - bukan melemahkan - kemampuan teknis Anda sendiri.
+
+**Lab ekstensi opsional.** Selain Lab 5 wajib (LLM-assisted implementation loop), Bab ini menawarkan Lab 5b (`notebooks/lab5b_domain_teks.ipynb`) - klasifikasi sentimen teks bahasa Indonesia memakai dataset IndoNLU SmSA. Lab 5b berfungsi sebagai jembatan ke dunia di luar gambar: Anda akan berlatih memindahkan kerangka tensor input → output dari domain visi (Bab 01) ke teks, dan melihat bagaimana LLM membantu memahami library NLP yang belum familiar. Ambil Lab 5b bila jadwal Pekan 8 longgar, atau tunda ke pekan refleksi akhir semester.
 
 ---
 
@@ -281,7 +283,28 @@ Jangan beri kode test.
 
 ### 3.3 Tahap 3: Membaca Output
 
-Misalkan output:
+Berikut transkrip nyata (disunting ringan) dari sesi Claude pada April 2026, menampilkan empat giliran percakapan - prompt awal, pertanyaan klarifikasi dari LLM, jawaban, dan output akhir. Pola ini lebih realistis daripada "satu prompt menghasilkan kode sempurna".
+
+<details>
+<summary>📝 Transkrip: 4 giliran, ~3 menit (klik untuk buka)</summary>
+
+> **Mahasiswa (giliran 1):**
+> [prompt di bagian 3.2 di-paste]
+>
+> **Claude (giliran 1):**
+> Sebelum saya tulis `mixup_batch`, ada dua keputusan yang memengaruhi kode: (a) Anda pakai `numpy.random` atau `torch.distributions` untuk sampling Beta? Untuk reproduksibilitas dengan `torch.manual_seed`, `torch.distributions.Beta` lebih aman. (b) `alpha=0.2` adalah default Zhang et al.; confirm atau Anda sedang eksperimen dengan nilai lain?
+>
+> **Mahasiswa (giliran 2):**
+> Torch saja. Alpha default 0.2. Saya juga sedang pakai `CrossEntropyLoss` standar PyTorch.
+>
+> **Claude (giliran 2):**
+> OK. Dengan `CrossEntropyLoss(reduction='mean')`, kombinasi `lam * loss_a + (1-lam) * loss_b` benar - loss tetap mean per-sample. Perhatikan: jika Anda pakai `label_smoothing > 0` di criterion, efek akan menumpuk dengan mixup (keduanya melembutkan target). Itu biasanya *tidak* masalah tetapi saya sebutkan jika Anda ingin membandingkan kontribusi tiap komponen.
+>
+> [kode di bawah adalah versi final setelah giliran 2]
+
+</details>
+
+Misalkan output (versi final setelah klarifikasi di atas):
 
 ```python
 def mixup_batch(x, y, alpha=0.2):
@@ -464,6 +487,8 @@ Pilih **satu jalur** di bawah. Catat pilihan dan hasilnya di `notebooks/portofol
 2. Anda diminta menulis paper pendek berdasarkan eksperimen di modul ini. Bagian mana dari tulisan itu *pantas* dibantu LLM, dan bagian mana *harus* ditulis sendiri? Berikan kriteria batas yang dapat Anda pakai di proyek lain.
 
 3. Dosen pembimbing bertanya tentang satu fungsi di kode Anda yang sebenarnya ditulis LLM. Anda tidak ingat detailnya. Apa langkah yang paling profesional dalam situasi ini, dan bagaimana melindungi diri dari situasi serupa di masa depan?
+
+4. **Koneksi ke Capstone.** Capstone akan memadatkan banyak kerja dalam 2 minggu; godaan untuk *outsource* ke LLM akan tinggi. Tuliskan "kontrak penggunaan LLM Capstone" untuk diri Anda sendiri: tiga jenis tugas yang *boleh* Anda delegasikan ke LLM, tiga jenis yang *tidak boleh*, dan format dokumentasi apa yang akan Anda pakai agar bisa menjawab pertanyaan dosen tentang bagian kode mana yang dibantu LLM.
 
 ---
 

@@ -39,6 +39,10 @@ export default {
       fontSize: {
         "display-lg": ["clamp(2.5rem, 6vw, 4.5rem)", { lineHeight: "1.05", letterSpacing: "-0.02em" }],
         "display": ["clamp(2rem, 4vw, 3rem)", { lineHeight: "1.1", letterSpacing: "-0.015em" }],
+        "heading-1": ["clamp(1.875rem, 3.5vw, 2.5rem)", { lineHeight: "1.15", letterSpacing: "-0.01em" }],
+        "heading-2": ["clamp(1.5rem, 2.5vw, 1.875rem)", { lineHeight: "1.2", letterSpacing: "-0.005em" }],
+        "heading-3": ["clamp(1.25rem, 2vw, 1.5rem)", { lineHeight: "1.3" }],
+        "heading-4": ["clamp(1.0625rem, 1.5vw, 1.25rem)", { lineHeight: "1.4" }],
       },
       maxWidth: {
         prose: "68ch",

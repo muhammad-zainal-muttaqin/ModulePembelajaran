@@ -18,7 +18,7 @@ export default function CompetencyGrid() {
                 <div className="font-medium text-sm leading-snug group-hover:text-rigor dark:group-hover:text-curiosity transition-colors">
                   {c.title}
                 </div>
-                <div className="mt-1 text-xs text-ink/60 dark:text-parchment/60 font-mono">
+                <div className="mt-1 text-xs text-ink/70 dark:text-parchment/60 font-mono">
                   Bab {c.chapter} · Minggu {c.weeks}
                 </div>
               </div>

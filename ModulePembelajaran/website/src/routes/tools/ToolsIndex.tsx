@@ -48,7 +48,7 @@ export default function ToolsIndex() {
               to={t.to}
               className={`group block h-full rounded-xl border-2 bg-white dark:bg-white/[0.03] p-6 transition-all ${t.color}`}
             >
-              <div className="text-xs font-mono text-ink/60 dark:text-parchment/60 mb-2">{t.tag}</div>
+              <div className="text-xs font-mono text-ink/70 dark:text-parchment/60 mb-2">{t.tag}</div>
               <div className="font-serif text-xl font-semibold mb-2 group-hover:text-rigor dark:group-hover:text-curiosity">
                 {t.title}
               </div>

@@ -81,15 +81,15 @@ export default function ProgressPage() {
 
       <div className="grid gap-4 sm:grid-cols-3 mb-12">
         <div className="card p-6">
-          <div className="text-xs font-mono text-ink/60 dark:text-parchment/60 uppercase tracking-wider">Minggu</div>
-          <div className="font-serif text-3xl font-semibold mt-1">{weekCount} <span className="text-base text-ink/50 dark:text-parchment/50">/ 14</span></div>
+          <div className="text-xs font-mono text-ink/70 dark:text-parchment/60 uppercase tracking-wider">Minggu</div>
+          <div className="font-serif text-3xl font-semibold mt-1">{weekCount} <span className="text-base text-ink/70 dark:text-parchment/50">/ 14</span></div>
         </div>
         <div className="card p-6">
-          <div className="text-xs font-mono text-ink/60 dark:text-parchment/60 uppercase tracking-wider">Kompetensi dinilai</div>
-          <div className="font-serif text-3xl font-semibold mt-1">{masteryFilled} <span className="text-base text-ink/50 dark:text-parchment/50">/ 9</span></div>
+          <div className="text-xs font-mono text-ink/70 dark:text-parchment/60 uppercase tracking-wider">Kompetensi dinilai</div>
+          <div className="font-serif text-3xl font-semibold mt-1">{masteryFilled} <span className="text-base text-ink/70 dark:text-parchment/50">/ 9</span></div>
         </div>
         <div className="card p-6">
-          <div className="text-xs font-mono text-ink/60 dark:text-parchment/60 uppercase tracking-wider">Bab berjurnal</div>
+          <div className="text-xs font-mono text-ink/70 dark:text-parchment/60 uppercase tracking-wider">Bab berjurnal</div>
           <div className="font-serif text-3xl font-semibold mt-1">{journalChapters.length}</div>
         </div>
       </div>
@@ -123,7 +123,7 @@ export default function ProgressPage() {
               <li key={c.n} className="py-3 flex items-center justify-between gap-3">
                 <div className="min-w-0">
                   <div className="font-medium text-sm">{c.n}. {c.title}</div>
-                  <div className="text-xs text-ink/60 dark:text-parchment/60 font-mono">Bab {c.chapter} · Minggu {c.weeks}</div>
+                  <div className="text-xs text-ink/70 dark:text-parchment/60 font-mono">Bab {c.chapter} · Minggu {c.weeks}</div>
                 </div>
                 <div className="shrink-0">
                   {lvl ? (
@@ -131,7 +131,7 @@ export default function ProgressPage() {
                       {LEVEL_LABEL[lvl]}
                     </span>
                   ) : (
-                    <span className="chip bg-parchment dark:bg-white/5 text-ink/60 dark:text-parchment/60">Belum dinilai</span>
+                    <span className="chip bg-parchment dark:bg-white/5 text-ink/70 dark:text-parchment/60">Belum dinilai</span>
                   )}
                 </div>
               </li>
@@ -159,7 +159,7 @@ export default function ProgressPage() {
                     className="card-link px-4 py-3"
                   >
                     <div className="font-medium text-sm">Bab {ch.id} - {ch.title}</div>
-                    <div className="text-xs text-ink/60 dark:text-parchment/60 mt-1">
+                    <div className="text-xs text-ink/70 dark:text-parchment/60 mt-1">
                       {filled} jawaban tersimpan
                     </div>
                   </Link>

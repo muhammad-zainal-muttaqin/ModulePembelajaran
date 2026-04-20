@@ -31,7 +31,7 @@ export default function AttitudeCard({ sikap }: Props) {
     >
       <div className="flex items-center gap-2 mb-3">
         <span className={`w-2.5 h-2.5 rounded-full ${DOT_MAP[sikap]}`} aria-hidden="true" />
-        <h3 className={`font-serif text-2xl font-semibold ${LABEL_MAP[sikap]}`}>
+        <h3 className={`font-serif text-heading-2 font-semibold ${LABEL_MAP[sikap]}`}>
           {meta.label}
         </h3>
       </div>
