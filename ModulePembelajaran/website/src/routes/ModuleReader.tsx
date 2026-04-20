@@ -101,35 +101,33 @@ export default function ModuleReader() {
         </article>
 
         <aside className="hidden lg:block no-print">
-          <div className="sticky top-20 max-h-[calc(100vh-6rem)] relative">
-            <div
-              className="h-full overflow-y-auto scrollbar-hidden pb-10"
-              style={{
-                maskImage: "linear-gradient(to bottom, black calc(100% - 2rem), transparent)",
-                WebkitMaskImage: "linear-gradient(to bottom, black calc(100% - 2rem), transparent)",
-              }}
-            >
-              <TableOfContents headings={headings} />
-              <div className="mt-6 pt-4 border-t border-black/10 dark:border-white/10">
-                <div className="text-xs font-mono text-ink/70 dark:text-parchment/60 mb-2">Semua bab</div>
-                <ul className="space-y-0.5 text-sm">
-                  {CHAPTERS.map((c) => (
-                    <li key={c.id}>
-                      <Link
-                        to={`/modul/${c.id}`}
-                        className={`block px-2 py-1 rounded ${
-                          c.id === chapter.id
-                            ? "bg-rigor/10 dark:bg-rigor/20 text-rigor dark:text-curiosity font-medium"
-                            : "hover:bg-parchment dark:hover:bg-white/5 text-ink/75 dark:text-parchment/75"
-                        }`}
-                      >
-                        <span className="font-mono text-xs mr-2">{c.id}</span>
-                        {c.title}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+          <div
+            className="sticky top-20 max-h-[calc(100vh-6rem)] overflow-y-auto overscroll-contain scrollbar-hidden pb-10"
+            style={{
+              maskImage: "linear-gradient(to bottom, black calc(100% - 2rem), transparent)",
+              WebkitMaskImage: "linear-gradient(to bottom, black calc(100% - 2rem), transparent)",
+            }}
+          >
+            <TableOfContents headings={headings} />
+            <div className="mt-6 pt-4 border-t border-black/10 dark:border-white/10">
+              <div className="text-xs font-mono text-ink/70 dark:text-parchment/60 mb-2">Semua bab</div>
+              <ul className="space-y-0.5 text-sm">
+                {CHAPTERS.map((c) => (
+                  <li key={c.id}>
+                    <Link
+                      to={`/modul/${c.id}`}
+                      className={`block px-2 py-1 rounded ${
+                        c.id === chapter.id
+                          ? "bg-rigor/10 dark:bg-rigor/20 text-rigor dark:text-curiosity font-medium"
+                          : "hover:bg-parchment dark:hover:bg-white/5 text-ink/75 dark:text-parchment/75"
+                      }`}
+                    >
+                      <span className="font-mono text-xs mr-2">{c.id}</span>
+                      {c.title}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
         </aside>

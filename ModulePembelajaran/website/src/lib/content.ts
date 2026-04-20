@@ -1,4 +1,5 @@
 // Load konten .md sumber via Vite `?raw`. Semua bundled di build; cukup cepat.
+import GithubSlugger from "github-slugger";
 import c00 from "../content/chapters/00_Pendahuluan.md?raw";
 import c01 from "../content/chapters/01_Memahami_ML_DL.md?raw";
 import c02 from "../content/chapters/02_Ide_Ke_Eksperimen.md?raw";
@@ -62,18 +63,12 @@ export function getAllChapters(): Record<string, string> {
 
 export type HeadingEntry = { depth: number; text: string; slug: string };
 
-function slugify(text: string): string {
-  return text
-    .toLowerCase()
-    .trim()
-    .replace(/[^\w\s-]/g, "")
-    .replace(/\s+/g, "-")
-    .replace(/-+/g, "-");
-}
-
+// Harus sama dengan `rehype-slug` agar klik ToC cocok dengan id heading.
+// rehype-slug memakai GithubSlugger (with occurrences) per dokumen.
 export function extractHeadings(md: string): HeadingEntry[] {
   const lines = md.split(/\r?\n/);
   const out: HeadingEntry[] = [];
+  const slugger = new GithubSlugger();
   let inFence = false;
   for (const line of lines) {
     if (/^```/.test(line)) {
@@ -85,7 +80,7 @@ export function extractHeadings(md: string): HeadingEntry[] {
     if (m) {
       const depth = m[1].length;
       const text = m[2].replace(/[`*_]/g, "").trim();
-      out.push({ depth, text, slug: slugify(text) });
+      out.push({ depth, text, slug: slugger.slug(text) });
     }
   }
   return out;
