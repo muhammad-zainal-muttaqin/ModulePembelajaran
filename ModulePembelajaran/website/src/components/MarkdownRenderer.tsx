@@ -43,6 +43,21 @@ export default function MarkdownRenderer({ markdown }: Props) {
             return <>{children}</>;
           },
           a({ href, children, ...props }) {
+            if (href && href.startsWith("#")) {
+              return (
+                <a
+                  href={href}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    const el = document.getElementById(href.slice(1));
+                    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+                  }}
+                  {...props}
+                >
+                  {children}
+                </a>
+              );
+            }
             const isExternal = href && /^https?:\/\//.test(href);
             return (
               <a

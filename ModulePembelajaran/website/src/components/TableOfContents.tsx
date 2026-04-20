@@ -36,6 +36,11 @@ export default function TableOfContents({ headings }: Props) {
           <li key={h.slug} className={h.depth === 3 ? "ml-3" : h.depth === 4 ? "ml-6" : ""}>
             <a
               href={`#${h.slug}`}
+              onClick={(e) => {
+                e.preventDefault();
+                const el = document.getElementById(h.slug);
+                if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+              }}
               className={`block -ml-px border-l-2 pl-3 py-1 transition-colors ${
                 activeSlug === h.slug
                   ? "border-rigor text-rigor dark:text-curiosity font-medium"
