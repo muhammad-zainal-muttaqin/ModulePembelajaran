@@ -1,0 +1,48 @@
+# LSTM + synthetic sine-wave configuration - Lab 3b companion run
+# One-step-ahead prediction on a noisy sine; demonstrates sequence modeling
+# after students have established reproducibility practice in Bab 03.
+
+experiment_name: lstm_timeseries
+
+seed: 42
+
+data:
+  name: sine_sequence
+  root: ./data
+  sequence_length: 50
+  num_train: 4000
+  num_val: 500
+  noise_std: 0.05
+  batch_size: 64
+  num_workers: 2
+
+model:
+  name: simple_lstm
+  input_size: 1
+  hidden_size: 64
+  num_layers: 1
+  num_classes: 1
+  dropout: 0.0
+  readout: last
+  freeze_until: null
+
+loss:
+  name: mse
+
+optim:
+  name: adamw
+  lr: 1.0e-3
+  weight_decay: 1.0e-5
+
+scheduler:
+  name: cosine
+  warmup_epochs: 1
+
+train:
+  epochs: 20
+  grad_clip: 1.0        # sequence models almost always need clipping
+  log_every: 50
+  save_every: 5
+
+output:
+  root: ./experiments

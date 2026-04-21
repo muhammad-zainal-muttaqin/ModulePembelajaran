@@ -44,6 +44,41 @@ Catatan: Bab 01 kini membangun fondasi konseptual berurutan - tensor masuk→kel
 - Rubrik (11): +Kompetensi 10 (Eksplorasi Mandiri & Komunikasi, 4 level), +baris bobot opsional 10% (*)
 - Lampiran (12): +C.6 Template Entri Portofolio, +C.7 Panduan Slot Presentasi 10 Menit, +index Section E diperbarui
 
+**Breadth Arsitektur NN (penambahan untuk alignment tujuan "NN general, intermediate"):**
+
+Tujuan penambahan: modul melatih breadth lima keluarga arsitektur NN (MLP, CNN, RNN/LSTM, Transformer, Autoencoder), bukan hanya CNN.
+
+- Bab 01: +Section 2.0b (MLP dan Backpropagation - derivasi chain rule 7-langkah untuk MSE+sigmoid, intuisi universal approximation, jembatan ke CNN/RNN/Transformer), +Section 2.2 subsection (BatchNorm vs LayerNorm vs GroupNorm tabel + ReLU/GELU/SiLU kurva)
+- Bab 03: +tautan Lab 3b (RNN vs LSTM) di Section 5 sebagai breadth lab
+- Bab 06: +tautan Lab 6b (Transformer-mini dari nol) di Section 5 sebagai breadth lab
+- Bab 07: +tautan Lab 7b (Autoencoder + denoising AE + t-SNE bottleneck) di Section 5 sebagai breadth lab
+- Bab 09: +Section 2.7 (Peta Keluarga Model Generatif - tabel VAE/GAN/Diffusion/Normalizing Flow dengan paper pointers; tidak ada implementasi, peta mental saja)
+- Bab 10: +Template D (LSTM vs Transformer sequence forecasting ETTh1) dan Template E (Autoencoder representation learning + linear probe)
+- Bab 00: +Kontrak Belajar klausul "Keenam - Breadth Check" (lulus dengan forward pass 4 dari 5 keluarga), +Lab 1c/3b/6b/7b di daftar lab Section 5, +Jalur 4 "Arsitektur Baru" di Komponen Mandiri, +rantai lab breadth di Section 5b
+- Rubrik (11): Kompetensi 1 diperluas lintas 4 level dengan deskriptor breadth; bobot Kompetensi 1: 12%→14%, Kompetensi 7: 6%→4%
+- Lampiran (12): +A.1 entri glosarium (MLP, LSTM cell, GRU, attention, multi-head attention, positional encoding, encoder/decoder, autoencoder, bottleneck, reconstruction loss, latent space, VAE, GAN, diffusion model), +C.8 Template Lab Replikasi Arsitektur untuk Jalur 4
+
+**Lab breadth baru (`template_repo/notebooks/`):**
+- `lab1c_mlp_numpy.ipynb`: MLP 2-layer dari nol dengan numpy (forward, backward manual 7-langkah, finite-difference gradient check, SGD), parity check dengan `SimpleMLP` PyTorch
+- `lab3b_sequence_lstm.ipynb`: sine+noise one-step-ahead regression, RNN vanilla vs LSTM gradient flow (log-plot vanishing gradient), training dengan grad clipping, visualisasi prediksi
+- `lab6b_transformer_mini.ipynb`: `scaled_dot_product_attention` dari nol, `SingleHeadAttention`, `TinyBlock` (pre-norm LN + GELU FFN), parity check vs `nn.TransformerEncoderLayer`, toy sequence classifier
+- `lab7b_autoencoder.ipynb`: convolutional AE CIFAR-10 unsupervised, rekonstruksi visual, t-SNE bottleneck 32-dim, denoising AE variant, peta ke VAE/GAN/Diffusion
+
+**Arsitektur baru di `template_repo/src/models.py`:**
+- `SimpleMLP(input_dim, hidden_sizes, num_classes, dropout, activation)` - support Lab 1c dan tabular
+- `SimpleLSTM(input_size, hidden_size, num_layers, num_classes, dropout, readout)` - support Lab 3b, readout "last" atau "all"
+- `TransformerMini(vocab_size, d_model, nhead, num_layers, dim_feedforward, max_len, num_classes, dropout)` - support Lab 6b, pakai `nn.TransformerEncoder` + `_PositionalEncoding`
+- `SimpleAutoencoder(image_channels, bottleneck_dim)` - support Lab 7b, method `encode`/`decode`/`forward`
+- `build_model(cfg)` extended: `simple_cnn`, `simple_mlp`, `simple_lstm`, `transformer_mini`, `simple_ae`
+- `apply_freeze` raises ValueError untuk non-SimpleCNN
+
+**Config baru di `template_repo/configs/`:** `mlp_mnist.yaml`, `lstm_timeseries.yaml`, `transformer_mini.yaml`, `ae_cifar.yaml`.
+
+**Loader baru di `template_repo/src/data.py`:**
+- `mnist` (flattened untuk MLP)
+- `sine_sequence` (sintetis sine + noise untuk RNN/LSTM/Transformer sequence)
+- `cifar10_unlabeled` (CIFAR-10 untuk AE unsupervised, label masih dikeluarkan loader hanya untuk t-SNE coloring)
+
 **Template repo perubahan:**
 - `src/train.py`: bug `warmup_epochs` diperbaiki - sekarang menggunakan `SequentialLR` dengan `LinearLR` warmup sebelum scheduler utama
 - `docs/prereg_template.md`: file baru, template pre-registration lengkap

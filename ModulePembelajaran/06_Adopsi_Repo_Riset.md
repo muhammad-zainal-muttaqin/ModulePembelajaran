@@ -518,6 +518,14 @@ Tugas:
 - Commit history kecil dan bermakna (minimal 4 commit terpisah).
 - Draft PR description mencakup motivasi, perubahan, pemakaian, reproduksi.
 
+### Lab 6b (breadth) - Transformer-Mini dari Nol
+
+Buka [Lab 6b - Transformer-Mini dari Nol](template_repo/notebooks/lab6b_transformer_mini.ipynb). Setelah Anda paham cara membaca repo eksternal, langkah berikutnya adalah paham arsitektur yang paling sering Anda temui di repo riset modern: **Transformer**. Lab ini menyuruh Anda menulis ulang komponen intinya dari nol.
+
+Fokus: (1) implementasi *scaled dot-product attention* dengan tensor ops (tanpa `nn.MultiheadAttention`); (2) satu Transformer encoder block dengan LayerNorm pre-norm, FFN GELU, dan *residual*; (3) parity check terhadap `nn.TransformerEncoderLayer` PyTorch untuk memverifikasi shape dan skala output yang konsisten; (4) training ringan pada tugas *toy sequence classification* agar block terbukti bisa belajar.
+
+Bila Anda pernah membaca kode Transformer di Hugging Face atau `fairseq` dan merasa terhalang oleh abstraksi, lab ini membuat Anda melihat balok-balok fondasinya dalam bentuk paling minimal. Estimasi 4-5 jam.
+
 ---
 
 ## Komponen Mandiri (Pekan 9)

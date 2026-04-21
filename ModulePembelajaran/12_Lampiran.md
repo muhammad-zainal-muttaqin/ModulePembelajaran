@@ -46,6 +46,20 @@ Istilah teknis ML/DL sebagian besar berasal dari Bahasa Inggris. Glosarium ini m
 | pretrained model       | model pralatih / pretrained model | "Pretrained" sering dipakai apa adanya.             |
 | fine-tuning            | fine-tuning / penyesuaian lanjut  | "Fine-tuning" lebih dipahami.                       |
 | embedding              | embedding / representasi vektor   | "Embedding" tidak perlu diterjemahkan.              |
+| perceptron multilayer  | multilayer perceptron / MLP       | Singkat: MLP. Arsitektur *feed-forward* dasar.       |
+| sel LSTM               | LSTM cell                         | Nama diri. Varian RNN dengan gate.                   |
+| GRU                    | GRU / Gated Recurrent Unit        | Nama diri. Varian RNN lebih ringkas dari LSTM.       |
+| mekanisme atensi       | attention mechanism               | "Atensi" dipakai; "mekanisme atensi" lebih jelas.    |
+| atensi multi-kepala    | multi-head attention              | Nama diri. Sering disingkat MHA.                     |
+| encoding posisi        | positional encoding               | Tidak wajib diterjemahkan.                           |
+| encoder / decoder      | encoder / decoder                 | Tidak diterjemahkan.                                 |
+| autoencoder            | autoencoder / AE                  | Nama diri. Encoder + decoder yang dilatih rekonstruksi. |
+| bottleneck             | bottleneck                        | Tidak diterjemahkan. Lapisan sempit di tengah AE.    |
+| kerugian rekonstruksi  | reconstruction loss               | Biasanya MSE atau BCE antara input dan output AE.    |
+| ruang laten            | latent space / latent representation | "Ruang laten" dipakai di akademik.                |
+| variational autoencoder | variational autoencoder / VAE    | Nama diri, jangan diterjemahkan.                     |
+| generative adversarial network | generative adversarial network / GAN | Nama diri, jangan diterjemahkan.              |
+| model difusi           | diffusion model                   | Nama diri. "Model diffusion" juga umum.              |
 
 
 ### A.2 Pelatihan
@@ -432,6 +446,43 @@ Setiap awal sesi (mulai Pekan 5), ada slot 10 menit per orang untuk mempresentas
 **Hal yang tidak perlu disiapkan:**
 - Slide formal tidak diwajibkan - notebook terbuka sudah cukup.
 - Tidak perlu menampilkan seluruh kode; cukup bagian yang paling relevan dengan temuan.
+
+### C.8 Template Lab Replikasi Arsitektur (Jalur 4 - Arsitektur Baru)
+
+Jalur ini dipilih saat Anda ingin mempelajari satu keluarga arsitektur NN yang *belum* di-cover lab wajib minggu itu. Tujuan: forward pass bekerja pada *toy task*, bukan state-of-the-art. Template di bawah mengikuti pola pelaporan yang sama dengan template entri portofolio (C.6), dengan tambahan bagian spesifik untuk replikasi arsitektur.
+
+```markdown
+## Entri Arsitektur - Pekan <N>
+
+**Arsitektur dipilih:** <nama; mis. "GRU", "Multi-Head Attention 4-head", "VAE"> 
+**Referensi utama:** <1-2 paper atau blog post; tulis DOI/arXiv ID bila ada>
+**Toy task:** <deskripsi singkat dataset dan target; mis. "klasifikasi sequence biner panjang 16">
+
+### 1. Apa yang dilakukan arsitektur ini, dalam 3 kalimat
+*Jelaskan input→output dan ide inti yang membedakannya dari arsitektur terdekat yang sudah Anda kenal. Untuk GRU: jelaskan beda dengan LSTM. Untuk VAE: jelaskan beda dengan AE biasa.*
+
+### 2. Implementasi minimal
+*Cuplikan kode forward pass (20-40 baris) yang cukup untuk dibaca tanpa scrolling. Gunakan torch tensor ops atau library primitives; hindari menyalin utuh dari repo eksternal tanpa pemahaman.*
+
+### 3. Sanity check
+- [ ] Output shape sesuai yang diharapkan.
+- [ ] Backward pass jalan (tidak ada tensor yang *detached*).
+- [ ] Parameter yang seharusnya dilatih muncul di `.parameters()`.
+
+### 4. Learning curve pada toy task
+*Satu plot (loss vs epoch atau metrik sukses). Maksimal 10-30 epoch. Tujuan: membuktikan arsitektur bisa belajar sesuatu, bukan mengejar akurasi tinggi.*
+
+### 5. Perbandingan dengan arsitektur yang sudah dipelajari
+*1-2 paragraf. Kapan arsitektur baru ini lebih cocok? Kapan lebih boros (parameter, waktu, memori)? Apakah Anda bisa membayangkan dataset di lab yang akan memberi keuntungan nyata bagi arsitektur ini?*
+
+### 6. Pertanyaan yang muncul
+*Satu pertanyaan yang Anda ingin kejar minggu depan (dapat memicu jalur Implementasi atau Analisis di entri portofolio berikutnya).*
+```
+
+**Kriteria sukses Jalur 4:**
+- Arsitektur dibangun dengan kode yang Anda pahami (bukan copy-paste utuh). Acceptable: menyalin struktur umum, mengetik ulang dan memodifikasi sendiri. Unacceptable: menempel modul utuh dari Hugging Face tanpa bisa menjelaskan perannya.
+- Learning curve menunjukkan loss menurun atau metrik sukses meningkat. Arsitektur yang stagnan *juga* dilaporkan - sebutkan hipotesis Anda tentang kenapa (mis. "hyperparameter tidak di-tune", "toy task terlalu mudah").
+- Koneksi eksplisit ke arsitektur yang sudah di-cover lab wajib. Tidak cukup menulis "GRU lebih ringan dari LSTM"; tulis "GRU saya kurang 1 gate dibanding LSTM, dan parameter berkurang ~25%, tapi pada toy task ini akurasi hampir sama".
 
 ---
 

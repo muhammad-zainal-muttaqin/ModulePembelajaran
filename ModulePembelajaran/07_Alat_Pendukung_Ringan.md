@@ -282,6 +282,12 @@ Hasil: aplikasi 120 baris, jalan lokal, cukup baik untuk dua bulan ke depan. Tid
 
 Target waktu: 4-6 jam. Ingat aturan batas: berhenti ketika aplikasi *berguna*, bukan *sempurna*.
 
+**Lab 7b (breadth) - Autoencoder dan Embedding.** Buka [Lab 7b - Autoencoder dan Embedding](template_repo/notebooks/lab7b_autoencoder.ipynb). Autoencoder masuk di bab *alat pendukung* karena perannya sebagai **alat inspeksi representasi**: Anda melatihnya unsupervised, lalu memakai ruang bottleneck untuk melihat apakah ada cluster semantik di data Anda tanpa perlu label.
+
+Fokus: (1) convolutional autoencoder pada CIFAR-10 unsupervised, dengan rekonstruksi visual; (2) visualisasi ruang bottleneck 32-dim dengan t-SNE, warnai berdasarkan label (hanya untuk inspeksi, tidak dipakai di training); (3) varian *denoising autoencoder* - input dirusak Gaussian noise, target tetap bersih - biasanya menghasilkan embedding yang lebih robust; (4) peta singkat ke keluarga generatif (VAE, GAN, Diffusion) yang dibahas di Bab 09 Section 2.7.
+
+AE adalah pintu masuk paling lembut ke *representation learning*. Setelah Anda bisa membaca t-SNE dari bottleneck, Anda sudah punya satu alat diagnostik baru untuk setiap dataset baru yang Anda jumpai. Estimasi 3-4 jam.
+
 ---
 
 ## Komponen Mandiri (Pekan 10)

@@ -57,13 +57,13 @@ Bobot berikut adalah saran yang dapat disesuaikan dosen menurut fokus kelas. Tot
 
 | #   | Kompetensi                           | Bobot |
 | --- | ------------------------------------ | ----- |
-| 1   | Memahami sistem ML/DL praktis        | 12%   |
+| 1   | Memahami sistem ML/DL praktis        | 14%   |
 | 2   | Menerjemahkan ide menjadi eksperimen | 12%   |
 | 3   | Eksperimen reproduksibel             | 14%   |
 | 4   | Validasi data & pra-pemrosesan       | 12%   |
 | 5   | AI tools sebagai pendukung           | 8%    |
 | 6   | Adopsi repository riset              | 10%   |
-| 7   | Alat pendukung ringan                | 6%    |
+| 7   | Alat pendukung ringan                | 4%    |
 | 8   | Platform & tool baru                 | 6%    |
 | 9   | Pengembangan mandiri                 | 10%   |
 | –   | **Capstone project**                 | 10%   |
@@ -87,10 +87,10 @@ Setiap baris di bawah adalah kompetensi; setiap kolom adalah level. Deskriptor d
 
 | Level       | Deskriptor                                                                                                                                                            |
 | ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Novice      | Menyebut nama arsitektur dan loss, tetapi ragu saat diminta memilih untuk kasus tertentu.                                                                             |
-| Developing  | Memilih arsitektur/loss yang umum untuk jenis data tertentu (CNN untuk gambar, cross-entropy untuk klasifikasi), menjelaskan alasan singkat.                          |
-| Proficient  | Membaca pasangan tensor input → output langsung dari kode atau deskripsi arsitektur yang belum dikenal dalam beberapa menit. Membandingkan dua pilihan arsitektur/loss untuk satu kasus, menjelaskan trade-off (mis. focal loss pada kelas imbalance). Menjelaskan peran layer dalam representasi dan membedakan tiga strategi representasi (engineered / extracted / learned) dengan alasan pemilihan yang jelas. |
-| Masterpiece | Merumuskan pilihan arsitektur, loss, atau strategi representasi yang tidak standar untuk dataset atau constraint yang tidak biasa, menjelaskan mengapa pilihan umum tidak cocok, dan mengargumentasikan kombinasi representasi (mis. engineered + extracted sebagai ansambel) yang tidak disebut eksplisit di modul. |
+| Novice      | Menyebut nama arsitektur dan loss, tetapi ragu saat diminta memilih untuk kasus tertentu. Mengenali CNN dan MLP dari *worked example*, tidak bisa mengimplementasinya secara manual, dan belum pernah menjalankan forward pass untuk keluarga RNN, Transformer, atau Autoencoder. |
+| Developing  | Memilih arsitektur/loss yang umum untuk jenis data tertentu (CNN untuk gambar, cross-entropy untuk klasifikasi), menjelaskan alasan singkat. Bisa mengimplementasi forward pass MLP **atau** CNN dari nol (salah satu, tidak keduanya). Mengenali arsitektur RNN/LSTM dan Transformer ketika membaca kode, tetapi belum bisa menulis sendiri blok intinya. |
+| Proficient  | Membaca pasangan tensor input → output langsung dari kode atau deskripsi arsitektur yang belum dikenal dalam beberapa menit. Membandingkan dua pilihan arsitektur/loss untuk satu kasus, menjelaskan trade-off (mis. focal loss pada kelas imbalance). Menjelaskan peran layer dalam representasi dan membedakan tiga strategi representasi (engineered / extracted / learned) dengan alasan pemilihan yang jelas. **Breadth arsitektur:** mengimplementasi *forward + backward* MLP 2-layer manual (Lab 1c), memakai RNN/LSTM (Lab 3b) dan Transformer encoder block (Lab 6b) dari library dengan memahami parameter-nya, memvisualisasikan embedding autoencoder dan membaca cluster t-SNE (Lab 7b). |
+| Masterpiece | Merumuskan pilihan arsitektur, loss, atau strategi representasi yang tidak standar untuk dataset atau constraint yang tidak biasa, menjelaskan mengapa pilihan umum tidak cocok, dan mengargumentasikan kombinasi representasi (mis. engineered + extracted sebagai ansambel) yang tidak disebut eksplisit di modul. **Breadth arsitektur:** mengimplementasi *scaled dot-product attention* dari nol, menjelaskan trade-off MLP vs CNN vs RNN vs Transformer untuk jenis data yang belum pernah dijumpai modul, membaca paper dari keluarga generatif (VAE/GAN/Diffusion) dan meringkas arsitekturnya dalam 5 menit. |
 
 
 ### Kompetensi 2 - Menerjemahkan Ide Menjadi Eksperimen

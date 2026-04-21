@@ -29,7 +29,7 @@
 
 ## 0. Peta Bab
 
-Bab ini memandu Anda menyusun proyek capstone 4 minggu yang mengintegrasikan minimal enam dari sembilan kompetensi modul dan memperlihatkan keempat sikap riset - *curiosity*, *rigor*, *skepticism*, *ownership* - dalam satu karya yang padat. Anda akan memilih satu dari tiga template proyek yang telah diuji kompleksitasnya, mengikuti timeline mingguan yang realistis, dan menghasilkan tiga *deliverable* yang dapat dievaluasi: repository lengkap, laporan 6-8 halaman, serta demo yang bisa diklik. Bab ini sekaligus menjelaskan kriteria penerimaan capstone, cara memetakan pekerjaanmu ke rubrik Bab 11, dan batasan sehat yang menjaga proyek tetap selesai tepat waktu alih-alih "hampir selesai" dengan kualitas yang meragukan.
+Bab ini memandu Anda menyusun proyek capstone 4 minggu yang mengintegrasikan minimal enam dari sembilan kompetensi modul dan memperlihatkan keempat sikap riset - *curiosity*, *rigor*, *skepticism*, *ownership* - dalam satu karya yang padat. Anda akan memilih satu dari lima template proyek yang telah diuji kompleksitasnya (tiga keluarga visi/teks supervised plus dua keluarga sequence dan representation learning), mengikuti timeline mingguan yang realistis, dan menghasilkan tiga *deliverable* yang dapat dievaluasi: repository lengkap, laporan 6-8 halaman, serta demo yang bisa diklik. Bab ini sekaligus menjelaskan kriteria penerimaan capstone, cara memetakan pekerjaanmu ke rubrik Bab 11, dan batasan sehat yang menjaga proyek tetap selesai tepat waktu alih-alih "hampir selesai" dengan kualitas yang meragukan.
 
 ---
 
@@ -61,7 +61,7 @@ Proyek capstone harus memenuhi empat kriteria sekaligus. Proyek yang mengorbanka
 
 ### 2.2 Tiga Template Proyek
 
-Tiga proyek berikut telah diuji: kompleksitasnya cocok untuk mahasiswa S1 di 4 minggu, alat dan dataset tersedia publik dan cukup ringan, serta masing-masing secara alamiah memakai lebih dari enam kompetensi. Pilih satu - atau ajukan proyek sendiri yang memenuhi empat kriteria 2.1 dan disetujui pembimbing.
+Lima proyek berikut telah diuji: kompleksitasnya cocok untuk mahasiswa S1 di 4 minggu, alat dan dataset tersedia publik dan cukup ringan, serta masing-masing secara alamiah memakai lebih dari enam kompetensi. Pilih satu - atau ajukan proyek sendiri yang memenuhi empat kriteria 2.1 dan disetujui pembimbing. Template A-C adalah jalur supervised klasik (text, multimodal, medical image). Template D (sequence forecasting) dan Template E (representation learning) menambah cakupan ke keluarga arsitektur sequence dan unsupervised.
 
 ---
 
@@ -140,6 +140,60 @@ Tiga proyek berikut telah diuji: kompleksitasnya cocok untuk mahasiswa S1 di 4 m
 7. Demo Streamlit: upload gambar pathologi, tampilkan prediksi dengan dan tanpa TTA.
 
 **Outcome yang digunakan.** 1-4 penuh (termasuk audit leakage ketat), 5 (LLM bantu parsing MedMNIST), 6 (adopsi loader MedMNIST), 7 (demo), 8 (opsional RunPod untuk replikasi penuh), 9 (baca 2 paper TTA / domain shift medical).
+
+---
+
+#### Template D · Sequence Forecasting LSTM vs Transformer
+
+**Inti pertanyaan (contoh):** Pada dataset ETTh1 (*Electricity Transformer Temperature*), apakah *Transformer encoder-only* mengungguli *LSTM* baseline untuk *24-step-ahead forecasting* - dan pada horizon berapa (1, 12, 24, 48, 96 step) keunggulan itu paling terlihat?
+
+**Mengapa menarik.** Paper generasi 2022-2024 memperdebatkan apakah Transformer benar-benar unggul di time-series (mis. *"Are Transformers Effective for Time Series Forecasting?"* Zeng et al. 2022 menunjukkan linear baseline kuat). Pertanyaan yang dapat Anda uji dengan bersih di 4 minggu.
+
+**Bahan.**
+
+- Dataset: ETTh1 atau ETTm1 dari `https://github.com/zhouhaoyi/ETDataset`. Publik, kecil (~17k baris), sudah *preprocessed*.
+- Model: `SimpleLSTM` dari `template_repo` (lab 3b) dan `TransformerMini` (lab 6b) sebagai titik awal. Perluas dengan head regresi multi-step.
+- Framework: PyTorch + template_repo.
+- Compute: laptop CPU cukup; GPU kecil untuk iterasi lebih cepat.
+
+**Skope minimal.**
+
+1. Implementasi LSTM baseline untuk 1-step dan 24-step-ahead prediction; 3 seed.
+2. Implementasi Transformer encoder + positional encoding; 3 seed.
+3. Evaluasi di 5 horizon (1, 12, 24, 48, 96 step); metrik MSE dan MAE.
+4. Ablasi: ukuran hidden / `d_model` (kecil, default, besar); apakah keunggulan Transformer konsisten lintas kapasitas?
+5. Plot prediksi sampel pada 3 horizon tersembunyi vs ground truth.
+6. Audit leakage: pastikan tidak ada sampling future ke past di pembagian train/val/test (split *chronological*, bukan *random*).
+7. Demo Streamlit: upload deret waktu singkat, tampilkan forecast LSTM dan Transformer berdampingan.
+
+**Outcome yang digunakan.** 1-4 penuh (leakage audit temporal sangat penting di sini), 5 (LLM bantu tulis data loader chronological), 6 (opsional adopsi repo forecasting seperti `PatchTST`), 7 (demo), 9 (baca 2 paper: Vaswani 2017 dan Zeng 2022).
+
+---
+
+#### Template E · Representation Learning dengan Autoencoder
+
+**Inti pertanyaan (contoh):** Pada CIFAR-10 dengan label sangat terbatas (100 label per kelas), apakah bottleneck 32-D yang dilatih unsupervised dari *convolutional autoencoder* + *linear probe* mengungguli ResNet-18 yang dilatih dari nol hanya pada 1000 sampel berlabel?
+
+**Mengapa menarik.** Representation learning unsupervised adalah *workhorse* riset modern - SimCLR, MAE, DINO semuanya mengandalkan premis bahwa representasi pretrained, meski dari objective yang bukan klasifikasi, sering mengungguli training dari nol pada data terbatas. Template ini menguji klaim itu dalam bentuk paling sederhana (AE rekonstruksi, bukan contrastive).
+
+**Bahan.**
+
+- Dataset: CIFAR-10; 50k train (unlabeled untuk AE), subset 10k berlabel (disimpan terpisah).
+- Model: `SimpleAutoencoder` dari lab 7b sebagai baseline AE; ResNet-18 dari `torchvision` sebagai baseline supervised.
+- Framework: PyTorch + template_repo.
+- Compute: laptop GPU / RTX 3060 cukup; ~2-4 jam GPU total.
+
+**Skope minimal.**
+
+1. Train AE unsupervised di 50k sampel tanpa label; visualisasi rekonstruksi.
+2. Ambil bottleneck frozen; latih linear probe pada 100/1000 label per kelas; laporkan akurasi.
+3. Baseline supervised: ResNet-18 dari nol pada 100/1000/10000 label per kelas; 3 seed.
+4. Plot: akurasi vs jumlah label, dua kurva (AE+probe vs supervised from-scratch).
+5. Ablasi: variasi `bottleneck_dim` (16, 32, 64, 128); kapan probe mulai ketinggalan?
+6. Analisis kualitatif: t-SNE bottleneck, *failure case* rekonstruksi.
+7. Demo Gradio: upload gambar, tampilkan rekonstruksi + prediksi linear probe.
+
+**Outcome yang digunakan.** 1-4 penuh, 5 (LLM bantu implementasi linear probe), 6 (opsional adopsi repo SimCLR jika ingin extension), 7 (demo), 9 (baca 2 paper: contrastive representation - SimCLR Chen et al. 2020 dan MAE He et al. 2021).
 
 ---
 

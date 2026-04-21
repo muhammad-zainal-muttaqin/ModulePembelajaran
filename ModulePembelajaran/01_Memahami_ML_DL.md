@@ -29,18 +29,18 @@
 
 ## 0. Peta Bab
 
-Bab ini membekali Anda dengan kerangka pikir untuk membaca sistem ML/DL seperti seorang peneliti: membaca setiap masalah sebagai pasangan tensor input → output, mengenali empat keluarga arsitektur berdasarkan bentuk data tersebut, memahami peran layer sebagai transformasi representasi, membaca loss serta optimizer sebagai pilihan yang memiliki konsekuensi, mengenali tiga pilihan representasi fitur - *engineered*, *extracted*, *learned* - beserta keputusan turunannya, dan mendiagnosis masalah training dari pola loss curve. Setelah menyelesaikan bab ini, Anda dapat membuka repository riset dan menebak secara masuk akal mengapa arsitektur dan strategi representasi tertentu dipilih, bukan hanya menyebut namanya - dan ketika training bermasalah, Anda punya kerangka diagnosis untuk mencari penyebab.
+Bab ini membekali Anda dengan kerangka pikir untuk membaca sistem ML/DL seperti seorang peneliti: membaca setiap masalah sebagai pasangan tensor input → output, menurunkan forward dan backward pass MLP sebagai mesin fondasional yang sama yang berjalan di bawah semua arsitektur modern, mengenali empat keluarga arsitektur berdasarkan bentuk data, memahami peran layer sebagai transformasi representasi beserta pilihan normalisasi dan aktivasi yang mengiringinya, membaca loss dan optimizer sebagai pilihan yang memiliki konsekuensi, mengenali tiga pilihan representasi fitur - *engineered*, *extracted*, *learned* - beserta keputusan turunannya, dan mendiagnosis masalah training dari pola loss curve. Setelah menyelesaikan bab ini, Anda dapat membuka repository riset dan menebak secara masuk akal mengapa arsitektur dan strategi representasi tertentu dipilih, bukan hanya menyebut namanya - dan ketika training bermasalah, Anda punya kerangka diagnosis untuk mencari penyebab.
 
 **Pembagian dua minggu.** Bab ini dirancang dua minggu penuh; jangan coba memadatkan keseluruhan section 2 ke satu pekan. Sebagai peta kasar:
 
 | Minggu | Fokus section | Deliverable akhir minggu |
 |--------|---------------|--------------------------|
-| Minggu 2 | 2.0 Tensor masuk-keluar, 2.1 Empat keluarga arsitektur, 2.2 Layer sebagai transformasi, 2.3 Loss sebagai pilihan | Lab 1 bagian baseline CNN berjalan, log parser dibaca |
+| Minggu 2 | 2.0 Tensor masuk-keluar, 2.0b MLP + backprop, 2.1 Empat keluarga arsitektur, 2.2 Layer sebagai transformasi (inisialisasi, normalisasi, aktivasi), 2.3 Loss sebagai pilihan | Lab 1 baseline CNN berjalan, Lab 1c MLP numpy selesai, log parser dibaca |
 | Minggu 3 | 2.4 Optimizer, 2.5 Evaluasi, 2.6 Representasi fitur, 2.7 Diagnosis loss curve | Lab 1 penuh selesai; opsional Lab 1b representasi fitur |
 
 Section 2.7 (diagnosis loss curve) memang bisa terasa seperti bab tersendiri; itu disengaja - ia berfungsi sebagai jembatan ke Bab 03 (Eksperimen Reproduksibel) dan akan dirujuk kembali saat Anda membaca tensorboard run pertama Anda.
 
-**Lab ekstensi opsional.** Selain Lab 1 wajib, Bab ini menawarkan Lab 1b (`notebooks/lab1b_representasi.ipynb`) yang membandingkan tiga strategi representasi fitur *engineered*, *extracted*, *learned* pada dataset kecil. Ambil Lab 1b bila jadwal Minggu 3 longgar, atau tunda ke pekan refleksi.
+**Lab ekstensi opsional dan wajib-fondasi.** Bab ini punya tiga lab: Lab 1 (baseline CNN, wajib), Lab 1b (`notebooks/lab1b_representasi.ipynb`, opsional - membandingkan tiga strategi representasi fitur *engineered*, *extracted*, *learned* pada dataset kecil), dan Lab 1c (`notebooks/lab1c_mlp_numpy.ipynb`, wajib - MLP dua-layer ditulis dari nol dengan numpy, menuntun Anda menulis forward pass dan backward pass manual untuk klasifikasi MNIST). Lab 1c mendampingi Section 2.0b dan sebaiknya dikerjakan di akhir Minggu 2 sebelum lanjut ke Minggu 3.
 
 ---
 
@@ -91,6 +91,49 @@ Perhatikan bahwa bentuk output tidak selalu sekadar `(N,)` untuk klasifikasi; de
 
 Kerangka tensor masuk → tensor keluar inilah yang mendasari bagian berikutnya. Empat keluarga arsitektur yang dibahas di 2.1 pada dasarnya adalah empat asumsi berbeda tentang struktur tensor input, dan masing-masing keluarga dirancang untuk memanfaatkan asumsi itu seefisien mungkin.
 
+### 2.0b MLP dan Backpropagation: Fondasi yang Menopang Semua
+
+Sebelum kita masuk ke empat keluarga arsitektur di 2.1, ada satu model yang pantas mendapat pembahasan tersendiri: *Multi-Layer Perceptron* (MLP). Bukan karena MLP sering dipakai di paper riset modern - justru sebaliknya, MLP hampir selalu dikalahkan oleh CNN, RNN, atau Transformer ketika data punya struktur yang bisa dimanfaatkan. MLP pantas dibahas karena **semua keluarga arsitektur lain, pada level komputasi, adalah MLP dengan batasan tambahan**. CNN adalah MLP yang dipaksa berbagi bobot antar lokasi spasial. Transformer adalah MLP yang dipaksa memproses setiap posisi dengan bobot yang sama. RNN adalah MLP yang dipanggil berulang sepanjang urutan waktu. Memahami apa yang terjadi di MLP selama training berarti memahami mesin yang sama yang beroperasi di bawah setiap arsitektur modern.
+
+**Forward pass dua-layer.** Ambil MLP paling minimal: satu *hidden layer*, satu *output layer*. Input `x` berdimensi `d_in`, hidden layer memiliki `d_h` neuron, output `d_out`. Dua operasi berurutan:
+
+```
+z1 = W1 x + b1         # pre-activation, bentuk (d_h,)
+h  = σ(z1)             # activation, bentuk (d_h,)
+z2 = W2 h + b2         # output pre-activation, bentuk (d_out,)
+y_hat = z2             # untuk regresi; untuk klasifikasi tambahkan softmax di loss
+```
+
+`W1` bentuknya `(d_h, d_in)`, `W2` bentuknya `(d_out, d_h)`. `σ` adalah non-linearitas seperti ReLU atau sigmoid. Jika kita hilangkan `σ`, seluruh jaringan runtuh menjadi satu transformasi linear `W2 W1 x + (W2 b1 + b2)` - artinya kapasitas modelnya tidak lebih dari regresi linear biasa. Non-linearitas inilah yang mengizinkan penumpukan layer jadi bermakna.
+
+**Mengapa backpropagation perlu dipahami sekali dalam hidup Anda.** Anda tidak akan pernah menulis *backward loop* secara manual di pekerjaan riset - PyTorch melakukan ini otomatis via `loss.backward()`. Tapi ketika model Anda tidak belajar, ketika gradient meledak, ketika paper menyebutkan "*we clip gradients at norm 1.0*", Anda perlu punya model mental yang benar tentang apa yang mengalir di pipa gradient. Tanpa itu, setiap bug training terasa seperti sihir. Turunan singkat berikut bukan bukti formal; ia adalah satu kali latihan yang menghubungkan "loss naik" dengan "update parameter konkret".
+
+**Contoh terturunkan: MSE loss, satu sampel.**
+
+Misalkan `d_in = 2`, `d_h = 2`, `d_out = 1`. Target `y`, prediksi `y_hat = z2` (tanpa aktivasi di output, regresi biasa). Loss `L = ½ (y_hat - y)²`.
+
+Kita ingin `∂L/∂W1`, `∂L/∂W2`, `∂L/∂b1`, `∂L/∂b2`. Chain rule bekerja dari belakang ke depan:
+
+1. `∂L/∂z2 = y_hat - y` - turunan MSE terhadap pre-activation output.
+2. `∂L/∂W2 = (∂L/∂z2) · h^T` - bentuk `(d_out, d_h)`, hasil kali luar.
+3. `∂L/∂b2 = ∂L/∂z2`.
+4. `∂L/∂h = W2^T (∂L/∂z2)` - propagasikan gradient kembali ke hidden.
+5. `∂L/∂z1 = (∂L/∂h) ⊙ σ'(z1)` - `⊙` elemen-per-elemen; untuk sigmoid `σ'(z) = σ(z)(1 - σ(z))`, untuk ReLU `σ'(z) = 1[z > 0]`.
+6. `∂L/∂W1 = (∂L/∂z1) · x^T`.
+7. `∂L/∂b1 = ∂L/∂z1`.
+
+Perhatikan pola yang sama berulang di layer manapun: gradient terhadap pre-activation berasal dari gradient layer di atasnya, lalu dikalikan turunan non-linearitas. Gradient terhadap bobot adalah hasil kali luar antara gradient pre-activation dengan aktivasi di bawahnya. Pola inilah yang diotomatisasi oleh setiap *autograd engine*, dan pola inilah yang menjelaskan tiga fenomena yang sering Anda dengar di kelas atau paper:
+
+- **Vanishing gradient.** Jika `σ'(z1)` selalu kecil - sigmoid jauh dari nol, tanh di zona saturasi - faktor ini mengalikan gradient dengan angka kecil di setiap layer. Setelah 10 layer, gradient yang tiba di bobot paling bawah sudah mendekati nol. Inilah alasan ReLU, yang turunannya 0 atau 1 tanpa penyusutan, menjadi pilihan default.
+- **Exploding gradient.** Jika bobot `W2` besar, faktor `W2^T` di langkah 4 mengalikan gradient dengan angka besar. Di RNN dalam, faktor ini muncul sekali per langkah waktu; gradient bisa meledak eksponensial. Solusi praktis: *gradient clipping*.
+- **Inisialisasi Kaiming/Xavier** yang disebut di Section 2.2 berikutnya. Tujuan keduanya: menjaga variansi `∂L/∂z` kira-kira konstan saat merambat mundur melalui layer, sehingga gradient tidak menyusut atau meledak sejak iterasi pertama. Rumus `σ² = 2/fan_in` untuk ReLU persis berasal dari analisis variansi gradient ini.
+
+Lab 1c (`notebooks/lab1c_mlp_numpy.ipynb`) menuntun Anda menulis ketujuh langkah di atas dalam numpy murni untuk MLP yang melatih klasifikasi digit MNIST. Tujuannya bukan reproduksi PyTorch - tujuannya agar saat Anda membaca `loss.backward()` di Lab 1, Anda tahu persis mesin apa yang sedang berjalan di bawah pemanggilan satu baris itu.
+
+**Universal approximation: kenapa MLP tetap relevan secara teori.** Salah satu hasil teoretis fundamental dalam deep learning adalah *universal approximation theorem* (Cybenko 1989, Hornik 1991): MLP dengan satu hidden layer yang cukup lebar dapat mendekati fungsi kontinu apapun pada interval terbatas dengan akurasi sembarang. Secara intuitif: "ada beberapa `W1`, `b1`, `W2`, `b2` yang membuat model Anda menghitung fungsi yang Anda inginkan". Teorem ini tidak mengatakan *Anda bisa menemukan bobot tersebut dengan gradient descent*, tidak mengatakan *Anda butuh sedikit data*, dan tidak mengatakan *Anda butuh hidden layer berukuran masuk akal* - bukti konstruktif bisa butuh miliaran neuron. Dalam praktik, kedalaman (banyak layer) sering jauh lebih efisien daripada lebar (satu layer yang sangat lebar). Tapi teorem ini menetapkan satu hal penting: keterbatasan model memuat data jarang berasal dari "kapasitas teoretis MLP" - hampir selalu berasal dari (a) kualitas data, (b) loss yang tidak sesuai tugas, atau (c) prosedur optimasi yang tidak menemukan solusi baik. Mengetahui ini menghemat Anda dari perangkap "ganti arsitektur" ketika masalah sebenarnya ada di tempat lain.
+
+**Jembatan ke arsitektur lain.** Jika MLP sudah bisa mendekati fungsi apapun, mengapa kita perlu CNN, RNN, atau Transformer? Jawabannya: *efisiensi statistik*. MLP tidak mengasumsikan apapun tentang input, sehingga harus belajar setiap pola dari nol. Jika input Anda gambar 224×224×3, hasil flattening punya 150.528 dimensi; hidden layer pertama dengan 1024 neuron memerlukan sekitar 150 juta parameter hanya di satu layer. CNN menurunkan angka ini ke kisaran ratusan ribu dengan satu asumsi kuat - *translation invariance* - yang kebetulan sangat cocok untuk gambar. Tidak ada sihir di CNN; ia adalah MLP dengan kebanyakan bobot dipaksa sama. Setiap keluarga arsitektur di 2.1 berikutnya dapat Anda baca sebagai "MLP + asumsi spesifik domain". Ketika asumsi cocok dengan data, model belajar lebih efisien; ketika tidak cocok, Anda memperjuangkan struktur yang tidak membantu.
+
 ### 2.1 Arsitektur sebagai Asumsi tentang Data
 
 Empat keluarga yang paling sering Anda temui di paper dan kode riset.
@@ -128,6 +171,26 @@ def init_weights(m):
 
 model.apply(init_weights)
 ```
+
+**Normalisasi: BatchNorm, LayerNorm, GroupNorm.** BatchNorm sudah muncul di konvensi `Conv → BN → ReLU` di atas, tetapi BN bukan satu-satunya pilihan normalisasi. Ketika Anda membaca paper lintas domain, Anda akan bertemu LayerNorm dan GroupNorm. Ketiganya berbeda pada sumbu yang dinormalisasi:
+
+
+| Normalisasi | Normalisasi melewati...            | Butuh batch size besar? | Domain khas                       |
+| ----------- | ---------------------------------- | ----------------------- | --------------------------------- |
+| BatchNorm   | seluruh batch di tiap channel      | Ya (minimal 16-32)      | CNN visi                          |
+| LayerNorm   | seluruh fitur di tiap sampel       | Tidak                   | Transformer, RNN                  |
+| GroupNorm   | grup channel di tiap sampel        | Tidak                   | CNN batch kecil (segmentasi 3D)   |
+
+
+BN menghitung statistik (*mean*, variance) dari seluruh sampel dalam batch; ketika batch kecil, statistik ini bising dan training jadi tidak stabil. Itulah alasan Transformer yang dilatih dengan batch 1-8 dokumen panjang, atau segmentasi medis 3D yang hanya muat dua volume per GPU, hampir selalu memakai LayerNorm atau GroupNorm. Alasan lebih dalam mengapa Transformer pilih LayerNorm, bukan BN: setiap token harus punya normalisasi yang tidak bergantung pada token lain di batch - kalimat "aku pergi ke pasar" tidak boleh berubah representasinya hanya karena berada di batch yang sama dengan "dia makan nasi". LayerNorm menormalisasi fitur dalam satu posisi (token) secara terpisah; BN tidak memberi jaminan ini.
+
+**Aktivasi: ReLU, GELU, SiLU.** Non-linearitas yang paling sering Anda jumpai di kode riset:
+
+- **ReLU** (`max(0, x)`): default untuk CNN dan MLP biasa. Murah, turunan 0 atau 1. Risiko: *dead ReLU* - neuron yang tidak pernah menyala bisa mati permanen jika learning rate terlalu besar di awal.
+- **GELU** (`x · Φ(x)` dengan `Φ` adalah CDF Gaussian): default untuk Transformer modern (BERT, GPT). Lebih halus daripada ReLU dekat nol, sehingga gradient tidak putus mendadak.
+- **SiLU / Swish** (`x · σ(x)`): dipakai di MobileNet v3, EfficientNet, dan beberapa LLM (mis. LLaMA). Kinerja mirip GELU, lebih murah dihitung.
+
+Aturan praktisnya sederhana: pakai default yang disebut paper yang Anda replikasi. Mengganti aktivasi tanpa alasan kuat adalah variabel bonus yang harus Anda jelaskan di laporan; hampir selalu tidak sebanding dengan effort-nya.
 
 ### 2.3 Loss sebagai Sinyal Pembelajaran
 

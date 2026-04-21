@@ -582,6 +582,14 @@ Tugas:
 - [ ] [scripts/aggregate.py](template_repo/scripts/aggregate.py) menghasilkan tabel yang identik dengan tabel di laporan Lab 2.
 - [ ] Tidak ada folder run bernama `final`, `test`, atau `v2`.
 
+### Lab 3b (breadth) - RNN vs LSTM pada sequence
+
+Buka [Lab 3b - Sequence Modeling dengan RNN dan LSTM](template_repo/notebooks/lab3b_sequence_lstm.ipynb). Lab ini memperluas breadth arsitektur ke keluarga *recurrent*: setelah reproduksibilitas ter-establish di Lab 3, Anda memakai infrastruktur yang sama (config, seed, metadata *checkpoint*) untuk melatih model sequence di tugas regresi sine + noise.
+
+Fokus: (1) membandingkan gradient flow RNN vanilla vs LSTM dengan plot log-norm gradient per-timestep - mendemonstrasikan *vanishing gradient* yang menjadi motivasi LSTM; (2) menggunakan `SimpleLSTM` di `src/models.py` via `configs/lstm_timeseries.yaml`; (3) verifikasi model belajar memprediksi satu langkah ke depan dengan MSE yang menurun dan prediksi visual yang mengikuti kurva target.
+
+Lab ini *breadth*, bukan pengganti Lab 3 - dikerjakan setelah Lab 3 agar Anda punya kenyamanan dengan infrastruktur reproduksibilitas. Estimasi 3-4 jam.
+
 ---
 
 ## Komponen Mandiri (Pekan 5)

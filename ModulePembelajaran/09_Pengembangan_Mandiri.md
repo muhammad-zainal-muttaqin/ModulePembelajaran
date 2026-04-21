@@ -29,7 +29,7 @@
 
 ## 0. Peta Bab
 
-Bab ini melatih Anda untuk bergerak dari peran "mahasiswa yang mengerjakan tugas" menjadi "peneliti yang mengusulkan arah". Anda akan belajar cara memilih paper yang layak dibaca di tengah banjir publikasi arXiv, cara membaca paper dalam tiga putaran yang masing-masing punya tujuan berbeda, teknik *5 Whys* untuk menggali motivasi di balik pertanyaan penelitian, dan pola *pre-registration* ringan yang memaksa Anda merencanakan sebelum menjalankan. Bab ini mengintegrasikan keempat sikap riset - *curiosity* untuk mencari, *rigor* untuk merencanakan, *skepticism* untuk menilai, *ownership* untuk mengeksekusi - sebagai satu disiplin harian, bukan empat kompartemen terpisah. Setelah bab ini, Anda punya rutinitas mingguan yang dapat Anda pertahankan sendiri setelah kelas berakhir, dan templat pre-registration yang dapat Anda pakai untuk setiap eksperimen di masa depan.
+Bab ini melatih Anda untuk bergerak dari peran "mahasiswa yang mengerjakan tugas" menjadi "peneliti yang mengusulkan arah". Anda akan belajar cara memilih paper yang layak dibaca di tengah banjir publikasi arXiv, cara membaca paper dalam tiga putaran yang masing-masing punya tujuan berbeda, teknik *5 Whys* untuk menggali motivasi di balik pertanyaan penelitian, dan pola *pre-registration* ringan yang memaksa Anda merencanakan sebelum menjalankan. Bab ini mengintegrasikan keempat sikap riset - *curiosity* untuk mencari, *rigor* untuk merencanakan, *skepticism* untuk menilai, *ownership* untuk mengeksekusi - sebagai satu disiplin harian, bukan empat kompartemen terpisah. Bab ini juga memuat **peta keluarga model generatif** (VAE, GAN, Diffusion, Normalizing Flow) agar Anda punya vocab untuk membaca paper generatif, meskipun modul tidak men-*cover* keluarga ini secara hands-on. Setelah bab ini, Anda punya rutinitas mingguan yang dapat Anda pertahankan sendiri setelah kelas berakhir, dan templat pre-registration yang dapat Anda pakai untuk setiap eksperimen di masa depan.
 
 ---
 
@@ -197,6 +197,27 @@ Rutinitas praktis yang dapat Anda pakai sendiri setelah kelas berakhir:
 Total: ~6 jam/minggu. Dalam setahun: ~300 jam fokus = ~40 paper dibaca dalam, ~40 mini-eksperimen, satu atau dua mini-proyek matang. Itu cukup untuk menjadi kompeten di satu sub-bidang.
 
 Rutinitas ini sederhana karena sederhana yang bertahan. Yang rumit ditinggalkan dalam dua minggu.
+
+### 2.7 Peta Keluarga Model Generatif
+
+Modul ini men-*cover* arsitektur diskriminatif secara hands-on (MLP di Lab 1c, CNN di Lab 1, LSTM di Lab 3b, Transformer encoder di Lab 6b, Autoencoder di Lab 7b). Satu keluarga besar yang tidak masuk jadwal hands-on adalah **model generatif** - model yang belajar menghasilkan sampel baru dari distribusi data. Alasannya bukan kurang penting - justru sebaliknya: sekitar sepertiga paper ML modern melibatkan komponen generatif. Alasan praktisnya adalah ongkos latihan dan *tuning*: model generatif yang stabil butuh compute, dataset, dan keterampilan diagnostik yang melebihi scope semester ini.
+
+Karena itu, bagian ini memberi Anda **peta mental** agar Anda bisa membaca paper generatif dengan struktur - tahu apa yang sedang dilakukan paper, apa pertanyaan standar yang wajib Anda ajukan, dan kapan harus waspada.
+
+
+| Keluarga | Ide inti | Training signal | Kapan dipakai | Failure mode khas | Paper pembuka |
+| --- | --- | --- | --- | --- | --- |
+| VAE | Encoder ke distribusi Gaussian, decoder dari sampel | Rekonstruksi + KL terhadap prior | Ketika butuh representasi kontinu yang bisa di-sampel; *conditional generation* | Rekonstruksi kabur, *posterior collapse* (decoder abaikan z) | Kingma & Welling 2013 (*Auto-Encoding Variational Bayes*) |
+| GAN | Generator vs discriminator, permainan minimax | Discriminator mengklasifikasi real/fake | Generasi gambar tajam, *style transfer*, *image-to-image* | Mode collapse, training tidak stabil, sulit dievaluasi | Goodfellow et al. 2014 (*Generative Adversarial Nets*) |
+| Diffusion | Tambah noise bertahap, belajar un-noise | Prediksi noise pada setiap langkah | State-of-the-art image/video generation, kontrol *conditioning* | Inference lambat (banyak step), butuh compute besar | Ho et al. 2020 (*Denoising Diffusion Probabilistic Models*) |
+| Normalizing Flow | Transformasi bijeksi yang dibalik dari noise ke data | Likelihood eksak | Ketika butuh likelihood eksak (deteksi anomali, kompresi) | Arsitektur terbatas (harus invertible), kapasitas lebih kecil | Rezende & Mohamed 2015 (*Variational Inference with Normalizing Flows*) |
+
+
+**Lab 7b sudah memberi Anda pijakan.** Autoencoder standar yang Anda latih di Lab 7b adalah langkah pertama menuju VAE: encoder, decoder, bottleneck, dan reconstruction loss semua ada. VAE hanya menambah dua hal: (1) encoder mengeluarkan `(μ, σ)` bukan `z` langsung, (2) sampling `z ~ N(μ, σ²)` dengan *reparameterization trick*, (3) loss tambahan `KL(q(z|x) || N(0, I))`. Jika Anda penasaran, jalan yang paling terjangkau adalah men-*fork* Lab 7b, menambah tiga modifikasi ini, lalu men-*sample* dari prior untuk menghasilkan gambar baru - ini adalah jalur yang bisa Anda ambil di **Komponen Mandiri Jalur 4 (Arsitektur Baru)** yang ditambahkan di Bab 00.
+
+**Mengapa peta ini penting meskipun tidak di-*cover* hands-on.** Banyak paper riset ML modern di domain apapun - medical imaging, sains materi, audio, NLP - memakai komponen generatif sebagai augmentasi data, *world model*, atau *pretraining*. Ketika PI Anda menyebutkan "coba diffusion untuk data kita", Anda harus bisa mengenali dalam satu paragraf abstrak: apakah paper pakai generator itu sebagai *augmentation*, *imputation*, atau *end-to-end task*. Peta di atas memberikan Anda vocab yang cukup untuk percakapan pertama.
+
+**Untuk paper-reading di Lab 9.** Tiga paper pembuka di tabel di atas adalah kandidat kuat untuk *paper slot* di *weekly routine* Anda. Pilih satu per keluarga (jangan ketiganya dalam satu minggu). Putaran 1 fokus pada abstrak dan Figure 1; putaran 2 pada loss formula dan arsitektur; putaran 3 hanya jika Anda benar-benar akan mereplikasi.
 
 ---
 

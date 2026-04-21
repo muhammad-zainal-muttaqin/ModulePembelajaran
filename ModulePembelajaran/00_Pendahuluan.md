@@ -102,6 +102,8 @@ Modul ini bekerja paling baik ketika Anda dan modul menyepakati empat hal beriku
 
 **Kelima**, mulai Bab 02, Anda mengerjakan satu **Komponen Mandiri** setiap minggu - pilihan jalur eksplorasi yang Anda tentukan sendiri (dibatasi oleh konsep yang sedang dilatih). Catat pilihan dan hasilnya di `notebooks/portofolio_mandiri.ipynb`. Di awal sesi berikutnya, ada slot 10 menit per orang untuk mempresentasikan temuan. Portfolio ini tumbuh bersama Anda sepanjang semester; ia adalah catatan jujur tentang bagaimana cara berpikir Anda berkembang dari Pekan 4 hingga Pekan 12.
 
+**Keenam - Breadth Check.** Di akhir semester (sebelum Capstone), Anda harus bisa menunjukkan kemampuan minimal forward pass dari **empat dari lima keluarga arsitektur** yang di-*cover* modul: MLP (Lab 1c), CNN (Lab 1), RNN/LSTM (Lab 3b), Transformer (Lab 6b), Autoencoder (Lab 7b). Klausul ini memastikan Anda tidak keluar dari modul sebagai "spesialis CIFAR-10" - sebagai asisten riset di lab yang mengerjakan neural network secara umum, Anda harus bisa mengenali dan memodifikasi minimal empat keluarga besar ini ketika membaca paper atau kode riset lintas domain.
+
 ---
 
 ## 5. Lab dan Proyek yang Menumbuh
@@ -110,13 +112,17 @@ Lab dalam modul ini bukan kumpulan latihan terpisah. Sembilan lab berbagi satu d
 
 - **Lab 1 (Bab 01)** membangun baseline CNN pada CIFAR-10 yang dapat training penuh.
 - **Lab 1b (Bab 01, ekstensi)** membandingkan tiga strategi representasi fitur (engineered/extracted/learned) pada CIFAR-10 - memperdalam konsep Section 2.6.
+- **Lab 1c (Bab 01, breadth)** mengimplementasi MLP 2-layer dari nol dengan numpy, menurunkan backward pass manual, dan memverifikasi dengan `finite-difference gradient check` sebelum membandingkan dengan versi PyTorch - memperdalam Section 2.0b.
 - **Lab 2 (Bab 02)** menambahkan focal loss dan mekanisme freeze layer, menjalankan ablation pertama.
 - **Lab 3 (Bab 03)** memindahkan konfigurasi ke YAML, menambahkan logging TensorBoard, dan menyimpan checkpoint dengan metadata lengkap.
+- **Lab 3b (Bab 03, breadth)** membandingkan RNN vanilla vs LSTM pada tugas sequence regression (sine + noise) - memvisualisasikan gradient flow dan mendemonstrasikan vanishing gradient pada RNN vanilla.
 - **Lab 4 (Bab 04)** memperluas dataset ke domain medis (PathMNIST), melakukan EDA, dan mengaudit pipeline dari *leakage*.
 - **Lab 5 (Bab 05)** memakai LLM untuk membangun satu fitur baru pada basis kode, lalu mencatat proses verifikasi.
 - **Lab 5b (Bab 05, ekstensi)** klasifikasi sentimen teks Bahasa Indonesia - memperkenalkan domain non-gambar dan memparalelkan Lab 1b di domain berbeda.
 - **Lab 6 (Bab 06)** meng-clone sebuah reference implementation dari komunitas, menyiapkan lingkungan, dan menambahkan satu eksperimen kecil.
+- **Lab 6b (Bab 06, breadth)** menulis *scaled dot-product attention* dari nol, membangun satu Transformer encoder block (attention + FFN + LayerNorm + residual), dan melakukan parity check terhadap `nn.TransformerEncoderLayer` PyTorch.
 - **Lab 7 (Bab 07)** membungkus model dalam demo Streamlit dan antarmuka Gradio untuk inspeksi prediksi.
+- **Lab 7b (Bab 07, breadth)** melatih convolutional autoencoder dan denoising AE pada CIFAR-10 unsupervised, memvisualisasikan ruang bottleneck dengan t-SNE, lalu memetakan jembatan ke keluarga generatif (VAE, GAN, Diffusion).
 - **Lab 8 (Bab 08)** memindahkan training ke RunPod, mengatur port forwarding, dan mengelola checkpoint jarak jauh.
 - **Lab 9 (Bab 09)** membaca satu paper pendek, menuliskan ringkasan terstruktur, dan merancang satu eksperimen lanjutan berikut *pre-registration*-nya.
 
@@ -124,15 +130,16 @@ Pada minggu 13–14, Anda menyelesaikan **capstone project** yang mengintegrasik
 
 Mulai Bab 02, setiap bab juga memiliki satu **Komponen Mandiri** - pilihan jalur eksplorasi mingguan yang Anda kerjakan secara independen dan catat di `notebooks/portofolio_mandiri.ipynb`. Portfolio ini berisi 8 entri (Pekan 4–12) dan ditutup dengan refleksi trajektori belajar pada akhir Pekan 12. Template entri dan panduan presentasi 10 menit ada di `12_Lampiran.md` bagian C.6 dan C.7.
 
-**Tiga jalur yang tersedia tiap minggu:**
+**Empat jalur yang tersedia tiap minggu:**
 
 | Jalur | Inti kegiatan | Contoh konkret | Artefak di portfolio |
 | --- | --- | --- | --- |
 | **Implementasi** | Menambah, mengubah, atau menguji kode pada repo eksperimen. | Tambah augmentasi baru, implementasikan scheduler yang belum ada, buat flag CLI untuk menukar komponen, tulis smoke test baru. | Cuplikan kode + angka benchmark sebelum/sesudah + 1 paragraf interpretasi. |
 | **Analisis** | Menyelidiki perilaku model, data, atau hasil yang sudah ada. | Confusion matrix per-kelas, saliency atau Grad-CAM, studi variansi antar-seed, audit contoh yang salah klasifikasi, EDA lapis kedua. | Visualisasi + 2–3 temuan spesifik + hipotesis turunan. |
 | **Desain** | Merancang eksperimen baru tanpa harus menjalankannya penuh. | Pre-registration eksperimen berikutnya, grid ablation yang belum dilakukan, rencana pengumpulan data tambahan, protokol evaluasi baru. | Protokol terstruktur (format Bab 02) + justifikasi hipotesis + estimasi biaya-waktu. |
+| **Arsitektur Baru** | Mereplikasi atau mengadaptasi satu keluarga arsitektur yang belum di-cover lab wajib minggu itu. | GRU sebagai alternatif LSTM di Lab 3b, multi-head attention di atas Lab 6b, VAE sederhana di atas Lab 7b, atau arsitektur lain yang relevan dengan minat Anda. | Forward pass bekerja pada toy task + 1 plot learning curve + 1 paragraf perbedaan vs arsitektur yang sudah dipelajari. Template di `12_Lampiran.md` bagian C.8. |
 
-Anda tidak harus memilih jalur yang sama setiap minggu. Rotasi antar jalur justru menumbuhkan keempat sikap secara seimbang: *Implementasi* melatih Rigor dan Ownership, *Analisis* melatih Skepticism, *Desain* melatih Curiosity. Panduan memilih: pilih **Implementasi** saat ingin mendalami mekanika konsep minggu itu; **Analisis** saat hasil eksperimen mengejutkan atau belum meyakinkan; **Desain** saat Anda sudah punya pertanyaan tapi belum sempat menjalankannya.
+Anda tidak harus memilih jalur yang sama setiap minggu. Rotasi antar jalur justru menumbuhkan keempat sikap secara seimbang: *Implementasi* melatih Rigor dan Ownership, *Analisis* melatih Skepticism, *Desain* melatih Curiosity, dan *Arsitektur Baru* melatih Curiosity sekaligus memperluas *breadth* arsitektur. Panduan memilih: pilih **Implementasi** saat ingin mendalami mekanika konsep minggu itu; **Analisis** saat hasil eksperimen mengejutkan atau belum meyakinkan; **Desain** saat Anda sudah punya pertanyaan tapi belum sempat menjalankannya; **Arsitektur Baru** saat Anda merasa satu keluarga NN masih asing dan ingin mencobanya di skala kecil.
 
 **Kriteria sukses per entri** (detail di Rubrik Kompetensi 10, Bab 11): bukti eksekusi jelas (kode commit, plot, atau dokumen), temuan dituliskan dengan skeptisisme sehat (apa yang *tidak* Anda yakini juga dicatat), dan koneksi eksplisit ke bab minggu itu. Entri yang hanya mengulang isi lab dinilai Novice; entri yang menunjukkan pilihan berdasarkan *gap* skill sendiri atau pertanyaan riset turunan dinilai Proficient.
 
@@ -158,6 +165,8 @@ Modul ini dirancang sebagai tangga, tetapi tidak semua anak tangga harus dinaiki
 **Catatan**: Bab 04, 05, 06, dan 07 bersifat relatif paralel satu sama lain setelah Bab 03 selesai. Artinya, jika Anda melewatkan Bab 04 karena alasan waktu, Anda tetap bisa mengerjakan Bab 05 dan 06 dengan lancar. Sebaliknya, Bab 08 sangat bergantung pada Bab 03 dan Bab 06 - jangan melompat ke sana sebelum keduanya tuntas.
 
 **Lab 1b** (representasi fitur, ada di Bab 01) dan **Lab 5b** (domain teks, ada di Bab 05) adalah lab ekstensi - tidak memblokir bab berikutnya, tetapi memperkaya pemahaman lintas domain.
+
+**Rantai lab breadth arsitektur**: Lab 1c (MLP from-scratch) → Lab 3b (RNN/LSTM) → Lab 6b (Transformer-mini). Lab 7b (Autoencoder) bersifat independen dan dapat dikerjakan kapan saja setelah Lab 1. Rantai ini bukan *hard dependency* untuk bab-bab lain, tetapi melengkapi klausul **Breadth Check** di Kontrak Belajar (Section 4 poin Keenam). Lab 1c memberi intuisi backprop yang dipakai lagi secara konseptual di Lab 3b (BPTT) dan Lab 6b (gradient flow melewati attention). Lab 6b membutuhkan kenyamanan dengan tensor manipulation yang dibangun di Lab 1c.
 
 ---
 
