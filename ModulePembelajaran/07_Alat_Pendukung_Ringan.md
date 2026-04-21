@@ -292,6 +292,8 @@ AE adalah pintu masuk paling lembut ke *representation learning*. Setelah Anda b
 
 ## Komponen Mandiri (Pekan 10)
 
+> Eksperimen di sini boleh menghasilkan hasil yang tidak sesuai harapan - yang dinilai adalah kualitas dokumentasi dan analisis Anda, bukan keberhasilannya.
+
 **Konsep yang dilatih:** Membuat alat pendukung riset ringan yang membantu dosen atau rekan menjelajahi hasil tanpa harus bertanya - demo, visualisasi, dan antarmuka anotasi.
 
 Pilih **satu jalur** di bawah. Catat pilihan dan hasilnya di `notebooks/portofolio_mandiri.ipynb` pada entri Pekan 10. Di awal sesi Pekan 11, ada slot 10 menit untuk presentasi. Isi bagian "Koneksi": apa yang bisa Anda visualisasikan sekarang yang tidak mungkin divisualisasikan di Pekan 4?

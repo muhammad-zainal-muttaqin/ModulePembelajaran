@@ -415,6 +415,8 @@ Tugas:
 
 ## Komponen Mandiri (Pekan 7)
 
+> Eksperimen di sini boleh menghasilkan hasil yang tidak sesuai harapan - yang dinilai adalah kualitas dokumentasi dan analisis Anda, bukan keberhasilannya.
+
 **Konsep yang dilatih:** Memeriksa data sebelum mempercayai hasil - dari distribusi kelas hingga *leakage* tersembunyi dan kualitas label.
 
 Pilih **satu jalur** di bawah. Catat pilihan dan hasilnya di `notebooks/portofolio_mandiri.ipynb` pada entri Pekan 7. Di awal sesi Pekan 8, ada slot 10 menit untuk presentasi. Isi bagian "Koneksi": apakah temuan data ini mengubah cara Anda memandang eksperimen-eksperimen yang sudah dijalankan sebelumnya?

@@ -530,6 +530,8 @@ Bila Anda pernah membaca kode Transformer di Hugging Face atau `fairseq` dan mer
 
 ## Komponen Mandiri (Pekan 9)
 
+> Eksperimen di sini boleh menghasilkan hasil yang tidak sesuai harapan - yang dinilai adalah kualitas dokumentasi dan analisis Anda, bukan keberhasilannya.
+
 **Konsep yang dilatih:** Membaca kode orang lain dengan cepat, memetakan arsitektur repo riset, dan memodifikasi secara minimal-invasif tanpa merusak perilaku yang ada.
 
 Pilih **satu jalur** di bawah. Catat pilihan dan hasilnya di `notebooks/portofolio_mandiri.ipynb` pada entri Pekan 9. Di awal sesi Pekan 10, ada slot 10 menit untuk presentasi. Isi bagian "Koneksi": apakah Anda melihat pola yang sama antara cara repo riset eksternal distruktur dengan template_repo yang sudah Anda kenal sejak Bab 01?

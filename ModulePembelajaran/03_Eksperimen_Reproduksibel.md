@@ -594,6 +594,8 @@ Lab ini *breadth*, bukan pengganti Lab 3 - dikerjakan setelah Lab 3 agar Anda pu
 
 ## Komponen Mandiri (Pekan 5)
 
+> Eksperimen di sini boleh menghasilkan hasil yang tidak sesuai harapan - yang dinilai adalah kualitas dokumentasi dan analisis Anda, bukan keberhasilannya.
+
 **Konsep yang dilatih:** Mengunci seed, memindahkan konfigurasi ke YAML, mencatat metadata *checkpoint*, dan memverifikasi bahwa hasil dapat direproduksi persis oleh orang lain.
 
 Pilih **satu jalur** di bawah. Catat pilihan dan hasilnya di `notebooks/portofolio_mandiri.ipynb` pada entri Pekan 5. Karena Bab 03 mencakup dua minggu (Pekan 5-6), slot presentasi 10 menit dilakukan di awal Pekan 7 (Bab 04). Isi bagian "Koneksi" di entri portofolio: apa yang berubah dari cara kerja Pekan 4 ke Pekan 5?

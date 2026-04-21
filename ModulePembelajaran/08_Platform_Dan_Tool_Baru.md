@@ -331,6 +331,8 @@ Target waktu: 3-4 jam hands-on + ~$3 biaya.
 
 ## Komponen Mandiri (Pekan 11)
 
+> Eksperimen di sini boleh menghasilkan hasil yang tidak sesuai harapan - yang dinilai adalah kualitas dokumentasi dan analisis Anda, bukan keberhasilannya.
+
 **Konsep yang dilatih:** Menjalankan eksperimen di lingkungan *remote*, mengelola biaya GPU, menyinkronkan data dan *checkpoint* lintas mesin, serta mengadopsi platform baru secara mandiri dari dokumentasinya.
 
 Pilih **satu jalur** di bawah. Catat pilihan dan hasilnya di `notebooks/portofolio_mandiri.ipynb` pada entri Pekan 11. Di awal sesi Pekan 12, ada slot 10 menit untuk presentasi. Isi bagian "Koneksi": bagaimana pengalaman *remote training* ini mengubah asumsi tentang reproduksibilitas yang dibangun sejak Pekan 5?

@@ -303,6 +303,8 @@ Target waktu: 6-8 jam sepanjang satu minggu (paper: 1 jam; 5-Whys + pre-reg: 1 j
 
 ## Komponen Mandiri (Pekan 12)
 
+> Eksperimen di sini boleh menghasilkan hasil yang tidak sesuai harapan - yang dinilai adalah kualitas dokumentasi dan analisis Anda, bukan keberhasilannya.
+
 **Konsep yang dilatih:** Membaca paper secara terarah, merumuskan pertanyaan yang dapat dipalsukan, dan merancang eksperimen lanjutan yang muncul dari pertanyaan jujur.
 
 Pilih **satu jalur** di bawah. Catat pilihan dan hasilnya di `notebooks/portofolio_mandiri.ipynb` pada entri Pekan 12 - ini adalah entri terakhir. Setelah mengisi entri ini, kerjakan juga sel "Refleksi Portofolio" di bagian akhir notebook: lihat kembali semua 8 entri dan tuliskan satu paragraf tentang trajektori belajar Anda. Di awal sesi Pekan 13 (Capstone), slot presentasi diperpanjang - Anda akan mempresentasikan *highlight* dari perjalanan portofolio, bukan hanya Pekan 12.

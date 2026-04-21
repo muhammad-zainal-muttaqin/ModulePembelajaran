@@ -51,6 +51,8 @@ Bab ini membangun kebiasaan itu.
 
 ## 2. Konsep Inti
 
+> **Catatan sebelum mulai:** Eksperimen di bab ini - dan di seluruh modul - boleh menghasilkan hasil yang tidak sesuai hipotesis. Itu bukan kegagalan; itu data. Bagian §2.6 di bab ini membahas cara mendokumentasikan dan melaporkan saat hipotesis tidak terkonfirmasi - baca bagian itu dengan serius, karena situasi tersebut lebih sering terjadi daripada sebaliknya.
+
 ### 2.1 Lima Pertanyaan Sebelum Menyentuh Kode
 
 Sebelum Anda membuka editor, jawab lima pertanyaan ini. Tulis jawabannya di file `protocol.md` di folder eksperimen.
@@ -320,6 +322,8 @@ Tugas:
 ---
 
 ## Komponen Mandiri (Pekan 4)
+
+> Eksperimen di sini boleh menghasilkan hasil yang tidak sesuai harapan - yang dinilai adalah kualitas dokumentasi dan analisis Anda, bukan keberhasilannya.
 
 **Konsep yang dilatih:** Merancang eksperimen dengan variabel, hipotesis *falsifiable*, baseline yang adil, dan metrik - semuanya ditentukan sebelum menyentuh kode.
 

@@ -466,6 +466,8 @@ Buka [Lab 5b - Domain Teks](template_repo/notebooks/lab5b_domain_teks.ipynb).
 
 ## Komponen Mandiri (Pekan 8)
 
+> Eksperimen di sini boleh menghasilkan hasil yang tidak sesuai harapan - yang dinilai adalah kualitas dokumentasi dan analisis Anda, bukan keberhasilannya.
+
 **Konsep yang dilatih:** Memakai LLM secara terprotokol - memisahkan tugas yang cocok untuk LLM dari yang tidak, menjalankan verifikasi berlapis, dan mendokumentasikan interaksi.
 
 Pilih **satu jalur** di bawah. Catat pilihan dan hasilnya di `notebooks/portofolio_mandiri.ipynb` pada entri Pekan 8. Di awal sesi Pekan 9, ada slot 10 menit untuk presentasi. Isi bagian "Koneksi": apakah cara Anda memakai LLM berubah dibanding Pekan 4 ketika Anda pertama kali belajar merancang hipotesis?

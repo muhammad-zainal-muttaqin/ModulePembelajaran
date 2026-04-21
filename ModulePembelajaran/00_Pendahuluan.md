@@ -104,6 +104,8 @@ Modul ini bekerja paling baik ketika Anda dan modul menyepakati empat hal beriku
 
 **Keenam - Breadth Check.** Di akhir semester (sebelum Capstone), Anda harus bisa menunjukkan kemampuan minimal forward pass dari **empat dari lima keluarga arsitektur** yang di-*cover* modul: MLP (Lab 1c), CNN (Lab 1), RNN/LSTM (Lab 3b), Transformer (Lab 6b), Autoencoder (Lab 7b). Klausul ini memastikan Anda tidak keluar dari modul sebagai "spesialis CIFAR-10" - sebagai asisten riset di lab yang mengerjakan neural network secara umum, Anda harus bisa mengenali dan memodifikasi minimal empat keluarga besar ini ketika membaca paper atau kode riset lintas domain.
 
+**Ketujuh**, eksperimen yang gagal tetapi didokumentasikan dengan baik dinilai setara dengan eksperimen yang berhasil. Yang dievaluasi adalah kualitas pemikiran, analisis, dan dokumentasi Anda - bukan apakah hipotesis terkonfirmasi. Hasil negatif yang dijelaskan dengan jujur lebih bernilai daripada hasil positif yang tidak bisa dipertanggungjawabkan.
+
 ---
 
 ## 5. Lab dan Proyek yang Menumbuh
