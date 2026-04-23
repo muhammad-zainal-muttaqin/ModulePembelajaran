@@ -75,6 +75,8 @@ Aturan praktisnya: LLM sangat efektif dalam mempercepat *eksekusi* tugas yang su
 
 ### 2.2 Prompt yang Menghasilkan Bantuan Presisi
 
+![Alur kerja LLM lima tahap: dari pseudocode ke kode terverifikasi](./figures/fig05a_llm_workflow.svg)
+
 Prompt yang buruk menghasilkan output panjang, generik, dan sulit diverifikasi. Prompt yang baik membatasi scope dan memberi konteks yang cukup agar output relevan.
 
 **Pola prompt yang bekerja:**

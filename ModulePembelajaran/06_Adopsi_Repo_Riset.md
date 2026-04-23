@@ -74,6 +74,8 @@ Ketika membuka repo baru, tahan godaan untuk langsung menjalankan. Baca dulu, de
 
 Alokasi waktu tipikal untuk repo ukuran sedang (10-30 file Python): 30-60 menit membaca sebelum `pip install`.
 
+![Urutan membaca repo riset: 7 langkah dari luar ke dalam dengan estimasi waktu](./figures/fig06a_repo_navigation.svg)
+
 ### 2.2 Memetakan Struktur dalam 15 Menit
 
 Setelah langkah 1-3 di atas, Anda bisa menggambar peta singkat. Contoh untuk repo hipotetis:
@@ -310,6 +312,8 @@ Tabel ringkas untuk referensi cepat:
 | Hasil tidak bisa direproduksi | Experiment | Bandingkan config + seed |
 | Loss tidak turun sama sekali | Algorithmic atau Setup | Overfit one batch |
 | Error saat membaca dataset | Data atau Setup | Print path config |
+
+![Empat kategori error dalam adopsi repo: Setup, Data, Algorithmic, Experiment - quadrant diagnosis](./figures/fig06b_error_categories.svg)
 
 ---
 

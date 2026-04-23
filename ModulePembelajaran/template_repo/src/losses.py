@@ -68,4 +68,8 @@ def build_loss(cfg: dict[str, Any]) -> nn.Module:
             alpha=cfg.get("alpha", None),
             label_smoothing=cfg.get("label_smoothing", 0.0),
         )
+    if name == "mse":
+        return nn.MSELoss()
+    if name in ("bce", "bce_with_logits"):
+        return nn.BCEWithLogitsLoss()
     raise ValueError(f"Unknown loss: {name}")

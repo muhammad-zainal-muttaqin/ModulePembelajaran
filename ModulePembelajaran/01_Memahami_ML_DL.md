@@ -122,6 +122,8 @@ Kita ingin `∂L/∂W1`, `∂L/∂W2`, `∂L/∂b1`, `∂L/∂b2`. Chain rule be
 6. `∂L/∂W1 = (∂L/∂z1) · x^T`.
 7. `∂L/∂b1 = ∂L/∂z1`.
 
+![MLP 2-layer: forward pass dengan dimensi dan backward pass chain rule 7 langkah](./figures/fig01b_mlp_forward_backward.svg)
+
 Perhatikan pola yang sama berulang di layer manapun: gradient terhadap pre-activation berasal dari gradient layer di atasnya, lalu dikalikan turunan non-linearitas. Gradient terhadap bobot adalah hasil kali luar antara gradient pre-activation dengan aktivasi di bawahnya. Pola inilah yang diotomatisasi oleh setiap *autograd engine*, dan pola inilah yang menjelaskan tiga fenomena yang sering Anda dengar di kelas atau paper:
 
 - **Vanishing gradient.** Jika `σ'(z1)` selalu kecil - sigmoid jauh dari nol, tanh di zona saturasi - faktor ini mengalikan gradient dengan angka kecil di setiap layer. Setelah 10 layer, gradient yang tiba di bobot paling bawah sudah mendekati nol. Inilah alasan ReLU, yang turunannya 0 atau 1 tanpa penyusutan, menjadi pilihan default.
@@ -145,6 +147,8 @@ Empat keluarga yang paling sering Anda temui di paper dan kode riset.
 **Recurrent Neural Network (RNN), LSTM, GRU.** Memproses urutan satu langkah waktu demi satu langkah waktu, menyimpan *hidden state* yang merangkum masa lalu. Asumsi: urutan penting, dan informasi dari langkah-langkah sebelumnya membantu memprediksi langkah berikutnya. LSTM dan GRU memperkenalkan *gate* untuk mengatasi *vanishing gradient* pada RNN polos, memungkinkan pembelajaran ketergantungan jarak menengah. Kelemahan: komputasi sekuensial (tidak bisa diparalelkan sepanjang urutan), ketergantungan yang sangat panjang tetap sulit ditangkap.
 
 **Transformer.** Menggantikan rekursi dengan *self-attention*: setiap elemen urutan secara langsung "melihat" semua elemen lain dan memutuskan mana yang relevan. Asumsi: urutan penting, tetapi lebih efisien memodelkan relasi sebagai *set* dengan *positional encoding* daripada mengalir satu per satu. Komponen utama: `Multi-Head Attention`, `Positional Encoding`, `Feed-Forward` per posisi. Dominan di NLP modern (BERT, GPT), kini juga di visi (Vision Transformer) dan audio. Biaya utama: self-attention kuadratik terhadap panjang urutan, walaupun varian baru (linear attention, sparse attention) menguranginya.
+
+![Lima keluarga arsitektur neural network: MLP, CNN, RNN/LSTM, Transformer, dan Autoencoder - masing-masing dengan inductive bias dan domain khasnya](./figures/fig01a_nn_families.svg)
 
 ### 2.2 Layer sebagai Transformasi Representasi
 
@@ -184,6 +188,8 @@ model.apply(init_weights)
 
 BN menghitung statistik (*mean*, variance) dari seluruh sampel dalam batch; ketika batch kecil, statistik ini bising dan training jadi tidak stabil. Itulah alasan Transformer yang dilatih dengan batch 1-8 dokumen panjang, atau segmentasi medis 3D yang hanya muat dua volume per GPU, hampir selalu memakai LayerNorm atau GroupNorm. Alasan lebih dalam mengapa Transformer pilih LayerNorm, bukan BN: setiap token harus punya normalisasi yang tidak bergantung pada token lain di batch - kalimat "aku pergi ke pasar" tidak boleh berubah representasinya hanya karena berada di batch yang sama dengan "dia makan nasi". LayerNorm menormalisasi fitur dalam satu posisi (token) secara terpisah; BN tidak memberi jaminan ini.
 
+![BatchNorm, LayerNorm, dan GroupNorm - perbedaan sumbu normalisasi pada tensor (N, C, H, W)](./figures/fig01f_normalization.svg)
+
 **Aktivasi: ReLU, GELU, SiLU.** Non-linearitas yang paling sering Anda jumpai di kode riset:
 
 - **ReLU** (`max(0, x)`): default untuk CNN dan MLP biasa. Murah, turunan 0 atau 1. Risiko: *dead ReLU* - neuron yang tidak pernah menyala bisa mati permanen jika learning rate terlalu besar di awal.
@@ -191,6 +197,8 @@ BN menghitung statistik (*mean*, variance) dari seluruh sampel dalam batch; keti
 - **SiLU / Swish** (`x · σ(x)`): dipakai di MobileNet v3, EfficientNet, dan beberapa LLM (mis. LLaMA). Kinerja mirip GELU, lebih murah dihitung.
 
 Aturan praktisnya sederhana: pakai default yang disebut paper yang Anda replikasi. Mengganti aktivasi tanpa alasan kuat adalah variabel bonus yang harus Anda jelaskan di laporan; hampir selalu tidak sebanding dengan effort-nya.
+
+![Kurva fungsi aktivasi ReLU, GELU, dan SiLU pada rentang [-3, 3]](./figures/fig01e_activation_functions.svg)
 
 ### 2.3 Loss sebagai Sinyal Pembelajaran
 
@@ -257,6 +265,7 @@ Tabel di bawah menunjukkan bagaimana ketiga pilihan tampak di beberapa domain ya
 | Audio           | MFCC, spectral centroid, ZCR                 | Embedding dari Wav2Vec2 / AST (frozen)         | CNN di atas spektrogram, end-to-end      |
 | Ulasan / review | Panjang teks, rasio kata positif, skor VADER | Sentence embedding dari Sentence Transformers  | Transformer di-fine-tune untuk klasifikasi |
 
+![Tiga strategi representasi fitur: Engineered (manual), Extracted (dari pretrained frozen), dan Learned (end-to-end)](./figures/fig01d_feature_representation.svg)
 
 Pilihan di antara ketiganya jarang hitam-putih. Setelah Anda memutuskan jalur utama, beberapa keputusan turunan segera mengikuti. Jika memakai model *pretrained*, apakah ia sepenuhnya dibekukan atau ikut di-*fine-tune*, dan jika hanya sebagian, layer mana yang dibuka? Layer awal umumnya menyimpan fitur umum (tepi, tekstur, *part-of-speech*) yang lebih aman diwariskan, sementara layer dalam berisi fitur yang lebih spesifik domain. Jika mengambil *hidden states* sebagai representasi, bagaimana cara mereduksinya menjadi satu vektor - token `[CLS]`, *mean pooling*, *attention pooling*, atau konkatenasi beberapa layer sekaligus? Dan akhirnya, apakah satu representasi tunggal cukup, atau lebih bijak menggabungkan *engineered* dan *extracted* sebagai ansambel untuk menangkap dua sudut pandang berbeda terhadap data yang sama?
 
@@ -288,6 +297,8 @@ Ini jarang terjadi tetapi mengindikasikan *underfitting* - model terlalu kecil a
 Gradient explosion. Hipotesis: (a) LR terlalu besar, atau (b) tidak ada gradient clipping. Langkah test: kurangi LR 10× atau tambahkan `grad_clip = 1.0`. Untuk RNN dan Transformer, gradient clipping hampir selalu diperlukan.
 
 Satu teknik yang wajib dikuasai untuk mendiagnosis bug (berbeda dari overfitting): **overfit satu batch**. Ambil 4-8 sampel training, jalankan ratusan iterasi hanya pada sampel itu. Jika model tidak bisa mencapai loss mendekati nol, ada bug di arsitektur atau loss function - bukan masalah data atau hiperparameter. Jika bisa, model sehat; masalahnya ada di tempat lain. Karpathy menyebut teknik ini sebagai "the most important debugging tool".
+
+![Lima pola loss curve untuk diagnosis: underfitting, overfitting, early divergence, val lebih rendah dari train, dan konvergensi normal](./figures/fig01c_loss_curves_diagnostic.svg)
 
 ---
 

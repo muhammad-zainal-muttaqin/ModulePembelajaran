@@ -219,6 +219,8 @@ Enam kompetensi adalah minimum untuk lulus. Tujuh-delapan untuk proficient; dela
 
 ### 2.4 Timeline Empat Minggu
 
+![Timeline capstone 4 minggu: EDA, baseline, ablation, demo, presentasi dan deliverable tiap pekan](./figures/fig10a_capstone_timeline.svg)
+
 **Minggu 1 - Fondasi.**
 
 - Hari 1-2: pilih template atau ajukan proyek. Baca minimum 2 paper relevan.

@@ -69,6 +69,8 @@ Saat Anda menjalankan kode yang sama dua kali dan mendapat hasil berbeda, salah 
 
 **4. Urutan eksekusi paralel.** `num_workers > 0` di DataLoader dapat memicu perbedaan urutan. Kontrol dengan `worker_init_fn` yang meng-seed tiap worker.
 
+![Empat sumber non-determinisme dalam training PyTorch dan cara mengontrolnya](./figures/fig03a_reproducibility_sources.svg)
+
 Fungsi utility yang merangkum keempatnya:
 
 ```python
@@ -270,6 +272,8 @@ experiments/
     │   └── stdout.log           output terminal
     └── summary.csv              tabel agregat semua run di eksperimen ini
 ```
+
+![Struktur folder eksperimen yang lengkap: artifact per run dan summary agregat](./figures/fig03b_experiment_folder.svg)
 
 Pola penamaan `run_id`: `<kondisi>_s<seed>` atau `<kondisi>_lr<lr>_s<seed>`. Contoh: `focal_freeze_s42`, `baseline_lr3e4_s43`. Hindari `final`, `v2`, `test` - mereka tidak bermakna setelah sebulan.
 

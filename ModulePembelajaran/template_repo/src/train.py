@@ -91,22 +91,47 @@ def build_scheduler(optimizer, cfg: dict, epochs: int):
     )
 
 
-def evaluate(model, loader, loss_fn, device) -> tuple[float, float]:
+def _detect_task_type(cfg: dict) -> str:
+    """Infer training semantics from model + loss config.
+
+    Returns one of: "classification", "regression", "reconstruction".
+    - reconstruction: autoencoder (simple_ae); loss applied to (output, input)
+    - regression:     LSTM/sequence regression; y is float, output squeezed
+    - classification: default; y is long, output is logits
+    """
+    model_name = cfg.get("model", {}).get("name", "").lower()
+    loss_name = cfg.get("loss", {}).get("name", "").lower()
+    if model_name == "simple_ae":
+        return "reconstruction"
+    if model_name == "simple_lstm" and loss_name == "mse":
+        return "regression"
+    return "classification"
+
+
+def evaluate(model, loader, loss_fn, device, task_type: str = "classification") -> tuple[float, float]:
     model.eval()
     total, correct, loss_sum = 0, 0, 0.0
     with torch.no_grad():
         for x, y in loader:
             x = x.to(device, non_blocking=True)
-            y = torch.as_tensor(y).to(device, non_blocking=True).long().view(-1)
-            logits = model(x)
-            loss_sum += loss_fn(logits, y).item() * x.size(0)
-            pred = logits.argmax(dim=1)
-            correct += (pred == y).sum().item()
+            output = model(x)
+            if task_type == "reconstruction":
+                loss = loss_fn(output, x)
+            elif task_type == "regression":
+                y = torch.as_tensor(y).to(device, non_blocking=True).float().view(-1)
+                loss = loss_fn(output.squeeze(-1), y)
+            else:
+                y = torch.as_tensor(y).to(device, non_blocking=True).long().view(-1)
+                loss = loss_fn(output, y)
+                correct += (output.argmax(dim=1) == y).sum().item()
+            loss_sum += loss.item() * x.size(0)
             total += x.size(0)
-    return loss_sum / max(total, 1), correct / max(total, 1)
+    acc = correct / max(total, 1) if task_type == "classification" else 0.0
+    return loss_sum / max(total, 1), acc
 
 
-def train_one_epoch(model, loader, loss_fn, optimizer, device, grad_clip, logger, epoch, log_every):
+def train_one_epoch(model, loader, loss_fn, optimizer, device, grad_clip, logger, epoch, log_every,
+                    task_type: str = "classification"):
     model.train()
     running_loss = 0.0
     running_correct = 0
@@ -114,9 +139,16 @@ def train_one_epoch(model, loader, loss_fn, optimizer, device, grad_clip, logger
     pbar = tqdm(loader, desc=f"epoch {epoch}", leave=False)
     for step, (x, y) in enumerate(pbar):
         x = x.to(device, non_blocking=True)
-        y = torch.as_tensor(y).to(device, non_blocking=True).long().view(-1)
-        logits = model(x)
-        loss = loss_fn(logits, y)
+        output = model(x)
+        if task_type == "reconstruction":
+            loss = loss_fn(output, x)
+        elif task_type == "regression":
+            y = torch.as_tensor(y).to(device, non_blocking=True).float().view(-1)
+            loss = loss_fn(output.squeeze(-1), y)
+        else:
+            y = torch.as_tensor(y).to(device, non_blocking=True).long().view(-1)
+            loss = loss_fn(output, y)
+            running_correct += (output.argmax(1) == y).sum().item()
         optimizer.zero_grad(set_to_none=True)
         loss.backward()
         if grad_clip is not None and grad_clip > 0:
@@ -124,19 +156,20 @@ def train_one_epoch(model, loader, loss_fn, optimizer, device, grad_clip, logger
         optimizer.step()
 
         running_loss += loss.item() * x.size(0)
-        running_correct += (logits.argmax(1) == y).sum().item()
         running_total += x.size(0)
 
         if step % log_every == 0:
-            pbar.set_postfix({
-                "loss": f"{running_loss / running_total:.4f}",
-                "acc": f"{running_correct / running_total:.4f}",
-            })
+            postfix = {"loss": f"{running_loss / running_total:.4f}"}
+            if task_type == "classification":
+                postfix["acc"] = f"{running_correct / running_total:.4f}"
+            pbar.set_postfix(postfix)
             logger.debug(
-                "epoch=%d step=%d loss=%.4f acc=%.4f",
-                epoch, step, running_loss / running_total, running_correct / running_total,
+                "epoch=%d step=%d loss=%.4f" + (" acc=%.4f" if task_type == "classification" else ""),
+                epoch, step, running_loss / running_total,
+                *([running_correct / running_total] if task_type == "classification" else []),
             )
-    return running_loss / max(running_total, 1), running_correct / max(running_total, 1)
+    acc = running_correct / max(running_total, 1) if task_type == "classification" else 0.0
+    return running_loss / max(running_total, 1), acc
 
 
 def save_checkpoint(path: Path, model, optimizer, scheduler, meta: RunMeta, cfg: dict) -> None:
@@ -218,6 +251,8 @@ def main(argv: list[str] | None = None) -> int:
                 cfg["model"]["name"], count_parameters(model))
 
     loss_fn = build_loss(cfg["loss"]).to(device)
+    task_type = _detect_task_type(cfg)
+    logger.info("task_type=%s", task_type)
 
     trainable_params = [p for p in model.parameters() if p.requires_grad]
     optimizer = build_optimizer(trainable_params, cfg["optim"])
@@ -229,7 +264,10 @@ def main(argv: list[str] | None = None) -> int:
                     warmup_epochs, cfg.get("scheduler", {}).get("name", "?"), epochs - warmup_epochs)
 
     writer = SummaryWriter(log_dir=str(out_dir / "tb"))
-    best_val = -1.0
+    # For classification: track best val_acc (higher is better).
+    # For regression/reconstruction: track best val_loss (lower is better).
+    best_val_acc = -1.0
+    best_val_loss = float("inf")
     best_epoch = -1
     grad_clip = cfg["train"].get("grad_clip", 0)
     log_every = cfg["train"].get("log_every", 50)
@@ -239,41 +277,60 @@ def main(argv: list[str] | None = None) -> int:
     for epoch in range(1, epochs + 1):
         train_loss, train_acc = train_one_epoch(
             model, train_loader, loss_fn, optimizer, device,
-            grad_clip, logger, epoch, log_every,
+            grad_clip, logger, epoch, log_every, task_type,
         )
-        val_loss, val_acc = evaluate(model, val_loader, loss_fn, device)
+        val_loss, val_acc = evaluate(model, val_loader, loss_fn, device, task_type)
         if scheduler is not None:
             scheduler.step()
 
         writer.add_scalar("loss/train", train_loss, epoch)
         writer.add_scalar("loss/val", val_loss, epoch)
-        writer.add_scalar("acc/train", train_acc, epoch)
-        writer.add_scalar("acc/val", val_acc, epoch)
         writer.add_scalar("lr", optimizer.param_groups[0]["lr"], epoch)
+        if task_type == "classification":
+            writer.add_scalar("acc/train", train_acc, epoch)
+            writer.add_scalar("acc/val", val_acc, epoch)
+            logger.info(
+                "epoch=%d train_loss=%.4f train_acc=%.4f val_loss=%.4f val_acc=%.4f",
+                epoch, train_loss, train_acc, val_loss, val_acc,
+            )
+        else:
+            logger.info(
+                "epoch=%d train_loss=%.4f val_loss=%.4f",
+                epoch, train_loss, val_loss,
+            )
 
-        logger.info(
-            "epoch=%d train_loss=%.4f train_acc=%.4f val_loss=%.4f val_acc=%.4f",
-            epoch, train_loss, train_acc, val_loss, val_acc,
-        )
+        if task_type == "classification":
+            improved = val_acc > best_val_acc
+            metric_name, metric_value = "val_acc", val_acc
+        else:
+            improved = val_loss < best_val_loss
+            metric_name, metric_value = "val_loss", val_loss
 
         meta = RunMeta(
             experiment_name=exp_name, seed=seed, commit=commit, dirty=dirty,
-            epoch=epoch, metric_name="val_acc", metric_value=val_acc,
+            epoch=epoch, metric_name=metric_name, metric_value=metric_value,
         )
-        if val_acc > best_val:
-            best_val = val_acc
+        if improved:
+            best_val_acc = val_acc
+            best_val_loss = val_loss
             best_epoch = epoch
             save_checkpoint(out_dir / "ckpt_best.pt", model, optimizer, scheduler, meta, cfg)
 
         if epoch % save_every == 0 or epoch == epochs:
             save_checkpoint(out_dir / "ckpt_last.pt", model, optimizer, scheduler, meta, cfg)
 
-    test_loss, test_acc = evaluate(model, test_loader, loss_fn, device)
+    test_loss, test_acc = evaluate(model, test_loader, loss_fn, device, task_type)
     duration = time.time() - start
-    logger.info(
-        "done best_val_acc=%.4f best_epoch=%d test_acc=%.4f duration=%.1fs",
-        best_val, best_epoch, test_acc, duration,
-    )
+    if task_type == "classification":
+        logger.info(
+            "done best_val_acc=%.4f best_epoch=%d test_acc=%.4f duration=%.1fs",
+            best_val_acc, best_epoch, test_acc, duration,
+        )
+    else:
+        logger.info(
+            "done best_val_loss=%.4f best_epoch=%d test_loss=%.4f duration=%.1fs",
+            best_val_loss, best_epoch, test_loss, duration,
+        )
 
     append_results(
         Path(out_root) / "results.csv",
@@ -282,10 +339,13 @@ def main(argv: list[str] | None = None) -> int:
             "seed": seed,
             "commit": commit,
             "dirty": int(dirty),
+            "task_type": task_type,
             "epochs": epochs,
-            "best_val_acc": f"{best_val:.4f}",
+            "best_val_acc": f"{best_val_acc:.4f}",
+            "best_val_loss": f"{best_val_loss:.4f}",
             "best_epoch": best_epoch,
             "test_acc": f"{test_acc:.4f}",
+            "test_loss": f"{test_loss:.4f}",
             "duration_sec": f"{duration:.1f}",
         },
     )
@@ -294,8 +354,11 @@ def main(argv: list[str] | None = None) -> int:
         "experiment_name": exp_name,
         "seed": seed,
         "commit": commit,
-        "best_val_acc": best_val,
+        "task_type": task_type,
+        "best_val_acc": best_val_acc,
+        "best_val_loss": best_val_loss,
         "test_acc": test_acc,
+        "test_loss": test_loss,
         "duration_sec": duration,
     }
     with open(out_dir / "summary.json", "w", encoding="utf-8") as f:

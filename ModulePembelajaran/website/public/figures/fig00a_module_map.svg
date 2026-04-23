@@ -1,0 +1,129 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 530" font-family="ui-sans-serif,system-ui,sans-serif">
+  <rect width="880" height="530" fill="#FAFAFA" rx="12"/>
+  <text x="440" y="26" text-anchor="middle" font-size="15" font-weight="700" fill="#111827">Peta Dependensi Modul Pembelajaran</text>
+  <text x="440" y="44" text-anchor="middle" font-size="10" fill="#6B7280">Panah = prereq. Baca bab sesuai urutan, atau ikuti jalur sesuai kebutuhan.</text>
+
+  <!-- Week labels on left -->
+  <text x="14" y="92" font-size="8" fill="#9CA3AF" transform="rotate(-90,14,100)">Pekan 1-2</text>
+  <text x="14" y="192" font-size="8" fill="#9CA3AF" transform="rotate(-90,14,200)">Pekan 3-4</text>
+  <text x="14" y="292" font-size="8" fill="#9CA3AF" transform="rotate(-90,14,300)">Pekan 5-8</text>
+  <text x="14" y="392" font-size="8" fill="#9CA3AF" transform="rotate(-90,14,400)">Pekan 9-14</text>
+
+  <!-- Horizontal dividers -->
+  <line x1="40" y1="140" x2="840" y2="140" stroke="#F3F4F6" stroke-width="1"/>
+  <line x1="40" y1="240" x2="840" y2="240" stroke="#F3F4F6" stroke-width="1"/>
+  <line x1="40" y1="360" x2="840" y2="360" stroke="#F3F4F6" stroke-width="1"/>
+
+  <!-- ROW 1: Foundation -->
+  <rect x="340" y="62" width="200" height="60" rx="8" fill="#1E293B" stroke="#475569" stroke-width="2"/>
+  <text x="440" y="86" text-anchor="middle" font-size="11" font-weight="700" fill="#F8FAFC">Bab 00</text>
+  <text x="440" y="102" text-anchor="middle" font-size="10" fill="#94A3B8">Pendahuluan &amp; Kontrak</text>
+  <text x="440" y="116" text-anchor="middle" font-size="8" fill="#64748B">Semua mahasiswa mulai di sini</text>
+
+  <!-- ROW 2: Core ML -->
+  <rect x="340" y="158" width="200" height="60" rx="8" fill="#1D4ED8" stroke="#3B82F6" stroke-width="2"/>
+  <text x="440" y="182" text-anchor="middle" font-size="11" font-weight="700" fill="white">Bab 01</text>
+  <text x="440" y="198" text-anchor="middle" font-size="10" fill="#BFDBFE">Memahami ML/DL</text>
+  <text x="440" y="212" text-anchor="middle" font-size="8" fill="#93C5FD">NN families, loss, backprop</text>
+
+  <!-- 00 → 01 -->
+  <path d="M440 122 L440 156" stroke="#475569" stroke-width="1.5" stroke-dasharray="4" marker-end="url(#arrGray)"/>
+
+  <!-- ROW 3: Parallel tracks -->
+  <rect x="60" y="258" width="168" height="60" rx="8" fill="#065F46" stroke="#10B981" stroke-width="2"/>
+  <text x="144" y="282" text-anchor="middle" font-size="11" font-weight="700" fill="white">Bab 02</text>
+  <text x="144" y="298" text-anchor="middle" font-size="10" fill="#A7F3D0">Ide → Eksperimen</text>
+  <text x="144" y="312" text-anchor="middle" font-size="8" fill="#6EE7B7">hipotesis, ablation</text>
+
+  <rect x="248" y="258" width="168" height="60" rx="8" fill="#065F46" stroke="#10B981" stroke-width="2"/>
+  <text x="332" y="282" text-anchor="middle" font-size="11" font-weight="700" fill="white">Bab 03</text>
+  <text x="332" y="298" text-anchor="middle" font-size="10" fill="#A7F3D0">Reproduksibilitas</text>
+  <text x="332" y="312" text-anchor="middle" font-size="8" fill="#6EE7B7">seed, checkpoint, config</text>
+
+  <rect x="436" y="258" width="168" height="60" rx="8" fill="#92400E" stroke="#F59E0B" stroke-width="2"/>
+  <text x="520" y="282" text-anchor="middle" font-size="11" font-weight="700" fill="white">Bab 04</text>
+  <text x="520" y="298" text-anchor="middle" font-size="10" fill="#FDE68A">Validasi Data</text>
+  <text x="520" y="312" text-anchor="middle" font-size="8" fill="#FCD34D">EDA, leakage, split</text>
+
+  <rect x="624" y="258" width="168" height="60" rx="8" fill="#4C1D95" stroke="#8B5CF6" stroke-width="2"/>
+  <text x="708" y="282" text-anchor="middle" font-size="11" font-weight="700" fill="white">Bab 05</text>
+  <text x="708" y="298" text-anchor="middle" font-size="10" fill="#DDD6FE">AI Tools Pendukung</text>
+  <text x="708" y="312" text-anchor="middle" font-size="8" fill="#C4B5FD">LLM workflow</text>
+
+  <!-- 01 → 02,03,04,05 -->
+  <path d="M380 218 L144 256" stroke="#3B82F6" stroke-width="1.5" marker-end="url(#arrBlue)"/>
+  <path d="M410 218 L332 256" stroke="#3B82F6" stroke-width="1.5" marker-end="url(#arrBlue)"/>
+  <path d="M470 218 L520 256" stroke="#3B82F6" stroke-width="1.5" marker-end="url(#arrBlue)"/>
+  <path d="M500 218 L708 256" stroke="#3B82F6" stroke-width="1.5" marker-end="url(#arrBlue)"/>
+
+  <!-- ROW 4: Advanced -->
+  <rect x="60" y="378" width="148" height="60" rx="8" fill="#7F1D1D" stroke="#EF4444" stroke-width="2"/>
+  <text x="134" y="402" text-anchor="middle" font-size="11" font-weight="700" fill="white">Bab 06</text>
+  <text x="134" y="418" text-anchor="middle" font-size="10" fill="#FCA5A5">Adopsi Repo Riset</text>
+  <text x="134" y="432" text-anchor="middle" font-size="8" fill="#F87171">fork, modifikasi</text>
+
+  <rect x="220" y="378" width="148" height="60" rx="8" fill="#7F1D1D" stroke="#EF4444" stroke-width="2"/>
+  <text x="294" y="402" text-anchor="middle" font-size="11" font-weight="700" fill="white">Bab 07</text>
+  <text x="294" y="418" text-anchor="middle" font-size="10" fill="#FCA5A5">Alat Pendukung</text>
+  <text x="294" y="432" text-anchor="middle" font-size="8" fill="#F87171">Streamlit, viz, demo</text>
+
+  <rect x="380" y="378" width="148" height="60" rx="8" fill="#1C1917" stroke="#78716C" stroke-width="2"/>
+  <text x="454" y="402" text-anchor="middle" font-size="11" font-weight="700" fill="white">Bab 08</text>
+  <text x="454" y="418" text-anchor="middle" font-size="10" fill="#D6D3D1">Platform &amp; GPU</text>
+  <text x="454" y="432" text-anchor="middle" font-size="8" fill="#A8A29E">RunPod, cloud</text>
+
+  <rect x="540" y="378" width="148" height="60" rx="8" fill="#1C1917" stroke="#78716C" stroke-width="2"/>
+  <text x="614" y="402" text-anchor="middle" font-size="11" font-weight="700" fill="white">Bab 09</text>
+  <text x="614" y="418" text-anchor="middle" font-size="10" fill="#D6D3D1">Pengembangan Diri</text>
+  <text x="614" y="432" text-anchor="middle" font-size="8" fill="#A8A29E">paper, mandiri</text>
+
+  <rect x="700" y="378" width="148" height="60" rx="8" fill="#312E81" stroke="#6366F1" stroke-width="2"/>
+  <text x="774" y="402" text-anchor="middle" font-size="11" font-weight="700" fill="white">Bab 10</text>
+  <text x="774" y="418" text-anchor="middle" font-size="10" fill="#C7D2FE">Capstone Project</text>
+  <text x="774" y="432" text-anchor="middle" font-size="8" fill="#A5B4FC">semua bab sebelumnya</text>
+
+  <!-- Row 3 → Row 4 arrows -->
+  <path d="M144 318 L134 376" stroke="#10B981" stroke-width="1.2" marker-end="url(#arrGreen)"/>
+  <path d="M200 318 L270 376" stroke="#10B981" stroke-width="1.2" marker-end="url(#arrGreen)"/>
+  <path d="M332 318 L200 376" stroke="#10B981" stroke-width="1.2" marker-end="url(#arrGreen)"/>
+  <path d="M380 318 L400 376" stroke="#F59E0B" stroke-width="1.2" marker-end="url(#arrAmber)"/>
+  <path d="M520 318 L470 376" stroke="#F59E0B" stroke-width="1.2" marker-end="url(#arrAmber)"/>
+  <path d="M600 318 L570 376" stroke="#8B5CF6" stroke-width="1.2" marker-end="url(#arrPurple)"/>
+  <path d="M708 318 L640 376" stroke="#8B5CF6" stroke-width="1.2" marker-end="url(#arrPurple)"/>
+
+  <!-- All → Capstone (curve above legend) -->
+  <path d="M134 438 Q440 446 770 440" fill="none" stroke="#6366F1" stroke-width="1" stroke-dasharray="4" marker-end="url(#arrIndigo)"/>
+
+  <!-- Legend -->
+  <rect x="40" y="460" width="800" height="52" rx="6" fill="#F1F5F9" stroke="#E2E8F0"/>
+  <text x="54" y="476" font-size="9" font-weight="600" fill="#374151">Panduan jalur:</text>
+  <rect x="148" y="466" width="14" height="8" rx="2" fill="#1D4ED8"/>
+  <text x="168" y="476" font-size="9" fill="#374151">Fondasi (wajib)</text>
+  <rect x="258" y="466" width="14" height="8" rx="2" fill="#065F46"/>
+  <text x="278" y="476" font-size="9" fill="#374151">Eksperimen + Data</text>
+  <rect x="388" y="466" width="14" height="8" rx="2" fill="#7F1D1D"/>
+  <text x="408" y="476" font-size="9" fill="#374151">Riset lanjut</text>
+  <text x="54" y="498" font-size="9" fill="#6B7280">Bab 11 (Rubrik) dan Bab 12 (Lampiran) adalah referensi - bisa dibaca kapanpun.</text>
+  <text x="490" y="498" font-size="9" fill="#6B7280">Bab 10 membutuhkan semua bab sebelumnya.</text>
+
+  <defs>
+    <marker id="arrGray" markerWidth="7" markerHeight="6" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L7,3 L0,6 Z" fill="#475569"/>
+    </marker>
+    <marker id="arrBlue" markerWidth="7" markerHeight="6" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L7,3 L0,6 Z" fill="#3B82F6"/>
+    </marker>
+    <marker id="arrGreen" markerWidth="7" markerHeight="6" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L7,3 L0,6 Z" fill="#10B981"/>
+    </marker>
+    <marker id="arrAmber" markerWidth="7" markerHeight="6" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L7,3 L0,6 Z" fill="#F59E0B"/>
+    </marker>
+    <marker id="arrPurple" markerWidth="7" markerHeight="6" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L7,3 L0,6 Z" fill="#8B5CF6"/>
+    </marker>
+    <marker id="arrIndigo" markerWidth="7" markerHeight="6" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L7,3 L0,6 Z" fill="#6366F1"/>
+    </marker>
+  </defs>
+</svg>

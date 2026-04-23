@@ -47,16 +47,21 @@ function rewriteLinks(md: string): string {
   });
 }
 
+// Rewrite relative figure paths `./figures/` -> `/ModulePembelajaran/figures/`.
+function rewriteImagePaths(md: string): string {
+  return md.replace(/\(\.\/figures\//g, "(/ModulePembelajaran/figures/");
+}
+
 export function getChapterMarkdown(id: string): string {
   const raw = RAW[id];
   if (!raw) return "";
-  return rewriteLinks(stripTopNav(raw));
+  return rewriteImagePaths(rewriteLinks(stripTopNav(raw)));
 }
 
 export function getAllChapters(): Record<string, string> {
   const out: Record<string, string> = {};
   for (const key of Object.keys(RAW)) {
-    out[key] = rewriteLinks(stripTopNav(RAW[key]));
+    out[key] = rewriteImagePaths(rewriteLinks(stripTopNav(RAW[key])));
   }
   return out;
 }

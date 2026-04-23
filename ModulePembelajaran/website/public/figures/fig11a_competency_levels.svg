@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 360" font-family="ui-sans-serif,system-ui,sans-serif">
+  <rect width="720" height="360" fill="#FAFAFA" rx="12"/>
+  <text x="360" y="26" text-anchor="middle" font-size="15" font-weight="700" fill="#111827">4 Level Penguasaan (Mastery)</text>
+  <text x="360" y="44" text-anchor="middle" font-size="10" fill="#6B7280">Penilaian komprehensif mencakup 10 kompetensi selama 14 minggu</text>
+
+  <!-- Level 4: Masterpiece (top step, narrowest) -->
+  <rect x="40" y="58" width="440" height="64" rx="8" fill="#FFF7ED" stroke="#F59E0B" stroke-width="2.5"/>
+  <rect x="40" y="58" width="8" height="64" rx="4" fill="#F59E0B"/>
+  <text x="60" y="80" font-size="14">⭐</text>
+  <text x="84" y="80" font-size="14" font-weight="700" fill="#92400E">Masterpiece</text>
+  <rect x="412" y="68" width="56" height="24" rx="6" fill="#F59E0B"/>
+  <text x="440" y="85" text-anchor="middle" font-size="13" font-weight="700" fill="white">95</text>
+  <text x="60" y="98" font-size="10" fill="#374151">Riset orisinal dengan temuan mengejutkan. Komunikasi meyakinkan dan</text>
+  <text x="60" y="112" font-size="10" fill="#374151">reproducible. Mentoring junior dan kontribusi ke komunitas riset.</text>
+
+  <!-- Level 3: Proficient -->
+  <rect x="40" y="130" width="500" height="64" rx="8" fill="#EFF6FF" stroke="#3B82F6" stroke-width="2"/>
+  <rect x="40" y="130" width="8" height="64" rx="4" fill="#3B82F6"/>
+  <text x="60" y="152" font-size="14" font-weight="700" fill="#1D4ED8">Proficient</text>
+  <rect x="472" y="140" width="56" height="24" rx="6" fill="#3B82F6"/>
+  <text x="500" y="157" text-anchor="middle" font-size="13" font-weight="700" fill="white">85</text>
+  <text x="60" y="170" font-size="10" fill="#374151">Merancang eksperimen mandiri dengan hipotesis falsifiable. Memilih</text>
+  <text x="60" y="184" font-size="10" fill="#374151">metrik sesuai konteks. Mampu mereplikasi paper dengan modifikasi minor.</text>
+
+  <!-- Level 2: Developing -->
+  <rect x="40" y="202" width="560" height="64" rx="8" fill="#ECFDF5" stroke="#10B981" stroke-width="2"/>
+  <rect x="40" y="202" width="8" height="64" rx="4" fill="#10B981"/>
+  <text x="60" y="224" font-size="14" font-weight="700" fill="#065F46">Developing</text>
+  <rect x="532" y="212" width="56" height="24" rx="6" fill="#10B981"/>
+  <text x="560" y="229" text-anchor="middle" font-size="13" font-weight="700" fill="white">70</text>
+  <text x="60" y="242" font-size="10" fill="#374151">Memahami konsep inti dan bisa menjelaskan keputusan eksperimen dasar.</text>
+  <text x="60" y="256" font-size="10" fill="#374151">Mampu debug error sederhana dan mereproduksi eksperimen orang lain.</text>
+
+  <!-- Level 1: Novice (bottom step, widest) -->
+  <rect x="40" y="274" width="620" height="64" rx="8" fill="#F9FAFB" stroke="#D1D5DB" stroke-width="2"/>
+  <rect x="40" y="274" width="8" height="64" rx="4" fill="#9CA3AF"/>
+  <text x="60" y="296" font-size="14" font-weight="700" fill="#374151">Novice</text>
+  <rect x="592" y="284" width="56" height="24" rx="6" fill="#9CA3AF"/>
+  <text x="620" y="301" text-anchor="middle" font-size="13" font-weight="700" fill="white">50</text>
+  <text x="60" y="314" font-size="10" fill="#6B7280">Mengikuti instruksi tanpa memahami mengapa. Menjalankan kode tanpa</text>
+  <text x="60" y="328" font-size="10" fill="#6B7280">bisa menjelaskan hasil atau mengidentifikasi error.</text>
+
+  <!-- Right side score axis -->
+  <text x="690" y="52" text-anchor="middle" font-size="8" fill="#6B7280">skor min</text>
+  <line x1="674" y1="58" x2="674" y2="338" stroke="#E5E7EB" stroke-width="1.5"/>
+  <line x1="670" y1="90" x2="678" y2="90" stroke="#F59E0B" stroke-width="2"/>
+  <line x1="670" y1="162" x2="678" y2="162" stroke="#3B82F6" stroke-width="2"/>
+  <line x1="670" y1="234" x2="678" y2="234" stroke="#10B981" stroke-width="2"/>
+  <line x1="670" y1="306" x2="678" y2="306" stroke="#9CA3AF" stroke-width="2"/>
+  <text x="690" y="94" font-size="10" fill="#F59E0B" font-weight="700">95</text>
+  <text x="690" y="166" font-size="10" fill="#3B82F6" font-weight="700">85</text>
+  <text x="690" y="238" font-size="10" fill="#10B981" font-weight="700">70</text>
+  <text x="690" y="310" font-size="10" fill="#9CA3AF" font-weight="700">50</text>
+</svg>

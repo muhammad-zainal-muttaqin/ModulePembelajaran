@@ -151,6 +151,8 @@ Anda tidak harus memilih jalur yang sama setiap minggu. Rotasi antar jalur justr
 
 Modul ini dirancang sebagai tangga, tetapi tidak semua anak tangga harus dinaiki dengan jarak yang sama. Tabel berikut menunjukkan konsep dari bab mana yang perlu Anda pahami sebelum mengerjakan bab tertentu. "Perlu dipahami" bukan berarti dihapal - cukup Anda sudah menjalankan labnya dan bisa menjelaskan ide utamanya.
 
+![Peta dependensi modul pembelajaran: 13 bab dengan arah prereq dan jalur per pekan](./figures/fig00a_module_map.svg)
+
 | Bab | Prasyarat minimum | Konsep kunci yang dibutuhkan |
 | --- | --- | --- |
 | **01** Memahami ML/DL | - (titik awal) | - |

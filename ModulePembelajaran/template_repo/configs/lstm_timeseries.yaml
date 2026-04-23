@@ -9,9 +9,10 @@ seed: 42
 data:
   name: sine_sequence
   root: ./data
-  sequence_length: 50
-  num_train: 4000
-  num_val: 500
+  seq_len: 50
+  n_train: 4000
+  n_val: 500
+  n_test: 500
   noise_std: 0.05
   batch_size: 64
   num_workers: 2

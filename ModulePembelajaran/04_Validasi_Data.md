@@ -118,6 +118,8 @@ Ingat: laporan otomatis adalah titik awal, bukan akhir. Ia menunjukkan *apa*; An
 
 **5. Preprocessing leakage.** Statistik untuk normalisasi (mean, std) dihitung dari seluruh dataset termasuk test. Ini memberi model informasi agregat test. Solusinya: fit preprocessing hanya pada train, transform train+test dengan parameter yang sudah di-fit.
 
+![Lima jenis data leakage: tanda-tanda, penyebab, dan cara deteksinya](./figures/fig04a_data_leakage.svg)
+
 Tabel deteksi:
 
 | Jenis | Tanda-tanda awal | Tes cepat |

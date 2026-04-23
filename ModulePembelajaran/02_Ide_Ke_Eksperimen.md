@@ -138,6 +138,8 @@ Tabel konfigurasi adalah alat sederhana yang kuat:
 
 Baca secara vertikal: kolom `LR` seragam, berarti learning rate bukan variabel. Kolom `Loss` dan `Freeze` berubah bersamaan - inilah yang sedang Anda uji. Seed divariasikan sebagai *replikasi*, bukan sebagai variabel eksperimen.
 
+![Desain ablation study: baseline dan tiga varian dengan satu variabel berubah per kondisi](./figures/fig02a_ablation_design.svg)
+
 **Variabel yang saling bergantung.** Ada satu jebakan yang sering tidak disadari: *batch size dan learning rate tidak independen*. Menggandakan batch size sambil mempertahankan LR yang sama secara efektif mengurangi ukuran update relatif - hasilnya sering lebih lambat konvergen atau performa lebih rendah. Aturan praktis yang umum diterima: jika batch size naik k kali, LR juga naik k kali (*linear scaling rule*, Goyal et al. 2017). Ini bukan hukum besi - tetapi artinya ketika Anda mengubah batch size, LR bukan variabel yang aman untuk dianggap konstan.
 
 **Tiga strategi menginisialisasi baseline hyperparameter.** Sebelum bisa mengontrol variabel, Anda perlu baseline yang konfigurasinya masuk akal. Tiga strategi umum, dari paling mudah ke paling teliti:

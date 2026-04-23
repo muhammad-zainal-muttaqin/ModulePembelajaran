@@ -87,6 +87,8 @@ Empat tingkat filter, dari kasar ke halus:
 
 Dari 500 paper/minggu → 5 paper dibaca cepat → 1-2 paper dibaca penuh. Rasio 1:250. Awalnya terasa membuang, sebenarnya itu efisiensi.
 
+![Funnel seleksi paper: dari 500 judul di arXiv hingga 1-2 paper yang dibaca penuh](./figures/fig09a_paper_funnel.svg)
+
 ### 2.2 Membaca Paper dalam Tiga Putaran
 
 Paper akademik tidak dirancang untuk dibaca linear. Tiga putaran membantu menyerap dengan energi yang masuk akal:

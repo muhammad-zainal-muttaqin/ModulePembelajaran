@@ -133,6 +133,8 @@ rsync -avz -e "ssh -p <port>" root@<host>:/workspace/experiments/focal_freeze_se
 
 **6. Matikan pod.** Ini langkah yang paling sering dilupakan mahasiswa - dan yang paling mahal. *Begitu selesai tarik data, matikan pod*. Jangan biarkan menyala "untuk jaga-jaga". Kalau Anda butuh lagi dalam satu jam, nyalakan lagi - biaya nyalakan-ulang < $0.05, biaya diam menyala = terus mengalir.
 
+![Alur kerja cloud GPU: 6 tahap lifecycle pod dan konsep SSH tunnel untuk monitoring](./figures/fig08a_cloud_workflow.svg)
+
 ### 2.4 SSH Port Forwarding: TensorBoard Jarak Jauh
 
 Training berjalan di pod. TensorBoard berjalan di port 6006 pod. Anda ingin melihatnya di browser laptop. Solusi: SSH tunnel.

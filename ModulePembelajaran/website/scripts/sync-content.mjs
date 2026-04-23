@@ -85,6 +85,22 @@ function parseGlossary(md) {
   return entries;
 }
 
+async function copyDir(srcDir, destDir) {
+  await ensureDir(destDir);
+  let entries;
+  try {
+    entries = await fs.readdir(srcDir, { withFileTypes: true });
+  } catch (err) {
+    if (err.code === "ENOENT") return;
+    throw err;
+  }
+  for (const entry of entries) {
+    if (entry.isFile()) {
+      await copyFile(path.join(srcDir, entry.name), path.join(destDir, entry.name));
+    }
+  }
+}
+
 async function main() {
   await ensureDir(path.join(OUT, "chapters"));
   await ensureDir(path.join(OUT, "configs"));
@@ -108,6 +124,10 @@ async function main() {
     await fs.writeFile(path.join(OUT, "glossary.json"), JSON.stringify(glossary, null, 2), "utf8");
     console.log(`[sync] glossary: ${glossary.length} entries`);
   }
+
+  const figSrc = path.join(SOURCE, "figures");
+  const figDest = path.join(ROOT, "public", "figures");
+  await copyDir(figSrc, figDest);
 
   console.log(`[sync] chapters: ${CHAPTERS.length}, configs: ${CONFIGS.length}`);
 }

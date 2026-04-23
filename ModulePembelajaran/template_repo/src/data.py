@@ -222,6 +222,44 @@ def _build_pathmnist(cfg: dict[str, Any], dry_run: bool):
     return train_set, val_set, test_set
 
 
+class _ToySequenceDataset(torch.utils.data.Dataset):
+    """Fully synthetic integer-token sequences for sequence classification.
+
+    Each sample is (tokens, label) where tokens has shape (max_len,) dtype long
+    and label is an integer in [0, num_classes). Labels are deterministically
+    derived from token sums so accuracy is learnable without any download.
+    Used by Lab 6b via `configs/transformer_mini.yaml`.
+    """
+
+    def __init__(self, n: int, vocab_size: int, max_len: int, num_classes: int, seed: int):
+        g = torch.Generator().manual_seed(seed)
+        self.tokens = torch.randint(0, vocab_size, (n, max_len), generator=g)
+        # Label = token-sum mod num_classes — simple but learnable
+        self.labels = (self.tokens.sum(dim=1) % num_classes).long()
+
+    def __len__(self) -> int:
+        return self.tokens.shape[0]
+
+    def __getitem__(self, idx: int):
+        return self.tokens[idx], int(self.labels[idx])
+
+
+def _build_toy_sequence(cfg: dict[str, Any], dry_run: bool):
+    vocab_size = cfg.get("vocab_size", 1000)
+    max_len = cfg.get("max_len", 64)
+    num_classes = cfg.get("num_classes", 3)
+    n_tr = cfg.get("n_train", 4000)
+    n_va = cfg.get("n_val", 500)
+    n_te = cfg.get("n_test", 500)
+    if dry_run:
+        n_tr, n_va, n_te = 64, 32, 32
+    return (
+        _ToySequenceDataset(n_tr, vocab_size, max_len, num_classes, seed=0),
+        _ToySequenceDataset(n_va, vocab_size, max_len, num_classes, seed=1),
+        _ToySequenceDataset(n_te, vocab_size, max_len, num_classes, seed=2),
+    )
+
+
 def build_datasets(cfg: dict[str, Any], dry_run: bool = False):
     """Dispatch by `cfg["name"]`. Returns (train, val, test) datasets."""
     name = cfg["name"].lower()
@@ -235,6 +273,8 @@ def build_datasets(cfg: dict[str, Any], dry_run: bool = False):
         return _build_sine(cfg, dry_run)
     if name == "cifar10_unlabeled":
         return _build_cifar10_unlabeled(cfg, dry_run)
+    if name == "toy_sequence":
+        return _build_toy_sequence(cfg, dry_run)
     raise ValueError(f"Unknown dataset: {name}")
 
 

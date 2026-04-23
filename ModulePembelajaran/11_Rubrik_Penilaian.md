@@ -37,6 +37,7 @@ Rubrik ini memetakan sembilan kompetensi ke empat level penguasaan dengan deskri
 
 Empat level berlaku untuk semua kompetensi. Deskriptor spesifik diberikan per kompetensi di bagian 3.
 
+![Empat level penguasaan: Novice, Developing, Proficient, Masterpiece dengan skor minimum per level](./figures/fig11a_competency_levels.svg)
 
 | Level           | Inti deskriptor                                                                                                                                                   |
 | --------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
