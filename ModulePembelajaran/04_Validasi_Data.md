@@ -4,7 +4,8 @@
 | # | Modul | Minggu |
 |---|-------|--------|
 | 00 | [Pendahuluan](00_Pendahuluan.md) | 1 |
-| 01 | [Memahami ML/DL](01_Memahami_ML_DL.md) | 2–3 |
+| 01a | [Fondasi Neural Network](01a_Fondasi_Neural_Network.md) | 2 |
+| 01b | [Loss, Optimizer & Evaluasi](01b_Loss_Optimizer_Evaluasi.md) | 3 |
 | 02 | [Ide ke Eksperimen](02_Ide_Ke_Eksperimen.md) | 4 |
 | 03 | [Eksperimen Reproduksibel](03_Eksperimen_Reproduksibel.md) | 5–6 |
 | ▶ 04 | Validasi Data | 7 |
@@ -33,13 +34,11 @@ Bab ini melatih Anda memeriksa data sebelum mempercayai hasil yang diturunkan da
 
 ---
 
-## 1. Motivasi: Dua Kisah Singkat
+## 1. Motivasi: Data yang Terlihat Baik Bisa Membohongi
 
-**Kisah pertama.** Seorang mahasiswa pascasarjana melatih model klasifikasi citra medis untuk mendeteksi penyakit paru-paru dari rontgen dada. Akurasi validasi: 97%. PI kegirangan, rencana submit paper dibuat. Pada tahap review, seorang kolega bertanya sederhana: "apakah model belajar mengenali penyakit, atau belajar mengenali rumah sakitnya?". Ternyata setiap rumah sakit memakai mesin rontgen berbeda dengan ciri visual khas di sudut gambar; data positif dan negatif datang dari sumber yang berbeda. Model tidak pernah melihat paru-paru - ia mengklasifikasi *sumber*. Enam bulan kerja mesti diulang dengan protokol data yang lebih ketat.
+Seorang mahasiswa pascasarjana melatih model klasifikasi citra medis untuk mendeteksi penyakit paru-paru dari rontgen dada. Akurasi validasi: 97%. Saat review, seorang kolega bertanya: "apakah model belajar mengenali penyakit, atau belajar mengenali rumah sakitnya?" Ternyata setiap rumah sakit memakai mesin rontgen berbeda dengan ciri visual khas di sudut gambar; data positif dan negatif datang dari sumber yang berbeda. Model tidak pernah melihat paru-paru - ia mengklasifikasi *sumber*. Enam bulan kerja diulang.
 
-**Kisah kedua.** Tim kecil membangun prediktor *churn* pelanggan. Akurasi test 94%, ROC-AUC 0.98. Semua metrik terlihat sehat. Saat deployment, akurasi nyata di produksi 68%. Setelah investigasi panjang, ditemukan bahwa fitur `last_login_days` dihitung relatif terhadap *tanggal ekstraksi data* - bukan relatif terhadap *tanggal prediksi*. Pelanggan yang *churn* punya fitur ini bernilai tinggi karena mereka memang tidak login lagi setelah churn; model belajar bahwa "tidak ada login baru" = "akan churn", tetapi ini hanya berlaku karena data diambil setelah kejadian. Fitur yang seharusnya tidak tersedia pada saat prediksi nyatanya bocor ke training.
-
-Dua kisah berbeda, satu pelajaran sama: *data yang terlihat baik mungkin sedang membohongimu*. Kewaspadaan terhadap data bukan tugas tambahan - ia adalah fondasi tanpa-mana seluruh eksperimen berdiri di atas pasir.
+Kewaspadaan terhadap data bukan tugas tambahan. Ia adalah fondasi tanpa-mana seluruh eksperimen berdiri di atas pasir.
 
 ---
 
@@ -49,7 +48,12 @@ Dua kisah berbeda, satu pelajaran sama: *data yang terlihat baik mungkin sedang 
 
 *Exploratory Data Analysis* sering diajarkan sebagai daftar langkah: "jalankan `df.describe()`, plot histogram, hitung korelasi, selesai". Praktik yang benar adalah sebaliknya - EDA dipandu oleh pertanyaan, bukan daftar. Setiap angka atau plot yang Anda lihat harus memicu pertanyaan baru, bukan tanda centang.
 
-Kerangka kerja yang produktif: tiga lapis pertanyaan.
+Kerangka kerja yang produktif: tiga lapis pertanyaan yang mengalir secara berurutan - dari integritas dasar, ke distribusi, ke hubungan tersembunyi.
+
+```mermaid
+flowchart LR
+    A[Lapis 1\nBentuk & Integritas\nnull, duplikat, tipe] --> B[Lapis 2\nDistribusi & Anomali\noutlier, imbalance] --> C[Lapis 3\nHubungan & Kejutan\nkorelasi, train-test shift]
+```
 
 **Lapis 1 - Bentuk dan integritas.**
 - Berapa banyak baris dan kolom?
@@ -417,19 +421,15 @@ Tugas:
 
 ## Komponen Mandiri (Pekan 7)
 
-> Eksperimen di sini boleh menghasilkan hasil yang tidak sesuai harapan - yang dinilai adalah kualitas dokumentasi dan analisis Anda, bukan keberhasilannya.
+Konsep: memeriksa data sebelum mempercayai hasil - distribusi kelas, leakage tersembunyi, kualitas label. Format dan kriteria: [Lampiran C.9](12_Lampiran.md#c9-template-komponen-mandiri).
 
-**Konsep yang dilatih:** Memeriksa data sebelum mempercayai hasil - dari distribusi kelas hingga *leakage* tersembunyi dan kualitas label.
+| Jalur | Tugas minggu ini |
+| --- | --- |
+| **A - Implementasi** | Pilih satu dataset klasifikasi dari HuggingFace (bukan PathMNIST). Jalankan 3-layer EDA: distribusi label + nilai hilang + duplikat, distribusi fitur + outlier, korelasi antar fitur. Laporkan satu temuan konkret yang mengubah cara Anda memakai dataset itu. |
+| **B - Analisis** | Rancang dua skenario leakage hipotetis yang tidak terdeteksi oleh pipeline Lab 4: satu pada split, satu pada fitur turunan. Jelaskan mekanismenya dan langkah tambahan untuk mendeteksinya. |
+| **C - Desain** | Rancang protokol split untuk dataset dengan ID entitas berulang (mis. ID pasien atau ID pembicara). Tulis dua versi: yang mudah-tapi-salah (random split) dan yang benar. Buat argumen mengapa versi salah sering lolos tanpa disadari. |
 
-Pilih **satu jalur** di bawah. Catat pilihan dan hasilnya di `notebooks/portofolio_mandiri.ipynb` pada entri Pekan 7. Di awal sesi Pekan 8, ada slot 10 menit untuk presentasi. Isi bagian "Koneksi": apakah temuan data ini mengubah cara Anda memandang eksperimen-eksperimen yang sudah dijalankan sebelumnya?
-
-| Jalur | Fokus Skill | Tugas |
-|-------|-------------|-------|
-| **A - Implementasi** | Membangun dan menguji | Pilih satu dataset klasifikasi dari HuggingFace (bukan PathMNIST). Jalankan 5-layer EDA: distribusi label, ukuran sampel, nilai hilang, duplikat, dan inspeksi sampel anomali. Laporkan satu temuan konkret yang akan mengubah cara Anda memakai dataset itu. |
-| **B - Analisis** | Mengamati dan menginterpretasi | Rancang dua skenario *leakage* hipotetis yang *tidak terdeteksi* oleh pipeline Lab 4: satu *leakage* pada split, satu pada fitur turunan. Untuk masing-masing, jelaskan mekanismenya, mengapa pipeline Lab 4 tidak menangkapnya, dan langkah tambahan apa yang diperlukan untuk mendeteksinya. |
-| **C - Desain** | Merancang dan mengargumentasi | Rancang protokol split untuk dataset yang memiliki ID entitas berulang - misalnya dataset medis dengan ID pasien atau dataset audio dengan ID pembicara. Tulis dua versi: versi yang mudah-tapi-salah (random split) dan versi yang benar. Buat argumen mengapa versi salah sering lolos tanpa disadari. |
-
-**Deliverable:** Entri portofolio Pekan 7 terisi di `notebooks/portofolio_mandiri.ipynb`. Siap presentasi 10 menit di awal Pekan 8.
+**Deliverable:** Entri portofolio Pekan 7 di `notebooks/portofolio_mandiri.ipynb`. Presentasi 10 menit di awal Pekan 8.
 
 ---
 

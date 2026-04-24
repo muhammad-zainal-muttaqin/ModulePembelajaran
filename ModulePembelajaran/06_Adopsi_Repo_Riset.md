@@ -4,7 +4,8 @@
 | # | Modul | Minggu |
 |---|-------|--------|
 | 00 | [Pendahuluan](00_Pendahuluan.md) | 1 |
-| 01 | [Memahami ML/DL](01_Memahami_ML_DL.md) | 2–3 |
+| 01a | [Fondasi Neural Network](01a_Fondasi_Neural_Network.md) | 2 |
+| 01b | [Loss, Optimizer & Evaluasi](01b_Loss_Optimizer_Evaluasi.md) | 3 |
 | 02 | [Ide ke Eksperimen](02_Ide_Ke_Eksperimen.md) | 4 |
 | 03 | [Eksperimen Reproduksibel](03_Eksperimen_Reproduksibel.md) | 5–6 |
 | 04 | [Validasi Data](04_Validasi_Data.md) | 7 |
@@ -48,6 +49,16 @@ Perbedaan kecepatan tujuh kali lipat bukan karena bakat. Perbedaannya adalah *st
 ### 2.1 Urutan Membaca: Dari Luar ke Dalam
 
 Ketika membuka repo baru, tahan godaan untuk langsung menjalankan. Baca dulu, dengan urutan yang dipikirkan:
+
+```mermaid
+flowchart TD
+    A[README.md\ntujuan, install, cara jalan] --> B[Paper/Laporan\narsitektur + loss + dataset]
+    B --> C[Struktur Folder\nsrc configs scripts data]
+    C --> D[Entry Point\ntrain.py / main.py]
+    D --> E[Model & Loss\ninput/output utama]
+    E --> F[DataLoader\nformat shape + tipe]
+    F --> G[Config\nrentang eksperimen yang didukung]
+```
 
 **1. README.md.** Baca seluruhnya, bahkan jika pendek. Fokus pada: tujuan proyek, cara install, cara jalan, format data yang diharapkan, link ke paper atau dokumentasi tambahan. Catat apa yang tidak jelas.
 
@@ -534,19 +545,15 @@ Bila Anda pernah membaca kode Transformer di Hugging Face atau `fairseq` dan mer
 
 ## Komponen Mandiri (Pekan 9)
 
-> Eksperimen di sini boleh menghasilkan hasil yang tidak sesuai harapan - yang dinilai adalah kualitas dokumentasi dan analisis Anda, bukan keberhasilannya.
+Konsep: membaca kode orang lain dengan cepat, memetakan arsitektur repo riset, dan memodifikasi secara minimal-invasif. Format dan kriteria: [Lampiran C.9](12_Lampiran.md#c9-template-komponen-mandiri).
 
-**Konsep yang dilatih:** Membaca kode orang lain dengan cepat, memetakan arsitektur repo riset, dan memodifikasi secara minimal-invasif tanpa merusak perilaku yang ada.
+| Jalur | Tugas minggu ini |
+| --- | --- |
+| **A - Implementasi** | Pilih satu paper di arXiv dengan repo publik (cek Papers With Code). Reproduksi satu angka dari paper itu. Laporkan berhasil atau tidak, berapa gap-nya, dan apa bottleneck utamanya. |
+| **B - Analisis** | Buat diagram komponen arsitektur repo Lab 6 (entry point, model, loss, optimizer, logging). Bandingkan dengan template_repo: apa yang lebih baik, apa yang kurang, apa yang hilang. |
+| **C - Desain** | Tulis laporan adopsi 1 halaman untuk repo Lab 6: apa yang berhasil, apa yang gagal, dan minimal 3 perubahan konkret agar repo ini dapat dipakai tim 5 orang selama 3 bulan. |
 
-Pilih **satu jalur** di bawah. Catat pilihan dan hasilnya di `notebooks/portofolio_mandiri.ipynb` pada entri Pekan 9. Di awal sesi Pekan 10, ada slot 10 menit untuk presentasi. Isi bagian "Koneksi": apakah Anda melihat pola yang sama antara cara repo riset eksternal distruktur dengan template_repo yang sudah Anda kenal sejak Bab 01?
-
-| Jalur | Fokus Skill | Tugas |
-|-------|-------------|-------|
-| **A - Implementasi** | Membangun dan menguji | Pilih satu paper di arXiv yang memiliki repo publik (cek Papers With Code). Coba reproduksi *satu angka* dari paper itu - tidak harus hasil utama, cukup satu metrik pada satu konfigurasi. Laporkan: berhasil atau tidak, berapa gap-nya, dan apa yang menjadi *bottleneck* utama. |
-| **B - Analisis** | Mengamati dan menginterpretasi | Buat diagram komponen arsitektur untuk repo yang diadopsi di Lab 6. Diagram harus menunjukkan: *entry point*, model, loss, optimizer, *logging*. Bandingkan dengan template_repo: apa yang lebih baik di repo eksternal, apa yang kurang, apa yang hilang. |
-| **C - Desain** | Merancang dan mengargumentasi | Tulis laporan adopsi 1 halaman untuk repo Lab 6: apa yang berhasil, apa yang gagal, dan apa yang perlu diubah agar repo ini dapat dipakai tim 5 orang selama 3 bulan. Usulkan minimal 3 perubahan konkret dengan justifikasi *effort* vs manfaat. |
-
-**Deliverable:** Entri portofolio Pekan 9 terisi di `notebooks/portofolio_mandiri.ipynb`. Siap presentasi 10 menit di awal Pekan 10.
+**Deliverable:** Entri portofolio Pekan 9 di `notebooks/portofolio_mandiri.ipynb`. Presentasi 10 menit di awal Pekan 10.
 
 ---
 

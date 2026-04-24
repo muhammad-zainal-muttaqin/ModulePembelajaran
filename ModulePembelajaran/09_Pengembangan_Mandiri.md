@@ -4,7 +4,8 @@
 | # | Modul | Minggu |
 |---|-------|--------|
 | 00 | [Pendahuluan](00_Pendahuluan.md) | 1 |
-| 01 | [Memahami ML/DL](01_Memahami_ML_DL.md) | 2–3 |
+| 01a | [Fondasi Neural Network](01a_Fondasi_Neural_Network.md) | 2 |
+| 01b | [Loss, Optimizer & Evaluasi](01b_Loss_Optimizer_Evaluasi.md) | 3 |
 | 02 | [Ide ke Eksperimen](02_Ide_Ke_Eksperimen.md) | 4 |
 | 03 | [Eksperimen Reproduksibel](03_Eksperimen_Reproduksibel.md) | 5–6 |
 | 04 | [Validasi Data](04_Validasi_Data.md) | 7 |
@@ -92,6 +93,16 @@ Dari 500 paper/minggu → 5 paper dibaca cepat → 1-2 paper dibaca penuh. Rasio
 ### 2.2 Membaca Paper dalam Tiga Putaran
 
 Paper akademik tidak dirancang untuk dibaca linear. Tiga putaran membantu menyerap dengan energi yang masuk akal:
+
+```mermaid
+flowchart TB
+    A[Putaran 1 - Skim\n10 menit\nJudul + abstrak + figure 1\n+ tabel utama + conclusion] --> B{Lanjut?}
+    B -- Ya --> C[Putaran 2 - Close-read\n30-45 menit\nMethod + setup + ablation\nCatat 3-5 pertanyaan kritis]
+    B -- Tidak --> D[Pilih paper lain]
+    C --> E{Penting untuk riset?}
+    E -- Ya --> F[Putaran 3 - Kritis\n30-60 menit\nApa yang hilang? Klaim berlebihan?\nDraft satu paragraf critique]
+    E -- Tidak --> G[Simpan catatan TL;DR\n+ hubungan ke proyek]
+```
 
 **Putaran 1 - Peta (10 menit).** Baca: judul, abstrak, introduction pertama paragraf, headings sections, figure 1, tabel hasil utama, conclusion. Target: jawab tiga pertanyaan - (a) apa yang mereka *klaim* mereka lakukan? (b) apa yang mereka ukur? (c) apakah hasilnya meyakinkan dari tabel saja?
 
@@ -305,19 +316,15 @@ Target waktu: 6-8 jam sepanjang satu minggu (paper: 1 jam; 5-Whys + pre-reg: 1 j
 
 ## Komponen Mandiri (Pekan 12)
 
-> Eksperimen di sini boleh menghasilkan hasil yang tidak sesuai harapan - yang dinilai adalah kualitas dokumentasi dan analisis Anda, bukan keberhasilannya.
+Konsep: membaca paper secara terarah, merumuskan pertanyaan falsifiable, merancang eksperimen lanjutan. Ini entri portofolio terakhir - setelah mengisinya, kerjakan juga sel "Refleksi Portofolio" di notebook: lihat kembali semua 8 entri dan tuliskan satu paragraf trajektori belajar. Di awal Pekan 13, presentasi diperpanjang - tampilkan *highlight* portofolio, bukan hanya Pekan 12. Format dan kriteria: [Lampiran C.9](12_Lampiran.md#c9-template-komponen-mandiri).
 
-**Konsep yang dilatih:** Membaca paper secara terarah, merumuskan pertanyaan yang dapat dipalsukan, dan merancang eksperimen lanjutan yang muncul dari pertanyaan jujur.
+| Jalur | Tugas minggu ini |
+| --- | --- |
+| **A - Implementasi** | Dari paper Lab 9, implementasikan satu teknik pendukung yang belum ada di template_repo (LR scheduler, metrik evaluasi tambahan, atau augmentasi di appendix). Laporkan apakah hasilnya sesuai klaim paper. |
+| **B - Analisis** | Pilih satu paper yang klaim utamanya terasa "terlalu bagus". Lakukan analisis kritis 1 halaman: klaim apa yang dibuat, bukti apa yang ditunjukkan, apa yang tidak ditunjukkan, dan apa yang perlu diverifikasi sebelum mengutipnya. |
+| **C - Desain** | Tulis pre-registration untuk ide riset yang muncul dari pengalaman Anda sendiri sepanjang semester (bukan dari paper orang lain). Minimal: motivasi, hipotesis falsifiable, protokol, dan kondisi kegagalan. |
 
-Pilih **satu jalur** di bawah. Catat pilihan dan hasilnya di `notebooks/portofolio_mandiri.ipynb` pada entri Pekan 12 - ini adalah entri terakhir. Setelah mengisi entri ini, kerjakan juga sel "Refleksi Portofolio" di bagian akhir notebook: lihat kembali semua 8 entri dan tuliskan satu paragraf tentang trajektori belajar Anda. Di awal sesi Pekan 13 (Capstone), slot presentasi diperpanjang - Anda akan mempresentasikan *highlight* dari perjalanan portofolio, bukan hanya Pekan 12.
-
-| Jalur | Fokus Skill | Tugas |
-|-------|-------------|-------|
-| **A - Implementasi** | Membangun dan menguji | Dari paper yang dibaca di Lab 9, implementasikan satu bagian kecil yang belum ada di template_repo - bukan hasil utama paper, cukup satu teknik pendukung: LR *scheduler* yang mereka pakai, metrik evaluasi tambahan, atau augmentasi yang disebut di *appendix*. Laporkan apakah hasilnya sesuai klaim paper atau tidak. |
-| **B - Analisis** | Mengamati dan menginterpretasi | Pilih satu paper yang klaim utamanya terasa "terlalu bagus" atau mengejutkan. Lakukan analisis kritis 1 halaman: klaim apa yang dibuat, bukti apa yang ditunjukkan, apa yang *tidak* ditunjukkan, dan apa yang perlu diverifikasi sebelum Anda berani mengutip paper itu di laporan sendiri. |
-| **C - Desain** | Merancang dan mengargumentasi | Tulis *pre-registration* untuk ide riset yang muncul dari pengalaman Anda sendiri sepanjang semester ini - bukan dari paper orang lain, tetapi dari pertanyaan yang muncul saat mengerjakan lab atau komponen mandiri. Minimal: motivasi, hipotesis *falsifiable*, protokol, dan kondisi kegagalan. |
-
-**Deliverable:** Entri portofolio Pekan 12 + sel Refleksi Portofolio terisi di `notebooks/portofolio_mandiri.ipynb`. Siap presentasi *highlight* portofolio 10 menit di awal Pekan 13.
+**Deliverable:** Entri portofolio Pekan 12 + sel Refleksi Portofolio di `notebooks/portofolio_mandiri.ipynb`. Presentasi highlight portofolio 10 menit di awal Pekan 13.
 
 ---
 

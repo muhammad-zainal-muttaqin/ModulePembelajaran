@@ -4,7 +4,8 @@
 | # | Modul | Minggu |
 |---|-------|--------|
 | 00 | [Pendahuluan](00_Pendahuluan.md) | 1 |
-| 01 | [Memahami ML/DL](01_Memahami_ML_DL.md) | 2–3 |
+| 01a | [Fondasi Neural Network](01a_Fondasi_Neural_Network.md) | 2 |
+| 01b | [Loss, Optimizer & Evaluasi](01b_Loss_Optimizer_Evaluasi.md) | 3 |
 | 02 | [Ide ke Eksperimen](02_Ide_Ke_Eksperimen.md) | 4 |
 | 03 | [Eksperimen Reproduksibel](03_Eksperimen_Reproduksibel.md) | 5–6 |
 | 04 | [Validasi Data](04_Validasi_Data.md) | 7 |
@@ -49,13 +50,21 @@ Perbedaan utama bukan teknologi yang rumit. Streamlit yang dipakai mahasiswa ked
 
 Perkakas yang akan Anda butuhkan dalam riset dapat dikelompokkan menjadi empat kategori, masing-masing menjawab pertanyaan berbeda:
 
+```mermaid
+graph TD
+    Q{Apa yang ingin Anda lakukan?}
+    Q --> A[Demo hasil ke orang lain\n→ Streamlit / Gradio]
+    Q --> B[Label 200 sampel baru\n→ Gradio / Label Studio]
+    Q --> C[Bandingkan baseline vs varian\n→ Matplotlib / Seaborn]
+    Q --> D[Selidiki dataset lebih dalam\n→ Pandas + Jupyter / FiftyOne]
+```
 
-| Kategori          | Pertanyaan yang Dijawab                                  | Contoh Teknologi            |
-| ----------------- | -------------------------------------------------------- | --------------------------- |
-| Demo interaktif   | "Apa yang model Anda lakukan?"                           | Streamlit, Gradio           |
-| UI anotasi        | "Bagaimana saya mendapatkan label untuk 200 sampel ini?" | Gradio, Label Studio        |
-| Visualisasi hasil | "Mana yang lebih baik, baseline atau varian A?"          | Matplotlib, Seaborn, Plotly |
-| Inspeksi data     | "Ada apa di dataset saya yang tidak saya lihat?"         | Pandas + Jupyter, FiftyOne  |
+| Kategori | Pertanyaan yang Dijawab | Contoh Teknologi |
+| --- | --- | --- |
+| Demo interaktif | "Apa yang model Anda lakukan?" | Streamlit, Gradio |
+| UI anotasi | "Bagaimana saya mendapatkan label untuk 200 sampel ini?" | Gradio, Label Studio |
+| Visualisasi hasil | "Mana yang lebih baik, baseline atau varian A?" | Matplotlib, Seaborn, Plotly |
+| Inspeksi data | "Ada apa di dataset saya yang tidak saya lihat?" | Pandas + Jupyter, FiftyOne |
 
 
 Bedakan perkakas *pendukung riset* dari produk perangkat lunak. Perkakas pendukung punya satu pengguna (Anda atau pembimbing), umur pakai pendek (mungkin hanya untuk satu milestone), dan tujuan tunggal yang tajam. Ia tidak perlu otentikasi, tidak perlu responsif di ponsel, tidak perlu deploy ke cloud kecuali memang diperlukan. Kelonggaran itu adalah fitur, bukan bug.
@@ -292,19 +301,15 @@ AE adalah pintu masuk paling lembut ke *representation learning*. Setelah Anda b
 
 ## Komponen Mandiri (Pekan 10)
 
-> Eksperimen di sini boleh menghasilkan hasil yang tidak sesuai harapan - yang dinilai adalah kualitas dokumentasi dan analisis Anda, bukan keberhasilannya.
+Konsep: membuat alat pendukung riset ringan - demo, visualisasi, atau antarmuka anotasi. Format dan kriteria: [Lampiran C.9](12_Lampiran.md#c9-template-komponen-mandiri).
 
-**Konsep yang dilatih:** Membuat alat pendukung riset ringan yang membantu dosen atau rekan menjelajahi hasil tanpa harus bertanya - demo, visualisasi, dan antarmuka anotasi.
+| Jalur | Tugas minggu ini |
+| --- | --- |
+| **A - Implementasi** | Buat demo Streamlit untuk model yang Anda latih sendiri (Lab 1-3 atau Komponen Mandiri sebelumnya). Tampilkan prediksi kelas, confidence score, dan minimal satu failure case yang Anda temukan sendiri. |
+| **B - Analisis** | Pilih dua paper ML dengan tipe visualisasi berbeda (mis. confusion matrix vs t-SNE vs attention map). Evaluasi setiap visualisasi: apa yang berhasil dikomunikasikan, apa yang gagal, dan apa yang bisa disalahinterpretasikan. |
+| **C - Desain** | Rancang antarmuka anotasi untuk satu tugas baru (bukan CIFAR-10): anotasi sentimen teks, bounding box sederhana, atau penilaian kualitas audio. Buat wireframe teks/ASCII dan jelaskan alasan desain setiap elemen. |
 
-Pilih **satu jalur** di bawah. Catat pilihan dan hasilnya di `notebooks/portofolio_mandiri.ipynb` pada entri Pekan 10. Di awal sesi Pekan 11, ada slot 10 menit untuk presentasi. Isi bagian "Koneksi": apa yang bisa Anda visualisasikan sekarang yang tidak mungkin divisualisasikan di Pekan 4?
-
-| Jalur | Fokus Skill | Tugas |
-|-------|-------------|-------|
-| **A - Implementasi** | Membangun dan menguji | Buat demo Streamlit untuk model yang Anda latih sendiri (dari Lab 1-3 atau Komponen Mandiri sebelumnya). Demo harus menampilkan: prediksi kelas, *confidence score*, dan minimal satu *failure case* yang Anda temukan sendiri - bukan yang sudah ada di Lab 7. |
-| **B - Analisis** | Mengamati dan menginterpretasi | Pilih dua paper ML yang memakai tipe visualisasi berbeda (misalnya: *confusion matrix* vs t-SNE vs *attention map* vs *saliency map*). Evaluasi setiap visualisasi: apa yang berhasil dikomunikasikan, apa yang gagal, dan apa yang bisa disalahinterpretasikan oleh pembaca yang tidak berhati-hati. |
-| **C - Desain** | Merancang dan mengargumentasi | Rancang antarmuka anotasi untuk satu tugas baru - bukan klasifikasi gambar CIFAR-10. Pilihan: anotasi sentimen teks, *bounding box* sederhana, atau penilaian kualitas audio. Buat *wireframe* teks/ASCII dan jelaskan alasan desain setiap elemen: mengapa elemen ini ada, mengapa elemen itu tidak ada. |
-
-**Deliverable:** Entri portofolio Pekan 10 terisi di `notebooks/portofolio_mandiri.ipynb`. Siap presentasi 10 menit di awal Pekan 11.
+**Deliverable:** Entri portofolio Pekan 10 di `notebooks/portofolio_mandiri.ipynb`. Presentasi 10 menit di awal Pekan 11.
 
 ---
 

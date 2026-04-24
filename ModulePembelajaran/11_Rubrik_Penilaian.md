@@ -4,7 +4,8 @@
 | # | Modul | Minggu |
 |---|-------|--------|
 | 00 | [Pendahuluan](00_Pendahuluan.md) | 1 |
-| 01 | [Memahami ML/DL](01_Memahami_ML_DL.md) | 2–3 |
+| 01a | [Fondasi Neural Network](01a_Fondasi_Neural_Network.md) | 2 |
+| 01b | [Loss, Optimizer & Evaluasi](01b_Loss_Optimizer_Evaluasi.md) | 3 |
 | 02 | [Ide ke Eksperimen](02_Ide_Ke_Eksperimen.md) | 4 |
 | 03 | [Eksperimen Reproduksibel](03_Eksperimen_Reproduksibel.md) | 5–6 |
 | 04 | [Validasi Data](04_Validasi_Data.md) | 7 |

@@ -4,7 +4,8 @@
 | # | Modul | Minggu |
 |---|-------|--------|
 | ▶ 00 | Pendahuluan | 1 |
-| 01 | [Memahami ML/DL](01_Memahami_ML_DL.md) | 2–3 |
+| 01a | [Fondasi Neural Network](01a_Fondasi_Neural_Network.md) | 2 |
+| 01b | [Loss, Optimizer & Evaluasi](01b_Loss_Optimizer_Evaluasi.md) | 3 |
 | 02 | [Ide ke Eksperimen](02_Ide_Ke_Eksperimen.md) | 4 |
 | 03 | [Eksperimen Reproduksibel](03_Eksperimen_Reproduksibel.md) | 5–6 |
 | 04 | [Validasi Data](04_Validasi_Data.md) | 7 |
@@ -112,9 +113,9 @@ Modul ini bekerja paling baik ketika Anda dan modul menyepakati empat hal beriku
 
 Lab dalam modul ini bukan kumpulan latihan terpisah. Sembilan lab berbagi satu dataset dan satu basis kode yang berkembang bersama Anda.
 
-- **Lab 1 (Bab 01)** membangun baseline CNN pada CIFAR-10 yang dapat training penuh.
-- **Lab 1b (Bab 01, ekstensi)** membandingkan tiga strategi representasi fitur (engineered/extracted/learned) pada CIFAR-10 - memperdalam konsep Section 2.6.
-- **Lab 1c (Bab 01, breadth)** mengimplementasi MLP 2-layer dari nol dengan numpy, menurunkan backward pass manual, dan memverifikasi dengan `finite-difference gradient check` sebelum membandingkan dengan versi PyTorch - memperdalam Section 2.0b.
+- **Lab 1 (Bab 01a-01b)** membangun baseline CNN pada CIFAR-10 yang dapat training penuh.
+- **Lab 1b (Bab 01b, ekstensi)** membandingkan tiga strategi representasi fitur (engineered/extracted/learned) pada CIFAR-10 - memperdalam konsep Section 2.4 di 01b.
+- **Lab 1c (Bab 01a, breadth)** mengimplementasi MLP 2-layer dari nol dengan numpy, menurunkan backward pass manual, dan memverifikasi dengan `finite-difference gradient check` sebelum membandingkan dengan versi PyTorch - memperdalam Section 2.2 di 01a.
 - **Lab 2 (Bab 02)** menambahkan focal loss dan mekanisme freeze layer, menjalankan ablation pertama.
 - **Lab 3 (Bab 03)** memindahkan konfigurasi ke YAML, menambahkan logging TensorBoard, dan menyimpan checkpoint dengan metadata lengkap.
 - **Lab 3b (Bab 03, breadth)** membandingkan RNN vanilla vs LSTM pada tugas sequence regression (sine + noise) - memvisualisasikan gradient flow dan mendemonstrasikan vanishing gradient pada RNN vanilla.
@@ -155,22 +156,57 @@ Modul ini dirancang sebagai tangga, tetapi tidak semua anak tangga harus dinaiki
 
 | Bab | Prasyarat minimum | Konsep kunci yang dibutuhkan |
 | --- | --- | --- |
-| **01** Memahami ML/DL | - (titik awal) | - |
-| **02** Ide ke Eksperimen | Bab 01 | Apa yang dilakukan loss dan optimizer |
-| **03** Eksperimen Reproduksibel | Bab 01, Bab 02 | Pipeline training dasar; apa itu konfigurasi |
-| **04** Validasi Data | Bab 01, Bab 03 | Checkpoint dan konfigurasi; evaluasi pada split berbeda |
-| **05** AI Tools | Bab 01 | Cukup punya pipeline yang berjalan untuk diverifikasi |
-| **06** Adopsi Repo Riset | Bab 01, Bab 03 | Bisa baca kode training loop; tahu cara menyimpan checkpoint |
-| **07** Alat Pendukung Ringan | Bab 01, Bab 06 | Punya model yang bisa di-load; tahu cara menjalankan inferensi |
+| **01a** Fondasi Neural Network | - (titik awal) | - |
+| **01b** Loss, Optimizer & Evaluasi | Bab 01a | Forward pass, arsitektur, layer |
+| **02** Ide ke Eksperimen | Bab 01b | Apa yang dilakukan loss dan optimizer |
+| **03** Eksperimen Reproduksibel | Bab 01b, Bab 02 | Pipeline training dasar; apa itu konfigurasi |
+| **04** Validasi Data | Bab 01b, Bab 03 | Checkpoint dan konfigurasi; evaluasi pada split berbeda |
+| **05** AI Tools | Bab 01a | Cukup punya pipeline yang berjalan untuk diverifikasi |
+| **06** Adopsi Repo Riset | Bab 01a, Bab 03 | Bisa baca kode training loop; tahu cara menyimpan checkpoint |
+| **07** Alat Pendukung Ringan | Bab 01a, Bab 06 | Punya model yang bisa di-load; tahu cara menjalankan inferensi |
 | **08** Platform & Tool Baru | Bab 03, Bab 06 | Checkpoint dengan metadata lengkap; bisa menjalankan repo orang lain |
-| **09** Pengembangan Mandiri | Bab 01, Bab 02 | Bisa mendeskripsikan eksperimen secara terstruktur |
-| **10** Capstone | Bab 01-09 | Seluruh pipeline: dataset → eksperimen → laporan |
+| **09** Pengembangan Mandiri | Bab 01b, Bab 02 | Bisa mendeskripsikan eksperimen secara terstruktur |
+| **10** Capstone | Bab 01a-09 | Seluruh pipeline: dataset → eksperimen → laporan |
 
 **Catatan**: Bab 04, 05, 06, dan 07 bersifat relatif paralel satu sama lain setelah Bab 03 selesai. Artinya, jika Anda melewatkan Bab 04 karena alasan waktu, Anda tetap bisa mengerjakan Bab 05 dan 06 dengan lancar. Sebaliknya, Bab 08 sangat bergantung pada Bab 03 dan Bab 06 - jangan melompat ke sana sebelum keduanya tuntas.
 
-**Lab 1b** (representasi fitur, ada di Bab 01) dan **Lab 5b** (domain teks, ada di Bab 05) adalah lab ekstensi - tidak memblokir bab berikutnya, tetapi memperkaya pemahaman lintas domain.
+**Lab 1b** (representasi fitur, ada di Bab 01b) dan **Lab 5b** (domain teks, ada di Bab 05) adalah lab ekstensi - tidak memblokir bab berikutnya, tetapi memperkaya pemahaman lintas domain.
 
 **Rantai lab breadth arsitektur**: Lab 1c (MLP from-scratch) → Lab 3b (RNN/LSTM) → Lab 6b (Transformer-mini). Lab 7b (Autoencoder) bersifat independen dan dapat dikerjakan kapan saja setelah Lab 1. Rantai ini bukan *hard dependency* untuk bab-bab lain, tetapi melengkapi klausul **Breadth Check** di Kontrak Belajar (Section 4 poin Keenam). Lab 1c memberi intuisi backprop yang dipakai lagi secara konseptual di Lab 3b (BPTT) dan Lab 6b (gradient flow melewati attention). Lab 6b membutuhkan kenyamanan dengan tensor manipulation yang dibangun di Lab 1c.
+
+---
+
+## 5c. Jalur Cepat untuk Kurikulum Terbatas
+
+Jika semester Anda diperpendek (10 minggu, bukan 14), atau ada kendala waktu lain, gunakan matriks berikut sebagai panduan prioritas. "Wajib" berarti tidak bisa dilewati tanpa kehilangan prasyarat; "Pilih-2" berarti pilih dua dari empat sesuai topik Capstone Anda.
+
+```mermaid
+flowchart LR
+    A[01a Fondasi NN\nMinggu 2] --> B[01b Loss + Eval\nMinggu 3]
+    B --> C[02 Rancang\nEksperimen\nMinggu 4]
+    C --> D[03 Reproduksibel\nMinggu 5-6]
+    D --> E{Pilih 2 dari 4}
+    E --> F[04 Validasi Data]
+    E --> G[05 AI Tools]
+    E --> H[06 Adopsi Repo]
+    E --> I[07 Alat Ringan]
+    F & G & H & I --> J[10 Capstone\nMinggu 13-14]
+```
+
+| Bab | Status | Catatan |
+| --- | --- | --- |
+| 01a, 01b | **Wajib** | Fondasi; semua bab lain bergantung padanya |
+| 02 | **Wajib** | Tanpa ini, eksperimen tidak terstruktur |
+| 03 | **Wajib** | Reproduksibilitas adalah prasyarat Capstone |
+| 04 | Pilih-2 | Wajib jika dataset Capstone belum diaudit |
+| 05 | Pilih-2 | Wajib jika Anda banyak memakai LLM |
+| 06 | Pilih-2 | Wajib jika Capstone berbasis repo eksternal |
+| 07 | Pilih-2 | Wajib jika Capstone perlu demo interaktif |
+| 08 | Opsional | Penting jika training > 2 jam di laptop |
+| 09 | Opsional | Sangat dianjurkan; berisi pre-registration |
+| 10 | **Capstone** | Minimum: 6 kompetensi terintegrasi |
+
+Breadth Check (Lab 1c, 3b, 6b, 7b) tetap wajib diselesaikan sebelum Capstone, tetapi bisa dikerjakan paralel dengan bab-bab Pilih-2.
 
 ---
 
@@ -190,7 +226,7 @@ Beberapa kesalahan yang dapat mencegah Anda berkembang, bahkan sebelum bab tekni
 
 ## 7. Refleksi
 
-Sebelum melangkah ke Bab 01, luangkan waktu sepuluh menit untuk menulis jawaban singkat atas tiga pertanyaan berikut. Simpan di catatan pribadi Anda; kita akan merujuknya kembali di minggu 14.
+Sebelum melangkah ke Bab 01a, luangkan waktu sepuluh menit untuk menulis jawaban singkat atas tiga pertanyaan berikut. Simpan di catatan pribadi Anda; kita akan merujuknya kembali di minggu 14.
 
 1. Dari sembilan kompetensi, mana yang Anda duga paling asing? Apa yang Anda harapkan berubah pada akhir semester?
 2. Dari empat sikap riset, mana yang sudah Anda rasakan secara alami, dan mana yang terasa paling sulit untuk Anda lakukan secara konsisten?
@@ -200,12 +236,12 @@ Sebelum melangkah ke Bab 01, luangkan waktu sepuluh menit untuk menulis jawaban 
 
 ## 8. Bacaan Lanjutan
 
-- **Andrej Karpathy - *A Recipe for Training Neural Networks*** (blog, 2019). Esai pendek tentang bagaimana seorang peneliti berpengalaman memulai proyek. Relevan sebelum Bab 01 karena menanamkan ritme "verify everything before you scale".
+- **Andrej Karpathy - *A Recipe for Training Neural Networks*** (blog, 2019). Esai pendek tentang bagaimana seorang peneliti berpengalaman memulai proyek. Relevan sebelum Bab 01a karena menanamkan ritme "verify everything before you scale".
 - **Goodfellow, Bengio, Courville - *Deep Learning*** (Bab 1 & 5). Fondasi konseptual yang sengaja tidak diulang di modul ini; baca bab 1 untuk konteks sejarah, bab 5 untuk kerangka pikir machine learning.
 - **The Turing Way - *A Handbook for Reproducible Research*** (bagian *Reproducibility*). Dibaca ringan minggu 1–2; penuh analogi yang akan kembali di Bab 03.
 
 ---
 
-## Lanjut ke Bab 01
+## Lanjut ke Bab 01a
 
-Setelah menyelesaikan refleksi, buka [Bab 01 - Memahami ML/DL](01_Memahami_ML_DL.md). Bab tersebut memperkenalkan empat keluarga arsitektur yang paling sering Anda temui di paper dan repository - tidak sebagai daftar definisi, tetapi sebagai *keputusan desain* yang dibingkai oleh pertanyaan: data seperti apa yang sedang kita olah, dan struktur apa yang paling alami mengikutinya?
+Setelah menyelesaikan refleksi, buka [01a - Fondasi Neural Network](01a_Fondasi_Neural_Network.md). Bab tersebut memperkenalkan pasangan tensor input → output, backpropagation MLP, empat keluarga arsitektur, dan peran normalisasi serta aktivasi - tidak sebagai daftar definisi, tetapi sebagai keputusan desain yang dibingkai oleh pertanyaan: data seperti apa yang sedang kita olah, dan struktur apa yang paling alami mengikutinya?

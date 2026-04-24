@@ -4,7 +4,8 @@
 | # | Modul | Minggu |
 |---|-------|--------|
 | 00 | [Pendahuluan](00_Pendahuluan.md) | 1 |
-| 01 | [Memahami ML/DL](01_Memahami_ML_DL.md) | 2–3 |
+| 01a | [Fondasi Neural Network](01a_Fondasi_Neural_Network.md) | 2 |
+| 01b | [Loss, Optimizer & Evaluasi](01b_Loss_Optimizer_Evaluasi.md) | 3 |
 | 02 | [Ide ke Eksperimen](02_Ide_Ke_Eksperimen.md) | 4 |
 | 03 | [Eksperimen Reproduksibel](03_Eksperimen_Reproduksibel.md) | 5–6 |
 | 04 | [Validasi Data](04_Validasi_Data.md) | 7 |
@@ -484,6 +485,29 @@ Jalur ini dipilih saat Anda ingin mempelajari satu keluarga arsitektur NN yang *
 - Learning curve menunjukkan loss menurun atau metrik sukses meningkat. Arsitektur yang stagnan *juga* dilaporkan - sebutkan hipotesis Anda tentang kenapa (mis. "hyperparameter tidak di-tune", "toy task terlalu mudah").
 - Koneksi eksplisit ke arsitektur yang sudah di-cover lab wajib. Tidak cukup menulis "GRU lebih ringan dari LSTM"; tulis "GRU saya kurang 1 gate dibanding LSTM, dan parameter berkurang ~25%, tapi pada toy task ini akurasi hampir sama".
 
+### C.9 Template Komponen Mandiri
+
+Template generik untuk semua Komponen Mandiri (Pekan 4-12). Setiap bab (02-09) menyebut satu tugas spesifik per jalur sesuai konsep minggu itu; template ini mengatur format laporan dan kriteria standar yang berlaku di semua pekan.
+
+**Empat jalur yang tersedia setiap minggu:**
+
+| Jalur | Inti kegiatan | Artefak di portfolio |
+| --- | --- | --- |
+| **A - Implementasi** | Menambah, mengubah, atau menguji kode pada repo eksperimen. | Cuplikan kode + angka benchmark sebelum/sesudah + 1 paragraf interpretasi. |
+| **B - Analisis** | Menyelidiki perilaku model, data, atau hasil yang sudah ada. | Visualisasi + 2-3 temuan spesifik + hipotesis turunan. |
+| **C - Desain** | Merancang eksperimen baru tanpa harus menjalankannya penuh. | Protokol terstruktur (format Bab 02) + justifikasi hipotesis + estimasi biaya-waktu. |
+| **D - Arsitektur Baru** | Mereplikasi satu keluarga arsitektur yang belum di-cover lab wajib minggu itu. | Forward pass bekerja pada toy task + 1 plot learning curve + 1 paragraf perbedaan vs arsitektur yang sudah dipelajari. Template lengkap di C.8. |
+
+**Kriteria sukses per entri** (detail di Rubrik Kompetensi 10, Bab 11):
+- Bukti eksekusi jelas (kode commit, plot, atau dokumen).
+- Temuan dituliskan dengan skeptisisme sehat - apa yang *tidak* Anda yakini juga dicatat.
+- Koneksi eksplisit ke konsep bab minggu itu.
+- Entri yang hanya mengulang isi lab dinilai Novice; entri yang menunjukkan pilihan berdasarkan *gap* skill sendiri atau pertanyaan riset turunan dinilai Proficient.
+
+**Deliverable standar:** Entri portofolio di `notebooks/portofolio_mandiri.ipynb` sesuai template C.6. Siap presentasi 10 menit di awal pekan berikutnya sesuai panduan C.7.
+
+**Tugas spesifik per pekan:** Lihat bagian "Komponen Mandiri" di bab masing-masing untuk tugas konkret per jalur sesuai konsep minggu itu.
+
 ---
 
 ## D. Ringkasan Cepat Empat Sikap Riset
@@ -554,6 +578,7 @@ Anda perlu pernah melatih setidaknya satu model klasifikasi dengan scikit-learn:
 - **Verifikasi output LLM?** → Bab 5 §2.3
 - **Template entri portofolio mandiri?** → Lampiran §C.6
 - **Panduan presentasi Komponen Mandiri?** → Lampiran §C.7
+- **Format dan kriteria Komponen Mandiri?** → Lampiran §C.9
 - **Rubrik Eksplorasi Mandiri & Komunikasi?** → [Rubrik Penilaian](11_Rubrik_Penilaian.md) §3 Kompetensi 10
 
 ---

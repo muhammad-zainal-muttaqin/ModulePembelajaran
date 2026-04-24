@@ -4,7 +4,8 @@
 | # | Modul | Minggu |
 |---|-------|--------|
 | 00 | [Pendahuluan](00_Pendahuluan.md) | 1 |
-| 01 | [Memahami ML/DL](01_Memahami_ML_DL.md) | 2–3 |
+| 01a | [Fondasi Neural Network](01a_Fondasi_Neural_Network.md) | 2 |
+| 01b | [Loss, Optimizer & Evaluasi](01b_Loss_Optimizer_Evaluasi.md) | 3 |
 | ▶ 02 | Ide ke Eksperimen | 4 |
 | 03 | [Eksperimen Reproduksibel](03_Eksperimen_Reproduksibel.md) | 5–6 |
 | 04 | [Validasi Data](04_Validasi_Data.md) | 7 |
@@ -325,19 +326,15 @@ Tugas:
 
 ## Komponen Mandiri (Pekan 4)
 
-> Eksperimen di sini boleh menghasilkan hasil yang tidak sesuai harapan - yang dinilai adalah kualitas dokumentasi dan analisis Anda, bukan keberhasilannya.
+Konsep: merancang eksperimen dengan variabel, hipotesis *falsifiable*, baseline adil, dan metrik - sebelum menyentuh kode. Format, kriteria, dan panduan presentasi: [Lampiran C.9](12_Lampiran.md#c9-template-komponen-mandiri).
 
-**Konsep yang dilatih:** Merancang eksperimen dengan variabel, hipotesis *falsifiable*, baseline yang adil, dan metrik - semuanya ditentukan sebelum menyentuh kode.
+| Jalur | Tugas minggu ini |
+| --- | --- |
+| **A - Implementasi** | Implementasikan satu loss function berbeda (mis. `LabelSmoothingCrossEntropy` atau `DiceLoss`) pada CIFAR-10. Tulis protokol satu halaman sebelum menjalankan kode. Laporkan apakah hipotesis terkonfirmasi, disanggah, atau tidak konklusif. |
+| **B - Analisis** | Ambil tiga paper klasifikasi gambar dari arXiv. Untuk masing-masing, identifikasi variabel yang diuji, baseline yang dipakai, dan hipotesis tersirat. Simpulkan pola rancangan yang paling sering diabaikan. |
+| **C - Desain** | Pilih satu dataset klasifikasi publik (selain CIFAR-10). Tulis protokol eksperimen lima bagian lengkap tanpa menjalankannya. Justifikasi setiap pilihan desain: mengapa metrik ini, mengapa baseline ini, mengapa delta threshold ini. |
 
-Pilih **satu jalur** di bawah. Catat pilihan dan hasilnya di `notebooks/portofolio_mandiri.ipynb` pada entri Pekan 4. Di awal sesi Pekan 5, ada slot 10 menit per orang untuk mempresentasikan: apa yang dikerjakan, apa yang ditemukan, apa yang akan diubah. Ini adalah entri portofolio pertama; bagian "Koneksi ke pekan sebelumnya" bisa diisi dengan motivasi mengapa Anda memilih jalur ini.
-
-| Jalur | Fokus Skill | Tugas |
-|-------|-------------|-------|
-| **A - Implementasi** | Membangun dan menguji | Implementasikan satu *loss function* yang berbeda dari yang dibahas di bab ini - misalnya `LabelSmoothingCrossEntropy` atau `DiceLoss` - pada CIFAR-10. Tulis protokol satu halaman (lima bagian) *sebelum* menjalankan kode. Laporkan apakah hipotesis terkonfirmasi, disanggah, atau tidak konklusif. |
-| **B - Analisis** | Mengamati dan menginterpretasi | Ambil tiga paper klasifikasi gambar dari arXiv atau Google Scholar. Untuk masing-masing, identifikasi: variabel apa yang diuji, baseline apa yang dipakai, dan hipotesis apa yang tersirat (meski tidak ditulis eksplisit). Buat tabel perbandingan dan simpulkan: pola rancangan eksperimen mana yang paling sering diabaikan? |
-| **C - Desain** | Merancang dan mengargumentasi | Pilih satu dataset klasifikasi publik (selain CIFAR-10) dari HuggingFace atau Kaggle. Tulis protokol eksperimen lengkap - lima bagian: variabel, hipotesis, metrik, eksekusi, waktu - *tanpa harus menjalankannya*. Justifikasi setiap pilihan desain: mengapa metrik ini, mengapa baseline ini, mengapa delta threshold ini. |
-
-**Deliverable:** Entri portofolio Pekan 4 terisi di `notebooks/portofolio_mandiri.ipynb`. Siap presentasi 10 menit di awal Pekan 5.
+**Deliverable:** Entri portofolio Pekan 4 di `notebooks/portofolio_mandiri.ipynb`. Presentasi 10 menit di awal Pekan 5.
 
 ---
 

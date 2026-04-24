@@ -4,7 +4,8 @@
 | # | Modul | Minggu |
 |---|-------|--------|
 | 00 | [Pendahuluan](00_Pendahuluan.md) | 1 |
-| 01 | [Memahami ML/DL](01_Memahami_ML_DL.md) | 2–3 |
+| 01a | [Fondasi Neural Network](01a_Fondasi_Neural_Network.md) | 2 |
+| 01b | [Loss, Optimizer & Evaluasi](01b_Loss_Optimizer_Evaluasi.md) | 3 |
 | 02 | [Ide ke Eksperimen](02_Ide_Ke_Eksperimen.md) | 4 |
 | ▶ 03 | Eksperimen Reproduksibel | 5–6 |
 | 04 | [Validasi Data](04_Validasi_Data.md) | 7 |
@@ -598,19 +599,15 @@ Lab ini *breadth*, bukan pengganti Lab 3 - dikerjakan setelah Lab 3 agar Anda pu
 
 ## Komponen Mandiri (Pekan 5)
 
-> Eksperimen di sini boleh menghasilkan hasil yang tidak sesuai harapan - yang dinilai adalah kualitas dokumentasi dan analisis Anda, bukan keberhasilannya.
+Konsep: mengunci seed, memindahkan konfigurasi ke YAML, mencatat metadata checkpoint, dan memverifikasi reproduksibilitas. Bab 03 mencakup dua minggu (Pekan 5-6); presentasi dilakukan di awal Pekan 7. Format dan kriteria: [Lampiran C.9](12_Lampiran.md#c9-template-komponen-mandiri).
 
-**Konsep yang dilatih:** Mengunci seed, memindahkan konfigurasi ke YAML, mencatat metadata *checkpoint*, dan memverifikasi bahwa hasil dapat direproduksi persis oleh orang lain.
+| Jalur | Tugas minggu ini |
+| --- | --- |
+| **A - Implementasi** | Tambahkan satu hyperparameter baru ke `configs/baseline.yaml` (mis. `label_smoothing`, `gradient_clip_val`). Verifikasi dua run identik menghasilkan val accuracy ±0.001. Dokumentasikan run yang tidak reproduksibel dan penyebabnya. |
+| **B - Analisis** | Jalankan dua run identik di dua lingkungan berbeda (laptop vs Colab, atau CPU vs GPU). Dokumentasikan deviasi hasilnya dan buat hipotesis tentang sumber non-determinisme yang paling mungkin. |
+| **C - Desain** | Tulis `reproducibility_contract.md` untuk proyek riset hipotetis: seed apa yang dikunci, metadata wajib di setiap checkpoint, dan langkah verifikasi reproduksi dari nol tanpa bertanya ke penulis asli. |
 
-Pilih **satu jalur** di bawah. Catat pilihan dan hasilnya di `notebooks/portofolio_mandiri.ipynb` pada entri Pekan 5. Karena Bab 03 mencakup dua minggu (Pekan 5-6), slot presentasi 10 menit dilakukan di awal Pekan 7 (Bab 04). Isi bagian "Koneksi" di entri portofolio: apa yang berubah dari cara kerja Pekan 4 ke Pekan 5?
-
-| Jalur | Fokus Skill | Tugas |
-|-------|-------------|-------|
-| **A - Implementasi** | Membangun dan menguji | Tambahkan satu *hyperparameter* baru ke `configs/baseline.yaml` yang belum ada di template - misalnya `label_smoothing`, `gradient_clip_val`, atau variasi `weight_decay`. Verifikasi bahwa dua run dengan seed dan config identik menghasilkan val accuracy ±0.001. Dokumentasikan: berapa run yang *tidak* reproduksibel dan mengapa? |
-| **B - Analisis** | Mengamati dan menginterpretasi | Jalankan dua run identik di dua lingkungan berbeda (laptop vs Google Colab, atau CPU vs GPU). Dokumentasikan perbedaan hasilnya: berapa besar deviasinya, pada metrik apa, dan pada kondisi apa. Buat hipotesis tentang sumber non-determinisme yang paling mungkin untuk masing-masing perbedaan. |
-| **C - Desain** | Merancang dan mengargumentasi | Tulis `reproducibility_contract.md` untuk proyek riset hipotetis - *bukan* template_repo yang ada di modul ini. Dokumen harus menjawab: seed apa yang dikunci (Python, NumPy, Torch, CUDA), metadata wajib apa di setiap *checkpoint*, dan bagaimana seseorang memverifikasi reproduksi dari nol tanpa bertanya ke penulis aslinya. |
-
-**Deliverable:** Entri portofolio Pekan 5 terisi di `notebooks/portofolio_mandiri.ipynb`. Siap presentasi 10 menit di awal Pekan 7.
+**Deliverable:** Entri portofolio Pekan 5 di `notebooks/portofolio_mandiri.ipynb`. Presentasi 10 menit di awal Pekan 7.
 
 ---
 

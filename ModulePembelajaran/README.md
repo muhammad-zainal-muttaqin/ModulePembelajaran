@@ -80,7 +80,8 @@ Keempat sikap ini tidak dibahas dalam bab khusus, tetapi dirangkai ke dalam ceri
 ModulePembelajaran/
 ├── README.md                          (dokumen ini)
 ├── 00_Pendahuluan.md                  Orientasi, mindset, kontrak belajar
-├── 01_Memahami_ML_DL.md               Arsitektur, loss, optimisasi, evaluasi
+├── 01a_Fondasi_Neural_Network.md      Tensor I/O, MLP backprop, arsitektur, layer
+├── 01b_Loss_Optimizer_Evaluasi.md     Loss, optimizer, evaluasi, representasi, diagnosis
 ├── 02_Ide_Ke_Eksperimen.md            Menerjemahkan instruksi menjadi eksperimen
 ├── 03_Eksperimen_Reproduksibel.md     Config, seed, logging, ablation
 ├── 04_Validasi_Data.md                EDA, leakage, audit pipeline
