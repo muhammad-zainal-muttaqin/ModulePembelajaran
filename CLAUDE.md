@@ -10,45 +10,49 @@ Modul pembelajaran semester 14-minggu untuk mahasiswa S1 (semester 4–6) yang m
 
 ```
 ModulePembelajaran/
-├── 00–12_*.md          Bab utama (dibaca berurutan; tiap bab: Peta→Motivasi→Konsep→Worked Example→Pitfalls→Lab→Refleksi→Bacaan)
+├── 00_Pendahuluan.md
+├── 01a_Fondasi_Neural_Network.md   Tensor I/O, MLP backprop, 4 keluarga arsitektur, layer (Minggu 2)
+├── 01b_Loss_Optimizer_Evaluasi.md  Loss, optimizer, evaluasi, representasi, diagnosis (Minggu 3)
+├── 02–09_*.md          Bab lanjutan (Minggu 4-12)
+├── 10_Capstone_Project.md
 ├── 11_Rubrik_Penilaian.md   4-level mastery (novice/developing/proficient/masterpiece)
-├── 12_Lampiran.md           Glosarium ID↔EN, checklist, template
+├── 12_Lampiran.md           Glosarium ID↔EN, checklist, template (termasuk C.9 Template Komponen Mandiri)
 └── template_repo/           Skeleton repo riset yang di-fork mahasiswa
 ```
 
-File sumber catatan (sudah terintegrasi ke Bab 01 sebagai Section 2.0 dan Section 2.6; file asli disimpan sebagai referensi):
+**File sumber catatan (sudah terintegrasi; file asli disimpan sebagai referensi):**
 
-- `ModulePembelajaran/Notes - 17 April 2026/petabesar.md` - konsep tensor input→output lintas domain → **Section 2.0** Bab 01
-- `ModulePembelajaran/Notes - 17 April 2026/representasifitur.md` - taksonomi representasi (engineered / extracted / learned) → **Section 2.6** Bab 01
+- `ModulePembelajaran/Notes - 17 April 2026/petabesar.md` → **Section 2.1** di `01a_Fondasi_Neural_Network.md`
+- `ModulePembelajaran/Notes - 17 April 2026/representasifitur.md` → **Section 2.4** di `01b_Loss_Optimizer_Evaluasi.md`
 
-Catatan: Bab 01 kini membangun fondasi konseptual berurutan - tensor masuk→keluar (2.0), arsitektur (2.1), layer (2.2), loss (2.3), optimizer (2.4), evaluasi (2.5), representasi (2.6), diagnosis loss curve (2.7) - dengan 5 pertanyaan refleksi (bertambah dari 3). Rubrik Kompetensi 1 (11_Rubrik_Penilaian.md) level Proficient dan Masterpiece diperbarui untuk mencerminkan kedua aspek ini.
+**Perubahan struktural besar (April 2026):**
+- `01_Memahami_ML_DL.md` (499 baris) dipecah menjadi `01a` (Minggu 2) + `01b` (Minggu 3)
+- Section 2.0b (bolt-on MLP backprop) dihapus dan diintegrasikan sebagai Section 2.2 di 01a
+- Section 2.6 (representasi fitur) kini Section 2.4 di 01b; Section 2.7 (loss curve) kini Section 2.5 di 01b
+- Komponen Mandiri Bab 02-09 disederhanakan: pointer ke Lampiran C.9 + tabel 2-kolom per-pekan
+- 5 Mermaid diagram ditambahkan: Bab 00 §5c, Bab 04 §2.1, Bab 06 §2.1, Bab 07 §2.1, Bab 09 §2.2
+- Lampiran C.9 baru: Template Komponen Mandiri (kriteria standar semua pekan)
 
-**Section tambahan per-bab (ringkasan perubahan besar):**
+**Konten utama per bab (state saat ini):**
 
-- Bab 01: +Section 2.7 (diagnosis loss curve, 5 pola), +inisialisasi Kaiming/Xavier di Section 2.2, +catatan weight decay vs L2 AdamW di Section 2.4, +Lab 1b (representasi fitur 3 strategi: `notebooks/lab1b_representasi.ipynb`)
-- Bab 02: +Section 2.6 (hasil negatif/hipotesis tidak terkonfirmasi), +bootstrap CI + effect size di Section 2.4, +HP search strategies + batch size/LR interaction di Section 2.3
-- Bab 03: +Section 2.8 (resume dari checkpoint + kompatibilitas antar mesin), +Section 2.9 (konvergensi dan early stopping)
-- Bab 05: +Section 2.6 (LLM untuk tugas riset non-kode), +Lab 5b (klasifikasi teks IndoNLU SmSA: `notebooks/lab5b_domain_teks.ipynb`)
-- Bab 06: +Section 2.8 (kategori error dan cara tesnya: Setup/Data/Algorithmic/Experiment)
-- Bab 08: +tabel perbandingan platform (RunPod/Colab Pro/Modal/Lambda) di Section 2.6
-- Bab 09: +panduan navigasi arXiv (kategori, ID paper, versi) di Section 2.1
-- Bab 00: +Section 5b (peta dependensi konsep antar bab), +Lab 1b dan Lab 5b di daftar lab, +Komponen Mandiri di Kontrak Belajar (Section 4), +paragraf Komponen Mandiri di Section 5
-- Bab 02: +Komponen Mandiri (Pekan 4) - 3 jalur (Implementasi/Analisis/Desain) sebelum Refleksi
-- Bab 03: +Komponen Mandiri (Pekan 5) - 3 jalur sebelum Refleksi
-- Bab 04: +Komponen Mandiri (Pekan 7) - 3 jalur sebelum Refleksi
-- Bab 05: +Komponen Mandiri (Pekan 8) - 3 jalur sebelum Refleksi
-- Bab 06: +Komponen Mandiri (Pekan 9) - 3 jalur sebelum Refleksi
-- Bab 07: +Komponen Mandiri (Pekan 10) - 3 jalur sebelum Refleksi
-- Bab 08: +Komponen Mandiri (Pekan 11) - 3 jalur sebelum Refleksi
-- Bab 09: +Komponen Mandiri (Pekan 12) - 3 jalur + instruksi Refleksi Portofolio sebelum Refleksi
-- Rubrik (11): +Kompetensi 10 (Eksplorasi Mandiri & Komunikasi, 4 level), +baris bobot opsional 10% (*)
-- Lampiran (12): +C.6 Template Entri Portofolio, +C.7 Panduan Slot Presentasi 10 Menit, +index Section E diperbarui
+- **01a**: Section 2.1 (tensor I/O), 2.2 (MLP backprop 7-langkah), 2.3 (4 keluarga arsitektur), 2.4 (layer: inisialisasi Kaiming/Xavier, BatchNorm/LayerNorm/GroupNorm tabel, ReLU/GELU/SiLU)
+- **01b**: Section 2.1 (loss), 2.2 (optimizer + AdamW weight decay note), 2.3 (evaluasi metrik), 2.4 (representasi fitur: engineered/extracted/learned), 2.5 (diagnosis loss curve 5 pola)
+- **Bab 02**: Section 2.6 (hasil negatif), bootstrap CI + effect size §2.4, HP search + batch/LR interaction §2.3
+- **Bab 03**: Section 2.8 (resume checkpoint), Section 2.9 (konvergensi + early stopping)
+- **Bab 05**: Section 2.6 (LLM non-kode), Lab 5b (teks IndoNLU SmSA)
+- **Bab 06**: Section 2.8 (kategori error), Lab 6b (Transformer-mini)
+- **Bab 07**: Lab 7b (Autoencoder + denoising AE + t-SNE)
+- **Bab 08**: tabel platform (RunPod/Colab Pro/Modal/Lambda) §2.6
+- **Bab 09**: navigasi arXiv §2.1 (ringkas), Peta Keluarga Generatif §2.7
+- **Bab 00**: Section 5b (peta dependensi), Section 5c (quick-start path 10 minggu + Mermaid)
+- **Rubrik (11)**: Kompetensi 10 (Eksplorasi Mandiri & Komunikasi), bobot Kompetensi 1: 14%
+- **Lampiran (12)**: C.6-C.9 (entri portofolio, panduan presentasi, template lab breadth, template Komponen Mandiri)
 
 **Breadth Arsitektur NN (penambahan untuk alignment tujuan "NN general, intermediate"):**
 
 Tujuan penambahan: modul melatih breadth lima keluarga arsitektur NN (MLP, CNN, RNN/LSTM, Transformer, Autoencoder), bukan hanya CNN.
 
-- Bab 01: +Section 2.0b (MLP dan Backpropagation - derivasi chain rule 7-langkah untuk MSE+sigmoid, intuisi universal approximation, jembatan ke CNN/RNN/Transformer), +Section 2.2 subsection (BatchNorm vs LayerNorm vs GroupNorm tabel + ReLU/GELU/SiLU kurva)
+- Bab 01a: Section 2.2 (MLP dan Backpropagation - derivasi chain rule 7-langkah untuk MSE+sigmoid, jembatan ke CNN/RNN/Transformer), Section 2.4 (BatchNorm vs LayerNorm vs GroupNorm tabel + ReLU/GELU/SiLU kurva)
 - Bab 03: +tautan Lab 3b (RNN vs LSTM) di Section 5 sebagai breadth lab
 - Bab 06: +tautan Lab 6b (Transformer-mini dari nol) di Section 5 sebagai breadth lab
 - Bab 07: +tautan Lab 7b (Autoencoder + denoising AE + t-SNE bottleneck) di Section 5 sebagai breadth lab
