@@ -52,29 +52,9 @@ Perbedaan bukan bakat. Perbedaannya adalah sistem: filter paper, metode membaca,
 
 ### 2.1 Kurasi Paper: Dari Banjir ke Aliran Kecil
 
-**Navigasi arXiv.** Sebelum membahas strategi kurasi, kenali antarmuka arXiv yang akan Anda pakai setiap minggu.
+**Navigasi arXiv.** Tiga kategori paling relevan untuk ML/DL: `cs.LG` (Machine Learning), `cs.CV` (Computer Vision), `cs.CL` (NLP/LLM). Untuk medical imaging: `eess.IV`. Cari via `arxiv.org/search` dengan filter kategori + kata kunci. ID paper `2312.01234` berarti Desember 2023, urutan 01234; URL PDF: `arxiv.org/pdf/2312.01234`. Simpan ID, bukan judul. Saat mengutip, gunakan versi yang Anda baca (`v1`, `v2`, dst) karena beda versi bisa punya perbedaan substansial. Papers With Code (`paperswithcode.com`) menghubungkan paper ke kode resmi dan benchmark.
 
-Alamat utama: `arxiv.org`. Di halaman utama ada daftar kategori. Untuk ML/DL, tiga kategori paling relevan:
-
-| Kategori | Nama | Konten tipikal |
-| --- | --- | --- |
-| `cs.LG` | Machine Learning | Algoritma, teori, optimisasi |
-| `cs.CV` | Computer Vision | Gambar, video, deteksi, segmentasi |
-| `cs.CL` | Computation & Language | NLP, LLM, text classification |
-| `eess.IV` | Image & Video Processing | Medical imaging, rekonstruksi |
-| `stat.ML` | Machine Learning (stats) | Metode dengan analisis statistik kuat |
-
-**Cara mencari:** Gunakan `arxiv.org/search` dengan filter kategori + kata kunci. Contoh: cari `focal loss medical imaging` di kategori `cs.CV eess.IV`. Untuk paper terbaru per kategori, gunakan `arxiv.org/list/cs.CV/recent`.
-
-**Membaca ID paper.** Setiap paper punya ID seperti `2312.01234` yang artinya: `2312` = Desember 2023, `01234` = nomor urut. URL paper: `arxiv.org/abs/2312.01234`. URL PDF langsung: `arxiv.org/pdf/2312.01234`. Menyimpan nomor ID jauh lebih ringkas daripada menyimpan judul.
-
-**Versi.** Banyak paper punya beberapa versi (`v1`, `v2`, `v3`). Versi terbaru otomatis tampil di URL `/abs/`; untuk versi spesifik: `arxiv.org/abs/2312.01234v1`. Jika Anda mengutip paper dalam laporan, gunakan versi yang Anda baca - beda versi bisa punya perbedaan substansial.
-
-**Alat pendukung.** Papers With Code (`paperswithcode.com`) menghubungkan paper ke implementasi GitHub dan *leaderboard* benchmark. Jika Anda menemukan paper yang menarik, cek halaman Papers With Code-nya untuk kode resmi dan replikasi komunitas.
-
----
-
-arXiv menerbitkan ratusan paper ML per hari. Membaca semua mustahil dan tidak berguna. Tujuan kurasi: dari banjir, saring menjadi 5-10 paper per minggu yang benar-benar layak 30 menit waktumu.
+arXiv menerbitkan ratusan paper ML per hari. Membaca semua mustahil. Tujuan kurasi: saring menjadi 5-10 paper per minggu yang layak 30 menit waktumu.
 
 Empat tingkat filter, dari kasar ke halus:
 
@@ -112,9 +92,7 @@ Bila setelah 10 menit Anda tidak bisa menjawab ketiganya, paper mungkin tidak di
 
 Catat 3-5 pertanyaan yang Anda punya: detail yang tidak jelas, pilihan yang aneh, baseline yang kurang, asumsi yang tidak diuji. Pertanyaan-pertanyaan ini bernilai lebih dari ringkasan paper-nya sendiri; simpan di jurnal pribadimu.
 
-**Putaran 3 - Kritis (30-60 menit, opsional).** Hanya untuk paper yang benar-benar penting untukmu. Cari: apa yang paper *tidak* bahas? Apakah ada eksperimen yang "harus ada" tetapi hilang? Apakah klaim yang diekstrapolasi melampaui data? Jika Anda akan mereview paper ini untuk konferensi, apa yang Anda minta untuk rebuttal?
-
-Output ideal putaran 3: satu paragraf critique yang akan Anda kirim ke teman satu grup riset. Keterampilan ini - mengkritik paper dengan fair - adalah alat utama meningkatkan rasa peneliti.
+**Putaran 3 - Kritis (30-60 menit, opsional).** Hanya untuk paper yang benar-benar penting. Cari: apa yang paper *tidak* bahas? Apakah klaim melampaui data? Apa yang Anda minta untuk rebuttal jika mereview di konferensi? Output: satu paragraf critique yang bisa Anda kirim ke rekan satu grup riset.
 
 ### 2.3 Catatan Paper yang Berguna
 
@@ -226,11 +204,9 @@ Karena itu, bagian ini memberi Anda **peta mental** agar Anda bisa membaca paper
 | Normalizing Flow | Transformasi bijeksi yang dibalik dari noise ke data | Likelihood eksak | Ketika butuh likelihood eksak (deteksi anomali, kompresi) | Arsitektur terbatas (harus invertible), kapasitas lebih kecil | Rezende & Mohamed 2015 (*Variational Inference with Normalizing Flows*) |
 
 
-**Lab 7b sudah memberi Anda pijakan.** Autoencoder standar yang Anda latih di Lab 7b adalah langkah pertama menuju VAE: encoder, decoder, bottleneck, dan reconstruction loss semua ada. VAE hanya menambah dua hal: (1) encoder mengeluarkan `(μ, σ)` bukan `z` langsung, (2) sampling `z ~ N(μ, σ²)` dengan *reparameterization trick*, (3) loss tambahan `KL(q(z|x) || N(0, I))`. Jika Anda penasaran, jalan yang paling terjangkau adalah men-*fork* Lab 7b, menambah tiga modifikasi ini, lalu men-*sample* dari prior untuk menghasilkan gambar baru - ini adalah jalur yang bisa Anda ambil di **Komponen Mandiri Jalur 4 (Arsitektur Baru)** yang ditambahkan di Bab 00.
+**Lab 7b sudah memberi Anda pijakan.** Autoencoder standar di Lab 7b adalah langkah pertama menuju VAE: encoder, decoder, bottleneck, dan reconstruction loss semua ada. VAE hanya menambah tiga hal: encoder mengeluarkan `(μ, σ)` bukan `z` langsung, sampling dengan *reparameterization trick*, dan loss KL terhadap prior. Jalur praktisnya: fork Lab 7b, tambah tiga modifikasi itu - ini adalah jalur yang cocok untuk **Komponen Mandiri Jalur 4 (Arsitektur Baru)**.
 
-**Mengapa peta ini penting meskipun tidak di-*cover* hands-on.** Banyak paper riset ML modern di domain apapun - medical imaging, sains materi, audio, NLP - memakai komponen generatif sebagai augmentasi data, *world model*, atau *pretraining*. Ketika PI Anda menyebutkan "coba diffusion untuk data kita", Anda harus bisa mengenali dalam satu paragraf abstrak: apakah paper pakai generator itu sebagai *augmentation*, *imputation*, atau *end-to-end task*. Peta di atas memberikan Anda vocab yang cukup untuk percakapan pertama.
-
-**Untuk paper-reading di Lab 9.** Tiga paper pembuka di tabel di atas adalah kandidat kuat untuk *paper slot* di *weekly routine* Anda. Pilih satu per keluarga (jangan ketiganya dalam satu minggu). Putaran 1 fokus pada abstrak dan Figure 1; putaran 2 pada loss formula dan arsitektur; putaran 3 hanya jika Anda benar-benar akan mereplikasi.
+Ketika PI Anda menyebutkan "coba diffusion untuk data kita", Anda harus bisa mengenali dari abstrak: apakah paper pakai generator sebagai *augmentation*, *imputation*, atau *end-to-end task*. Tabel di atas memberi Anda vocab yang cukup untuk percakapan pertama. Tiga paper pembuka di tabel adalah kandidat kuat untuk *paper slot* di rutinitas mingguan Anda di Lab 9.
 
 ---
 

@@ -36,22 +36,13 @@ Bab ini memperkenalkan sembilan kompetensi yang akan Anda bangun selama satu sem
 
 ## 1. Satu Email dari Dosen Pembimbing
 
-Bayangkan Anda baru saja bergabung di laboratorium riset dosen Anda sebagai asisten. Pada hari ketiga, Anda menerima pesan singkat:
+Bayangkan Anda baru bergabung di laboratorium riset sebagai asisten. Pada hari ketiga, Anda menerima pesan singkat:
 
 > "Tolong coba ubah loss-nya jadi focal, lalu freeze conv1 pada backbone. Bandingkan dengan baseline. Saya butuh hasilnya hari Kamis."
 
-Dua kalimat. Tujuh hari lagi menuju Kamis. Di layar Anda terbuka repository dengan tiga puluh file Python, README satu paragraf, dan sebuah paper yang belum sempat Anda baca. Apa yang harus Anda lakukan pertama kali?
+Di layar Anda terbuka repo dengan tiga puluh file Python, README satu paragraf, dan sebuah paper yang belum sempat dibaca. *Focal loss* yang mana? `conv1` merujuk ke layer mana? "Bandingkan" pada metrik apa? Bagaimana menjamin dua run tidak berbeda karena seed?
 
-Jawaban yang terdengar percaya diri - "ya, saya coba" - sering kali menyembunyikan pertanyaan-pertanyaan yang belum dijawab:
-
-- *Focal loss* yang mana? Ada banyak varian, masing-masing dengan parameter berbeda.
-- Apa definisi "baseline" di sini? Konfigurasi mana yang dianggap patokan?
-- "Bandingkan" pada metrik apa? Akurasi, F1, atau loss validasi?
-- Bagaimana menjamin hasil eksperimen kedua tidak berbeda hanya karena random seed?
-- Berapa lama satu training run? Apakah cukup waktu untuk mengulang beberapa kali?
-- Apakah Anda memahami arsitektur backbone cukup baik untuk membekukan layer yang benar?
-
-Setiap pertanyaan di atas mengacu pada kompetensi yang berbeda. Modul ini dirancang untuk mengembangkan kompetensi-kompetensi tersebut secara sistematis, sehingga email semacam itu tidak lagi membuat Anda gentar - justru menjadi titik awal eksperimen yang terstruktur, hasil yang dapat dipertanggungjawabkan, dan laporan yang tidak sekadar memaparkan angka.
+Setiap pertanyaan itu mengacu pada kompetensi berbeda. Modul ini membangun kompetensi-kompetensi tersebut secara sistematis - sehingga email semacam itu menjadi titik awal eksperimen yang terstruktur, bukan sumber kepanikan.
 
 ---
 
@@ -97,13 +88,13 @@ Modul ini bekerja paling baik ketika Anda dan modul menyepakati empat hal beriku
 
 **Kedua**, Anda menulis catatan eksperimen sendiri. Bukan menyalin output, tetapi menjawab: apa yang aku jalankan, apa yang terjadi, apa arti hasilnya, dan apa yang akan kulakukan selanjutnya. Format catatan ada di `12_Lampiran.md`.
 
-**Ketiga**, Anda boleh - dan didorong - memakai LLM, Copilot, dan pencarian web. Tetapi sebelum memasukkan kode yang Anda tidak mengerti, Anda berhenti sebentar, baca baris demi baris, dan pastikan Anda bisa menjelaskan fungsinya tanpa bantuan. Bab 05 membahas protokol ini lebih dalam.
+**Ketiga**, Anda boleh memakai LLM, Copilot, dan pencarian web. Tapi sebelum memasukkan kode yang tidak Anda mengerti, baca baris demi baris dan pastikan Anda bisa menjelaskan fungsinya tanpa bantuan. Bab 05 membahas protokol ini lebih dalam.
 
-**Keempat**, Anda mengajukan pertanyaan. Pertanyaan yang baik bukan tanda kelemahan - sebaliknya, pertanyaan yang dirumuskan dengan cermat adalah salah satu kompetensi yang dinilai di rubrik (Bab 11). Jika sesuatu terasa kabur setelah membaca dua kali, tulis pertanyaan Anda seringkas mungkin, sertakan konteks, dan bawa ke sesi tatap muka atau forum yang disediakan.
+**Keempat**, Anda mengajukan pertanyaan. Pertanyaan yang dirumuskan dengan cermat adalah salah satu kompetensi yang dinilai di rubrik. Jika sesuatu terasa kabur setelah membaca dua kali, tulis pertanyaan seringkas mungkin dan bawa ke sesi tatap muka.
 
-**Kelima**, mulai Bab 02, Anda mengerjakan satu **Komponen Mandiri** setiap minggu - pilihan jalur eksplorasi yang Anda tentukan sendiri (dibatasi oleh konsep yang sedang dilatih). Catat pilihan dan hasilnya di `notebooks/portofolio_mandiri.ipynb`. Di awal sesi berikutnya, ada slot 10 menit per orang untuk mempresentasikan temuan. Portfolio ini tumbuh bersama Anda sepanjang semester; ia adalah catatan jujur tentang bagaimana cara berpikir Anda berkembang dari Pekan 4 hingga Pekan 12.
+**Kelima**, mulai Bab 02, Anda mengerjakan satu **Komponen Mandiri** setiap minggu. Catat di `notebooks/portofolio_mandiri.ipynb`; presentasi 10 menit di awal sesi berikutnya. Format dan kriteria: [Lampiran C.9](12_Lampiran.md#c9-template-komponen-mandiri).
 
-**Keenam - Breadth Check.** Di akhir semester (sebelum Capstone), Anda harus bisa menunjukkan kemampuan minimal forward pass dari **empat dari lima keluarga arsitektur** yang di-*cover* modul: MLP (Lab 1c), CNN (Lab 1), RNN/LSTM (Lab 3b), Transformer (Lab 6b), Autoencoder (Lab 7b). Klausul ini memastikan Anda tidak keluar dari modul sebagai "spesialis CIFAR-10" - sebagai asisten riset di lab yang mengerjakan neural network secara umum, Anda harus bisa mengenali dan memodifikasi minimal empat keluarga besar ini ketika membaca paper atau kode riset lintas domain.
+**Keenam - Breadth Check.** Sebelum Capstone, tunjukkan forward pass berjalan dari **empat dari lima keluarga arsitektur**: MLP (Lab 1c), CNN (Lab 1), RNN/LSTM (Lab 3b), Transformer (Lab 6b), Autoencoder (Lab 7b). Ini memastikan Anda keluar sebagai asisten yang bisa mengenali dan memodifikasi keluarga NN yang muncul di paper lintas domain, bukan hanya spesialis CIFAR-10.
 
 **Ketujuh**, eksperimen yang gagal tetapi didokumentasikan dengan baik dinilai setara dengan eksperimen yang berhasil. Yang dievaluasi adalah kualitas pemikiran, analisis, dan dokumentasi Anda - bukan apakah hipotesis terkonfirmasi. Hasil negatif yang dijelaskan dengan jujur lebih bernilai daripada hasil positif yang tidak bisa dipertanggungjawabkan.
 

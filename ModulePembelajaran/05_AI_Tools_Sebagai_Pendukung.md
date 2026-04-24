@@ -336,12 +336,10 @@ def train_one_epoch(model, loader, criterion, optimizer, use_mixup=False):
     return total_loss / len(loader.dataset)
 ```
 
-Baca baris per baris:
+Dua hal yang perlu diperbaiki dari output ini:
 
-- `np.random.beta`: OK, menghasilkan lambda. Tetapi - ini pakai `numpy`, bukan `torch`. Untuk konsistensi seed (Bab 03), sebaiknya `torch`.
-- `idx` di device yang sama dengan `x`: bagus, mencegah transfer host-device.
-- Kombinasi loss memakai `criterion` yang dipassing: OK, agnostik terhadap pilihan loss.
-- `yb` dipakai sebagai nama argumen *dan* variabel permutasi (`yb_perm`). Nama membingungkan.
+- `np.random.beta` pakai `numpy`, bukan `torch` - tidak konsisten seed (Bab 03). Ganti ke `torch.distributions.Beta`.
+- `yb` dipakai sebagai nama argumen *dan* variabel permutasi. Nama membingungkan - rename ke `y_perm`.
 
 ### 3.4 Tahap 4: Modifikasi dan Uji Minimal
 
