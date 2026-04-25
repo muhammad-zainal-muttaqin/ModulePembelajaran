@@ -527,7 +527,7 @@ Tabel rujukan saat Anda kehilangan arah.
 
 ## F. Prasyarat
 
-Bagian ini adalah *primer* singkat untuk mahasiswa yang belum solid pada tiga prasyarat masuk modul. Kerjakan bagian yang relevan sebelum membaca Bab 01. Jika sudah solid, lewati.
+Bagian ini adalah *primer* singkat untuk mahasiswa yang belum solid pada tiga prasyarat masuk modul. Kerjakan bagian yang relevan sebelum membaca Bab 01a. Jika sudah solid, lewati.
 
 ### F.1 Python Tingkat Menengah
 
@@ -555,7 +555,7 @@ Anda perlu memahami: turunan fungsi satu variabel, aturan rantai (*chain rule*),
 
 Anda perlu pernah melatih setidaknya satu model klasifikasi dengan scikit-learn: `fit`, `predict`, `score`. Anda perlu tahu apa itu train/test split dan mengapa diperlukan.
 
-**Uji mandiri.** Bisa Anda melatih `LogisticRegression` pada Iris dataset dan mencetak akurasi test set dalam 15 baris kode? Jika tidak, kerjakan tutorial scikit-learn Getting Started sebelum Bab 01.
+**Uji mandiri.** Bisa Anda melatih `LogisticRegression` pada Iris dataset dan mencetak akurasi test set dalam 15 baris kode? Jika tidak, kerjakan tutorial scikit-learn Getting Started sebelum Bab 01a.
 
 **Sumber rujukan.**
 - scikit-learn - *Getting Started* (scikit-learn.org/stable/getting_started.html).

@@ -32,7 +32,7 @@
 
 Bab ini membahas cara memakai *large language model* - ChatGPT, Claude, Copilot, Cursor - dan asisten pemrograman lain untuk mempercepat kerja riset tanpa menyerahkan pemahaman dan tanggung jawab. Anda akan belajar memisahkan tugas yang cocok untuk LLM dari yang berbahaya dijadikan *outsource*, menulis *prompt* yang menghasilkan bantuan presisi, menjalankan protokol verifikasi yang memastikan setiap output dapat dipertanggungjawabkan, dan memakai LLM untuk tugas riset non-kode (membaca paper, mendiskusikan hipotesis, interpretasi awal). Setelah bab ini, Anda punya alur kerja yang memakai AI tools secara produktif tetapi memperkuat - bukan melemahkan - kemampuan teknis Anda sendiri.
 
-**Lab ekstensi opsional.** Selain Lab 5 wajib (LLM-assisted implementation loop), Bab ini menawarkan Lab 5b (`notebooks/lab5b_domain_teks.ipynb`) - klasifikasi sentimen teks bahasa Indonesia memakai dataset IndoNLU SmSA. Lab 5b berfungsi sebagai jembatan ke dunia di luar gambar: Anda akan berlatih memindahkan kerangka tensor input → output dari domain visi (Bab 01) ke teks, dan melihat bagaimana LLM membantu memahami library NLP yang belum familiar. Ambil Lab 5b bila jadwal Pekan 8 longgar, atau tunda ke pekan refleksi akhir semester.
+**Lab ekstensi opsional.** Selain Lab 5 wajib (LLM-assisted implementation loop), Bab ini menawarkan Lab 5b (`notebooks/lab5b_domain_teks.ipynb`) - klasifikasi sentimen teks bahasa Indonesia memakai dataset IndoNLU SmSA. Lab 5b berfungsi sebagai jembatan ke dunia di luar gambar: Anda akan berlatih memindahkan kerangka tensor input → output dari domain visi (Bab 01a) ke teks, dan melihat bagaimana LLM membantu memahami library NLP yang belum familiar. Ambil Lab 5b bila jadwal Pekan 8 longgar, atau tunda ke pekan refleksi akhir semester.
 
 ---
 
@@ -446,7 +446,7 @@ Buka [Lab 5b - Domain Teks](template_repo/notebooks/lab5b_domain_teks.ipynb).
 2. **Representasi 2 - Word Embedding rata-rata**: load `fasttext-id` (50d), rata-ratakan vektor kata, train MLP kecil.
 3. **Representasi 3 - Fine-tune BERT kecil**: `indobenchmark/indobert-lite-base-p1` (hanya 2 epoch pada GPU atau Colab).
 4. Bandingkan ketiga strategi dalam tabel: akurasi, waktu training, parameter count.
-5. Tulis refleksi: dalam konteks Section 2.6 Bab 01, representasi mana yang "engineered", "extracted", dan "learned"?
+5. Tulis refleksi: dalam konteks Section 2.4 Bab 01b, representasi mana yang "engineered", "extracted", dan "learned"?
 
 **Hubungan dengan konsep yang sudah dipelajari**: Tabel representasi ini adalah padanan teks dari Lab 1b (domain gambar). Pola yang sama - tradeoff antara kontrol manusia, kapasitas model, dan kebutuhan data - muncul di semua domain.
 
