@@ -16,6 +16,7 @@
 | 09 | [Pengembangan Mandiri](09_Pengembangan_Mandiri.md) | 12 |
 | 10 | [Capstone Project](10_Capstone_Project.md) | 13–14 |
 | 11 | [Rubrik Penilaian](11_Rubrik_Penilaian.md) | – |
+| 13 | [Panduan Dosen](13_Panduan_Dosen.md) | – |
 | 12 | [Lampiran](12_Lampiran.md) | – |
 
 </details>
@@ -30,7 +31,7 @@
 
 ## 0. Peta Bab
 
-Bab ini melatih Anda memeriksa data sebelum mempercayai hasil yang diturunkan darinya. Anda akan belajar melakukan EDA sebagai *investigasi* bukan ritual, mendeteksi berbagai jenis *data leakage* yang dapat diam-diam menggembungkan metrik, mengaudit kualitas label dengan pemeriksaan sampel individu, dan memverifikasi bahwa pipeline pra-pemrosesan tidak membocorkan informasi dari test set ke train set. Setelah bab ini, Anda tidak lagi meneruskan dataset yang tidak Anda periksa sendiri - sebuah kebiasaan yang menyelamatkan banyak eksperimen dari hasil yang tampaknya spektakuler tetapi sebenarnya palsu.
+Bab ini melatih Anda memeriksa data sebelum mempercayai hasil yang diturunkan darinya. Anda akan belajar melakukan EDA sebagai *investigasi* bukan ritual, mendeteksi berbagai jenis *data leakage* yang dapat diam-diam menggembungkan metrik, mengaudit kualitas label dengan pemeriksaan sampel individu, memverifikasi bahwa pipeline pra-pemrosesan tidak membocorkan informasi dari test set ke train set, dan memahami dimensi etis dari data yang Anda pakai - dari bias dataset hingga tanggung jawab asisten riset (§2.6). Setelah bab ini, Anda tidak lagi meneruskan dataset yang tidak Anda periksa sendiri - sebuah kebiasaan yang menyelamatkan banyak eksperimen dari hasil yang tampaknya spektakuler tetapi sebenarnya palsu.
 
 ---
 
@@ -248,6 +249,63 @@ Data di dunia nyata sering berbeda dari data training. Tiga bentuk perubahan:
 Diagnosis awal: bandingkan histogram tiap fitur antara train dan test/produksi. Jika histogram berbeda signifikan, Anda menghadapi shift. Uji statistik seperti Kolmogorov-Smirnov dapat memformalkan.
 
 Di proyek kuliah, shift sering sengaja diperkenalkan sebagai latihan. Lab 4 akan memindahkan model yang dilatih di CIFAR-10 ke dataset medis PathMNIST - *domain shift* yang akan membuat akurasi turun drastis, memberi Anda kesempatan menyaksikan dan mendeteksinya.
+
+### 2.6 Etika Data dan Bias
+
+Sejauh ini kita membahas validasi data dari sudut teknis - leakage, label, pipeline, domain shift. Ada satu dimensi lagi yang sama pentingnya: dimensi etis. Data yang bersih secara teknis belum tentu bersih secara etis. Sebagai asisten riset, Anda tidak hanya bertanggung jawab pada akurasi model, tetapi juga pada dampak dari model yang Anda bangun.
+
+#### 2.6.1 Bias Dataset - Lebih dari Sekadar Imbalance
+
+Ketidakseimbangan kelas bukan satu-satunya bentuk bias dalam dataset. Empat jenis bias yang harus Anda kenali sebelum melangkah ke training:
+
+**Selection bias.** Data training tidak merepresentasikan populasi target. Contoh klasik: dataset wajah yang 90%-nya adalah etnis tertentu; model akan berkinerja buruk pada etnis lain. Contoh lain: model penyakit mata yang dilatih pada gambar berkualitas klinik, lalu gagal di lapangan karena gambar dari ponsel. Deteksi awal: bandingkan demografi atau properti sampel dataset Anda dengan populasi target yang diklaim.
+
+**Measurement bias.** Fitur atau label mengukur konstruk yang berbeda dari yang dimaksud. Contoh terkenal: model prediksi "risiko kriminal" COMPAS (ProPublica, 2016) - label "residivis" ternyata sangat berkorelasi dengan intensitas patroli polisi di lingkungan tertentu, bukan risiko aktual. Pertanyaan yang harus diajukan: "apakah yang kita ukur benar-benar merepresentasikan konstruk yang kita klaim?"
+
+**Label bias.** Bias manusia pemberi label tercermin dalam *ground truth*. Contoh: dataset klasifikasi teks "toxic" di mana komentar dalam dialek tertentu (AAVE) diberi label toxic lebih sering daripada komentar serupa dalam bahasa Inggris standar. Deteksi awal: periksa apakah distribusi label berbeda signifikan antar subgrup yang seharusnya mirip.
+
+**Historical bias.** Ketidaksetaraan yang sudah ada di dunia nyata tercermin dalam data. Contoh: dataset *resume screening* yang dilatih pada data historis perekrutan di masa lalu akan mewarisi bias gender atau ras pada keputusan perekrutan masa itu. Ini berbeda dari label bias karena *dunia nyata memang bias*, bukan pemberi label yang keliru.
+
+Keempat jenis bias tidak selalu bisa "diperbaiki" di level data. Beberapa memerlukan perubahan di level metrik evaluasi, desain model, atau bahkan keputusan untuk tidak membangun model sama sekali. Minimum yang bisa Anda lakukan: **dokumentasikan bias yang Anda sadari di audit data Anda**, di samping leakage dan label quality. Bias yang tidak diketahui akan diam-diam hidup di model dan muncul di tempat yang tidak Anda perkirakan.
+
+#### 2.6.2 Fairness Awareness - Tiga Konsep Minimum
+
+Keadilan (*fairness*) dalam ML adalah bidang penelitian sendiri. Anda tidak diharapkan menjadi pakar, tetapi tiga konsep ini adalah minimum yang perlu diketahui sebelum melepas model ke dunia:
+
+**Fairness through unawareness tidak bekerja.** Menghapus fitur sensitif (gender, ras, agama) tidak otomatis membuat model adil. Fitur-fitur yang tampak netral - kode pos, jenis perangkat, jam aktivitas - bisa menjadi *proxy* untuk fitur sensitif. Model akan belajar menggunakannya secara tidak langsung, dan bias tetap ada, tetapi kini lebih sulit dideteksi.
+
+**Definisi fairness tidak tunggal.** Dua definisi yang paling sering dipakai:
+- *Demographic parity*: proporsi prediksi positif sama antar kelompok. Masalah: bisa tercapai dengan menerima kandidat tidak berkualitas dari satu kelompok dan menolak kandidat berkualitas dari kelompok lain.
+- *Equal opportunity*: true positive rate sama antar kelompok. Masalah: tidak peduli dengan false positive rate.
+
+Pilihan definisi fairness bergantung pada konteks aplikasi. Tidak ada definisi yang superior universal; yang penting adalah Anda tahu definisi mana yang dipakai dan mengapa.
+
+**Fairness vs accuracy adalah trade-off nyata.** Mencapai fairness sering (tidak selalu) menurunkan akurasi keseluruhan. Mengabaikan fairness sama sekali demi akurasi adalah keputusan etis, bukan sekadar teknis. Sebagai asisten riset, tugas Anda adalah membuat trade-off ini eksplisit - bukan memilih sendiri, tetapi memberi PI informasi cukup untuk memilih dengan sadar.
+
+Sumber untuk pendalaman: *Fairness and Machine Learning* (Barocas, Hardt, Narayanan - gratis online) dan *Model Cards for Model Reporting* (Mitchell et al., 2019) - template satu halaman untuk mendokumentasikan bias, asumsi, dan batasan model.
+
+#### 2.6.3 Negative Results sebagai Kewajiban, Bukan Opsional
+
+Bab 02 §2.6 sudah membahas cara menangani hipotesis yang tidak terkonfirmasi. Di sini, kita melihatnya dari sudut etika riset.
+
+Krisis reproduksibilitas di ML sebagian besar dipicu oleh *publication bias*: hasil positif dipublikasikan, hasil negatif tidak. Akibatnya, ratusan tim bisa membuang waktu di arah yang sama karena tidak ada yang melaporkan bahwa arah itu buntu. Anda, sebagai asisten riset, memiliki kewajiban moral kecil untuk tidak ikut memperburuk keadaan ini.
+
+Dalam lingkup lab Anda sendiri, praktiknya sederhana:
+- Setiap folder eksperimen harus punya `README.md` atau `notes.md` meskipun eksperimennya gagal.
+- Eksperimen yang menghasilkan "focal loss tidak membantu" tetap bernilai - ia adalah satu titik data tentang batas efektivitas teknik.
+- Di akhir semester, portofolio Anda seharusnya berisi campuran hasil positif dan negatif. Jika semuanya positif, kemungkinan besar Anda hanya melaporkan yang berhasil.
+
+Eksperimen yang gagal dan didokumentasikan dengan jujur lebih melindungi reputasi riset Anda daripada eksperimen berhasil yang dilaporkan selektif. PI yang baik akan menaruh lebih banyak kepercayaan pada asisten yang berkata "saya sudah mencoba tiga arah, dua gagal, satu berhasil" daripada asisten yang hanya menampilkan keberhasilan.
+
+#### 2.6.4 Tanggung Jawab Asisten Riset
+
+Anda mungkin berpikir: "saya hanya asisten, saya menjalankan instruksi PI, tanggung jawab etis ada di PI." Ini separuh benar dan separuh berbahaya. Benar bahwa PI memegang tanggung jawab akhir. Berbahaya karena:
+
+- PI mungkin tidak tahu detail data yang Anda kumpulkan. Jika Anda menemukan bias atau masalah privasi di data, *Anda adalah orang pertama yang melihatnya*. Tidak melapor adalah pilihan diam-diam, dan diam adalah keputusan.
+- Anda mungkin diminta mengumpulkan dataset yang mengandung informasi pribadi tanpa persetujuan. Atau mengerjakan proyek yang aplikasinya bisa membahayakan kelompok rentan. Dalam situasi ini, Anda punya hak - dan dalam banyak kode etik profesional, kewajiban - untuk menyuarakan keberatan.
+- Di masa depan, *Anda* yang akan menjadi PI. Kebiasaan mempertimbangkan dimensi etis sejak menjadi asisten adalah investasi untuk saat itu.
+
+Ini bukan berarti setiap proyek harus melalui komite etik. Tetapi sebelum Anda menekan "run" pada eksperimen yang melibatkan data manusia, luangkan 5 menit untuk bertanya: "apakah data ini dikumpulkan dengan persetujuan? Apakah model ini akan merugikan kelompok tertentu? Jika hasilnya dipublikasikan, bisakah ia disalahgunakan?" Tidak semua pertanyaan bisa dijawab, tetapi bertanya adalah langkah pertama yang sering dilewatkan.
 
 ---
 

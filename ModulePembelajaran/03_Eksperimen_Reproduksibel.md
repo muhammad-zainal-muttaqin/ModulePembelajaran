@@ -16,6 +16,7 @@
 | 09 | [Pengembangan Mandiri](09_Pengembangan_Mandiri.md) | 12 |
 | 10 | [Capstone Project](10_Capstone_Project.md) | 13–14 |
 | 11 | [Rubrik Penilaian](11_Rubrik_Penilaian.md) | – |
+| 13 | [Panduan Dosen](13_Panduan_Dosen.md) | – |
 | 12 | [Lampiran](12_Lampiran.md) | – |
 
 </details>
@@ -30,7 +31,7 @@
 
 ## 0. Peta Bab
 
-Bab ini mengubah cara Anda mencatat, menjalankan, dan menyimpan eksperimen, sehingga hasil apapun yang Anda laporkan dapat direproduksi persis sama oleh orang lain. Anda akan belajar mengunci sumber-sumber acak, memindahkan konfigurasi dari kode ke file deklaratif, menghubungkan log ke konfigurasi dan kode yang menghasilkannya, serta merancang ablation yang bisa dibaca ulang berbulan-bulan kemudian. Setelah bab ini, folder eksperimen Anda punya struktur yang sama, disiplin penamaan yang konsisten, dan jejak yang cukup untuk menjawab pertanyaan "bagaimana tepatnya angka ini didapat?" tanpa ragu.
+Bab ini mengubah cara Anda mencatat, menjalankan, dan menyimpan eksperimen, sehingga hasil apapun yang Anda laporkan dapat direproduksi persis sama oleh orang lain. Anda akan belajar mengunci sumber-sumber acak, memindahkan konfigurasi dari kode ke file deklaratif, menghubungkan log ke konfigurasi dan kode yang menghasilkannya, merancang ablation yang bisa dibaca ulang berbulan-bulan kemudian, serta memakai Git dengan konvensi commit dan branching yang sesuai untuk riset eksperimental (§2.10). Setelah bab ini, folder eksperimen Anda punya struktur yang sama, disiplin penamaan yang konsisten, dan jejak yang cukup untuk menjawab pertanyaan "bagaimana tepatnya angka ini didapat?" tanpa ragu.
 
 ---
 
@@ -410,6 +411,79 @@ for epoch in range(1, total_epochs + 1):
 - Jangan gunakan training loss sebagai sinyal konvergensi - ia hampir selalu terus turun (model memang menghafal training set). Gunakan validation loss.
 
 **Catatan reproducibility**: epoch di mana early stopping terjadi menjadi bagian dari konfigurasi run. Simpan nilai `stopped_at_epoch` di `summary.json` agar Anda bisa membandingkan dua run yang mungkin berhenti di epoch berbeda.
+
+### 2.10 Git Workflow untuk Riset Eksperimental
+
+Git sudah dipakai sejak awal modul untuk menyimpan kode dan config. Namun riset punya kebutuhan versi yang berbeda dari software engineering. Di software engineering, branching strategi kompleks (git-flow, trunk-based development) dirancang untuk tim besar dengan rilis berkala. Di riset, yang Anda butuhkan lebih sederhana: setiap eksperimen bisa dilacak ke commit yang menghasilkannya, dan setiap commit membawa cukup konteks untuk dipahami tiga bulan kemudian.
+
+#### 2.10.1 Commit Message Convention
+
+Commit message di riset punya fungsi ganda: (1) mendeskripsikan apa yang berubah, dan (2) memberi konteks eksperimen apa yang terpengaruh. Konvensi sederhana berikut cukup:
+
+| Prefix | Makna | Contoh |
+| --- | --- | --- |
+| `exp:` | Perubahan untuk eksperimen tertentu | `exp: tambah config focal gamma=2.0` |
+| `fix:` | Perbaikan bug | `fix: FocalLoss reduction mean bukan sum` |
+| `refactor:` | Refaktor tanpa perubahan fungsional | `refactor: ekstrak build_optimizer ke utils` |
+| `docs:` | Dokumentasi | `docs: tambah catatan setup di README` |
+| `lab:` | Perubahan untuk lab/modul | `lab: lengkapi Lab 3 checkpoint metadata` |
+
+Contoh commit lengkap:
+
+```
+exp: implementasi focal loss dengan gamma sweep
+
+- gamma [1.0, 2.0, 3.0] pada config terpisah
+- baseline seed 42, 43, 44 sudah dijalankan
+- Eksperimen: focal_gamma1_s42, focal_gamma2_s42, focal_gamma3_s42
+```
+
+Baris pertama maksimal 50 karakter. Baris berikutnya menjelaskan eksperimen mana yang terpengaruh. Konvensi ini ringan - tetapi cukup untuk mencari "commit mana yang memperkenalkan gamma sweep?" via `git log --grep="gamma sweep"` enam bulan kemudian.
+
+#### 2.10.2 Branching Strategy Minimal
+
+Untuk proyek riset individu atau tim kecil, branching kompleks tidak diperlukan. Struktur sederhana:
+
+- **`main`**: selalu dalam keadaan bisa dijalankan (*runnable*). Semua eksperimen yang sudah final dan dilaporkan ada di `main`. Jangan biarkan `main` dalam keadaan *broken* - itu akan menyulitkan semua orang, termasuk diri Anda sendiri.
+- **`exp/<nama>`**: satu branch untuk satu seri eksperimen. Contoh: `exp/focal-gamma-sweep`, `exp/data-augmentation`. Setelah eksperimen selesai dan hasilnya dicatat, merge kembali ke `main`.
+
+Alur kerja normal:
+
+```bash
+# 1. Mulai eksperimen baru
+git checkout -b exp/focal-gamma-sweep
+
+# 2. Kerjakan: ubah kode, tambah config, jalankan eksperimen
+# ... kerja ...
+
+# 3. Setelah selesai, commit hasil
+git add configs/focal_gamma1.yaml configs/focal_gamma2.yaml
+git commit -m "exp: focal loss gamma sweep 1.0-3.0"
+
+# 4. Kembali ke main, merge
+git checkout main
+git merge exp/focal-gamma-sweep
+git branch -d exp/focal-gamma-sweep
+```
+
+Yang penting bukan kompleksitas branching-nya, tetapi kebiasaan: **selalu commit sebelum menjalankan eksperimen baru**. Ini memastikan git hash yang tersimpan di checkpoint (`get_git_hash()` dari §2.3) mengacu ke commit yang bersih, bukan ke working tree yang kotor.
+
+#### 2.10.3 Kapan Commit, Kapan Tidak
+
+**Commit sebelum:**
+- Menjalankan eksperimen baru (git hash di checkpoint harus valid)
+- Mengubah config yang sudah dipakai di eksperimen sebelumnya (agar perubahan terlacak)
+- Setelah refaktor yang memengaruhi fungsi training (agar bug gampang dibisect)
+
+**Jangan commit:**
+- Dataset (simpan skrip download-nya, bukan datanya)
+- Checkpoint dan file di `experiments/` (folder ini ada di `.gitignore`)
+- Folder `.venv/` atau environment (pakai `requirements.txt` atau `pyproject.toml`)
+- Hasil sementara (log training yang belum selesai)
+
+**Aturan praktisnya:** file yang di-commit adalah yang diperlukan untuk *mereproduksi* eksperimen, bukan *hasil* eksperimen itu sendiri. Hasil ada di `experiments/`; kode dan config yang menghasilkannya ada di `git`.
+
+Jika Anda mengikuti konvensi di atas, tiga bulan dari sekarang Anda bisa membuka folder `experiments/focal_gamma2_s42/`, membaca `config.yaml` dan `git_hash` di `summary.json`, lalu `git checkout <hash>` - dan berada persis di kode yang menghasilkan checkpoint itu. Itu nilai sebenarnya dari Git dalam riset.
 
 ---
 

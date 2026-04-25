@@ -33,6 +33,19 @@ ModulePembelajaran/
 - 5 Mermaid diagram ditambahkan: Bab 00 §5c, Bab 04 §2.1, Bab 06 §2.1, Bab 07 §2.1, Bab 09 §2.2
 - Lampiran C.9 baru: Template Komponen Mandiri (kriteria standar semua pekan)
 
+**Penambahan April 2026 (Gap Analysis Implementation):**
+- `13_Panduan_Dosen.md`: file baru, panduan lengkap dosen (filosofi, pacing, emphasis per-bab, cara baca rubrik, cara nilai portofolio, skenario kelas)
+- Bab 02 §3.5: Komunikasi Efektif dengan Dosen Pembimbing (template weekly update, kerangka SQRC, matriks saluran komunikasi, ekspresi ketidakpastian profesional)
+- Bab 01b §2.5: Mermaid decision tree diagnostik loss curve (branching flowchart mencakup 5 pola + navigasi "mulai dari overfit one batch")
+- Bab 04 §2.6: Etika Data dan Bias (4 jenis dataset bias, fairness awareness, negative results sebagai kewajiban etis, tanggung jawab asisten riset)
+- Bab 06 Lab 6c (pair): Peer Code Review Repo Eksternal (aktivitas berpasangan, mapping 4 komponen repo, issue palsu, peer_review_log.md)
+- Bab 03 §2.10: Git Workflow untuk Riset Eksperimental (commit convention `exp:`/`fix:`/`docs:`, branching strategy minimal `main`+`exp/<nama>`, kapan commit)
+- Bab 08 §2.1.1: Matriks Evaluasi Tool (skoring 5 dimensi: dokumentasi, reproduksibilitas, ekosistem, biaya, komunitas; aturan <12 curigai, 12-18 coba kecil, >18 adopsi)
+- Lampiran §C.10: Template Weekly Experiment Log Ringan (format tabel 5 kolom, 5-10 menit/hari, aturan kapan C.10 vs C.4)
+- Lampiran §G: Self-Checklist Mingguan (12 tabel, Minggu 1-12, kolom Belum/Mulai/Sudah, 4-7 poin per minggu)
+- Navigasi: semua 14 bab + README + Lampiran diperbarui menyertakan link ke `13_Panduan_Dosen.md`
+- Indeks Cepat (Lampiran §E): 10+ entri baru untuk semua section/lab/template baru
+
 **Konten utama per bab (state saat ini):**
 
 - **01a**: Section 2.1 (tensor I/O), 2.2 (MLP backprop 7-langkah), 2.3 (4 keluarga arsitektur), 2.4 (layer: inisialisasi Kaiming/Xavier, BatchNorm/LayerNorm/GroupNorm tabel, ReLU/GELU/SiLU)

@@ -16,6 +16,7 @@
 | 09 | [Pengembangan Mandiri](09_Pengembangan_Mandiri.md) | 12 |
 | 10 | [Capstone Project](10_Capstone_Project.md) | 13–14 |
 | 11 | [Rubrik Penilaian](11_Rubrik_Penilaian.md) | – |
+| 13 | [Panduan Dosen](13_Panduan_Dosen.md) | – |
 | 12 | [Lampiran](12_Lampiran.md) | – |
 
 </details>
@@ -30,7 +31,7 @@
 
 ## 0. Peta Bab
 
-Bab ini mengajari Anda mengubah instruksi terbuka - "coba focal loss, freeze conv1" - menjadi rancangan eksperimen yang konkret: variabel apa yang berubah, baseline apa yang adil, hipotesis apa yang dapat dipalsukan, metrik apa yang relevan, dan apa bentuk hasil yang diharapkan. Setelah bab ini, Anda mampu menuliskan *satu halaman protokol eksperimen* sebelum menyentuh kode - dokumen yang menyelamatkan waktu berhari-hari dan mencegah hasil yang tidak bisa Anda jelaskan.
+Bab ini mengajari Anda mengubah instruksi terbuka - "coba focal loss, freeze conv1" - menjadi rancangan eksperimen yang konkret: variabel apa yang berubah, baseline apa yang adil, hipotesis apa yang dapat dipalsukan, metrik apa yang relevan, dan apa bentuk hasil yang diharapkan. Anda juga akan belajar berkomunikasi secara efektif dengan dosen pembimbing - menyusun update mingguan yang informatif, mengajukan pertanyaan teknis yang mudah dijawab, dan mengekspresikan ketidakpastian tanpa kehilangan kredibilitas. Setelah bab ini, Anda mampu menuliskan *satu halaman protokol eksperimen* sebelum menyentuh kode - dokumen yang menyelamatkan waktu berhari-hari dan mencegah hasil yang tidak bisa Anda jelaskan.
 
 ---
 
@@ -283,6 +284,85 @@ Interpretasi (tulis sebelum PI bertanya):
 - **Langkah berikutnya yang diusulkan.** Gamma sweep (γ ∈ {1.0, 2.0, 3.0}) untuk mencari titik optimal; mencoba freeze parsial (hanya conv, bukan BN).
 
 Laporan satu paragraf seperti di atas memberi PI informasi yang bisa dia pakai untuk keputusan berikutnya. Bandingkan dengan "baseline 78.4%, mod 80.1%, naik 1.7%" di Cara A.
+
+### 3.5 Komunikasi Efektif dengan Dosen Pembimbing
+
+Sejauh ini kita membahas penerjemahan instruksi PI menjadi protokol. Namun riset berlangsung berminggu-minggu, bukan satu email. Antara instruksi awal dan laporan akhir, ada puluhan titik komunikasi yang menentukan apakah PI tetap percaya pada progres Anda - atau mulai meragukan apakah Anda masih mengerjakan tugas.
+
+#### 3.5.1 Format Update Mingguan ke PI
+
+Update mingguan yang baik adalah kebiasaan paling sederhana dan paling berdampak dalam hubungan asisten-PI. Formatnya ringkas - cukup empat bagian dan satu pertanyaan:
+
+```markdown
+## Weekly Update: <Nama> - Pekan <X>
+
+**Progress minggu ini:**
+- [Eksperimen A]: selesai 3 seed. F1 minor 0.672 ± 0.014. Hipotesis terkonfirmasi.
+- [Eksperimen B]: baru 1 seed (seed 42 berjalan; seed 43-44 dalam antrean).
+
+**Kendala:**
+- GPU time untuk B lebih lambat dari estimasi. Butuh 2 hari lagi.
+
+**Rencana minggu depan:**
+- Selesaikan 3 seed B, analisis perbandingan A vs B.
+- Jika B tidak mengkonfirmasi hipotesis, tulis analisis penyebab.
+
+**Satu pertanyaan:**
+- Gamma sweep untuk focal loss: saya usul [1.0, 2.0, 3.0, 5.0]. Apakah rentang ini cukup, atau ada nilai lain yang sebaiknya diuji?
+```
+
+Tiga prinsip update yang baik:
+
+1. **Spesifik dengan angka.** "Akurasi naik" tidak informatif; "F1 minor 0.612 → 0.672, Δ = +0.06" bisa langsung dipakai PI untuk keputusan.
+2. **Kendala disebut lebih awal, bukan disembunyikan di akhir.** PI tidak bisa membantu masalah yang tidak ia ketahui. Jika GPU habis, data ternyata rusak, atau hasil tidak masuk akal - sampaikan segera, bukan seminggu kemudian.
+3. **Selalu ajukan satu pertanyaan.** Pertanyaan yang baik memberi PI sesuatu untuk direspon dengan cepat. Satu pertanyaan konkret lebih baik daripada tiga pertanyaan abstrak.
+
+Update ini bisa dikirim via email, Slack, atau shared document. Yang penting: kirim *sebelum* diminta. Konsistensi mingguan membangun kepercayaan lebih cepat daripada hasil spektakuler yang datang tiba-tiba.
+
+#### 3.5.2 Kerangka SQRC untuk Framing Pertanyaan Teknis
+
+Saat Anda butuh masukan PI di luar update rutin, pakai kerangka **SQRC** - empat langkah yang membedakan asisten mandiri dari yang bergantung:
+
+| Langkah | Singkatan | Isi | Contoh |
+| --- | --- | --- | --- |
+| **S** | Situation | Apa yang terjadi? Satu kalimat fakta. | "Loss validation naik sejak epoch 8, sementara train loss terus turun." |
+| **Q** | Question | Apa yang ingin dijawab atau dicapai? | "Saya ingin tahu apakah ini overfitting atau ada bug di data split." |
+| **R** | Resolution attempt | Apa yang sudah dicoba? | "Saya sudah kurangi LR 10×, loss tetap naik. Saya sudah overfit satu batch - loss turun ke nol. Saya periksa distribusi label di train/val: seimbang." |
+| **C** | Call | Permintaan spesifik untuk PI. | "Dari ketiga kemungkinan - overfitting, bug split, atau learning rate - mana yang paling mungkin berdasarkan pola ini? Atau ada diagnosis lain yang saya lewatkan?" |
+
+SQRC bekerja karena tiga alasan:
+- PI tahu Anda sudah berusaha sendiri (R), sehingga dia tidak perlu memulai dari nol.
+- PI bisa langsung melompat ke inti masalah tanpa bertanya balik "learning rate-nya berapa?".
+- Anda belajar dari pola diagnosis PI - semakin sering Anda memakai SQRC, semakin sedikit Anda perlu bertanya.
+
+**Contoh SQRC yang buruk:** "Model saya tidak belajar. Ada saran?" (tidak ada S, tidak ada R, C terlalu luas).
+
+#### 3.5.3 Memilih Saluran Komunikasi
+
+Tidak semua komunikasi pantas lewat saluran yang sama. Matriks berikut membantu Anda memilih:
+
+| Situasi | Saluran | Mengapa |
+| --- | --- | --- |
+| Update progress rutin | Email / shared doc | Asinkron, tidak perlu respon segera, bisa diarsipkan |
+| Butuh keputusan cepat (deadline < 24 jam) | Chat langsung / Slack DM | PI bisa merespon dalam 1-2 menit |
+| Pertanyaan teknis yang butuh konteks | Email dengan SQRC di subject | PI bisa menjawab saat punya waktu fokus; subject yang jelas memudahkan pencarian ulang |
+| Hasil eksperimen final | Email + lampiran laporan 1 halaman | Menciptakan jejak tertulis; 3 bullet point temuan utama di badan email, detail di lampiran |
+| Diskusi arah riset berikutnya | Tatap muka / video call | Percakapan dua arah lebih efisien untuk eksplorasi ide |
+
+Aturan praktis: jika butuh jawaban < 1 menit dari PI, pakai chat. Jika butuh pemikiran > 5 menit dari PI, pakai email. Jangan kirim pertanyaan analitis via chat - PI akan merespon singkat dan Anda kehilangan kesempatan mendapat masukan mendalam.
+
+#### 3.5.4 Mengekspresikan Ketidakpastian secara Profesional
+
+Asisten riset pemula sering merasa harus terlihat yakin. Padahal, PI yang baik lebih menghargai kejujuran tentang batas pengetahuan daripada kepercayaan diri yang rapuh. Kalimat-kalimat berikut adalah contoh mengekspresikan ketidakpastian tanpa kehilangan kredibilitas:
+
+| Kurang tepat | Lebih tepat | Mengapa |
+| --- | --- | --- |
+| "Modelnya berhasil." | "Hasil preliminary dengan 1 seed menunjukkan F1 minor naik 6 poin. Saya belum mereplikasi dengan seed berbeda, jadi belum bisa memastikan kenaikan ini bukan noise." | Mengakui keterbatasan sambil tetap melaporkan hasil |
+| "Focal loss tidak bekerja." | "Pada konfigurasi yang saya uji (γ=2.0, 3 seed, CIFAR-10 balanced), focal loss tidak meningkatkan F1. Mungkin berbeda pada dataset dengan imbalance lebih ekstrem." | Menyatakan hasil tanpa generalisasi berlebihan |
+| "Saya tidak tahu kenapa loss-nya begini." | "Saya menduga penyebabnya salah satu dari dua: LR terlalu tinggi, atau ada bug di normalisasi. Saya akan uji hipotesis pertama dulu dengan LR 10× lebih kecil." | Mengakui ketidaktahuan + langkah konkret |
+| "Menurut paper X, ini solved." | "Paper X melaporkan hasil kuat pada dataset mereka. Saya belum bisa mereproduksi pada dataset kita - mungkin karena perbedaan distribusi kelas." | Menghormati temuan paper tanpa mengabaikan hasil sendiri |
+
+Intinya: ketidakpastian yang disertai langkah konkret adalah tanda kompetensi. Ketidakpastian tanpa tindak lanjut adalah tanda kebingungan.
 
 ---
 

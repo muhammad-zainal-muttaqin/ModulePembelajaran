@@ -16,6 +16,7 @@
 | 09 | [Pengembangan Mandiri](09_Pengembangan_Mandiri.md) | 12 |
 | 10 | [Capstone Project](10_Capstone_Project.md) | 13–14 |
 | 11 | [Rubrik Penilaian](11_Rubrik_Penilaian.md) | – |
+| 13 | [Panduan Dosen](13_Panduan_Dosen.md) | – |
 | 12 | [Lampiran](12_Lampiran.md) | – |
 
 </details>
@@ -125,7 +126,32 @@ Taksonomi ini akan penting di Bab 02 saat merumuskan variabel eksperimen. Memban
 
 ### 2.5 Membaca Sinyal: Diagnosis dari Loss Curve
 
-Lima pola yang paling sering ditemui, masing-masing dengan hipotesis dan langkah test:
+Lima pola yang paling sering ditemui, masing-masing dengan hipotesis dan langkah test. Diagram di bawah adalah peta navigasi cepat; jika Anda baru pertama kali mendiagnosis, mulai dari pertanyaan di simpul paling atas dan ikuti cabang sesuai kondisi Anda.
+
+```mermaid
+flowchart TD
+    A["Loss training tinggi,<br/>tidak turun dari awal"] --> B{"Overfit one batch:<br/>loss turun ke ≈0?"}
+    B -->|Ya| C["Naikkan LR 10×,<br/>coba lagi"]
+    B -->|Tidak| D["Bug di forward pass<br/>atau loss function"]
+
+    E["Loss training turun,<br/>val stagnan dari awal"] --> F{"Val loss pernah<br/>turun sama sekali?"}
+    F -->|"Tidak pernah"| G["Curigai data leakage.<br/>Periksa overlap train/val"]
+    F -->|"Pernah turun, lalu stagnan"| H["Kurangi kapasitas<br/>atau tambah regularisasi"]
+
+    I["Loss train & val turun sejajar,<br/>val lebih tinggi di akhir"] --> J{"Selisih train/val<br/>&gt; 10% akurasi?"}
+    J -->|Ya| K["Overfitting klasik.<br/>Early stopping di epoch<br/>dengan val loss terbaik"]
+    J -->|Tidak| L["Gap normal.<br/>Lanjutkan training"]
+
+    M["Loss val turun,<br/>train stagnan tinggi"] --> N{"Augmentasi terlalu<br/>agresif?"}
+    N -->|Ya| O["Kurangi probabilitas<br/>augmentasi"]
+    N -->|Tidak| P["Model terlalu kecil.<br/>Tambah kapasitas"]
+
+    Q["Loss meledak:<br/>NaN atau naik tajam"] --> R{"Tiba-tiba atau<br/>gradual?"}
+    R -->|"Tiba-tiba"| S["Tambah gradient clipping<br/>(clip=1.0)"]
+    R -->|"Gradual"| T["Turunkan LR 10×"]
+
+    U["Pola tidak tercantum<br/>di atas?"] --> V["Mulai dari overfit<br/>one batch"]
+```
 
 **Pola 1: Loss training tinggi, tidak turun dari awal.**
 Model tidak belajar sama sekali. Hipotesis: (a) learning rate terlalu kecil, atau (b) bug di forward pass. Langkah test: jalankan *overfit one batch* - ambil 4-8 sampel, jalankan ratusan iterasi hanya pada sampel itu. Jika loss tidak turun mendekati nol, ada bug di arsitektur atau loss function. Jika turun, model sehat - masalahnya di tempat lain. Naikkan LR 10× dan lihat apakah kurva mulai bergerak.
@@ -145,6 +171,8 @@ Gradient explosion. Hipotesis: (a) LR terlalu besar, atau (b) tidak ada gradient
 ![Lima pola loss curve untuk diagnosis: underfitting, overfitting, early divergence, val lebih rendah dari train, dan konvergensi normal](./figures/fig01c_loss_curves_diagnostic.svg)
 
 **Overfit satu batch** adalah alat diagnosis terpenting untuk membedakan bug kode dari masalah hiperparameter. Karpathy menyebutnya sebagai *"the most important debugging tool"*.
+
+Jika loss curve Anda tidak cocok dengan kelima pola di atas, jangan menebak. Kembali ke simpul paling atas diagram: overfit satu batch. Hasil tes itu - apakah loss turun ke nol atau tidak - akan memisahkan bug kode dari masalah hiperparameter dan mengarahkan Anda ke cabang diagnosis yang tepat.
 
 ---
 

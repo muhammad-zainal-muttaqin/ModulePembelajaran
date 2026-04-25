@@ -16,6 +16,7 @@
 | ▶ 09 | Pengembangan Mandiri | 12 |
 | 10 | [Capstone Project](10_Capstone_Project.md) | 13–14 |
 | 11 | [Rubrik Penilaian](11_Rubrik_Penilaian.md) | – |
+| 13 | [Panduan Dosen](13_Panduan_Dosen.md) | – |
 | 12 | [Lampiran](12_Lampiran.md) | – |
 
 </details>

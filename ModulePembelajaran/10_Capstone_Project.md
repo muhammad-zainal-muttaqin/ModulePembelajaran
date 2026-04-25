@@ -16,6 +16,7 @@
 | 09 | [Pengembangan Mandiri](09_Pengembangan_Mandiri.md) | 12 |
 | ▶ 10 | Capstone Project | 13–14 |
 | 11 | [Rubrik Penilaian](11_Rubrik_Penilaian.md) | – |
+| 13 | [Panduan Dosen](13_Panduan_Dosen.md) | – |
 | 12 | [Lampiran](12_Lampiran.md) | – |
 
 </details>

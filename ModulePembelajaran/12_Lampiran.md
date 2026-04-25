@@ -16,6 +16,7 @@
 | 09 | [Pengembangan Mandiri](09_Pengembangan_Mandiri.md) | 12 |
 | 10 | [Capstone Project](10_Capstone_Project.md) | 13–14 |
 | 11 | [Rubrik Penilaian](11_Rubrik_Penilaian.md) | – |
+| 13 | [Panduan Dosen](13_Panduan_Dosen.md) | – |
 | ▶ 12 | Lampiran | – |
 
 </details>
@@ -508,6 +509,60 @@ Template generik untuk semua Komponen Mandiri (Pekan 4-12). Setiap bab (02-09) m
 
 **Tugas spesifik per pekan:** Lihat bagian "Komponen Mandiri" di bab masing-masing untuk tugas konkret per jalur sesuai konsep minggu itu.
 
+### C.10 Template Weekly Experiment Log (Ringan)
+
+Template ringan untuk catatan harian rutin, berbeda dari C.4 yang dirancang untuk satu eksperimen besar. Isi dalam 5-10 menit per hari; cocok untuk mencatat progres saat Anda berganti-ganti tugas kecil atau menjalankan banyak eksperimen pendek.
+
+**Format tabel (rekomendasi):**
+
+```markdown
+# Experiment Log Ringan - Pekan <N>
+
+**Proyek:** <nama proyek>
+**Target minggu ini:** <satu kalimat>
+
+| Hari | Kerjaan | Hasil Kunci | Kendala | Besok |
+|------|---------|-------------|---------|-------|
+| Senin | | | | |
+| Selasa | | | | |
+| Rabu | | | | |
+| Kamis | | | | |
+| Jumat | | | | |
+```
+
+**Format naratif (alternatif):**
+
+```markdown
+# Experiment Log Ringan - Pekan <N>
+
+## <Hari>, <YYYY-MM-DD>
+**Kerjaan:** ...
+**Hasil (satu angka/plot):** ...
+**Kendala:** ...
+**Besok:** ...
+```
+
+**Contoh terisi (format tabel):**
+
+| Hari | Kerjaan | Hasil Kunci | Kendala | Besok |
+|------|---------|-------------|---------|-------|
+| Senin | Konfigurasi focal gamma sweep: 3 config (1.0, 2.0, 3.0) | smoke test semua config lolos | – | Jalankan seed 42 untuk ketiga config |
+| Selasa | Jalankan 3 eksperimen, seed 42 | gamma=2.0 F1 tertinggi (0.72) | gamma=3.0 loss NaN setelah epoch 8 → perlu gradient clipping | Periksa log gamma=3.0; jalankan seed 43 untuk 1.0 dan 2.0 |
+| Rabu | Debug gamma=3.0 NaN; tambah clip=1.0 | NaN hilang, training stabil | – | Selesaikan seed 43-44; siapkan tabel agregat |
+| Kamis | 6 run selesai (3 gamma × 2 seed) | Tabel agregat selesai | gamma=3.0 lebih buruk dari 2.0 (F1 0.68 vs 0.72) | Tulis laporan 1 halaman |
+| Jumat | Tulis laporan; commit semua config + hasil | Laporan selesai, commit `f41a2b3` | – | Pekan depan: ablation dengan class weighting |
+
+**Kapan pakai C.10 vs C.4:**
+
+| Situasi | Pakai |
+| --- | --- |
+| Satu eksperimen besar (>3 hari, multi-seed, ablation kompleks) | C.4 (Experiment Log) |
+| Berganti-ganti tugas ringan, banyak eksperimen pendek | C.10 (Weekly Log Ringan) |
+| Butuh catatan harian cepat yang tidak akan jadi laporan formal | C.10 |
+| Eksperimen yang akan masuk laporan atau paper | C.4 |
+
+Aturan praktis: jika Anda tidak yakin, mulai dengan C.10. Jika di pertengahan pekan Anda sadar eksperimennya lebih besar dari perkiraan, pindah ke C.4 - catatan C.10 bisa menjadi draft untuk C.4.
+
 ---
 
 ## D. Ringkasan Cepat Empat Sikap Riset
@@ -563,21 +618,167 @@ Anda perlu pernah melatih setidaknya satu model klasifikasi dengan scikit-learn:
 
 ---
 
+## G. Self-Checklist Mingguan
+
+Dua belas tabel di bawah adalah alat bantu bagi Anda untuk memeriksa pemahaman sendiri setiap akhir minggu. Centang "Sudah" hanya jika benar-benar bisa melakukannya *tanpa melihat catatan*. "Mulai" berarti bisa dengan bantuan atau referensi. Jika ada "Belum" di minggu sebelumnya, selesaikan sebelum lanjut ke minggu berikutnya - konsep di modul ini bertumpu seperti tangga.
+
+### Minggu 1 - Orientasi (Bab 00)
+
+| Saya harus bisa... | Belum | Mulai | Sudah |
+|---|---|---|---|
+| Menyebutkan 9 kompetensi dan kaitannya dengan 4 sikap riset | | | |
+| Menjelaskan struktur 8-section yang dipakai semua bab | | | |
+| Menyebutkan 7 klausul Kontrak Belajar, terutama Breadth Check | | | |
+| Memilih jalur capstone awal (masih tentatif) | | | |
+| Menjalankan `python -m src.train --config configs/baseline.yaml --dry-run` tanpa error | | | |
+
+### Minggu 2 - Fondasi Neural Network (Bab 01a)
+
+| Saya harus bisa... | Belum | Mulai | Sudah |
+|---|---|---|---|
+| Menjelaskan tensor I/O sebagai pasangan shape → makna untuk MLP, CNN, RNN, Transformer | | | |
+| Menurunkan backprop MLP 7 langkah secara manual (chain rule, tidak lihat catatan) | | | |
+| Membedakan 4 keluarga arsitektur dan asumsi data masing-masing | | | |
+| Menjelaskan kapan BatchNorm vs LayerNorm vs GroupNorm | | | |
+| Menggambar kurva ReLU, GELU, SiLU dan menyebutkan perbedaan utama | | | |
+| Lab 1c: forward + backward MLP numpy selesai; gradient check lolos | | | |
+
+### Minggu 3 - Loss, Optimizer & Evaluasi (Bab 01b)
+
+| Saya harus bisa... | Belum | Mulai | Sudah |
+|---|---|---|---|
+| Memilih loss function untuk minimal 3 jenis tugas berbeda | | | |
+| Menjelaskan perbedaan Adam vs AdamW dan kapan weight decay penting | | | |
+| Menyebutkan minimal 4 metrik evaluasi dan kapan masing-masing relevan | | | |
+| Membedakan 3 strategi representasi fitur (engineered / extracted / learned) | | | |
+| Mendiagnosis loss curve: menyebutkan 5 pola dan tindakan untuk masing-masing | | | |
+| Menjelaskan mengapa "overfit one batch" adalah alat diagnosis utama | | | |
+| Lab 1: 4 checklist selesai (training loop, loss plot, confusion matrix, sample inspection) | | | |
+
+### Minggu 4 - Ide ke Eksperimen (Bab 02)
+
+| Saya harus bisa... | Belum | Mulai | Sudah |
+|---|---|---|---|
+| Menjawab 5 pertanyaan sebelum menyentuh kode untuk instruksi baru | | | |
+| Menulis protokol eksperimen satu halaman (variabel, baseline, hipotesis, metrik, waktu) | | | |
+| Merumuskan hipotesis yang dapat dipalsukan (bukan "loss X lebih baik") | | | |
+| Menyusun update mingguan ke PI dengan format: progress, kendala, rencana, pertanyaan | | | |
+| Memakai kerangka SQRC saat mengajukan pertanyaan teknis ke PI | | | |
+| Lab 2: FocalLoss + freeze + ablation selesai; `protocol.md` ditulis sebelum run | | | |
+
+### Minggu 5-6 - Eksperimen Reproduksibel (Bab 03)
+
+| Saya harus bisa... | Belum | Mulai | Sudah |
+|---|---|---|---|
+| Mengunci seed di 4 sumber non-determinisme (random, numpy, torch, CUDA) | | | |
+| Memindahkan semua hyperparameter ke file YAML config | | | |
+| Menyimpan checkpoint dengan config + seed + git hash + metrics | | | |
+| Menstruktur folder eksperimen dengan konvensi penamaan yang konsisten | | | |
+| Menjelaskan perbedaan ablation 1-variabel vs multi-faktor | | | |
+| Menulis commit message dengan konvensi riset (`exp:`, `fix:`, `docs:`) | | | |
+| Lab 3: 6 run selesai; checkpoint bisa di-resume; TensorBoard log rapi | | | |
+| Lab 3b (breadth): RNN vs LSTM gradient flow selesai | | | |
+
+### Minggu 7 - Validasi Data (Bab 04)
+
+| Saya harus bisa... | Belum | Mulai | Sudah |
+|---|---|---|---|
+| Melakukan EDA 3-lapis dengan pertanyaan pemandu (bukan daftar ritual) | | | |
+| Membedakan 5 jenis data leakage dan menyebutkan tes cepat masing-masing | | | |
+| Mengaudit kualitas label: distribusi, konsistensi, sampel salah | | | |
+| Memverifikasi pipeline preprocessing tidak memakai statistik test set | | | |
+| Menyebutkan 4 jenis dataset bias (selection, measurement, label, historical) | | | |
+| Menjelaskan mengapa hasil negatif yang terdokumentasi adalah kewajiban etis | | | |
+| Lab 4: EDA + leakage audit + label inspection selesai; minimal 1 isu data ditemukan | | | |
+
+### Minggu 8 - AI Tools Sebagai Pendukung (Bab 05)
+
+| Saya harus bisa... | Belum | Mulai | Sudah |
+|---|---|---|---|
+| Memakai LLM untuk 3 jenis tugas berbeda (boilerplate, debugging, eksplorasi) | | | |
+| Memverifikasi output LLM: baca baris per baris, uji kasus batas, uji minimal | | | |
+| Menjelaskan kapan LLM cocok dipakai dan kapan tidak | | | |
+| Mencatat interaksi LLM di LLM Interaction Log (C.3) | | | |
+| Lab 5: LLM-assisted feature selesai; log verifikasi terisi | | | |
+| Lab 5b (domain teks): klasifikasi sentimen IndoNLU selesai (opsional) | | | |
+
+### Minggu 9 - Adopsi Repo Riset (Bab 06)
+
+| Saya harus bisa... | Belum | Mulai | Sudah |
+|---|---|---|---|
+| Memetakan entry point → model → loss → config repo asing dalam 30 menit | | | |
+| Mengatasi error setup umum (dependency, path, CUDA version) | | | |
+| Melakukan modifikasi minimal-invasif pada repo orang lain | | | |
+| Menulis kategori error analysis (minimal 3 kategori) | | | |
+| Me-review kode rekan: menemukan magic number, hardcoded path, missing docs | | | |
+| Lab 6: satu PR/issue ke repo publik; error analysis selesai | | | |
+| Lab 6b (breadth): Transformer-mini dari nol selesai | | | |
+
+### Minggu 10 - Alat Pendukung Ringan (Bab 07)
+
+| Saya harus bisa... | Belum | Mulai | Sudah |
+|---|---|---|---|
+| Membuat demo Streamlit/Gradio yang bisa diakses lewat browser | | | |
+| Menampilkan confusion matrix dan failure case, bukan hanya akurasi | | | |
+| Menjelaskan apa yang bisa disimpulkan pengguna dari tool yang Anda buat | | | |
+| Lab 7: demo interaktif online; link bisa diakses | | | |
+| Lab 7b (breadth): Autoencoder + denoising AE + t-SNE selesai | | | |
+
+### Minggu 11 - Platform & Tool Baru (Bab 08)
+
+| Saya harus bisa... | Belum | Mulai | Sudah |
+|---|---|---|---|
+| Mengikuti 5 langkah adopsi tool baru (quickstart → replikasi → adaptasi → integrasi → catatan) | | | |
+| Menyewa GPU di RunPod, SSH, training, tarik checkpoint, matikan pod | | | |
+| Mengevaluasi tool baru dengan matriks 5 dimensi (dokumentasi, repro, ekosistem, biaya, komunitas) | | | |
+| Mengelola biaya GPU cloud: memilih spot vs on-demand, memantau tagihan | | | |
+| Lab 8: training di RunPod selesai; pod dimatikan; tagihan < $5 | | | |
+
+### Minggu 12 - Pengembangan Mandiri (Bab 09)
+
+| Saya harus bisa... | Belum | Mulai | Sudah |
+|---|---|---|---|
+| Membaca paper dengan metode 3-pass (skim → close-read → kritis) | | | |
+| Mengisi template paper notes (TL;DR, metode, bukti, pertanyaan/kritik, hubungan) | | | |
+| Menulis pre-registration singkat sebelum eksperimen baru | | | |
+| Merumuskan pertanyaan lanjutan yang dapat dipalsukan dari satu paper | | | |
+| Lab 9: paper notes + pre-registration selesai | | | |
+
+### Cara Memakai Checklist Ini
+
+1. **Akhir setiap minggu**, buka tabel minggu yang baru selesai.
+2. **Centang dengan jujur.** "Sudah" = bisa dilakukan tanpa bantuan. "Mulai" = bisa dengan catatan atau bantuan LLM. "Belum" = belum bisa.
+3. **Jika ada "Belum",** selesaikan poin itu sebelum mengerjakan Komponen Mandiri minggu berikutnya. Poin "Belum" yang menumpuk adalah sinyal bahwa Anda perlu bicara dengan dosen.
+4. **Di akhir semester,** tabel-tabel ini adalah ringkasan kompetensi Anda. Bawa ke sesi evaluasi akhir sebagai bukti pendukung.
+
+Checklist ini melengkapi - bukan menggantikan - rubrik penilaian di Bab 11. Rubrik dipakai dosen untuk menilai; checklist dipakai Anda untuk memantau diri sendiri.
+
+---
+
 ## E. Indeks Cepat - Di Mana Mencari Apa
 
 - **Prasyarat Python/Kalkulus belum solid?** → Lampiran §F
+- **Self-checklist mingguan (apa yang harus saya bisa)?** → Lampiran §G
 - **Cara menulis pre-registration?** → Bab 9 §2.5 + Lampiran §C.1
 - **Cara memilih GPU cloud?** → Bab 8 §2.2, §2.6
+- **Matriks evaluasi tool baru?** → Bab 8 §2.1.1
 - **Rubrik penilaian?** → [Rubrik Penilaian](11_Rubrik_Penilaian.md)
+- **Panduan Dosen (pacing, emphasis, grading)?** → [Panduan Dosen](13_Panduan_Dosen.md)
 - **Template laporan capstone?** → Lampiran §C.2
 - **Memilih template capstone?** → Bab 10 §2.2
 - **Membaca paper dalam tiga putaran?** → Bab 9 §2.2
 - **Audit data leakage?** → Bab 4 §2.3
+- **Etika data dan bias (fairness, negative results)?** → Bab 4 §2.6
 - **Struktur config YAML?** → Bab 3 §2.3
+- **Git workflow untuk riset (commit convention, branching)?** → Bab 3 §2.10
 - **Adopsi repo eksternal dalam beberapa jam?** → Bab 6 §2.1-§2.3
+- **Peer code review repo eksternal?** → Bab 6 Lab 6c
 - **Verifikasi output LLM?** → Bab 5 §2.3
+- **Komunikasi efektif dengan dosen pembimbing?** → Bab 2 §3.5
+- **Diagnosis loss curve (decision tree)?** → Bab 1b §2.5
 - **Template entri portofolio mandiri?** → Lampiran §C.6
 - **Panduan presentasi Komponen Mandiri?** → Lampiran §C.7
+- **Template weekly experiment log ringan?** → Lampiran §C.10
 - **Format dan kriteria Komponen Mandiri?** → Lampiran §C.9
 - **Rubrik Eksplorasi Mandiri & Komunikasi?** → [Rubrik Penilaian](11_Rubrik_Penilaian.md) §3 Kompetensi 10
 

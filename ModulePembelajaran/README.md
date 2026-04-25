@@ -93,6 +93,7 @@ ModulePembelajaran/
 ├── 09_Pengembangan_Mandiri.md         Baca paper, formulasi pertanyaan, pre-registration
 ├── 10_Capstone_Project.md             Proyek akhir: tiga template pilihan
 ├── 11_Rubrik_Penilaian.md             Rubrik per-outcome dengan level mastery
+├── 13_Panduan_Dosen.md                Panduan operasional untuk dosen pengampu
 ├── 12_Lampiran.md                     Glosarium ID↔EN, checklist, template
 └── template_repo/                     Skeleton repositori riset untuk di-fork
 ```
@@ -101,7 +102,7 @@ ModulePembelajaran/
 
 ## Untuk Dosen Pengampu
 
-Rubrik evaluasi ada di `11_Rubrik_Penilaian.md`. Rubrik memetakan setiap *expected outcome* ke bab, lab, dan empat level penguasaan (novice, developing, proficient, masterpiece) dengan deskriptor yang dapat diobservasi. Bobot nilai dapat disesuaikan; deskriptor sebaiknya dipertahankan agar standar tetap lintas angkatan.
+Baca `13_Panduan_Dosen.md` untuk panduan operasional lengkap: filosofi modul, pacing 14 minggu, emphasis per-bab, cara membaca rubrik, cara menilai portofolio, dan skenario kelas yang umum. Rubrik evaluasi ada di `11_Rubrik_Penilaian.md`. Rubrik memetakan setiap *expected outcome* ke bab, lab, dan empat level penguasaan (novice, developing, proficient, masterpiece) dengan deskriptor yang dapat diobservasi. Bobot nilai dapat disesuaikan; deskriptor sebaiknya dipertahankan agar standar tetap lintas angkatan.
 
 ---
 

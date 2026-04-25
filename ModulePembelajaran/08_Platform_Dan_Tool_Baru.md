@@ -16,6 +16,7 @@
 | 09 | [Pengembangan Mandiri](09_Pengembangan_Mandiri.md) | 12 |
 | 10 | [Capstone Project](10_Capstone_Project.md) | 13–14 |
 | 11 | [Rubrik Penilaian](11_Rubrik_Penilaian.md) | – |
+| 13 | [Panduan Dosen](13_Panduan_Dosen.md) | – |
 | 12 | [Lampiran](12_Lampiran.md) | – |
 
 </details>
@@ -30,7 +31,7 @@
 
 ## 0. Peta Bab
 
-Bab ini membekali Anda dengan pola umum untuk mengadopsi platform dan tool baru dengan aman: membaca quickstart, mereplikasi contoh, mengadaptasi ke kebutuhan sendiri, lalu mengintegrasikan ke workflow harian. Anda akan menerapkannya secara konkret pada RunPod - platform GPU cloud yang hemat biaya - termasuk menyiapkan pod, mensinkronkan data, menjalankan training panjang, menarik checkpoint, serta mengelola biaya agar tidak meledak. Anda juga akan mempelajari SSH port forwarding untuk memantau TensorBoard jarak jauh, manajemen checkpoint antar mesin, dan bagaimana men-scan dokumentasi tool baru dalam satu jam untuk memutuskan apakah tool itu cocok untuk pekerjaanmu. Setelah bab ini, Anda dapat memindahkan training yang gagal muat di laptop ke GPU cloud dalam satu sore - dan menyalakan pod baru kapan saja Anda perlu tanpa kehilangan arah.
+Bab ini membekali Anda dengan pola umum untuk mengadopsi platform dan tool baru dengan aman: membaca quickstart, mereplikasi contoh, mengadaptasi ke kebutuhan sendiri, lalu mengintegrasikan ke workflow harian - dilengkapi matriks evaluasi 5 dimensi untuk menilai kelayakan tool (§2.1.1). Anda akan menerapkannya secara konkret pada RunPod - platform GPU cloud yang hemat biaya - termasuk menyiapkan pod, mensinkronkan data, menjalankan training panjang, menarik checkpoint, serta mengelola biaya agar tidak meledak. Anda juga akan mempelajari SSH port forwarding untuk memantau TensorBoard jarak jauh, manajemen checkpoint antar mesin, dan bagaimana men-scan dokumentasi tool baru dalam satu jam untuk memutuskan apakah tool itu cocok untuk pekerjaanmu. Setelah bab ini, Anda dapat memindahkan training yang gagal muat di laptop ke GPU cloud dalam satu sore - dan menyalakan pod baru kapan saja Anda perlu tanpa kehilangan arah.
 
 ---
 
@@ -63,6 +64,35 @@ Setiap tool baru - RunPod, Weights & Biases, Modal, Hugging Face Spaces, LLM pro
 **Langkah 5: Tulis catatan pribadi.** Setelah tool dipakai sekali untuk proyek nyata, tulis *personal cheat sheet* - lima baris command yang paling sering Anda pakai, tiga gotcha yang Anda temukan. Simpan di repo `docs/tools/<tool>.md`. Ini menghemat jam-jam di masa depan.
 
 Pola ini mencegah dua kesalahan umum: langsung integrasi tanpa paham (berakhir dengan debugging yang menggabungkan masalah tool + masalah proyek) dan eksplorasi tanpa batas (menghabiskan seminggu main-main dengan tool yang ternyata tidak cocok).
+
+#### 2.1.1 Matriks Evaluasi - Kapan Tool Layak Diadopsi?
+
+Pola lima langkah di atas membantu Anda *menggunakan* tool baru. Matriks di bawah membantu Anda *memutuskan* apakah tool itu layak diinvestasikan waktu lebih lanjut - pertanyaan yang harus dijawab setelah Langkah 2 (replikasi tutorial) dan sebelum Langkah 3 (adaptasi ke kebutuhan sendiri).
+
+Evaluasi setiap tool baru dengan lima dimensi, skor 1-5:
+
+| Dimensi | Skor 1 | Skor 3 | Skor 5 |
+| --- | --- | --- | --- |
+| **Dokumentasi** | Tidak ada docs, hanya API reference | Quickstart ada, pesan error tidak informatif | Quickstart + tutorial + FAQ yang menangani error umum |
+| **Reproduksibilitas** | Hasil berbeda tiap run tanpa sebab jelas | Seed bisa dikontrol, non-determinisme CUDA belum diatasi | Dokumen menyertakan panduan reproduksibilitas; RNG dikunci penuh |
+| **Ekosistem** | Tool mandiri, tidak ada integrasi | Integrasi dengan PyTorch atau HuggingFace | Integrasi dengan PyTorch, HuggingFace, W&B, dan format checkpoint standar |
+| **Biaya** | >$100/bulan untuk penggunaan dasar | $10-50/bulan untuk penggunaan wajar | Gratis atau <$10/bulan untuk pengguna mahasiswa |
+| **Komunitas** | Tidak ada GitHub issues atau forum | Issues direspons dalam 1 minggu | Respons <24 jam; commit terbaru <3 bulan |
+
+**Aturan penggunaan:**
+- Skor total **< 12**: patut dicurigai. Jangan bangun workflow di atasnya - tool mungkin ditinggalkan maintainer-nya atau terlalu *immature* untuk riset.
+- Skor total **12-18**: coba untuk satu proyek kecil dulu. Jangan jadikan dependensi utama sampai terbukti stabil.
+- Skor total **> 18**: layak diintegrasikan penuh ke workflow harian.
+
+Tidak perlu mengisi semua dimensi untuk tool yang sangat baru. Dimensi yang tidak bisa dinilai dicatat sebagai risiko yang Anda sadari ("komunitas: belum bisa dinilai, terlalu baru"). Matriks ini bukan rumus yang diikuti membabi buta - ia adalah daftar pertanyaan minimum sebelum Anda menginvestasikan minggu ke tool baru.
+
+**Contoh penerapan - RunPod:**
+- Dokumentasi: 4 (ada quickstart + tutorial, error message kadang cryptic)
+- Reproduksibilitas: 4 (lingkungan bisa direproduksi via template, seed di tangan Anda)
+- Ekosistem: 4 (integrasi dengan PyTorch, tapi tidak langsung dengan W&B atau HuggingFace)
+- Biaya: 5 (bayar per detik, spot instance ~$0.12/jam)
+- Komunitas: 3 (diskusi Discord aktif, issue kadang lambat)
+- **Total: 20 → layak diintegrasikan.** Cocok dengan rekomendasi bab ini.
 
 ### 2.2 RunPod: Anatomi Penyewaan GPU
 

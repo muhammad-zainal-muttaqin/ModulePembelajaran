@@ -16,6 +16,7 @@
 | 09 | [Pengembangan Mandiri](09_Pengembangan_Mandiri.md) | 12 |
 | 10 | [Capstone Project](10_Capstone_Project.md) | 13–14 |
 | 11 | [Rubrik Penilaian](11_Rubrik_Penilaian.md) | – |
+| 13 | [Panduan Dosen](13_Panduan_Dosen.md) | – |
 | 12 | [Lampiran](12_Lampiran.md) | – |
 
 </details>
@@ -540,6 +541,38 @@ Buka [Lab 6b - Transformer-Mini dari Nol](template_repo/notebooks/lab6b_transfor
 Fokus: (1) implementasi *scaled dot-product attention* dengan tensor ops (tanpa `nn.MultiheadAttention`); (2) satu Transformer encoder block dengan LayerNorm pre-norm, FFN GELU, dan *residual*; (3) parity check terhadap `nn.TransformerEncoderLayer` PyTorch untuk memverifikasi shape dan skala output yang konsisten; (4) training ringan pada tugas *toy sequence classification* agar block terbukti bisa belajar.
 
 Bila Anda pernah membaca kode Transformer di Hugging Face atau `fairseq` dan merasa terhalang oleh abstraksi, lab ini membuat Anda melihat balok-balok fondasinya dalam bentuk paling minimal. Estimasi 4-5 jam.
+
+### Lab 6c (pair) - Peer Code Review Repo Eksternal
+
+Setelah Anda lancar membaca repo orang lain, latihan berikutnya adalah membantu orang lain membaca repo - dan dibantu balik. Bekerjalah berpasangan. Jika jumlah mahasiswa ganjil, satu kelompok berisi 3 orang dengan aturan: tiap orang tetap mereview satu repo masing-masing (total 3 repo), tahap *tukar* dilakukan secara melingkar (A→B, B→C, C→A), dan `peer_review_log.md` mencantumkan tiga pemetaan plus tiga set temuan. Waktu kerja bertambah ~10 menit untuk diskusi tiga arah.
+
+**Tugas per orang (30 menit):**
+1. Pilih satu repository publik yang belum pernah Anda baca. Bisa dari daftar rekomendasi di bawah, atau repo riset yang Anda temukan sendiri.
+2. Clone repository tersebut. Jangan membaca README lebih dari 5 menit - fokus pada kode.
+3. Petakan empat komponen inti: entry point, model, loss, data loader. Catat path file dan line number untuk masing-masing.
+4. Tulis satu "Issue" (tidak perlu benar-benar di-submit) yang mengidentifikasi satu area yang perlu dokumentasi tambahan, satu bug potensial, atau satu magic number yang tidak dijelaskan.
+
+**Tugas bersama (20 menit):**
+5. Tukar repository dengan pasangan. Baca mapping pasangan Anda. Apakah Anda setuju dengan pemetaannya? Ada yang terlewat?
+6. Diskusikan: apa pola paling umum yang Anda berdua temukan? Apa perbedaan paling mencolok antara kedua repo?
+7. Tulis `peer_review_log.md` (bersama, satu file) yang berisi:
+   - Repo yang direview dan siapa mereview apa.
+   - Temuan utama per orang (minimal 3).
+   - Satu hal yang dipelajari dari membaca kode orang lain.
+   - Satu saran konkret untuk perbaikan repo masing-masing.
+
+**Daftar rekomendasi repo (pilih salah satu):**
+- `pytorch/examples` - `mnist/main.py` (CNN sederhana, banyak komentar)
+- `huggingface/transformers` - `src/transformers/models/bert/modeling_bert.py` (fokus pada `BertSelfAttention` saja, abaikan sisanya)
+- Repo lab teman sendiri dari Lab 3 yang sudah direfaktor (jika ingin latihan yang lebih relevan)
+
+**Checklist verifikasi:**
+- [ ] Setiap orang selesai mapping 4 komponen dalam 30 menit.
+- [ ] Satu Issue terdokumentasi di `peer_review_log.md`.
+- [ ] Minimal 3 temuan konkret per orang (bukan "kode sudah rapi").
+- [ ] `peer_review_log.md` di-commit ke repo masing-masing.
+
+**Mengapa ini penting:** Di lab riset, Anda akan jauh lebih sering *mendiskusikan* kode dengan rekan daripada menulis kode sendirian. Peer review adalah skill yang sama pentingnya dengan menulis kode - dan modul ini memberi Anda satu latihan formal sebelum Anda melakukannya secara informal sepanjang sisa semester.
 
 ---
 
