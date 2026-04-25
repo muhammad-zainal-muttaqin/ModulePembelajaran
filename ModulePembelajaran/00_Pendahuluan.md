@@ -50,7 +50,7 @@ Setiap pertanyaan itu mengacu pada kompetensi berbeda. Modul ini membangun kompe
 
 Email di atas menyentuh sembilan kompetensi yang menjadi tulang punggung modul. Setiap kompetensi dibahas satu bab penuh dengan satu lab pendamping.
 
-1. **Memahami sistem ML/DL dalam praktiknya** (Bab 01). Mengetahui apa yang dilakukan arsitektur, loss, optimizer, dan evaluasi cukup dalam untuk menilai di mana perubahan bermakna.
+1. **Memahami sistem ML/DL dalam praktiknya** (Bab 01a & 01b). Mengetahui apa yang dilakukan arsitektur, loss, optimizer, dan evaluasi cukup dalam untuk menilai di mana perubahan bermakna.
 2. **Menerjemahkan ide menjadi eksperimen** (Bab 02). Mengubah instruksi terbuka menjadi rancangan konkret dengan variabel, baseline, hipotesis, dan metrik.
 3. **Eksperimen reproduksibel** (Bab 03). Menulis konfigurasi, mengunci seed, mencatat jejak, dan menyusun ablation yang bisa diverifikasi orang lain.
 4. **Validasi data dan pra-pemrosesan** (Bab 04). Memeriksa data sebelum mempercayai hasilnya - mulai dari distribusi kelas hingga *leakage* yang tersembunyi.
