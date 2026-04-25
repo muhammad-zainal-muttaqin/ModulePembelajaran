@@ -597,7 +597,7 @@ Lab ini *breadth*, bukan pengganti Lab 3 - dikerjakan setelah Lab 3 agar Anda pu
 
 ---
 
-## Komponen Mandiri (Pekan 5)
+## Komponen Mandiri (Pekan 5-6)
 
 Konsep: mengunci seed, memindahkan konfigurasi ke YAML, mencatat metadata checkpoint, dan memverifikasi reproduksibilitas. Bab 03 mencakup dua minggu (Pekan 5-6); presentasi dilakukan di awal Pekan 7. Format dan kriteria: [Lampiran C.9](12_Lampiran.md#c9-template-komponen-mandiri).
 

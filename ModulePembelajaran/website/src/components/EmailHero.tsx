@@ -22,7 +22,7 @@ export default function EmailHero() {
               Mulai dari Bab 00
             </Link>
             <Link to="/modul" className="btn-secondary text-base px-5 py-2.5">
-              Lihat 13 bab
+              Lihat 14 bab
             </Link>
           </div>
         </div>

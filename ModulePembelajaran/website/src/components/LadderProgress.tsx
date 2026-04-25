@@ -10,8 +10,8 @@ type Props = {
 // Peta minggu ke bab (14 minggu total).
 const WEEK_MAP: Record<number, string> = {
   1: "00",
-  2: "01",
-  3: "01",
+  2: "01a",
+  3: "01b",
   4: "02",
   5: "03",
   6: "03",

@@ -71,10 +71,11 @@
     <rect x="28" y="136" width="156" height="22" rx="2" fill="#A7F3D0"/>
 
     <!-- Axis labels -->
-    <text x="24" y="72" text-anchor="end" font-size="8" fill="#065F46">n₁</text>
-    <text x="24" y="98" text-anchor="end" font-size="8" fill="#065F46">n₂</text>
-    <text x="24" y="124" text-anchor="end" font-size="8" fill="#065F46">n₃</text>
-    <text x="24" y="150" text-anchor="end" font-size="8" fill="#065F46">n₄</text>
+    <text x="21" y="72" text-anchor="middle" font-size="8" fill="#6B7280">N↓</text>
+    <text x="36" y="55" font-size="8" fill="#065F46">n₁</text>
+    <text x="36" y="81" font-size="8" fill="#065F46">n₂</text>
+    <text x="36" y="107" font-size="8" fill="#065F46">n₃</text>
+    <text x="36" y="133" font-size="8" fill="#065F46">n₄</text>
     <text x="106" y="170" text-anchor="middle" font-size="8" fill="#6B7280">C (channel) →</text>
 
     <!-- Formula badge -->

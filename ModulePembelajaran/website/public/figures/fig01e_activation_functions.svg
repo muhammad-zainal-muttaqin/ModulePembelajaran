@@ -23,12 +23,12 @@
   <text x="281" y="54" font-size="10" fill="#374151">f(x)</text>
 
   <!-- Tick labels: scale x: 285 + x*71.67 = 285+72x; y: 170 - y*55 -->
-  <text x="143" y="200" text-anchor="middle" font-size="9" fill="#6B7280">-2</text>
-  <text x="214" y="200" text-anchor="middle" font-size="9" fill="#6B7280">-1</text>
-  <text x="278" y="200" text-anchor="end" font-size="9" fill="#6B7280">0</text>
-  <text x="357" y="200" text-anchor="middle" font-size="9" fill="#6B7280">1</text>
-  <text x="428" y="200" text-anchor="middle" font-size="9" fill="#6B7280">2</text>
-  <text x="500" y="200" text-anchor="middle" font-size="9" fill="#6B7280">3</text>
+  <text x="143" y="184" text-anchor="middle" font-size="9" fill="#6B7280">-2</text>
+  <text x="214" y="184" text-anchor="middle" font-size="9" fill="#6B7280">-1</text>
+  <text x="285" y="184" text-anchor="middle" font-size="9" fill="#6B7280">0</text>
+  <text x="357" y="184" text-anchor="middle" font-size="9" fill="#6B7280">1</text>
+  <text x="428" y="184" text-anchor="middle" font-size="9" fill="#6B7280">2</text>
+  <text x="500" y="184" text-anchor="middle" font-size="9" fill="#6B7280">3</text>
   <text x="62" y="173" text-anchor="end" font-size="9" fill="#6B7280">0</text>
   <text x="62" y="118" text-anchor="end" font-size="9" fill="#6B7280">1</text>
   <text x="62" y="63"  text-anchor="end" font-size="9" fill="#6B7280">2</text>

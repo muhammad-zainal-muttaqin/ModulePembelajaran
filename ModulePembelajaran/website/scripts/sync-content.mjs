@@ -12,7 +12,8 @@ const OUT = path.resolve(ROOT, "src", "content");
 
 const CHAPTERS = [
   "00_Pendahuluan.md",
-  "01_Memahami_ML_DL.md",
+  "01a_Fondasi_Neural_Network.md",
+  "01b_Loss_Optimizer_Evaluasi.md",
   "02_Ide_Ke_Eksperimen.md",
   "03_Eksperimen_Reproduksibel.md",
   "04_Validasi_Data.md",
@@ -29,6 +30,10 @@ const CHAPTERS = [
 const CONFIGS = [
   ["template_repo/configs/baseline.yaml", "baseline.yaml"],
   ["template_repo/configs/focal_freeze.yaml", "focal_freeze.yaml"],
+  ["template_repo/configs/mlp_mnist.yaml", "mlp_mnist.yaml"],
+  ["template_repo/configs/lstm_timeseries.yaml", "lstm_timeseries.yaml"],
+  ["template_repo/configs/transformer_mini.yaml", "transformer_mini.yaml"],
+  ["template_repo/configs/ae_cifar.yaml", "ae_cifar.yaml"],
 ];
 
 async function ensureDir(p) {

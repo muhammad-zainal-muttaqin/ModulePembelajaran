@@ -67,7 +67,7 @@ export default function SearchDialog({ open, onClose }: Props) {
               setQuery(e.target.value);
               setActiveIdx(0);
             }}
-            placeholder="Cari di 13 bab modul..."
+            placeholder="Cari di 14 bab modul..."
             className="flex-1 bg-transparent outline-none text-base placeholder:text-ink/55 dark:placeholder:text-parchment/40"
             aria-label="Kata kunci pencarian"
           />

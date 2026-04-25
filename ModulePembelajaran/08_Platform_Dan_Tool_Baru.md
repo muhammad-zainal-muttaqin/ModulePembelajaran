@@ -178,7 +178,9 @@ Rekomendasi praktis untuk mahasiswa:
 
 **Aturan 4: Review mingguan.** Setiap akhir minggu, buka dashboard, catat total biaya, catat eksperimen apa yang menghabiskan dana itu, tanya apakah nilainya sepadan. Ini mentransformasi biaya dari "angka abstrak" menjadi "keputusan belajar".
 
-**Alternatif RunPod.** Modul ini fokus pada RunPod karena antarmukanya sederhana, tapi prinsipnya sama di platform lain. Tabel singkat:
+### 2.7 Perbandingan Platform
+
+Modul ini fokus pada RunPod karena antarmukanya sederhana, tapi prinsipnya sama di platform lain. Tabel singkat:
 
 | Platform | Cocok untuk | Catatan |
 | --- | --- | --- |

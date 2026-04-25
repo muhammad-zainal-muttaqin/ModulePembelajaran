@@ -15,7 +15,7 @@ export default function ModuleList() {
       <header className="page-header">
         <h1 className="page-title">Daftar Modul</h1>
         <p className="page-lead">
-          13 bab, dibaca berurutan dari Bab 00. Setiap bab mengikuti urutan tetap: Peta → Motivasi → Konsep → Worked Example → Pitfalls → Lab → Refleksi → Bacaan.
+          14 bab, dibaca berurutan dari Bab 00. Setiap bab mengikuti urutan tetap: Peta → Motivasi → Konsep → Worked Example → Pitfalls → Lab → Refleksi → Bacaan.
         </p>
       </header>
 

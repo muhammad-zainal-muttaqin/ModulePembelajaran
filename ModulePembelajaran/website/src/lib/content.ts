@@ -1,7 +1,8 @@
 // Load konten .md sumber via Vite `?raw`. Semua bundled di build; cukup cepat.
 import GithubSlugger from "github-slugger";
 import c00 from "../content/chapters/00_Pendahuluan.md?raw";
-import c01 from "../content/chapters/01_Memahami_ML_DL.md?raw";
+import c01a from "../content/chapters/01a_Fondasi_Neural_Network.md?raw";
+import c01b from "../content/chapters/01b_Loss_Optimizer_Evaluasi.md?raw";
 import c02 from "../content/chapters/02_Ide_Ke_Eksperimen.md?raw";
 import c03 from "../content/chapters/03_Eksperimen_Reproduksibel.md?raw";
 import c04 from "../content/chapters/04_Validasi_Data.md?raw";
@@ -15,13 +16,18 @@ import c11 from "../content/chapters/11_Rubrik_Penilaian.md?raw";
 import c12 from "../content/chapters/12_Lampiran.md?raw";
 import baselineYaml from "../content/configs/baseline.yaml?raw";
 import focalFreezeYaml from "../content/configs/focal_freeze.yaml?raw";
+import mlpMnistYaml from "../content/configs/mlp_mnist.yaml?raw";
+import lstmTimeseriesYaml from "../content/configs/lstm_timeseries.yaml?raw";
+import transformerMiniYaml from "../content/configs/transformer_mini.yaml?raw";
+import aeCifarYaml from "../content/configs/ae_cifar.yaml?raw";
 import glossaryJson from "../content/glossary.json";
 
 export type GlossaryEntry = { id: string; en: string; note: string };
 
 const RAW: Record<string, string> = {
   "00": c00,
-  "01": c01,
+  "01a": c01a,
+  "01b": c01b,
   "02": c02,
   "03": c03,
   "04": c04,
@@ -40,9 +46,9 @@ function stripTopNav(md: string): string {
   return md.replace(/^<details>[\s\S]*?<\/details>\s*\n?/, "").replace(/^---\s*\n/, "");
 }
 
-// Rewrite inter-module links: `01_Memahami_ML_DL.md` -> `#/modul/01`.
+// Rewrite inter-module links: `01a_Fondasi_Neural_Network.md` -> `#/modul/01a`.
 function rewriteLinks(md: string): string {
-  return md.replace(/\((\d{2})_[^)]+?\.md(#[^)]+)?\)/g, (_m, num: string, anchor: string = "") => {
+  return md.replace(/\((\d{2}[a-z]?)_[^)]+?\.md(#[^)]+)?\)/g, (_m, num: string, anchor: string = "") => {
     return `(#/modul/${num}${anchor})`;
   });
 }
@@ -100,6 +106,10 @@ export function readingMinutes(md: string): number {
 export const CONFIGS = {
   baseline: baselineYaml,
   focal_freeze: focalFreezeYaml,
+  mlp_mnist: mlpMnistYaml,
+  lstm_timeseries: lstmTimeseriesYaml,
+  transformer_mini: transformerMiniYaml,
+  ae_cifar: aeCifarYaml,
 };
 
 export const GLOSSARY: GlossaryEntry[] = glossaryJson as GlossaryEntry[];

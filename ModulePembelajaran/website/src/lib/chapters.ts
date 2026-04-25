@@ -1,4 +1,4 @@
-// Metadata 13 bab. Konten aktual dari src/content/chapters/*.md (di-import raw).
+// Metadata 14 bab. Konten aktual dari src/content/chapters/*.md (di-import raw).
 
 export type Sikap = "curiosity" | "rigor" | "skepticism" | "ownership";
 
@@ -27,19 +27,30 @@ export const CHAPTERS: ChapterMeta[] = [
     filename: "00_Pendahuluan.md",
   },
   {
-    id: "01",
+    id: "01a",
     number: 1,
-    title: "Memahami ML/DL",
-    subtitle: "Arsitektur, loss, optimisasi, evaluasi, representasi",
-    weeks: "2-3",
-    weekNumbers: [2, 3],
+    title: "Fondasi Neural Network",
+    subtitle: "Tensor, MLP backprop, 4 keluarga arsitektur, layer",
+    weeks: "2",
+    weekNumbers: [2],
     sikap: ["curiosity"],
     labName: "Lab 1 - Baseline CNN",
-    filename: "01_Memahami_ML_DL.md",
+    filename: "01a_Fondasi_Neural_Network.md",
+  },
+  {
+    id: "01b",
+    number: 2,
+    title: "Loss, Optimizer, Evaluasi",
+    subtitle: "Loss, optimizer, evaluasi metrik, representasi, diagnosis",
+    weeks: "3",
+    weekNumbers: [3],
+    sikap: ["curiosity"],
+    labName: "Lab 1b - Representasi Fitur",
+    filename: "01b_Loss_Optimizer_Evaluasi.md",
   },
   {
     id: "02",
-    number: 2,
+    number: 3,
     title: "Ide ke Eksperimen",
     subtitle: "Menerjemahkan instruksi terbuka menjadi rancangan konkret",
     weeks: "4",
@@ -50,7 +61,7 @@ export const CHAPTERS: ChapterMeta[] = [
   },
   {
     id: "03",
-    number: 3,
+    number: 4,
     title: "Eksperimen Reproduksibel",
     subtitle: "Config, seed, logging, ablation",
     weeks: "5-6",
@@ -61,7 +72,7 @@ export const CHAPTERS: ChapterMeta[] = [
   },
   {
     id: "04",
-    number: 4,
+    number: 5,
     title: "Validasi Data",
     subtitle: "EDA, leakage, audit pipeline pra-pemrosesan",
     weeks: "7",
@@ -72,7 +83,7 @@ export const CHAPTERS: ChapterMeta[] = [
   },
   {
     id: "05",
-    number: 5,
+    number: 6,
     title: "AI Tools Sebagai Pendukung",
     subtitle: "LLM dan Copilot sebagai rubber duck, bukan penggantimu",
     weeks: "8",
@@ -83,7 +94,7 @@ export const CHAPTERS: ChapterMeta[] = [
   },
   {
     id: "06",
-    number: 6,
+    number: 7,
     title: "Adopsi Repo Riset",
     subtitle: "Membaca, menjalankan, memodifikasi repo orang lain",
     weeks: "9",
@@ -94,7 +105,7 @@ export const CHAPTERS: ChapterMeta[] = [
   },
   {
     id: "07",
-    number: 7,
+    number: 8,
     title: "Alat Pendukung Ringan",
     subtitle: "Streamlit, Gradio, visualizer sederhana",
     weeks: "10",
@@ -105,7 +116,7 @@ export const CHAPTERS: ChapterMeta[] = [
   },
   {
     id: "08",
-    number: 8,
+    number: 9,
     title: "Platform & Tool Baru",
     subtitle: "RunPod, SSH, manajemen checkpoint lintas mesin",
     weeks: "11",
@@ -116,7 +127,7 @@ export const CHAPTERS: ChapterMeta[] = [
   },
   {
     id: "09",
-    number: 9,
+    number: 10,
     title: "Pengembangan Mandiri",
     subtitle: "Baca paper, formulasi pertanyaan, pre-registration",
     weeks: "12",
@@ -127,7 +138,7 @@ export const CHAPTERS: ChapterMeta[] = [
   },
   {
     id: "10",
-    number: 10,
+    number: 11,
     title: "Capstone Project",
     subtitle: "Integrasi empat sikap, tiga template pilihan",
     weeks: "13-14",
@@ -138,7 +149,7 @@ export const CHAPTERS: ChapterMeta[] = [
   },
   {
     id: "11",
-    number: 11,
+    number: 12,
     title: "Rubrik Penilaian",
     subtitle: "4-level mastery: novice, developing, proficient, masterpiece",
     weeks: "-",
@@ -149,7 +160,7 @@ export const CHAPTERS: ChapterMeta[] = [
   },
   {
     id: "12",
-    number: 12,
+    number: 13,
     title: "Lampiran",
     subtitle: "Glosarium ID-EN, checklist, template",
     weeks: "-",
@@ -161,7 +172,7 @@ export const CHAPTERS: ChapterMeta[] = [
 ];
 
 export const COMPETENCIES = [
-  { n: 1, title: "Memahami sistem ML/DL dalam praktiknya", chapter: "01", weeks: "2-3" },
+  { n: 1, title: "Memahami sistem ML/DL dalam praktiknya", chapter: "01a", weeks: "2-3" },
   { n: 2, title: "Menerjemahkan ide menjadi eksperimen", chapter: "02", weeks: "4" },
   { n: 3, title: "Eksperimen reproduksibel", chapter: "03", weeks: "5-6" },
   { n: 4, title: "Validasi data dan pra-pemrosesan", chapter: "04", weeks: "7" },

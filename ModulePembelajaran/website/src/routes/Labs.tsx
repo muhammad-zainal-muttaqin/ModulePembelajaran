@@ -5,7 +5,8 @@ const NBVIEWER_BASE = "https://nbviewer.org/github/muhammad-zainal-muttaqin/Modu
 const COLAB_BASE = "https://colab.research.google.com/github/muhammad-zainal-muttaqin/ModulePembelajaran/blob/main/ModulePembelajaran/template_repo/notebooks/";
 
 const NOTEBOOKS: Record<string, string> = {
-  "01": "lab1_baseline_cnn.ipynb",
+  "01a": "lab1_baseline_cnn.ipynb",
+  "01b": "lab1b_representasi.ipynb",
   "02": "lab2_loss_freeze_ablation.ipynb",
   "03": "lab3_config_logging.ipynb",
   "04": "lab4_eda_leakage.ipynb",
@@ -24,7 +25,7 @@ export default function Labs() {
       <header className="page-header">
         <h1 className="page-title">Lab Notebook</h1>
         <p className="page-lead">
-          Sembilan Jupyter notebook pendamping bab. Jalankan di Google Colab, inspeksi di nbviewer, atau clone repo dan jalankan lokal.
+          Sepuluh Jupyter notebook pendamping bab. Jalankan di Google Colab, inspeksi di nbviewer, atau clone repo dan jalankan lokal.
         </p>
       </header>
 
