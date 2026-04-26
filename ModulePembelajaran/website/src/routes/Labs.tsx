@@ -4,74 +4,113 @@ const REPO_BASE = "https://github.com/muhammad-zainal-muttaqin/ModulePembelajara
 const NBVIEWER_BASE = "https://nbviewer.org/github/muhammad-zainal-muttaqin/ModulePembelajaran/blob/main/ModulePembelajaran/template_repo/notebooks/";
 const COLAB_BASE = "https://colab.research.google.com/github/muhammad-zainal-muttaqin/ModulePembelajaran/blob/main/ModulePembelajaran/template_repo/notebooks/";
 
-const NOTEBOOKS: Record<string, string> = {
-  "01a": "lab1_baseline_cnn.ipynb",
-  "01b": "lab1b_representasi.ipynb",
-  "02": "lab2_loss_freeze_ablation.ipynb",
-  "03": "lab3_config_logging.ipynb",
-  "04": "lab4_eda_leakage.ipynb",
-  "05": "lab5_llm_assisted_loop.ipynb",
-  "06": "lab6_adopt_external_repo.ipynb",
-  "07": "lab7_streamlit_demo.ipynb",
-  "08": "lab8_runpod_remote.ipynb",
-  "09": "lab9_paper_to_experiment.ipynb",
+type NotebookEntry = { file: string; label: string };
+
+const NOTEBOOKS: Record<string, NotebookEntry[]> = {
+  "01a": [
+    { file: "lab1_baseline_cnn.ipynb", label: "Lab 1 - Baseline CNN" },
+    { file: "lab1c_mlp_numpy.ipynb", label: "Lab 1c - MLP Numpy (breadth)" },
+  ],
+  "01b": [
+    { file: "lab1b_representasi.ipynb", label: "Lab 1b - Representasi Fitur" },
+  ],
+  "02": [
+    { file: "lab2_loss_freeze_ablation.ipynb", label: "Lab 2 - Loss + Freeze Ablation" },
+  ],
+  "03": [
+    { file: "lab3_config_logging.ipynb", label: "Lab 3 - Config + Logging" },
+    { file: "lab3b_sequence_lstm.ipynb", label: "Lab 3b - RNN vs LSTM (breadth)" },
+  ],
+  "04": [
+    { file: "lab4_eda_leakage.ipynb", label: "Lab 4 - EDA + Leakage Audit" },
+  ],
+  "05": [
+    { file: "lab5_llm_assisted_loop.ipynb", label: "Lab 5 - LLM-Assisted Loop" },
+    { file: "lab5b_domain_teks.ipynb", label: "Lab 5b - Sentimen Teks IndoNLU" },
+  ],
+  "06": [
+    { file: "lab6_adopt_external_repo.ipynb", label: "Lab 6 - Adopt External Repo" },
+    { file: "lab6b_transformer_mini.ipynb", label: "Lab 6b - Transformer-mini (breadth)" },
+  ],
+  "07": [
+    { file: "lab7_streamlit_demo.ipynb", label: "Lab 7 - Streamlit Demo" },
+    { file: "lab7b_autoencoder.ipynb", label: "Lab 7b - Autoencoder + t-SNE (breadth)" },
+  ],
+  "08": [
+    { file: "lab8_runpod_remote.ipynb", label: "Lab 8 - RunPod Remote" },
+  ],
+  "09": [
+    { file: "lab9_paper_to_experiment.ipynb", label: "Lab 9 - Paper to Experiment" },
+  ],
+  "10": [
+    { file: "portofolio_mandiri.ipynb", label: "Portofolio Mandiri - running log Pekan 4-12" },
+  ],
 };
 
 export default function Labs() {
   const labs = CHAPTERS.filter((c) => NOTEBOOKS[c.id]);
+  const totalNotebooks = Object.values(NOTEBOOKS).reduce((n, arr) => n + arr.length, 0);
 
   return (
     <div className="page-narrow">
       <header className="page-header">
         <h1 className="page-title">Lab Notebook</h1>
         <p className="page-lead">
-          Sepuluh Jupyter notebook pendamping bab. Jalankan di Google Colab, inspeksi di nbviewer, atau clone repo dan jalankan lokal.
+          {totalNotebooks} Jupyter notebook pendamping bab (termasuk lab breadth dan portofolio mandiri). Jalankan di Google Colab, inspeksi di nbviewer, atau clone repo dan jalankan lokal.
         </p>
       </header>
 
       <ul className="grid gap-4">
         {labs.map((c) => {
-          const nb = NOTEBOOKS[c.id];
+          const entries = NOTEBOOKS[c.id];
           return (
             <li key={c.id} className="card p-6">
-              <div className="flex flex-wrap items-start justify-between gap-3">
-                <div>
-                  <div className="text-xs font-mono text-ink/70 dark:text-parchment/60">
-                    Bab {c.id} · Minggu {c.weeks}
-                  </div>
-                  <div className="font-serif text-xl font-semibold mt-1">{c.labName}</div>
-                  <div className="text-sm text-ink/70 dark:text-parchment/70 mt-1">{c.subtitle}</div>
+              <div>
+                <div className="text-xs font-mono text-ink/70 dark:text-parchment/60">
+                  Bab {c.id} · Minggu {c.weeks}
                 </div>
-                <div className="flex flex-wrap gap-2">
-                  <a
-                    href={`${COLAB_BASE}${nb}`}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="btn-primary text-sm"
-                  >
-                    Buka di Colab
-                  </a>
-                  <a
-                    href={`${NBVIEWER_BASE}${nb}`}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="btn-secondary text-sm"
-                  >
-                    nbviewer
-                  </a>
-                  <a
-                    href={`${REPO_BASE}${nb}`}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="btn-ghost text-sm"
-                  >
-                    GitHub
-                  </a>
-                </div>
+                <div className="font-serif text-xl font-semibold mt-1">{c.title}</div>
+                <div className="text-sm text-ink/70 dark:text-parchment/70 mt-1">{c.subtitle}</div>
               </div>
-              <div className="mt-3 text-xs font-mono text-ink/70 dark:text-parchment/50">
-                {nb}
-              </div>
+
+              <ul className="mt-4 space-y-3">
+                {entries.map((nb) => (
+                  <li key={nb.file} className="flex flex-wrap items-start justify-between gap-3 border-t border-ink/10 dark:border-parchment/10 pt-3 first:border-t-0 first:pt-0">
+                    <div className="min-w-0">
+                      <div className="font-medium text-sm">{nb.label}</div>
+                      <div className="mt-1 text-xs font-mono text-ink/70 dark:text-parchment/50 break-all">
+                        {nb.file}
+                      </div>
+                    </div>
+                    <div className="flex flex-wrap gap-2">
+                      <a
+                        href={`${COLAB_BASE}${nb.file}`}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="btn-primary text-sm"
+                      >
+                        Buka di Colab
+                      </a>
+                      <a
+                        href={`${NBVIEWER_BASE}${nb.file}`}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="btn-secondary text-sm"
+                      >
+                        nbviewer
+                      </a>
+                      <a
+                        href={`${REPO_BASE}${nb.file}`}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="btn-ghost text-sm"
+                      >
+                        GitHub
+                      </a>
+                    </div>
+                  </li>
+                ))}
+              </ul>
             </li>
           );
         })}

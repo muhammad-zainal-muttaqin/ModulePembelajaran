@@ -14,6 +14,7 @@ import c09 from "../content/chapters/09_Pengembangan_Mandiri.md?raw";
 import c10 from "../content/chapters/10_Capstone_Project.md?raw";
 import c11 from "../content/chapters/11_Rubrik_Penilaian.md?raw";
 import c12 from "../content/chapters/12_Lampiran.md?raw";
+import c13 from "../content/chapters/13_Panduan_Dosen.md?raw";
 import baselineYaml from "../content/configs/baseline.yaml?raw";
 import focalFreezeYaml from "../content/configs/focal_freeze.yaml?raw";
 import mlpMnistYaml from "../content/configs/mlp_mnist.yaml?raw";
@@ -39,6 +40,7 @@ const RAW: Record<string, string> = {
   "10": c10,
   "11": c11,
   "12": c12,
+  "13": c13,
 };
 
 // Strip <details> navigasi yang ada di awal tiap file (redundant dengan nav SPA).

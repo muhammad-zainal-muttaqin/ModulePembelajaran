@@ -169,6 +169,17 @@ export const CHAPTERS: ChapterMeta[] = [
     labName: null,
     filename: "12_Lampiran.md",
   },
+  {
+    id: "13",
+    number: 14,
+    title: "Panduan Dosen",
+    subtitle: "Filosofi, pacing, emphasis per-bab, cara nilai portofolio",
+    weeks: "-",
+    weekNumbers: [],
+    sikap: ["rigor", "ownership"],
+    labName: null,
+    filename: "13_Panduan_Dosen.md",
+  },
 ];
 
 export const COMPETENCIES = [
