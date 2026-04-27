@@ -1,20 +1,21 @@
 // Load konten .md sumber via Vite `?raw`. Semua bundled di build; cukup cepat.
 import GithubSlugger from "github-slugger";
 import c00 from "../content/chapters/00_Pendahuluan.md?raw";
-import c01a from "../content/chapters/01a_Fondasi_Neural_Network.md?raw";
-import c01b from "../content/chapters/01b_Loss_Optimizer_Evaluasi.md?raw";
-import c02 from "../content/chapters/02_Ide_Ke_Eksperimen.md?raw";
-import c03 from "../content/chapters/03_Eksperimen_Reproduksibel.md?raw";
-import c04 from "../content/chapters/04_Validasi_Data.md?raw";
-import c05 from "../content/chapters/05_AI_Tools_Sebagai_Pendukung.md?raw";
-import c06 from "../content/chapters/06_Adopsi_Repo_Riset.md?raw";
-import c07 from "../content/chapters/07_Alat_Pendukung_Ringan.md?raw";
-import c08 from "../content/chapters/08_Platform_Dan_Tool_Baru.md?raw";
-import c09 from "../content/chapters/09_Pengembangan_Mandiri.md?raw";
-import c10 from "../content/chapters/10_Capstone_Project.md?raw";
-import c11 from "../content/chapters/11_Rubrik_Penilaian.md?raw";
-import c12 from "../content/chapters/12_Lampiran.md?raw";
-import c13 from "../content/chapters/13_Panduan_Dosen.md?raw";
+import c01 from "../content/chapters/01_W1_Tabular_Output_Heads.md?raw";
+import c02 from "../content/chapters/02_W2_Images_CNN_Smoke_Test.md?raw";
+import c03 from "../content/chapters/03_W3_Loss_Optimizer_Evaluasi.md?raw";
+import c04 from "../content/chapters/04_W4_Reproducibility_Experiment_Matrix.md?raw";
+import c05 from "../content/chapters/05_W5_Sequences_RNN_LSTM.md?raw";
+import c06 from "../content/chapters/06_W6_Representations_Temporal_Leakage.md?raw";
+import c07 from "../content/chapters/07_W7_Text_Transformers_Repo_Adoption.md?raw";
+import c08 from "../content/chapters/08_W8_Foundation_Models.md?raw";
+import c09 from "../content/chapters/09_W9_Multimodal_Reasoning.md?raw";
+import c10 from "../content/chapters/10_W10_Paper_Reading.md?raw";
+import c11 from "../content/chapters/11_W11_Research_Framing.md?raw";
+import c12 from "../content/chapters/12_Capstone_3_Minggu.md?raw";
+import c13 from "../content/chapters/13_Rubrik_Penilaian.md?raw";
+import c14 from "../content/chapters/14_Lampiran.md?raw";
+import c15 from "../content/chapters/15_Panduan_Dosen.md?raw";
 import baselineYaml from "../content/configs/baseline.yaml?raw";
 import focalFreezeYaml from "../content/configs/focal_freeze.yaml?raw";
 import mlpMnistYaml from "../content/configs/mlp_mnist.yaml?raw";
@@ -27,8 +28,7 @@ export type GlossaryEntry = { id: string; en: string; note: string };
 
 const RAW: Record<string, string> = {
   "00": c00,
-  "01a": c01a,
-  "01b": c01b,
+  "01": c01,
   "02": c02,
   "03": c03,
   "04": c04,
@@ -41,6 +41,8 @@ const RAW: Record<string, string> = {
   "11": c11,
   "12": c12,
   "13": c13,
+  "14": c14,
+  "15": c15,
 };
 
 // Strip <details> navigasi yang ada di awal tiap file (redundant dengan nav SPA).
@@ -48,7 +50,7 @@ function stripTopNav(md: string): string {
   return md.replace(/^<details>[\s\S]*?<\/details>\s*\n?/, "").replace(/^---\s*\n/, "");
 }
 
-// Rewrite inter-module links: `01a_Fondasi_Neural_Network.md` -> `#/modul/01a`.
+// Rewrite inter-module links: `01_W1_Tabular_Output_Heads.md` -> `#/modul/01`.
 function rewriteLinks(md: string): string {
   return md.replace(/\((\d{2}[a-z]?)_[^)]+?\.md(#[^)]+)?\)/g, (_m, num: string, anchor: string = "") => {
     return `(#/modul/${num}${anchor})`;

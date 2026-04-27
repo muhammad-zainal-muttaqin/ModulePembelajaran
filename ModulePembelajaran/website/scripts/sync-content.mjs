@@ -12,20 +12,21 @@ const OUT = path.resolve(ROOT, "src", "content");
 
 const CHAPTERS = [
   "00_Pendahuluan.md",
-  "01a_Fondasi_Neural_Network.md",
-  "01b_Loss_Optimizer_Evaluasi.md",
-  "02_Ide_Ke_Eksperimen.md",
-  "03_Eksperimen_Reproduksibel.md",
-  "04_Validasi_Data.md",
-  "05_AI_Tools_Sebagai_Pendukung.md",
-  "06_Adopsi_Repo_Riset.md",
-  "07_Alat_Pendukung_Ringan.md",
-  "08_Platform_Dan_Tool_Baru.md",
-  "09_Pengembangan_Mandiri.md",
-  "10_Capstone_Project.md",
-  "11_Rubrik_Penilaian.md",
-  "12_Lampiran.md",
-  "13_Panduan_Dosen.md",
+  "01_W1_Tabular_Output_Heads.md",
+  "02_W2_Images_CNN_Smoke_Test.md",
+  "03_W3_Loss_Optimizer_Evaluasi.md",
+  "04_W4_Reproducibility_Experiment_Matrix.md",
+  "05_W5_Sequences_RNN_LSTM.md",
+  "06_W6_Representations_Temporal_Leakage.md",
+  "07_W7_Text_Transformers_Repo_Adoption.md",
+  "08_W8_Foundation_Models.md",
+  "09_W9_Multimodal_Reasoning.md",
+  "10_W10_Paper_Reading.md",
+  "11_W11_Research_Framing.md",
+  "12_Capstone_3_Minggu.md",
+  "13_Rubrik_Penilaian.md",
+  "14_Lampiran.md",
+  "15_Panduan_Dosen.md",
 ];
 
 const CONFIGS = [
@@ -55,7 +56,7 @@ async function copyFile(src, dest) {
   }
 }
 
-// Parse tabel ID<->EN dari 12_Lampiran.md untuk glossary.
+// Parse tabel ID<->EN dari 14_Lampiran.md untuk glossary.
 function parseGlossary(md) {
   const entries = [];
   const lines = md.split(/\r?\n/);
@@ -116,7 +117,7 @@ async function main() {
     const src = path.join(SOURCE, name);
     const dest = path.join(OUT, "chapters", name);
     const data = await copyFile(src, dest);
-    if (name === "12_Lampiran.md") appendixMd = data;
+    if (name === "14_Lampiran.md") appendixMd = data;
   }
 
   for (const [rel, out] of CONFIGS) {

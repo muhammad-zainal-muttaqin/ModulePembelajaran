@@ -9,20 +9,20 @@ type Props = {
 
 // Peta minggu ke bab (14 minggu total).
 const WEEK_MAP: Record<number, string> = {
-  1: "00",
-  2: "01a",
-  3: "01b",
-  4: "02",
-  5: "03",
-  6: "03",
-  7: "04",
-  8: "05",
-  9: "06",
-  10: "07",
-  11: "08",
-  12: "09",
-  13: "10",
-  14: "10",
+  1: "01",
+  2: "02",
+  3: "03",
+  4: "04",
+  5: "05",
+  6: "06",
+  7: "07",
+  8: "08",
+  9: "09",
+  10: "10",
+  11: "11",
+  12: "12",
+  13: "12",
+  14: "12",
 };
 
 export default function LadderProgress({ interactive = false, compact = false }: Props) {

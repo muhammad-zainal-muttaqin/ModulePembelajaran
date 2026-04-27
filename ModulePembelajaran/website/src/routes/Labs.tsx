@@ -7,42 +7,42 @@ const COLAB_BASE = "https://colab.research.google.com/github/muhammad-zainal-mut
 type NotebookEntry = { file: string; label: string };
 
 const NOTEBOOKS: Record<string, NotebookEntry[]> = {
-  "01a": [
-    { file: "lab1_baseline_cnn.ipynb", label: "Lab 1 - Baseline CNN" },
+  "01": [
     { file: "lab1c_mlp_numpy.ipynb", label: "Lab 1c - MLP Numpy (breadth)" },
   ],
-  "01b": [
-    { file: "lab1b_representasi.ipynb", label: "Lab 1b - Representasi Fitur" },
-  ],
   "02": [
-    { file: "lab2_loss_freeze_ablation.ipynb", label: "Lab 2 - Loss + Freeze Ablation" },
+    { file: "lab1_baseline_cnn.ipynb", label: "Lab 1 - Baseline CNN" },
   ],
   "03": [
+    { file: "lab1b_representasi.ipynb", label: "Lab 1b - Representasi Fitur" },
+    { file: "lab2_loss_freeze_ablation.ipynb", label: "Lab 2 - Loss + Freeze Ablation" },
+  ],
+  "04": [
     { file: "lab3_config_logging.ipynb", label: "Lab 3 - Config + Logging" },
     { file: "lab3b_sequence_lstm.ipynb", label: "Lab 3b - RNN vs LSTM (breadth)" },
   ],
-  "04": [
+  "06": [
     { file: "lab4_eda_leakage.ipynb", label: "Lab 4 - EDA + Leakage Audit" },
   ],
-  "05": [
+  "07": [
     { file: "lab5_llm_assisted_loop.ipynb", label: "Lab 5 - LLM-Assisted Loop" },
     { file: "lab5b_domain_teks.ipynb", label: "Lab 5b - Sentimen Teks IndoNLU" },
   ],
-  "06": [
+  "08": [
     { file: "lab6_adopt_external_repo.ipynb", label: "Lab 6 - Adopt External Repo" },
     { file: "lab6b_transformer_mini.ipynb", label: "Lab 6b - Transformer-mini (breadth)" },
   ],
-  "07": [
+  "09": [
     { file: "lab7_streamlit_demo.ipynb", label: "Lab 7 - Streamlit Demo" },
     { file: "lab7b_autoencoder.ipynb", label: "Lab 7b - Autoencoder + t-SNE (breadth)" },
   ],
-  "08": [
+  "10": [
     { file: "lab8_runpod_remote.ipynb", label: "Lab 8 - RunPod Remote" },
   ],
-  "09": [
+  "11": [
     { file: "lab9_paper_to_experiment.ipynb", label: "Lab 9 - Paper to Experiment" },
   ],
-  "10": [
+  "12": [
     { file: "portofolio_mandiri.ipynb", label: "Portofolio Mandiri - running log Pekan 4-12" },
   ],
 };
