@@ -1,10 +1,10 @@
-# Modul Pembelajaran Asisten Dosen AI
+﻿# Modul Pembelajaran Asisten Dosen AI
 
 Modul ini dirancang untuk mahasiswa S1 yang ingin belajar *riset* machine learning dan deep learning - bukan sekadar menjalankan model, tetapi memahami mengapa eksperimen dirancang seperti itu, bagaimana hasilnya dipercaya, dan apa yang harus dilakukan ketika instruksi dari dosen pembimbing masih terbuka.
 
-**Versi web interaktif:** [muhammad-zainal-muttaqin.github.io/ModulePembelajaran](https://muhammad-zainal-muttaqin.github.io/ModulePembelajaran/) - SPA untuk membaca 14 bab (termasuk Panduan Dosen), mengisi jurnal refleksi, melacak progres 14 minggu, self-assess 9 kompetensi, dan menggenerate protokol eksperimen. Sumber website di [`website/`](website/).
+**Versi web interaktif:** [muhammad-zainal-muttaqin.github.io/ModulePembelajaran](https://muhammad-zainal-muttaqin.github.io/ModulePembelajaran/) - SPA untuk membaca 15 bab (termasuk Panduan Dosen), mengisi jurnal refleksi, melacak progres 14 minggu, self-assess 9 kompetensi, dan menggenerate protokol eksperimen. Sumber website di [`website/`](website/).
 
-Satu semester berjalan 14 minggu. Setiap minggu membawa satu potong kompetensi baru, satu *lab* yang menambah satu lapis pada proyek yang sama, dan satu sikap riset yang dibangun perlahan. Di akhir semester, mahasiswa menyelesaikan *capstone* yang mengintegrasikan keseluruhannya.
+Satu semester berjalan **11 minggu bootcamp + 3 minggu capstone**. Setiap minggu membawa satu *rigor habit* baru yang dibangun di atas yang sebelumnya, satu atau lebih lab, dan satu thread yang menghubungkan ke Big Map keseluruhan. Di akhir bootcamp, mahasiswa mempertahankan proposal capstone secara lisan sebelum 3 minggu eksekusi capstone dimulai.
 
 ---
 
@@ -16,30 +16,35 @@ Modul ini menyasar mahasiswa semester 4–6 yang sudah:
 - Mengenal dasar kalkulus turunan dan aljabar linear (perkalian matriks, gradien).
 - Pernah setidaknya sekali menjalankan model ML (regresi atau klasifikasi scikit-learn).
 
-Jika dua prasyarat pertama belum solid, kerjakan lebih dulu *primer* pada [Lampiran F - Prasyarat](12_Lampiran.md#f-prasyarat). Modul tidak mengulang dasar Python atau kalkulus di dalam bab utama.
+Jika dua prasyarat pertama belum solid, kerjakan lebih dulu *primer* pada [Lampiran F - Prasyarat](14_Lampiran.md#f-prasyarat). Modul tidak mengulang dasar Python atau kalkulus di dalam bab utama.
 
 ---
 
-## Peta 14 Minggu
+## Peta 11+3 Minggu
 
+### Bootcamp (Minggu 1-11)
 
-| Minggu | Topik                                 | Bab | Lab      | Sikap Dominan         |
-| ------ | ------------------------------------- | --- | -------- | --------------------- |
-| 1      | Orientasi & kontrak belajar           | 00   | –        | Curiosity             |
-| 2      | Fondasi neural network                | 01a  | Lab 1c   | Curiosity             |
-| 3      | Loss, optimizer, evaluasi             | 01b  | Lab 1    | Curiosity             |
-| 4      | Menerjemahkan ide menjadi eksperimen  | 02  | Lab 2    | Curiosity → Rigor     |
-| 5–6    | Eksperimen reproduksibel              | 03  | Lab 3    | Rigor                 |
-| 7      | Validasi data & pra-pemrosesan        | 04  | Lab 4    | Skepticism            |
-| 8      | AI tools sebagai pendukung            | 05  | Lab 5    | Ownership             |
-| 9      | Adopsi repository riset               | 06  | Lab 6    | Ownership + Curiosity |
-| 10     | Alat pendukung riset ringan           | 07  | Lab 7    | Ownership             |
-| 11     | Platform & tool baru (RunPod, remote) | 08  | Lab 8    | Ownership + Curiosity |
-| 12     | Pengembangan mandiri & membaca paper  | 09  | Lab 9    | Integrasi empat sikap |
-| 13–14  | Capstone project                      | 10  | Capstone | Integrasi empat sikap |
+| Minggu | Topik | Bab | Lab utama | Rigor Habit |
+|---|---|---|---|---|
+| 1 | Tabular, output heads, observasi pertama | [01](01_W1_Tabular_Output_Heads.md) | Lab 0 | Observation before conclusion |
+| 2 | Images, CNN, smoke test ritual | [02](02_W2_Images_CNN_Smoke_Test.md) | Lab 1 | Three-level smoke test |
+| 3 | Loss, optimizer, galeri run (example-first) | [03](03_W3_Loss_Optimizer_Evaluasi.md) | Lab 1 + Lab 2 | Change one thing at a time |
+| 4 | Reproducibility + experiment matrix | [04](04_W4_Reproducibility_Experiment_Matrix.md) | Lab 3 | Experiment matrix before coding |
+| 5 | Sequences: RNN vs LSTM, gradient flow | [05](05_W5_Sequences_RNN_LSTM.md) | Lab 3b (wajib) | Long-sequence diagnosis |
+| 6 | Representations + temporal leakage demo | [06](06_W6_Representations_Temporal_Leakage.md) | Lab 6 (leakage) | Validate preprocessing |
+| 7 | Text, Transformers, repo adoption | [07](07_W7_Text_Transformers_Repo_Adoption.md) | Lab 5b + Lab 6 | Verify AI code + repo map |
+| 8 | Foundation models taxonomy + adaptation choice | [08](08_W8_Foundation_Models.md) | FM Map | Model-card literacy |
+| 9 | Multimodal reasoning + per-modality ablation | [09](09_W9_Multimodal_Reasoning.md) | Lab 8 | Per-modality ablation |
+| 10 | Paper reading 3-pass + paper-to-code | [10](10_W10_Paper_Reading.md) | Lab 9 | Three-pass reading |
+| 11 | Research framing + capstone proposal defense | [11](11_W11_Research_Framing.md) | Proposal oral | 5 Whys + proposal defense |
 
+### Capstone (Minggu 12-14)
 
-Minggu 13–14 adalah eksekusi capstone. Laporan akhir dan demo dikumpulkan pada akhir minggu 14.
+| Minggu | Fase | Bab | Required outputs |
+|---|---|---|---|
+| 12 | Scope, EDA, Baseline reproducible | [12](12_Capstone_3_Minggu.md) | `prereg.md`, `eda.md`, baseline 3-seed |
+| 13 | Main experiment + focused ablation | [12](12_Capstone_3_Minggu.md) | Comparison table, ablation, curves |
+| 14 | Analysis, report, demo, presentation | [12](12_Capstone_3_Minggu.md) | Final report, repo, demo, presentasi |
 
 ---
 
@@ -79,30 +84,31 @@ Keempat sikap ini tidak dibahas dalam bab khusus, tetapi dirangkai ke dalam ceri
 
 ```
 ModulePembelajaran/
-├── README.md                          (dokumen ini)
-├── 00_Pendahuluan.md                  Orientasi, mindset, kontrak belajar
-├── 01a_Fondasi_Neural_Network.md      Tensor I/O, MLP backprop, arsitektur, layer
-├── 01b_Loss_Optimizer_Evaluasi.md     Loss, optimizer, evaluasi, representasi, diagnosis
-├── 02_Ide_Ke_Eksperimen.md            Menerjemahkan instruksi menjadi eksperimen
-├── 03_Eksperimen_Reproduksibel.md     Config, seed, logging, ablation
-├── 04_Validasi_Data.md                EDA, leakage, audit pipeline
-├── 05_AI_Tools_Sebagai_Pendukung.md   LLM/Copilot sebagai rubber duck
-├── 06_Adopsi_Repo_Riset.md            Membaca dan memodifikasi repository asing
-├── 07_Alat_Pendukung_Ringan.md        Streamlit, Gradio, visualizer
-├── 08_Platform_Dan_Tool_Baru.md       RunPod, SSH, manajemen checkpoint
-├── 09_Pengembangan_Mandiri.md         Baca paper, formulasi pertanyaan, pre-registration
-├── 10_Capstone_Project.md             Proyek akhir: tiga template pilihan
-├── 11_Rubrik_Penilaian.md             Rubrik per-outcome dengan level mastery
-├── 13_Panduan_Dosen.md                Panduan operasional untuk dosen pengampu
-├── 12_Lampiran.md                     Glosarium ID↔EN, checklist, template
-└── template_repo/                     Skeleton repositori riset untuk di-fork
+├── README.md
+├── 00_Pendahuluan.md                          Orientasi, target outcome 60-70%, threads, rhythm
+├── 01_W1_Tabular_Output_Heads.md              W1: MLP as shape transformer, output heads (NEW)
+├── 02_W2_Images_CNN_Smoke_Test.md             W2: CNN, three-level smoke test
+├── 03_W3_Loss_Optimizer_Evaluasi.md           W3: Example-first, loss/opt/eval
+├── 04_W4_Reproducibility_Experiment_Matrix.md W4: Experiment matrix, YAML/seed/checkpoint
+├── 05_W5_Sequences_RNN_LSTM.md                W5: RNN vs LSTM, gradient flow (rewrote)
+├── 06_W6_Representations_Temporal_Leakage.md  W6: Representations + temporal leakage
+├── 07_W7_Text_Transformers_Repo_Adoption.md   W7: Text, transformers, repo adoption (merged)
+├── 08_W8_Foundation_Models.md                 W8: Foundation models taxonomy (NEW)
+├── 09_W9_Multimodal_Reasoning.md              W9: Multimodal fusion + ablation (NEW)
+├── 10_W10_Paper_Reading.md                    W10: 3-pass reading + paper-to-code
+├── 11_W11_Research_Framing.md                 W11: Research framing + capstone proposal (NEW)
+├── 12_Capstone_3_Minggu.md                    W12-14: Capstone 3 phases
+├── 13_Rubrik_Penilaian.md                     Rubrik + sub-rubrik capstone phases
+├── 14_Lampiran.md                             Glosarium + A.1 backprop + C.12-C.15 + H
+├── 15_Panduan_Dosen.md                        Pacing 11+3, emphasis per-week
+└── template_repo/                             Skeleton repo riset
 ```
 
 ---
 
 ## Untuk Dosen Pengampu
 
-Baca `13_Panduan_Dosen.md` untuk panduan operasional lengkap: filosofi modul, pacing 14 minggu, emphasis per-bab, cara membaca rubrik, cara menilai portofolio, dan skenario kelas yang umum. Rubrik evaluasi ada di `11_Rubrik_Penilaian.md`. Rubrik memetakan setiap *expected outcome* ke bab, lab, dan empat level penguasaan (novice, developing, proficient, masterpiece) dengan deskriptor yang dapat diobservasi. Bobot nilai dapat disesuaikan; deskriptor sebaiknya dipertahankan agar standar tetap lintas angkatan.
+Baca `15_Panduan_Dosen.md` untuk panduan operasional lengkap: filosofi modul, pacing 11+3 minggu, emphasis per-bab, cara membaca rubrik, cara menilai portofolio, dan skenario kelas yang umum. Rubrik evaluasi ada di `13_Rubrik_Penilaian.md`. Tabel migrasi dari modul 14-minggu lama tersedia di `14_Lampiran.md` §H.
 
 ---
 

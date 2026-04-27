@@ -1,37 +1,55 @@
-<details>
+﻿<details>
 <summary>📂 Navigasi Modul (klik untuk buka)</summary>
 
 | # | Modul | Minggu |
 |---|-------|--------|
 | 00 | [Pendahuluan](00_Pendahuluan.md) | 1 |
-| 01a | [Fondasi Neural Network](01a_Fondasi_Neural_Network.md) | 2 |
-| 01b | [Loss, Optimizer & Evaluasi](01b_Loss_Optimizer_Evaluasi.md) | 3 |
-| ▶ 02 | Ide ke Eksperimen | 4 |
-| 03 | [Eksperimen Reproduksibel](03_Eksperimen_Reproduksibel.md) | 5–6 |
-| 04 | [Validasi Data](04_Validasi_Data.md) | 7 |
-| 05 | [AI Tools Sebagai Pendukung](05_AI_Tools_Sebagai_Pendukung.md) | 8 |
-| 06 | [Adopsi Repo Riset](06_Adopsi_Repo_Riset.md) | 9 |
-| 07 | [Alat Pendukung Ringan](07_Alat_Pendukung_Ringan.md) | 10 |
-| 08 | [Platform & Tool Baru](08_Platform_Dan_Tool_Baru.md) | 11 |
-| 09 | [Pengembangan Mandiri](09_Pengembangan_Mandiri.md) | 12 |
-| 10 | [Capstone Project](10_Capstone_Project.md) | 13–14 |
-| 11 | [Rubrik Penilaian](11_Rubrik_Penilaian.md) | – |
-| 13 | [Panduan Dosen](13_Panduan_Dosen.md) | – |
-| 12 | [Lampiran](12_Lampiran.md) | – |
+| 01 | [W1 - Tabular & Output Heads](01_W1_Tabular_Output_Heads.md) | 1 |
+| 02 | [W2 - Images, CNN & Smoke Test](02_W2_Images_CNN_Smoke_Test.md) | 2 |
+| 03 | [W3 - Loss, Optimizer & Evaluasi](03_W3_Loss_Optimizer_Evaluasi.md) | 3 |
+| ▶ 04 | W4 - Reproducibility & Experiment Matrix | 4 |
+| 05 | [W5 - Sequences: RNN & LSTM](05_W5_Sequences_RNN_LSTM.md) | 5 |
+| 06 | [W6 - Representations & Temporal Leakage](06_W6_Representations_Temporal_Leakage.md) | 6 |
+| 07 | [W7 - Text, Transformers & Repo Adoption](07_W7_Text_Transformers_Repo_Adoption.md) | 7 |
+| 08 | [W8 - Foundation Models](08_W8_Foundation_Models.md) | 8 |
+| 09 | [W9 - Multimodal Reasoning](09_W9_Multimodal_Reasoning.md) | 9 |
+| 10 | [W10 - Paper Reading & Implementation](10_W10_Paper_Reading.md) | 10 |
+| 11 | [W11 - Research Framing & Capstone Proposal](11_W11_Research_Framing.md) | 11 |
+| 12 | [Capstone 3 Minggu](12_Capstone_3_Minggu.md) | 12-14 |
+| 13 | [Rubrik Penilaian](13_Rubrik_Penilaian.md) | – |
+| 14 | [Lampiran](14_Lampiran.md) | – |
+| 15 | [Panduan Dosen](15_Panduan_Dosen.md) | – |
 
 </details>
 
 ---
 
-# 02 · Menerjemahkan Ide Penelitian Menjadi Eksperimen
+# 04 · W4 - Reproducibility & Experiment Matrix
 
-> *Instruksi terbuka bukan perintah yang harus dilaksanakan huruf demi huruf, melainkan undangan untuk bertanya lebih dulu. Eksperimen yang dirancang dengan cermat menjawab pertanyaan yang jelas; eksperimen yang dijalankan tergesa-gesa hanya menghasilkan angka yang sulit dipertahankan.*
+> *Eksperimen yang tidak bisa direproduksi hanyalah anekdot. Experiment matrix yang ditulis sebelum kode adalah janji kepada diri sendiri bahwa hasilnya akan bisa dipertanggungjawabkan.*
+
+**Big Map row:** same modeling family, now with research workflow discipline
+**Rigor habit:** Experimental matrix before coding
+**Dataset:** Dataset baru (berbeda dari W2-W3) untuk menguji workflow discipline di luar dataset familiar
+**Lab utama:** Lab 3 (`lab3_config_logging.ipynb`)
 
 ---
 
 ## 0. Peta Bab
 
-Bab ini mengajari Anda mengubah instruksi terbuka - "coba focal loss, freeze conv1" - menjadi rancangan eksperimen yang konkret: variabel apa yang berubah, baseline apa yang adil, hipotesis apa yang dapat dipalsukan, metrik apa yang relevan, dan apa bentuk hasil yang diharapkan. Anda juga akan belajar berkomunikasi secara efektif dengan dosen pembimbing - menyusun update mingguan yang informatif, mengajukan pertanyaan teknis yang mudah dijawab, dan mengekspresikan ketidakpastian tanpa kehilangan kredibilitas. Setelah bab ini, Anda mampu menuliskan *satu halaman protokol eksperimen* sebelum menyentuh kode - dokumen yang menyelamatkan waktu berhari-hari dan mencegah hasil yang tidak bisa Anda jelaskan.
+W4 adalah titik balik dari "bisa training" menjadi "bisa riset". Anda akan belajar:
+
+- **2.0** Experiment matrix before coding
+- **2.1** Lima pertanyaan sebelum menyentuh kode
+- **2.2** Protokol eksperimen satu halaman
+- **2.3** Mengendalikan variabel: satu hal satu waktu
+- **2.4** Noise, seed, replikasi, kapan perbedaan bermakna
+- **2.5** Hipotesis yang dapat dipalsukan
+- **2.6** Ketika hipotesis tidak terkonfirmasi
+- **2.7** Infrastruktur reproduksibilitas: YAML, seed, checkpoint, git hash
+- **2.8** Platform: kapan pindah dari laptop ke RunPod
+
+Setelah W4, setiap eksperimen yang Anda laporkan punya jejak yang bisa ditunjukkan kepada siapapun.
 
 ---
 
@@ -54,6 +72,23 @@ Bab ini membangun kebiasaan itu.
 ## 2. Konsep Inti
 
 > **Catatan sebelum mulai:** Eksperimen di bab ini - dan di seluruh modul - boleh menghasilkan hasil yang tidak sesuai hipotesis. Itu bukan kegagalan; itu data. Bagian §2.6 di bab ini membahas cara mendokumentasikan dan melaporkan saat hipotesis tidak terkonfirmasi - baca bagian itu dengan serius, karena situasi tersebut lebih sering terjadi daripada sebaliknya.
+
+### 2.0 Experiment Matrix Before Coding
+
+Sebelum menyentuh kode, tulis **experiment matrix** - tabel yang mendaftar semua run yang akan Anda jalankan beserta konfigurasi masing-masing. Ini bukan formalitas; ini perancah mental yang mencegah tiga masalah umum: (1) Anda lupa menjalankan satu kondisi kritis, (2) Anda menyadari di tengah jalan bahwa dua kondisi tidak sebanding, (3) Anda tidak bisa menjelaskan apa yang berubah di antara run.
+
+Format minimal:
+
+| Run ID | Variabel berubah | Nilai | Seed | Status |
+|---|---|---|---|---|
+| baseline_s42 | – (kontrol) | – | 42 | planned |
+| focal_s42 | `loss` | `FocalLoss(γ=2.0)` | 42 | planned |
+| freeze_s42 | `freeze_until` | `block1` | 42 | planned |
+
+Tulis matrix ini di `protocol.md` di folder eksperimen, **sebelum** baris kode pertama. Timestamp file adalah bukti bahwa Anda merencanakan sebelum melihat hasil.
+
+> [!IMPORTANT]
+> "Experimental matrix before coding" adalah rigor habit W4. Setiap eksperimen yang dilaporkan setelah W4 harus punya matrix tertulis. Tidak ada matrix = angka tidak bisa dipertanggungjawabkan.
 
 ### 2.1 Lima Pertanyaan Sebelum Menyentuh Kode
 
@@ -311,7 +346,7 @@ Sejauh ini kita membahas penerjemahan instruksi PI menjadi protokol. Namun riset
 
 Update mingguan yang baik adalah kebiasaan paling sederhana dan paling berdampak dalam hubungan asisten-PI. Formatnya ringkas - empat bagian (progress, kendala, rencana, satu pertanyaan) yang dapat ditulis dalam 10-15 menit. Yang penting kirim *sebelum* diminta; konsistensi membangun kepercayaan lebih cepat daripada hasil spektakuler yang datang tiba-tiba.
 
-Template salin-pakai lengkap dengan contoh terisi dan tiga prinsip update yang baik tersedia di [Lampiran §C.11](12_Lampiran.md#c11-template-update-mingguan-ke-pi). Pakai template ini sebagai titik awal, lalu sesuaikan dengan ritme komunikasi dosen Anda - sebagian PI lebih suka email, sebagian lebih suka shared document yang ditambah setiap pekan.
+Template salin-pakai lengkap dengan contoh terisi dan tiga prinsip update yang baik tersedia di [Lampiran §C.11](14_Lampiran.md#c11-template-update-mingguan-ke-pi). Pakai template ini sebagai titik awal, lalu sesuaikan dengan ritme komunikasi dosen Anda - sebagian PI lebih suka email, sebagian lebih suka shared document yang ditambah setiap pekan.
 
 #### 3.5.2 Kerangka SQRC untuk Framing Pertanyaan Teknis
 
@@ -398,9 +433,60 @@ Tugas:
 
 ---
 
-## Komponen Mandiri (Pekan 4)
+### 2.7 Infrastruktur Reproduksibilitas: YAML, Seed, Checkpoint, Git Hash
 
-Konsep: merancang eksperimen dengan variabel, hipotesis *falsifiable*, baseline adil, dan metrik - sebelum menyentuh kode. Format, kriteria, dan panduan presentasi: [Lampiran C.9](12_Lampiran.md#c9-template-komponen-mandiri).
+Empat pilar infrastruktur yang harus ada pada setiap eksperimen yang dilaporkan setelah W4:
+
+**1. Config YAML.** Semua hyperparameter dalam file deklaratif. Config disimpan bersama checkpoint. Tidak ada angka ajaib di kode.
+
+**2. Seed locked.** Panggil `set_seed(cfg['seed'])` di awal sebelum apapun. Untuk reproduksibilitas ketat di GPU, tambahkan `torch.backends.cudnn.deterministic = True`. Satu seed per run; variasikan seed antar replikasi.
+
+**3. Checkpoint dengan metadata.** Simpan lebih dari `model.state_dict()` - sertakan `config`, `git_hash`, `epoch`, `metrics`, `timestamp`. Checkpoint tanpa config adalah setengah bukti.
+
+**4. Git hash.** Ikat setiap run ke commit kode yang menghasilkannya dengan `get_git_hash()`. Commit sebelum run final yang dilaporkan. Flag "dirty" memperingatkan uncommitted changes.
+
+Lihat `template_repo/src/utils.py` untuk implementasi keempat pilar. Lab 3 (`lab3_config_logging.ipynb`) membangun keempatnya secara berurutan.
+
+> [!NOTE]
+> Detail mendalam tentang empat sumber non-determinisme, Worker seeding, TensorBoard setup, dan konvensi Git untuk riset eksperimental tersedia di file ini sebagai materi lanjutan - cari bagian §2.1-§2.10 dari konten legacy. Bacaan ini sangat berguna sebelum W4 assignment.
+
+### 2.8 Platform: Kapan Pindah ke RunPod
+
+Aturan praktis: tetap di laptop/Colab selama training selesai < 30 menit. Pindah ke RunPod ketika:
+
+- Training satu run > 30 menit (dan Anda perlu menjalankan 6+ run untuk replikasi).
+- Dataset tidak muat di RAM laptop.
+- Anda butuh GPU dengan VRAM > 8GB.
+
+Pada W4, Anda diperkenalkan ke workflow RunPod dasar: launch pod → SSH → jalankan training → pull checkpoint → **matikan pod**. Mematikan pod adalah kebiasaan paling kritis - tagihan GPU terus berjalan selama pod hidup.
+
+Konfigurasi RunPod minimal dan cara push/pull checkpoint lewat rsync atau rclone tersedia di [Lampiran C.15](14_Lampiran.md#c15-lightweight-research-tools).
+
+---
+
+## 5. Lab 3 - Config, Logging & Reproducibility
+
+Buka `template_repo/notebooks/lab3_config_logging.ipynb`. Tugas:
+
+1. Tulis `protocol.md` + experiment matrix sebelum menyentuh kode.
+2. Refaktor konfigurasi dari hardcoded ke YAML.
+3. Tambahkan `set_seed()` dan `get_git_hash()` ke training loop.
+4. Logging TensorBoard per epoch (loss, accuracy, LR).
+5. Checkpoint dengan metadata lengkap; verifikasi bisa di-resume.
+6. Jalankan 3 seed per kondisi, buat tabel `results.csv`.
+
+**Checklist:**
+- [ ] `protocol.md` ditulis sebelum run (timestamp sebelum checkpoint).
+- [ ] Config YAML + checkpoint disimpan bersamaan.
+- [ ] Git hash tercatat di checkpoint.
+- [ ] Training bisa dilanjutkan dari checkpoint (`--resume` flag).
+- [ ] 3 seed berhasil; rata-rata ± std ada di `summary.json`.
+
+---
+
+## Komponen Mandiri (W4)
+
+Konsep: experiment matrix + reproducibility infrastructure. Format, kriteria, dan panduan presentasi: [Lampiran C.9](14_Lampiran.md#c9-template-komponen-mandiri).
 
 | Jalur | Tugas minggu ini |
 | --- | --- |
@@ -429,8 +515,8 @@ Konsep: merancang eksperimen dengan variabel, hipotesis *falsifiable*, baseline 
 
 ---
 
-## Lanjut ke Bab 03
+## Lanjut ke W5
 
-Anda kini bisa merancang eksperimen yang *layak* dijalankan. Pertanyaan berikutnya: ketika hasil keluar, apakah mahasiswa lain - atau diri Anda sendiri tiga bulan kemudian - dapat mereproduksi hasil yang sama? Bab 03 membahas reproduksibilitas: konfigurasi, seed, logging, dan checkpoint sebagai kebiasaan yang menyelamatkan waktu dan menyelamatkan kejujuran hasil.
+Workflow reproduksibel kini terbangun. Minggu berikutnya memperluas Big Map ke domain sequence: tensor `(T, F)` masuk, dan arsitektur recurrent muncul karena urutan itu penting.
 
-Buka [Bab 03 - Eksperimen Reproduksibel](03_Eksperimen_Reproduksibel.md) ketika siap.
+Buka [W5 - Sequences: RNN & LSTM](05_W5_Sequences_RNN_LSTM.md) ketika siap.

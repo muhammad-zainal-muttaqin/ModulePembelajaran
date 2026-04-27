@@ -260,6 +260,61 @@ def _build_toy_sequence(cfg: dict[str, Any], dry_run: bool):
     )
 
 
+class _TabularSharedDataset(torch.utils.data.Dataset):
+    """Synthetic tabular dataset where the *same* input features support three
+    task formulations (regression, binary classification, multiclass).
+
+    Used by Lab 0 (W1) via `configs/mlp_tabular.yaml`. The cfg key `task`
+    selects which target is returned: "regression", "binary", or "multiclass".
+    All three formulations share the underlying generative process, so trainees
+    can compare loss-head matching across tasks without changing input data.
+    """
+
+    def __init__(self, n: int, n_features: int, task: str, seed: int):
+        g = torch.Generator().manual_seed(seed)
+        self.x = torch.randn(n, n_features, generator=g)
+        weights = torch.linspace(-1.0, 1.0, n_features).unsqueeze(0)
+        signal = (self.x * weights).sum(dim=1)
+        signal = signal + 0.1 * torch.randn(n, generator=g)
+        self.task = task
+        if task == "regression":
+            self.y = signal.float()
+        elif task == "binary":
+            self.y = (signal > 0).long()
+        elif task == "multiclass":
+            q1 = torch.quantile(signal, 0.33)
+            q2 = torch.quantile(signal, 0.66)
+            y = torch.zeros_like(signal, dtype=torch.long)
+            y[signal > q1] = 1
+            y[signal > q2] = 2
+            self.y = y
+        else:
+            raise ValueError(f"Unknown task: {task}")
+
+    def __len__(self) -> int:
+        return self.x.shape[0]
+
+    def __getitem__(self, idx: int):
+        if self.task == "regression":
+            return self.x[idx], float(self.y[idx])
+        return self.x[idx], int(self.y[idx])
+
+
+def _build_tabular(cfg: dict[str, Any], dry_run: bool):
+    n_features = cfg.get("n_features", 10)
+    task = cfg.get("task", "binary")
+    n_tr = cfg.get("n_train", 4000)
+    n_va = cfg.get("n_val", 500)
+    n_te = cfg.get("n_test", 500)
+    if dry_run:
+        n_tr, n_va, n_te = 64, 32, 32
+    return (
+        _TabularSharedDataset(n_tr, n_features, task, seed=0),
+        _TabularSharedDataset(n_va, n_features, task, seed=1),
+        _TabularSharedDataset(n_te, n_features, task, seed=2),
+    )
+
+
 def build_datasets(cfg: dict[str, Any], dry_run: bool = False):
     """Dispatch by `cfg["name"]`. Returns (train, val, test) datasets."""
     name = cfg["name"].lower()
@@ -275,6 +330,8 @@ def build_datasets(cfg: dict[str, Any], dry_run: bool = False):
         return _build_cifar10_unlabeled(cfg, dry_run)
     if name == "toy_sequence":
         return _build_toy_sequence(cfg, dry_run)
+    if name == "tabular_shared":
+        return _build_tabular(cfg, dry_run)
     raise ValueError(f"Unknown dataset: {name}")
 
 

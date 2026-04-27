@@ -4,20 +4,21 @@
 | # | Modul | Minggu |
 |---|-------|--------|
 | ▶ 00 | Pendahuluan | 1 |
-| 01a | [Fondasi Neural Network](01a_Fondasi_Neural_Network.md) | 2 |
-| 01b | [Loss, Optimizer & Evaluasi](01b_Loss_Optimizer_Evaluasi.md) | 3 |
-| 02 | [Ide ke Eksperimen](02_Ide_Ke_Eksperimen.md) | 4 |
-| 03 | [Eksperimen Reproduksibel](03_Eksperimen_Reproduksibel.md) | 5–6 |
-| 04 | [Validasi Data](04_Validasi_Data.md) | 7 |
-| 05 | [AI Tools Sebagai Pendukung](05_AI_Tools_Sebagai_Pendukung.md) | 8 |
-| 06 | [Adopsi Repo Riset](06_Adopsi_Repo_Riset.md) | 9 |
-| 07 | [Alat Pendukung Ringan](07_Alat_Pendukung_Ringan.md) | 10 |
-| 08 | [Platform & Tool Baru](08_Platform_Dan_Tool_Baru.md) | 11 |
-| 09 | [Pengembangan Mandiri](09_Pengembangan_Mandiri.md) | 12 |
-| 10 | [Capstone Project](10_Capstone_Project.md) | 13–14 |
-| 11 | [Rubrik Penilaian](11_Rubrik_Penilaian.md) | – |
-| 13 | [Panduan Dosen](13_Panduan_Dosen.md) | – |
-| 12 | [Lampiran](12_Lampiran.md) | – |
+| 01 | [W1 - Tabular & Output Heads](01_W1_Tabular_Output_Heads.md) | 1 |
+| 02 | [W2 - Images, CNN & Smoke Test](02_W2_Images_CNN_Smoke_Test.md) | 2 |
+| 03 | [W3 - Loss, Optimizer & Evaluasi](03_W3_Loss_Optimizer_Evaluasi.md) | 3 |
+| 04 | [W4 - Reproducibility & Experiment Matrix](04_W4_Reproducibility_Experiment_Matrix.md) | 4 |
+| 05 | [W5 - Sequences: RNN & LSTM](05_W5_Sequences_RNN_LSTM.md) | 5 |
+| 06 | [W6 - Representations & Temporal Leakage](06_W6_Representations_Temporal_Leakage.md) | 6 |
+| 07 | [W7 - Text, Transformers & Repo Adoption](07_W7_Text_Transformers_Repo_Adoption.md) | 7 |
+| 08 | [W8 - Foundation Models](08_W8_Foundation_Models.md) | 8 |
+| 09 | [W9 - Multimodal Reasoning](09_W9_Multimodal_Reasoning.md) | 9 |
+| 10 | [W10 - Paper Reading & Implementation](10_W10_Paper_Reading.md) | 10 |
+| 11 | [W11 - Research Framing & Capstone Proposal](11_W11_Research_Framing.md) | 11 |
+| 12 | [Capstone 3 Minggu](12_Capstone_3_Minggu.md) | 12-14 |
+| 13 | [Rubrik Penilaian](13_Rubrik_Penilaian.md) | – |
+| 14 | [Lampiran](14_Lampiran.md) | – |
+| 15 | [Panduan Dosen](15_Panduan_Dosen.md) | – |
 
 </details>
 
@@ -31,7 +32,7 @@
 
 ## 0. Peta Bab
 
-Bab ini memperkenalkan sembilan kompetensi yang akan Anda bangun selama satu semester, empat sikap riset yang menjalin keseluruhan modul, dan kontrak belajar yang disepakati sebelum melangkah ke materi teknis. Setelah menyelesaikan bab ini, Anda mengerti *mengapa* modul ini ada dan *bagaimana* cara terbaik membacanya, bukan hanya daftar topik yang akan datang.
+Modul ini adalah **bootcamp 11 minggu + capstone 3 minggu**. Bab ini memperkenalkan target outcome bootcamp, sembilan kompetensi yang akan Anda bangun, empat sikap riset yang menjalin keseluruhan modul, tiga thread lintas minggu yang menjaga koherensi, ritme sesi mingguan, dan kontrak belajar yang disepakati sebelum melangkah ke materi teknis. Setelah menyelesaikan bab ini, Anda mengerti *mengapa* modul ini ada, *bagaimana* cara terbaik membacanya, dan *apa target realistis* di akhir bootcamp.
 
 ---
 
@@ -43,29 +44,64 @@ Bayangkan Anda baru bergabung di laboratorium riset sebagai asisten. Pada hari k
 
 Di layar Anda terbuka repo dengan tiga puluh file Python, README satu paragraf, dan sebuah paper yang belum sempat dibaca. *Focal loss* yang mana? `conv1` merujuk ke layer mana? "Bandingkan" pada metrik apa? Bagaimana menjamin dua run tidak berbeda karena seed?
 
-Setiap pertanyaan itu mengacu pada kompetensi berbeda. Modul ini membangun kompetensi-kompetensi tersebut secara sistematis - sehingga email semacam itu menjadi titik awal eksperimen yang terstruktur, bukan sumber kepanikan.
+Setiap pertanyaan itu mengacu pada kompetensi berbeda. Modul ini membangun kompetensi-kompetensi tersebut secara sistematis, sehingga email semacam itu menjadi titik awal eksperimen yang terstruktur, bukan sumber kepanikan.
 
 ---
 
-## 2. Sembilan Kompetensi Inti
+## 2. Target Outcome: 60-70% Siap untuk Topik Lab Nyata
 
-Email di atas menyentuh sembilan kompetensi yang menjadi tulang punggung modul. Setiap kompetensi dibahas satu bab penuh dengan satu lab pendamping.
+Bootcamp ini **bukan** dirancang untuk membuat Anda menjadi ahli penuh di setiap arah riset yang mungkin dijalankan lab. Targetnya lebih realistis dan lebih berguna:
 
-1. **Memahami sistem ML/DL dalam praktiknya** (Bab 01a & 01b). Mengetahui apa yang dilakukan arsitektur, loss, optimizer, dan evaluasi cukup dalam untuk menilai di mana perubahan bermakna.
-2. **Menerjemahkan ide menjadi eksperimen** (Bab 02). Mengubah instruksi terbuka menjadi rancangan konkret dengan variabel, baseline, hipotesis, dan metrik.
-3. **Eksperimen reproduksibel** (Bab 03). Menulis konfigurasi, mengunci seed, mencatat jejak, dan menyusun ablation yang bisa diverifikasi orang lain.
-4. **Validasi data dan pra-pemrosesan** (Bab 04). Memeriksa data sebelum mempercayai hasilnya - mulai dari distribusi kelas hingga *leakage* yang tersembunyi.
-5. **AI tools sebagai pendukung** (Bab 05). Memakai LLM dan Copilot untuk mempercepat kerja tanpa menyerahkan pemahaman dan tanggung jawab.
-6. **Adopsi repository riset asing** (Bab 06). Membaca kode orang lain dengan cepat, menyiapkan lingkungan, dan memodifikasi secara minimal-invasif.
-7. **Membuat alat pendukung riset ringan** (Bab 07). Merangkai demo Streamlit, UI anotasi Gradio, atau visualizer sederhana agar hasil dapat diinspeksi.
-8. **Mengadopsi platform dan tool baru** (Bab 08). Menjalankan eksperimen di RunPod atau lingkungan remote, serta mengelola data dan checkpoint lintas mesin.
-9. **Berkembang mandiri** (Bab 09). Membaca paper secara terarah, menyusun pertanyaan yang baik, dan merancang eksperimen lanjutan dengan pre-registration singkat.
+> Pada akhir bootcamp, Anda diharapkan berada **60-70%** menuju kerja independen di topik lab nyata.
 
-Anda tidak perlu menguasai kesembilan kompetensi di minggu pertama. Modul dirancang sebagai tangga: setiap bab mengandalkan kebiasaan yang dibangun di bab sebelumnya.
+Itu artinya Anda harus bisa:
+
+- mengidentifikasi tipe tugas dan framing tensor shape
+- memilih keluarga model baseline yang masuk akal
+- fine-tune atau mengadaptasi pretrained model atau repo riset eksternal
+- merancang perbandingan terkontrol berskala kecil
+- mengenali perilaku training yang mencurigakan
+- menginspeksi data dan mengantisipasi leakage
+- membaca paper secara terstruktur
+- menulis pre-registration dan mempertahankan hipotesis falsifiable
+
+Itu **bukan** berarti pada akhir bootcamp Anda harus:
+
+- menguasai literatur domain secara mendalam
+- mengetahui paper baseline terkuat di setiap spesialisasi
+- memahami internal setiap model pada tingkat riset
+- menyelesaikan masalah deployment, distillation, atau multimodal fusion dari nol
+- merancang agenda riset siap publikasi tanpa supervisi
+
+Sisa 30-40% diharapkan datang dari: paper reading lanjutan, panduan PI/dosen pembimbing, adopsi repo yang ditargetkan, debugging spesifik domain, dan capstone serta kerja independen setelahnya.
+
+Transisi yang dimaksudkan:
+
+- **Bootcamp (Minggu 1-11):** bangun peta, workflow, dan kebiasaan
+- **Capstone (Minggu 12-14):** terapkan dalam satu masalah yang dibatasi
+- **RA research:** lanjutkan belajar mandiri pada masalah lab nyata
 
 ---
 
-## 3. Empat Sikap Riset
+## 3. Sembilan Kompetensi Inti
+
+Email pembuka di atas menyentuh sembilan kompetensi yang menjadi tulang punggung modul. Setiap kompetensi dibangun lintas beberapa minggu, bukan satu bab tunggal.
+
+1. **Memahami sistem ML/DL dalam praktiknya** (W1-W3). Mengetahui apa yang dilakukan arsitektur, loss, optimizer, dan evaluasi cukup dalam untuk menilai di mana perubahan bermakna.
+2. **Menerjemahkan ide menjadi eksperimen** (W3-W4). Mengubah instruksi terbuka menjadi rancangan konkret dengan variabel, baseline, hipotesis, dan metrik.
+3. **Eksperimen reproduksibel** (W4). Menulis konfigurasi, mengunci seed, mencatat jejak, dan menyusun ablation yang bisa diverifikasi orang lain.
+4. **Validasi data dan kewaspadaan leakage** (W6). Memeriksa data sebelum mempercayai hasilnya, mulai dari distribusi kelas hingga *temporal leakage* yang tersembunyi.
+5. **AI tools sebagai pendukung** (W7-W8). Memakai LLM dan coding copilot untuk mempercepat kerja tanpa menyerahkan pemahaman dan tanggung jawab.
+6. **Adopsi repository riset asing** (W7, W9). Membaca kode orang lain dengan cepat, menyiapkan lingkungan, dan memodifikasi secara minimal-invasif.
+7. **Foundation model dan adaptation strategy** (W8). Mengenali kapan sebuah pretrained model layak diadopsi, kapan frozen, kapan LoRA, kapan full fine-tuning.
+8. **Multimodal reasoning** (W9). Menganalisis fusion strategy, per-modality ablation, dan missing-modality fallback.
+9. **Berkembang mandiri** (W10-W11). Membaca paper secara terarah, menyusun pertanyaan yang baik, dan merancang eksperimen lanjutan berikut pre-registration-nya.
+
+Anda tidak perlu menguasai kesembilan kompetensi di minggu pertama. Modul dirancang sebagai tangga: setiap minggu mengandalkan kebiasaan yang dibangun di minggu sebelumnya.
+
+---
+
+## 4. Empat Sikap Riset
 
 Kompetensi teknis tidak akan bertahan lama tanpa sikap yang benar. Empat sikap berikut muncul berulang sepanjang modul, sering kali tanpa disebut eksplisit, melalui pilihan contoh dan pertanyaan refleksi.
 
@@ -73,162 +109,204 @@ Kompetensi teknis tidak akan bertahan lama tanpa sikap yang benar. Empat sikap b
 
 **Rigor** - disiplin dalam prosedur. Bukan sekadar "rapi", tetapi taat pada aturan seperti: satu variabel berubah pada satu waktu, seluruh konfigurasi disimpan bersama checkpoint, setiap angka di laporan dapat dilacak kembali ke run mana. Rigor melelahkan di awal dan menyelamatkan Anda berjam-jam di akhir.
 
-**Skepticism** - kesediaan untuk tidak mempercayai angka sendiri. Akurasi 99% pada hari pertama bukan kabar baik - itu lampu merah. Hampir selalu ada *leakage*, label yang bocor, atau data test yang tercampur dengan training. Skeptisisme memaksamu memeriksa sebelum berbangga.
+**Skepticism** - kesediaan untuk tidak mempercayai angka sendiri. Akurasi 99% pada hari pertama bukan kabar baik, itu lampu merah. Hampir selalu ada *leakage*, label yang bocor, atau data test yang tercampur dengan training. Skeptisisme memaksamu memeriksa sebelum berbangga.
 
 **Ownership** - rasa memiliki yang melampaui alat. LLM mungkin menulis separuh kode Anda; repository orang lain mungkin menyediakan arsitektur; RunPod mungkin menjalankan training. Tetapi saat dosen bertanya mengapa pilihan tertentu diambil, jawabannya tetap tanggung jawab Anda. Ownership berarti Anda bisa menjelaskan setiap keputusan yang namamu tercantum padanya.
 
-Keempat sikap tidak diajarkan sebagai doktrin. Anda akan mengenalinya dalam pitfall yang dibahas, dalam checklist yang diulang, dan dalam pertanyaan refleksi di akhir tiap bab. Pada akhir semester, Anda diharapkan melihat diri Anda sendiri sedang menerapkannya - bukan karena disuruh, tetapi karena Anda sudah merasakan harganya ketika sikap itu absen.
+Keempat sikap tidak diajarkan sebagai doktrin. Anda akan mengenalinya dalam pitfall yang dibahas, dalam checklist yang diulang, dan dalam pertanyaan refleksi di akhir tiap bab.
 
 ---
 
-## 4. Kontrak Belajar
+## 5. Tiga Thread Lintas Minggu
 
-Modul ini bekerja paling baik ketika Anda dan modul menyepakati empat hal berikut.
+Agar bootcamp tidak terasa seperti sebelas topik terputus, tiga thread berjalan terus menerus dari Minggu 1 sampai Minggu 11.
 
-1. **Mengerjakan lab pada minggu yang sama dengan membacanya.** Menunda lab berarti menunda pemahaman, dan bab berikutnya akan terasa seperti deretan istilah yang tidak tersambung.
-2. **Menulis catatan eksperimen sendiri.** Bukan menyalin output, tetapi menjawab: apa yang aku jalankan, apa yang terjadi, apa arti hasilnya, dan apa yang akan kulakukan selanjutnya. Format catatan ada di `12_Lampiran.md`.
-3. **Memakai LLM, Copilot, dan pencarian web - dengan tanggung jawab.** Sebelum memasukkan kode yang tidak Anda mengerti, baca baris demi baris dan pastikan Anda bisa menjelaskan fungsinya tanpa bantuan. Bab 05 membahas protokol ini lebih dalam.
+### 5.1 Big Map
+
+Setiap minggu kembali ke pertanyaan yang sama:
+
+> Tensor shape apa yang masuk, shape apa yang keluar, dan keluarga model apa yang secara alami cocok untuk pemetaan itu?
+
+| Minggu | Big Map row |
+|---|---|
+| W1 | `(F,) -> (1,)`, `(1,)`, `(N,)` (tabular) |
+| W2-W3 | `(C, H, W) -> (N,)` (citra) |
+| W4 | sama seperti W2-W3, fokus workflow |
+| W5 | `(T, F) -> (1,)`, `(N,)`, `(T'', 1)` (sequence) |
+| W6 | sama seperti W5, fokus representasi & leakage |
+| W7 | `(T,) -> (N,)`, `(1,)`, `(T, N)` (teks) |
+| W8 | input apapun dengan pretrained priors |
+| W9 | multiple tensors -> shared prediction (multimodal) |
+| W10-W11 | sintesis lintas keluarga |
+
+Peta ini tumbuh setiap minggu sehingga Anda perlahan melihat deep learning sebagai satu lanskap, bukan banyak teknik yang terputus.
+
+### 5.2 Research Practice Ladder
+
+Setiap minggu memperkenalkan satu kebiasaan riset yang tetap aktif setelahnya. Bootcamp terasa kumulatif, bukan reset setiap Senin.
+
+| Minggu | Rigor habit |
+|---|---|
+| W1 | Observasi sebelum kesimpulan |
+| W2 | Three-level smoke test |
+| W3 | Change one thing at a time |
+| W4 | Reproducibility, traceability, experiment matrix |
+| W5 | Long-sequence diagnosis dan justifikasi arsitektur |
+| W6 | Validasi preprocessing dan kewaspadaan leakage |
+| W7 | Verifikasi kode AI, inspeksi tokenisasi, repo primer |
+| W8 | Model-card literacy, adaptation choice, fair baseline |
+| W9 | Per-modality ablation dan multimodal failure analysis |
+| W10 | Three-pass paper reading dan paper-to-code translation |
+| W11 | 5 Whys, literature-to-experiment, proposal defense |
+
+### 5.3 Representation Choice
+
+Thread ketiga, lebih senyap tapi penting, berulang lintas minggu:
+
+> Representasi apa yang sedang saya pakai, dan mengapa yang ini?
+
+Bentuknya berubah-ubah:
+
+- engineered features (W6)
+- extracted frozen features (W7-W8)
+- learned task-specific representations (W2-W5)
+- foundation-model hidden states (W8)
+- teacher-model atau auxiliary representations (W8)
+- multi-stream / fused representations (W9)
+
+Thread ini matters karena banyak masalah riset lanjutan sebenarnya adalah masalah pemilihan representasi yang menyamar sebagai pertanyaan arsitektur.
+
+---
+
+## 6. Ritme Sesi Mingguan
+
+Setiap minggu mengikuti format yang stabil 2 jam (120 menit):
+
+| Segmen | Durasi | Tujuan |
+|---|---|---|
+| Prior-week findings | 30 menit | Mahasiswa membagikan temuan minggu sebelumnya |
+| New technical material | 40 menit | Konsep + live demo singkat |
+| Rigor habit of the week | 10 menit | Kebiasaan riset eksplisit yang dikaitkan ke assignment |
+| Assignment walkthrough | 40 menit | Langkah pertama bersama; mahasiswa lanjut mandiri di rumah |
+
+Format ini memastikan setiap sesi (1) menutup loop minggu sebelumnya, (2) membuka konsep baru, (3) menanamkan satu kebiasaan riset eksplisit, dan (4) memberi momentum awal untuk assignment minggu itu.
+
+---
+
+## 7. Kontrak Belajar
+
+Modul ini bekerja paling baik ketika Anda dan modul menyepakati hal-hal berikut.
+
+1. **Mengerjakan lab pada minggu yang sama dengan membacanya.** Menunda lab berarti menunda pemahaman, dan minggu berikutnya akan terasa seperti deretan istilah yang tidak tersambung.
+2. **Menulis catatan eksperimen sendiri.** Bukan menyalin output, tetapi menjawab: apa yang aku jalankan, apa yang terjadi, apa arti hasilnya, dan apa yang akan kulakukan selanjutnya. Format catatan ada di `14_Lampiran.md`.
+3. **Memakai LLM, coding copilot, dan pencarian web - dengan tanggung jawab.** Sebelum memasukkan kode yang tidak Anda mengerti, baca baris demi baris dan pastikan Anda bisa menjelaskan fungsinya tanpa bantuan. Bab W7 membahas protokol ini lebih dalam.
 4. **Mengajukan pertanyaan.** Pertanyaan yang dirumuskan dengan cermat adalah salah satu kompetensi yang dinilai di rubrik. Jika sesuatu terasa kabur setelah membaca dua kali, tulis pertanyaan seringkas mungkin dan bawa ke sesi tatap muka.
-5. **Komponen Mandiri mingguan, mulai Bab 02.** Catat di `notebooks/portofolio_mandiri.ipynb`; presentasi 10 menit di awal sesi berikutnya. Format dan kriteria: [Lampiran C.9](12_Lampiran.md#c9-template-komponen-mandiri).
-6. **Breadth Check sebelum Capstone.** Tunjukkan forward pass berjalan dari **empat dari lima keluarga arsitektur**: MLP (Lab 1c), CNN (Lab 1), RNN/LSTM (Lab 3b), Transformer (Lab 6b), Autoencoder (Lab 7b). Ini memastikan Anda keluar sebagai asisten yang bisa mengenali dan memodifikasi keluarga NN yang muncul di paper lintas domain, bukan hanya spesialis CIFAR-10.
-7. **Eksperimen yang gagal tetapi didokumentasikan dengan baik dinilai setara dengan yang berhasil.** Yang dievaluasi adalah kualitas pemikiran, analisis, dan dokumentasi Anda - bukan apakah hipotesis terkonfirmasi. Hasil negatif yang dijelaskan dengan jujur lebih bernilai daripada hasil positif yang tidak bisa dipertanggungjawabkan.
+5. **Komponen Mandiri mingguan, mulai W4.** Catat di `notebooks/portofolio_mandiri.ipynb`; presentasi 10 menit di awal sesi berikutnya. Format dan kriteria: [Lampiran C.9](14_Lampiran.md#c9-template-komponen-mandiri).
+6. **Breadth Check sebelum Capstone.** Tunjukkan forward pass berjalan dari **empat dari lima keluarga arsitektur**: MLP (Lab 0/1c), CNN (Lab 1), RNN/LSTM (Lab 3b), Transformer (Lab 6b/W7), Autoencoder (Lab 7b). Ini memastikan Anda keluar sebagai asisten yang bisa mengenali dan memodifikasi keluarga NN yang muncul di paper lintas domain, bukan hanya spesialis CIFAR-10.
+7. **Eksperimen yang gagal tetapi didokumentasikan dengan baik dinilai setara dengan yang berhasil.** Yang dievaluasi adalah kualitas pemikiran, analisis, dan dokumentasi Anda, bukan apakah hipotesis terkonfirmasi. Hasil negatif yang dijelaskan dengan jujur lebih bernilai daripada hasil positif yang tidak bisa dipertanggungjawabkan.
+8. **Application-first, theory-grounded.** Modul memperkenalkan ide melalui run konkret dan perbandingan terlebih dahulu. Teori berat (derivasi backprop manual, optimizer theory long-form) tersedia di Lampiran A untuk dibaca setelah Anda punya sesuatu yang nyata untuk diinterpretasi.
 
 ---
 
-## 5. Lab dan Proyek yang Menumbuh
+## 8. Lab dan Proyek yang Menumbuh
 
-Lab dalam modul ini bukan kumpulan latihan terpisah. Sembilan lab berbagi satu dataset dan satu basis kode yang berkembang bersama Anda.
+Lab dalam modul ini bukan kumpulan latihan terpisah. Lab-lab utama berbagi basis kode dan dataset yang berkembang bersama Anda lintas minggu.
 
-- **Lab 1 (Bab 01a-01b)** membangun baseline CNN pada CIFAR-10 yang dapat training penuh.
-- **Lab 1b (Bab 01b, ekstensi)** membandingkan tiga strategi representasi fitur (engineered/extracted/learned) pada CIFAR-10 - memperdalam konsep Section 2.4 di 01b.
-- **Lab 1c (Bab 01a, breadth)** mengimplementasi MLP 2-layer dari nol dengan numpy, menurunkan backward pass manual, dan memverifikasi dengan `finite-difference gradient check` sebelum membandingkan dengan versi PyTorch - memperdalam Section 2.2 di 01a.
-- **Lab 2 (Bab 02)** menambahkan focal loss dan mekanisme freeze layer, menjalankan ablation pertama.
-- **Lab 3 (Bab 03)** memindahkan konfigurasi ke YAML, menambahkan logging TensorBoard, dan menyimpan checkpoint dengan metadata lengkap.
-- **Lab 3b (Bab 03, breadth)** membandingkan RNN vanilla vs LSTM pada tugas sequence regression (sine + noise) - memvisualisasikan gradient flow dan mendemonstrasikan vanishing gradient pada RNN vanilla.
-- **Lab 4 (Bab 04)** memperluas dataset ke domain medis (PathMNIST), melakukan EDA, dan mengaudit pipeline dari *leakage*.
-- **Lab 5 (Bab 05)** memakai LLM untuk membangun satu fitur baru pada basis kode, lalu mencatat proses verifikasi.
-- **Lab 5b (Bab 05, ekstensi)** klasifikasi sentimen teks Bahasa Indonesia - memperkenalkan domain non-gambar dan memparalelkan Lab 1b di domain berbeda.
-- **Lab 6 (Bab 06)** meng-clone sebuah reference implementation dari komunitas, menyiapkan lingkungan, dan menambahkan satu eksperimen kecil.
-- **Lab 6b (Bab 06, breadth)** menulis *scaled dot-product attention* dari nol, membangun satu Transformer encoder block (attention + FFN + LayerNorm + residual), dan melakukan parity check terhadap `nn.TransformerEncoderLayer` PyTorch.
-- **Lab 7 (Bab 07)** membungkus model dalam demo Streamlit dan antarmuka Gradio untuk inspeksi prediksi.
-- **Lab 7b (Bab 07, breadth)** melatih convolutional autoencoder dan denoising AE pada CIFAR-10 unsupervised, memvisualisasikan ruang bottleneck dengan t-SNE, lalu memetakan jembatan ke keluarga generatif (VAE, GAN, Diffusion).
-- **Lab 8 (Bab 08)** memindahkan training ke RunPod, mengatur port forwarding, dan mengelola checkpoint jarak jauh.
-- **Lab 9 (Bab 09)** membaca satu paper pendek, menuliskan ringkasan terstruktur, dan merancang satu eksperimen lanjutan berikut *pre-registration*-nya.
+**Lab Inti (wajib):**
 
-Pada minggu 13–14, Anda menyelesaikan **capstone project** yang mengintegrasikan minimal enam kompetensi dan keempat sikap. Detail ada di `10_Capstone_Project.md`.
+- **Lab 0 (W1)** - Tabular MLP: train MLP pada satu dataset tabular shared dengan tiga formulasi tugas (regression, binary classification, multiclass).
+- **Lab 1 (W2-W3)** - Baseline CNN: bangun classifier citra dari nol + pretrained fine-tune; jalankan three-level smoke test ritual.
+- **Lab 2 (W3)** - 3-condition ablation: jalankan satu perbandingan terkontrol (mis. AdamW vs SGD, augmentasi on/off) dengan curve interpretation dan confusion matrix.
+- **Lab 3 (W4)** - Reproducibility: pindahkan konfigurasi ke YAML, kunci seed, simpan checkpoint dengan metadata + git hash, refactor jadi struktur eksperimen reproduksibel.
+- **Lab 3b (W5)** - RNN vs LSTM: bandingkan vanilla RNN dan LSTM/GRU pada tugas sequence dengan dependensi panjang; visualisasikan gradient flow.
+- **Lab 4 (W4 ekstensi atau W6)** - EDA + leakage audit: PathMNIST atau dataset baru; audit pipeline dari leakage.
+- **Lab 6 - Temporal Leakage (W6)** - Sensor/timeseries dataset; bangun causal feature, sengaja patahkan kausalitas, tunjukkan inflasi metric yang invalid.
+- **Lab 5b (W7)** - Klasifikasi sentimen IndoNLU SmSA: 2x2 perbandingan frozen vs fine-tune, [CLS] vs mean pool.
+- **Lab 6 - Repo Adoption (W7)** - Clone repo riset, modifikasi minimal-invasive, tulis `repo_map.md`.
+- **Lab 8 - Multimodal Ablation (W9)** - Reproduce/adopt multimodal repo, per-modality ablation, missing-modality test, repo map kedua.
+- **Lab 9 - Paper Implementation (W10)** - Pilih satu paper dari curated menu, three-pass read, implement core method, satu ablation kecil.
 
-Mulai Bab 02, setiap bab juga memiliki satu **Komponen Mandiri** - pilihan jalur eksplorasi mingguan yang Anda kerjakan secara independen dan catat di `notebooks/portofolio_mandiri.ipynb`. Portfolio ini berisi 8 entri (Pekan 4–12) dan ditutup dengan refleksi trajektori belajar pada akhir Pekan 12. Template entri dan panduan presentasi 10 menit ada di `12_Lampiran.md` bagian C.6 dan C.7.
+**Lab Breadth (memenuhi Kontrak Belajar poin 6):**
 
-**Empat jalur yang tersedia tiap minggu:**
+- **Lab 1c** (MLP numpy from-scratch, breadth)
+- **Lab 6b** (Transformer-mini from-scratch, breadth, optional di W7)
+- **Lab 7b** (Autoencoder + denoising AE + t-SNE, breadth)
 
-| Jalur | Inti kegiatan | Contoh konkret | Artefak di portfolio |
+Pada minggu 12-14, Anda menyelesaikan **capstone project** yang mengintegrasikan minimal enam kompetensi dan keempat sikap. Detail ada di `12_Capstone_3_Minggu.md`.
+
+Mulai W4, setiap bab juga memiliki satu **Komponen Mandiri** - pilihan jalur eksplorasi mingguan yang Anda kerjakan secara independen dan catat di `notebooks/portofolio_mandiri.ipynb`. Portfolio berisi 8 entri (W4-W11) dan ditutup dengan refleksi trajektori belajar. Template entri dan panduan presentasi 10 menit ada di `14_Lampiran.md` bagian C.6 dan C.7.
+
+**Empat jalur Komponen Mandiri:**
+
+| Jalur | Inti kegiatan | Contoh konkret | Artefak portfolio |
 | --- | --- | --- | --- |
-| **Implementasi** | Menambah, mengubah, atau menguji kode pada repo eksperimen. | Tambah augmentasi baru, implementasikan scheduler yang belum ada, buat flag CLI untuk menukar komponen, tulis smoke test baru. | Cuplikan kode + angka benchmark sebelum/sesudah + 1 paragraf interpretasi. |
-| **Analisis** | Menyelidiki perilaku model, data, atau hasil yang sudah ada. | Confusion matrix per-kelas, saliency atau Grad-CAM, studi variansi antar-seed, audit contoh yang salah klasifikasi, EDA lapis kedua. | Visualisasi + 2–3 temuan spesifik + hipotesis turunan. |
-| **Desain** | Merancang eksperimen baru tanpa harus menjalankannya penuh. | Pre-registration eksperimen berikutnya, grid ablation yang belum dilakukan, rencana pengumpulan data tambahan, protokol evaluasi baru. | Protokol terstruktur (format Bab 02) + justifikasi hipotesis + estimasi biaya-waktu. |
-| **Arsitektur Baru** | Mereplikasi atau mengadaptasi satu keluarga arsitektur yang belum di-cover lab wajib minggu itu. | GRU sebagai alternatif LSTM di Lab 3b, multi-head attention di atas Lab 6b, VAE sederhana di atas Lab 7b, atau arsitektur lain yang relevan dengan minat Anda. | Forward pass bekerja pada toy task + 1 plot learning curve + 1 paragraf perbedaan vs arsitektur yang sudah dipelajari. Template di `12_Lampiran.md` bagian C.8. |
-
-Anda tidak harus memilih jalur yang sama setiap minggu. Rotasi antar jalur justru menumbuhkan keempat sikap secara seimbang: *Implementasi* melatih Rigor dan Ownership, *Analisis* melatih Skepticism, *Desain* melatih Curiosity, dan *Arsitektur Baru* melatih Curiosity sekaligus memperluas *breadth* arsitektur. Panduan memilih: pilih **Implementasi** saat ingin mendalami mekanika konsep minggu itu; **Analisis** saat hasil eksperimen mengejutkan atau belum meyakinkan; **Desain** saat Anda sudah punya pertanyaan tapi belum sempat menjalankannya; **Arsitektur Baru** saat Anda merasa satu keluarga NN masih asing dan ingin mencobanya di skala kecil.
-
-**Kriteria sukses per entri** (detail di Rubrik Kompetensi 10, Bab 11): bukti eksekusi jelas (kode commit, plot, atau dokumen), temuan dituliskan dengan skeptisisme sehat (apa yang *tidak* Anda yakini juga dicatat), dan koneksi eksplisit ke bab minggu itu. Entri yang hanya mengulang isi lab dinilai Novice; entri yang menunjukkan pilihan berdasarkan *gap* skill sendiri atau pertanyaan riset turunan dinilai Proficient.
+| **Implementasi** | Tambah/ubah/uji kode di repo eksperimen | Augmentasi baru, scheduler tambahan, flag CLI penukar komponen | Cuplikan kode + benchmark before/after + 1 paragraf interpretasi |
+| **Analisis** | Selidiki perilaku model/data/hasil | Confusion matrix per-kelas, Grad-CAM, studi variansi seed, audit kesalahan | Visualisasi + 2-3 temuan + hipotesis turunan |
+| **Desain** | Rancang eksperimen baru tanpa wajib jalankan | Pre-registration, grid ablation belum jalan, protokol evaluasi baru | Protokol terstruktur + justifikasi + estimasi cost |
+| **Arsitektur Baru** | Replikasi/adaptasi keluarga arsitektur belum di-cover lab wajib | GRU di atas Lab 3b, multi-head di atas Lab 6b, VAE di atas Lab 7b | Forward pass + learning curve + perbedaan vs arsitektur lain. Template `14_Lampiran.md` C.8 |
 
 ---
 
-## 5b. Peta Dependensi Konsep Antar Bab
+## 9. Peta Dependensi Konsep
 
-Modul ini dirancang sebagai tangga, tetapi tidak semua anak tangga harus dinaiki dengan jarak yang sama. Tabel berikut menunjukkan konsep dari bab mana yang perlu Anda pahami sebelum mengerjakan bab tertentu. "Perlu dipahami" bukan berarti dihapal - cukup Anda sudah menjalankan labnya dan bisa menjelaskan ide utamanya.
+Modul ini dirancang sebagai tangga linier W1 → W11. Tabel berikut menunjukkan minggu mana yang harus Anda selesaikan sebelum minggu tertentu. "Selesai" berarti lab utamanya sudah dijalankan dan Anda bisa menjelaskan ide utamanya.
 
-![Peta dependensi modul pembelajaran: 13 bab dengan arah prereq dan jalur per pekan](./figures/fig00a_module_map.svg)
-
-| Bab | Prasyarat minimum | Konsep kunci yang dibutuhkan |
+| Minggu | Prasyarat minimum | Konsep kunci |
 | --- | --- | --- |
-| **01a** Fondasi Neural Network | - (titik awal) | - |
-| **01b** Loss, Optimizer & Evaluasi | Bab 01a | Forward pass, arsitektur, layer |
-| **02** Ide ke Eksperimen | Bab 01b | Apa yang dilakukan loss dan optimizer |
-| **03** Eksperimen Reproduksibel | Bab 01b, Bab 02 | Pipeline training dasar; apa itu konfigurasi |
-| **04** Validasi Data | Bab 01b, Bab 03 | Checkpoint dan konfigurasi; evaluasi pada split berbeda |
-| **05** AI Tools | Bab 01a | Cukup punya pipeline yang berjalan untuk diverifikasi |
-| **06** Adopsi Repo Riset | Bab 01a, Bab 03 | Bisa baca kode training loop; tahu cara menyimpan checkpoint |
-| **07** Alat Pendukung Ringan | Bab 01a, Bab 06 | Punya model yang bisa di-load; tahu cara menjalankan inferensi |
-| **08** Platform & Tool Baru | Bab 03, Bab 06 | Checkpoint dengan metadata lengkap; bisa menjalankan repo orang lain |
-| **09** Pengembangan Mandiri | Bab 01b, Bab 02 | Bisa mendeskripsikan eksperimen secara terstruktur |
-| **10** Capstone | Bab 01a-09 | Seluruh pipeline: dataset → eksperimen → laporan |
+| **W1** Tabular | - (entry point) | - |
+| **W2** Images & CNN | W1 | Tensor I/O, output head + loss matching |
+| **W3** Loss/Opt/Eval | W2 | Smoke test ritual, baseline yang berjalan |
+| **W4** Reproducibility | W3 | Pipeline training penuh; bisa baca loss curve |
+| **W5** Sequences | W4 | Workflow disiplin; eksperimen matrix |
+| **W6** Representations & Leakage | W5 | Sequence model; pemikiran tentang split data |
+| **W7** Text & Repo Adoption | W4, W6 | Reproducibility; pemahaman representasi |
+| **W8** Foundation Models | W7 | Pengalaman fine-tuning pretrained text/image model |
+| **W9** Multimodal | W8 | Pemahaman foundation model dan adaptation |
+| **W10** Paper Reading | W4, W7 | Bisa baca repo; bisa menjalankan eksperimen reproduksibel |
+| **W11** Research Framing | W10 | Pengalaman menerjemahkan paper jadi kode |
+| **W12-14** Capstone | W1-W11 | Seluruh pipeline + research framing matang |
 
 > [!NOTE]
-> Bab 04, 05, 06, dan 07 bersifat relatif paralel satu sama lain setelah Bab 03 selesai. Jika Anda melewatkan Bab 04 karena alasan waktu, Anda tetap bisa mengerjakan Bab 05 dan 06 dengan lancar. Sebaliknya, Bab 08 sangat bergantung pada Bab 03 dan Bab 06 - jangan melompat ke sana sebelum keduanya tuntas.
+> Dependensi linier W1→W11 by design. Berbeda dengan modul lama yang punya bab paralel, struktur bootcamp memastikan setiap kebiasaan riset baru dilatih di atas kebiasaan minggu sebelumnya. Hindari melompat: misalnya, W7 (text + repo adoption) menuntut workflow reproducibility dari W4 dan eksperimen matrix dari W5.
 
-**Lab 1b** (representasi fitur, ada di Bab 01b) dan **Lab 5b** (domain teks, ada di Bab 05) adalah lab ekstensi - tidak memblokir bab berikutnya, tetapi memperkaya pemahaman lintas domain.
-
-**Rantai lab breadth arsitektur**: Lab 1c (MLP from-scratch) → Lab 3b (RNN/LSTM) → Lab 6b (Transformer-mini). Lab 7b (Autoencoder) bersifat independen dan dapat dikerjakan kapan saja setelah Lab 1. Rantai ini bukan *hard dependency* untuk bab-bab lain, tetapi melengkapi klausul **Breadth Check** di Kontrak Belajar (Section 4 poin Keenam). Lab 1c memberi intuisi backprop yang dipakai lagi secara konseptual di Lab 3b (BPTT) dan Lab 6b (gradient flow melewati attention). Lab 6b membutuhkan kenyamanan dengan tensor manipulation yang dibangun di Lab 1c.
+**Rantai lab breadth arsitektur**: Lab 0 (MLP tabular, W1) atau Lab 1c (MLP numpy, opsional) → Lab 1 (CNN, W2) → Lab 3b (RNN/LSTM, W5) → Lab 5b/Lab 6b (Transformer, W7) → Lab 7b (Autoencoder, breadth opsional). Empat dari lima keluarga sudah tercakup oleh lab wajib W1-W7; Lab 7b melengkapi keluarga Autoencoder untuk Breadth Check di Kontrak Belajar.
 
 ---
 
-## 5c. Jalur Cepat untuk Kurikulum Terbatas
-
-Jika semester Anda diperpendek (10 minggu, bukan 14), atau ada kendala waktu lain, gunakan matriks berikut sebagai panduan prioritas. "Wajib" berarti tidak bisa dilewati tanpa kehilangan prasyarat; "Pilih-2" berarti pilih dua dari empat sesuai topik Capstone Anda.
-
-```mermaid
-flowchart LR
-    A[01a Fondasi NN\nMinggu 2] --> B[01b Loss + Eval\nMinggu 3]
-    B --> C[02 Rancang\nEksperimen\nMinggu 4]
-    C --> D[03 Reproduksibel\nMinggu 5-6]
-    D --> E{Pilih 2 dari 4}
-    E --> F[04 Validasi Data]
-    E --> G[05 AI Tools]
-    E --> H[06 Adopsi Repo]
-    E --> I[07 Alat Ringan]
-    F & G & H & I --> J[10 Capstone\nMinggu 13-14]
-```
-
-| Bab | Status | Catatan |
-| --- | --- | --- |
-| 01a, 01b | **Wajib** | Fondasi; semua bab lain bergantung padanya |
-| 02 | **Wajib** | Tanpa ini, eksperimen tidak terstruktur |
-| 03 | **Wajib** | Reproduksibilitas adalah prasyarat Capstone |
-| 04 | Pilih-2 | Wajib jika dataset Capstone belum diaudit |
-| 05 | Pilih-2 | Wajib jika Anda banyak memakai LLM |
-| 06 | Pilih-2 | Wajib jika Capstone berbasis repo eksternal |
-| 07 | Pilih-2 | Wajib jika Capstone perlu demo interaktif |
-| 08 | Opsional | Penting jika training > 2 jam di laptop |
-| 09 | Opsional | Sangat dianjurkan; berisi pre-registration |
-| 10 | **Capstone** | Minimum: 6 kompetensi terintegrasi |
-
-Breadth Check (Lab 1c, 3b, 6b, 7b) tetap wajib diselesaikan sebelum Capstone, tetapi bisa dikerjakan paralel dengan bab-bab Pilih-2.
-
----
-
-## 6. Pitfalls Sejak Awal
+## 10. Pitfalls Sejak Awal
 
 Beberapa kesalahan yang dapat mencegah Anda berkembang, bahkan sebelum bab teknis dimulai:
 
-**Mengerjakan lab hanya sampai kode jalan.** Lab selesai bukan saat training tidak error, tetapi saat Anda bisa menjelaskan mengapa angka yang keluar masuk akal. Jika hasil mengejutkan Anda, itu sinyal untuk berhenti dan menyelidiki - bukan untuk lanjut ke lab berikutnya.
+**Mengerjakan lab hanya sampai kode jalan.** Lab selesai bukan saat training tidak error, tetapi saat Anda bisa menjelaskan mengapa angka yang keluar masuk akal. Jika hasil mengejutkan Anda, itu sinyal untuk berhenti dan menyelidiki, bukan untuk lanjut ke lab berikutnya.
 
-**Menyalin kode LLM tanpa dibaca.** Ini berbahaya bukan karena kodenya sering salah, tetapi karena ketika kodenya benar, Anda melewatkan kesempatan memahami. Ketika nanti kodenya salah, Anda tidak akan tahu caranya mencari. Protokol verifikasi LLM dibahas di Bab 05.
+**Menyalin kode LLM tanpa dibaca.** Ini berbahaya bukan karena kodenya sering salah, tetapi karena ketika kodenya benar, Anda melewatkan kesempatan memahami. Ketika nanti kodenya salah, Anda tidak akan tahu caranya mencari. Protokol verifikasi LLM dibahas di W7.
 
 **Menunda pembuatan catatan eksperimen.** Memori manusia tidak bisa merekam dua puluh run ablation yang serupa. Menunda catatan berarti pada hari pelaporan Anda akan menjalankan ulang eksperimen hanya untuk mengingat hasilnya.
 
-**Mengabaikan data.** Godaan untuk langsung *training* tanpa memeriksa data selalu ada, terutama ketika dataset kelihatannya "sudah dibersihkan orang lain". Bab 04 menunjukkan contoh-contoh nyata di mana kelalaian ini mengubur eksperimen berbulan-bulan.
+**Mengabaikan data.** Godaan untuk langsung *training* tanpa memeriksa data selalu ada, terutama ketika dataset kelihatannya "sudah dibersihkan orang lain". W6 menunjukkan contoh-contoh nyata di mana kelalaian ini mengubur eksperimen berbulan-bulan.
+
+**Berharap menjadi ahli penuh di akhir minggu 11.** Target adalah 60-70% siap, bukan 100%. Sisa 30-40% datang dari kerja independen setelah bootcamp. Tekanan untuk "menguasai semuanya" justru memperlambat.
 
 ---
 
-## 7. Refleksi
+## 11. Refleksi
 
-Sebelum melangkah ke Bab 01a, luangkan waktu sepuluh menit untuk menulis jawaban singkat atas tiga pertanyaan berikut. Simpan di catatan pribadi Anda; kita akan merujuknya kembali di minggu 14.
+Sebelum melangkah ke W1, luangkan waktu sepuluh menit untuk menulis jawaban singkat atas tiga pertanyaan berikut. Simpan di catatan pribadi Anda; kita akan merujuknya kembali di Minggu 14.
 
-1. Dari sembilan kompetensi, mana yang Anda duga paling asing? Apa yang Anda harapkan berubah pada akhir semester?
+1. Dari sembilan kompetensi, mana yang Anda duga paling asing? Apa yang Anda harapkan berubah pada akhir bootcamp?
 2. Dari empat sikap riset, mana yang sudah Anda rasakan secara alami, dan mana yang terasa paling sulit untuk Anda lakukan secara konsisten?
 3. Saat Anda menerima email PI seperti di pembuka bab ini *hari ini*, apa tiga langkah pertama yang akan Anda ambil? Bandingkan dengan jawaban Anda nanti di minggu 14.
 
 ---
 
-## 8. Bacaan Lanjutan
+## 12. Bacaan Lanjutan
 
-- **Andrej Karpathy - *A Recipe for Training Neural Networks*** (blog, 2019). Esai pendek tentang bagaimana seorang peneliti berpengalaman memulai proyek. Relevan sebelum Bab 01a karena menanamkan ritme "verify everything before you scale".
+- **Andrej Karpathy - *A Recipe for Training Neural Networks*** (blog, 2019). Esai pendek tentang bagaimana seorang peneliti berpengalaman memulai proyek. Relevan sebelum W2 karena menanamkan ritme "verify everything before you scale".
 - **Goodfellow, Bengio, Courville - *Deep Learning*** (Bab 1 & 5). Fondasi konseptual yang sengaja tidak diulang di modul ini; baca bab 1 untuk konteks sejarah, bab 5 untuk kerangka pikir machine learning.
-- **The Turing Way - *A Handbook for Reproducible Research*** (bagian *Reproducibility*). Dibaca ringan minggu 1–2; penuh analogi yang akan kembali di Bab 03.
+- **The Turing Way - *A Handbook for Reproducible Research*** (bagian *Reproducibility*). Dibaca ringan minggu 1-2; penuh analogi yang akan kembali di W4.
 
 ---
 
-## Lanjut ke Bab 01a
+## Lanjut ke W1
 
-Setelah menyelesaikan refleksi, buka [01a - Fondasi Neural Network](01a_Fondasi_Neural_Network.md). Bab tersebut memperkenalkan pasangan tensor input → output, backpropagation MLP, empat keluarga arsitektur, dan peran normalisasi serta aktivasi - tidak sebagai daftar definisi, tetapi sebagai keputusan desain yang dibingkai oleh pertanyaan: data seperti apa yang sedang kita olah, dan struktur apa yang paling alami mengikutinya?
+Setelah menyelesaikan refleksi, buka [W1 - Tabular & Output Heads](01_W1_Tabular_Output_Heads.md). Bab tersebut memperkenalkan MLP sebagai *shape transformer*, output head + loss matching, dan ritme observasi sebelum interpretasi - tidak sebagai daftar definisi, tetapi sebagai keputusan desain yang dibingkai oleh pertanyaan: data seperti apa yang sedang kita olah, dan struktur apa yang paling alami mengikutinya?

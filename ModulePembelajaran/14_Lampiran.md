@@ -4,26 +4,27 @@
 | # | Modul | Minggu |
 |---|-------|--------|
 | 00 | [Pendahuluan](00_Pendahuluan.md) | 1 |
-| 01a | [Fondasi Neural Network](01a_Fondasi_Neural_Network.md) | 2 |
-| 01b | [Loss, Optimizer & Evaluasi](01b_Loss_Optimizer_Evaluasi.md) | 3 |
-| 02 | [Ide ke Eksperimen](02_Ide_Ke_Eksperimen.md) | 4 |
-| 03 | [Eksperimen Reproduksibel](03_Eksperimen_Reproduksibel.md) | 5–6 |
-| 04 | [Validasi Data](04_Validasi_Data.md) | 7 |
-| 05 | [AI Tools Sebagai Pendukung](05_AI_Tools_Sebagai_Pendukung.md) | 8 |
-| 06 | [Adopsi Repo Riset](06_Adopsi_Repo_Riset.md) | 9 |
-| 07 | [Alat Pendukung Ringan](07_Alat_Pendukung_Ringan.md) | 10 |
-| 08 | [Platform & Tool Baru](08_Platform_Dan_Tool_Baru.md) | 11 |
-| 09 | [Pengembangan Mandiri](09_Pengembangan_Mandiri.md) | 12 |
-| 10 | [Capstone Project](10_Capstone_Project.md) | 13–14 |
-| 11 | [Rubrik Penilaian](11_Rubrik_Penilaian.md) | – |
-| 13 | [Panduan Dosen](13_Panduan_Dosen.md) | – |
-| ▶ 12 | Lampiran | – |
+| 01 | [W1 - Tabular & Output Heads](01_W1_Tabular_Output_Heads.md) | 1 |
+| 02 | [W2 - Images, CNN & Smoke Test](02_W2_Images_CNN_Smoke_Test.md) | 2 |
+| 03 | [W3 - Loss, Optimizer & Evaluasi](03_W3_Loss_Optimizer_Evaluasi.md) | 3 |
+| 04 | [W4 - Reproducibility & Experiment Matrix](04_W4_Reproducibility_Experiment_Matrix.md) | 4 |
+| 05 | [W5 - Sequences: RNN & LSTM](05_W5_Sequences_RNN_LSTM.md) | 5 |
+| 06 | [W6 - Representations & Temporal Leakage](06_W6_Representations_Temporal_Leakage.md) | 6 |
+| 07 | [W7 - Text, Transformers & Repo Adoption](07_W7_Text_Transformers_Repo_Adoption.md) | 7 |
+| 08 | [W8 - Foundation Models](08_W8_Foundation_Models.md) | 8 |
+| 09 | [W9 - Multimodal Reasoning](09_W9_Multimodal_Reasoning.md) | 9 |
+| 10 | [W10 - Paper Reading & Implementation](10_W10_Paper_Reading.md) | 10 |
+| 11 | [W11 - Research Framing & Capstone Proposal](11_W11_Research_Framing.md) | 11 |
+| 12 | [Capstone 3 Minggu](12_Capstone_3_Minggu.md) | 12-14 |
+| 13 | [Rubrik Penilaian](13_Rubrik_Penilaian.md) | – |
+| ▶ 14 | Lampiran | – |
+| 15 | [Panduan Dosen](15_Panduan_Dosen.md) | – |
 
 </details>
 
 ---
 
-# 12 · Lampiran
+# 14 · Lampiran
 
 > *Lampiran yang baik adalah alat bantu, bukan hiasan. Bagian ini berisi glosarium istilah, checklist eksperimen, dan template yang dapat Anda salin-pakai langsung sepanjang semester.*
 
@@ -63,6 +64,17 @@ Istilah teknis ML/DL sebagian besar berasal dari Bahasa Inggris. Glosarium ini m
 | variational autoencoder (VAE)  | -                                 | Nama diri.                                          |
 | generative adversarial network (GAN) | -                           | Nama diri.                                          |
 | diffusion model                | -                                 | Nama diri.                                          |
+| foundation model               | -                                 | Model pretrained pada data besar, transferable ke banyak downstream tasks. |
+| model card                     | -                                 | Dokumen yang mendeskripsikan capabilities, limitations, dan biases sebuah model. |
+| LoRA (Low-Rank Adaptation)     | -                                 | Metode adaptasi efisien dengan matriks low-rank parallel dengan weights asli. |
+| adapter                        | -                                 | Modul kecil yang ditambahkan ke pretrained model untuk task-specific fine-tuning. |
+| late fusion                    | fusi akhir                        | Menggabungkan representasi dari modality berbeda di akhir (setelah encoding terpisah). |
+| early fusion                   | fusi awal                         | Menggabungkan input dari modality berbeda di awal, sebelum encoding bersama. |
+| cross-attention fusion         | fusi cross-attention              | Satu modality sebagai query, modality lain sebagai key/value dalam attention. |
+| modality dropout               | -                                 | Teknik training yang secara acak mematikan satu modality untuk robustness. |
+| temporal alignment             | penyelarasan temporal             | Sinkronisasi timestep dari stream data yang berbeda sampling rate. |
+| three-pass reading             | baca tiga-putaran                 | Metode Keshav (2007): skim → close-read → critical read. |
+| per-modality ablation          | ablasi per-modalitas              | Eksperimen yang menghapus atau mengacak satu modality untuk mengukur kontribusinya. |
 
 
 ### A.2 Pelatihan
@@ -677,7 +689,7 @@ Dua belas tabel di bawah adalah alat bantu bagi Anda untuk memeriksa pemahaman s
 | Menggambar kurva ReLU, GELU, SiLU dan menyebutkan perbedaan utama | | | |
 | Lab 1c: forward + backward MLP numpy selesai; gradient check lolos | | | |
 
-### Minggu 3 - Loss, Optimizer & Evaluasi (Bab 01b)
+### W3 - Loss, Optimizer & Evaluasi
 
 | Saya harus bisa... | Belum | Mulai | Sudah |
 |---|---|---|---|
@@ -689,7 +701,7 @@ Dua belas tabel di bawah adalah alat bantu bagi Anda untuk memeriksa pemahaman s
 | Menjelaskan mengapa "overfit one batch" adalah alat diagnosis utama | | | |
 | Lab 1: 4 checklist selesai (training loop, loss plot, confusion matrix, sample inspection) | | | |
 
-### Minggu 4 - Ide ke Eksperimen (Bab 02)
+### W4 - Reproducibility & Experiment Matrix
 
 | Saya harus bisa... | Belum | Mulai | Sudah |
 |---|---|---|---|
@@ -700,7 +712,7 @@ Dua belas tabel di bawah adalah alat bantu bagi Anda untuk memeriksa pemahaman s
 | Memakai kerangka SQRC saat mengajukan pertanyaan teknis ke PI | | | |
 | Lab 2: FocalLoss + freeze + ablation selesai; `protocol.md` ditulis sebelum run | | | |
 
-### Minggu 5-6 - Eksperimen Reproduksibel (Bab 03)
+### W5 - Sequences: RNN & LSTM
 
 | Saya harus bisa... | Belum | Mulai | Sudah |
 |---|---|---|---|
@@ -713,7 +725,7 @@ Dua belas tabel di bawah adalah alat bantu bagi Anda untuk memeriksa pemahaman s
 | Lab 3: 6 run selesai; checkpoint bisa di-resume; TensorBoard log rapi | | | |
 | Lab 3b (breadth): RNN vs LSTM gradient flow selesai | | | |
 
-### Minggu 7 - Validasi Data (Bab 04)
+### W6 - Representations & Temporal Leakage
 
 | Saya harus bisa... | Belum | Mulai | Sudah |
 |---|---|---|---|
@@ -725,7 +737,7 @@ Dua belas tabel di bawah adalah alat bantu bagi Anda untuk memeriksa pemahaman s
 | Menjelaskan mengapa hasil negatif yang terdokumentasi adalah kewajiban etis | | | |
 | Lab 4: EDA + leakage audit + label inspection selesai; minimal 1 isu data ditemukan | | | |
 
-### Minggu 8 - AI Tools Sebagai Pendukung (Bab 05)
+### W7 - Text, Transformers & Repo Adoption
 
 | Saya harus bisa... | Belum | Mulai | Sudah |
 |---|---|---|---|
@@ -736,7 +748,7 @@ Dua belas tabel di bawah adalah alat bantu bagi Anda untuk memeriksa pemahaman s
 | Lab 5: LLM-assisted feature selesai; log verifikasi terisi | | | |
 | Lab 5b (domain teks): klasifikasi sentimen IndoNLU selesai (opsional) | | | |
 
-### Minggu 9 - Adopsi Repo Riset (Bab 06)
+### W8 - Foundation Models
 
 | Saya harus bisa... | Belum | Mulai | Sudah |
 |---|---|---|---|
@@ -748,7 +760,7 @@ Dua belas tabel di bawah adalah alat bantu bagi Anda untuk memeriksa pemahaman s
 | Lab 6: satu PR/issue ke repo publik; error analysis selesai | | | |
 | Lab 6b (breadth): Transformer-mini dari nol selesai | | | |
 
-### Minggu 10 - Alat Pendukung Ringan (Bab 07)
+### W9 - Multimodal Reasoning
 
 | Saya harus bisa... | Belum | Mulai | Sudah |
 |---|---|---|---|
@@ -758,7 +770,7 @@ Dua belas tabel di bawah adalah alat bantu bagi Anda untuk memeriksa pemahaman s
 | Lab 7: demo interaktif online; link bisa diakses | | | |
 | Lab 7b (breadth): Autoencoder + denoising AE + t-SNE selesai | | | |
 
-### Minggu 11 - Platform & Tool Baru (Bab 08)
+### W10 - Paper Reading & Implementation
 
 | Saya harus bisa... | Belum | Mulai | Sudah |
 |---|---|---|---|
@@ -768,7 +780,7 @@ Dua belas tabel di bawah adalah alat bantu bagi Anda untuk memeriksa pemahaman s
 | Mengelola biaya GPU cloud: memilih spot vs on-demand, memantau tagihan | | | |
 | Lab 8: training di RunPod selesai; pod dimatikan; tagihan < $5 | | | |
 
-### Minggu 12 - Pengembangan Mandiri (Bab 09)
+### W11 - Research Framing & Capstone Proposal
 
 | Saya harus bisa... | Belum | Mulai | Sudah |
 |---|---|---|---|
@@ -789,33 +801,321 @@ Checklist ini melengkapi - bukan menggantikan - rubrik penilaian di Bab 11. Rubr
 
 ---
 
-## E. Indeks Cepat - Di Mana Mencari Apa
+---
+
+## A.1 Backpropagation Derivasi Manual
+
+*Catatan: untuk intuitisi dan penggunaan praktis, lihat W2 §2.2. Section ini menyediakan derivasi lengkap 7-langkah untuk MLP 2-layer dengan MSE loss + sigmoid.*
+
+### Setup
+
+MLP 2-layer: `d_in = 2`, `d_h = 2`, `d_out = 1`. Target `y`, prediksi `y_hat`. Aktivasi: sigmoid `σ(z) = 1/(1+e^{-z})`.
+
+Forward pass:
+```
+z1 = W1 x + b1       # (d_h,)
+h  = σ(z1)           # (d_h,)  
+z2 = W2 h + b2       # (d_out,)
+y_hat = z2           # untuk regresi; klasifikasi tambahkan sigmoid di sini
+L = ½(y_hat - y)²    # MSE loss
+```
+
+### 7 Langkah Chain Rule
+
+1. `∂L/∂z2 = y_hat - y`  ← turunan MSE terhadap output pre-activation
+2. `∂L/∂W2 = (∂L/∂z2) · h^T`  ← shape `(d_out, d_h)`
+3. `∂L/∂b2 = ∂L/∂z2`
+4. `∂L/∂h = W2^T · (∂L/∂z2)`  ← rambat ke hidden state
+5. `∂L/∂z1 = (∂L/∂h) ⊙ σ'(z1)`  ← terapkan turunan aktivasi; untuk ReLU: `σ'(z) = 1[z>0]`
+6. `∂L/∂W1 = (∂L/∂z1) · x^T`  ← shape `(d_h, d_in)`
+7. `∂L/∂b1 = ∂L/∂z1`
+
+### Update Rule (SGD)
+
+```python
+W1 -= lr * dW1;  b1 -= lr * db1
+W2 -= lr * dW2;  b2 -= lr * db2
+```
+
+Pola ini berulang di setiap layer. Untuk layer lebih dalam, cukup perpanjang langkah 4-6 ke layer sebelumnya. Inilah yang dikomputasi oleh `loss.backward()` dalam PyTorch secara otomatis.
+
+Lab 1c (`lab1c_mlp_numpy.ipynb`) mengimplementasikan ketujuh langkah ini dalam numpy dengan finite-difference gradient check untuk verifikasi.
+
+---
+
+## C.12 Template Repo Map {#c12-template-repo-map}
+
+Salin template ini ke `repo_map.md` di root folder eksperimen Anda setiap kali mengadopsi repo baru.
+
+```markdown
+# Repo Map: [nama-repo]
+
+**URL:** [github link]  
+**Paper:** [judul paper jika ada]  
+**Dibaca oleh:** [nama]  
+**Tanggal:** [YYYY-MM-DD]
+
+## Entry Point
+
+- Main script: `[file]`
+- Cara menjalankan: `[command]`
+
+## Model
+
+- File definisi model: `[file:line]`
+- Input shape: `[shape]`
+- Output shape: `[shape]`
+- Arsitektur ringkas: [1-2 kalimat]
+
+## Loss
+
+- File: `[file:line]`
+- Loss function: `[nama]`
+- Target shape: `[shape]`
+
+## Config
+
+- Format: [YAML / argparse / hardcoded]
+- File utama: `[file]`
+- Hyperparameter kritis: [list]
+
+## DataLoader
+
+- File: `[file:line]`
+- Dataset yang dipakai: `[nama]`
+- Preprocessing: [1-2 kalimat]
+
+## Pertanyaan Terbuka
+
+- [ ] [pertanyaan yang belum terjawab saat membaca pertama]
+- [ ] ...
+
+## Modifikasi yang Direncanakan
+
+- [ ] [perubahan spesifik yang Anda inginkan]
+```
+
+---
+
+## C.13 Capstone Proposal One-Pager {#c13-capstone-proposal-one-pager}
+
+Template untuk W11 deliverable wajib. Isi semua bagian sebelum oral defense.
+
+```markdown
+# Capstone Proposal: [judul singkat]
+
+**Peneliti:** [nama]  
+**Tanggal:** [YYYY-MM-DD]  
+**Status:** [Draft / Final / Approved]
+
+## 1. Pertanyaan Penelitian
+
+[Satu kalimat falsifiable. Contoh: "Apakah X lebih baik dari Y pada Z, diukur dengan M, dengan delta minimal D?"]
+
+## 2. Baseline dan Intervention
+
+**Baseline:** [apa, dari mana, mengapa ini yang dipilih]  
+**Intervention:** [apa yang berbeda dari baseline]  
+**Relevansi:** [mengapa perubahan ini menjawab pertanyaan penelitian]
+
+## 3. Experiment Matrix
+
+| Run | Loss | Arch | Freeze | LR | Seed | Expected outcome |
+|---|---|---|---|---|---|---|
+| baseline | CE | ResNet | block1 | 3e-4 | 42,43,44 | F1 ~0.75 |
+| intervention | Focal | ... | ... | ... | ... | F1 >0.78? |
+
+## 4. Metrik Sukses dan Kegagalan
+
+**Dikonfirmasi jika:** [kondisi eksplisit]  
+**Disangkal jika:** [kondisi eksplisit]  
+**Metrik utama:** [nama + threshold]  
+**Metrik pengaman:** [yang tidak boleh memburuk]
+
+## 5. Feasibility dan Risiko
+
+- Data tersedia: Ya / Tidak / [catatan]
+- Compute estimate: [jumlah run × waktu per run × cost per jam]
+- Risiko utama: [list]
+- Fallback baseline: [jika rencana utama gagal]
+
+---
+Disetujui oleh: _____________  Tanggal: _____________
+```
+
+---
+
+## C.14 Per-Modality Ablation Protocol {#c14-per-modality-ablation-protocol}
+
+Template untuk W9 Lab 8 dan capstone multimodal. Copy ke `docs/ablation_protocol.md`.
+
+```markdown
+# Per-Modality Ablation Protocol
+
+**Experiment:** [nama]  
+**Modalities:** [list modality yang digunakan]
+
+## Ablation Conditions
+
+| ID | Image | Text | Sensor | Notes |
+|---|---|---|---|---|
+| full | Real | Real | Real | Baseline full model |
+| img_only | Real | MASKED | MASKED | Single-modal ceiling |
+| text_only | MASKED | Real | MASKED | Single-modal ceiling |
+| sensor_only | MASKED | MASKED | Real | Single-modal ceiling |
+| img+text | Real | Real | MASKED | Does sensor add value? |
+| img+sensor | Real | MASKED | Real | Does text add value? |
+| text+sensor | MASKED | Real | Real | Does image add value? |
+| rand_img | RANDOM | Real | Real | Ignored-modality check |
+| rand_text | Real | RANDOM | Real | Ignored-modality check |
+| rand_sensor | Real | Real | RANDOM | Ignored-modality check |
+
+## Masking Strategy
+
+- MASKED: [zero padding / null token / completely absent]
+- RANDOM: [Gaussian noise same shape / shuffled real data]
+
+## Results Table
+
+| Condition | Metric 1 | Metric 2 | vs Full |
+|---|---|---|---|
+| full | | | – |
+| img_only | | | |
+| ...| | | |
+
+## Diagnosis
+
+- Ignored modality found? [Yes/No]
+- Which modality ignored? [or "None confirmed"]
+- Evidence: [gradient norms / ablation delta]
+- Mitigation applied: [modality dropout / null token / none]
+```
+
+---
+
+## C.15 Lightweight Research Tools {#c15-lightweight-research-tools}
+
+Alat ringan yang berguna untuk riset sehari-hari, tidak perlu bab penuh.
+
+### Streamlit Demo Minimal
+
+```python
+import streamlit as st
+import torch
+from PIL import Image
+
+st.title("Model Inspection Demo")
+
+uploaded = st.file_uploader("Upload image", type=["png", "jpg"])
+if uploaded:
+    img = Image.open(uploaded)
+    st.image(img, caption="Input")
+
+    # model inference di sini
+    # ...
+
+    st.write("Prediction:", prediction)
+    st.write("Confidence:", confidence)
+    # Selalu tampilkan failure cases jika ada
+```
+
+Jalankan: `streamlit run demo/app.py`. Deploy: `streamlit cloud` (gratis untuk proyek publik).
+
+### Gradio Quick Annotation
+
+```python
+import gradio as gr
+
+def annotate(image):
+    # Return prediction + explanation
+    return "class_label", float(confidence)
+
+iface = gr.Interface(fn=annotate, inputs="image", outputs=["text", "number"])
+iface.launch()
+```
+
+### RunPod Quick Workflow
+
+```bash
+# Launch + SSH
+runpodctl create pod --gpuType "NVIDIA GeForce RTX 3080" --imageName "runpod/pytorch:latest"
+ssh -i key.pem root@[pod-ip]
+
+# Transfer checkpoint
+rsync -avz experiments/run1/ root@[pod-ip]:/workspace/
+
+# Monitor + pull result
+watch nvidia-smi
+rsync -avz root@[pod-ip]:/workspace/experiments/ experiments/remote/
+
+# WAJIB: matikan pod setelah selesai
+runpodctl remove pod [pod-id]
+```
+
+---
+
+## E. Indeks Cepat - Di Mana Mencari Apa {#e-indeks-cepat}
 
 - **Prasyarat Python/Kalkulus belum solid?** → Lampiran §F
 - **Self-checklist mingguan (apa yang harus saya bisa)?** → Lampiran §G
-- **Cara menulis pre-registration?** → Bab 9 §2.5 + Lampiran §C.1
-- **Cara memilih GPU cloud?** → Bab 8 §2.2, §2.6
-- **Matriks evaluasi tool baru?** → Bab 8 §2.1.1
-- **Rubrik penilaian?** → [Rubrik Penilaian](11_Rubrik_Penilaian.md)
-- **Panduan Dosen (pacing, emphasis, grading)?** → [Panduan Dosen](13_Panduan_Dosen.md)
+- **Cara menulis pre-registration?** → W11 + Lampiran §C.1
+- **Template Capstone Proposal?** → Lampiran §C.13
+- **Rubrik penilaian?** → [Rubrik Penilaian](13_Rubrik_Penilaian.md)
+- **Panduan Dosen (pacing, emphasis, grading)?** → [Panduan Dosen](15_Panduan_Dosen.md)
 - **Template laporan capstone?** → Lampiran §C.2
-- **Memilih template capstone?** → Bab 10 §2.2
-- **Membaca paper dalam tiga putaran?** → Bab 9 §2.2
-- **Audit data leakage?** → Bab 4 §2.3
-- **Etika data dan bias (fairness, negative results)?** → Bab 4 §2.6
-- **Struktur config YAML?** → Bab 3 §2.3
-- **Git workflow untuk riset (commit convention, branching)?** → Bab 3 §2.10
-- **Adopsi repo eksternal dalam beberapa jam?** → Bab 6 §2.1-§2.3
-- **Peer code review repo eksternal?** → Bab 6 Lab 6c
-- **Verifikasi output LLM?** → Bab 5 §2.3
-- **Komunikasi efektif dengan dosen pembimbing?** → Bab 2 §3.5
-- **Diagnosis loss curve (decision tree)?** → Bab 1b §2.5
+- **Memilih template capstone?** → [Capstone 3 Minggu](12_Capstone_3_Minggu.md) §2.2
+- **Membaca paper dalam tiga putaran (3-pass)?** → W10 §2.2
+- **Paper-to-code workflow?** → W10 §2.3
+- **Audit temporal leakage?** → W6 §0.6 + Lab 6
+- **Temporal leakage konkret?** → W6 §0.6
+- **Etika data dan bias (fairness, negative results)?** → W6 §2.6
+- **Struktur config YAML?** → W4 §2.7
+- **Git workflow untuk riset (commit convention, branching)?** → W4 §2.7 + old Bab 03 §2.10
+- **Adopsi repo eksternal?** → W7 §3
+- **Repo map template?** → Lampiran §C.12
+- **Verifikasi output LLM?** → W7 §2.1
+- **Synthesis rule sebelum eksekusi?** → W7 §2.2
+- **Komunikasi efektif dengan dosen pembimbing?** → W4 §3.5
+- **Diagnosis loss curve (decision tree)?** → W3 §2.5
+- **Three-level smoke test?** → W2 §2.3
+- **Output head + loss matching tabel?** → W1 §2.2
+- **Backpropagation derivasi manual?** → Lampiran §A.1
 - **Template entri portofolio mandiri?** → Lampiran §C.6
 - **Panduan presentasi Komponen Mandiri?** → Lampiran §C.7
 - **Template weekly experiment log ringan?** → Lampiran §C.10
 - **Template update mingguan ke PI/supervisor?** → Lampiran §C.11
 - **Format dan kriteria Komponen Mandiri?** → Lampiran §C.9
-- **Rubrik Eksplorasi Mandiri & Komunikasi?** → [Rubrik Penilaian](11_Rubrik_Penilaian.md) §3 Kompetensi 10
+- **Foundation model taxonomy (modality × family)?** → W8 §2.2
+- **Adaptation choice decision tree (frozen/LoRA/full FT)?** → W8 §2.4
+- **Per-modality ablation protocol?** → Lampiran §C.14
+- **Multimodal fusion strategies?** → W9 §2.1
+- **Missing modality strategies?** → W9 §2.3
+- **Capstone 3-week timeline?** → [Capstone 3 Minggu](12_Capstone_3_Minggu.md) §2.4
+- **Sub-rubrik capstone per fase (W12/W13/W14)?** → [Rubrik Penilaian](13_Rubrik_Penilaian.md) §5.1
+- **Lightweight research tools (Streamlit/Gradio/RunPod)?** → Lampiran §C.15
+
+---
+
+## H. Migrasi 14 → 11+3 Minggu {#h-migrasi}
+
+Panduan untuk mahasiswa yang pernah menggunakan modul versi 14 minggu, atau dosen yang mengadaptasi.
+
+| Bab Lama | Minggu Lama | Bab Baru | Minggu Baru | Perubahan utama |
+|---|---|---|---|---|
+| Bab 00 Pendahuluan | 1 | Bab 00 Pendahuluan | 1 | +Target Outcome, +Cross-Week Threads, +Session Rhythm |
+| Bab 01a Fondasi NN | 2 | 02 W2 Images CNN Smoke Test | 2 | Backprop dipindah ke Lampiran A.1; +Smoke Test Ritual section |
+| Bab 01b Loss/Opt/Eval | 3 | 03 W3 Loss Optimizer Evaluasi | 3 | +Galeri 5 loss curves opener (example-first) |
+| Bab 02 Ide ke Eksperimen | 4 | 04 W4 Reproducibility | 4 | +Experiment Matrix section; +Infrastruktur Reproduksibilitas; Bab 03 lama diinline |
+| Bab 03 Eksperimen Reproduksibel | 5-6 | 05 W5 Sequences RNN LSTM | 5 | Konten lama dipindah ke W4; konten sequence BARU; Lab 3b jadi mandatory |
+| Bab 04 Validasi Data | 7 | 06 W6 Representations Temporal Leakage | 6 | +Representasi recap; +Temporal Leakage concrete example; +Lab 6 temporal leakage |
+| Bab 05 AI Tools | 8 | (merge ke 07 W7) | 7 | Dimerge ke W7; AI tools protocol ringkas |
+| Bab 06 Adopsi Repo Riset | 9 | 07 W7 Text Transformers Repo Adoption | 7 | +Text/Transformer section; AI tools + repo adoption merge |
+| Bab 07 Alat Pendukung Ringan | 10 | (Lampiran C.15) | - | Streamlit/Gradio dipindah ke Lampiran C.15 |
+| Bab 08 Platform & Tool Baru | 11 | (note di W4 §2.8) | 4 | RunPod intro dipindah ke W4; detail di C.15 |
+| Bab 09 Pengembangan Mandiri | 12 | 10 W10 Paper Reading + 11 W11 Research Framing | 10-11 | Split jadi 2 bab; +paper-to-code; +5 Whys; +proposal defense |
+| Bab 10 Capstone 2 minggu | 13-14 | 12 Capstone 3 Minggu | 12-14 | Diperluas jadi 3 minggu dengan explicit W12/W13/W14 |
+| (tidak ada) | - | 08 W8 Foundation Models | 8 | BARU: taxonomy modality x family x adaptation |
+| (tidak ada) | - | 09 W9 Multimodal Reasoning | 9 | BARU: fusion, ablation, missing modality |
 
 ---
 

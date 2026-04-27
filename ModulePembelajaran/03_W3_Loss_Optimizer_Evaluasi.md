@@ -4,42 +4,76 @@
 | # | Modul | Minggu |
 |---|-------|--------|
 | 00 | [Pendahuluan](00_Pendahuluan.md) | 1 |
-| 01a | [Fondasi Neural Network](01a_Fondasi_Neural_Network.md) | 2 |
-| ▶ 01b | Loss, Optimizer & Evaluasi | 3 |
-| 02 | [Ide ke Eksperimen](02_Ide_Ke_Eksperimen.md) | 4 |
-| 03 | [Eksperimen Reproduksibel](03_Eksperimen_Reproduksibel.md) | 5–6 |
-| 04 | [Validasi Data](04_Validasi_Data.md) | 7 |
-| 05 | [AI Tools Sebagai Pendukung](05_AI_Tools_Sebagai_Pendukung.md) | 8 |
-| 06 | [Adopsi Repo Riset](06_Adopsi_Repo_Riset.md) | 9 |
-| 07 | [Alat Pendukung Ringan](07_Alat_Pendukung_Ringan.md) | 10 |
-| 08 | [Platform & Tool Baru](08_Platform_Dan_Tool_Baru.md) | 11 |
-| 09 | [Pengembangan Mandiri](09_Pengembangan_Mandiri.md) | 12 |
-| 10 | [Capstone Project](10_Capstone_Project.md) | 13–14 |
-| 11 | [Rubrik Penilaian](11_Rubrik_Penilaian.md) | – |
-| 13 | [Panduan Dosen](13_Panduan_Dosen.md) | – |
-| 12 | [Lampiran](12_Lampiran.md) | – |
+| 01 | [W1 - Tabular & Output Heads](01_W1_Tabular_Output_Heads.md) | 1 |
+| 02 | [W2 - Images, CNN & Smoke Test](02_W2_Images_CNN_Smoke_Test.md) | 2 |
+| ▶ 03 | W3 - Loss, Optimizer & Evaluasi | 3 |
+| 04 | [W4 - Reproducibility & Experiment Matrix](04_W4_Reproducibility_Experiment_Matrix.md) | 4 |
+| 05 | [W5 - Sequences: RNN & LSTM](05_W5_Sequences_RNN_LSTM.md) | 5 |
+| 06 | [W6 - Representations & Temporal Leakage](06_W6_Representations_Temporal_Leakage.md) | 6 |
+| 07 | [W7 - Text, Transformers & Repo Adoption](07_W7_Text_Transformers_Repo_Adoption.md) | 7 |
+| 08 | [W8 - Foundation Models](08_W8_Foundation_Models.md) | 8 |
+| 09 | [W9 - Multimodal Reasoning](09_W9_Multimodal_Reasoning.md) | 9 |
+| 10 | [W10 - Paper Reading & Implementation](10_W10_Paper_Reading.md) | 10 |
+| 11 | [W11 - Research Framing & Capstone Proposal](11_W11_Research_Framing.md) | 11 |
+| 12 | [Capstone 3 Minggu](12_Capstone_3_Minggu.md) | 12-14 |
+| 13 | [Rubrik Penilaian](13_Rubrik_Penilaian.md) | – |
+| 14 | [Lampiran](14_Lampiran.md) | – |
+| 15 | [Panduan Dosen](15_Panduan_Dosen.md) | – |
 
 </details>
 
 ---
 
-# 01b · Loss, Optimizer, dan Evaluasi
+# 03 · W3 - Loss, Optimizer & Evaluasi
 
 > *Training selesai, kurva loss muncul di layar. Inilah momen di mana banyak pemula berhenti karena tidak tahu harus membaca apa. Loss curve bukan sekadar "turun = bagus, naik = buruk" - ia adalah sinyal diagnostik yang bisa memberi tahu apa yang salah bahkan sebelum Anda memeriksa kode.*
+
+**Big Map row:** `(C, H, W) -> (N,)` (lanjutan W2, fokus workflow)
+**Rigor habit:** Change one thing at a time
+**Dataset:** CIFAR-10 (reuse dari W2)
+**Lab utama:** Lab 1 selesai + Lab 2 (`lab2_loss_freeze_ablation.ipynb`)
 
 ---
 
 ## 0. Peta Bab
 
-Bab ini (Minggu 3) menuntaskan fondasi sistem ML/DL:
+W3 adalah minggu example-first. Sebelum membaca teori tentang loss dan optimizer, Anda akan melihat lima run nyata dan diminta mengidentifikasi apa yang terjadi. Baru setelah itu kita tarik pola dan penjelasannya.
 
+- **1.5** Galeri Lima Run (sebelum teori)
 - **2.1** Loss sebagai pilihan - bukan bawaan default
 - **2.2** Optimizer dan weight decay
 - **2.3** Evaluasi: bukan satu angka
 - **2.4** Tiga strategi representasi fitur
-- **2.5** Diagnosis loss curve - capstone bab ini
+- **2.5** Diagnosis loss curve - capstone W3
 
-**Recap Minggu 2:** Anda sudah memahami pasangan tensor input → output, backpropagation MLP, empat keluarga arsitektur, dan peran normalisasi/aktivasi. Bab ini membangun di atasnya.
+**Recap W2:** Anda sudah memahami tensor I/O, empat keluarga arsitektur, dan three-level smoke test ritual. W3 membangun di atasnya.
+
+---
+
+## 1.5 Galeri Lima Run: Sebelum Membaca Teori
+
+Ini bukan soal. Ini latihan observasi.
+
+Perhatikan lima loss curve berikut (masing-masing menampilkan train loss dan val loss selama 20 epoch):
+
+**Run 1 - Healthy convergence:** Train loss dan val loss turun sejajar, keduanya mencapai angka rendah. Val sedikit di atas train - gap stabil.
+
+**Run 2 - Overfitting:** Train loss terus turun mulus, val loss turun sampai epoch 6 lalu naik perlahan. Divergensi makin lebar.
+
+**Run 3 - No learning:** Train loss tidak bergerak dari epoch pertama. Val juga stagnan. Kedua kurva datar.
+
+**Run 4 - Unstable training:** Train loss turun sampai epoch 12, lalu tiba-tiba meledak ke `NaN`. Val loss ikut hilang.
+
+**Run 5 - Noisy but improving:** Train loss turun tapi dengan noise besar (naik-turun tiap epoch). Val loss secara umum turun meski fluktuatif.
+
+**Pertanyaan untuk Anda:**
+
+- Run mana yang paling mengkhawatirkan? Kenapa?
+- Untuk Run 3, apa hipotesis pertama Anda?
+- Untuk Run 2, perubahan apa yang akan Anda coba pertama?
+- Run 5 - apakah ini masalah? Kapan noise di loss curve mulai menjadi masalah?
+
+Tuliskan jawaban singkat sebelum membaca bagian berikutnya. Kita akan kembali ke galeri ini di Section 2.5 dengan kerangka diagnosis lengkap.
 
 ---
 
@@ -178,7 +212,7 @@ Jika loss curve Anda tidak cocok dengan kelima pola di atas, jangan menebak. Kem
 
 ## 3. Worked Example: Evaluasi yang Jujur
 
-Setelah training SimpleCNN dari [01a](01a_Fondasi_Neural_Network.md), tiga pemeriksaan sebelum menulis angka di laporan:
+Setelah training SimpleCNN dari [W2](02_W2_Images_CNN_Smoke_Test.md), tiga pemeriksaan sebelum menulis angka di laporan:
 
 1. **Overfitting?** Bandingkan train accuracy dengan val accuracy. Selisih > 10% biasanya sinyal overfitting.
 2. **Akurasi per kelas.** Pada CIFAR-10, kelas `cat` vs `dog` biasanya lebih sulit. Confusion matrix menunjukkan pola kesalahan.
@@ -241,8 +275,8 @@ Pertanyaan yang dijawab setelah lab: Pada dataset terbatas (500 sampel per kelas
 
 ---
 
-## Lanjut ke Bab 02
+## Lanjut ke W4
 
-Anda sudah memiliki kerangka lengkap untuk memahami dan membangun sistem ML/DL dari tensor input sampai diagnosis loss curve. Bab 02 mengubah fokus dari *memahami sistem* menjadi *merancang eksperimen*: bagaimana menerjemahkan instruksi seperti "coba ubah loss ke focal, freeze conv1" menjadi rancangan konkret dengan variabel, baseline, hipotesis, dan metrik sukses.
+Anda sudah memiliki kerangka lengkap untuk memahami dan membangun sistem ML/DL dari tensor input sampai diagnosis loss curve. W4 mengubah fokus dari *memahami sistem* menjadi *merancang eksperimen yang reproduksibel*: YAML config, seed locking, run folder structure, dan experiment matrix.
 
-Buka [Bab 02 - Ide ke Eksperimen](02_Ide_Ke_Eksperimen.md) ketika siap.
+Buka [W4 - Reproducibility & Experiment Matrix](04_W4_Reproducibility_Experiment_Matrix.md) ketika siap.

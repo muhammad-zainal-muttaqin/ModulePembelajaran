@@ -4,26 +4,27 @@
 | # | Modul | Minggu |
 |---|-------|--------|
 | 00 | [Pendahuluan](00_Pendahuluan.md) | 1 |
-| 01a | [Fondasi Neural Network](01a_Fondasi_Neural_Network.md) | 2 |
-| 01b | [Loss, Optimizer & Evaluasi](01b_Loss_Optimizer_Evaluasi.md) | 3 |
-| 02 | [Ide ke Eksperimen](02_Ide_Ke_Eksperimen.md) | 4 |
-| 03 | [Eksperimen Reproduksibel](03_Eksperimen_Reproduksibel.md) | 5–6 |
-| 04 | [Validasi Data](04_Validasi_Data.md) | 7 |
-| 05 | [AI Tools Sebagai Pendukung](05_AI_Tools_Sebagai_Pendukung.md) | 8 |
-| 06 | [Adopsi Repo Riset](06_Adopsi_Repo_Riset.md) | 9 |
-| 07 | [Alat Pendukung Ringan](07_Alat_Pendukung_Ringan.md) | 10 |
-| 08 | [Platform & Tool Baru](08_Platform_Dan_Tool_Baru.md) | 11 |
-| 09 | [Pengembangan Mandiri](09_Pengembangan_Mandiri.md) | 12 |
-| 10 | [Capstone Project](10_Capstone_Project.md) | 13–14 |
-| 11 | [Rubrik Penilaian](11_Rubrik_Penilaian.md) | – |
-| ▶ 13 | Panduan Dosen | – |
-| 12 | [Lampiran](12_Lampiran.md) | – |
+| 01 | [W1 - Tabular & Output Heads](01_W1_Tabular_Output_Heads.md) | 1 |
+| 02 | [W2 - Images, CNN & Smoke Test](02_W2_Images_CNN_Smoke_Test.md) | 2 |
+| 03 | [W3 - Loss, Optimizer & Evaluasi](03_W3_Loss_Optimizer_Evaluasi.md) | 3 |
+| 04 | [W4 - Reproducibility & Experiment Matrix](04_W4_Reproducibility_Experiment_Matrix.md) | 4 |
+| 05 | [W5 - Sequences: RNN & LSTM](05_W5_Sequences_RNN_LSTM.md) | 5 |
+| 06 | [W6 - Representations & Temporal Leakage](06_W6_Representations_Temporal_Leakage.md) | 6 |
+| 07 | [W7 - Text, Transformers & Repo Adoption](07_W7_Text_Transformers_Repo_Adoption.md) | 7 |
+| 08 | [W8 - Foundation Models](08_W8_Foundation_Models.md) | 8 |
+| 09 | [W9 - Multimodal Reasoning](09_W9_Multimodal_Reasoning.md) | 9 |
+| 10 | [W10 - Paper Reading & Implementation](10_W10_Paper_Reading.md) | 10 |
+| 11 | [W11 - Research Framing & Capstone Proposal](11_W11_Research_Framing.md) | 11 |
+| 12 | [Capstone 3 Minggu](12_Capstone_3_Minggu.md) | 12-14 |
+| 13 | [Rubrik Penilaian](13_Rubrik_Penilaian.md) | – |
+| 14 | [Lampiran](14_Lampiran.md) | – |
+| ▶ 15 | Panduan Dosen | – |
 
 </details>
 
 ---
 
-# 13 · Panduan Dosen
+# 15 · Panduan Dosen
 
 > *Modul ini bukan buku teks yang dibacakan dari depan kelas. Ia adalah tangga eksperimen yang membutuhkan fasilitator - seseorang yang tahu kapan memberi ruang untuk gagal, kapan mengajukan pertanyaan yang lebih tajam, dan kapan mundur agar mahasiswa menemukan sendiri jawabannya.*
 
@@ -70,24 +71,28 @@ Anda tidak perlu menjelaskan isi bab. Mahasiswa sudah membacanya. Tugas Anda ada
 
 ---
 
-## 2. Pacing 14 Minggu
+## 2. Pacing 11 Minggu Bootcamp + 3 Minggu Capstone
 
 Tabel di bawah adalah panduan mingguan. "Checkpoint" adalah bukti minimal bahwa mahasiswa siap lanjut ke minggu berikutnya.
 
+Ritme sesi: 30 menit prior-week findings | 40 menit materi baru + demo | 10 menit rigor habit | 40 menit assignment walkthrough.
+
 | Minggu | Bab | Lab | Topik | Emphasis Dosen | Sikap Dominan | Checkpoint |
 | --- | --- | --- | --- | --- | --- | --- |
-| 1 | 00 | – | Orientasi & kontrak belajar | Tekankan kontrak belajar, breadth check, jalur cepat 10 minggu. Minta mahasiswa tanda tangan kontrak. Periksa setup template_repo di akhir sesi. | Curiosity | Kontrak ditandatangani; smoke test jalan di laptop |
-| 2 | 01a | Lab 1c | Fondasi neural network | Jangan lewatkan backprop 7-langkah manual. Pastikan tensor I/O dipahami sebagai pasangan shape→makna. Lab 1c (MLP numpy) wajib selesai minggu ini. | Curiosity | Lab 1c selesai; forward+backward numpy jalan |
-| 3 | 01b | Lab 1 | Loss, optimizer, evaluasi | Loss curve diagnosis adalah capstone bab ini. Beri waktu ekstra untuk Section 2.5. Tekankan: "overfit one batch" sebagai alat diagnosis utama. | Curiosity | 4 checklist Lab 1 tercentang; loss curve bisa dibaca |
-| 4 | 02 | Lab 2 | Menerjemahkan ide ke eksperimen | Wajibkan `protocol.md` sebelum kode. Periksa timestamp file. Diskusikan perbedaan hipotesis vs harapan. | Curiosity → Rigor | `protocol.md` ada; FocalLoss γ=0 = CE (parity check) |
-| 5–6 | 03 | Lab 3, 3b | Eksperimen reproduksibel | Dua minggu: minggu 5 infrastruktur (config YAML, seed, logging), minggu 6 breadth (Lab 3b RNN/LSTM). Git hash di checkpoint wajib. | Rigor | 6 run selesai; checkpoint bisa di-resume |
-| 7 | 04 | Lab 4 | Validasi data | Skeptisisme adalah bintang bab ini. Minta mahasiswa menemukan minimal satu isu nyata di data mereka. "Saya tidak menemukan masalah" bukan jawaban yang diterima. | Skepticism | `audit.md` selesai; minimal 1 isu data ditemukan |
-| 8 | 05 | Lab 5, 5b | AI tools sebagai pendukung | Fokus pada verifikasi, bukan kecepatan. Latihan: beri kode LLM yang sengaja mengandung bug halus, minta mahasiswa menemukannya. | Ownership | LLM interaction log terisi 3+ entri |
-| 9 | 06 | Lab 6, 6b | Adopsi repo riset | Lab 6b (Transformer) untuk breadth. Dorong mahasiswa menyentuh repo publik sungguhan, bukan hanya repo modul. | Ownership + Curiosity | Satu PR/issue ke repo publik; 1 error category analysis selesai |
-| 10 | 07 | Lab 7, 7b | Alat pendukung ringan | Lab 7b (Autoencoder) untuk breadth. Tekankan bahwa tool harus menunjukkan *failure case*, bukan hanya sukses. | Ownership | Demo Streamlit/Gradio online; link bisa diakses |
-| 11 | 08 | Lab 8 | Platform & tool baru | Prioritas: workflow sekali jalan (SSH tunnel → training → pull checkpoint → matikan pod). Drill mematikan pod. | Ownership + Curiosity | Pod sudah dimatikan; tagihan < $5 |
-| 12 | 09 | Lab 9 | Pengembangan mandiri | Fokus: pre-registration dan 3-pass reading. Minta mahasiswa membawa satu paper + annotation template ke kelas. | Integrasi empat sikap | Pre-registration di-commit; paper notes terisi |
-| 13–14 | 10 | Capstone | Capstone project | Minggu 13: cek template capstone sudah dipilih, data sudah diunduh. Minggu 14: demo + laporan. | Integrasi empat sikap | Laporan + repo + demo terkumpul |
+| 1 | 00 + 01 W1 | Lab 0 | Orientasi + tabular output heads | Tekankan kontrak belajar, target 60-70%, tiga thread cross-week. Minta tanda tangan kontrak. Mulai Lab 0 bersama. | Curiosity | Kontrak ditandatangani; Lab 0 smoke test jalan |
+| 2 | 02 W2 | Lab 1 | Images, CNN, smoke test ritual | Demo three-level smoke test secara live. Tunjukkan run yang berhasil vs gagal. Backprop diperkenalkan konseptual saja. | Curiosity | Smoke test 3-level selesai; SimpleCNN forward pass jalan |
+| 3 | 03 W3 | Lab 1 + Lab 2 | Loss, optimizer, galeri run | Mulai dari galeri 5 run - tanya diagnosis sebelum teori. Selesaikan Lab 1 (confusion matrix, error analysis). | Curiosity | Lab 1 checklist selesai; loss curve 5 pola bisa dibedakan |
+| 4 | 04 W4 | Lab 3 | Reproducibility + experiment matrix | Wajibkan experiment matrix sebelum kode. Periksa timestamp `protocol.md`. Drill: git hash di checkpoint. | Rigor | Matrix tertulis sebelum run; 3 seed baseline selesai |
+| 5 | 05 W5 | Lab 3b | Sequences RNN/LSTM | **Lab 3b wajib**. Tunjukkan gradient flow secara visual - jangan hanya ceritakan. Minta architecture justification statement. | Curiosity + Rigor | Lab 3b selesai; gradient plot ada; justification tertulis |
+| 6 | 06 W6 | Lab 6 baru | Representations + temporal leakage | Demo leakage yang menipu: tampilkan F1 tinggi lalu tunjukkan validasi tanpa temporal guard. Delta harus dramatis. | Skepticism | Lab 6 temporal leakage: delta leaky vs causal terdokumentasi |
+| 7 | 07 W7 | Lab 5b + Lab 6 | Text, transformers, repo adoption | 2×2 comparison frozen/fine-tune × [CLS]/mean-pool. Minta `repo_map.md` pertama. Synthesis note AI tools. | Ownership | repo_map.md terisi; 2×2 macro-F1 ada |
+| 8 | 08 W8 | Foundation Map | Foundation models taxonomy | Drill model card reading - 7 pertanyaan wajib. Dorong skeptisisme pada benchmark claims. | Skepticism + Ownership | Foundation model map 3-4 model + selection memo |
+| 9 | 09 W9 | Lab 8 | Multimodal + per-modality ablation | Tunjukkan ignored-modality problem secara empiris. "Hasil bagus" bukan cukup - ablation wajib. | Skepticism | 7 ablation conditions selesai; ignored-modality check done |
+| 10 | 10 W10 | Lab 9 | Paper reading + implementation | 3-pass method eksplisit. Minta mahasiswa membawa paper yang sudah di-skim ke kelas. Paper-to-code steps. | Rigor + Curiosity | Three-pass notes + core method terimplementasi |
+| 11 | 11 W11 | Proposal | Research framing + capstone proposal | **W11 adalah setup capstone**. 5 Whys drill. Oral defense 10-15 menit per mahasiswa. Sign off proposal sebelum W12. | Integrasi empat sikap | Proposal disetujui; pre-registration di-commit |
+| 12 | 12 Capstone | Capstone W12 | Scope, EDA, baseline reproducible | Cek: data tersedia? Baseline running? Leakage audit? Jangan biarkan mulai W13 tanpa baseline clean. | Rigor | `eda.md` + baseline 3-seed + git hash checkpoint |
+| 13 | 12 Capstone | Capstone W13 | Main experiment + ablation | Cek: intervention vs baseline adil? Ablation menjawab interpretasi? Baca draft interpretation. | Skepticism + Rigor | Comparison table + ablation + interpretation draft |
+| 14 | 12 Capstone | Capstone W14 | Analysis, report, demo, presentasi | Baca laporan: apakah limitasi dinyatakan jujur? Demo menampilkan failure case? Repo bisa di-clone? | Ownership | Laporan + repo + demo terkumpul |
 
 ### Catatan Pacing
 

@@ -1,37 +1,48 @@
-<details>
+﻿<details>
 <summary>📂 Navigasi Modul (klik untuk buka)</summary>
 
 | # | Modul | Minggu |
 |---|-------|--------|
 | 00 | [Pendahuluan](00_Pendahuluan.md) | 1 |
-| 01a | [Fondasi Neural Network](01a_Fondasi_Neural_Network.md) | 2 |
-| 01b | [Loss, Optimizer & Evaluasi](01b_Loss_Optimizer_Evaluasi.md) | 3 |
-| 02 | [Ide ke Eksperimen](02_Ide_Ke_Eksperimen.md) | 4 |
-| 03 | [Eksperimen Reproduksibel](03_Eksperimen_Reproduksibel.md) | 5–6 |
-| 04 | [Validasi Data](04_Validasi_Data.md) | 7 |
-| 05 | [AI Tools Sebagai Pendukung](05_AI_Tools_Sebagai_Pendukung.md) | 8 |
-| 06 | [Adopsi Repo Riset](06_Adopsi_Repo_Riset.md) | 9 |
-| 07 | [Alat Pendukung Ringan](07_Alat_Pendukung_Ringan.md) | 10 |
-| 08 | [Platform & Tool Baru](08_Platform_Dan_Tool_Baru.md) | 11 |
-| 09 | [Pengembangan Mandiri](09_Pengembangan_Mandiri.md) | 12 |
-| ▶ 10 | Capstone Project | 13–14 |
-| 11 | [Rubrik Penilaian](11_Rubrik_Penilaian.md) | – |
-| 13 | [Panduan Dosen](13_Panduan_Dosen.md) | – |
-| 12 | [Lampiran](12_Lampiran.md) | – |
+| 01 | [W1 - Tabular & Output Heads](01_W1_Tabular_Output_Heads.md) | 1 |
+| 02 | [W2 - Images, CNN & Smoke Test](02_W2_Images_CNN_Smoke_Test.md) | 2 |
+| 03 | [W3 - Loss, Optimizer & Evaluasi](03_W3_Loss_Optimizer_Evaluasi.md) | 3 |
+| 04 | [W4 - Reproducibility & Experiment Matrix](04_W4_Reproducibility_Experiment_Matrix.md) | 4 |
+| 05 | [W5 - Sequences: RNN & LSTM](05_W5_Sequences_RNN_LSTM.md) | 5 |
+| 06 | [W6 - Representations & Temporal Leakage](06_W6_Representations_Temporal_Leakage.md) | 6 |
+| 07 | [W7 - Text, Transformers & Repo Adoption](07_W7_Text_Transformers_Repo_Adoption.md) | 7 |
+| 08 | [W8 - Foundation Models](08_W8_Foundation_Models.md) | 8 |
+| 09 | [W9 - Multimodal Reasoning](09_W9_Multimodal_Reasoning.md) | 9 |
+| 10 | [W10 - Paper Reading & Implementation](10_W10_Paper_Reading.md) | 10 |
+| 11 | [W11 - Research Framing & Capstone Proposal](11_W11_Research_Framing.md) | 11 |
+| ▶ 12 | Capstone 3 Minggu | 12-14 |
+| 13 | [Rubrik Penilaian](13_Rubrik_Penilaian.md) | – |
+| 14 | [Lampiran](14_Lampiran.md) | – |
+| 15 | [Panduan Dosen](15_Panduan_Dosen.md) | – |
 
 </details>
 
 ---
 
-# 10 · Capstone Project
+# 12 · Capstone 3 Minggu
 
-> *Capstone bukan ujian terakhir - ia adalah pameran pertama. Empat minggu yang memaksa Anda merangkai ulang semua yang telah dipelajari menjadi satu cerita yang Anda pertanggungjawabkan dari awal hingga akhir.*
+> *Capstone bukan ujian terakhir - ia adalah pameran pertama. Tiga minggu yang memaksa Anda merangkai ulang semua yang telah dipelajari menjadi satu cerita yang Anda pertanggungjawabkan dari awal hingga akhir.*
+
+**Minggu:** 12-14 (W12: Scope, EDA, Baseline - W13: Main Experiment + Ablation - W14: Analysis, Report, Demo)
 
 ---
 
 ## 0. Peta Bab
 
-Bab ini memandu Anda menyusun proyek capstone 4 minggu yang mengintegrasikan minimal enam dari sembilan kompetensi modul dan memperlihatkan keempat sikap riset - *curiosity*, *rigor*, *skepticism*, *ownership* - dalam satu karya yang padat. Anda akan memilih satu dari lima template proyek yang telah diuji kompleksitasnya (tiga keluarga visi/teks supervised plus dua keluarga sequence dan representation learning), mengikuti timeline mingguan yang realistis, dan menghasilkan tiga *deliverable* yang dapat dievaluasi: repository lengkap, laporan 6-8 halaman, serta demo yang bisa diklik. Bab ini sekaligus menjelaskan kriteria penerimaan capstone, cara memetakan pekerjaanmu ke rubrik Bab 11, dan batasan sehat yang menjaga proyek tetap selesai tepat waktu alih-alih "hampir selesai" dengan kualitas yang meragukan.
+Bab ini memandu Anda menyusun proyek capstone 3 minggu yang mengintegrasikan minimal enam dari sembilan kompetensi modul. Anda sudah masuk dengan proposal yang disetujui dan pre-registration yang sudah di-commit dari W11. Capstone dimulai dari W12 dengan data inspection, bukan dengan memilih topik.
+
+> [!IMPORTANT]
+> Capstone dimulai dari proposal yang sudah disetujui dan pre-registration yang sudah di-commit di W11. Jika W11 deliverables belum selesai, selesaikan dulu sebelum W12.
+
+**Setiap minggu punya:**
+- **Questions to answer** - pertanyaan spesifik yang harus bisa Anda jawab di akhir minggu itu
+- **Required outputs** - artefak konkret yang harus ada
+- **Checkpoint** - 15 menit dengan dosen/PI untuk verifikasi progress
 
 ---
 
@@ -219,39 +230,72 @@ Gunakan tabel berikut sebagai self-check di akhir minggu ke-2: di mana saya berd
 
 Enam kompetensi adalah minimum untuk lulus. Tujuh-delapan untuk proficient; delapan-sembilan untuk masterpiece.
 
-### 2.4 Timeline Empat Minggu
+### 2.4 Timeline Tiga Minggu
 
-![Timeline capstone 4 minggu: EDA, baseline, ablation, demo, presentasi dan deliverable tiap pekan](./figures/fig10a_capstone_timeline.svg)
+Capstone adalah mini research cycle. Default yang sehat:
 
-**Minggu 1 - Fondasi.**
+- satu dataset
+- satu baseline
+- satu primary intervention
+- satu focused ablation
+- three-seed comparisons di mana feasible
 
-- Hari 1-2: pilih template atau ajukan proyek. Baca minimum 2 paper relevan.
-- Hari 3: tulis 5 Whys → pre-registration lengkap.
-- Hari 4-5: setup repo (fork template_repo), EDA dataset, audit leakage awal.
-- Deliverable minggu: `docs/prereg.md`, `docs/eda.md`, repo commit pertama.
+**W12 - Scope, EDA, Baseline, Reproducible Setup**
 
-**Minggu 2 - Baseline.**
+*Questions to answer by end of W12:*
+- Apa tugas yang tepat secara eksplisit?
+- Apa baseline, dan apakah sudah bisa run?
+- Metrik apa yang paling penting?
+- Apa yang akan dihitung sebagai konfirmasi atau kegagalan hipotesis?
 
-- Hari 6-7: jalankan baseline; verifikasi sanity (loss turun, akurasi naik dari chance level).
-- Hari 8-9: tulis training dengan config + seeds + logging; jalankan 3 seed baseline.
-- Hari 10: review - apakah baseline cukup keras? Apakah pre-reg masih masuk akal?
-- Deliverable minggu: baseline results tabulated, TensorBoard logs, commit hash terdaftar per eksperimen.
+*Kegiatan:*
+- Hari 1: Fork template_repo, verifikasi pre-registration dari W11 ada di-commit.
+- Hari 2-3: EDA dataset - distribusi kelas, sample inspection, leakage audit.
+- Hari 4-5: Setup baseline, smoke test, jalankan pertama kali. 3 seed baseline.
 
-**Minggu 3 - Eksperimen Utama.**
+*Required outputs:*
+- `prereg.md` (dari W11, sudah di-commit sebelum mulai)
+- `eda.md` - temuan EDA, audit leakage, preprocessing decisions
+- Baseline config YAML + first reproducible run
+- Checkpoint dengan git hash tercatat
 
-- Hari 11-12: implementasi intervensi (metode yang diuji). Unit test kecil bila ada komponen baru.
-- Hari 13-14: jalankan eksperimen utama; error analysis awal.
-- Hari 15: ablasi tambahan yang dibutuhkan jujur menjawab pertanyaan.
-- Deliverable minggu: `experiments/` lengkap dengan results.csv, ablation.csv, plots.
+**W13 - Main Experiment & Focused Ablation**
 
-**Minggu 4 - Sintesis & Polish.**
+*Questions to answer by end of W13:*
+- Apakah intervention membantu?
+- Seberapa besar efeknya, dan apakah signifikan?
+- Apa penjelasan paling plausibel?
 
-- Hari 16-17: demo (Streamlit/Gradio), polish plot, deep dive error analysis.
-- Hari 18-19: tulis laporan 6-8 halaman.
-- Hari 20: baca ulang laporan; polish README repo agar orang bisa clone-and-run.
-- Deliverable minggu: laporan, demo live, repo final dengan tag `v1.0`.
+*Kegiatan:*
+- Hari 1-2: Implementasikan main intervention. Unit test komponen baru.
+- Hari 3-4: Jalankan main experiment (baseline vs intervention, 3 seed masing-masing).
+- Hari 5: Satu focused ablation yang membantu interpretasi. Error analysis draft.
 
-Setiap minggu lulusi *checkpoint*: 15 menit dengan pembimbing - tunjukkan apa yang dijanjikan minggu itu. Jika terlambat, pangkas skope, jangan tambahkan waktu. Proyek yang terlambat 40% hampir selalu gagal; proyek yang dipangkas skope-nya dari minggu ke-2 sering masih sukses.
+*Required outputs:*
+- Baseline vs intervention comparison (tabel angka)
+- Satu ablation atau representasi comparison
+- Loss curves, metrik, dan draft interpretasi
+- `results.csv` dengan semua run
+
+**W14 - Analysis, Report, Demo, Presentation**
+
+*Questions to answer by end of W14:*
+- Apa yang dipelajari?
+- Apa yang tidak berhasil?
+- Apa eksperimen berikutnya jika proyek dilanjutkan?
+
+*Kegiatan:*
+- Hari 1-2: Deep dive error analysis, finalisasi interpretasi. Demo (Streamlit/Gradio).
+- Hari 3-4: Tulis laporan 6-8 halaman. README repo dipoles.
+- Hari 5: Persiapan presentasi final. Tag repo `v1.0`.
+
+*Required outputs:*
+- Final report (6-8 halaman)
+- Reproducible repo (clone-and-run)
+- Demo (jika task memungkinkan)
+- Presentasi final
+
+Setiap minggu: **checkpoint 15 menit** dengan dosen/PI. Tunjukkan required outputs minggu itu. Jika terlambat: pangkas scope, jangan tambah waktu. Proyek yang dipangkas di minggu kedua masih bisa sukses; proyek yang "hampir selesai" di minggu keempat hampir selalu kecewa.
 
 ### 2.5 Tiga Deliverable
 
@@ -293,7 +337,7 @@ Struktur yang direkomendasikan:
 7. **Conclusion + Future Work** - satu paragraf masing-masing.
 8. **References** - format konsisten (APA atau IEEE).
 
-Template tersedia di `12_Lampiran.md`. Gunakan LaTeX atau Markdown → PDF; hindari Word untuk proyek ini (versi-kontrol lebih mudah dengan teks).
+Template tersedia di `14_Lampiran.md`. Gunakan LaTeX atau Markdown → PDF; hindari Word untuk proyek ini (versi-kontrol lebih mudah dengan teks).
 
 **Deliverable 3 - Demo.**
 

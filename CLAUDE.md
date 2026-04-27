@@ -4,20 +4,29 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Tujuan Proyek
 
-Modul pembelajaran semester 14-minggu untuk mahasiswa S1 (semester 4–6) yang menjadi **asisten dosen riset ML/DL**. Fokus bukan pada framework, tetapi pada empat sikap riset: **Curiosity, Rigor, Skepticism, Ownership**. Referensi utama: `EXPECTED_OUTCOME.txt` (9 outcome), `TODO.txt` (konteks dan pesan dosen).
+Modul pembelajaran **11 minggu bootcamp + 3 minggu capstone** untuk mahasiswa S1 (semester 4–6) yang menjadi **asisten dosen riset ML/DL**. Target outcome: 60-70% siap untuk topik lab nyata. Fokus bukan pada framework, tetapi pada empat sikap riset: **Curiosity, Rigor, Skepticism, Ownership**. Referensi utama: `EXPECTED_OUTCOME.txt` (9 outcome), `TODO.txt` (konteks dan pesan dosen).
 
-## Struktur Konten
+## Struktur Konten (Post-Revisi April 2026)
 
 ```
 ModulePembelajaran/
-├── 00_Pendahuluan.md
-├── 01a_Fondasi_Neural_Network.md   Tensor I/O, MLP backprop, 4 keluarga arsitektur, layer (Minggu 2)
-├── 01b_Loss_Optimizer_Evaluasi.md  Loss, optimizer, evaluasi, representasi, diagnosis (Minggu 3)
-├── 02–09_*.md          Bab lanjutan (Minggu 4-12)
-├── 10_Capstone_Project.md
-├── 11_Rubrik_Penilaian.md   4-level mastery (novice/developing/proficient/masterpiece)
-├── 12_Lampiran.md           Glosarium ID↔EN, checklist, template (termasuk C.9 Template Komponen Mandiri)
-└── template_repo/           Skeleton repo riset yang di-fork mahasiswa
+├── 00_Pendahuluan.md              Intro + target outcome + cross-week threads + session rhythm
+├── 01_W1_Tabular_Output_Heads.md  MLP as shape transformer, output head + loss matching (W1)
+├── 02_W2_Images_CNN_Smoke_Test.md Tensor citra, CNN, three-level smoke test ritual (W2)
+├── 03_W3_Loss_Optimizer_Evaluasi.md Example-first: galeri 5 run → loss/opt/eval theory (W3)
+├── 04_W4_Reproducibility_Experiment_Matrix.md Experiment matrix + YAML/seed/checkpoint (W4)
+├── 05_W5_Sequences_RNN_LSTM.md    RNN vs LSTM, gradient flow, Lab 3b mandatory (W5)
+├── 06_W6_Representations_Temporal_Leakage.md Representasi recap + temporal leakage demo (W6)
+├── 07_W7_Text_Transformers_Repo_Adoption.md Text, transformers, AI tools, repo adoption (W7)
+├── 08_W8_Foundation_Models.md     Taxonomy modality×family×adaptation (W8) [NEW]
+├── 09_W9_Multimodal_Reasoning.md  Fusion, per-modality ablation, missing modality (W9) [NEW]
+├── 10_W10_Paper_Reading.md        3-pass paper reading + paper-to-code workflow (W10)
+├── 11_W11_Research_Framing.md     5-Whys, capstone proposal, oral defense (W11) [NEW]
+├── 12_Capstone_3_Minggu.md        W12 EDA+baseline / W13 experiment / W14 analysis (W12-14)
+├── 13_Rubrik_Penilaian.md         4-level mastery + sub-rubrik per capstone phase
+├── 14_Lampiran.md                 Glosarium + Lampiran A.1 backprop + C.12-C.15 + H migration
+├── 15_Panduan_Dosen.md            Pacing 11+3 + emphasis per-week + skenario kelas
+└── template_repo/                 Skeleton repo riset
 ```
 
 **File sumber catatan (sudah terintegrasi; file asli disimpan sebagai referensi):**

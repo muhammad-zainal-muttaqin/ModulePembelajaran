@@ -4,26 +4,27 @@
 | # | Modul | Minggu |
 |---|-------|--------|
 | 00 | [Pendahuluan](00_Pendahuluan.md) | 1 |
-| 01a | [Fondasi Neural Network](01a_Fondasi_Neural_Network.md) | 2 |
-| 01b | [Loss, Optimizer & Evaluasi](01b_Loss_Optimizer_Evaluasi.md) | 3 |
-| 02 | [Ide ke Eksperimen](02_Ide_Ke_Eksperimen.md) | 4 |
-| 03 | [Eksperimen Reproduksibel](03_Eksperimen_Reproduksibel.md) | 5–6 |
-| 04 | [Validasi Data](04_Validasi_Data.md) | 7 |
-| 05 | [AI Tools Sebagai Pendukung](05_AI_Tools_Sebagai_Pendukung.md) | 8 |
-| 06 | [Adopsi Repo Riset](06_Adopsi_Repo_Riset.md) | 9 |
-| 07 | [Alat Pendukung Ringan](07_Alat_Pendukung_Ringan.md) | 10 |
-| 08 | [Platform & Tool Baru](08_Platform_Dan_Tool_Baru.md) | 11 |
-| 09 | [Pengembangan Mandiri](09_Pengembangan_Mandiri.md) | 12 |
-| 10 | [Capstone Project](10_Capstone_Project.md) | 13–14 |
-| ▶ 11 | Rubrik Penilaian | – |
-| 13 | [Panduan Dosen](13_Panduan_Dosen.md) | – |
-| 12 | [Lampiran](12_Lampiran.md) | – |
+| 01 | [W1 - Tabular & Output Heads](01_W1_Tabular_Output_Heads.md) | 1 |
+| 02 | [W2 - Images, CNN & Smoke Test](02_W2_Images_CNN_Smoke_Test.md) | 2 |
+| 03 | [W3 - Loss, Optimizer & Evaluasi](03_W3_Loss_Optimizer_Evaluasi.md) | 3 |
+| 04 | [W4 - Reproducibility & Experiment Matrix](04_W4_Reproducibility_Experiment_Matrix.md) | 4 |
+| 05 | [W5 - Sequences: RNN & LSTM](05_W5_Sequences_RNN_LSTM.md) | 5 |
+| 06 | [W6 - Representations & Temporal Leakage](06_W6_Representations_Temporal_Leakage.md) | 6 |
+| 07 | [W7 - Text, Transformers & Repo Adoption](07_W7_Text_Transformers_Repo_Adoption.md) | 7 |
+| 08 | [W8 - Foundation Models](08_W8_Foundation_Models.md) | 8 |
+| 09 | [W9 - Multimodal Reasoning](09_W9_Multimodal_Reasoning.md) | 9 |
+| 10 | [W10 - Paper Reading & Implementation](10_W10_Paper_Reading.md) | 10 |
+| 11 | [W11 - Research Framing & Capstone Proposal](11_W11_Research_Framing.md) | 11 |
+| 12 | [Capstone 3 Minggu](12_Capstone_3_Minggu.md) | 12-14 |
+| ▶ 13 | Rubrik Penilaian | – |
+| 14 | [Lampiran](14_Lampiran.md) | – |
+| 15 | [Panduan Dosen](15_Panduan_Dosen.md) | – |
 
 </details>
 
 ---
 
-# 11 · Rubrik Penilaian
+# 13 · Rubrik Penilaian
 
 > *Rubrik yang baik bukan alat menghakimi, melainkan cermin yang memantulkan arah. Tiap level menggambarkan kebiasaan yang dapat diamati - bukan nilai yang harus dicapai dengan cara apapun.*
 
@@ -225,6 +226,34 @@ Capstone menilai **integrasi** kompetensi dan penerapan sikap riset pada proyek 
 
 Level capstone berkontribusi 10% ke nilai akhir dengan pemetaan yang sama (Novice = 50, Developing = 70, Proficient = 85, Masterpiece = 95), dirata-rata lintas lima dimensi.
 
+### 5.1 Sub-Rubrik Per Fase Capstone (3 Minggu)
+
+Penilaian capstone didistribusi ke tiga fase untuk memastikan feedback diberikan selama proses, bukan hanya di akhir.
+
+**W12 - Setup Phase (30% dari nilai capstone)**
+
+| Kriteria | Novice | Developing | Proficient | Masterpiece |
+|---|---|---|---|---|
+| **EDA dan audit** | Dataset dipakai tanpa inspeksi | EDA dasar; 1 isu ditemukan | EDA 3 lapis + leakage audit + preprocessing decisions documented | Menemukan isu yang mengubah scope proyek |
+| **Baseline berjalan** | Baseline ada tapi tidak reproducible | Baseline jalan dengan 1 seed | Baseline dengan 3 seed + YAML config + git hash | Baseline dengan CI sederhana atau smoke test |
+| **Pre-registration** | Tidak ada atau dibuat setelah training | Ada tapi generik, tanpa kondisi kegagalan | Hipotesis falsifiable dengan kondisi kegagalan eksplisit | Pre-reg merencanakan fallback jika primary gagal |
+
+**W13 - Execution Phase (40% dari nilai capstone)**
+
+| Kriteria | Novice | Developing | Proficient | Masterpiece |
+|---|---|---|---|---|
+| **Main experiment** | Training berjalan; tidak ada perbandingan adil | Baseline vs intervention; 1 seed | Baseline vs intervention; 3 seed; tabel angka | Per-seed variance dilaporkan; uji signifikansi |
+| **Focused ablation** | Tidak ada ablation | 1 ablation ad hoc | 1 ablation yang langsung menjawab interpretasi | Ablation mengisolasi penyebab, bukan hanya variasi |
+| **Interpretation draft** | Tidak ada interpretasi | "Model A lebih baik dari B" tanpa penjelasan | Interpretasi dikaitkan ke hipotesis dan kondisi eksperimen | Interpretation membedakan apa yang terbukti vs spekulasi |
+
+**W14 - Communication Phase (30% dari nilai capstone)**
+
+| Kriteria | Novice | Developing | Proficient | Masterpiece |
+|---|---|---|---|---|
+| **Laporan** | Deskriptif saja | Struktur latar-metode-hasil-diskusi | Narasi runtut; limitasi dinyatakan; grafik terpilih dengan alasan | Dapat dibaca peneliti lain dalam 30 menit tanpa penjelasan tambahan |
+| **Repo reproducibility** | Kode ada tapi sulit dijalankan | README ada; dependencies tercatat | Satu perintah reproduce hasil utama | Smoke test berjalan; environment terkunci |
+| **Demo** | Tidak ada demo | Demo jalan tapi hanya sukses cases | Demo menampilkan failure cases dan confidence distribution | Demo informatif untuk pengguna non-teknis |
+
 ---
 
 ## 6. Prinsip Penilaian
@@ -243,4 +272,4 @@ Tiga prinsip menjaga rubrik tetap adil dan konsisten.
 
 Rubrik ini bukan kejutan di akhir semester. Setiap awal bab, Anda akan tahu kompetensi apa yang sedang dilatih dan level mana yang wajar dicapai pada minggu itu. Jika Anda merasa tertinggal, bicarakan dengan dosen pada titik tinjauan terdekat - lebih cepat selalu lebih baik daripada menunggu akhir semester.
 
-Baca `10_Capstone_Project.md` di akhir modul untuk memahami bagaimana seluruh kompetensi akan diuji secara terintegrasi.
+Baca `12_Capstone_3_Minggu.md` di akhir modul untuk memahami bagaimana seluruh kompetensi akan diuji secara terintegrasi dalam tiga fase.

@@ -1,37 +1,50 @@
-<details>
+﻿<details>
 <summary>📂 Navigasi Modul (klik untuk buka)</summary>
 
 | # | Modul | Minggu |
 |---|-------|--------|
 | 00 | [Pendahuluan](00_Pendahuluan.md) | 1 |
-| 01a | [Fondasi Neural Network](01a_Fondasi_Neural_Network.md) | 2 |
-| 01b | [Loss, Optimizer & Evaluasi](01b_Loss_Optimizer_Evaluasi.md) | 3 |
-| 02 | [Ide ke Eksperimen](02_Ide_Ke_Eksperimen.md) | 4 |
-| 03 | [Eksperimen Reproduksibel](03_Eksperimen_Reproduksibel.md) | 5–6 |
-| 04 | [Validasi Data](04_Validasi_Data.md) | 7 |
-| 05 | [AI Tools Sebagai Pendukung](05_AI_Tools_Sebagai_Pendukung.md) | 8 |
-| 06 | [Adopsi Repo Riset](06_Adopsi_Repo_Riset.md) | 9 |
-| 07 | [Alat Pendukung Ringan](07_Alat_Pendukung_Ringan.md) | 10 |
-| 08 | [Platform & Tool Baru](08_Platform_Dan_Tool_Baru.md) | 11 |
-| ▶ 09 | Pengembangan Mandiri | 12 |
-| 10 | [Capstone Project](10_Capstone_Project.md) | 13–14 |
-| 11 | [Rubrik Penilaian](11_Rubrik_Penilaian.md) | – |
-| 13 | [Panduan Dosen](13_Panduan_Dosen.md) | – |
-| 12 | [Lampiran](12_Lampiran.md) | – |
+| 01 | [W1 - Tabular & Output Heads](01_W1_Tabular_Output_Heads.md) | 1 |
+| 02 | [W2 - Images, CNN & Smoke Test](02_W2_Images_CNN_Smoke_Test.md) | 2 |
+| 03 | [W3 - Loss, Optimizer & Evaluasi](03_W3_Loss_Optimizer_Evaluasi.md) | 3 |
+| 04 | [W4 - Reproducibility & Experiment Matrix](04_W4_Reproducibility_Experiment_Matrix.md) | 4 |
+| 05 | [W5 - Sequences: RNN & LSTM](05_W5_Sequences_RNN_LSTM.md) | 5 |
+| 06 | [W6 - Representations & Temporal Leakage](06_W6_Representations_Temporal_Leakage.md) | 6 |
+| 07 | [W7 - Text, Transformers & Repo Adoption](07_W7_Text_Transformers_Repo_Adoption.md) | 7 |
+| 08 | [W8 - Foundation Models](08_W8_Foundation_Models.md) | 8 |
+| 09 | [W9 - Multimodal Reasoning](09_W9_Multimodal_Reasoning.md) | 9 |
+| ▶ 10 | W10 - Paper Reading & Implementation | 10 |
+| 11 | [W11 - Research Framing & Capstone Proposal](11_W11_Research_Framing.md) | 11 |
+| 12 | [Capstone 3 Minggu](12_Capstone_3_Minggu.md) | 12-14 |
+| 13 | [Rubrik Penilaian](13_Rubrik_Penilaian.md) | – |
+| 14 | [Lampiran](14_Lampiran.md) | – |
+| 15 | [Panduan Dosen](15_Panduan_Dosen.md) | – |
 
 </details>
 
 ---
 
-# 09 · Pengembangan Diri Berkelanjutan
+# 10 · W10 - Paper Reading & Paper Implementation
 
-> *Riset tidak berakhir ketika semester selesai, dan tidak ada dosen yang akan selamanya memberimu daftar topik. Keterampilan belajar mandiri - memilih paper, memformulasikan pertanyaan, merancang eksperimen dari nol, dan menguji pemikiran sendiri - adalah yang memisahkan peneliti pemula dari peneliti yang terus berkembang.*
+> *Riset tidak berakhir ketika semester selesai. Keterampilan membaca paper secara terstruktur dan menerjemahkannya menjadi kode yang bisa dijalankan adalah yang memisahkan peneliti pemula dari peneliti yang terus berkembang.*
+
+**Big Map row:** sintesis melalui research artifacts
+**Rigor habit:** Three-pass paper reading dan paper-to-code translation
+**Lab utama:** Lab 9 - Paper Implementation (`lab9_paper_implementation.ipynb`)
 
 ---
 
 ## 0. Peta Bab
 
-Bab ini melatih Anda untuk bergerak dari peran "mahasiswa yang mengerjakan tugas" menjadi "peneliti yang mengusulkan arah". Anda akan belajar cara memilih paper yang layak dibaca di tengah banjir publikasi arXiv, cara membaca paper dalam tiga putaran yang masing-masing punya tujuan berbeda, teknik *5 Whys* untuk menggali motivasi di balik pertanyaan penelitian, dan pola *pre-registration* ringan yang memaksa Anda merencanakan sebelum menjalankan. Bab ini mengintegrasikan keempat sikap riset - *curiosity* untuk mencari, *rigor* untuk merencanakan, *skepticism* untuk menilai, *ownership* untuk mengeksekusi - sebagai satu disiplin harian, bukan empat kompartemen terpisah. Bab ini juga memuat **peta keluarga model generatif** (VAE, GAN, Diffusion, Normalizing Flow) agar Anda punya vocab untuk membaca paper generatif, meskipun modul tidak men-*cover* keluarga ini secara hands-on. Setelah bab ini, Anda punya rutinitas mingguan yang dapat Anda pertahankan sendiri setelah kelas berakhir, dan templat pre-registration yang dapat Anda pakai untuk setiap eksperimen di masa depan.
+W10 fokus pada dua skill yang sering diasumsikan ada tapi jarang diajarkan eksplisit:
+
+- **2.1** Kurasi paper: dari banjir ke aliran kecil
+- **2.2** Three-pass paper reading method (Keshav 2007) - eksplisit dengan template
+- **2.3** Paper-to-code translation workflow - 6 langkah dari abstract ke minimal runnable
+- **2.4** Menjalankan satu ablation kecil untuk memahami kontribusi paper
+- **2.5** Peta keluarga model generatif (vocab reference)
+
+Setelah W10, Anda bisa mengambil paper dari arXiv, membacanya secara terstruktur, dan menjalankan implementasi core method-nya dalam satu minggu.
 
 ---
 
@@ -267,33 +280,68 @@ Rani telah menjadi peneliti aktif. Dalam satu minggu - tanpa pembimbing memberi 
 
 ---
 
-## 5. Lab Hands-on
+### 2.3 Paper-to-Code Translation Workflow
 
-**Lab 9 - Paper to Experiment.** Kerjakan notebook [Lab 9 - Paper to Experiment](template_repo/notebooks/lab9_paper_to_experiment.ipynb). Target:
+Enam langkah dari abstrak paper ke kode minimal yang bisa dijalankan:
 
-1. Pilih satu paper dari tiga hari terakhir di arXiv dalam bidang yang menarik (kriteria: kode tersedia atau metode sederhana untuk ditiru dari pseudocode).
-2. Baca putaran 1 + 2; tulis catatan lengkap dalam format yang diajarkan (TL;DR, metode, bukti, pertanyaan, relevansi).
-3. Terapkan 5 Whys: turunkan dari minat umum ke satu pertanyaan spesifik yang dapat diuji dengan template repo Anda (CIFAR-10 atau PathMNIST).
-4. Tulis pre-registration lengkap (5 bagian) sebelum menjalankan kode apapun.
-5. Eksekusi eksperimen mini. Bolehkan diri sendiri mengeksekusi paling lama 3 jam training.
-6. Tulis *experiment report* satu halaman: hipotesis, protokol aktual, hasil, perbandingan dengan pre-reg, deviasi (bila ada), pertanyaan berikutnya.
-7. Refleksi: apa yang sulit di bagian mana? Di mana Anda tergoda menyimpang dari pre-reg?
+1. **Identifikasi core contribution.** Apa satu inovasi terpenting paper ini? Bukan seluruh arsitektur - satu komponen kunci. Tulis dalam satu kalimat.
+2. **Temukan input/output shape.** Apa tensor yang masuk ke metode baru, dan apa yang keluar? Bila tidak eksplisit di paper, cek pseudocode atau codebase.
+3. **Pisahkan essential dari engineering detail.** Banyak paper punya banyak trick tambahan. Identifikasi mana yang essential untuk core contribution, mana yang optimisasi sekunder.
+4. **Build minimal runnable version.** Implementasikan hanya core contribution pada dataset kecil/toy. Smoke test dulu.
+5. **Verify parity check.** Apakah ada angka di paper yang bisa direproduksi dengan implementasi Anda pada konfigurasi yang sama? Jika paper punya official code, bandingkan.
+6. **Satu ablation.** Hapus atau modifikasi satu komponen core contribution. Apakah performa drop seperti yang diklaim paper?
 
-**Checklist verifikasi:**
-- [ ] `docs/papers/<paper>.md` ada, lima bagian terisi substantif (bukan satu kalimat per bagian).
-- [ ] `docs/preregs/<experiment>.md` ada, tanggal lebih tua dari commit pertama kode eksperimen.
-- [ ] `docs/experiments/<experiment>_report.md` ada, eksplisit menyebut deviasi dari pre-reg bila ada.
-- [ ] Hipotesis asli *falsifiable* - tercatat kondisi kegagalan.
-- [ ] Tiga seed minimum di hasil.
-- [ ] Pertanyaan berikutnya tercatat di jurnal pribadi (`docs/journal.md`).
+> [!TIP]
+> Paper sering menyembunyikan detail penting di appendix atau code repository. Selalu cek keduanya. Juga perhatikan "implementation details" section - sering ada hyperparameter kritis yang tidak ada di main text.
 
-Target waktu: 6-8 jam sepanjang satu minggu (paper: 1 jam; 5-Whys + pre-reg: 1 jam; eksperimen: 3 jam; laporan + refleksi: 1-2 jam).
+---
+
+## 5. Lab 9 - Paper Implementation
+
+Buka `template_repo/notebooks/lab9_paper_implementation.ipynb`.
+
+**Menu Paper (pilih satu):**
+- Paper A: Focal Loss (Lin et al., 2017) - implementasi dari scratch pada CIFAR-10.
+- Paper B: DropBlock (Ghiasi et al., 2018) - structured dropout untuk CNN.
+- Paper C: Satu paper dari area riset Anda sendiri (konsultasikan dengan dosen).
+
+**Tugas:**
+
+1. Three-pass read - tulis catatan dengan template §2.2.
+2. Paper-to-code translation steps 1-6 dari §2.3.
+3. Implementasi core method dalam `src/` atau notebook.
+4. Smoke test pada dataset kecil.
+5. Parity check: apakah angka utama paper bisa direproduksi?
+6. Satu ablation: hapus atau modifikasi satu komponen.
+7. Tulis `experiment_report.md`: apa yang lebih sulit dari yang tampak di paper?
+
+**Checklist:**
+- [ ] Three-pass notes tersimpan di `docs/papers/`.
+- [ ] Core method terimplementasi dan smoke test lulus.
+- [ ] Satu angka dari paper terproduksi (atau selisih < 2% dengan alasan).
+- [ ] Ablation menunjukkan dampak core contribution.
+- [ ] `experiment_report.md` mencatat "apa yang lebih sulit dari yang tampak".
+
+Target waktu: 6-8 jam.
+
+---
+
+## Komponen Mandiri (W10)
+
+Format: [Lampiran C.9](14_Lampiran.md#c9-template-komponen-mandiri).
+
+| Jalur | Tugas |
+|---|---|
+| **Implementasi** | Implementasikan satu teknik pendukung dari paper Lab 9 yang belum ada di template_repo. |
+| **Analisis** | Pilih satu paper dengan klaim "terlalu bagus". Analisis kritis 1 halaman: klaim apa, bukti apa, apa yang tidak ditunjukkan. |
+| **Desain** | Pre-registration untuk ide riset dari pengalaman Anda sendiri sepanjang semester. |
+| **Arsitektur Baru** | Implementasikan satu paper tentang arsitektur yang belum dibahas di modul (mis. ResNeXt, MobileNet, DETR). |
 
 ---
 
 ## Komponen Mandiri (Pekan 12)
 
-Konsep: membaca paper secara terarah, merumuskan pertanyaan falsifiable, merancang eksperimen lanjutan. Ini entri portofolio terakhir - setelah mengisinya, kerjakan juga sel "Refleksi Portofolio" di notebook: lihat kembali semua 8 entri dan tuliskan satu paragraf trajektori belajar. Di awal Pekan 13, presentasi diperpanjang - tampilkan *highlight* portofolio, bukan hanya Pekan 12. Format dan kriteria: [Lampiran C.9](12_Lampiran.md#c9-template-komponen-mandiri).
+Konsep: membaca paper secara terarah, merumuskan pertanyaan falsifiable, merancang eksperimen lanjutan. Ini entri portofolio terakhir - setelah mengisinya, kerjakan juga sel "Refleksi Portofolio" di notebook: lihat kembali semua 8 entri dan tuliskan satu paragraf trajektori belajar. Di awal Pekan 13, presentasi diperpanjang - tampilkan *highlight* portofolio, bukan hanya Pekan 12. Format dan kriteria: [Lampiran C.9](14_Lampiran.md#c9-template-komponen-mandiri).
 
 | Jalur | Tugas minggu ini |
 | --- | --- |
@@ -325,8 +373,8 @@ Konsep: membaca paper secara terarah, merumuskan pertanyaan falsifiable, meranca
 
 ---
 
-## Lanjut ke Bab 10
+## Lanjut ke W11
 
-Sembilan kompetensi inti selesai. Bab terakhir mengajak Anda mengintegrasikan semuanya dalam satu proyek empat minggu: dari pertanyaan riset yang Anda rumuskan sendiri, sampai demo yang bisa ditunjukkan, dari pre-registration sampai laporan teknis yang jujur.
+Semua skill bootcamp sudah dibangun. W11 menggabungkan semuanya untuk satu tujuan: menyusun proposal capstone yang bisa dipertahankan. Research framing, 5 Whys, literature-to-experiment synthesis, dan oral proposal defense.
 
-Buka [Bab 10 - Capstone Project](10_Capstone_Project.md) ketika siap.
+Buka [W11 - Research Framing & Capstone Proposal](11_W11_Research_Framing.md) ketika siap.

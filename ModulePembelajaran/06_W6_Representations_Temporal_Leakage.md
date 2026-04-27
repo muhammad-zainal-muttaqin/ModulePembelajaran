@@ -1,37 +1,108 @@
-<details>
+﻿<details>
 <summary>📂 Navigasi Modul (klik untuk buka)</summary>
 
 | # | Modul | Minggu |
 |---|-------|--------|
 | 00 | [Pendahuluan](00_Pendahuluan.md) | 1 |
-| 01a | [Fondasi Neural Network](01a_Fondasi_Neural_Network.md) | 2 |
-| 01b | [Loss, Optimizer & Evaluasi](01b_Loss_Optimizer_Evaluasi.md) | 3 |
-| 02 | [Ide ke Eksperimen](02_Ide_Ke_Eksperimen.md) | 4 |
-| 03 | [Eksperimen Reproduksibel](03_Eksperimen_Reproduksibel.md) | 5–6 |
-| ▶ 04 | Validasi Data | 7 |
-| 05 | [AI Tools Sebagai Pendukung](05_AI_Tools_Sebagai_Pendukung.md) | 8 |
-| 06 | [Adopsi Repo Riset](06_Adopsi_Repo_Riset.md) | 9 |
-| 07 | [Alat Pendukung Ringan](07_Alat_Pendukung_Ringan.md) | 10 |
-| 08 | [Platform & Tool Baru](08_Platform_Dan_Tool_Baru.md) | 11 |
-| 09 | [Pengembangan Mandiri](09_Pengembangan_Mandiri.md) | 12 |
-| 10 | [Capstone Project](10_Capstone_Project.md) | 13–14 |
-| 11 | [Rubrik Penilaian](11_Rubrik_Penilaian.md) | – |
-| 13 | [Panduan Dosen](13_Panduan_Dosen.md) | – |
-| 12 | [Lampiran](12_Lampiran.md) | – |
+| 01 | [W1 - Tabular & Output Heads](01_W1_Tabular_Output_Heads.md) | 1 |
+| 02 | [W2 - Images, CNN & Smoke Test](02_W2_Images_CNN_Smoke_Test.md) | 2 |
+| 03 | [W3 - Loss, Optimizer & Evaluasi](03_W3_Loss_Optimizer_Evaluasi.md) | 3 |
+| 04 | [W4 - Reproducibility & Experiment Matrix](04_W4_Reproducibility_Experiment_Matrix.md) | 4 |
+| 05 | [W5 - Sequences: RNN & LSTM](05_W5_Sequences_RNN_LSTM.md) | 5 |
+| ▶ 06 | W6 - Representations & Temporal Leakage | 6 |
+| 07 | [W7 - Text, Transformers & Repo Adoption](07_W7_Text_Transformers_Repo_Adoption.md) | 7 |
+| 08 | [W8 - Foundation Models](08_W8_Foundation_Models.md) | 8 |
+| 09 | [W9 - Multimodal Reasoning](09_W9_Multimodal_Reasoning.md) | 9 |
+| 10 | [W10 - Paper Reading & Implementation](10_W10_Paper_Reading.md) | 10 |
+| 11 | [W11 - Research Framing & Capstone Proposal](11_W11_Research_Framing.md) | 11 |
+| 12 | [Capstone 3 Minggu](12_Capstone_3_Minggu.md) | 12-14 |
+| 13 | [Rubrik Penilaian](13_Rubrik_Penilaian.md) | – |
+| 14 | [Lampiran](14_Lampiran.md) | – |
+| 15 | [Panduan Dosen](15_Panduan_Dosen.md) | – |
 
 </details>
 
 ---
 
-# 04 · Validasi Data dan Pra-pemrosesan
+# 06 · W6 - Representations & Temporal Leakage
 
 > *Akurasi 99% bukan prestasi - ia adalah alarm. Hampir selalu ada penjelasan yang lebih membosankan daripada "model kami sangat pintar": data yang bocor, label yang salah, atau pipeline yang memberi model informasi yang seharusnya tidak ia lihat. Skeptisisme terhadap angka sendiri adalah sikap yang memisahkan peneliti dari operator model.*
+
+**Big Map row:** `(T, F) -> (1,)`, `(N,)`, `(T'', 1)` (lanjutan W5, fokus representasi + validasi)
+**Rigor habit:** Validate preprocessing dan prevent temporal leakage
+**Dataset:** Sensor atau time-series dataset
+**Lab utama:** Lab 6 - Temporal Leakage (`lab6_temporal_leakage.ipynb`)
 
 ---
 
 ## 0. Peta Bab
 
-Bab ini melatih Anda memeriksa data sebelum mempercayai hasil yang diturunkan darinya. Anda akan belajar melakukan EDA sebagai *investigasi* bukan ritual, mendeteksi berbagai jenis *data leakage* yang dapat diam-diam menggembungkan metrik, mengaudit kualitas label dengan pemeriksaan sampel individu, memverifikasi bahwa pipeline pra-pemrosesan tidak membocorkan informasi dari test set ke train set, dan memahami dimensi etis dari data yang Anda pakai - dari bias dataset hingga tanggung jawab asisten riset (§2.6). Setelah bab ini, Anda tidak lagi meneruskan dataset yang tidak Anda periksa sendiri - sebuah kebiasaan yang menyelamatkan banyak eksperimen dari hasil yang tampaknya spektakuler tetapi sebenarnya palsu.
+W6 menggabungkan dua tema yang saling terkait erat:
+
+- **0.5** Representasi Fitur: Recap dari W3 (konteks baru sequence/sensor)
+- **0.6** Temporal Leakage: Contoh Konkret yang Menipu
+- **2.1** EDA sebagai investigasi
+- **2.2** Data leakage - tiga jenis
+- **2.3** Kualitas label dan audit manual
+- **2.4** Pipeline pra-pemrosesan yang aman
+- **2.5** Domain shift
+- **2.6** Etika data dan bias
+
+Setelah W6, Anda akan memeriksa setiap pipeline preprocessing dengan pertanyaan: "Apakah ada informasi masa depan yang bocor ke training?"
+
+---
+
+## 0.5 Representasi Fitur dalam Konteks Sequence dan Sensor
+
+Di W3, Anda belajar tiga strategi representasi fitur: **engineered**, **extracted**, dan **learned**. Di W6, ketiga strategi ini muncul dalam konteks yang berbeda - domain sensor dan time series - di mana pilihannya jauh lebih kritis karena ada dimensi temporal yang perlu dijaga.
+
+| Strategi | Contoh di sensor/time-series | Kekuatan | Risiko leakage |
+|---|---|---|---|
+| **Engineered** | Mean, variance, spektrum FFT dari window | Interpretable, ringan | Tinggi jika window melampaui batas temporal |
+| **Extracted** | Hidden states dari Chronos/TimesFM frozen | Kaya, tidak butuh label | Sedang; cek apakah pretrained model dilatih pada data yang overlap |
+| **Learned** | LSTM end-to-end dari raw signal | Paling fleksibel | Rendah jika split temporal diimplementasikan dengan benar |
+
+Thread **Representation Choice** yang berjalan sejak W3 kini punya dimensi baru: dalam time series, pilihan representasi tidak hanya memengaruhi performa model, tetapi juga *apakah hasil Anda valid secara temporal*. Engineered features yang tampak netral bisa membawa informasi dari masa depan tanpa Anda sadari.
+
+## 0.6 Temporal Leakage: Contoh Konkret yang Menipu
+
+Berikut skenario yang sering terjadi. Anda punya data sensor suhu sebuah mesin industri dengan label "failure/no-failure". Anda membuat fitur rolling mean 24 jam:
+
+```python
+df['rolling_mean_24h'] = df['temperature'].rolling(window=24).mean()
+```
+
+Lalu Anda split data:
+
+```python
+# WRONG - split acak, bukan temporal
+from sklearn.model_selection import train_test_split
+X_train, X_test = train_test_split(df, test_size=0.2, shuffle=True)
+```
+
+**Masalah 1 - Random split.** Sampel dari jam 14:00 bisa masuk train, dan sampel jam 13:00 dari hari yang sama masuk test. Model "melihat" data setelah titik test ketika training.
+
+**Masalah 2 - Rolling feature melampaui batas.** Nilai `rolling_mean_24h` pada titik ke-T dihitung dari T-23 hingga T. Jika salah satu dari T-23..T-1 ada di test set tetapi T ada di train set, fitur training mengandung informasi test.
+
+**Hasil yang Anda lihat:** akurasi F1 = 0.92. Kelihatan bagus. Tapi saat deployed, model hanya mencapai F1 = 0.63. Inilah angka yang menipu akibat temporal leakage.
+
+**Solusi yang benar:**
+
+```python
+# BENAR - temporal split
+cutoff = df['timestamp'].quantile(0.8)  # 80% data awal untuk training
+train = df[df['timestamp'] <= cutoff]
+test = df[df['timestamp'] > cutoff]
+
+# Pastikan rolling features dihitung dengan cara causal
+# - Tidak ada data dari masa depan dalam window
+# - Window tidak melampaui batas cutoff
+```
+
+**Demonstrasi inflasi:** Lab 6 akan menunjukkan delta ini secara eksplisit: F1 dengan leakage vs F1 tanpa leakage pada dataset yang sama. Angka leaky akan terlihat lebih menarik, dan itulah persis bahayanya.
+
+> [!WARNING]
+> Leakage temporal seringkali tidak menghasilkan F1 = 1.0 yang jelas mencurigakan. Ia menghasilkan angka "bagus" seperti 0.88 yang "masuk akal" - cukup untuk meyakinkan Anda dan reviewer bahwa model bekerja. Yang salah bukan angkanya; yang salah adalah cara mendapatkannya.
 
 ---
 
@@ -479,7 +550,7 @@ Tugas:
 
 ## Komponen Mandiri (Pekan 7)
 
-Konsep: memeriksa data sebelum mempercayai hasil - distribusi kelas, leakage tersembunyi, kualitas label. Format dan kriteria: [Lampiran C.9](12_Lampiran.md#c9-template-komponen-mandiri).
+Konsep: memeriksa data sebelum mempercayai hasil - distribusi kelas, leakage tersembunyi, kualitas label. Format dan kriteria: [Lampiran C.9](14_Lampiran.md#c9-template-komponen-mandiri).
 
 | Jalur | Tugas minggu ini |
 | --- | --- |
@@ -512,8 +583,30 @@ Konsep: memeriksa data sebelum mempercayai hasil - distribusi kelas, leakage ter
 
 ---
 
-## Lanjut ke Bab 05
+---
 
-Anda sudah bisa merancang, mengeksekusi, dan memverifikasi eksperimen dari sisi data dan sisi komputasi. Bab berikutnya membahas alat yang dua tahun terakhir ini mengubah cara semua peneliti bekerja: *large language model* seperti ChatGPT, Copilot, dan Claude. Pertanyaannya bukan "apakah kita memakainya" - kita semua memakainya - tetapi "bagaimana kita memakainya tanpa kehilangan kemampuan dan tanggung jawab kita sendiri?".
+## Lab 6 - Temporal Leakage Demonstration (W6, baru)
 
-Buka [Bab 05 - AI Tools sebagai Pendukung](05_AI_Tools_Sebagai_Pendukung.md) ketika siap.
+Buka `template_repo/notebooks/lab6_temporal_leakage.ipynb`.
+
+**Tugas:**
+
+1. Load sensor/time-series dataset (disediakan sebagai synthetic dataset).
+2. Build causal feature pipeline: rolling features hanya dari timestep sebelum t, split temporal (80% train, 20% test chronological).
+3. Deliberately break causality: gunakan random split + rolling features tanpa guard temporal.
+4. Latih model pada kedua pipeline, bandingkan F1.
+5. Hitung dan catat "leakage inflation" = F1_leaky - F1_causal.
+6. Tulis satu paragraf: apa yang membuat angka leaky terlihat meyakinkan, dan mengapa tetap salah?
+
+**Deliverables:**
+- Pipeline causal vs leaky dengan kode terdokumentasi.
+- Tabel perbandingan F1 (causal vs leaky vs delta).
+- 1 paragraf "kenapa ini menipu".
+
+---
+
+## Lanjut ke W7
+
+Setelah W6, Anda punya kewaspadaan data yang solid. W7 memperluas Big Map ke domain teks dan memperkenalkan pretrained Transformer sebagai alat, serta cara membaca dan memodifikasi repo riset asing.
+
+Buka [W7 - Text, Transformers & Repo Adoption](07_W7_Text_Transformers_Repo_Adoption.md) ketika siap.

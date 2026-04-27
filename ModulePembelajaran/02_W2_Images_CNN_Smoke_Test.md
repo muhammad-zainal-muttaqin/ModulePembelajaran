@@ -4,43 +4,51 @@
 | # | Modul | Minggu |
 |---|-------|--------|
 | 00 | [Pendahuluan](00_Pendahuluan.md) | 1 |
-| ▶ 01a | Fondasi Neural Network | 2 |
-| 01b | [Loss, Optimizer & Evaluasi](01b_Loss_Optimizer_Evaluasi.md) | 3 |
-| 02 | [Ide ke Eksperimen](02_Ide_Ke_Eksperimen.md) | 4 |
-| 03 | [Eksperimen Reproduksibel](03_Eksperimen_Reproduksibel.md) | 5–6 |
-| 04 | [Validasi Data](04_Validasi_Data.md) | 7 |
-| 05 | [AI Tools Sebagai Pendukung](05_AI_Tools_Sebagai_Pendukung.md) | 8 |
-| 06 | [Adopsi Repo Riset](06_Adopsi_Repo_Riset.md) | 9 |
-| 07 | [Alat Pendukung Ringan](07_Alat_Pendukung_Ringan.md) | 10 |
-| 08 | [Platform & Tool Baru](08_Platform_Dan_Tool_Baru.md) | 11 |
-| 09 | [Pengembangan Mandiri](09_Pengembangan_Mandiri.md) | 12 |
-| 10 | [Capstone Project](10_Capstone_Project.md) | 13–14 |
-| 11 | [Rubrik Penilaian](11_Rubrik_Penilaian.md) | – |
-| 13 | [Panduan Dosen](13_Panduan_Dosen.md) | – |
-| 12 | [Lampiran](12_Lampiran.md) | – |
+| 01 | [W1 - Tabular & Output Heads](01_W1_Tabular_Output_Heads.md) | 1 |
+| ▶ 02 | W2 - Images, CNN & Smoke Test | 2 |
+| 03 | [W3 - Loss, Optimizer & Evaluasi](03_W3_Loss_Optimizer_Evaluasi.md) | 3 |
+| 04 | [W4 - Reproducibility & Experiment Matrix](04_W4_Reproducibility_Experiment_Matrix.md) | 4 |
+| 05 | [W5 - Sequences: RNN & LSTM](05_W5_Sequences_RNN_LSTM.md) | 5 |
+| 06 | [W6 - Representations & Temporal Leakage](06_W6_Representations_Temporal_Leakage.md) | 6 |
+| 07 | [W7 - Text, Transformers & Repo Adoption](07_W7_Text_Transformers_Repo_Adoption.md) | 7 |
+| 08 | [W8 - Foundation Models](08_W8_Foundation_Models.md) | 8 |
+| 09 | [W9 - Multimodal Reasoning](09_W9_Multimodal_Reasoning.md) | 9 |
+| 10 | [W10 - Paper Reading & Implementation](10_W10_Paper_Reading.md) | 10 |
+| 11 | [W11 - Research Framing & Capstone Proposal](11_W11_Research_Framing.md) | 11 |
+| 12 | [Capstone 3 Minggu](12_Capstone_3_Minggu.md) | 12-14 |
+| 13 | [Rubrik Penilaian](13_Rubrik_Penilaian.md) | – |
+| 14 | [Lampiran](14_Lampiran.md) | – |
+| 15 | [Panduan Dosen](15_Panduan_Dosen.md) | – |
 
 </details>
 
 ---
 
-# 01a · Fondasi Neural Network
+# 02 · W2 - Images, CNN & Smoke Test Ritual
 
 > *Arsitektur bukan daftar definisi untuk dihafalkan. Ia adalah keputusan desain yang berangkat dari pertanyaan: bentuk apa yang melekat pada data Anda, dan struktur apa yang paling alami mengikutinya?*
+
+**Big Map row:** `(C, H, W) -> (N,)`
+**Rigor habit:** Three-level smoke test
+**Dataset:** CIFAR-10 (image classification)
+**Lab utama:** Lab 1 (`lab1_baseline_cnn.ipynb`)
 
 ---
 
 ## 0. Peta Bab
 
-Bab ini (Minggu 2) membekali Anda dengan fondasi konseptual neural network:
+W2 memperkenalkan tensor citra, arsitektur CNN, dan tiga kebiasaan debugging terpenting yang akan dipakai sepanjang bootcamp. Anda akan melihat run yang belajar, run yang tidak belajar, dan smoke test yang menangkap error sebelum training berjam-jam.
 
-- **2.1** Tensor masuk dan tensor keluar - kerangka berpikir lintas domain
-- **2.2** MLP dan backpropagation - mesin fondasional di bawah semua arsitektur
-- **2.3** Empat keluarga arsitektur sebagai asumsi tentang data
-- **2.4** Layer sebagai transformasi: inisialisasi, normalisasi, aktivasi
+- **2.1** Peta Besar: tensor masuk dan tensor keluar
+- **2.2** Empat keluarga arsitektur sebagai asumsi tentang data (CNN sebagai contoh utama)
+- **2.3** Three-Level Smoke Test Ritual
+- **2.4** Galeri Runs: sebelum membaca teori
+- **2.5** Layer sebagai transformasi: inisialisasi, normalisasi, aktivasi
+- **Lampiran A.1** Backpropagation derivasi manual (opsional, tersedia setelah W2)
 
-Setelah Minggu 2, lanjut ke [01b](01b_Loss_Optimizer_Evaluasi.md) untuk loss, optimizer, evaluasi, representasi fitur, dan diagnosis loss curve.
+Setelah W2, lanjut ke [W3](03_W3_Loss_Optimizer_Evaluasi.md) untuk loss, optimizer, evaluasi, dan diagnosis loss curve.
 
-**Lab minggu ini:** Lab 1c (MLP numpy, wajib) dan Lab 1 (baseline CNN, mulai - selesai di 01b).
+**Lab minggu ini:** Lab 1c (MLP numpy, breadth opsional) dan Lab 1 (baseline CNN, mulai di W2, selesai di W3).
 
 ---
 
@@ -81,44 +89,63 @@ Saat membaca kode repositori yang belum dikenal, hal pertama yang perlu Anda per
 
 Perhatikan bahwa output tidak selalu `(N,)`: deteksi objek menghasilkan tensor tiga dimensi karena setiap sel grid memprediksi beberapa kotak dan kelas. Transisi dari "tugas apa yang ingin saya selesaikan" ke "bentuk output yang benar" adalah keputusan yang perlu diselesaikan sebelum memilih arsitektur.
 
-### 2.2 MLP dan Backpropagation: Fondasi yang Menopang Semua
+### 2.2 MLP dan Backpropagation: Ide Utama
 
-Sebelum masuk ke empat keluarga arsitektur, satu model pantas mendapat pembahasan tersendiri: *Multi-Layer Perceptron* (MLP). Bukan karena MLP sering dipakai di paper riset modern - justru sebaliknya. MLP pantas dibahas karena **semua keluarga arsitektur lain, pada level komputasi, adalah MLP dengan batasan tambahan**: CNN adalah MLP yang dipaksa berbagi bobot antar lokasi spasial, Transformer adalah MLP yang memproses setiap posisi dengan bobot yang sama, RNN adalah MLP yang dipanggil berulang sepanjang urutan waktu.
+Semua keluarga arsitektur neural network, pada level komputasi, adalah **MLP dengan batasan tambahan**: CNN adalah MLP yang dipaksa berbagi bobot antar lokasi spasial, Transformer adalah MLP yang memproses setiap posisi dengan bobot sama, RNN adalah MLP yang dipanggil berulang sepanjang waktu.
 
-**Forward pass dua-layer.** Ambil MLP minimal: satu *hidden layer*, satu *output layer*. Input `x` berdimensi `d_in`, hidden `d_h` neuron, output `d_out`:
+Model belajar lewat **backpropagation**: setelah loss dihitung di output, gradient dari loss terhadap setiap parameter dirambatkan mundur via chain rule, lalu optimizer memperbarui parameter ke arah penurunan loss. `loss.backward()` di PyTorch mengerjakan ini secara otomatis.
 
+Dua fenomena penting yang sering disebut paper:
+
+- **Vanishing gradient** - gradient melemah saat merambat mundur melewati banyak layer; ReLU adalah solusi paling umum.
+- **Exploding gradient** - gradient meledak saat bobot besar; *gradient clipping* adalah solusinya.
+
+> [!NOTE]
+> Derivasi 7-langkah chain rule untuk MLP (MSE loss + sigmoid) tersedia lengkap di [Lampiran A.1](14_Lampiran.md#a1-backpropagation-derivasi-manual). Bacanya setelah W3 ketika Anda sudah punya beberapa run sukses untuk diinterpretasi. Lab 1c (MLP numpy from-scratch) tersedia sebagai breadth lab opsional dan menurunkan backprop secara konkret pada MNIST.
+
+### 2.3 Three-Level Smoke Test Ritual
+
+Sebelum training berjam-jam, jalankan tiga tes ini berurutan. Jika satu tes gagal, hentikan dan perbaiki sebelum lanjut.
+
+**Level 1 - Import test.** `import model; model.eval()`. Gagal berarti ada typo, missing dependency, atau shape mismatch di definisi layer.
+
+**Level 2 - Dummy forward pass.** Buat tensor random dengan shape yang benar, umpankan ke model, periksa output shape.
+
+```python
+x = torch.randn(2, 3, 32, 32)  # batch=2, RGB, 32x32
+logits = model(x)
+assert logits.shape == (2, 10), f"got {logits.shape}"
 ```
-z1 = W1 x + b1         # pre-activation, (d_h,)
-h  = σ(z1)             # activation, (d_h,)
-z2 = W2 h + b2         # output pre-activation, (d_out,)
-y_hat = z2             # regresi; klasifikasi tambahkan softmax di loss
+
+**Level 3 - Overfit one batch.** Ambil 4-8 sampel dari dataset nyata. Jalankan 50-100 iterasi hanya pada sampel itu. Jika loss tidak mendekati nol, ada bug di training loop atau loss function, bukan masalah hyperparameter.
+
+```python
+x, y = next(iter(train_loader))  # satu batch kecil
+for i in range(100):
+    optimizer.zero_grad()
+    loss = criterion(model(x), y)
+    loss.backward()
+    optimizer.step()
+    if i % 20 == 0:
+        print(f"iter {i}: loss={loss.item():.4f}")
+# Expected: loss turun dari ~2.3 menuju ~0.0 dalam 100 iterasi
 ```
 
-`W1` bentuknya `(d_h, d_in)`, `W2` bentuknya `(d_out, d_h)`. Jika kita hilangkan `σ`, seluruh jaringan runtuh menjadi satu transformasi linear - tidak lebih kuat dari regresi biasa.
+> [!IMPORTANT]
+> Overfit one batch adalah tes paling diagnostik. Jika gagal: ada bug di kode Anda, bukan di hyperparameter. Jika berhasil: model sehat, masalah performa berasal dari data, augmentasi, atau regularisasi.
 
-**Backpropagation: satu kali latihan yang perlu dilakukan.** Anda tidak akan pernah menulis *backward loop* manual di pekerjaan riset - PyTorch mengerjakannya lewat `loss.backward()`. Tapi ketika model tidak belajar, ketika gradient meledak, ketika paper menyebut *"we clip gradients at norm 1.0"*, Anda perlu model mental yang benar tentang apa yang mengalir di pipa gradient.
+### 2.4 Galeri Runs: Sebelum Membaca Teori
 
-**Contoh terturunkan: MSE loss, satu sampel.** Misalkan `d_in = 2`, `d_h = 2`, `d_out = 1`. Target `y`, prediksi `y_hat = z2`. Loss `L = ½ (y_hat - y)²`. Chain rule dari belakang ke depan:
+Sebelum mendalami arsitektur, lihat empat run nyata dan tanyakan diri sendiri: *apa yang berbeda?*
 
-1. `∂L/∂z2 = y_hat - y`
-2. `∂L/∂W2 = (∂L/∂z2) · h^T`  - bentuk `(d_out, d_h)`
-3. `∂L/∂b2 = ∂L/∂z2`
-4. `∂L/∂h = W2^T (∂L/∂z2)`
-5. `∂L/∂z1 = (∂L/∂h) ⊙ σ'(z1)` - untuk ReLU: `σ'(z) = 1[z > 0]`
-6. `∂L/∂W1 = (∂L/∂z1) · x^T`
-7. `∂L/∂b1 = ∂L/∂z1`
+- **Run A:** Loss training dan val turun sejajar, keduanya mencapai angka rendah di epoch 20. Ini run yang sehat.
+- **Run B:** Loss training turun mulus tapi loss val stagnan sejak epoch 4. Sesuatu sudah salah di sini - apa?
+- **Run C:** Loss training tidak bergerak sama sekali dari epoch pertama. Apakah ini masalah learning rate atau bug?
+- **Run D:** Loss meledak ke `NaN` di epoch ke-8 setelah awalnya turun normal.
 
-![MLP 2-layer: forward pass dengan dimensi dan backward pass chain rule 7 langkah](./figures/fig01b_mlp_forward_backward.svg)
+Jangan baca jawabannya dulu. Tuliskan hipotesis Anda untuk setiap run dalam satu kalimat. Kita akan kembali ke empat run ini di W3 dengan kerangka diagnosis yang lengkap.
 
-Pola yang sama berulang di layer manapun: gradient terhadap pre-activation berasal dari layer di atasnya, dikalikan turunan non-linearitas. Tiga fenomena yang sering disebut di paper langsung bisa dijelaskan dari sini:
-
-- **Vanishing gradient.** `σ'(z1)` yang kecil (sigmoid di zona saturasi) mengalikan gradient dengan angka mendekati nol di setiap layer. Setelah 10 layer, gradient di bobot paling bawah mendekati nol. Inilah alasan ReLU, yang turunannya 0 atau 1, menjadi pilihan default.
-- **Exploding gradient.** Bobot `W2` yang besar membuat faktor `W2^T` mengalikan gradient dengan angka besar. Di RNN dalam, faktor ini muncul sekali per langkah waktu - gradient bisa meledak eksponensial. Solusi praktis: *gradient clipping*.
-- **Inisialisasi Kaiming/Xavier** (dibahas di 2.4): tujuannya menjaga variansi gradient kira-kira konstan saat merambat mundur, sehingga gradient tidak menyusut atau meledak sejak iterasi pertama.
-
-Lab 1c (`notebooks/lab1c_mlp_numpy.ipynb`) menuntun Anda menulis ketujuh langkah di atas dalam numpy murni untuk klasifikasi MNIST. Setelah itu, saat membaca `loss.backward()` di Lab 1, Anda tahu persis mesin apa yang sedang berjalan.
-
-### 2.3 Arsitektur sebagai Asumsi tentang Data
+### 2.6 Arsitektur sebagai Asumsi tentang Data
 
 Empat keluarga yang paling sering muncul di paper dan repositori riset.
 
@@ -134,7 +161,7 @@ Empat keluarga yang paling sering muncul di paper dan repositori riset.
 
 Setiap keluarga di atas dapat Anda baca sebagai "MLP + asumsi spesifik domain". Ketika asumsi cocok dengan data, model belajar lebih efisien.
 
-### 2.4 Layer sebagai Transformasi Representasi
+### 2.7 Layer sebagai Transformasi Representasi
 
 Setiap layer adalah *fungsi* yang mengubah representasi data menjadi bentuk yang lebih berguna bagi layer berikutnya. Di CNN, layer awal belajar detail kecil (tepi, tekstur), layer dalam menggabungkannya menjadi konsep lebih tinggi. Dalam praktiknya: saat *fine-tune* model pretrained, layer awal biasanya aman di-*freeze*, layer akhir perlu beradaptasi dengan domain baru.
 
@@ -262,18 +289,26 @@ Augmentasi hanya pada training set; normalisasi dengan statistik CIFAR-10 yang s
 
 ## 5. Lab
 
-### Lab 1c - MLP dari Nol (wajib, Minggu 2)
+### Lab 1 - Baseline CNN (Lab utama W2, selesai di W3)
 
-Buka `notebooks/lab1c_mlp_numpy.ipynb`. Lab ini menuntun Anda mengimplementasikan ketujuh langkah backpropagation dalam numpy murni untuk klasifikasi MNIST, lalu memverifikasi gradient dengan *finite-difference check* dan membandingkan hasilnya dengan versi PyTorch.
+Buka `notebooks/lab1_baseline_cnn.ipynb`. Di W2:
 
-**Checklist verifikasi:**
-- [ ] Forward pass menghasilkan loss yang turun dalam beberapa iterasi overfit.
-- [ ] Finite-difference gradient check lulus (selisih < 1e-5).
-- [ ] Parity check dengan `SimpleMLP` PyTorch: loss converge ke titik yang sama.
+1. Jalankan tiga level smoke test (import, dummy forward, overfit one batch).
+2. Build SimpleCNN, latih baseline dari scratch.
+3. Build pretrained fine-tune baseline (ResNet-18 frozen backbone).
+4. Dokumentasikan: di level mana smoke test akan menangkap setiap jenis error.
 
-### Lab 1 - Baseline CNN (mulai Minggu 2, selesai Minggu 3)
+Selesaikan evaluasi dan error analysis setelah membaca [W3](03_W3_Loss_Optimizer_Evaluasi.md).
 
-Buka `notebooks/lab1_baseline_cnn.ipynb`. Mulai bagian setup dan smoke test di Minggu 2; selesaikan evaluasi dan error analysis setelah membaca [01b](01b_Loss_Optimizer_Evaluasi.md).
+**Checklist W2:**
+- [ ] Tiga level smoke test selesai dan terdokumentasi.
+- [ ] SimpleCNN forward pass jalan dengan shape yang benar.
+- [ ] Overfit one batch berhasil (loss turun ke <0.1 dalam 100 iterasi).
+- [ ] Training loop berjalan 5 epoch tanpa error.
+
+### Lab 1c - MLP dari Nol (breadth opsional, kapan saja)
+
+Buka `notebooks/lab1c_mlp_numpy.ipynb`. Tersedia sebagai breadth lab untuk Breadth Check (MLP family). Implementasi backpropagation 7-langkah manual dalam numpy + finite-difference gradient check + parity check vs PyTorch.
 
 ---
 
@@ -293,8 +328,8 @@ Buka `notebooks/lab1_baseline_cnn.ipynb`. Mulai bagian setup dan smoke test di M
 
 ---
 
-## Lanjut ke 01b
+## Lanjut ke W3
 
-Fondasi sudah berdiri. Bab berikutnya menuntaskan sisa Minggu 3: loss sebagai pilihan, optimizer sebagai mekanisme langkah, evaluasi yang jujur, tiga strategi representasi fitur, dan cara membaca loss curve untuk mendiagnosis masalah training.
+Fondasi sudah berdiri. Bab berikutnya (W3) menuntaskan: loss sebagai pilihan, optimizer sebagai mekanisme langkah, evaluasi yang jujur, tiga strategi representasi fitur, dan cara membaca loss curve untuk mendiagnosis masalah training - dimulai dari galeri run konkret sebelum teori.
 
-Buka [01b - Loss, Optimizer & Evaluasi](01b_Loss_Optimizer_Evaluasi.md) ketika siap.
+Buka [W3 - Loss, Optimizer & Evaluasi](03_W3_Loss_Optimizer_Evaluasi.md) ketika siap.

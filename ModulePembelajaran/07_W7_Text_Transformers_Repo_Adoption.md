@@ -1,37 +1,226 @@
-<details>
+﻿<details>
 <summary>📂 Navigasi Modul (klik untuk buka)</summary>
 
 | # | Modul | Minggu |
 |---|-------|--------|
 | 00 | [Pendahuluan](00_Pendahuluan.md) | 1 |
-| 01a | [Fondasi Neural Network](01a_Fondasi_Neural_Network.md) | 2 |
-| 01b | [Loss, Optimizer & Evaluasi](01b_Loss_Optimizer_Evaluasi.md) | 3 |
-| 02 | [Ide ke Eksperimen](02_Ide_Ke_Eksperimen.md) | 4 |
-| 03 | [Eksperimen Reproduksibel](03_Eksperimen_Reproduksibel.md) | 5–6 |
-| 04 | [Validasi Data](04_Validasi_Data.md) | 7 |
-| 05 | [AI Tools Sebagai Pendukung](05_AI_Tools_Sebagai_Pendukung.md) | 8 |
-| ▶ 06 | Adopsi Repo Riset | 9 |
-| 07 | [Alat Pendukung Ringan](07_Alat_Pendukung_Ringan.md) | 10 |
-| 08 | [Platform & Tool Baru](08_Platform_Dan_Tool_Baru.md) | 11 |
-| 09 | [Pengembangan Mandiri](09_Pengembangan_Mandiri.md) | 12 |
-| 10 | [Capstone Project](10_Capstone_Project.md) | 13–14 |
-| 11 | [Rubrik Penilaian](11_Rubrik_Penilaian.md) | – |
-| 13 | [Panduan Dosen](13_Panduan_Dosen.md) | – |
-| 12 | [Lampiran](12_Lampiran.md) | – |
+| 01 | [W1 - Tabular & Output Heads](01_W1_Tabular_Output_Heads.md) | 1 |
+| 02 | [W2 - Images, CNN & Smoke Test](02_W2_Images_CNN_Smoke_Test.md) | 2 |
+| 03 | [W3 - Loss, Optimizer & Evaluasi](03_W3_Loss_Optimizer_Evaluasi.md) | 3 |
+| 04 | [W4 - Reproducibility & Experiment Matrix](04_W4_Reproducibility_Experiment_Matrix.md) | 4 |
+| 05 | [W5 - Sequences: RNN & LSTM](05_W5_Sequences_RNN_LSTM.md) | 5 |
+| 06 | [W6 - Representations & Temporal Leakage](06_W6_Representations_Temporal_Leakage.md) | 6 |
+| ▶ 07 | W7 - Text, Transformers & Repo Adoption | 7 |
+| 08 | [W8 - Foundation Models](08_W8_Foundation_Models.md) | 8 |
+| 09 | [W9 - Multimodal Reasoning](09_W9_Multimodal_Reasoning.md) | 9 |
+| 10 | [W10 - Paper Reading & Implementation](10_W10_Paper_Reading.md) | 10 |
+| 11 | [W11 - Research Framing & Capstone Proposal](11_W11_Research_Framing.md) | 11 |
+| 12 | [Capstone 3 Minggu](12_Capstone_3_Minggu.md) | 12-14 |
+| 13 | [Rubrik Penilaian](13_Rubrik_Penilaian.md) | – |
+| 14 | [Lampiran](14_Lampiran.md) | – |
+| 15 | [Panduan Dosen](15_Panduan_Dosen.md) | – |
 
 </details>
 
 ---
 
-# 06 · Adopsi Repository Riset
+# 07 · W7 - Text, Transformers & Repo Adoption
 
-> *Kemampuan membaca kode orang lain dengan cepat adalah penggandaan kekuatan terbesar yang bisa Anda miliki sebagai peneliti. Proyek kuliah boleh dimulai dari nol; riset nyata hampir selalu dimulai dari repo yang sudah ada - dengan puluhan file, konvensi asing, dan README satu paragraf yang tidak cukup.*
+> *TF-IDF memberi tahu Anda kata apa yang ada. Contextual embeddings memberi tahu Anda apa yang dimaksud kata itu di konteks spesifik ini. Transformers mengubah teks bukan menjadi fitur, melainkan menjadi makna yang bisa dibandingkan.*
+
+**Big Map row:** `(T,) -> (N,)`, `(1,)`, `(T, N)`
+**Rigor habit:** Verify AI-generated code, inspect tokenization, map external repos
+**Dataset:** Indonesian text dataset (IndoNLU SmSA)
+**Lab utama:** Lab 5b (`lab5b_domain_teks.ipynb`) + Lab 6 repo adoption (`lab6_adopt_external_repo.ipynb`)
 
 ---
 
 ## 0. Peta Bab
 
-Bab ini membekali Anda untuk membuka repository riset yang belum Anda kenal, memetakan strukturnya dalam hitungan menit bukan hari, menyiapkan environment yang runnable, dan memodifikasi secara minimal-invasif untuk kebutuhan Anda sendiri. Anda akan belajar urutan membaca yang efisien, strategi saat dokumentasi minim, teknik smoke test untuk verifikasi setup, dan pola modifikasi yang aman agar pekerjaanmu bisa di-merge kembali ke repo asli bila perlu. Setelah bab ini, Anda bisa mendarat di proyek asing pada hari Senin dan sudah menjalankan eksperimen sendiri pada hari Jumat.
+W7 menggabungkan tiga tema yang saling memperkuat:
+
+- **1. Text & Transformers** - dari TF-IDF ke contextual embeddings, tokenization, frozen vs fine-tune, [CLS] vs mean pool
+- **2. AI Tools sebagai Pendukung** - verifikasi kode AI, protokol synthesis, kapan trust copilot
+- **3. Repo Adoption Primer** - membaca repo asing, `repo_map.md`, modifikasi minimal-invasif
+
+Ketiga tema bertemu dalam satu workflow: mengadopsi HuggingFace repo, memakai AI tools untuk memahami bagian yang asing, dan membuat `repo_map.md` sebagai dokumentasi pemahaman Anda.
+
+---
+
+## 1. Text dengan Pretrained Transformers
+
+### 1.1 Mengapa Contextual Embeddings?
+
+TF-IDF adalah baseline yang kuat dan sering diabaikan. Bukan tanpa alasan - ia cepat, interpretable, dan sering bekerja baik pada dataset kecil. Tapi ia punya dua kelemahan fundamental:
+
+**Polisemi.** Kata "bank" dalam "bank sungai" dan "bank uang" mendapat vektor yang identik. TF-IDF tidak bisa membedakannya.
+
+**Ketergantungan antar kata hilang.** "Tidak buruk" dan "tidak baik" memiliki representasi yang sepenuhnya berbeda dari "baik" dan "buruk" dalam TF-IDF, padahal sebenarnya kita ingin model memahami bahwa negasi mengubah polaritas.
+
+Contextual embeddings (BERT, RoBERTa, IndoBERT) menghasilkan representasi yang berbeda untuk kata yang sama tergantung konteksnya. Setiap token mendapat embedding yang dipengaruhi oleh seluruh sequence di sekitarnya via self-attention.
+
+### 1.2 Tokenization: Sebelum Training Dimulai
+
+Salah satu sumber bug paling umum dengan pretrained models adalah perbedaan antara tokenizer model dan cara Anda memproses teks. Setiap pretrained model punya tokenizer spesifiknya sendiri; menggunakan tokenizer yang salah menghasilkan input yang tidak cocok dengan apa yang dilihat model saat pretraining.
+
+```python
+from transformers import AutoTokenizer
+
+tokenizer = AutoTokenizer.from_pretrained("indobenchmark/indobert-base-p1")
+
+# Inspeksi: lihat apa yang tokenizer lakukan pada teks
+text = "Produk ini sangat bagus!"
+tokens = tokenizer(text, return_tensors="pt")
+print(tokenizer.convert_ids_to_tokens(tokens['input_ids'][0]))
+# ['[CLS]', 'produk', 'ini', 'sangat', 'bagus', '!', '[SEP]']
+```
+
+Tugas penting W7: inspeksi tokenizer pada 5-10 sampel dari dataset Anda sebelum training. Cek:
+- Apakah kata domain-spesifik ditokenisasi dengan benar (tidak terlalu di-split)?
+- Apakah panjang sequence setelah tokenisasi masuk dalam batas max_length model?
+- Apakah ada subword splits yang mungkin kehilangan makna?
+
+### 1.3 Frozen vs Fine-tuned: 2x2 Experiment
+
+Dua keputusan yang perlu dibandingkan:
+
+**Frozen backbone** - hanya head kecil yang dilatih di atas fixed embeddings. Cepat, murah, stabil. Cocok untuk dataset kecil atau ketika domain sangat mirip dengan pretraining.
+
+**Fine-tuned** - seluruh model (atau sebagian) dilatih bersama head. Lebih lambat, lebih fleksibel, sering lebih baik pada dataset cukup besar.
+
+**[CLS] pooling** - menggunakan token [CLS] sebagai representasi seluruh sequence. Ini yang dipakai BERT asli untuk classification.
+
+**Mean pooling** - rata-rata semua token embeddings. Sering lebih baik untuk sentence similarity tasks; comparable untuk classification.
+
+Lab 5b menjalankan 2×2 ini secara eksplisit:
+
+| | frozen | fine-tuned |
+|---|---|---|
+| [CLS] | kondisi A | kondisi B |
+| mean pool | kondisi C | kondisi D |
+
+### 1.4 Big Map untuk Teks
+
+Tiga formulasi umum di domain teks:
+
+| Tugas | Input | Output | Contoh |
+|---|---|---|---|
+| Sentence classification | `(T,)` tokens | `(N,)` | Sentimen, topik |
+| Token classification | `(T,)` tokens | `(T, N)` | NER, POS tagging |
+| Regression dari teks | `(T,)` tokens | `(1,)` | Scoring, rating |
+
+---
+
+## 2. AI Tools sebagai Pendukung (Ringkasan Protokol)
+
+Modul ini tidak melarang AI coding tools. Ia mewajibkan **protokol verifikasi** dan **synthesis sebelum eksekusi**.
+
+### 2.1 Verifikasi Rule
+
+Setiap kode yang dihasilkan AI harus diverifikasi sebelum dipakai:
+
+1. **Shape verification** - apakah input/output shape yang diklaim cocok dengan kode?
+2. **Edge case test** - jalankan dengan satu sampel dan periksa hasilnya secara manual.
+3. **Baris-per-baris read** - Anda harus bisa menjelaskan fungsi setiap baris.
+
+Jika tidak bisa menjelaskan baris tertentu setelah membacanya dua kali, itu bukan kode yang harus disubmit dengan nama Anda.
+
+### 2.2 Synthesis Rule: Dua Sumber Sebelum Eksekusi
+
+Sebelum mengeksekusi pendekatan penting (pemilihan model, arsitektur, strategi fine-tuning), kumpulkan setidaknya dua sumber berbeda:
+
+- Dua respons AI dengan prompt berbeda, **atau**
+- Satu respons AI + satu sumber dokumentasi/paper, **atau**
+- Satu respons AI + satu peer review
+
+Tulis satu paragraf synthesis: "Sumber A menyarankan X karena P. Sumber B menyarankan Y karena Q. Saya memilih Z karena R." Paragraf ini bukan overhead - ia adalah bukti Anda berpikir sebelum eksekusi.
+
+### 2.3 AI untuk Non-Kode
+
+AI tools berguna melampaui kode:
+- **Membaca paper** - "tolong rangkum bagian 3.2 dan identifikasi asumsi yang tidak diucapkan eksplisit"
+- **Mendiskusikan hipotesis** - "diberikan bahwa distribusi kelas sangat tidak seimbang, apakah ada alasan untuk tidak memakai focal loss?"
+- **Navigasi repo** - "bagaimana alur data dari DataLoader ke model dalam repo ini?" (dengan memberikan struktur folder sebagai konteks)
+
+---
+
+## 3. Repo Adoption Primer
+
+Konten repo adoption dari bab ini (urutan membaca, environment setup, modifikasi minimal-invasif) tersedia pada bagian ini dari file asli. Ringkasan kebiasaan utama:
+
+**Urutan baca:** README → paper/laporan → struktur folder → entry point (`train.py`) → model & loss → DataLoader
+
+**repo_map.md template:** Dokumentasikan pemahaman Anda tentang repo baru dalam file `repo_map.md`. Template tersedia di [Lampiran C.12](14_Lampiran.md#c12-template-repo-map). Anda akan membuat `repo_map.md` dua kali: satu di W7 (repo teks/transformer), satu di W9 (repo multimodal).
+
+**Modifikasi minimal-invasif:** Buat branch baru, buat perubahan sekecil mungkin untuk menjalankan eksperimen Anda, dokumentasikan diff. Ini memudahkan merge kembali dan memudahkan debugging saat sesuatu rusak.
+
+---
+
+## 4. Lab
+
+### Lab 5b - Text Classification IndoNLU (lab utama W7)
+
+Buka `notebooks/lab5b_domain_teks.ipynb`.
+
+**Tugas:**
+1. Load IndoNLU SmSA dataset (sentimen Bahasa Indonesia).
+2. Inspeksi tokenizer IndoBERT pada 10 sampel: screenshot atau print output.
+3. Jalankan 2×2 experiment (frozen/fine-tune × [CLS]/mean-pool).
+4. Bandingkan macro-F1 keempat kondisi. Mana yang terbaik? Mengapa?
+5. Buat synthesis note: dua alasan memilih IndoBERT vs alternatif lain.
+
+**Checklist:**
+- [ ] Tokenization inspection dengan 10+ sampel.
+- [ ] 4 kondisi trained, macro-F1 tersimpan.
+- [ ] 2×2 tabel dalam notebook.
+- [ ] Synthesis note (2 AI views atau 1 AI + 1 dokumentasi).
+
+### Lab 6 - Repo Adoption Primer
+
+Buka `notebooks/lab6_adopt_external_repo.ipynb`.
+
+**Tugas:**
+1. Clone satu repo riset publik (disediakan curated list di lab).
+2. Tulis `repo_map.md`: entry point, model, loss, config, DataLoader.
+3. Modifikasi minimal satu komponen (ganti config, tambah logging).
+4. Buat branch git, commit diff, inspeksi diff sebelum merge.
+
+---
+
+## Komponen Mandiri (W7)
+
+Format: [Lampiran C.9](14_Lampiran.md#c9-template-komponen-mandiri).
+
+| Jalur | Tugas |
+|---|---|
+| **Implementasi** | Implementasikan Lab 6b (Transformer-mini from-scratch). Breadth check untuk keluarga Transformer. |
+| **Analisis** | Analisis attention weights pada Lab 5b: token apa yang paling diperhatikan model saat memprediksi sentimen positif vs negatif? |
+| **Desain** | Rancang eksperimen: IndoBERT vs mBERT vs XLM-R untuk sentimen Indonesia. Apa hipotesis Anda? |
+| **Arsitektur Baru** | Lab 6b (Transformer-mini) - jika belum dikerjakan. |
+
+---
+
+## 5. Refleksi
+
+1. Anda mendapat dataset teks medis dalam Bahasa Indonesia (10.000 sampel, 5 kelas). IndoBERT atau BioBERT yang akan Anda coba pertama? Tulis justifikasi satu paragraf menggunakan framework dari W8 Foundation Models yang akan datang.
+2. AI tool memberikan kode tokenisasi yang "terlihat benar". Setelah inspeksi, Anda menemukan ia menghilangkan token [CLS] sebelum pooling. Apakah ini selalu salah? Kapan bisa diterima?
+3. `repo_map.md` yang Anda tulis di W7: seberapa berbeda dari yang akan Anda tulis di W9 (multimodal repo)? Apa yang berubah dalam cara Anda membaca repo saat ada lebih dari satu modality?
+
+---
+
+## 6. Bacaan Lanjutan
+
+- **Devlin et al. - *BERT: Pre-training of Deep Bidirectional Transformers*** (2018). Baca Abstract + Section 3 (pretraining) + Section 4.1 (fine-tuning). Skip appendix.
+- **HuggingFace - *Course Chapter 2: Using Transformers***. Tutorial interaktif untuk tokenizer dan pipeline HuggingFace.
+- **Khoirunisa et al. - *IndoNLU: Benchmark and Resources for Evaluating Indonesian NLP*** (2020). Konteks untuk Lab 5b dataset.
+
+---
+
+## Lanjut ke W8
+
+Anda sudah bisa bekerja dengan pretrained transformer, mengadopsi repo asing, dan menggunakan AI tools dengan protokol yang bertanggung jawab. W8 memperluas pemahaman ke seluruh landscape foundation models: bukan hanya text, tetapi vision, audio, time series, dan multimodal - serta bagaimana memilih strategi adaptasi yang tepat.
+
+Buka [W8 - Foundation Models](08_W8_Foundation_Models.md) ketika siap.
 
 ---
 
@@ -602,7 +791,7 @@ Setelah Anda lancar membaca repo orang lain, latihan berikutnya adalah membantu 
 
 ## Komponen Mandiri (Pekan 9)
 
-Konsep: membaca kode orang lain dengan cepat, memetakan arsitektur repo riset, dan memodifikasi secara minimal-invasif. Format dan kriteria: [Lampiran C.9](12_Lampiran.md#c9-template-komponen-mandiri).
+Konsep: membaca kode orang lain dengan cepat, memetakan arsitektur repo riset, dan memodifikasi secara minimal-invasif. Format dan kriteria: [Lampiran C.9](14_Lampiran.md#c9-template-komponen-mandiri).
 
 | Jalur | Tugas minggu ini |
 | --- | --- |
