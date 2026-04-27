@@ -216,15 +216,13 @@ Format: [Lampiran C.9](14_Lampiran.md#c9-template-komponen-mandiri).
 
 ---
 
-## Lanjut ke W8
+# Pendalaman W7 - Repo Adoption Deep Dive
 
-Anda sudah bisa bekerja dengan pretrained transformer, mengadopsi repo asing, dan menggunakan AI tools dengan protokol yang bertanggung jawab. W8 memperluas pemahaman ke seluruh landscape foundation models: bukan hanya text, tetapi vision, audio, time series, dan multimodal - serta bagaimana memilih strategi adaptasi yang tepat.
-
-Buka [W8 - Foundation Models](08_W8_Foundation_Models.md) ketika siap.
+Bagian di atas memperkenalkan tiga tema W7 secara ringkas. Pendalaman berikut khusus untuk tema Repo Adoption - tema dengan kurva belajar paling curam dan dampak paling besar pada produktivitas riset Anda di semester berikutnya. Anda boleh membaca bagian ini di W7, atau menundanya sebagai referensi saat Capstone (W12-14) ketika harus mengadopsi repo orang lain.
 
 ---
 
-## 1. Motivasi: Dua Minggu yang Seharusnya Empat Jam
+## D1. Motivasi: Dua Minggu yang Seharusnya Empat Jam
 
 Seorang asisten baru di lab menerima tugas: "reproduksi hasil paper X, lalu coba ganti encoder-nya dengan ViT". Link repo dilampirkan. Mahasiswa itu meng-clone, menjalankan `pip install -r requirements.txt`, error. Melacak error, menemukan versi CUDA tidak cocok; reinstall PyTorch. Error lagi, kali ini library `mmcv` minta versi spesifik. Setelah tiga hari gulat dengan setup, akhirnya `python train.py` jalan - tetapi dataset tidak terunduh otomatis, dokumentasi tentang lokasi data tidak ada, mahasiswa harus membaca 400 baris kode data loader untuk menemukan path yang diharapkan. Hari ketujuh, eksperimen baseline akhirnya jalan. Dua minggu berlalu sebelum modifikasi pertama bisa dicoba.
 
@@ -234,7 +232,7 @@ Perbedaan kecepatan tujuh kali lipat bukan karena bakat. Perbedaannya adalah *st
 
 ---
 
-## 2. Konsep Inti
+## D2. Konsep Inti
 
 ### 2.1 Urutan Membaca: Dari Luar ke Dalam
 
@@ -537,7 +535,7 @@ Tabel ringkas untuk referensi cepat:
 
 ---
 
-## 3. Worked Example: Mengadopsi Repo Hipotetis `vision-baseline`
+## D3. Worked Example: Mengadopsi Repo Hipotetis `vision-baseline`
 
 Misalkan Anda menerima tugas: *"Gunakan repo `vision-baseline` dari lab kita. Tambahkan opsi memakai focal loss. Hasilkan baseline + ablation pada CIFAR-10."*
 
@@ -703,7 +701,7 @@ Total: ~3 jam dari clone sampai laporan pertama. Bandingkan dengan "dua minggu" 
 
 ---
 
-## 4. Pitfalls & Miskonsepsi
+## D4. Pitfalls & Miskonsepsi
 
 **"Saya akan jalankan dulu, baru baca kalau error."** Strategi ini membuatmu terbiasa dengan bentrok permukaan (versi library, path, typo). Anda menghabiskan hari-hari mengatasi masalah yang sebenarnya akan hilang dengan satu jam membaca.
 
@@ -721,7 +719,7 @@ Total: ~3 jam dari clone sampai laporan pertama. Bandingkan dengan "dua minggu" 
 
 ---
 
-## 5. Lab 6 - Mengadopsi dan Memodifikasi Repo Eksternal
+## D5. Lab 6 - Mengadopsi dan Memodifikasi Repo Eksternal
 
 Buka [Lab 6 - Adopsi dan Modifikasi Repo Eksternal](template_repo/notebooks/lab6_adopt_external_repo.ipynb).
 
@@ -789,7 +787,7 @@ Setelah Anda lancar membaca repo orang lain, latihan berikutnya adalah membantu 
 
 ---
 
-## Komponen Mandiri (Pekan 9)
+## Komponen Mandiri Pendalaman (Repo Adoption)
 
 Konsep: membaca kode orang lain dengan cepat, memetakan arsitektur repo riset, dan memodifikasi secara minimal-invasif. Format dan kriteria: [Lampiran C.9](14_Lampiran.md#c9-template-komponen-mandiri).
 
@@ -799,21 +797,21 @@ Konsep: membaca kode orang lain dengan cepat, memetakan arsitektur repo riset, d
 | **B - Analisis** | Buat diagram komponen arsitektur repo Lab 6 (entry point, model, loss, optimizer, logging). Bandingkan dengan template_repo: apa yang lebih baik, apa yang kurang, apa yang hilang. |
 | **C - Desain** | Tulis laporan adopsi 1 halaman untuk repo Lab 6: apa yang berhasil, apa yang gagal, dan minimal 3 perubahan konkret agar repo ini dapat dipakai tim 5 orang selama 3 bulan. |
 
-**Deliverable:** Entri portofolio Pekan 9 di `notebooks/portofolio_mandiri.ipynb`. Presentasi 10 menit di awal Pekan 10.
+**Deliverable:** Entri portofolio Pendalaman W7 di `notebooks/portofolio_mandiri.ipynb`. Presentasi 10 menit pada sesi review berikutnya.
 
 ---
 
-## 6. Refleksi
+## D6. Refleksi Pendalaman
 
 1. Anda baru menerima akses ke repo lab dengan 150 file Python. Di mana Anda akan memulai, dan apa batasan waktu yang akan Anda tetapkan untuk fase membaca sebelum menjalankan?
 2. Setelah setup environment, Anda menemukan bahwa hasil reproduksi menyimpang 2% dari angka paper. Apa tiga hipotesis paling mungkin, dan bagaimana Anda menginvestigasinya tanpa menghubungi penulis paper?
 3. Dosen pembimbing meminta Anda "pakai repo X untuk dataset kita". Repo tersebut didesain untuk dataset berbeda. Bagaimana Anda mengevaluasi, dalam satu hari, apakah adaptasi lebih cepat daripada menulis ulang dari template?
 
-4. **Koneksi ke Capstone.** Capstone Bab 10 kemungkinan besar akan dimulai dari repo orang lain, bukan dari nol. Pilih satu repo kandidat (misalnya `rwightman/pytorch-image-models`, `huggingface/transformers`, atau repo khusus domain lab Anda). Tulis satu paragraf "laporan bacaan pertama": entrypoint training, cara config di-load, dan di mana Anda akan menyisipkan modifikasi. Latihan ini akan menghemat satu hari penuh Capstone.
+4. **Koneksi ke Capstone.** Capstone (W12-14) kemungkinan besar akan dimulai dari repo orang lain, bukan dari nol. Pilih satu repo kandidat (misalnya `rwightman/pytorch-image-models`, `huggingface/transformers`, atau repo khusus domain lab Anda). Tulis satu paragraf "laporan bacaan pertama": entrypoint training, cara config di-load, dan di mana Anda akan menyisipkan modifikasi. Latihan ini akan menghemat satu hari penuh Capstone.
 
 ---
 
-## 7. Bacaan Lanjutan
+## D7. Bacaan Lanjutan Pendalaman
 
 - **Peter Seibel - *Code is not literature*** (esai, 2014). Argumen mengapa kode dibaca secara berbeda dari teks naratif; implikasinya untuk strategi membaca.
 - **Michael Feathers - *Working Effectively with Legacy Code*** (buku). Walaupun ditujukan untuk software engineering, Bab 1-3 relevan untuk siapa saja yang akan sering bekerja dengan kode warisan.
@@ -822,8 +820,8 @@ Konsep: membaca kode orang lain dengan cepat, memetakan arsitektur repo riset, d
 
 ---
 
-## Lanjut ke Bab 07
+## Lanjut ke W8
 
-Anda kini bisa masuk ke kode orang lain dan keluar dengan modifikasi yang bersih. Keterampilan selanjutnya melengkapi kemampuan eksperimen Anda dengan alat inspeksi ringan: demo yang memungkinkan dosen melihat model bekerja tanpa harus menjalankan kode, visualizer hasil yang mempercepat analisis, dan UI sederhana untuk anotasi data ketika dataset Anda sendiri perlu dibangun.
+Anda sudah bisa bekerja dengan pretrained transformer, mengadopsi repo asing, dan menggunakan AI tools dengan protokol yang bertanggung jawab. W8 memperluas pemahaman ke seluruh landscape foundation models: bukan hanya text, tetapi vision, audio, time series, dan multimodal - serta bagaimana memilih strategi adaptasi yang tepat.
 
-Buka [Bab 07 - Alat Pendukung Ringan](07_Alat_Pendukung_Ringan.md) ketika siap.
+Buka [W8 - Foundation Models](08_W8_Foundation_Models.md) ketika siap.
