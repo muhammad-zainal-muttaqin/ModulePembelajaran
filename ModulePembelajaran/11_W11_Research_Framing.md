@@ -70,7 +70,7 @@ Teknik 5 Whys dari lean manufacturing bekerja juga untuk research framing. Mulai
 
 **Contoh:**
 
-> Topik awal: "Saya tertarik pada clasifikasi sinyal ECG."
+> Topik awal: "Saya tertarik pada klasifikasi sinyal ECG."
 
 1. **Why?** Karena arrhythmia sulit dideteksi oleh dokter umum.
 2. **Why?** Karena ECG reading membutuhkan keahlian spesifik dan banyak noise.

@@ -44,7 +44,7 @@ W8 membangun pemahaman sistematis tentang ekosistem foundation models:
 - **2.3** Membaca model card secara kritis
 - **2.4** Adaptation choice decision tree
 - **2.5** Teacher model dan training-time supervision
-- **2.6** Case study: IndoBERT untuk sentimen dengan tiga strategi
+- **3** Worked Example: IndoBERT dengan tiga strategi adaptasi
 
 ---
 
@@ -189,9 +189,11 @@ Contoh:
 
 Dalam semua kasus ini, foundation model tidak ada dalam model final yang di-deploy. Ia meningkatkan proses training. Pola ini penting karena memungkinkan benefit dari foundation model tanpa inference cost-nya.
 
-### 2.6 Case Study: IndoBERT untuk Sentimen dengan Tiga Strategi
+---
 
-Dataset: IndoNLU SmSA (dari Lab 5b). Tiga strategi:
+## 3. Worked Example: IndoBERT dengan Tiga Strategi Adaptasi
+
+Dataset: IndoNLU SmSA (dari Lab 5b). Tiga strategi pada dataset yang sama untuk memperlihatkan trade-off nyata.
 
 **Strategi A - Frozen + Linear Head:**
 ```python
@@ -228,7 +230,7 @@ Kelemahan: paling lama, butuh GPU, risiko overfitting pada data kecil.
 
 ---
 
-## 3. Pitfalls & Miskonsepsi
+## 4. Pitfalls & Miskonsepsi
 
 **"Foundation model selalu lebih baik."** Pada dataset kecil dengan distribusi sangat berbeda dari pretraining, model kecil yang di-fine-tune khusus kadang mengungguli foundation model besar.
 
@@ -240,7 +242,7 @@ Kelemahan: paling lama, butuh GPU, risiko overfitting pada data kecil.
 
 ---
 
-## 4. Assignment: Foundation Model Map (W8)
+## 5. Assignment: Foundation Model Map (W8)
 
 Buat **Foundation Model Map** untuk 3-4 model yang relevan dengan domain riset Anda:
 
@@ -267,7 +269,7 @@ Format: [Lampiran C.9](14_Lampiran.md#c9-template-komponen-mandiri).
 
 ---
 
-## 5. Refleksi
+## 6. Refleksi
 
 1. Anda mendapat task baru: deteksi emosi dari rekaman suara Bahasa Indonesia. Dari taksonomi §2.2, identifikasi dua kandidat foundation model. Untuk masing-masing, tulis dua argumen mendukung dan satu risiko utama.
 2. Seorang kolaborator mengklaim "model X mencapai SOTA di benchmark Y, jadi kita pakai ini". Apa tiga pertanyaan yang akan Anda tanyakan sebelum menyetujui?
@@ -275,7 +277,7 @@ Format: [Lampiran C.9](14_Lampiran.md#c9-template-komponen-mandiri).
 
 ---
 
-## 6. Bacaan Lanjutan
+## 7. Bacaan Lanjutan
 
 - **Bommasani et al. - *On the Opportunities and Risks of Foundation Models*** (2021). Paper definitif. Baca bagian 1 (Introduction) dan 3 (Capabilities).
 - **Hu et al. - *LoRA: Low-Rank Adaptation of Large Language Models*** (2021). Baca Section 4 (main experiments).
