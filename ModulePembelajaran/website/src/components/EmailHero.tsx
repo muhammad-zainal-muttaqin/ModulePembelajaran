@@ -3,7 +3,10 @@ import { Link } from "react-router-dom";
 export default function EmailHero() {
   return (
     <section className="relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-br from-curiosity-soft/40 via-cream to-rigor-soft/30 dark:from-rigor/15 dark:via-charcoal dark:to-curiosity/10" aria-hidden="true" />
+      <div
+        className="absolute inset-0 bg-gradient-to-br from-curiosity-soft/40 via-cream to-rigor-soft/30 dark:from-rigor/15 dark:via-charcoal dark:to-curiosity/10 [mask-image:linear-gradient(to_bottom,black_60%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,black_60%,transparent_100%)]"
+        aria-hidden="true"
+      />
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 py-16 md:py-24 grid gap-12 lg:grid-cols-2 items-center">
         <div>
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-curiosity/20 text-curiosity-deep dark:bg-curiosity/15 dark:text-curiosity text-xs font-medium mb-6">
