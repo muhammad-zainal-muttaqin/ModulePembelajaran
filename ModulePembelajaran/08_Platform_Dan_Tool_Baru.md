@@ -200,13 +200,10 @@ Rekomendasi praktis untuk mahasiswa:
 
 ### 2.6 Manajemen Biaya: Empat Aturan
 
-**Aturan 1: Alarm anggaran.** Set notifikasi di dashboard RunPod ketika pengeluaran harian melewati ambang (mis. $5). Bunyi alarm lebih cepat dari tagihan mengejutkan.
-
-**Aturan 2: Pilih GPU sesuai kebutuhan, bukan yang terbesar.** H100 tiga kali lebih cepat dari A40 tetapi enam kali lebih mahal. Untuk eksperimen CIFAR-10 atau dataset kecil lainnya, RTX 3090 sering cukup.
-
-**Aturan 3: Batch job, jangan interactive lama.** Kembangkan kode di laptop; kirim ke pod hanya untuk eksekusi. Pod yang menyala dengan `jupyter notebook` saat Anda pergi makan adalah uang yang terbuang.
-
-**Aturan 4: Review mingguan.** Setiap akhir minggu, buka dashboard, catat total biaya, catat eksperimen apa yang menghabiskan dana itu, tanya apakah nilainya sepadan. Ini mentransformasi biaya dari "angka abstrak" menjadi "keputusan belajar".
+1. **Alarm anggaran.** Set notifikasi di dashboard RunPod ketika pengeluaran harian melewati ambang (mis. $5). Bunyi alarm lebih cepat dari tagihan mengejutkan.
+2. **Pilih GPU sesuai kebutuhan, bukan yang terbesar.** H100 tiga kali lebih cepat dari A40 tetapi enam kali lebih mahal. Untuk eksperimen CIFAR-10 atau dataset kecil lainnya, RTX 3090 sering cukup.
+3. **Batch job, jangan interactive lama.** Kembangkan kode di laptop; kirim ke pod hanya untuk eksekusi. Pod yang menyala dengan `jupyter notebook` saat Anda pergi makan adalah uang yang terbuang.
+4. **Review mingguan.** Setiap akhir minggu, buka dashboard, catat total biaya, catat eksperimen apa yang menghabiskan dana itu, tanya apakah nilainya sepadan. Ini mentransformasi biaya dari "angka abstrak" menjadi "keputusan belajar".
 
 ### 2.7 Perbandingan Platform
 

@@ -1,3 +1,4 @@
+import { Children, isValidElement, type ReactElement, type ReactNode } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
@@ -6,6 +7,73 @@ import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import CodeBlock from "./CodeBlock";
 
 type Props = { markdown: string };
+
+type AdmonitionKind = "note" | "tip" | "warning" | "important" | "caution";
+
+const ADMONITION_LABELS: Record<AdmonitionKind, string> = {
+  note: "Catatan",
+  tip: "Tips",
+  warning: "Peringatan",
+  important: "Penting",
+  caution: "Hati-hati",
+};
+
+const ADMONITION_ICONS: Record<AdmonitionKind, string> = {
+  note: "i",
+  tip: "★",
+  warning: "!",
+  important: "▲",
+  caution: "✕",
+};
+
+const ADMONITION_PATTERN = /^\s*\[!(NOTE|TIP|WARNING|IMPORTANT|CAUTION)\]\s*/i;
+
+function detectAdmonition(children: ReactNode): {
+  kind: AdmonitionKind;
+  rest: ReactNode[];
+} | null {
+  const arr = Children.toArray(children);
+  const firstParaIndex = arr.findIndex(
+    (n) => isValidElement(n) && (n as ReactElement).type === "p",
+  );
+  if (firstParaIndex === -1) return null;
+
+  const firstPara = arr[firstParaIndex] as ReactElement<{ children?: ReactNode }>;
+  const paraChildren = Children.toArray(firstPara.props.children);
+  if (paraChildren.length === 0) return null;
+
+  const firstNode = paraChildren[0];
+  if (typeof firstNode !== "string") return null;
+
+  const match = firstNode.match(ADMONITION_PATTERN);
+  if (!match) return null;
+
+  const kind = match[1].toLowerCase() as AdmonitionKind;
+  const remainingText = firstNode.slice(match[0].length).replace(/^\s*\n?/, "");
+  const remainingPara: ReactNode[] = [...paraChildren];
+  remainingPara[0] = remainingText;
+  while (
+    remainingPara.length > 0 &&
+    typeof remainingPara[0] === "string" &&
+    (remainingPara[0] as string).trim() === ""
+  ) {
+    remainingPara.shift();
+  }
+
+  const rest: ReactNode[] = [...arr];
+  if (remainingPara.length === 0) {
+    rest.splice(firstParaIndex, 1);
+  } else {
+    const cleanedPara = (
+      <p key={(firstPara.key as string | null | undefined) ?? "admonition-first-p"}>
+        {remainingPara}
+      </p>
+    );
+    rest[firstParaIndex] = cleanedPara;
+  }
+
+  return { kind, rest };
+}
 
 export default function MarkdownRenderer({ markdown }: Props) {
   return (
@@ -69,6 +137,28 @@ export default function MarkdownRenderer({ markdown }: Props) {
                 {children}
               </a>
             );
+          },
+          blockquote({ children, ...props }) {
+            const detected = detectAdmonition(children);
+            if (detected) {
+              const { kind, rest } = detected;
+              return (
+                <aside
+                  className={`admonition ${kind}`}
+                  role="note"
+                  aria-label={ADMONITION_LABELS[kind]}
+                >
+                  <div className="admonition-title">
+                    <span className="admonition-icon" aria-hidden="true">
+                      {ADMONITION_ICONS[kind]}
+                    </span>
+                    <span>{ADMONITION_LABELS[kind]}</span>
+                  </div>
+                  {rest}
+                </aside>
+              );
+            }
+            return <blockquote {...props}>{children}</blockquote>;
           },
           table({ children }) {
             return (

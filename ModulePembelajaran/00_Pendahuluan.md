@@ -85,19 +85,13 @@ Keempat sikap tidak diajarkan sebagai doktrin. Anda akan mengenalinya dalam pitf
 
 Modul ini bekerja paling baik ketika Anda dan modul menyepakati empat hal berikut.
 
-**Pertama**, Anda mengerjakan setiap lab pada minggu yang sama dengan membacanya. Menunda lab berarti menunda pemahaman, dan bab berikutnya akan terasa seperti deretan istilah yang tidak tersambung.
-
-**Kedua**, Anda menulis catatan eksperimen sendiri. Bukan menyalin output, tetapi menjawab: apa yang aku jalankan, apa yang terjadi, apa arti hasilnya, dan apa yang akan kulakukan selanjutnya. Format catatan ada di `12_Lampiran.md`.
-
-**Ketiga**, Anda boleh memakai LLM, Copilot, dan pencarian web. Tapi sebelum memasukkan kode yang tidak Anda mengerti, baca baris demi baris dan pastikan Anda bisa menjelaskan fungsinya tanpa bantuan. Bab 05 membahas protokol ini lebih dalam.
-
-**Keempat**, Anda mengajukan pertanyaan. Pertanyaan yang dirumuskan dengan cermat adalah salah satu kompetensi yang dinilai di rubrik. Jika sesuatu terasa kabur setelah membaca dua kali, tulis pertanyaan seringkas mungkin dan bawa ke sesi tatap muka.
-
-**Kelima**, mulai Bab 02, Anda mengerjakan satu **Komponen Mandiri** setiap minggu. Catat di `notebooks/portofolio_mandiri.ipynb`; presentasi 10 menit di awal sesi berikutnya. Format dan kriteria: [Lampiran C.9](12_Lampiran.md#c9-template-komponen-mandiri).
-
-**Keenam - Breadth Check.** Sebelum Capstone, tunjukkan forward pass berjalan dari **empat dari lima keluarga arsitektur**: MLP (Lab 1c), CNN (Lab 1), RNN/LSTM (Lab 3b), Transformer (Lab 6b), Autoencoder (Lab 7b). Ini memastikan Anda keluar sebagai asisten yang bisa mengenali dan memodifikasi keluarga NN yang muncul di paper lintas domain, bukan hanya spesialis CIFAR-10.
-
-**Ketujuh**, eksperimen yang gagal tetapi didokumentasikan dengan baik dinilai setara dengan eksperimen yang berhasil. Yang dievaluasi adalah kualitas pemikiran, analisis, dan dokumentasi Anda - bukan apakah hipotesis terkonfirmasi. Hasil negatif yang dijelaskan dengan jujur lebih bernilai daripada hasil positif yang tidak bisa dipertanggungjawabkan.
+1. **Mengerjakan lab pada minggu yang sama dengan membacanya.** Menunda lab berarti menunda pemahaman, dan bab berikutnya akan terasa seperti deretan istilah yang tidak tersambung.
+2. **Menulis catatan eksperimen sendiri.** Bukan menyalin output, tetapi menjawab: apa yang aku jalankan, apa yang terjadi, apa arti hasilnya, dan apa yang akan kulakukan selanjutnya. Format catatan ada di `12_Lampiran.md`.
+3. **Memakai LLM, Copilot, dan pencarian web - dengan tanggung jawab.** Sebelum memasukkan kode yang tidak Anda mengerti, baca baris demi baris dan pastikan Anda bisa menjelaskan fungsinya tanpa bantuan. Bab 05 membahas protokol ini lebih dalam.
+4. **Mengajukan pertanyaan.** Pertanyaan yang dirumuskan dengan cermat adalah salah satu kompetensi yang dinilai di rubrik. Jika sesuatu terasa kabur setelah membaca dua kali, tulis pertanyaan seringkas mungkin dan bawa ke sesi tatap muka.
+5. **Komponen Mandiri mingguan, mulai Bab 02.** Catat di `notebooks/portofolio_mandiri.ipynb`; presentasi 10 menit di awal sesi berikutnya. Format dan kriteria: [Lampiran C.9](12_Lampiran.md#c9-template-komponen-mandiri).
+6. **Breadth Check sebelum Capstone.** Tunjukkan forward pass berjalan dari **empat dari lima keluarga arsitektur**: MLP (Lab 1c), CNN (Lab 1), RNN/LSTM (Lab 3b), Transformer (Lab 6b), Autoencoder (Lab 7b). Ini memastikan Anda keluar sebagai asisten yang bisa mengenali dan memodifikasi keluarga NN yang muncul di paper lintas domain, bukan hanya spesialis CIFAR-10.
+7. **Eksperimen yang gagal tetapi didokumentasikan dengan baik dinilai setara dengan yang berhasil.** Yang dievaluasi adalah kualitas pemikiran, analisis, dan dokumentasi Anda - bukan apakah hipotesis terkonfirmasi. Hasil negatif yang dijelaskan dengan jujur lebih bernilai daripada hasil positif yang tidak bisa dipertanggungjawabkan.
 
 ---
 
@@ -160,7 +154,8 @@ Modul ini dirancang sebagai tangga, tetapi tidak semua anak tangga harus dinaiki
 | **09** Pengembangan Mandiri | Bab 01b, Bab 02 | Bisa mendeskripsikan eksperimen secara terstruktur |
 | **10** Capstone | Bab 01a-09 | Seluruh pipeline: dataset → eksperimen → laporan |
 
-**Catatan**: Bab 04, 05, 06, dan 07 bersifat relatif paralel satu sama lain setelah Bab 03 selesai. Artinya, jika Anda melewatkan Bab 04 karena alasan waktu, Anda tetap bisa mengerjakan Bab 05 dan 06 dengan lancar. Sebaliknya, Bab 08 sangat bergantung pada Bab 03 dan Bab 06 - jangan melompat ke sana sebelum keduanya tuntas.
+> [!NOTE]
+> Bab 04, 05, 06, dan 07 bersifat relatif paralel satu sama lain setelah Bab 03 selesai. Jika Anda melewatkan Bab 04 karena alasan waktu, Anda tetap bisa mengerjakan Bab 05 dan 06 dengan lancar. Sebaliknya, Bab 08 sangat bergantung pada Bab 03 dan Bab 06 - jangan melompat ke sana sebelum keduanya tuntas.
 
 **Lab 1b** (representasi fitur, ada di Bab 01b) dan **Lab 5b** (domain teks, ada di Bab 05) adalah lab ekstensi - tidak memblokir bab berikutnya, tetapi memperkaya pemahaman lintas domain.
 

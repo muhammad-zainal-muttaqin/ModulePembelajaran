@@ -4,7 +4,7 @@ Modul ini dirancang untuk mahasiswa S1 yang ingin belajar *riset* machine learni
 
 **Versi web interaktif:** [muhammad-zainal-muttaqin.github.io/ModulePembelajaran](https://muhammad-zainal-muttaqin.github.io/ModulePembelajaran/) - SPA untuk membaca 14 bab (termasuk Panduan Dosen), mengisi jurnal refleksi, melacak progres 14 minggu, self-assess 9 kompetensi, dan menggenerate protokol eksperimen. Sumber website di [`website/`](website/).
 
-Satu semester berjalan 14 minggu. Setiap minggu membawa satu potong kompetensi baru, satu *lab* yang menambah lapisan pada proyek yang sama, dan satu sikap riset yang dibangun perlahan. Di akhir semester, mahasiswa menyelesaikan *capstone* yang mengintegrasikan keseluruhannya.
+Satu semester berjalan 14 minggu. Setiap minggu membawa satu potong kompetensi baru, satu *lab* yang menambah satu lapis pada proyek yang sama, dan satu sikap riset yang dibangun perlahan. Di akhir semester, mahasiswa menyelesaikan *capstone* yang mengintegrasikan keseluruhannya.
 
 ---
 

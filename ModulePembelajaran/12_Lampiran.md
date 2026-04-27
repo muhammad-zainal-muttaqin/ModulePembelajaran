@@ -31,132 +31,133 @@
 
 ## A. Glosarium Indonesia ↔ Inggris
 
-Istilah teknis ML/DL sebagian besar berasal dari Bahasa Inggris. Glosarium ini menyatukan *pilihan terjemahan* yang direkomendasikan dalam modul, untuk mencegah inkonsistensi dan membantu Anda berkomunikasi lintas konteks (tulisan akademik vs diskusi informal).
+Istilah teknis ML/DL sebagian besar berasal dari Bahasa Inggris. Glosarium ini mendokumentasikan istilah baku yang dipakai modul. **Aturan utama: istilah teknis ML/DL dipertahankan dalam Bahasa Inggris** (loss, checkpoint, baseline, fine-tune, freeze, layer, confusion matrix, hidden states, dll.). Padanan Indonesia hanya dicantumkan jika benar-benar lazim dan natural dipakai (akurasi, presisi, regularisasi, augmentasi). Hindari padanan kaku seperti "matriks kebingungan", "fungsi kerugian", "garis dasar", "jaringan saraf tiruan" - di prosa modul tetap pakai istilah English.
 
 ### A.1 Arsitektur & Model
 
 
-| Indonesia              | Inggris                           | Catatan penggunaan                                  |
-| ---------------------- | --------------------------------- | --------------------------------------------------- |
-| jaringan saraf tiruan  | neural network                    | Singkat: NN. Tulis lengkap di laporan pertama kali. |
-| jaringan feed-forward  | feed-forward network / FFN        | "Jaringan maju" juga diterima.                      |
-| jaringan konvolusi     | convolutional network / CNN       | "Jaringan konvolusional" jarang dipakai.            |
-| jaringan rekuren       | recurrent network / RNN           | LSTM dan GRU adalah varian RNN.                     |
-| arsitektur Transformer | Transformer architecture          | Nama diri, jangan diterjemahkan.                    |
-| lapisan (layer)        | layer                             | Dipakai sebagai pinjaman: "layer konvolusi" umum.   |
-| parameter terlatih     | trained parameters / weights      | "Bobot model" juga lazim.                           |
-| pretrained model       | model pralatih / pretrained model | "Pretrained" sering dipakai apa adanya.             |
-| fine-tuning            | fine-tuning / penyesuaian lanjut  | "Fine-tuning" lebih dipahami.                       |
-| embedding              | embedding / representasi vektor   | "Embedding" tidak perlu diterjemahkan.              |
-| perceptron multilayer  | multilayer perceptron / MLP       | Singkat: MLP. Arsitektur *feed-forward* dasar.       |
-| sel LSTM               | LSTM cell                         | Nama diri. Varian RNN dengan gate.                   |
-| GRU                    | GRU / Gated Recurrent Unit        | Nama diri. Varian RNN lebih ringkas dari LSTM.       |
-| mekanisme atensi       | attention mechanism               | "Atensi" dipakai; "mekanisme atensi" lebih jelas.    |
-| atensi multi-kepala    | multi-head attention              | Nama diri. Sering disingkat MHA.                     |
-| encoding posisi        | positional encoding               | Tidak wajib diterjemahkan.                           |
-| encoder / decoder      | encoder / decoder                 | Tidak diterjemahkan.                                 |
-| autoencoder            | autoencoder / AE                  | Nama diri. Encoder + decoder yang dilatih rekonstruksi. |
-| bottleneck             | bottleneck                        | Tidak diterjemahkan. Lapisan sempit di tengah AE.    |
-| kerugian rekonstruksi  | reconstruction loss               | Biasanya MSE atau BCE antara input dan output AE.    |
-| ruang laten            | latent space / latent representation | "Ruang laten" dipakai di akademik.                |
-| variational autoencoder | variational autoencoder / VAE    | Nama diri, jangan diterjemahkan.                     |
-| generative adversarial network | generative adversarial network / GAN | Nama diri, jangan diterjemahkan.              |
-| model difusi           | diffusion model                   | Nama diri. "Model diffusion" juga umum.              |
+| Istilah (English)              | Padanan Indonesia (jika lazim)    | Catatan penggunaan                                  |
+| ------------------------------ | --------------------------------- | --------------------------------------------------- |
+| neural network (NN)            | -                                 | Pakai "neural network" atau "NN", bukan "jaringan saraf tiruan". |
+| feed-forward network (FFN)     | -                                 | -                                                   |
+| convolutional network (CNN)    | -                                 | -                                                   |
+| recurrent network (RNN)        | -                                 | LSTM dan GRU adalah varian RNN.                     |
+| Transformer                    | -                                 | Nama diri, jangan diterjemahkan.                    |
+| layer                          | -                                 | Pakai "layer" sebagai pinjaman: "layer konvolusi", "layer awal". Hindari "lapisan" di konteks NN. |
+| weights / trained parameters   | bobot                             | "Bobot model" lazim di prosa.                       |
+| pretrained model               | -                                 | Pakai "pretrained" apa adanya.                      |
+| fine-tuning                    | -                                 | Pakai "fine-tune" / "fine-tuning". Hindari "penyesuaian halus". |
+| freeze / frozen                | -                                 | Pakai "di-freeze", bukan "dibekukan".               |
+| embedding                      | -                                 | Tidak diterjemahkan.                                |
+| multilayer perceptron (MLP)    | -                                 | Arsitektur *feed-forward* dasar.                    |
+| LSTM cell                      | -                                 | Nama diri. Varian RNN dengan gate.                  |
+| GRU (Gated Recurrent Unit)     | -                                 | Nama diri. Varian RNN lebih ringkas dari LSTM.      |
+| attention                      | atensi                            | "Attention" / "atensi" dua-duanya lazim.            |
+| multi-head attention (MHA)     | -                                 | Nama diri.                                          |
+| positional encoding            | -                                 | Tidak diterjemahkan.                                |
+| encoder / decoder              | -                                 | Tidak diterjemahkan.                                |
+| autoencoder (AE)               | -                                 | Encoder + decoder yang dilatih rekonstruksi.        |
+| bottleneck                     | -                                 | Tidak diterjemahkan. Layer sempit di tengah AE.     |
+| reconstruction loss            | -                                 | Biasanya MSE atau BCE antara input dan output AE.   |
+| latent space                   | ruang laten                       | "Ruang laten" lazim di akademik.                    |
+| variational autoencoder (VAE)  | -                                 | Nama diri.                                          |
+| generative adversarial network (GAN) | -                           | Nama diri.                                          |
+| diffusion model                | -                                 | Nama diri.                                          |
 
 
 ### A.2 Pelatihan
 
 
-| Indonesia                   | Inggris                           | Catatan                                  |
-| --------------------------- | --------------------------------- | ---------------------------------------- |
-| pelatihan (training)        | training                          | Kata kerja: "melatih".                   |
-| validasi                    | validation                        | Jangan campur dengan "validation set".   |
-| fungsi kerugian             | loss function                     | "Loss" singkat juga boleh.               |
-| turunan gradien             | gradient                          | Jarang diterjemahkan; "gradien" dipakai. |
-| penurunan gradien stokastik | stochastic gradient descent / SGD | Singkat: SGD.                            |
-| laju pelatihan              | learning rate                     | "Learning rate" hampir selalu dipakai.   |
-| ukuran batch                | batch size                        | Jarang diterjemahkan.                    |
-| epoch                       | epoch                             | Tidak diterjemahkan.                     |
-| langkah (step)              | step / iteration                  | "Iterasi" juga boleh.                    |
-| checkpoint                  | checkpoint / titik simpan         | "Checkpoint" lebih dipahami.             |
-| overfitting                 | overfitting / kelewat-cocok       | "Overfitting" lazim di akademik.         |
-| underfitting                | underfitting / kurang-cocok       | "Underfitting" lazim.                    |
-| regularisasi                | regularization                    | Tidak diterjemahkan.                     |
-| dropout                     | dropout                           | Tidak diterjemahkan.                     |
+| Istilah (English)                  | Padanan Indonesia (jika lazim) | Catatan                                  |
+| ---------------------------------- | ------------------------------ | ---------------------------------------- |
+| training                           | pelatihan / melatih            | Dua-duanya lazim.                        |
+| validation                         | validasi                       | Jangan campur dengan "validation set".   |
+| loss / loss function               | -                              | Pakai "loss". Hindari "fungsi kerugian". |
+| gradient                           | gradien                        | "Gradien" lazim di prosa.                |
+| stochastic gradient descent (SGD)  | -                              | Pakai "SGD". Hindari "penurunan gradien stokastik". |
+| learning rate                      | -                              | Pakai "learning rate". Hindari "laju pelatihan". |
+| batch size                         | -                              | Tidak diterjemahkan.                     |
+| epoch                              | -                              | Tidak diterjemahkan.                     |
+| step / iteration                   | iterasi / langkah              | Dua-duanya boleh.                        |
+| checkpoint                         | -                              | Pakai "checkpoint". Hindari "titik simpan". |
+| overfitting                        | -                              | Tidak diterjemahkan.                     |
+| underfitting                       | -                              | Tidak diterjemahkan.                     |
+| regularization                     | regularisasi                   | "Regularisasi" lazim sebagai serapan.    |
+| dropout                            | -                              | Tidak diterjemahkan.                     |
 
 
 ### A.3 Data
 
 
-| Indonesia               | Inggris                   | Catatan                              |
-| ----------------------- | ------------------------- | ------------------------------------ |
-| himpunan data           | dataset                   | "Dataset" hampir selalu dipakai.     |
-| train/validation/test   | train / validation / test | Jangan diterjemahkan di tabel hasil. |
-| label                   | label                     | Tidak diterjemahkan.                 |
-| kelas                   | class                     | Dipakai apa adanya.                  |
-| ketidakseimbangan kelas | class imbalance           | -                                    |
-| augmentasi data         | data augmentation         | -                                    |
-| pembagian data          | data split / splitting    | "Split" sering dipakai apa adanya.   |
-| kebocoran data          | data leakage              | "Leakage" sering dipakai apa adanya. |
-| pra-pemrosesan          | preprocessing             | -                                    |
+| Istilah (English)         | Padanan Indonesia (jika lazim) | Catatan                              |
+| ------------------------- | ------------------------------ | ------------------------------------ |
+| dataset                   | -                              | "Dataset" hampir selalu dipakai. Hindari "himpunan data". |
+| train / validation / test | -                              | Jangan diterjemahkan di tabel hasil. |
+| label                     | -                              | Tidak diterjemahkan.                 |
+| class                     | kelas                          | "Kelas" lazim sebagai serapan.       |
+| class imbalance           | -                              | Tidak diterjemahkan.                 |
+| data augmentation         | augmentasi data                | "Augmentasi" lazim sebagai serapan.  |
+| data split / splitting    | -                              | Pakai "split" apa adanya.            |
+| data leakage              | -                              | Pakai "leakage" apa adanya.          |
+| preprocessing             | pra-pemrosesan                 | Dua-duanya boleh.                    |
 
 
 ### A.4 Evaluasi
 
 
-| Indonesia              | Inggris                       | Catatan                                                             |
-| ---------------------- | ----------------------------- | ------------------------------------------------------------------- |
-| metrik                 | metric                        | -                                                                   |
-| akurasi                | accuracy                      | -                                                                   |
-| presisi / recall / F1  | precision / recall / F1       | Diterjemahkan hanya di penjelasan awam; di laporan biarkan inggris. |
-| matriks kebingungan    | confusion matrix              | -                                                                   |
-| AUC / ROC              | AUC / ROC                     | Nama diri.                                                          |
-| inferensi              | inference                     | -                                                                   |
-| evaluasi pada data uji | test-time evaluation          | -                                                                   |
-| ablation study         | studi ablasi / ablation study | Dua-duanya diterima.                                                |
+| Istilah (English)         | Padanan Indonesia (jika lazim) | Catatan                                                             |
+| ------------------------- | ------------------------------ | ------------------------------------------------------------------- |
+| metric                    | metrik                         | "Metrik" lazim sebagai serapan.                                     |
+| accuracy                  | akurasi                        | "Akurasi" lazim sebagai serapan.                                    |
+| precision / recall / F1   | presisi / recall / F1          | Di laporan biarkan English.                                         |
+| confusion matrix          | -                              | **Tidak diterjemahkan.** Hindari "matriks kebingungan".             |
+| AUC / ROC                 | -                              | Nama diri.                                                          |
+| inference                 | inferensi                      | "Inferensi" lazim.                                                  |
+| test-time evaluation      | evaluasi pada data uji         | -                                                                   |
+| ablation study            | studi ablasi                   | Dua-duanya diterima.                                                |
 
 
 ### A.5 Eksperimen & Reproduksibilitas
 
 
-| Indonesia              | Inggris                          | Catatan                                     |
-| ---------------------- | -------------------------------- | ------------------------------------------- |
-| eksperimen             | experiment                       | -                                           |
-| konfigurasi            | configuration / config           | -                                           |
-| seed (benih)           | seed                             | Tidak diterjemahkan.                        |
-| reproduksibilitas      | reproducibility                  | -                                           |
-| determinisme           | determinism                      | -                                           |
-| hipotesis              | hypothesis                       | Jamak: hipotesis-hipotesis.                 |
-| dapat dipalsukan       | falsifiable                      | Dari *filsafat ilmu*; kata kunci Popperian. |
-| baseline               | baseline / garis dasar           | "Baseline" lebih lazim.                     |
-| varian                 | variant                          | -                                           |
-| pre-registration       | pre-registration / praregistrasi | Dua-duanya diterima.                        |
-| hasil yang direplikasi | replicated result                | -                                           |
+| Istilah (English)         | Padanan Indonesia (jika lazim) | Catatan                                     |
+| ------------------------- | ------------------------------ | ------------------------------------------- |
+| experiment                | eksperimen                     | "Eksperimen" lazim sebagai serapan.         |
+| configuration / config    | konfigurasi                    | -                                           |
+| seed                      | -                              | Tidak diterjemahkan.                        |
+| reproducibility           | reproduksibilitas              | -                                           |
+| determinism               | determinisme                   | -                                           |
+| hypothesis                | hipotesis                      | Jamak: hipotesis-hipotesis.                 |
+| falsifiable               | dapat dipalsukan               | Dari *filsafat ilmu*; kata kunci Popperian. |
+| baseline                  | -                              | **Tidak diterjemahkan.** Hindari "garis dasar". |
+| variant                   | varian                         | -                                           |
+| pre-registration          | praregistrasi                  | Dua-duanya diterima.                        |
+| replicated result         | hasil yang direplikasi         | -                                           |
 
 
 ### A.6 Perangkat
 
 
-| Indonesia                  | Inggris         | Catatan               |
-| -------------------------- | --------------- | --------------------- |
-| GPU (unit pemroses grafis) | GPU             | Tidak diterjemahkan.  |
-| CPU                        | CPU             | -                     |
-| memori (RAM)               | memory / RAM    | -                     |
-| pod (di cloud)             | pod             | Tidak diterjemahkan.  |
-| SSH                        | SSH             | -                     |
-| tunnel                     | tunnel          | Jarang diterjemahkan. |
-| checkpoint terbaik         | best checkpoint | -                     |
+| Istilah (English)  | Padanan Indonesia (jika lazim) | Catatan               |
+| ------------------ | ------------------------------ | --------------------- |
+| GPU                | -                              | Tidak diterjemahkan.  |
+| CPU                | -                              | -                     |
+| memory / RAM       | memori                         | -                     |
+| pod                | -                              | Tidak diterjemahkan.  |
+| SSH                | -                              | -                     |
+| tunnel             | -                              | Tidak diterjemahkan.  |
+| best checkpoint    | -                              | -                     |
 
 
 ### A.7 Sikap Riset (dari modul)
 
 
-| Indonesia      | Inggris    | Catatan                                      |
-| -------------- | ---------- | -------------------------------------------- |
-| keingintahuan  | curiosity  | -                                            |
-| ketelitian     | rigor      | -                                            |
-| skeptisisme    | skepticism | -                                            |
-| tanggung jawab | ownership  | Konteks riset: "mengampuni hasilmu sendiri". |
+| Istilah (English) | Padanan Indonesia | Catatan                                      |
+| ----------------- | ----------------- | -------------------------------------------- |
+| curiosity         | keingintahuan     | -                                            |
+| rigor             | ketelitian        | -                                            |
+| skepticism        | skeptisisme       | -                                            |
+| ownership         | tanggung jawab    | Konteks riset: "mengampuni hasilmu sendiri". |
 
 
 ---
@@ -563,6 +564,39 @@ Template ringan untuk catatan harian rutin, berbeda dari C.4 yang dirancang untu
 
 Aturan praktis: jika Anda tidak yakin, mulai dengan C.10. Jika di pertengahan pekan Anda sadar eksperimennya lebih besar dari perkiraan, pindah ke C.4 - catatan C.10 bisa menjadi draft untuk C.4.
 
+### C.11 Template Update Mingguan ke PI
+
+Template salin-pakai untuk update rutin ke dosen pembimbing/PI, biasanya dikirim sebelum sesi mingguan atau di awal pekan. Bedanya dari C.4 dan C.10: kedua template itu *inward-facing* (catatan untuk diri sendiri), sedangkan C.11 *outward-facing* untuk komunikasi dengan supervisor. Konsistensi mingguan membangun kepercayaan PI lebih cepat daripada hasil spektakuler yang datang tiba-tiba.
+
+**Format (4 bagian + 1 pertanyaan):**
+
+```markdown
+## Weekly Update: <Nama> - Pekan <X>
+
+**Progress minggu ini:**
+- [Eksperimen A]: selesai 3 seed. F1 minor 0.672 ± 0.014. Hipotesis terkonfirmasi.
+- [Eksperimen B]: baru 1 seed (seed 42 berjalan; seed 43-44 dalam antrean).
+
+**Kendala:**
+- GPU time untuk B lebih lambat dari estimasi. Butuh 2 hari lagi.
+
+**Rencana minggu depan:**
+- Selesaikan 3 seed B, analisis perbandingan A vs B.
+- Jika B tidak mengkonfirmasi hipotesis, tulis analisis penyebab.
+
+**Satu pertanyaan:**
+- Gamma sweep untuk focal loss: saya usul [1.0, 2.0, 3.0, 5.0]. Apakah rentang ini cukup, atau ada nilai lain yang sebaiknya diuji?
+```
+
+**Tiga prinsip update yang baik:**
+
+1. **Spesifik dengan angka.** "Akurasi naik" tidak informatif; "F1 minor 0.612 → 0.672, Δ = +0.06" bisa langsung dipakai PI untuk keputusan.
+2. **Kendala disebut lebih awal, bukan disembunyikan di akhir.** PI tidak bisa membantu masalah yang tidak ia ketahui. Jika GPU habis, data ternyata rusak, atau hasil tidak masuk akal, sampaikan segera, bukan seminggu kemudian.
+3. **Selalu ajukan satu pertanyaan.** Pertanyaan yang baik memberi PI sesuatu untuk direspon dengan cepat. Satu pertanyaan konkret lebih baik daripada tiga pertanyaan abstrak.
+
+> [!TIP]
+> Pemilihan saluran pengiriman (email, chat, tatap muka) dibahas di [Bab 02 §3.5.3](02_Ide_Ke_Eksperimen.md). Default untuk update rutin: email atau shared document yang bisa diarsipkan.
+
 ---
 
 ## D. Ringkasan Cepat Empat Sikap Riset
@@ -662,7 +696,7 @@ Dua belas tabel di bawah adalah alat bantu bagi Anda untuk memeriksa pemahaman s
 | Menjawab 5 pertanyaan sebelum menyentuh kode untuk instruksi baru | | | |
 | Menulis protokol eksperimen satu halaman (variabel, baseline, hipotesis, metrik, waktu) | | | |
 | Merumuskan hipotesis yang dapat dipalsukan (bukan "loss X lebih baik") | | | |
-| Menyusun update mingguan ke PI dengan format: progress, kendala, rencana, pertanyaan | | | |
+| Menyusun update mingguan ke PI dengan format: progress, kendala, rencana, pertanyaan ([Lampiran §C.11](#c11-template-update-mingguan-ke-pi)) | | | |
 | Memakai kerangka SQRC saat mengajukan pertanyaan teknis ke PI | | | |
 | Lab 2: FocalLoss + freeze + ablation selesai; `protocol.md` ditulis sebelum run | | | |
 
@@ -779,6 +813,7 @@ Checklist ini melengkapi - bukan menggantikan - rubrik penilaian di Bab 11. Rubr
 - **Template entri portofolio mandiri?** → Lampiran §C.6
 - **Panduan presentasi Komponen Mandiri?** → Lampiran §C.7
 - **Template weekly experiment log ringan?** → Lampiran §C.10
+- **Template update mingguan ke PI/supervisor?** → Lampiran §C.11
 - **Format dan kriteria Komponen Mandiri?** → Lampiran §C.9
 - **Rubrik Eksplorasi Mandiri & Komunikasi?** → [Rubrik Penilaian](11_Rubrik_Penilaian.md) §3 Kompetensi 10
 

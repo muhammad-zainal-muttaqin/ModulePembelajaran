@@ -162,7 +162,7 @@ Di luar seed, sumber noise lain: urutan data, kernel CUDA yang non-deterministik
 
 1. **Aturan 2σ**: Jika Δ antara dua kondisi lebih besar dari 2 × σ gabungan keduanya, perbedaannya lebih mungkin nyata daripada sekadar variasi seed. Ini bukan uji statistik formal, tetapi cukup untuk laporan internal.
 
-2. **Effect size threshold**: Tetapkan δ minimum sebelum eksperimen berjalan (di pre-registration). Jika kenaikan yang diprediksi penting adalah 2 poin F1, kenaikan 0.3 poin tidak bermakna secara praktis meski angkanya "naik". Peningkatan < 0.5 poin pada dataset besar dengan 3 seed hampir selalu noise.
+2. **Effect size threshold**: Tetapkan δ minimum sebelum eksperimen berjalan (di pre-registration). Jika kenaikan yang diprediksi penting adalah 2 poin F1, kenaikan 0.3 poin tidak bermakna dalam praktiknya meski angkanya "naik". Peningkatan < 0.5 poin pada dataset besar dengan 3 seed hampir selalu noise.
 
 Untuk publikasi atau laporan formal, pertimbangkan *paired t-test* atau *Wilcoxon signed-rank test* jika Anda punya cukup run (≥5 seed per kondisi). Namun di tahap eksplorasi awal, threshold δ yang ditetapkan sebelumnya lebih berguna daripada p-value yang dicomputasi setelah melihat data.
 
@@ -181,16 +181,34 @@ Hipotesis tidak harus benar. Hipotesis yang ternyata salah sering lebih informat
 
 Ini situasi yang hampir pasti Anda alami: eksperimen sudah berjalan, hasilnya tidak sesuai pre-registration. Apa yang dilakukan? Ada tiga skenario yang berbeda cara penanganannya.
 
-**Skenario A: Hasil hampir mencapai threshold tapi tidak sampai.**
-Misalnya hipotesis "F1 naik ≥ 3 poin" tapi hasil aktual Δ = 1.8 poin. Jangan langsung klaim "hipotesis terkonfirmasi sebagian" - itu bukan cara kerja pre-registration. Langkah yang tepat: (1) verifikasi protokol *exact match* - apakah semua variabel benar-benar dikontrol sesuai pre-reg? (2) tambah 2 seed lagi untuk memastikan angka tidak berubah arah; (3) jika tetap 1.8 poin, simpulkan hipotesis tidak terkonfirmasi dan catat sebagai temuan negatif.
+#### Skenario A - Hasil hampir mencapai threshold tapi tidak sampai
 
-**Skenario B: Hasil berlawanan arah dari prediksi.**
-Hipotesis "focal loss meningkatkan F1" tapi hasilnya F1 turun 1.2 poin. Ini lebih informatif dari skenario A. Sebelum menyimpulkan "focal loss tidak bekerja", lakukan (1) audit implementasi: apakah gamma=0 menghasilkan CE yang identik? (2) cek distribusi loss tiap kelas: apakah focal loss terlalu agresif menekan kelas mudah? (3) investigasi apakah baseline yang dipakai sudah fair (sama hyperparameter kecuali variabel yang diuji). Jika semua aman, hasil negatif ini valid dan layak dilaporkan.
+Misalnya hipotesis "F1 naik ≥ 3 poin" tapi hasil aktual Δ = 1.8 poin. Jangan langsung klaim "hipotesis terkonfirmasi sebagian" - itu bukan cara kerja pre-registration. Langkah yang tepat:
 
-**Skenario C: Hasil sangat bagus, jauh di atas prediksi.**
-Ini *terutama* membutuhkan skeptisisme. Jika hipotesis "naik 3 poin" tapi aktual naik 12 poin, kemungkinan ada bug atau leakage yang tidak disengaja. Langkah: (1) jalankan ulang baseline dengan seed berbeda; (2) periksa apakah test set benar-benar tidak menyentuh training; (3) verifikasi bahwa intervensi tidak secara tidak sengaja mengubah sesuatu yang lain (misal: mengubah augmentasi, mengubah normalisasi).
+1. **Verifikasi protokol** *exact match* - apakah semua variabel benar-benar dikontrol sesuai pre-reg?
+2. **Tambah 2 seed lagi** untuk memastikan angka tidak berubah arah.
+3. **Jika tetap 1.8 poin**, simpulkan hipotesis tidak terkonfirmasi dan catat sebagai temuan negatif.
 
-**Catatan hasil negatif.** Hasil negatif yang didokumentasikan dengan baik adalah kontribusi nyata untuk riset - ia mencegah orang lain membuang waktu di arah yang sama. Di lab Anda sendiri, catatan negatif melindungi Anda dari mengulangi eksperimen yang sama enam bulan kemudian.
+#### Skenario B - Hasil berlawanan arah dari prediksi
+
+Hipotesis "focal loss meningkatkan F1" tapi hasilnya F1 turun 1.2 poin. Ini lebih informatif dari skenario A. Sebelum menyimpulkan "focal loss tidak bekerja", lakukan:
+
+1. **Audit implementasi** - apakah `gamma=0` menghasilkan CE yang identik?
+2. **Cek distribusi loss tiap kelas** - apakah focal loss terlalu agresif menekan kelas mudah?
+3. **Investigasi baseline** - apakah baseline yang dipakai sudah fair (sama hyperparameter kecuali variabel yang diuji)?
+
+Jika semua aman, hasil negatif ini valid dan layak dilaporkan.
+
+#### Skenario C - Hasil sangat bagus, jauh di atas prediksi
+
+Ini *terutama* membutuhkan skeptisisme. Jika hipotesis "naik 3 poin" tapi aktual naik 12 poin, kemungkinan ada bug atau leakage yang tidak disengaja. Langkah:
+
+1. **Jalankan ulang baseline** dengan seed berbeda.
+2. **Periksa test set** - apakah benar-benar tidak menyentuh training?
+3. **Verifikasi intervensi** - tidak secara tidak sengaja mengubah sesuatu yang lain (misal: augmentasi, normalisasi)?
+
+> [!NOTE]
+> **Hasil negatif yang didokumentasikan dengan baik adalah kontribusi nyata untuk riset** - ia mencegah orang lain membuang waktu di arah yang sama. Di lab Anda sendiri, catatan negatif melindungi Anda dari mengulangi eksperimen yang sama enam bulan kemudian.
 
 ---
 
@@ -291,33 +309,9 @@ Sejauh ini kita membahas penerjemahan instruksi PI menjadi protokol. Namun riset
 
 #### 3.5.1 Format Update Mingguan ke PI
 
-Update mingguan yang baik adalah kebiasaan paling sederhana dan paling berdampak dalam hubungan asisten-PI. Formatnya ringkas - cukup empat bagian dan satu pertanyaan:
+Update mingguan yang baik adalah kebiasaan paling sederhana dan paling berdampak dalam hubungan asisten-PI. Formatnya ringkas - empat bagian (progress, kendala, rencana, satu pertanyaan) yang dapat ditulis dalam 10-15 menit. Yang penting kirim *sebelum* diminta; konsistensi membangun kepercayaan lebih cepat daripada hasil spektakuler yang datang tiba-tiba.
 
-```markdown
-## Weekly Update: <Nama> - Pekan <X>
-
-**Progress minggu ini:**
-- [Eksperimen A]: selesai 3 seed. F1 minor 0.672 ± 0.014. Hipotesis terkonfirmasi.
-- [Eksperimen B]: baru 1 seed (seed 42 berjalan; seed 43-44 dalam antrean).
-
-**Kendala:**
-- GPU time untuk B lebih lambat dari estimasi. Butuh 2 hari lagi.
-
-**Rencana minggu depan:**
-- Selesaikan 3 seed B, analisis perbandingan A vs B.
-- Jika B tidak mengkonfirmasi hipotesis, tulis analisis penyebab.
-
-**Satu pertanyaan:**
-- Gamma sweep untuk focal loss: saya usul [1.0, 2.0, 3.0, 5.0]. Apakah rentang ini cukup, atau ada nilai lain yang sebaiknya diuji?
-```
-
-Tiga prinsip update yang baik:
-
-1. **Spesifik dengan angka.** "Akurasi naik" tidak informatif; "F1 minor 0.612 → 0.672, Δ = +0.06" bisa langsung dipakai PI untuk keputusan.
-2. **Kendala disebut lebih awal, bukan disembunyikan di akhir.** PI tidak bisa membantu masalah yang tidak ia ketahui. Jika GPU habis, data ternyata rusak, atau hasil tidak masuk akal - sampaikan segera, bukan seminggu kemudian.
-3. **Selalu ajukan satu pertanyaan.** Pertanyaan yang baik memberi PI sesuatu untuk direspon dengan cepat. Satu pertanyaan konkret lebih baik daripada tiga pertanyaan abstrak.
-
-Update ini bisa dikirim via email, Slack, atau shared document. Yang penting: kirim *sebelum* diminta. Konsistensi mingguan membangun kepercayaan lebih cepat daripada hasil spektakuler yang datang tiba-tiba.
+Template salin-pakai lengkap dengan contoh terisi dan tiga prinsip update yang baik tersedia di [Lampiran §C.11](12_Lampiran.md#c11-template-update-mingguan-ke-pi). Pakai template ini sebagai titik awal, lalu sesuaikan dengan ritme komunikasi dosen Anda - sebagian PI lebih suka email, sebagian lebih suka shared document yang ditambah setiap pekan.
 
 #### 3.5.2 Kerangka SQRC untuk Framing Pertanyaan Teknis
 

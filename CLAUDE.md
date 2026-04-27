@@ -35,13 +35,14 @@ ModulePembelajaran/
 
 **Penambahan April 2026 (Gap Analysis Implementation):**
 - `13_Panduan_Dosen.md`: file baru, panduan lengkap dosen (filosofi, pacing, emphasis per-bab, cara baca rubrik, cara nilai portofolio, skenario kelas)
-- Bab 02 §3.5: Komunikasi Efektif dengan Dosen Pembimbing (template weekly update, kerangka SQRC, matriks saluran komunikasi, ekspresi ketidakpastian profesional)
+- Bab 02 §3.5: Komunikasi Efektif dengan Dosen Pembimbing (kerangka SQRC, matriks saluran komunikasi, ekspresi ketidakpastian profesional; §3.5.1 menjadi pointer ke Lampiran §C.11)
 - Bab 01b §2.5: Mermaid decision tree diagnostik loss curve (branching flowchart mencakup 5 pola + navigasi "mulai dari overfit one batch")
 - Bab 04 §2.6: Etika Data dan Bias (4 jenis dataset bias, fairness awareness, negative results sebagai kewajiban etis, tanggung jawab asisten riset)
 - Bab 06 Lab 6c (pair): Peer Code Review Repo Eksternal (aktivitas berpasangan, mapping 4 komponen repo, issue palsu, peer_review_log.md)
 - Bab 03 §2.10: Git Workflow untuk Riset Eksperimental (commit convention `exp:`/`fix:`/`docs:`, branching strategy minimal `main`+`exp/<nama>`, kapan commit)
 - Bab 08 §2.1.1: Matriks Evaluasi Tool (skoring 5 dimensi: dokumentasi, reproduksibilitas, ekosistem, biaya, komunitas; aturan <12 curigai, 12-18 coba kecil, >18 adopsi)
 - Lampiran §C.10: Template Weekly Experiment Log Ringan (format tabel 5 kolom, 5-10 menit/hari, aturan kapan C.10 vs C.4)
+- Lampiran §C.11: Template Update Mingguan ke PI/Supervisor (lift dari Bab 02 §3.5.1; outward-facing untuk komunikasi supervisor, melengkapi C.4/C.10 yang inward-facing; Bab 02 §3.5.1 di-refactor jadi pointer)
 - Lampiran §G: Self-Checklist Mingguan (12 tabel, Minggu 1-12, kolom Belum/Mulai/Sudah, 4-7 poin per minggu)
 - Navigasi: semua 14 bab + README + Lampiran diperbarui menyertakan link ke `13_Panduan_Dosen.md`
 - Indeks Cepat (Lampiran §E): 10+ entri baru untuk semua section/lab/template baru
@@ -200,6 +201,17 @@ Hindari konstruksi bertingkat khas English ("there is one X that Y, which Z, so 
 - Navigasi modul pakai `<details><summary>📂 Navigasi Modul (klik untuk buka)</summary>...</details>` (konsisten di 13 bab).
 - Tabel boleh tanpa padding alignment, tetapi header-separator wajib ada (`| --- |`).
 - File `.md` wajib diakhiri dengan satu newline.
+
+**Tipografi & Ritme Visual (untuk pembaca website):**
+
+Modul juga di-render di website (`website/src/components/MarkdownRenderer.tsx`) dengan styling editorial di `.prose-modul`. Pola berikut wajib diikuti supaya pembaca tidak melihat dinding teks datar:
+
+1. **Inline enumerasi prosedural pakai list bernomor, bukan paragraf.** Pola `(1) ... (2) ... (3) ...` di tengah paragraf yang isinya benar-benar langkah → pecah jadi `1. ... 2. ... 3. ...`. Pengecualian: jika hanya 2 item pendek dan tidak prosedural (sekadar listing keterangan), boleh tetap inline.
+2. **Struktur paralel besar (3+ item dengan format identik) → pecah jadi `####` heading atau list bernomor.** Contoh: "Skenario A/B/C", "Kategori 1/2/3/4", "Aturan 1/2/3/4". `####` muncul di Table of Contents, jadi pembaca bisa melompat. List bernomor dengan **bold lead-in** cukup jika section sudah ramai heading.
+3. **Catatan/peringatan/tips → admonition GFM, bukan paragraf bold.** Sintaks: `> [!NOTE]` / `> [!TIP]` / `> [!WARNING]` / `> [!IMPORTANT]` / `> [!CAUTION]`, lalu newline, lalu isi blockquote. Renderer otomatis kasih ikon, label, dan warna theme. Pakai untuk: catatan reproducibility, peringatan biaya, tips workflow. Jangan pakai untuk konten utama yang panjang.
+4. **Lead paragraph (kalimat pembuka section) otomatis dapat treatment editorial.** Tidak perlu markup khusus — `h2 + p`, `h3 + p`, `h4 + p` di-style dengan size sedikit lebih besar, weight lebih tegas, warna lebih pekat. Maka paragraf pembuka section harus **bisa berdiri sendiri sebagai pengantar** — jangan langsung lompat ke detail teknis.
+
+**Singkatnya:** kalau menulis 3 item paralel dengan format identik atau menulis `(1)(2)(3)` di paragraf, tanyakan: ini sebenarnya list, kan? Kalau ya, format sebagai list. Kalau menulis "**Catatan**:" atau "**Penting**:" sebagai paragraf, tanyakan: ini sebenarnya admonition, kan? Kalau ya, pakai `> [!NOTE]` atau `> [!IMPORTANT]`.
 
 **Workflow konten baru:**
 

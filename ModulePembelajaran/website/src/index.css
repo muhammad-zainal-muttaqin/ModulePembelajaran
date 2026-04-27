@@ -106,16 +106,25 @@
     @apply text-heading-1 font-semibold mt-10 mb-6;
   }
   .prose-modul h2 {
-    @apply text-heading-2 font-semibold mt-10 mb-4 scroll-mt-24;
+    @apply text-heading-2 font-semibold mt-12 mb-5 pt-8 scroll-mt-24 border-t border-black/5 dark:border-white/5;
+  }
+  .prose-modul h2:first-child {
+    @apply mt-0 pt-0 border-t-0;
   }
   .prose-modul h3 {
-    @apply text-heading-3 font-semibold mt-8 mb-3 scroll-mt-24;
+    @apply text-heading-3 font-semibold mt-10 mb-3 scroll-mt-24;
   }
   .prose-modul h4 {
-    @apply text-heading-4 font-semibold mt-6 mb-2;
+    @apply text-heading-4 font-semibold mt-7 mb-2 scroll-mt-24;
   }
   .prose-modul p {
     @apply my-4;
+  }
+  .prose-modul h2 + p,
+  .prose-modul h3 + p,
+  .prose-modul h4 + p {
+    @apply text-[1.0625em] text-ink dark:text-parchment mt-3;
+    font-weight: 450;
   }
   .prose-modul ul {
     @apply list-disc pl-6 my-4 space-y-1.5;
@@ -177,6 +186,71 @@
   .prose-modul h3:hover .anchor-link,
   .prose-modul h4:hover .anchor-link {
     @apply opacity-100;
+  }
+
+  .admonition {
+    @apply my-6 rounded-lg border-l-4 px-5 py-4 not-italic;
+  }
+  .admonition-title {
+    @apply flex items-center gap-2 font-semibold text-[0.95em] mb-2 mt-0 font-sans;
+    font-style: normal;
+  }
+  .admonition-icon {
+    @apply inline-flex items-center justify-center w-5 h-5 rounded-full text-xs font-bold flex-shrink-0;
+  }
+  .admonition > *:last-child {
+    @apply mb-0;
+  }
+  .admonition p {
+    @apply my-2 not-italic;
+  }
+  .admonition p + p {
+    text-indent: 0;
+  }
+  .admonition.note {
+    @apply border-rigor bg-rigor-soft/50 dark:bg-rigor/10;
+  }
+  .admonition.note .admonition-icon {
+    @apply bg-rigor text-white;
+  }
+  .admonition.note .admonition-title {
+    @apply text-rigor-deep dark:text-rigor-soft;
+  }
+  .admonition.tip {
+    @apply border-ownership bg-ownership-soft/50 dark:bg-ownership/10;
+  }
+  .admonition.tip .admonition-icon {
+    @apply bg-ownership text-white;
+  }
+  .admonition.tip .admonition-title {
+    @apply text-ownership-deep dark:text-ownership-soft;
+  }
+  .admonition.warning {
+    @apply border-curiosity bg-curiosity-soft/50 dark:bg-curiosity/10;
+  }
+  .admonition.warning .admonition-icon {
+    @apply bg-curiosity text-white;
+  }
+  .admonition.warning .admonition-title {
+    @apply text-curiosity-deep dark:text-curiosity-soft;
+  }
+  .admonition.important {
+    @apply border-skepticism bg-skepticism-soft/50 dark:bg-skepticism/10;
+  }
+  .admonition.important .admonition-icon {
+    @apply bg-skepticism text-white;
+  }
+  .admonition.important .admonition-title {
+    @apply text-skepticism-deep dark:text-skepticism-soft;
+  }
+  .admonition.caution {
+    @apply border-skepticism bg-skepticism-soft/50 dark:bg-skepticism/10;
+  }
+  .admonition.caution .admonition-icon {
+    @apply bg-skepticism text-white;
+  }
+  .admonition.caution .admonition-title {
+    @apply text-skepticism-deep dark:text-skepticism-soft;
   }
 
   .btn {

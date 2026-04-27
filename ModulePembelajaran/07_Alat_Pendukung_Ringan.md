@@ -216,11 +216,9 @@ Perkakas pendukung menarik karena terasa produktif - ada output visual yang lang
 
 Tiga aturan praktis kapan berhenti:
 
-**Aturan jam-per-minggu.** Jika Anda sudah menghabiskan lebih dari 20% waktu mingguan pada perkakas (misal 8 dari 40 jam), tanyakan: apakah riset inti saya maju minggu ini? Bila tidak, kurangi.
-
-**Aturan satu-pengguna.** Jika Anda tergoda menambahkan login, multi-user, permission - hentikan. Perkakas pendukung riset punya satu pengguna. Semua itu adalah fitur produk, bukan fitur riset.
-
-**Aturan membuktikan-sesuatu.** Sebelum menambah fitur baru, tanya: fitur ini akan membuktikan atau mempercepat pertanyaan riset yang mana? Bila jawabannya "akan enak jika ada", hentikan.
+1. **Aturan jam-per-minggu.** Jika Anda sudah menghabiskan lebih dari 20% waktu mingguan pada perkakas (misal 8 dari 40 jam), tanyakan: apakah riset inti saya maju minggu ini? Bila tidak, kurangi.
+2. **Aturan satu-pengguna.** Jika Anda tergoda menambahkan login, multi-user, permission - hentikan. Perkakas pendukung riset punya satu pengguna. Semua itu adalah fitur produk, bukan fitur riset.
+3. **Aturan membuktikan-sesuatu.** Sebelum menambah fitur baru, tanya: fitur ini akan membuktikan atau mempercepat pertanyaan riset yang mana? Bila jawabannya "akan enak jika ada", hentikan.
 
 ---
 
@@ -294,7 +292,12 @@ Target waktu: 4-6 jam. Ingat aturan batas: berhenti ketika aplikasi *berguna*, b
 
 **Lab 7b (breadth) - Autoencoder dan Embedding.** Buka [Lab 7b - Autoencoder dan Embedding](template_repo/notebooks/lab7b_autoencoder.ipynb). Autoencoder masuk di bab *alat pendukung* karena perannya sebagai **alat inspeksi representasi**: Anda melatihnya unsupervised, lalu memakai ruang bottleneck untuk melihat apakah ada cluster semantik di data Anda tanpa perlu label.
 
-Fokus: (1) convolutional autoencoder pada CIFAR-10 unsupervised, dengan rekonstruksi visual; (2) visualisasi ruang bottleneck 32-dim dengan t-SNE, warnai berdasarkan label (hanya untuk inspeksi, tidak dipakai di training); (3) varian *denoising autoencoder* - input dirusak Gaussian noise, target tetap bersih - biasanya menghasilkan embedding yang lebih robust; (4) peta singkat ke keluarga generatif (VAE, GAN, Diffusion) yang dibahas di Bab 09 Section 2.7.
+Fokus:
+
+1. **Convolutional autoencoder** pada CIFAR-10 unsupervised, dengan rekonstruksi visual.
+2. **Visualisasi ruang bottleneck** 32-dim dengan t-SNE, warnai berdasarkan label (hanya untuk inspeksi, tidak dipakai di training).
+3. **Varian *denoising autoencoder*** - input dirusak Gaussian noise, target tetap bersih - biasanya menghasilkan embedding yang lebih robust.
+4. **Peta singkat ke keluarga generatif** (VAE, GAN, Diffusion) yang dibahas di Bab 09 Section 2.7.
 
 AE adalah pintu masuk paling lembut ke *representation learning*. Setelah Anda bisa membaca t-SNE dari bottleneck, Anda sudah punya satu alat diagnostik baru untuk setiap dataset baru yang Anda jumpai. Estimasi 3-4 jam.
 

@@ -363,7 +363,11 @@ for epoch in range(resumed_epoch + 1, total_epochs + 1):
     ...
 ```
 
-Tiga hal yang sering dilupa dan menyebabkan resume yang salah: (1) lupa muat `optimizer_state_dict` - optimizer mulai dari nol, momentum hilang; (2) lupa muat `scheduler_state_dict` - LR kembali ke nilai awal padahal seharusnya sudah menurun; (3) lupa `resumed_epoch + 1` - epoch dihitung ulang dari satu.
+Tiga hal yang sering dilupa dan menyebabkan resume yang salah:
+
+1. **Lupa muat `optimizer_state_dict`** - optimizer mulai dari nol, momentum hilang.
+2. **Lupa muat `scheduler_state_dict`** - LR kembali ke nilai awal padahal seharusnya sudah menurun.
+3. **Lupa `resumed_epoch + 1`** - epoch dihitung ulang dari satu.
 
 **Kompatibilitas checkpoint antar mesin.** Checkpoint yang dibuat di satu mesin tidak selalu langsung bisa dipakai di mesin lain. Cek daftar ini sebelum memakai checkpoint dari sumber lain:
 
@@ -402,7 +406,8 @@ for epoch in range(1, total_epochs + 1):
             break
 ```
 
-**Penting**: selalu simpan checkpoint terpisah antara `ckpt_best.pt` (yang terbaik di val) dan `ckpt_last.pt` (epoch terakhir). Untuk resume, pakai `ckpt_last.pt`. Untuk evaluasi final, pakai `ckpt_best.pt`.
+> [!IMPORTANT]
+> Selalu simpan checkpoint terpisah antara `ckpt_best.pt` (yang terbaik di val) dan `ckpt_last.pt` (epoch terakhir). Untuk resume, pakai `ckpt_last.pt`. Untuk evaluasi final, pakai `ckpt_best.pt`.
 
 **Aturan praktisnya untuk konvergensi:**
 
@@ -410,7 +415,8 @@ for epoch in range(1, total_epochs + 1):
 - Perbedaan val_acc antara epoch ke-N dan N+5 yang < 0.2% biasanya sudah masuk wilayah noise seed, bukan sinyal nyata.
 - Jangan gunakan training loss sebagai sinyal konvergensi - ia hampir selalu terus turun (model memang menghafal training set). Gunakan validation loss.
 
-**Catatan reproducibility**: epoch di mana early stopping terjadi menjadi bagian dari konfigurasi run. Simpan nilai `stopped_at_epoch` di `summary.json` agar Anda bisa membandingkan dua run yang mungkin berhenti di epoch berbeda.
+> [!NOTE]
+> **Reproducibility:** epoch di mana early stopping terjadi menjadi bagian dari konfigurasi run. Simpan nilai `stopped_at_epoch` di `summary.json` agar Anda bisa membandingkan dua run yang mungkin berhenti di epoch berbeda.
 
 ### 2.10 Git Workflow untuk Riset Eksperimental
 
@@ -665,7 +671,11 @@ Tugas:
 
 Buka [Lab 3b - Sequence Modeling dengan RNN dan LSTM](template_repo/notebooks/lab3b_sequence_lstm.ipynb). Lab ini memperluas breadth arsitektur ke keluarga *recurrent*: setelah reproduksibilitas ter-establish di Lab 3, Anda memakai infrastruktur yang sama (config, seed, metadata *checkpoint*) untuk melatih model sequence di tugas regresi sine + noise.
 
-Fokus: (1) membandingkan gradient flow RNN vanilla vs LSTM dengan plot log-norm gradient per-timestep - mendemonstrasikan *vanishing gradient* yang menjadi motivasi LSTM; (2) menggunakan `SimpleLSTM` di `src/models.py` via `configs/lstm_timeseries.yaml`; (3) verifikasi model belajar memprediksi satu langkah ke depan dengan MSE yang menurun dan prediksi visual yang mengikuti kurva target.
+Fokus:
+
+1. **Bandingkan gradient flow RNN vanilla vs LSTM** dengan plot log-norm gradient per-timestep - mendemonstrasikan *vanishing gradient* yang menjadi motivasi LSTM.
+2. **Gunakan `SimpleLSTM`** di `src/models.py` via `configs/lstm_timeseries.yaml`.
+3. **Verifikasi model belajar** memprediksi satu langkah ke depan dengan MSE yang menurun dan prediksi visual yang mengikuti kurva target.
 
 Lab ini *breadth*, bukan pengganti Lab 3 - dikerjakan setelah Lab 3 agar Anda punya kenyamanan dengan infrastruktur reproduksibilitas. Estimasi 3-4 jam.
 

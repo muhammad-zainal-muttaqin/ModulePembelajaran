@@ -25,7 +25,7 @@
 
 # 11 · Rubrik Penilaian
 
-> *Rubrik yang baik bukan alat menghakimi, melainkan cermin yang memantulkan arah. Tiap level menggambarkan kebiasaan yang dapat diamati - bukan nilai yang harus dicapai dengan cara apa pun.*
+> *Rubrik yang baik bukan alat menghakimi, melainkan cermin yang memantulkan arah. Tiap level menggambarkan kebiasaan yang dapat diamati - bukan nilai yang harus dicapai dengan cara apapun.*
 
 ---
 

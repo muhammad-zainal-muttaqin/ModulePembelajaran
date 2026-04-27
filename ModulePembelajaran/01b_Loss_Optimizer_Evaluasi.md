@@ -105,7 +105,7 @@ Salah satu keputusan yang paling sering menentukan *seberapa baik* model bekerja
 
 **Engineered.** Fitur dirancang manusia dengan pengetahuan domain - statistik agregat, transformasi matematis, atau fitur klasik. Di gambar: histogram warna, HOG, SIFT. Di sinyal CGM: mean, koefisien variasi, *time-in-range*. Representasi *engineered* murah secara komputasi, mudah diinterpretasi, dan sering menjadi baseline yang mengejutkan kuat ketika data latih terbatas.
 
-**Extracted.** Fitur diambil dari lapisan tersembunyi model *pretrained* yang dibekukan. Di visi: *hidden states* dari CNN atau ViT pretrained pada ImageNet. Di teks: token `[CLS]` atau mean pooling dari BERT. Kompromi menarik: representasi kaya dari model besar tanpa biaya training penuh, dengan syarat domain target tidak terlalu jauh dari domain pretraining.
+**Extracted.** Fitur diambil dari *hidden layer* model *pretrained* yang di-freeze. Di visi: *hidden states* dari CNN atau ViT pretrained pada ImageNet. Di teks: token `[CLS]` atau mean pooling dari BERT. Kompromi menarik: representasi kaya dari model besar tanpa biaya training penuh, dengan syarat domain target tidak terlalu jauh dari domain pretraining.
 
 **Learned.** Representasi dipelajari langsung dari data melalui training *end-to-end* atau *self-supervised*. Fine-tuning BERT, melatih 1D CNN dari nol pada sinyal ECG, atau me-fine-tune ResNet pada dataset medis semuanya termasuk kategori ini. Biasanya paling kuat ketika data latih memadai, tetapi paling haus data dan paling mahal dilatih.
 
@@ -120,7 +120,7 @@ Salah satu keputusan yang paling sering menentukan *seberapa baik* model bekerja
 
 ![Tiga strategi representasi fitur: Engineered (manual), Extracted (dari pretrained frozen), dan Learned (end-to-end)](./figures/fig01d_feature_representation.svg)
 
-Setelah memilih jalur utama, beberapa keputusan turunan segera mengikuti: apakah model *pretrained* dibekukan penuh atau sebagian? Layer mana yang dibuka? Bagaimana mereduksi *hidden states* menjadi satu vektor - token `[CLS]`, mean pooling, atau konkatenasi beberapa layer?
+Setelah memilih jalur utama, beberapa keputusan turunan segera mengikuti: apakah model *pretrained* di-freeze penuh atau sebagian? Layer mana yang dibuka? Bagaimana mereduksi *hidden states* menjadi satu vektor - token `[CLS]`, mean pooling, atau konkatenasi beberapa layer?
 
 Taksonomi ini akan penting di Bab 02 saat merumuskan variabel eksperimen. Membandingkan "BERT frozen + head kecil" dengan "BERT fine-tune penuh" bukan sekadar membandingkan dua model - Anda membandingkan dua strategi representasi dengan tingkat kebebasan yang sangat berbeda.
 
@@ -218,7 +218,7 @@ Buka `notebooks/lab1_baseline_cnn.ipynb`. Selesaikan empat tugas:
 Buka `notebooks/lab1b_representasi.ipynb`. Pada CIFAR-10 yang sama, bandingkan tiga strategi:
 
 1. **Engineered**: HOG manual + MLP kecil (tanpa pretrained weights apapun).
-2. **Extracted**: ResNet-18 pretrained pada ImageNet, dibekukan seluruhnya - hanya linear probe.
+2. **Extracted**: ResNet-18 pretrained pada ImageNet, di-freeze seluruhnya - hanya linear probe.
 3. **Learned**: ResNet-18 pretrained, di-fine-tune penuh.
 
 Pertanyaan yang dijawab setelah lab: Pada dataset terbatas (500 sampel per kelas), strategi mana yang paling menguntungkan? Pada dataset penuh, apakah jawabannya berubah?

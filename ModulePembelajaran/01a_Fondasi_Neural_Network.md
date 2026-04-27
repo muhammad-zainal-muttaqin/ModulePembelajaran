@@ -136,7 +136,7 @@ Setiap keluarga di atas dapat Anda baca sebagai "MLP + asumsi spesifik domain". 
 
 ### 2.4 Layer sebagai Transformasi Representasi
 
-Setiap layer adalah *fungsi* yang mengubah representasi data menjadi bentuk yang lebih berguna bagi lapisan berikutnya. Di CNN, layer awal belajar detail kecil (tepi, tekstur), layer dalam menggabungkannya menjadi konsep lebih tinggi. Implikasi praktis: saat *fine-tune* model pretrained, layer awal biasanya aman di-*freeze*, layer akhir perlu beradaptasi dengan domain baru.
+Setiap layer adalah *fungsi* yang mengubah representasi data menjadi bentuk yang lebih berguna bagi layer berikutnya. Di CNN, layer awal belajar detail kecil (tepi, tekstur), layer dalam menggabungkannya menjadi konsep lebih tinggi. Dalam praktiknya: saat *fine-tune* model pretrained, layer awal biasanya aman di-*freeze*, layer akhir perlu beradaptasi dengan domain baru.
 
 **Inisialisasi bobot: titik awal yang sering diabaikan.** Memilih nol atau nilai terlalu besar menghancurkan sinyal gradient sejak iterasi pertama.
 

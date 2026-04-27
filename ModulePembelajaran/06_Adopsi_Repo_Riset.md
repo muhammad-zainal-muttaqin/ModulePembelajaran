@@ -125,7 +125,7 @@ Setelah environment terpasang, *jangan* langsung training dengan dataset penuh. 
 
 Tiga tingkat smoke test:
 
-**Level 1: Import test.**
+#### Level 1 - Import test
 
 ```bash
 python -c "from src.models import ResNet18; from src.losses import FocalLoss"
@@ -133,7 +133,7 @@ python -c "from src.models import ResNet18; from src.losses import FocalLoss"
 
 Jika error di sini, masalah dependency atau path, bukan logika.
 
-**Level 2: Forward pass dengan dummy data.**
+#### Level 2 - Forward pass dengan dummy data
 
 ```python
 import torch
@@ -147,7 +147,8 @@ assert y.shape == (2, 10)
 
 Menangkap bug dimensi atau mismatch input/output.
 
-**Level 3: Satu iterasi training.**
+#### Level 3 - Satu iterasi training
+
 Modifikasi entry point untuk menjalankan satu batch, satu backward pass, lalu exit. Banyak repo punya flag `--dry-run` atau `--overfit-one-batch`. Jika tidak ada, tambahkan sendiri:
 
 ```python
@@ -298,21 +299,39 @@ Etika kontribusi: sebelum mengirim PR besar, buka issue dulu menanyakan apakah k
 
 Ketika adopsi repo atau eksperimen gagal, respons pertama yang paling sering adalah: "ada yang salah di suatu tempat, coba-coba sampai ketemu". Ini tidak efisien. Lebih cepat untuk mengidentifikasi *kategori* error dulu, karena tiap kategori punya diagnosis yang berbeda.
 
-**Kategori 1: Setup Error** - Environment, dependency, path, atau konfigurasi tidak benar.
-Tanda: error saat `import`, `ModuleNotFoundError`, `FileNotFoundError`, CUDA version mismatch.
-Langkah test: (1) Jalankan `python -c "import torch; print(torch.__version__)"` dan `import [nama_library]`. (2) Bandingkan output `pip freeze` dengan `requirements.txt`. (3) Cek apakah path dataset di config benar.
+#### Kategori 1 - Setup Error
 
-**Kategori 2: Data Error** - Dataset tidak ada, format tidak sesuai, leakage, atau preprocessing berbeda dari yang diharapkan model.
-Tanda: error di DataLoader, akurasi terlalu tinggi dari awal, loss tidak wajar (terlalu kecil atau NaN langsung).
-Langkah test: (1) Print shape dan range nilai dari batch pertama. (2) Visualisasikan 4-8 sampel - pastikan gambar/teks kelihatan wajar. (3) Periksa label: apakah distribusinya masuk akal?
+Environment, dependency, path, atau konfigurasi tidak benar.
 
-**Kategori 3: Algorithmic Error** - Bug di forward pass, loss function, atau training loop.
-Tanda: loss tidak turun sama sekali, NaN loss, prediksi selalu kelas yang sama, gradient nol.
-Langkah test: *overfit one batch* - ambil 4 sampel, jalankan 100-200 iterasi hanya pada itu. Model harus mencapai loss mendekati nol. Jika tidak, ada bug di model atau loss.
+- **Tanda:** error saat `import`, `ModuleNotFoundError`, `FileNotFoundError`, CUDA version mismatch.
+- **Langkah test:**
+  1. Jalankan `python -c "import torch; print(torch.__version__)"` dan `import [nama_library]`.
+  2. Bandingkan output `pip freeze` dengan `requirements.txt`.
+  3. Cek apakah path dataset di config benar.
 
-**Kategori 4: Experiment Error** - Konfigurasi tidak sesuai rancangan: seed tidak di-set, variabel yang seharusnya dikontrol tidak terkontrol, metrik yang dilaporkan bukan yang direncanakan.
-Tanda: hasil yang tidak bisa direproduksi, metrik berbeda dari yang ada di pre-registration, kondisi ablation tidak sesuai grid.
-Langkah test: Baca ulang pre-registration dan bandingkan dengan config YAML yang benar-benar dipakai. Cek commit hash di checkpoint.
+#### Kategori 2 - Data Error
+
+Dataset tidak ada, format tidak sesuai, leakage, atau preprocessing berbeda dari yang diharapkan model.
+
+- **Tanda:** error di DataLoader, akurasi terlalu tinggi dari awal, loss tidak wajar (terlalu kecil atau NaN langsung).
+- **Langkah test:**
+  1. Print shape dan range nilai dari batch pertama.
+  2. Visualisasikan 4-8 sampel - pastikan gambar/teks kelihatan wajar.
+  3. Periksa label: apakah distribusinya masuk akal?
+
+#### Kategori 3 - Algorithmic Error
+
+Bug di forward pass, loss function, atau training loop.
+
+- **Tanda:** loss tidak turun sama sekali, NaN loss, prediksi selalu kelas yang sama, gradient nol.
+- **Langkah test:** *overfit one batch* - ambil 4 sampel, jalankan 100-200 iterasi hanya pada itu. Model harus mencapai loss mendekati nol. Jika tidak, ada bug di model atau loss.
+
+#### Kategori 4 - Experiment Error
+
+Konfigurasi tidak sesuai rancangan: seed tidak di-set, variabel yang seharusnya dikontrol tidak terkontrol, metrik yang dilaporkan bukan yang direncanakan.
+
+- **Tanda:** hasil yang tidak bisa direproduksi, metrik berbeda dari yang ada di pre-registration, kondisi ablation tidak sesuai grid.
+- **Langkah test:** baca ulang pre-registration dan bandingkan dengan config YAML yang benar-benar dipakai. Cek commit hash di checkpoint.
 
 Tabel ringkas untuk referensi cepat:
 
@@ -538,7 +557,12 @@ Tugas:
 
 Buka [Lab 6b - Transformer-Mini dari Nol](template_repo/notebooks/lab6b_transformer_mini.ipynb). Setelah Anda paham cara membaca repo eksternal, langkah berikutnya adalah paham arsitektur yang paling sering Anda temui di repo riset modern: **Transformer**. Lab ini menyuruh Anda menulis ulang komponen intinya dari nol.
 
-Fokus: (1) implementasi *scaled dot-product attention* dengan tensor ops (tanpa `nn.MultiheadAttention`); (2) satu Transformer encoder block dengan LayerNorm pre-norm, FFN GELU, dan *residual*; (3) parity check terhadap `nn.TransformerEncoderLayer` PyTorch untuk memverifikasi shape dan skala output yang konsisten; (4) training ringan pada tugas *toy sequence classification* agar block terbukti bisa belajar.
+Fokus:
+
+1. **Implementasi *scaled dot-product attention*** dengan tensor ops (tanpa `nn.MultiheadAttention`).
+2. **Satu Transformer encoder block** dengan LayerNorm pre-norm, FFN GELU, dan *residual*.
+3. **Parity check** terhadap `nn.TransformerEncoderLayer` PyTorch untuk memverifikasi shape dan skala output yang konsisten.
+4. **Training ringan** pada tugas *toy sequence classification* agar block terbukti bisa belajar.
 
 Bila Anda pernah membaca kode Transformer di Hugging Face atau `fairseq` dan merasa terhalang oleh abstraksi, lab ini membuat Anda melihat balok-balok fondasinya dalam bentuk paling minimal. Estimasi 4-5 jam.
 
