@@ -184,8 +184,25 @@ export default function Layout({ children }: { children: ReactNode }) {
             </ul>
           </div>
         </div>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 text-xs text-ink/70 dark:text-parchment/60 border-t border-black/5 dark:border-white/5">
-          Dibuat dengan disiplin Rigor, semangat Curiosity, kewaspadaan Skepticism, dan tanggung jawab Ownership.
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 text-xs text-ink/70 dark:text-parchment/60 border-t border-black/5 dark:border-white/5 flex items-center justify-between gap-4">
+          <span>Dibuat dengan disiplin Rigor, semangat Curiosity, kewaspadaan Skepticism, dan tanggung jawab Ownership.</span>
+          <a
+            href="https://github.com/muhammad-zainal-muttaqin/ModulePembelajaran"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Repository GitHub"
+            className="shrink-0 text-ink/70 dark:text-parchment/60 hover:text-ink dark:hover:text-parchment transition-colors"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              className="w-5 h-5"
+              aria-hidden="true"
+            >
+              <path d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.69-3.87-1.54-3.87-1.54-.52-1.32-1.27-1.67-1.27-1.67-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.75 2.68 1.24 3.34.95.1-.74.4-1.24.72-1.53-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.18-3.1-.12-.29-.51-1.46.11-3.05 0 0 .96-.31 3.15 1.18a10.93 10.93 0 0 1 5.74 0c2.19-1.49 3.15-1.18 3.15-1.18.62 1.59.23 2.76.11 3.05.74.81 1.18 1.84 1.18 3.1 0 4.43-2.69 5.41-5.25 5.69.41.36.77 1.06.77 2.13 0 1.54-.01 2.78-.01 3.16 0 .31.21.68.8.56C20.21 21.39 23.5 17.07 23.5 12 23.5 5.73 18.27.5 12 .5Z"/>
+            </svg>
+          </a>
         </div>
       </footer>
 
