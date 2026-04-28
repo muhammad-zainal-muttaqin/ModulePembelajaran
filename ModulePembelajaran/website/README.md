@@ -53,7 +53,7 @@ src/
 | `#/modul` | Grid 13 bab |
 | `#/modul/:id` | Reader bab dengan ToC sidebar + jurnal refleksi |
 | `#/rubrik` | Self-assessment 9x4 + rubrik lengkap |
-| `#/glosarium` | 63 entri ID-EN dengan pencarian |
+| `#/glosarium` | 220+ entri ID-EN dengan pencarian |
 | `#/capstone` | Bab 10 full |
 | `#/lab` | Daftar 9 lab notebook + tautan Colab/nbviewer/GitHub |
 | `#/progres` | Dashboard progres + jurnal export .md/.json |

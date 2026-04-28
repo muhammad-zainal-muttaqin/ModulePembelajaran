@@ -34,6 +34,8 @@
 
 Istilah teknis ML/DL sebagian besar berasal dari Bahasa Inggris. Glosarium ini mendokumentasikan istilah baku yang dipakai modul. **Aturan utama: istilah teknis ML/DL dipertahankan dalam Bahasa Inggris** (loss, checkpoint, baseline, fine-tune, freeze, layer, confusion matrix, hidden states, dll.). Padanan Indonesia hanya dicantumkan jika benar-benar lazim dan natural dipakai (akurasi, presisi, regularisasi, augmentasi). Hindari padanan kaku seperti "matriks kebingungan", "fungsi kerugian", "garis dasar", "jaringan saraf tiruan" - di prosa modul tetap pakai istilah English.
 
+**Daftar isi glosarium:** A.1 Arsitektur & Model | A.2 Pelatihan | A.3 Data | A.4 Evaluasi | A.5 Eksperimen & Reproduksibilitas | A.6 Perangkat | A.7 Sikap Riset | A.8 Aktivasi & Normalisasi | A.9 Inisialisasi, Optimizer & Scheduler | A.10 Loss Function
+
 ### A.1 Arsitektur & Model
 
 
@@ -75,6 +77,51 @@ Istilah teknis ML/DL sebagian besar berasal dari Bahasa Inggris. Glosarium ini m
 | temporal alignment             | penyelarasan temporal             | Sinkronisasi timestep dari stream data yang berbeda sampling rate. |
 | three-pass reading             | baca tiga-putaran                 | Metode Keshav (2007): skim → close-read → critical read. |
 | per-modality ablation          | ablasi per-modalitas              | Eksperimen yang menghapus atau mengacak satu modality untuk mengukur kontribusinya. |
+| Convolution / Conv2d          | -                                 | Operasi sliding window pada input. Deteksi fitur spasial dengan weight sharing. |
+| kernel / filter               | -                                 | Matriks kecil pada convolution. Mendeteksi pola lokal: edge, tekstur, pola sederhana. |
+| feature map                   | peta fitur                        | Output dari operasi convolution. Representasi input setelah filter. |
+| channel                       | kanal                             | Dimensi fitur dalam tensor citra atau feature map. RGB = 3 channel. |
+| stride                        | langkah                           | Step pergeseran kernel saat convolution. Stride > 1 mereduksi dimensi spasial. |
+| padding                       | -                                 | Penambahan border di sekeliling input sebelum convolution. Menjaga dimensi spasial. |
+| MaxPooling / MaxPool2d        | -                                 | Downsampling: ambil nilai maksimum dalam window. Reduksi dimensi spasial. |
+| AdaptiveAvgPooling / AdaptiveAvgPool2d | -                         | Pooling ke ukuran tetap. Bypass variasi ukuran input. Sering dipakai sebelum classifier. |
+| receptive field               | medan reseptif                    | Region input yang memengaruhi satu neuron di layer tertentu. Makin dalam, makin luas. |
+| bidirectional LSTM            | -                                 | LSTM yang membaca sequence dari dua arah (kiri-ke-kanan dan kanan-ke-kiri). |
+| stacked LSTM                  | -                                 | LSTM dengan banyak hidden layer. Hierarki representasi temporal. |
+| hidden state                  | status tersembunyi                | h_t: output LSTM/RNN pada timestep t. Membawa informasi konteks hingga titik itu. |
+| cell state                    | status sel                        | c_t: memori jangka panjang dalam LSTM. Dikontrol oleh gate mechanism. |
+| gate mechanism                | mekanisme gerbang                 | Input / forget / output gate pada LSTM. Mengontrol aliran informasi: baca, simpan, lupa. |
+| BPTT (Backpropagation Through Time) | -                           | Backprop pada RNN yang di-unroll sepanjang sequence. Secara intrinsik rawan vanishing gradient. |
+| self-attention                | -                                 | Attention dengan query = key = value dari sequence yang sama. Memodelkan hubungan intra-sequence. |
+| cross-attention               | -                                 | Query dari satu sequence, key/value dari sequence lain. Memodelkan hubungan inter-sequence. |
+| scaled dot-product attention  | -                                 | Attention = softmax(QK^T / sqrt(d_k)) V. Mekanisme inti Transformer. |
+| query / key / value (QKV)     | -                                 | Tiga representasi dalam attention: Q = yang mencari, K = indeks, V = isi yang diambil. |
+| causal mask                   | -                                 | Masking pada autoregressive decoding. Setiap token hanya bisa "melihat" token sebelumnya. |
+| residual / skip connection    | koneksi residu                    | Output = F(x) + x. Info langsung melompati layer. Cegah degradasi pada deep network. |
+| teacher forcing               | -                                 | Training sequence: ground truth dipakai sebagai input langkah berikutnya, bukan prediksi model. |
+| autoregressive                | -                                 | Model memprediksi token berikutnya berdasarkan token-token sebelumnya. |
+| tokenization                  | tokenisasi                        | Pemecahan teks menjadi unit lebih kecil: subword, kata, atau karakter. |
+| BPE (Byte Pair Encoding)      | -                                 | Subword tokenization: gabungkan pasangan token paling frekuen secara iteratif. |
+| WordPiece                     | -                                 | Subword tokenization: gabungkan pasangan berdasarkan likelihood gain. |
+| context window                | jendela konteks                   | Maksimum panjang sequence yang bisa diproses model dalam satu langkah. |
+| pretraining                   | -                                 | Training awal pada data sangat besar dengan tugas umum (language modeling, image classification). |
+| zero-shot                     | -                                 | Model menyelesaikan tugas tanpa satu pun contoh untuk tugas tersebut. |
+| few-shot                      | -                                 | Model menyelesaikan tugas dengan beberapa contoh saja (biasanya dalam prompt). |
+| in-context learning           | -                                 | Perilaku model berubah berdasarkan contoh dalam prompt tanpa update weight. |
+| transfer learning             | -                                 | Pengetahuan dari satu tugas dipakai untuk meningkatkan performa di tugas lain. |
+| downstream task               | tugas hilir                       | Tugas spesifik target setelah pretraining (klasifikasi, regresi, dll.). |
+| scaling law                   | hukum skala                       | Hubungan power-law antara performa model dan compute / data / parameter count. |
+| emergent abilities            | kemampuan emergen                 | Kemampuan yang muncul tiba-tiba saat model melewati threshold skala tertentu. |
+| inductive bias                | bias induktif                     | Asumsi arsitektur yang membuat model lebih efisien belajar pola tertentu. Contoh: CNN = translation invariance. |
+| generalization                | generalisasi                      | Kemampuan model bekerja baik pada data yang belum pernah dilihat. Tujuan utama ML. |
+| perplexity (PPL)              | -                                 | exp(CrossEntropy). Metrik language model. Lower = model lebih yakin pada teks. |
+| BLEU                          | -                                 | Metrik terjemahan mesin. n-gram precision + brevity penalty. |
+| ROUGE                         | -                                 | Metrik ringkasan teks. n-gram recall-based. |
+| ELBO (Evidence Lower Bound)   | -                                 | Batas bawah bukti dalam VAE. Loss = reconstruction term + KL divergence term. |
+| KL divergence                 | divergensi KL                     | Ukuran perbedaan dua distribusi probabilitas. Regularisasi VAE. |
+| reparameterization trick      | trik reparameterisasi             | Sampling z = mu + sigma * epsilon. Membuat sampling di VAE tetap differentiable. |
+| denoising autoencoder (DAE)   | -                                 | Autoencoder: input = corrupted, target = original. Belajar representasi robust terhadap noise. |
+| Normalizing Flow              | -                                 | Model generatif dengan transformasi invertible bertumpuk. Density estimation exact. |
 
 
 ### A.2 Pelatihan
@@ -96,6 +143,14 @@ Istilah teknis ML/DL sebagian besar berasal dari Bahasa Inggris. Glosarium ini m
 | underfitting                       | -                              | Tidak diterjemahkan.                     |
 | regularization                     | regularisasi                   | "Regularisasi" lazim sebagai serapan.    |
 | dropout                            | -                              | Tidak diterjemahkan.                     |
+| forward pass                       | -                              | Input mengalir maju melalui layer: input -> compute -> output. |
+| backward pass / backpropagation    | propagasi balik                | Hitung gradient setiap weight terhadap loss via chain rule. |
+| autograd                           | -                              | Automatic differentiation PyTorch. Hitung gradient otomatis dari computational graph. |
+| training loop                      | siklus pelatihan               | Loop standar: forward -> loss -> backward -> optimizer.step() -> zero_grad(). |
+| evaluation loop                    | siklus evaluasi                | Sama seperti training loop, tanpa gradien. Hanya evaluasi di validasi / test. |
+| early stopping                     | -                              | Hentikan training jika validation metric berhenti membaik. Cegah overfitting. |
+| device                             | -                              | Tempat tensor diproses: CPU atau CUDA GPU. "Pindahkan model ke device." |
+| dry-run                            | -                              | Training dengan 1-2 batch untuk verifikasi pipeline sebelum training penuh. |
 
 
 ### A.3 Data
@@ -107,11 +162,21 @@ Istilah teknis ML/DL sebagian besar berasal dari Bahasa Inggris. Glosarium ini m
 | train / validation / test | -                              | Jangan diterjemahkan di tabel hasil. |
 | label                     | -                              | Tidak diterjemahkan.                 |
 | class                     | kelas                          | "Kelas" lazim sebagai serapan.       |
-| class imbalance           | -                              | Tidak diterjemahkan.                 |
 | data augmentation         | augmentasi data                | "Augmentasi" lazim sebagai serapan.  |
 | data split / splitting    | -                              | Pakai "split" apa adanya.            |
 | data leakage              | -                              | Pakai "leakage" apa adanya.          |
 | preprocessing             | pra-pemrosesan                 | Dua-duanya boleh.                    |
+| tensor                    | -                              | Array multi-dimensi. Struktur data inti PyTorch. Mirip NumPy array tapi GPU-compatible. |
+| DataLoader                | -                              | Iterator PyTorch untuk data: batch, shuffle, parallel loading via num_workers. |
+| Dataset                   | -                              | Abstraksi data PyTorch. Wajib implement __len__ dan __getitem__. |
+| synthetic data            | data sintetis                  | Data buatan untuk testing atau controlled experiment. Contoh: sine wave + noise. |
+| normalization (data)      | normalisasi data               | Standarisasi fitur: mean=0, std=1. Stabilkan training. |
+| random split              | -                              | Acak data ke train/val/test. Cocok untuk data i.i.d., tidak untuk time series. |
+| chronological split       | split kronologis               | Split berdasarkan waktu: data lama -> train, data baru -> test. Untuk time series. |
+| class imbalance           | -                              | Distribusi kelas tidak merata. Satu kelas dominan. Butuh penanganan: focal loss, weighted loss. |
+| domain shift              | -                              | Distribusi train berbeda dari distribusi test. Tipe: covariate shift, label shift, concept drift. |
+| dataset bias              | bias dataset                   | Systematic error dalam data. Tipe: selection bias, measurement bias, label bias, historical bias. |
+| fairness                  | keadilan                       | Model tidak boleh bias sistematis terhadap grup tertentu. Metrik: demographic parity, equal opportunity. |
 
 
 ### A.4 Evaluasi
@@ -127,6 +192,16 @@ Istilah teknis ML/DL sebagian besar berasal dari Bahasa Inggris. Glosarium ini m
 | inference                 | inferensi                      | "Inferensi" lazim.                                                  |
 | test-time evaluation      | evaluasi pada data uji         | -                                                                   |
 | ablation study            | studi ablasi                   | Dua-duanya diterima.                                                |
+| ROC-AUC                   | -                              | Area Under ROC Curve. Trade-off TPR vs FPR. Threshold-independent. |
+| PR-AUC / Average Precision | -                             | Area Under Precision-Recall Curve. Lebih informatif dari ROC-AUC untuk class imbalance. |
+| macro-F1                  | -                              | F1 rata-rata per kelas, tanpa bobot. Setiap kelas sama penting. |
+| weighted-F1               | -                              | F1 rata-rata per kelas dengan bobot support (jumlah sampel kelas). |
+| per-class accuracy        | akurasi per kelas              | Akurasi dihitung per kelas individual. Mendeteksi kelas lemah. |
+| calibration               | kalibrasi                      | Kesesuaian antara confidence model dan akurasi aktual. Reliability diagram. |
+| effect size               | ukuran efek                    | Ukuran besarnya perbedaan atau pengaruh (beyond p-value). Cohen's d. |
+| confident-wrong analysis  | -                              | Sampel dengan confidence tinggi tapi prediksi salah. Sinyal dataset issue. |
+| error analysis            | analisis kesalahan             | Investigasi pola sistematis dari kesalahan model. |
+| leakage inflation         | inflasi leakage                | Lonjakan metrik yang disebabkan data leakage, bukan karena model benar-benar belajar. |
 
 
 ### A.5 Eksperimen & Reproduksibilitas
@@ -145,6 +220,21 @@ Istilah teknis ML/DL sebagian besar berasal dari Bahasa Inggris. Glosarium ini m
 | variant                   | varian                         | -                                           |
 | pre-registration          | praregistrasi                  | Dua-duanya diterima.                        |
 | replicated result         | hasil yang direplikasi         | -                                           |
+| experiment matrix         | matriks eksperimen             | Grid hyperparameter: tiap baris = satu run. Kombinasi sistematis variabel. |
+| main effect               | efek utama                     | Efek rata-rata satu variabel di semua level variabel lain dalam experiment matrix. |
+| interaction effect        | efek interaksi                 | Efek kombinasi dua variabel atau lebih yang tidak aditif. |
+| additivity                | aditivitas                     | Asumsi bahwa efek setiap variabel bersifat independen. Dilanggar jika ada interaksi. |
+| 5 Whys                    | 5 Mengapa                      | Root cause analysis: tanya "kenapa" berulang hingga akar masalah ditemukan. |
+| SQRC                      | -                              | Situation, Question, Resolution attempt, Call. Framework komunikasi riset. |
+| HARKing                   | -                              | Hypothesizing After Results are Known. Praktik questionable research. |
+| p-hacking                 | -                              | Menguji banyak hipotesis sampai menemukan hasil signifikan. Questionable research. |
+| multiple comparisons      | perbandingan berganda          | Makin banyak hipotesis diuji, makin tinggi false positive rate. |
+| confirmation bias         | bias konfirmasi                | Kecenderungan mencari bukti yang cocok dengan hipotesis dan mengabaikan kontradiksi. |
+| research question         | pertanyaan riset               | Pertanyaan spesifik, terukur, dan falsifiable yang menjadi fokus riset. |
+| hypothesis (directional / null) | hipotesis (search / nol) | Directional: prediksi arah efek. Null: tidak ada efek / perbedaan. |
+| deviation analysis        | analisis deviasi               | Bandingkan actual protocol vs pre-registration. Catat penyimpangan dan alasannya. |
+| confirmatory vs exploratory | konfirmatif vs eksploratif   | Confirmatory: uji hipotesis yang sudah dipreregister. Exploratory: cari pola baru tanpa hipotesis awal. |
+| smoke test (3-level)      | -                              | L1: import modul. L2: forward satu batch. L3: satu epoch training. Verifikasi pipeline. |
 
 
 ### A.6 Perangkat
@@ -159,6 +249,11 @@ Istilah teknis ML/DL sebagian besar berasal dari Bahasa Inggris. Glosarium ini m
 | SSH                | -                              | -                     |
 | tunnel             | -                              | Tidak diterjemahkan.  |
 | best checkpoint    | -                              | -                     |
+| RunPod / cloud GPU | -                              | Platform sewa GPU on-demand. Spot instance lebih murah untuk eksperimen non-kritis. |
+| tmux               | -                              | Terminal multiplexer. Jaga session tetap hidup walau SSH disconnect. |
+| rsync              | -                              | Sinkronisasi file remote. Incremental, kompresi. Transfer eksperimen cloud ke lokal. |
+| TensorBoard        | -                              | Visualisasi training: loss curve, metrics, graph model, embedding projector. |
+| HuggingFace Transformers | -                       | Library untuk pretrained models (BERT, GPT, dll.) dan tokenizer. |
 
 
 ### A.7 Sikap Riset (dari modul)
@@ -170,6 +265,59 @@ Istilah teknis ML/DL sebagian besar berasal dari Bahasa Inggris. Glosarium ini m
 | rigor             | ketelitian        | -                                            |
 | skepticism        | skeptisisme       | -                                            |
 | ownership         | tanggung jawab    | Konteks riset: "mengampuni hasilmu sendiri". |
+| observation before conclusion | observasi sebelum simpulan | Lihat data dulu, baru simpulkan. Lawan dari "conclusion-driven analysis". |
+| rigor habit       | kebiasaan ketelitian | Kebiasaan sistematis: smoke test, reproducibility, ablation, pre-registration. |
+| reproducibility   | reproduksibilitas  | Eksperimen dapat diulang dengan hasil yang sama jika seed, config, dan commit hash sama. |
+
+
+### A.8 Aktivasi & Normalisasi
+
+| Istilah (English)              | Padanan Indonesia (jika lazim) | Catatan                                      |
+| ------------------------------ | ------------------------------ | -------------------------------------------- |
+| ReLU (Rectified Linear Unit)   | -                              | Aktivasi: `max(0, x)`. Sederhana, efisien, neuron mati jika selalu negatif. |
+| GELU (Gaussian Error Linear Unit) | -                          | Aktivasi halus mirip ReLU. Bobot nilai negatif kecil. Default Transformer modern. |
+| SiLU / Swish                   | -                              | Aktivasi: `x * sigmoid(x)`. Lebih halus dari ReLU. |
+| sigmoid                        | -                              | Aktivasi output (0, 1). Dipakai untuk binary classification probability. |
+| softmax                        | -                              | Aktivasi output (0, 1) dengan total 1. Dipakai untuk multiclass probability. |
+| tanh                           | -                              | Aktivasi output (-1, 1). Dipakai di LSTM gates dan RNN. |
+| Leaky ReLU                     | -                              | ReLU dengan slope kecil (misal 0.01) untuk input negatif. Mencegah dead neuron. |
+| Batch Normalization / BatchNorm | -                            | Normalisasi per channel dalam satu batch. Stabilkan training, percepat konvergensi. |
+| Layer Normalization / LayerNorm | -                            | Normalisasi per sample. Alternatif BatchNorm untuk sequence dan Transformer. |
+| Group Normalization / GroupNorm | -                            | Normalisasi per group channel. Stabil untuk batch size kecil. |
+| Dropout                        | -                              | Regularisasi: matikan p% neuron secara acak tiap forward. Cegah co-adaptation. |
+
+### A.9 Inisialisasi, Optimizer & Scheduler
+
+| Istilah (English)              | Padanan Indonesia (jika lazim) | Catatan                                      |
+| ------------------------------ | ------------------------------ | -------------------------------------------- |
+| Kaiming / He initialization    | -                              | Inisialisasi weight untuk ReLU. Var = 2 / fan_in. |
+| Xavier / Glorot initialization | -                              | Inisialisasi weight untuk tanh / sigmoid. Var = 2 / (fan_in + fan_out). |
+| AdamW                          | -                              | Adam + weight decay terpisah. Optimizer default untuk sebagian besar model modern. |
+| Adam                           | -                              | Adaptive Moment Estimation. Learning rate adaptif per parameter. |
+| LAMB                          | -                              | Optimizer untuk large batch (>= 512). Layer-wise Adaptive Moments. |
+| SGD (Stochastic Gradient Descent) | -                          | Optimizer klasik. Update weight = weight - lr * gradient. |
+| Momentum                       | -                              | Akumulasi arah gradien sebelumnya. Percepat konvergensi, redam osilasi. |
+| Cosine Annealing               | -                              | Scheduler: learning rate turun mengikuti fungsi cosinus dari high ke near-zero. |
+| StepLR                         | -                              | Scheduler: LR turun dengan faktor gamma setiap step_size epoch. Sederhana dan efektif. |
+| ReduceLROnPlateau              | -                              | Scheduler: LR turun jika metric validation berhenti membaik. Adaptif. |
+| OneCycleLR                     | -                              | Scheduler: LR naik lalu turun dalam satu siklus. Training lebih cepat. |
+| Warmup                         | -                              | LR naik linear dari 0 ke target selama N epoch/step pertama. Stabilkan awal training. |
+| Weight decay                   | -                              | Regularisasi L2 pada weight. Update: w -= lr * (grad + wd * w). |
+| Gradient clipping              | pemotongan gradien             | Potong norm gradient ke threshold maksimal. Cegah exploding gradient. |
+| Learning rate (LR)             | laju pembelajaran              | Step size update weight per iterasi. Hiperparameter paling sensitif. |
+
+### A.10 Loss Function
+
+| Istilah (English)              | Padanan Indonesia (jika lazim) | Catatan                                      |
+| ------------------------------ | ------------------------------ | -------------------------------------------- |
+| CrossEntropyLoss               | -                              | CE = -sum(y * log(p)). Loss default klasifikasi multiclass. |
+| BCEWithLogitsLoss              | -                              | BCE + sigmoid dalam satu fungsi. Stabil numerik. Default binary classification. |
+| MSELoss / MSE                  | -                              | Mean Squared Error. Loss default regresi. |
+| MAE / L1Loss                   | -                              | Mean Absolute Error. Lebih robust terhadap outlier dibanding MSE. |
+| Huber Loss                     | -                              | Kombinasi MSE (dekat 0) + MAE (jauh dari 0). Robust, differentiable di mana-mana. |
+| Focal Loss                     | -                              | CrossEntropy modifikasi: fokus pada hard sample. Atasi class imbalance. |
+| Label Smoothing                | penghalusan label              | Soft target: (1-eps)*onehot + eps/K. Cegah model terlalu overconfident. |
+| Reconstruction loss            | loss rekonstruksi              | MSE atau BCE antara input dan output autoencoder. Ukur kualitas rekonstruksi. |
 
 
 ---
