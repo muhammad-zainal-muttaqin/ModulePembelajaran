@@ -59,7 +59,7 @@ function rewriteLinks(md: string): string {
 
 // Rewrite relative figure paths `./figures/` -> `/ModulePembelajaran/figures/`.
 function rewriteImagePaths(md: string): string {
-  return md.replace(/\(\.\/figures\//g, "(/ModulePembelajaran/figures/");
+  return md.replace(/\(\.\/figures\//g, "(/figures/");
 }
 
 export function getChapterMarkdown(id: string): string {
