@@ -30,7 +30,7 @@
 
 **Big Map row:** sintesis melalui research artifacts
 **Rigor habit:** Three-pass paper reading dan paper-to-code translation
-**Lab utama:** Lab 9 - Paper Implementation (`lab_w10_paper_to_code.ipynb`)
+**Lab utama:** Lab W10 - Paper to Code (`lab_w10_paper_to_code.ipynb`)
 
 ---
 

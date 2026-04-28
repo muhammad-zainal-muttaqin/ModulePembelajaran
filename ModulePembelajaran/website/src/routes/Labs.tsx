@@ -8,7 +8,8 @@ type NotebookEntry = { file: string; label: string };
 
 const NOTEBOOKS: Record<string, NotebookEntry[]> = {
   "01": [
-    { file: "lab_w1_mlp_numpy.ipynb", label: "Lab W1 - MLP Numpy" },
+    { file: "lab_w1_tabular_heads.ipynb", label: "Lab W1 - Tabular Output Heads" },
+    { file: "lab_w1_mlp_numpy.ipynb", label: "Lab W1 - MLP Numpy (breadth)" },
   ],
   "02": [
     { file: "lab_w2_cnn_baseline.ipynb", label: "Lab W2 - Baseline CNN" },
@@ -25,6 +26,7 @@ const NOTEBOOKS: Record<string, NotebookEntry[]> = {
   "06": [
     { file: "lab_w6_eda_leakage.ipynb", label: "Lab W6 - EDA + Leakage Audit" },
     { file: "lab_w6_feature_representation.ipynb", label: "Lab W6 - Representasi Fitur" },
+    { file: "lab_w6_temporal_leakage.ipynb", label: "Lab W6 - Temporal Leakage Demo" },
   ],
   "07": [
     { file: "lab_w7_llm_assisted.ipynb", label: "Lab W7 - LLM-Assisted Loop" },
@@ -34,6 +36,9 @@ const NOTEBOOKS: Record<string, NotebookEntry[]> = {
   ],
   "08": [
     { file: "lab_w8_remote_training.ipynb", label: "Lab W8 - RunPod Remote Training" },
+  ],
+  "09": [
+    { file: "lab_w9_multimodal_ablation.ipynb", label: "Lab W9 - Multimodal Ablation" },
   ],
   "10": [
     { file: "lab_w10_paper_to_code.ipynb", label: "Lab W10 - Paper to Code" },

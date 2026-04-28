@@ -75,10 +75,13 @@ Modul melatih breadth lima keluarga, bukan hanya CNN. Pemetaan ke W-numbering:
 - Lampiran A.1 entri glosarium: MLP, LSTM cell, GRU, attention, multi-head attention, positional encoding, encoder/decoder, autoencoder, bottleneck, reconstruction loss, latent space, VAE, GAN, diffusion model
 - Lampiran C.8: Template Lab Replikasi Arsitektur untuk Komponen Mandiri Jalur D (Arsitektur Baru)
 
-**Lab breadth baru (`template_repo/notebooks/`):**
-- `lab_w1_mlp_numpy.ipynb`: MLP 2-layer dari nol dengan numpy (forward, backward manual 7-langkah, finite-difference gradient check, SGD), parity check dengan `SimpleMLP` PyTorch
+**Lab baru di `template_repo/notebooks/`:**
+- `notebooks/lab_w1_tabular_heads.ipynb`: 3 task formulation (regression/binary/multiclass), mismatch experiment, observation vs interpretation writeup
+- `notebooks/lab_w1_mlp_numpy.ipynb`: MLP 2-layer dari nol dengan numpy (forward, backward manual 7-langkah, finite-difference gradient check, SGD), parity check dengan `SimpleMLP` PyTorch
 - `lab_w5_lstm_sequence.ipynb`: sine+noise one-step-ahead regression, RNN vanilla vs LSTM gradient flow (log-plot vanishing gradient), training dengan grad clipping, visualisasi prediksi
+- `lab_w6_temporal_leakage.ipynb`: temporal leakage demo (causal vs leaky pipeline, leakage inflation, chronological vs random split)
 - `lab_w7_transformer_mini.ipynb`: `scaled_dot_product_attention` dari nol, `SingleHeadAttention`, `TinyBlock` (pre-norm LN + GELU FFN), parity check vs `nn.TransformerEncoderLayer`, toy sequence classifier
+- `lab_w9_multimodal_ablation.ipynb`: late fusion, 7-condition per-modality ablation, ignored-modality detection, modality dropout
 - `lab_breadth_autoencoder.ipynb`: convolutional AE CIFAR-10 unsupervised, rekonstruksi visual, t-SNE bottleneck 32-dim, denoising AE variant, peta ke VAE/GAN/Diffusion
 
 **Arsitektur baru di `template_repo/src/models.py`:**

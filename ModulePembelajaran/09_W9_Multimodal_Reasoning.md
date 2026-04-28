@@ -31,7 +31,7 @@
 **Big Map row:** multiple tensors -> shared prediction
 **Rigor habit:** Per-modality ablation dan multimodal failure analysis
 **Dataset:** Multimodal dataset dengan minimal dua modality (sensor + image, atau audio + text)
-**Lab utama:** Lab 8 - Multimodal Ablation (`lab_w9_multimodal_ablation.ipynb`)
+**Lab utama:** Lab W9 - Multimodal Ablation (`lab_w9_multimodal_ablation.ipynb`)
 
 ---
 
@@ -317,7 +317,7 @@ class PainEstimator(nn.Module):
 
 ---
 
-## 5. Lab 8 - Multimodal Ablation
+## 5. Lab W9 - Multimodal Ablation
 
 Buka `template_repo/notebooks/lab_w9_multimodal_ablation.ipynb`.
 
@@ -366,7 +366,7 @@ Format: [Lampiran C.9](14_Lampiran.md#c9-template-komponen-mandiri).
 - **Baltrusaitis et al. - *Multimodal Machine Learning: A Survey and Taxonomy*** (TPAMI, 2019). Survey komprehensif fusion strategies. Baca Section 3 (Fusion) dan Section 5 (Co-learning) untuk konteks W9.
 - **Wang et al. - *What Makes Training Multi-Modal Classification Networks Hard?*** (CVPR, 2020). Tentang ignored-modality problem dan solusinya. Sangat relevan dengan §2.2.
 - **Li et al. - *BLIP: Bootstrapping Language-Image Pre-training*** (2022). Contoh cross-attention fusion dalam praktik yang bisa dibaca sebagai case study.
-- **Lampiran C.14** - Per-Modality Ablation Protocol template untuk dipakai langsung di Lab 8.
+- **Lampiran C.14** - Per-Modality Ablation Protocol template untuk dipakai langsung di Lab W9.
 
 ---
 

@@ -31,7 +31,7 @@
 **Big Map row:** `(T, F) -> (1,)`, `(N,)`, `(T'', 1)` (lanjutan W5, fokus representasi + validasi)
 **Rigor habit:** Validate preprocessing dan prevent temporal leakage
 **Dataset:** Sensor atau time-series dataset
-**Lab utama:** Lab 6 - Temporal Leakage (`lab_w6_temporal_leakage.ipynb`)
+**Lab utama:** Lab W6 - Temporal Leakage (`lab_w6_temporal_leakage.ipynb`) + EDA (`lab_w6_eda_leakage.ipynb`)
 
 ---
 
@@ -525,7 +525,7 @@ Laporan ini masuk ke `experiments/lab4/audit.md`, dibaca bersama protokol eksper
 
 ---
 
-## 5. Lab 4 - Audit PathMNIST dan Pipeline Pra-pemrosesan
+## 5. Lab W6 - Audit PathMNIST dan Pipeline Pra-pemrosesan
 
 Buka [Lab 4 - EDA dan Audit Leakage](template_repo/notebooks/lab_w6_eda_leakage.ipynb).
 
@@ -585,7 +585,7 @@ Konsep: memeriksa data sebelum mempercayai hasil - distribusi kelas, leakage ter
 
 ---
 
-## Lab 6 - Temporal Leakage Demonstration (W6, baru)
+## Lab W6 - Temporal Leakage Demonstration
 
 Buka `template_repo/notebooks/lab_w6_temporal_leakage.ipynb`.
 

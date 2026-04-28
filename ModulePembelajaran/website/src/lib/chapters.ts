@@ -34,7 +34,7 @@ export const CHAPTERS: ChapterMeta[] = [
     weeks: "1",
     weekNumbers: [1],
     sikap: ["curiosity"],
-    labName: "Lab W1 - MLP Numpy",
+    labName: "Lab W1 - Tabular Output Heads",
     filename: "01_W1_Tabular_Output_Heads.md",
   },
   {
@@ -89,7 +89,7 @@ export const CHAPTERS: ChapterMeta[] = [
     weeks: "6",
     weekNumbers: [6],
     sikap: ["skepticism"],
-    labName: "Lab W6 - EDA + Leakage Audit",
+    labName: "Lab W6 - EDA + Temporal Leakage",
     filename: "06_W6_Representations_Temporal_Leakage.md",
   },
   {
@@ -122,7 +122,7 @@ export const CHAPTERS: ChapterMeta[] = [
     weeks: "9",
     weekNumbers: [9],
     sikap: ["curiosity"],
-    labName: null,
+    labName: "Lab W9 - Multimodal Ablation",
     filename: "09_W9_Multimodal_Reasoning.md",
   },
   {
