@@ -263,7 +263,7 @@ Pertanyaan yang dijawab setelah lab: Pada dataset terbatas (500 sampel per kelas
 
 1. Saat Anda mengganti `CrossEntropyLoss` menjadi `FocalLoss`, apa saja variabel yang *secara implisit* juga berubah walaupun Anda tidak menyentuhnya? (Petunjuk: pikirkan learning rate efektif, tekanan pada kelas minor, stabilitas awal training.) Bagaimana ini memengaruhi cara Anda merancang perbandingan?
 2. Anda ditugaskan membangun klasifikasi kualitas biji kopi dari foto *close-up* dengan hanya 300 gambar per kelas untuk empat kelas. Bandingkan tiga strategi representasi secara singkat. Manakah yang paling masuk akal dicoba terlebih dahulu dan mengapa? Pada penambahan data sejumlah berapa Anda akan mempertimbangkan berpindah strategi?
-3. **Koneksi ke Capstone.** Saat membuka Bab 10 nanti, Anda akan diminta memilih topik dan membangun baseline. Dari kerangka tensor input → output, empat keluarga arsitektur, dan tiga strategi representasi, tuliskan satu kalimat: *"Saat membaca repo Capstone nanti, pertanyaan pertama yang akan saya tanyakan ke diri sendiri adalah ..."*.
+3. **Koneksi ke Capstone.** Saat masuk Capstone (W12-W14) nanti, Anda akan diminta memilih topik dan membangun baseline. Dari kerangka tensor input → output, empat keluarga arsitektur, dan tiga strategi representasi, tuliskan satu kalimat: *"Saat membaca repo Capstone nanti, pertanyaan pertama yang akan saya tanyakan ke diri sendiri adalah ..."*.
 
 ---
 

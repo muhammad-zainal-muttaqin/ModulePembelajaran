@@ -501,7 +501,7 @@ Jalur ini dipilih saat Anda ingin mempelajari satu keluarga arsitektur NN yang *
 
 ### C.9 Template Komponen Mandiri
 
-Template generik untuk semua Komponen Mandiri (Pekan 4-12). Setiap bab (02-09) menyebut satu tugas spesifik per jalur sesuai konsep minggu itu; template ini mengatur format laporan dan kriteria standar yang berlaku di semua pekan.
+Template generik untuk semua Komponen Mandiri (W4-W10). Setiap bab mingguan menyebut satu tugas spesifik per jalur sesuai konsep minggu itu; template ini mengatur format laporan dan kriteria standar yang berlaku di semua pekan.
 
 **Empat jalur yang tersedia setiap minggu:**
 
@@ -509,10 +509,10 @@ Template generik untuk semua Komponen Mandiri (Pekan 4-12). Setiap bab (02-09) m
 | --- | --- | --- |
 | **A - Implementasi** | Menambah, mengubah, atau menguji kode pada repo eksperimen. | Cuplikan kode + angka benchmark sebelum/sesudah + 1 paragraf interpretasi. |
 | **B - Analisis** | Menyelidiki perilaku model, data, atau hasil yang sudah ada. | Visualisasi + 2-3 temuan spesifik + hipotesis turunan. |
-| **C - Desain** | Merancang eksperimen baru tanpa harus menjalankannya penuh. | Protokol terstruktur (format Bab 02) + justifikasi hipotesis + estimasi biaya-waktu. |
+| **C - Desain** | Merancang eksperimen baru tanpa harus menjalankannya penuh. | Protokol terstruktur (format W4 §3) + justifikasi hipotesis + estimasi biaya-waktu. |
 | **D - Arsitektur Baru** | Mereplikasi satu keluarga arsitektur yang belum di-cover lab wajib minggu itu. | Forward pass bekerja pada toy task + 1 plot learning curve + 1 paragraf perbedaan vs arsitektur yang sudah dipelajari. Template lengkap di C.8. |
 
-**Kriteria sukses per entri** (detail di Rubrik Kompetensi 10, Bab 11):
+**Kriteria sukses per entri** (detail di Rubrik Kompetensi 10, [13_Rubrik_Penilaian.md](13_Rubrik_Penilaian.md)):
 - Bukti eksekusi jelas (kode commit, plot, atau dokumen).
 - Temuan dituliskan dengan skeptisisme sehat - apa yang *tidak* Anda yakini juga dicatat.
 - Koneksi eksplisit ke konsep bab minggu itu.
@@ -607,7 +607,7 @@ Template salin-pakai untuk update rutin ke dosen pembimbing/PI, biasanya dikirim
 3. **Selalu ajukan satu pertanyaan.** Pertanyaan yang baik memberi PI sesuatu untuk direspon dengan cepat. Satu pertanyaan konkret lebih baik daripada tiga pertanyaan abstrak.
 
 > [!TIP]
-> Pemilihan saluran pengiriman (email, chat, tatap muka) dibahas di [Bab 02 §3.5.3](02_Ide_Ke_Eksperimen.md). Default untuk update rutin: email atau shared document yang bisa diarsipkan.
+> Pemilihan saluran pengiriman (email, chat, tatap muka) dibahas di [W4 §3.5](04_W4_Reproducibility_Experiment_Matrix.md#35-komunikasi-efektif-dengan-dosen-pembimbing). Default untuk update rutin: email atau shared document yang bisa diarsipkan.
 
 ---
 
@@ -797,7 +797,7 @@ Dua belas tabel di bawah adalah alat bantu bagi Anda untuk memeriksa pemahaman s
 3. **Jika ada "Belum",** selesaikan poin itu sebelum mengerjakan Komponen Mandiri minggu berikutnya. Poin "Belum" yang menumpuk adalah sinyal bahwa Anda perlu bicara dengan dosen.
 4. **Di akhir semester,** tabel-tabel ini adalah ringkasan kompetensi Anda. Bawa ke sesi evaluasi akhir sebagai bukti pendukung.
 
-Checklist ini melengkapi - bukan menggantikan - rubrik penilaian di Bab 11. Rubrik dipakai dosen untuk menilai; checklist dipakai Anda untuk memantau diri sendiri.
+Checklist ini melengkapi - bukan menggantikan - rubrik penilaian di [13_Rubrik_Penilaian.md](13_Rubrik_Penilaian.md). Rubrik dipakai dosen untuk menilai; checklist dipakai Anda untuk memantau diri sendiri.
 
 ---
 

@@ -328,28 +328,16 @@ Target waktu: 6-8 jam.
 
 ## Komponen Mandiri (W10)
 
-Format: [Lampiran C.9](14_Lampiran.md#c9-template-komponen-mandiri).
-
-| Jalur | Tugas |
-|---|---|
-| **Implementasi** | Implementasikan satu teknik pendukung dari paper Lab 9 yang belum ada di template_repo. |
-| **Analisis** | Pilih satu paper dengan klaim "terlalu bagus". Analisis kritis 1 halaman: klaim apa, bukti apa, apa yang tidak ditunjukkan. |
-| **Desain** | Pre-registration untuk ide riset dari pengalaman Anda sendiri sepanjang semester. |
-| **Arsitektur Baru** | Implementasikan satu paper tentang arsitektur yang belum dibahas di modul (mis. ResNeXt, MobileNet, DETR). |
-
----
-
-## Komponen Mandiri (Pekan 12)
-
-Konsep: membaca paper secara terarah, merumuskan pertanyaan falsifiable, merancang eksperimen lanjutan. Ini entri portofolio terakhir - setelah mengisinya, kerjakan juga sel "Refleksi Portofolio" di notebook: lihat kembali semua 8 entri dan tuliskan satu paragraf trajektori belajar. Di awal Pekan 13, presentasi diperpanjang - tampilkan *highlight* portofolio, bukan hanya Pekan 12. Format dan kriteria: [Lampiran C.9](14_Lampiran.md#c9-template-komponen-mandiri).
+Konsep: membaca paper secara terarah, merumuskan pertanyaan falsifiable, merancang eksperimen lanjutan. Ini entri portofolio terakhir sebelum capstone - setelah mengisinya, kerjakan juga sel "Refleksi Portofolio" di notebook: lihat kembali semua entri Anda dan tuliskan satu paragraf trajektori belajar. Format dan kriteria: [Lampiran C.9](14_Lampiran.md#c9-template-komponen-mandiri).
 
 | Jalur | Tugas minggu ini |
 | --- | --- |
 | **A - Implementasi** | Dari paper Lab 9, implementasikan satu teknik pendukung yang belum ada di template_repo (LR scheduler, metrik evaluasi tambahan, atau augmentasi di appendix). Laporkan apakah hasilnya sesuai klaim paper. |
 | **B - Analisis** | Pilih satu paper yang klaim utamanya terasa "terlalu bagus". Lakukan analisis kritis 1 halaman: klaim apa yang dibuat, bukti apa yang ditunjukkan, apa yang tidak ditunjukkan, dan apa yang perlu diverifikasi sebelum mengutipnya. |
 | **C - Desain** | Tulis pre-registration untuk ide riset yang muncul dari pengalaman Anda sendiri sepanjang semester (bukan dari paper orang lain). Minimal: motivasi, hipotesis falsifiable, protokol, dan kondisi kegagalan. |
+| **D - Arsitektur Baru** | Implementasikan satu paper tentang arsitektur yang belum dibahas di modul (mis. ResNeXt, MobileNet, DETR). Forward pass + learning curve + 1 paragraf perbedaan vs arsitektur yang sudah dipelajari. |
 
-**Deliverable:** Entri portofolio Pekan 12 + sel Refleksi Portofolio di `notebooks/portofolio_mandiri.ipynb`. Presentasi highlight portofolio 10 menit di awal Pekan 13.
+**Deliverable:** Entri portofolio W10 + sel Refleksi Portofolio di `notebooks/portofolio_mandiri.ipynb`. Presentasi highlight portofolio 10 menit di awal W11.
 
 ---
 
@@ -359,7 +347,7 @@ Konsep: membaca paper secara terarah, merumuskan pertanyaan falsifiable, meranca
 2. Setelah menjalankan Lab 9, bandingkan pre-reg dengan experiment report. Di mana Anda paling tergoda menyimpang? Apa yang bisa Anda ubah di pre-reg berikutnya agar godaan itu lebih sulit dilakukan?
 3. Setelah kelas ini berakhir, apa yang menjadi satu kalimat komitmen belajar mingguanmu - yang realistis dengan jadwalmu dan masih menantang? Tulis, tempel di tempat yang Anda lihat setiap hari. Kembali enam bulan lagi, evaluasi.
 
-4. **Koneksi ke Capstone.** Anda sudah membaca 9 bab dan mengisi 8 entri portofolio mandiri. Tulis satu paragraf "proposal Capstone draft 0": satu kalimat pertanyaan riset, satu paragraf justifikasi mengapa Anda yang paling cocok mengerjakannya (berdasar entri portofolio mana), dan daftar 3 bab modul yang paling sering akan Anda rujuk saat mengerjakannya. Paragraf ini akan jadi batu loncatan masuk Bab 10.
+4. **Koneksi ke Capstone.** Anda sudah melalui 10 minggu bootcamp dan mengisi entri portofolio mandiri sepanjang jalan. Tulis satu paragraf "proposal Capstone draft 0": satu kalimat pertanyaan riset, satu paragraf justifikasi mengapa Anda yang paling cocok mengerjakannya (berdasar entri portofolio mana), dan daftar 3 bab modul yang paling sering akan Anda rujuk saat mengerjakannya. Paragraf ini akan jadi batu loncatan masuk W11 (proposal capstone).
 
 ---
 

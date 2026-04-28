@@ -31,59 +31,49 @@ ModulePembelajaran/
 
 **File sumber catatan (sudah terintegrasi; file asli disimpan sebagai referensi):**
 
-- `ModulePembelajaran/Notes - 17 April 2026/petabesar.md` → **Section 2.1** di `01a_Fondasi_Neural_Network.md`
-- `ModulePembelajaran/Notes - 17 April 2026/representasifitur.md` → **Section 2.4** di `01b_Loss_Optimizer_Evaluasi.md`
+- `ModulePembelajaran/Notes - 17 April 2026/petabesar.md` → konten dasar tensor/arsitektur masuk ke W1-W2
+- `ModulePembelajaran/Notes - 17 April 2026/representasifitur.md` → konten representasi fitur masuk ke W3 + W6
+- `ModulePembelajaran/Notes - 27 April 2026/revisi_bootcamp.md` → blueprint overhaul 11 minggu bootcamp + 3 minggu capstone (struktur saat ini)
 
-**Perubahan struktural besar (April 2026):**
-- `01_Memahami_ML_DL.md` (499 baris) dipecah menjadi `01a` (Minggu 2) + `01b` (Minggu 3)
-- Section 2.0b (bolt-on MLP backprop) dihapus dan diintegrasikan sebagai Section 2.2 di 01a
-- Section 2.6 (representasi fitur) kini Section 2.4 di 01b; Section 2.7 (loss curve) kini Section 2.5 di 01b
-- Komponen Mandiri Bab 02-09 disederhanakan: pointer ke Lampiran C.9 + tabel 2-kolom per-pekan
-- 5 Mermaid diagram ditambahkan: Bab 00 §5c, Bab 04 §2.1, Bab 06 §2.1, Bab 07 §2.1, Bab 09 §2.2
-- Lampiran C.9 baru: Template Komponen Mandiri (kriteria standar semua pekan)
+**Perubahan struktural besar (April 2026 - Overhaul 27 April):**
+- Modul lama 10-bab format-topik → 11-minggu bootcamp (W1-W11) + 3-minggu capstone (W12-W14), format weekly
+- File-file lama diarsipkan ke `ModulePembelajaran/_archive/` (sengaja disimpan untuk referensi tabel migrasi di Lampiran §H, tidak dirender website)
+- Mapping bab lama → bab baru terdokumentasi di `14_Lampiran.md` Lampiran H
+- Konvensi penomoran konten: gunakan **W-numbering** (W1-W14) di teks bab; gunakan nama file (mis. `13_Rubrik_Penilaian.md`) saat me-link
 
-**Penambahan April 2026 (Gap Analysis Implementation):**
-- `13_Panduan_Dosen.md`: file baru, panduan lengkap dosen (filosofi, pacing, emphasis per-bab, cara baca rubrik, cara nilai portofolio, skenario kelas)
-- Bab 02 §3.5: Komunikasi Efektif dengan Dosen Pembimbing (kerangka SQRC, matriks saluran komunikasi, ekspresi ketidakpastian profesional; §3.5.1 menjadi pointer ke Lampiran §C.11)
-- Bab 01b §2.5: Mermaid decision tree diagnostik loss curve (branching flowchart mencakup 5 pola + navigasi "mulai dari overfit one batch")
-- Bab 04 §2.6: Etika Data dan Bias (4 jenis dataset bias, fairness awareness, negative results sebagai kewajiban etis, tanggung jawab asisten riset)
-- Bab 06 Lab 6c (pair): Peer Code Review Repo Eksternal (aktivitas berpasangan, mapping 4 komponen repo, issue palsu, peer_review_log.md)
-- Bab 03 §2.10: Git Workflow untuk Riset Eksperimental (commit convention `exp:`/`fix:`/`docs:`, branching strategy minimal `main`+`exp/<nama>`, kapan commit)
-- Bab 08 §2.1.1: Matriks Evaluasi Tool (skoring 5 dimensi: dokumentasi, reproduksibilitas, ekosistem, biaya, komunitas; aturan <12 curigai, 12-18 coba kecil, >18 adopsi)
-- Lampiran §C.10: Template Weekly Experiment Log Ringan (format tabel 5 kolom, 5-10 menit/hari, aturan kapan C.10 vs C.4)
-- Lampiran §C.11: Template Update Mingguan ke PI/Supervisor (lift dari Bab 02 §3.5.1; outward-facing untuk komunikasi supervisor, melengkapi C.4/C.10 yang inward-facing; Bab 02 §3.5.1 di-refactor jadi pointer)
-- Lampiran §G: Self-Checklist Mingguan (12 tabel, Minggu 1-12, kolom Belum/Mulai/Sudah, 4-7 poin per minggu)
-- Navigasi: semua 14 bab + README + Lampiran diperbarui menyertakan link ke `13_Panduan_Dosen.md`
-- Indeks Cepat (Lampiran §E): 10+ entri baru untuk semua section/lab/template baru
+**Konten utama per minggu (state saat ini):**
 
-**Konten utama per bab (state saat ini):**
+- **W1** (`01_W1_Tabular_Output_Heads.md`): tabular MLP, output heads + loss matching, observation before conclusion
+- **W2** (`02_W2_Images_CNN_Smoke_Test.md`): tensor citra, CNN, ritual three-level smoke test
+- **W3** (`03_W3_Loss_Optimizer_Evaluasi.md`): example-first galeri 5 run → loss/optimizer/evaluasi theory; representasi fitur 3 strategi
+- **W4** (`04_W4_Reproducibility_Experiment_Matrix.md`): experiment matrix + YAML/seed/checkpoint; §3.5 Komunikasi Efektif (SQRC, matriks saluran); §2.6 Etika Data dan Bias; Git workflow eksperimental
+- **W5** (`05_W5_Sequences_RNN_LSTM.md`): RNN vs LSTM, gradient flow, Lab 3b mandatory
+- **W6** (`06_W6_Representations_Temporal_Leakage.md`): representasi recap + temporal leakage demo (delta dramatic 0.92 → 0.63 di §0.6); §2.6.3 negative results sebagai kewajiban etis; Lab 6c peer code review
+- **W7** (`07_W7_Text_Transformers_Repo_Adoption.md`): text + Transformers + AI tools + repo adoption (file dual-section: Part 1 ringkas + Part 2 "Pendalaman" deep dive D1-D7)
+- **W8** (`08_W8_Foundation_Models.md`): taxonomy modality×family×adaptation, model card literacy, §2.1.1 matriks evaluasi tool
+- **W9** (`09_W9_Multimodal_Reasoning.md`): fusion strategies, per-modality ablation, missing modality, peta keluarga generatif
+- **W10** (`10_W10_Paper_Reading.md`): 3-pass paper reading + paper-to-code workflow; templates A-E (termasuk LSTM/Transformer dan Autoencoder breadth)
+- **W11** (`11_W11_Research_Framing.md`): 5-Whys, capstone proposal, oral defense (note: by design tidak ada heading `## Worked Example` / `## Lab Hands-on` eksplisit; deliverable proposal menggantikan lab notebook)
+- **W12-W14** (`12_Capstone_3_Minggu.md`): timeline 3-minggu capstone (EDA+baseline / experiment / analysis+demo)
+- **Rubrik** (`13_Rubrik_Penilaian.md`): 4-level mastery + Kompetensi 10 (Eksplorasi Mandiri & Komunikasi); bobot Kompetensi 1: 14%, Kompetensi 7: 4%
+- **Lampiran** (`14_Lampiran.md`): glosarium ID↔EN; A.1 backprop derivasi 7-langkah; C.6-C.11 (entri portofolio, presentasi, lab breadth, Komponen Mandiri, weekly log, weekly update PI); §G Self-Checklist Mingguan; §H tabel migrasi
+- **Panduan Dosen** (`15_Panduan_Dosen.md`): pacing 11+3 + emphasis per-W + skenario kelas
 
-- **01a**: Section 2.1 (tensor I/O), 2.2 (MLP backprop 7-langkah), 2.3 (4 keluarga arsitektur), 2.4 (layer: inisialisasi Kaiming/Xavier, BatchNorm/LayerNorm/GroupNorm tabel, ReLU/GELU/SiLU)
-- **01b**: Section 2.1 (loss), 2.2 (optimizer + AdamW weight decay note), 2.3 (evaluasi metrik), 2.4 (representasi fitur: engineered/extracted/learned), 2.5 (diagnosis loss curve 5 pola)
-- **Bab 02**: Section 2.6 (hasil negatif), bootstrap CI + effect size §2.4, HP search + batch/LR interaction §2.3
-- **Bab 03**: Section 2.8 (resume checkpoint), Section 2.9 (konvergensi + early stopping)
-- **Bab 05**: Section 2.6 (LLM non-kode), Lab 5b (teks IndoNLU SmSA)
-- **Bab 06**: Section 2.8 (kategori error), Lab 6b (Transformer-mini)
-- **Bab 07**: Lab 7b (Autoencoder + denoising AE + t-SNE)
-- **Bab 08**: tabel platform (RunPod/Colab Pro/Modal/Lambda) §2.6
-- **Bab 09**: navigasi arXiv §2.1 (ringkas), Peta Keluarga Generatif §2.7
-- **Bab 00**: Section 5b (peta dependensi), Section 5c (quick-start path 10 minggu + Mermaid)
-- **Rubrik (11)**: Kompetensi 10 (Eksplorasi Mandiri & Komunikasi), bobot Kompetensi 1: 14%
-- **Lampiran (12)**: C.6-C.9 (entri portofolio, panduan presentasi, template lab breadth, template Komponen Mandiri)
+**Breadth Arsitektur NN (lima keluarga: MLP, CNN, RNN/LSTM, Transformer, Autoencoder):**
 
-**Breadth Arsitektur NN (penambahan untuk alignment tujuan "NN general, intermediate"):**
+Modul melatih breadth lima keluarga, bukan hanya CNN. Pemetaan ke W-numbering:
 
-Tujuan penambahan: modul melatih breadth lima keluarga arsitektur NN (MLP, CNN, RNN/LSTM, Transformer, Autoencoder), bukan hanya CNN.
-
-- Bab 01a: Section 2.2 (MLP dan Backpropagation - derivasi chain rule 7-langkah untuk MSE+sigmoid, jembatan ke CNN/RNN/Transformer), Section 2.4 (BatchNorm vs LayerNorm vs GroupNorm tabel + ReLU/GELU/SiLU kurva)
-- Bab 03: +tautan Lab 3b (RNN vs LSTM) di Section 5 sebagai breadth lab
-- Bab 06: +tautan Lab 6b (Transformer-mini dari nol) di Section 5 sebagai breadth lab
-- Bab 07: +tautan Lab 7b (Autoencoder + denoising AE + t-SNE bottleneck) di Section 5 sebagai breadth lab
-- Bab 09: +Section 2.7 (Peta Keluarga Model Generatif - tabel VAE/GAN/Diffusion/Normalizing Flow dengan paper pointers; tidak ada implementasi, peta mental saja)
-- Bab 10: +Template D (LSTM vs Transformer sequence forecasting ETTh1) dan Template E (Autoencoder representation learning + linear probe)
-- Bab 00: +Kontrak Belajar klausul "Keenam - Breadth Check" (lulus dengan forward pass 4 dari 5 keluarga), +Lab 1c/3b/6b/7b di daftar lab Section 5, +Jalur 4 "Arsitektur Baru" di Komponen Mandiri, +rantai lab breadth di Section 5b
-- Rubrik (11): Kompetensi 1 diperluas lintas 4 level dengan deskriptor breadth; bobot Kompetensi 1: 12%→14%, Kompetensi 7: 6%→4%
-- Lampiran (12): +A.1 entri glosarium (MLP, LSTM cell, GRU, attention, multi-head attention, positional encoding, encoder/decoder, autoencoder, bottleneck, reconstruction loss, latent space, VAE, GAN, diffusion model), +C.8 Template Lab Replikasi Arsitektur untuk Jalur 4
+- W1 (Pendahuluan + 01): MLP forward pass tabular
+- W2 (02): CNN + tensor citra + smoke test
+- W5 (05) + Lab 3b: RNN/LSTM gradient flow (Lab 3b wajib)
+- W7 (07) + Lab 5b/6b: Transformer (BERT-family fine-tune) + Lab 6b Transformer-mini dari nol (breadth opsional)
+- Lab 7b: Autoencoder + denoising AE + t-SNE (breadth opsional, dapat dikerjakan kapan saja)
+- W9 §2.7: peta keluarga model generatif (VAE/GAN/Diffusion/Normalizing Flow), peta mental saja tanpa implementasi
+- W10 Template D dan E: LSTM vs Transformer sequence forecasting + Autoencoder representation learning
+- Pendahuluan (00): Kontrak Belajar klausul Keenam - Breadth Check (forward pass 4 dari 5 keluarga)
+- Rubrik Kompetensi 1: deskriptor breadth lintas 4 level (bobot 14%)
+- Lampiran A.1 entri glosarium: MLP, LSTM cell, GRU, attention, multi-head attention, positional encoding, encoder/decoder, autoencoder, bottleneck, reconstruction loss, latent space, VAE, GAN, diffusion model
+- Lampiran C.8: Template Lab Replikasi Arsitektur untuk Komponen Mandiri Jalur D (Arsitektur Baru)
 
 **Lab breadth baru (`template_repo/notebooks/`):**
 - `lab1c_mlp_numpy.ipynb`: MLP 2-layer dari nol dengan numpy (forward, backward manual 7-langkah, finite-difference gradient check, SGD), parity check dengan `SimpleMLP` PyTorch
@@ -117,7 +107,7 @@ Tujuan penambahan: modul melatih breadth lima keluarga arsitektur NN (MLP, CNN, 
 - `notebooks/lab7_streamlit_demo.ipynb`: diisi penuh (aggregation plot, Streamlit template, Gradio annotation template)
 - `notebooks/lab1b_representasi.ipynb`: file baru, Lab 1b representasi fitur 3 strategi
 - `notebooks/lab5b_domain_teks.ipynb`: file baru, Lab 5b klasifikasi sentimen teks IndoNLU SmSA
-- `notebooks/portofolio_mandiri.ipynb`: file baru, portfolio running-log 8 entri (Pekan 4-12) + refleksi akhir semester; template entri per-bab dengan bagian Setup/Temuan/Kejutan/Yang-Akan-Diubah/Koneksi
+- `notebooks/portofolio_mandiri.ipynb`: portfolio running-log entri W4-W10 + refleksi akhir bootcamp; template entri per-bab dengan bagian Setup/Temuan/Kejutan/Yang-Akan-Diubah/Koneksi
 
 ## Template Repo (`template_repo/`)
 
@@ -161,7 +151,7 @@ ruff format src/
 
 Setiap bab mengikuti urutan tetap: Peta Bab → Motivasi → Konsep Inti → Worked Example → Pitfalls & Miskonsepsi → Lab Hands-on → Refleksi (3 pertanyaan terbuka) → Bacaan Lanjutan. Jangan ubah urutan ini.
 
-Bahasa Indonesia. Istilah teknis ML/DL dipertahankan dalam bahasa Inggris (loss, checkpoint, seed, freeze, ablation, dll.) - tidak diterjemahkan paksa. Glosarium lengkap ada di `12_Lampiran.md`.
+Bahasa Indonesia. Istilah teknis ML/DL dipertahankan dalam bahasa Inggris (loss, checkpoint, seed, freeze, ablation, dll.) - tidak diterjemahkan paksa. Glosarium lengkap ada di `14_Lampiran.md`.
 
 Sikap (Curiosity, Rigor, Skepticism, Ownership) **tidak** dibahas dalam bab khusus; ditanamkan melalui cerita pembuka, pitfall, dan pertanyaan refleksi.
 
@@ -207,7 +197,7 @@ Hindari konstruksi bertingkat khas English ("there is one X that Y, which Z, so 
 
 - Inline code di dalam bold: `**\`Conv2d(...)`**, bukan ``` **Conv2d(...)**` `` (backtick di luar bold).
 - Checklist pakai `- [ ]` (GitHub task list), bukan bullet polos.
-- Navigasi modul pakai `<details><summary>📂 Navigasi Modul (klik untuk buka)</summary>...</details>` (konsisten di 13 bab).
+- Navigasi modul pakai `<details><summary>📂 Navigasi Modul (klik untuk buka)</summary>...</details>` (konsisten di semua 16 file modul aktif).
 - Tabel boleh tanpa padding alignment, tetapi header-separator wajib ada (`| --- |`).
 - File `.md` wajib diakhiri dengan satu newline.
 
@@ -218,14 +208,14 @@ Modul juga di-render di website (`website/src/components/MarkdownRenderer.tsx`) 
 1. **Inline enumerasi prosedural pakai list bernomor, bukan paragraf.** Pola `(1) ... (2) ... (3) ...` di tengah paragraf yang isinya benar-benar langkah → pecah jadi `1. ... 2. ... 3. ...`. Pengecualian: jika hanya 2 item pendek dan tidak prosedural (sekadar listing keterangan), boleh tetap inline.
 2. **Struktur paralel besar (3+ item dengan format identik) → pecah jadi `####` heading atau list bernomor.** Contoh: "Skenario A/B/C", "Kategori 1/2/3/4", "Aturan 1/2/3/4". `####` muncul di Table of Contents, jadi pembaca bisa melompat. List bernomor dengan **bold lead-in** cukup jika section sudah ramai heading.
 3. **Catatan/peringatan/tips → admonition GFM, bukan paragraf bold.** Sintaks: `> [!NOTE]` / `> [!TIP]` / `> [!WARNING]` / `> [!IMPORTANT]` / `> [!CAUTION]`, lalu newline, lalu isi blockquote. Renderer otomatis kasih ikon, label, dan warna theme. Pakai untuk: catatan reproducibility, peringatan biaya, tips workflow. Jangan pakai untuk konten utama yang panjang.
-4. **Lead paragraph (kalimat pembuka section) otomatis dapat treatment editorial.** Tidak perlu markup khusus — `h2 + p`, `h3 + p`, `h4 + p` di-style dengan size sedikit lebih besar, weight lebih tegas, warna lebih pekat. Maka paragraf pembuka section harus **bisa berdiri sendiri sebagai pengantar** — jangan langsung lompat ke detail teknis.
+4. **Lead paragraph (kalimat pembuka section) otomatis dapat treatment editorial.** Tidak perlu markup khusus - `h2 + p`, `h3 + p`, `h4 + p` di-style dengan size sedikit lebih besar, weight lebih tegas, warna lebih pekat. Maka paragraf pembuka section harus **bisa berdiri sendiri sebagai pengantar** - jangan langsung lompat ke detail teknis.
 
 **Singkatnya:** kalau menulis 3 item paralel dengan format identik atau menulis `(1)(2)(3)` di paragraf, tanyakan: ini sebenarnya list, kan? Kalau ya, format sebagai list. Kalau menulis "**Catatan**:" atau "**Penting**:" sebagai paragraf, tanyakan: ini sebenarnya admonition, kan? Kalau ya, pakai `> [!NOTE]` atau `> [!IMPORTANT]`.
 
 **Workflow konten baru:**
 
 - Ketika mengintegrasikan catatan dari folder `Notes - <tanggal>/`, ganti em dash di file asli SEBELUM menyalin ke bab utama. File asli tetap disimpan sebagai referensi (jangan dihapus).
-- Setelah menambah section baru, update juga: (1) tabel of contents di awal bab, (2) rubrik penilaian terkait di `11_Rubrik_Penilaian.md`, (3) catatan integrasi di CLAUDE.md.
+- Setelah menambah section baru, update juga: (1) tabel of contents di awal bab, (2) rubrik penilaian terkait di `13_Rubrik_Penilaian.md`, (3) catatan integrasi di CLAUDE.md.
 
 ## Konvensi Eksperimen (untuk konten lab)
 

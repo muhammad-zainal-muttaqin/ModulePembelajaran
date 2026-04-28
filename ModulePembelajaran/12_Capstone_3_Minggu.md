@@ -376,7 +376,7 @@ Tetapi Dito menemukan per-class: kelas minoritas `lymphocytes` turun 2.1% dengan
 
 **Minggu 4.** Demo Streamlit: upload histology patch, tampilkan prediksi baseline vs TTA berdampingan. Laporan 7 halaman, jujur tentang batasan (perturbasi warna bukan simulasi stain yang sempurna - rekomendasi masa depan: pakai CycleGAN stain transfer dataset yang tersedia publik).
 
-**Hasil rubrik (Bab 11):** Kompetensi 1-7 di level *proficient* atau lebih tinggi. Kompetensi 8 tidak digunakan (tidak perlu cloud; lokal sudah cukup). Kompetensi 9 di *masterpiece* karena catatan paper-nya substantif + mengusulkan future work yang concrete. Keempat sikap tampil:
+**Hasil rubrik ([13_Rubrik_Penilaian.md](13_Rubrik_Penilaian.md)):** Kompetensi 1-7 di level *proficient* atau lebih tinggi. Kompetensi 8 tidak digunakan (tidak perlu cloud; lokal sudah cukup). Kompetensi 9 di *masterpiece* karena catatan paper-nya substantif + mengusulkan future work yang concrete. Keempat sikap tampil:
 
 - Curiosity: menemukan lymphocytes paradox dari per-class analysis (bukan dari plot agregat).
 - Rigor: pre-reg tidak diganti, walau ada temuan mengejutkan; deviasi diakui di laporan.
@@ -457,4 +457,4 @@ Minggu 4:
 
 ---
 
-*Bab 11 (Rubrik Penilaian) telah ditulis sebelum capstone - baca ulang sekarang dengan proyekmu di tangan, dan gunakan rubrik sebagai self-check. Bab 12 berisi lampiran: glosarium ID↔EN, checklist, serta template laporan dan pre-registration yang dapat langsung Anda pakai.*
+*[Rubrik Penilaian](13_Rubrik_Penilaian.md) telah ditulis sebelum capstone - baca ulang sekarang dengan proyekmu di tangan, dan gunakan rubrik sebagai self-check. [Lampiran](14_Lampiran.md) berisi glosarium ID↔EN, checklist, serta template laporan dan pre-registration yang dapat langsung Anda pakai.*

@@ -96,108 +96,109 @@ Ritme sesi: 30 menit prior-week findings | 40 menit materi baru + demo | 10 meni
 
 ### Catatan Pacing
 
-- **Minggu 5–6 (Bab 03):** Bab ini paling padat infrastruktur. Jika mahasiswa tertinggal, kurangi cakupan Lab 3b (RNN/LSTM) - lab breadth bisa dikerjakan paralel di minggu-minggu berikutnya.
-- **Minggu 8 (Bab 05):** Jika mahasiswa sudah terbiasa dengan LLM, percepat Lab 5 dan habiskan lebih banyak waktu di Lab 5b (domain teks).
-- **Minggu 13–14:** Mahasiswa seharusnya sudah punya semua keterampilan teknis. Tugas Anda di fase ini: baca protokol mereka, uji apakah klaim mereka bisa direproduksi, dan pastikan laporan tidak overclaim.
+- **W4 (Reproducibility):** minggu paling padat infrastruktur (config YAML, seed, checkpoint, experiment matrix, komunikasi PI). Jangan tambahkan lab breadth di minggu ini; biarkan Lab 3b masuk W5 sebagai mandatory dan Lab 6b/7b paralel di pekan-pekan berikutnya.
+- **W7 (Text + Repo Adoption):** padat karena mengintegrasikan AI tools, transformers, dan repo adoption dari modul lama. Jika mahasiswa terbebani, prioritaskan `repo_map.md` dan 2×2 frozen/fine-tune; demo Streamlit boleh dikerjakan paralel.
+- **W12-W14 (Capstone):** mahasiswa seharusnya sudah punya semua keterampilan teknis. Tugas Anda di fase ini: baca protokol mereka, uji apakah klaim mereka bisa direproduksi, dan pastikan laporan tidak overclaim.
 
 ---
 
-## 3. Emphasis Per-Bab
+## 3. Emphasis Per-W
 
-### Bab 00 - Pendahuluan (Minggu 1)
+### W1 - Pendahuluan + Tabular & Output Heads
 
-- **Kritis:** Kontrak Belajar - terutama klausul keenam (Breadth Check) dan ketujuh (eksperimen gagal dinilai setara). Mahasiswa harus paham bahwa mereka tidak akan dihukum karena hasil negatif.
-- **Pitfall:** Mahasiswa cenderung menganggap kontrak sebagai formalitas. Minta mereka menulis satu paragraf: "Apa yang paling membuat saya ragu dari kontrak ini?" Jawabannya sering mengungkap miskonsepsi awal.
-- **Refleksi berbobot:** Pertanyaan #3 - "Saat Anda menerima email PI seperti di pembuka bab ini hari ini, apa tiga langkah pertama yang akan Anda ambil?" Simpan jawaban ini; bandingkan di minggu 14.
-- **Kaitan rubrik:** Semua kompetensi diperkenalkan; belum ada penilaian.
-- **Waktu lab:** Tidak ada lab. Setup template_repo: 1-2 jam.
+- **Kritis:** Kontrak Belajar di Pendahuluan - klausul keenam (Breadth Check) dan ketujuh (eksperimen gagal dinilai setara). Mahasiswa harus paham mereka tidak akan dihukum karena hasil negatif. Lab 0 (tabular MLP) sebagai onboarding template_repo.
+- **Pitfall:** Kontrak dianggap formalitas. Minta paragraf: "Apa yang paling membuat saya ragu dari kontrak ini?" Jawaban sering mengungkap miskonsepsi awal. Untuk Lab 0: mahasiswa tergoda langsung lompat ke CNN tanpa MLP tabular dulu.
+- **Refleksi berbobot:** Pertanyaan capstone-style di akhir bab - simpan jawaban, bandingkan di W14.
+- **Kaitan rubrik:** Kompetensi 1 diperkenalkan; belum ada penilaian sumatif.
+- **Waktu lab:** Setup template_repo (1-2 jam) + Lab 0 (2-3 jam).
 
-### Bab 01a - Fondasi Neural Network (Minggu 2)
+### W2 - Images, CNN & Smoke Test
 
-- **Kritis:** Section 2.2 (MLP backprop 7-langkah). Ini fondasi untuk memahami *semua* training dynamics. Jika mahasiswa tidak bisa menurunkan chain rule untuk MLP 2-layer, mereka akan kesulitan mendiagnosis gradient flow di arsitektur yang lebih kompleks.
-- **Pitfall:** Mahasiswa menghafal empat keluarga arsitektur sebagai taksonomi kaku, bukan sebagai asumsi tentang data. Diskusikan kasus hibrid: CNN + Transformer (ViT), CNN + RNN (video classification).
-- **Refleksi berbobot:** Pertanyaan #2 - "Dataset mana yang paling sulit Anda tentukan arsitekturnya, dan mengapa?"
+- **Kritis:** Three-level smoke test ritual (§2.3). Demo live: tunjukkan run yang berhasil vs gagal di proyektor. Backprop diperkenalkan konseptual; derivasi 7-langkah ada di Lampiran A.1 untuk dibaca setelah ada intuisi training.
+- **Pitfall:** Mahasiswa skip smoke test karena "kelihatannya jalan". Tunjukkan kasus di mana training tampak normal di awal tapi diam-diam memuat label salah.
+- **Refleksi berbobot:** Pertanyaan tentang shape mismatch: "Apa indikator pertama bahwa input/output shape tidak sesuai?"
 - **Kaitan rubrik:** Kompetensi 1 (Memahami sistem ML/DL). Target: Novice→Developing.
-- **Waktu lab:** Lab 1c (MLP numpy): 3-5 jam.
+- **Waktu lab:** Lab 1 (CNN baseline): 4-6 jam. Lab 1c (MLP numpy, breadth opsional): 3-5 jam.
 
-### Bab 01b - Loss, Optimizer & Evaluasi (Minggu 3)
+### W3 - Loss, Optimizer & Evaluasi
 
-- **Kritis:** Section 2.5 (diagnosis loss curve). Mahasiswa harus bisa melihat loss curve dan langsung menyebutkan hipotesis. Drill ini dengan menunjukkan loss curve anonim dan minta diagnosis dalam 2 menit.
-- **Pitfall:** "Ganti loss = pasti lebih baik." Focal loss bisa memperburuk performa jika kelas sudah seimbang. Tunjukkan counterexample konkret.
-- **Refleksi berbobot:** Pertanyaan #1 - "Loss training turun, loss val stagnan. Hipotesis Anda, langkah test pertama Anda?"
+- **Kritis:** Galeri 5 run (§1.5) sebagai pintu masuk - tanya diagnosis sebelum teori. Drill diagnostic loss curve: tunjukkan curve anonim, minta diagnosis dalam 2 menit.
+- **Pitfall:** "Ganti loss = pasti lebih baik." Focal loss bisa memperburuk performa jika kelas sudah seimbang. Tunjukkan counterexample.
+- **Refleksi berbobot:** "Loss training turun, loss val stagnan. Hipotesis Anda, langkah test pertama Anda?"
 - **Kaitan rubrik:** Kompetensi 1 (lanjutan), Kompetensi 3 (awal). Target: Developing.
-- **Waktu lab:** Lab 1: 4-6 jam (lanjutan dari 01a).
+- **Waktu lab:** Lab 1 lanjut + Lab 2 (focal loss + freeze ablation): 5-7 jam.
 
-### Bab 02 - Ide ke Eksperimen (Minggu 4)
+### W4 - Reproducibility & Experiment Matrix
 
-- **Kritis:** Lima pertanyaan sebelum menyentuh kode (Section 2.1). Latih refleks ini: setiap kali mahasiswa ingin menjalankan sesuatu, tanya "protokolnya mana?"
-- **Pitfall:** Mahasiswa menulis protokol *setelah* eksperimen, menyesuaikan narasi dengan hasil. Periksa timestamp `protocol.md`. Jika timestamp setelah hasil training, itu bukan protokol - itu rasionalisasi.
-- **Refleksi berbobot:** Pertanyaan #4 (koneksi ke capstone) - minta mahasiswa membacakan draft 3 bagian protokol mereka.
-- **Kaitan rubrik:** Kompetensi 2 (Menerjemahkan ide ke eksperimen). Target: Developing→Proficient.
-- **Waktu lab:** Lab 2: 5-7 jam (implementasi loss + ablation + laporan).
-
-### Bab 03 - Eksperimen Reproduksibel (Minggu 5–6)
-
-- **Kritis:** Config YAML sebagai sumber kebenaran, git hash di checkpoint. Latihan: beri mahasiswa folder eksperimen tanpa config, minta mereka mereproduksi hasilnya. Mereka akan gagal - dan pelajaran itu melekat.
+- **Kritis:** Wajibkan experiment matrix sebelum kode. Periksa timestamp `protocol.md` - jika setelah hasil training, itu rasionalisasi bukan protokol. §3.5 (Komunikasi Efektif PI dengan SQRC) drill role-play. §2.6 (Etika Data) singgung negative results sebagai kewajiban.
 - **Pitfall:** Mahasiswa mengira `set_seed(42)` cukup. Tunjukkan non-determinisme CUDA: dua run dengan seed sama bisa berbeda 0.5% akurasi. Solusi: `torch.backends.cudnn.deterministic = True`.
-- **Refleksi berbobot:** Pertanyaan #2 - "Anda menemukan folder `experiments/` seperti di Section 1. Apa tiga pertanyaan pertama yang Anda ajukan untuk menyelamatkan situasi?"
-- **Kaitan rubrik:** Kompetensi 3 (Eksperimen reproduksibel). Target: Developing→Proficient.
-- **Waktu lab:** Lab 3: 5-7 jam. Lab 3b (breadth): 3-4 jam.
+- **Refleksi berbobot:** Pertanyaan #4 (koneksi ke capstone) - minta mahasiswa membacakan draft 3 bagian protokol.
+- **Kaitan rubrik:** Kompetensi 2 + Kompetensi 3. Target: Developing→Proficient.
+- **Waktu lab:** Lab 3 (config + logging): 5-7 jam.
 
-### Bab 04 - Validasi Data (Minggu 7)
+### W5 - Sequences: RNN & LSTM
 
-- **Kritis:** Data leakage sebagai musuh utama. Tunjukkan contoh nyata dari riset: paper yang di-retract karena leakage. Mahasiswa harus bisa membedakan tiga jenis leakage (temporal, group, preprocessing).
-- **Pitfall:** EDA sebagai ritual (`df.describe()`, histogram, selesai). Minta mahasiswa menulis pertanyaan *sebelum* melihat data, lalu menjawabnya dengan EDA. Bukan sebaliknya.
-- **Refleksi berbobot:** Pertanyaan #1 - "Anda mendapat akurasi 99% pada dataset baru. Apa tiga hal pertama yang Anda periksa?"
-- **Kaitan rubrik:** Kompetensi 4 (Validasi data). Target: Developing→Proficient.
-- **Waktu lab:** Lab 4: 6-8 jam (EDA + leakage audit + label inspection).
+- **Kritis:** **Lab 3b wajib**. Tunjukkan gradient flow secara visual (log-plot vanishing gradient) - jangan hanya ceritakan. Minta architecture justification statement: kenapa LSTM, bukan vanilla RNN.
+- **Pitfall:** Mahasiswa menghafal LSTM gates tanpa menghubungkan ke gradient flow. Minta gambar gate sambil menjelaskan kenapa cell state tidak vanish.
+- **Refleksi berbobot:** "Dataset mana yang Anda akan defaulnya pakai LSTM, dan mana yang Transformer? Kapan ragu?"
+- **Kaitan rubrik:** Kompetensi 1 breadth (RNN/LSTM family). Target: Developing.
+- **Waktu lab:** Lab 3b (RNN vs LSTM): 4-6 jam mandatory.
 
-### Bab 05 - AI Tools Sebagai Pendukung (Minggu 8)
+### W6 - Representations & Temporal Leakage
 
-- **Kritis:** Protokol verifikasi LLM (baca baris per baris, uji kasus batas, uji minimal). Jangan debat "apakah LLM boleh dipakai" - fokus pada "bagaimana memakai LLM tanpa kehilangan pemahaman."
-- **Pitfall:** Mahasiswa menyalin kode LLM yang terlihat benar tetapi mengandung bug halus. Latihan: beri kode LLM dengan bug (mis. normalisasi diterapkan sebelum split), minta mahasiswa menemukannya.
-- **Refleksi berbobot:** Pertanyaan #3 - "Kapan terakhir kali Anda menyalin kode tanpa membacanya? Apa yang Anda pelajari dari kejadian itu?"
-- **Kaitan rubrik:** Kompetensi 5 (AI tools). Target: Developing→Proficient.
-- **Waktu lab:** Lab 5: 4-5 jam. Lab 5b (domain teks): 3-4 jam.
+- **Kritis:** Demo leakage yang menipu: §0.6 menunjukkan delta dramatis 0.92 → 0.63. Tampilkan F1 tinggi dulu, lalu reveal validasi tanpa temporal guard. Lab 6c (peer code review) sebagai aktivitas berpasangan.
+- **Pitfall:** EDA sebagai ritual (`df.describe()`, histogram, selesai). Minta mahasiswa menulis pertanyaan *sebelum* melihat data.
+- **Refleksi berbobot:** "Anda mendapat akurasi 99% pada dataset baru. Apa tiga hal pertama yang Anda periksa?"
+- **Kaitan rubrik:** Kompetensi 4 (Validasi data) + Kompetensi 6 (peer review). Target: Developing→Proficient.
+- **Waktu lab:** Lab 6 (temporal leakage): 6-8 jam. Lab 6c pair review: 2 jam.
 
-### Bab 06 - Adopsi Repo Riset (Minggu 9)
+### W7 - Text, Transformers & Repo Adoption
 
-- **Kritis:** Strategi membaca repo asing: temukan entry point → model → loss → config. Drill: beri repo GitHub acak, minta mahasiswa memetakan empat komponen itu dalam 30 menit.
-- **Pitfall:** Mahasiswa menghabiskan 2 jam membaca README lalu tidak berani menyentuh kode. Dorong mereka untuk menjalankan `grep` sebelum membaca - temukan file yang relevan dulu, baru baca.
-- **Refleksi berbobot:** Pertanyaan #2 - "Apa perbedaan strategi membaca repo riset dengan membaca repo software engineering?"
-- **Kaitan rubrik:** Kompetensi 6 (Adopsi repo). Target: Developing→Proficient.
-- **Waktu lab:** Lab 6: 5-7 jam. Lab 6b (Transformer breadth): 4-6 jam.
+- **Kritis:** 2×2 comparison frozen/fine-tune × [CLS]/mean-pool. Minta `repo_map.md` pertama: entry point → model → loss → config. Synthesis note AI tools dengan verifikasi (LLM interaction log Lampiran C.3).
+- **Pitfall:** Mahasiswa menyalin kode LLM yang terlihat benar tetapi mengandung bug halus (mis. normalisasi sebelum split). Latihan: beri kode LLM bermasalah, minta menemukan bug. Untuk repo adoption: 2 jam membaca README lalu tidak berani menyentuh kode - dorong `grep` dulu.
+- **Refleksi berbobot:** "Apa perbedaan strategi membaca repo riset dengan membaca repo software engineering?"
+- **Kaitan rubrik:** Kompetensi 5 (AI tools) + Kompetensi 6 (Adopsi repo). Target: Developing→Proficient.
+- **Waktu lab:** Lab 5b (IndoNLU teks): 3-4 jam. Lab 6 (repo adoption): 5-7 jam. Lab 6b (Transformer-mini breadth): 4-6 jam opsional.
 
-### Bab 07 - Alat Pendukung Ringan (Minggu 10)
+### W8 - Foundation Models
 
-- **Kritis:** Tool harus menunjukkan *failure case*, bukan hanya sukses. Demo yang hanya menampilkan prediksi benar tidak informatif. Minta mahasiswa menampilkan confusion matrix, sampel paling salah, dan distribusi confidence.
-- **Pitfall:** Mahasiswa menghabiskan 6 jam membuat UI cantik tapi lupa menambahkan penjelasan tentang apa yang dilihat pengguna.
-- **Refleksi berbobot:** Pertanyaan #1 - "Tool Anda menunjukkan akurasi 78%. Tanpa penjelasan, apa yang mungkin disimpulkan pengguna?"
-- **Kaitan rubrik:** Kompetensi 7 (Alat ringan). Target: Developing.
-- **Waktu lab:** Lab 7: 4-6 jam. Lab 7b (Autoencoder breadth): 3-5 jam.
+- **Kritis:** Model card literacy - 7 pertanyaan wajib (§2). §2.1.1 matriks evaluasi tool 5 dimensi: aturan <12 curigai, 12-18 coba kecil, >18 adopsi. Dorong skeptisisme pada benchmark claims ("SOTA di benchmark X").
+- **Pitfall:** Mahasiswa langsung memilih model terbesar atau ter-popular. Drill: "kapan adapter cukup vs full fine-tuning?" sebelum menyentuh GPU.
+- **Refleksi berbobot:** "Anda menemukan model baru yang klaim SOTA. Bagaimana memverifikasi?"
+- **Kaitan rubrik:** Kompetensi 8 (Platform & tool baru, foundation map). Target: Developing.
+- **Waktu lab:** Foundation Model Map + selection memo: 4-5 jam.
 
-### Bab 08 - Platform & Tool Baru (Minggu 11)
+### W9 - Multimodal Reasoning
 
-- **Kritis:** Mematikan pod setelah selesai. Ini bukan lelucon - tagihan $400 terjadi karena pod tidak dimatikan. Drill: sebelum sesi berakhir, semua mahasiswa menunjukkan bukti pod sudah mati.
-- **Pitfall:** Mahasiswa langsung integrasi tanpa mengikuti 5 langkah adopsi. Paksakan Langkah 1-2 (quickstart + replikasi tutorial) sebelum menyentuh proyek sendiri.
-- **Refleksi berbobot:** Pertanyaan #3 - "Anda menemukan tool baru yang belum ada di modul. Bagaimana Anda mengevaluasinya?"
-- **Kaitan rubrik:** Kompetensi 8 (Platform & tool baru). Target: Developing.
-- **Waktu lab:** Lab 8: 3-5 jam (setup + training + shutdown).
+- **Kritis:** Per-modality ablation. Tunjukkan ignored-modality problem secara empiris: model "sukses" tanpa benar-benar memakai salah satu modalitas. "Hasil bagus" bukan cukup; ablation 7-condition wajib.
+- **Pitfall:** Fusion strategi dipilih berdasar trend, bukan analisis. Minta justifikasi sebelum implementasi.
+- **Refleksi berbobot:** "Modalitas mana yang seharusnya paling kontributif untuk dataset Anda? Apakah hasil ablation memvalidasi intuisi itu?"
+- **Kaitan rubrik:** Kompetensi 1 breadth (multimodal) + Kompetensi 4 (skeptisisme). Target: Developing→Proficient.
+- **Waktu lab:** Lab 8 (multimodal ablation 7 kondisi): 6-8 jam.
 
-### Bab 09 - Pengembangan Mandiri (Minggu 12)
+### W10 - Paper Reading & Implementation
 
-- **Kritis:** Pre-registration dan paper reading. Di titik ini mahasiswa seharusnya sudah bisa menulis pre-registration tanpa template. Minta mereka menulis dengan narasi bebas dulu, baru dicocokkan dengan template.
-- **Pitfall:** 3-pass reading method dipakai sebagai ritual, bukan alat. Pass 1 tanpa pertanyaan adalah membaca cepat, bukan skim. Minta mahasiswa menuliskan satu pertanyaan *sebelum* Pass 1.
-- **Refleksi berbobot:** Pertanyaan #2 - "Setelah membaca satu paper, apa eksperimen pertama yang akan Anda jalankan?"
-- **Kaitan rubrik:** Kompetensi 9 (Pengembangan mandiri). Target: Developing→Proficient.
-- **Waktu lab:** Lab 9: 4-6 jam.
+- **Kritis:** 3-pass method eksplisit. Minta mahasiswa membawa paper yang sudah di-skim ke kelas. Paper-to-code workflow: dari klaim → kode minimum yang mereproduksi.
+- **Pitfall:** 3-pass dipakai sebagai ritual, bukan alat. Pass 1 tanpa pertanyaan adalah membaca cepat. Minta tulisan satu pertanyaan *sebelum* Pass 1.
+- **Refleksi berbobot:** "Setelah membaca satu paper, apa eksperimen pertama yang akan Anda jalankan?"
+- **Kaitan rubrik:** Kompetensi 9 (paper reading + reproduksi). Target: Developing→Proficient.
+- **Waktu lab:** Lab 9 (paper-to-code): 6-8 jam. Komponen Mandiri W10 = entri portofolio terakhir + Refleksi Portofolio.
 
-### Bab 10 - Capstone (Minggu 13–14)
+### W11 - Research Framing & Capstone Proposal
 
-- **Kritis:** Minggu 13 untuk checkpoint: apakah mahasiswa punya data, baseline, dan protokol yang jelas? Jangan biarkan mereka mulai training tanpa ketiganya.
+- **Kritis:** **W11 adalah setup capstone**. 5 Whys drill di kelas. Oral defense 10-15 menit per mahasiswa di akhir minggu. Sign off proposal sebelum W12 - jangan biarkan mahasiswa mulai capstone tanpa proposal disetujui.
 - **Pitfall:** Mahasiswa mengambil proyek terlalu besar. Batas sehat: satu dataset, satu pertanyaan riset, maksimal 4 ablation. "Membandingkan 5 arsitektur pada 3 dataset" bukan capstone - itu tesis.
-- **Refleksi:** Tidak ada refleksi terstruktur. Gantikan dengan sesi "post-mortem" 15 menit per mahasiswa: apa yang berhasil, apa yang gagal, apa yang akan kamu lakukan berbeda.
-- **Waktu:** 15-20 jam per mahasiswa (setara 2 minggu penuh).
+- **Refleksi berbobot:** "Setelah 5 Whys, apa pertanyaan riset yang tersisa? Falsifiable?"
+- **Kaitan rubrik:** Integrasi semua kompetensi (proposal + oral defense). Target: Proficient.
+- **Waktu lab:** W11 menggantikan lab dengan deliverable proposal + pre-registration. Estimasi 8-12 jam termasuk revisi pasca oral defense.
+
+### W12-W14 - Capstone
+
+- **Kritis:** W12 checkpoint: data tersedia? Baseline running? Leakage audit? Jangan biarkan mulai W13 tanpa baseline clean. W13: intervention vs baseline adil? Ablation menjawab interpretasi? W14: limitasi dinyatakan jujur? Demo menampilkan failure case? Repo bisa di-clone?
+- **Pitfall:** Mahasiswa terlalu fokus eksperimen, tidak punya waktu untuk laporan. Tegakkan: laporan ditulis paralel, bukan di akhir.
+- **Refleksi:** Tidak ada refleksi terstruktur. Gantikan dengan sesi "post-mortem" 15 menit per mahasiswa: apa yang berhasil, apa yang gagal, apa yang akan dilakukan berbeda.
+- **Kaitan rubrik:** Semua kompetensi dinilai sumatif berdasarkan artefak capstone.
+- **Waktu:** 15-20 jam per mahasiswa per minggu (3 minggu penuh = 45-60 jam).
 
 ---
 
@@ -205,7 +206,7 @@ Ritme sesi: 30 menit prior-week findings | 40 menit materi baru + demo | 10 meni
 
 ### Empat Level Penguasaan
 
-Rubrik di Bab 11 menggunakan empat level yang berlaku untuk semua kompetensi:
+Rubrik di [13_Rubrik_Penilaian.md](13_Rubrik_Penilaian.md) menggunakan empat level yang berlaku untuk semua kompetensi:
 
 | Level | Skor | Inti |
 | --- | --- | --- |
@@ -218,9 +219,9 @@ Rubrik di Bab 11 menggunakan empat level yang berlaku untuk semua kompetensi:
 
 ### Tiga Titik Evaluasi
 
-1. **Minggu 6 (setelah Lab 3).** Tinjauan formatif. Fokus: Kompetensi 1-3. Tujuan: deteksi dini mahasiswa yang tertinggal. Belum ada nilai.
-2. **Minggu 10 (setelah Lab 6).** Tinjauan formatif kedua. Fokus: Kompetensi 4-6 + cek ulang Kompetensi 1-3.
-3. **Minggu 14 (setelah Capstone).** Evaluasi sumatif. Semua kompetensi dinilai berdasarkan artefak dari seluruh semester.
+1. **W4 (akhir Lab 3).** Tinjauan formatif pertama. Fokus: Kompetensi 1-3. Tujuan: deteksi dini mahasiswa yang tertinggal. Belum ada nilai.
+2. **W7 (akhir Lab 6).** Tinjauan formatif kedua. Fokus: Kompetensi 4-6 + cek ulang Kompetensi 1-3.
+3. **W14 (akhir Capstone).** Evaluasi sumatif. Semua kompetensi dinilai berdasarkan artefak dari seluruh semester.
 
 ### Cara Menentukan Level dari Artefak
 
@@ -235,7 +236,7 @@ Jika pada titik tinjauan seorang mahasiswa masih Novice di lebih dari setengah k
 1. Identifikasi pola: apakah masalahnya di konsep (tidak paham) atau di eksekusi (paham tapi tidak mengerjakan)?
 2. Konsep: beri reading tambahan dari Bacaan Lanjutan + sesi tanya jawab 30 menit.
 3. Eksekusi: periksa catatan eksperimen. Sering kali masalahnya bukan kemampuan tetapi kebiasaan menunda.
-4. Jika masalah berlanjut, arahkan ke jalur cepat 10 minggu (Bab 00 Section 5c) dan fokuskan pada kompetensi yang paling relevan dengan Capstone.
+4. Jika masalah berlanjut, arahkan ke jalur cepat (Pendahuluan §5c) dan fokuskan pada kompetensi yang paling relevan dengan Capstone.
 
 ---
 
@@ -243,7 +244,7 @@ Jika pada titik tinjauan seorang mahasiswa masih Novice di lebih dari setengah k
 
 ### Struktur Portofolio
 
-Portofolio mahasiswa ada di `notebooks/portofolio_mandiri.ipynb` - 8 entri (Pekan 4-12), satu per minggu mulai Bab 02. Setiap entri berisi:
+Portofolio mahasiswa ada di `notebooks/portofolio_mandiri.ipynb` - 7 entri (W4-W10), satu per minggu Komponen Mandiri. Setiap entri berisi:
 
 - **Setup:** Konteks dan pertanyaan yang mendorong eksplorasi.
 - **Temuan:** Apa yang ditemukan (dengan bukti: kode, plot, tabel).
@@ -279,8 +280,8 @@ Contoh: "Analisis F1 per kelas sudah baik karena kamu menghubungkan penurunan ke
 
 ### Tips Grading Portofolio
 
-- **Batch per kompetensi, bukan per mahasiswa.** Baca semua entri Pekan 4 (Kompetensi 2) dulu, baru lanjut ke Pekan 5. Ini lebih cepat dan lebih konsisten daripada menilai per mahasiswa.
-- **Fokus pada progres, bukan absolut.** Mahasiswa yang entri Pekan 4-nya Novice tapi Pekan 12-nya Proficient lebih baik daripada yang stagnan di Developing sepanjang semester.
+- **Batch per kompetensi, bukan per mahasiswa.** Baca semua entri W4 (Kompetensi 2) dulu, baru lanjut ke W5. Ini lebih cepat dan lebih konsisten daripada menilai per mahasiswa.
+- **Fokus pada progres, bukan absolut.** Mahasiswa yang entri W4-nya Novice tapi W10-nya Proficient lebih baik daripada yang stagnan di Developing sepanjang semester.
 - **Portofolio + Capstone = gambaran utuh.** Jangan menilai portofolio secara terpisah dari Capstone. Sering kali kelemahan di portofolio dijawab di Capstone.
 
 ---
@@ -289,7 +290,7 @@ Contoh: "Analisis F1 per kelas sudah baik karena kamu menghubungkan penurunan ke
 
 ### Skenario 1: Mahasiswa Tidak Pernah Mengerjakan Komponen Mandiri
 
-**Gejala:** Portofolio kosong di minggu 6. Mahasiswa hadir dan mengerjakan lab wajib, tetapi Komponen Mandiri diabaikan.
+**Gejala:** Portofolio kosong di W6. Mahasiswa hadir dan mengerjakan lab wajib, tetapi Komponen Mandiri diabaikan.
 
 **Tindakan:**
 1. Periksa apakah mahasiswa paham bahwa Komponen Mandiri adalah bagian dari penilaian (Kompetensi 10).
@@ -308,20 +309,20 @@ Contoh: "Analisis F1 per kelas sudah baik karena kamu menghubungkan penurunan ke
 
 ### Skenario 3: Mahasiswa Tertinggal 2 Minggu
 
-**Gejala:** Mahasiswa masih di Bab 02 saat kelas sudah di Bab 04.
+**Gejala:** Mahasiswa masih di W3 saat kelas sudah di W5.
 
 **Tindakan:**
 1. Identifikasi apakah ketertinggalan karena konsep atau karena waktu.
-2. Jika konsep: arahkan ke jalur cepat 10 minggu (Bab 00 §5c). Bab 04-07 adalah "Pilih-2", bukan wajib. Pilih dua yang paling relevan dengan Capstone mereka.
-3. Jika waktu: negosiasikan cakupan. Lebih baik mengerjakan 6 bab dengan dalam daripada 10 bab dengan dangkal.
+2. Jika konsep: arahkan ke jalur cepat (Pendahuluan §5c). W6-W9 punya komponen opsional (Lab 6b, 6c, 7b breadth) - prioritaskan core content yang paling relevan dengan Capstone mereka.
+3. Jika waktu: negosiasikan cakupan. Lebih baik mengerjakan W1-W7 + W11 + Capstone dengan dalam daripada semua minggu dengan dangkal.
 4. Breadth Check (4 dari 5 arsitektur) tetap wajib, tetapi bisa dikerjakan paralel.
 
-### Skenario 4: Mahasiswa Mengeluh "Instruksi PI Tidak Jelas" (Bab 02)
+### Skenario 4: Mahasiswa Mengeluh "Instruksi PI Tidak Jelas" (W4)
 
 **Gejala:** Mahasiswa mengatakan "dosen pembimbing saya tidak pernah jelas." Mereka tidak bisa memulai eksperimen karena menunggu instruksi sempurna.
 
 **Tindakan:**
-1. Arahkan ke Bab 02 §3.1 (membaca instruksi secara kritis) dan §3.5 (komunikasi dengan PI).
+1. Arahkan ke W4 §3.5 (Komunikasi Efektif dengan Dosen Pembimbing - kerangka SQRC + matriks saluran).
 2. Latih refleks SQRC: minta mereka menulis asumsi, bukan menunggu jawaban.
 3. Role-play: Anda berperan sebagai PI yang sibuk dan memberi instruksi ambigu. Minta mahasiswa merespon dengan satu kalimat konfirmasi + asumsi.
 4. Tekankan bahwa 80% pekerjaan asisten riset adalah mengklarifikasi, bukan mengeksekusi.
@@ -331,7 +332,7 @@ Contoh: "Analisis F1 per kelas sudah baik karena kamu menghubungkan penurunan ke
 **Gejala:** Kode di semua notebook mirip (gaya variabel, komentar, struktur), dan mahasiswa tidak bisa menjelaskan bagian tertentu.
 
 **Tindakan:**
-1. Jangan larang LLM. Alihkan ke Bab 05: "Anda boleh pakai LLM, tetapi Anda harus bisa menjelaskan setiap baris."
+1. Jangan larang LLM. Alihkan ke W7 (AI tools sebagai pendukung): "Anda boleh pakai LLM, tetapi Anda harus bisa menjelaskan setiap baris."
 2. Uji lisan: panggil mahasiswa secara acak, minta mereka menjelaskan satu fungsi yang mereka submit. Jika tidak bisa, minta mereka menulis ulang dengan gaya sendiri.
 3. Normalisasi: gunakan LLM interaction log (Lampiran C.3). Minta mahasiswa mencatat prompt yang mereka pakai. Transparansi lebih efektif daripada larangan.
 4. Tekankan bahwa nilai datang dari pemahaman, bukan dari kode yang jalan.
@@ -343,7 +344,7 @@ Contoh: "Analisis F1 per kelas sudah baik karena kamu menghubungkan penurunan ke
 - **Dan Levy - *Teaching Effectively with Zoom*** (2020). Meskipun berfokus pada pengajaran online, bab tentang "memfasilitasi diskusi, bukan memberi ceramah" berlaku untuk kelas tatap muka.
 - **Linda Nilson - *Specifications Grading*** (2014). Buku referensi tentang mastery-based grading. Rubrik modul ini (4 level, 3 titik evaluasi) adalah adaptasi dari spec grading.
 - **David Perkins - *Making Learning Whole*** (2009). Tentang "teaching for understanding" melalui tujuh prinsip; relevan untuk memahami mengapa modul ini menolak mengajarkan sikap sebagai bab terpisah.
-- **Andrej Karpathy - *A Recipe for Training Neural Networks*** (2019). Baca sebelum mengajar Bab 01a dan 01b. Esai pendek ini adalah companion piece untuk Section 2.5 (loss curve diagnosis).
+- **Andrej Karpathy - *A Recipe for Training Neural Networks*** (2019). Baca sebelum mengajar W2 dan W3. Esai pendek ini adalah companion piece untuk W3 §2.5 (loss curve diagnosis).
 - **Jupyter Notebook untuk pengajaran:** Jika mahasiswa kesulitan dengan notebook, pertimbangkan untuk menggunakan JupyterBook atau nbgrader untuk distribusi dan penilaian otomatis.
 
 ---
@@ -352,4 +353,4 @@ Contoh: "Analisis F1 per kelas sudah baik karena kamu menghubungkan penurunan ke
 
 Modul ini dibangun dengan keyakinan bahwa asisten riset yang baik bukanlah yang paling cepat menulis kode, melainkan yang paling jujur pada data, paling disiplin dalam mencatat, dan paling berani mengakui ketidaktahuan. Jika Anda sebagai dosen membawa keyakinan yang sama ke dalam kelas - memperlakukan setiap pertanyaan mahasiswa sebagai awal eksplorasi, bukan akhir jawaban - modul ini akan bekerja.
 
-Selamat mengajar. Mulailah dengan Bab 00, dan biarkan mahasiswa menemukan sendiri mengapa curiosity, rigor, skepticism, dan ownership lebih penting daripada framework apapun.
+Selamat mengajar. Mulailah dengan Pendahuluan, dan biarkan mahasiswa menemukan sendiri mengapa curiosity, rigor, skepticism, dan ownership lebih penting daripada framework apapun.

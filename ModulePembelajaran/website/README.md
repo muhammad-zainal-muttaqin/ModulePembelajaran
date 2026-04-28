@@ -21,7 +21,7 @@ npm run dev
 
 Buka http://localhost:5173/ModulePembelajaran/
 
-Skrip `sync-content.mjs` otomatis menyalin 13 `.md` dari `../` plus dua YAML dari `../template_repo/configs/` ke `src/content/` sebelum dev/build, serta mem-parse `12_Lampiran.md` untuk `glossary.json`.
+Skrip `sync-content.mjs` otomatis menyalin 17 `.md` dari `../` plus dua YAML dari `../template_repo/configs/` ke `src/content/` sebelum dev/build, serta mem-parse `14_Lampiran.md` untuk `glossary.json`.
 
 ## Build produksi
 

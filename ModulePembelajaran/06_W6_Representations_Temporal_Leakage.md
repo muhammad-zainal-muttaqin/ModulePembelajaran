@@ -357,7 +357,7 @@ Sumber untuk pendalaman: *Fairness and Machine Learning* (Barocas, Hardt, Naraya
 
 #### 2.6.3 Negative Results sebagai Kewajiban, Bukan Opsional
 
-Bab 02 §2.6 sudah membahas cara menangani hipotesis yang tidak terkonfirmasi. Di sini, kita melihatnya dari sudut etika riset.
+W4 (Reproducibility) sudah menyinggung cara menangani hipotesis yang tidak terkonfirmasi. Di sini, kita melihatnya dari sudut etika riset.
 
 Krisis reproduksibilitas di ML sebagian besar dipicu oleh *publication bias*: hasil positif dipublikasikan, hasil negatif tidak. Akibatnya, ratusan tim bisa membuang waktu di arah yang sama karena tidak ada yang melaporkan bahwa arah itu buntu. Anda, sebagai asisten riset, memiliki kewajiban moral kecil untuk tidak ikut memperburuk keadaan ini.
 
@@ -548,7 +548,7 @@ Tugas:
 
 ---
 
-## Komponen Mandiri (Pekan 7)
+## Komponen Mandiri (W6)
 
 Konsep: memeriksa data sebelum mempercayai hasil - distribusi kelas, leakage tersembunyi, kualitas label. Format dan kriteria: [Lampiran C.9](14_Lampiran.md#c9-template-komponen-mandiri).
 
@@ -558,7 +558,7 @@ Konsep: memeriksa data sebelum mempercayai hasil - distribusi kelas, leakage ter
 | **B - Analisis** | Rancang dua skenario leakage hipotetis yang tidak terdeteksi oleh pipeline Lab 4: satu pada split, satu pada fitur turunan. Jelaskan mekanismenya dan langkah tambahan untuk mendeteksinya. |
 | **C - Desain** | Rancang protokol split untuk dataset dengan ID entitas berulang (mis. ID pasien atau ID pembicara). Tulis dua versi: yang mudah-tapi-salah (random split) dan yang benar. Buat argumen mengapa versi salah sering lolos tanpa disadari. |
 
-**Deliverable:** Entri portofolio Pekan 7 di `notebooks/portofolio_mandiri.ipynb`. Presentasi 10 menit di awal Pekan 8.
+**Deliverable:** Entri portofolio W6 di `notebooks/portofolio_mandiri.ipynb`. Presentasi 10 menit di awal W7.
 
 ---
 
@@ -570,7 +570,7 @@ Konsep: memeriksa data sebelum mempercayai hasil - distribusi kelas, leakage ter
 
 3. Dataset PathMNIST yang Anda pakai di Lab 4 tidak memiliki informasi pasien - setiap sampel dianggap independen. Bagaimana Anda akan menangani ini jika dataset memiliki ID pasien dan setiap pasien memiliki beberapa slide? Jelaskan protokol split yang benar dan mengapa random split biasa akan gagal.
 
-4. **Koneksi ke Capstone.** Pada Capstone (Bab 10), Anda akan memilih dataset - bisa dari paper, Kaggle, atau repo lab. Tuliskan checklist 5-layer EDA (lihat section 2) dalam format yang bisa Anda lampirkan ke draft proposal Capstone Anda. Bagian mana dari checklist yang paling mungkin Anda *skip* karena tekanan waktu, dan apa konsekuensi paling buruk dari skip itu di Capstone?
+4. **Koneksi ke Capstone.** Pada Capstone (W12-W14), Anda akan memilih dataset - bisa dari paper, Kaggle, atau repo lab. Tuliskan checklist 5-layer EDA (lihat section 2) dalam format yang bisa Anda lampirkan ke draft proposal Capstone Anda. Bagian mana dari checklist yang paling mungkin Anda *skip* karena tekanan waktu, dan apa konsekuensi paling buruk dari skip itu di Capstone?
 
 ---
 
