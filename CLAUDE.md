@@ -188,6 +188,16 @@ Penulis modul adalah penutur asli Indonesia. Prosa harus terasa ditulis langsung
 | `kerangka mental` | `kerangka berpikir` | |
 | `menemui` (= "encounter") | `menjumpai` | |
 | `mengintimidasi` | `membuat gentar` | |
+| `berada X% menuju Y` | `X% siap untuk Y` / `mencapai X% kesiapan` | Spasial-metaforis "be X% of the way to Y" tidak natural di ID |
+| `kerja independen` | `kerja mandiri` / `secara mandiri` | "Independen" cocok untuk politik/organisasi, bukan kemampuan kerja |
+| `topik X nyata` (= "real X") | `topik X` / `topik X sebenarnya` | "Nyata" sebagai post-nominal calque "real" jarang natural; sering bisa dihapus |
+| `diharapkan datang dari` | `berasal dari` / `terbentuk dari` | "Datang" untuk hal abstrak adalah calque "come from" |
+| `Anda akan + V` sebagai pembuka section deskriptif | bentuk impersonal atau present (`Anda mengerjakan...`, `Bab ini memperkenalkan...`) | "Anda akan" valid untuk future asli (rujukan ke minggu depan / capstone), tetapi jangan jadikan default opener bab |
+| `dengan X` (= possessive "with X") | `saat memakai X` / `pada X` | "Sumber bug dengan pretrained model" calque "bug with X"; pakai "saat memakai" |
+| `menemukan` untuk informasi/konsep abstrak | `melihat` / `mendapatkan` / restrukturisasi | "Anda akan menemukan filosofi" calque "you'll find"; informasi tidak ditemukan, melainkan dibaca |
+| `bekerja baik` (= "works well") | `efektif` / `berfungsi dengan baik` | "Bekerja" sebagai metafora kinerja calque "to work" |
+
+**Pola yang sering luput dan wajib dihindari:** konstruksi spasial-metaforis ("berada X menuju Y", "di jalur untuk Z"), post-nominal kata sifat hasil terjemahan kata-per-kata ("topik lab nyata" = "real lab topics", "data sintetis nyata"), dan future auxiliary "Anda akan + V" sebagai pembuka section deskriptif. Tiga pola ini terdengar jelas seperti terjemahan literal dan harus diubah, bahkan jika bentuk individu kata-katanya sudah ada di kamus PUEBI.
 
 Pola pembuka section pengantar yang melibatkan pembaca: pakai "kita" sebagai penanda inklusif (mis. "Sebelum **kita** membahas..."), terutama saat menjembatani konsep baru.
 

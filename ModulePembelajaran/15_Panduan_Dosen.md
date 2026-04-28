@@ -32,7 +32,7 @@
 
 ## 0. Peta Bab
 
-Dokumen ini adalah panduan operasional untuk dosen pengampu, instruktur, atau fasilitator yang akan menjalankan modul. Anda akan menemukan filosofi modul dalam satu halaman, pacing rinci per minggu, apa yang harus ditekankan di setiap bab, cara membaca dan memakai rubrik penilaian, cara menilai portofolio, skenario kelas yang umum dan cara menanganinya, serta bacaan lanjutan tentang pedagogi mastery-based grading. Setelah membaca dokumen ini, Anda bisa memfasilitasi satu semester penuh tanpa menebak-nebak.
+Dokumen ini adalah panduan operasional untuk dosen pengampu, instruktur, atau fasilitator yang akan menjalankan modul. Bagian ini memuat filosofi modul dalam satu halaman, pacing rinci per minggu, apa yang harus ditekankan di setiap bab, cara membaca dan memakai rubrik penilaian, cara menilai portofolio, skenario kelas yang umum dan cara menanganinya, serta bacaan lanjutan tentang pedagogi mastery-based grading. Setelah membaca dokumen ini, Anda bisa memfasilitasi satu semester penuh tanpa menebak-nebak.
 
 ---
 

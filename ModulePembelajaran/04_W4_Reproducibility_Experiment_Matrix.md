@@ -37,7 +37,7 @@
 
 ## 0. Peta Bab
 
-W4 adalah titik balik dari "bisa training" menjadi "bisa riset". Anda akan belajar:
+W4 adalah titik balik dari "bisa training" menjadi "bisa riset". Materi minggu ini mencakup:
 
 - **2.0** Experiment matrix before coding
 - **2.1** Lima pertanyaan sebelum menyentuh kode

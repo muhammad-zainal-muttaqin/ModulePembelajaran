@@ -37,7 +37,7 @@
 
 ## 0. Peta Bab
 
-W3 adalah minggu example-first. Sebelum membaca teori tentang loss dan optimizer, Anda akan melihat lima run nyata dan diminta mengidentifikasi apa yang terjadi. Baru setelah itu kita tarik pola dan penjelasannya.
+W3 adalah minggu example-first. Sebelum membaca teori tentang loss dan optimizer, Anda mengamati lima run nyata dan diminta mengidentifikasi apa yang terjadi. Baru setelah itu kita tarik pola dan penjelasannya.
 
 - **1.5** Galeri Lima Run (sebelum teori)
 - **2.1** Loss sebagai pilihan - bukan bawaan default

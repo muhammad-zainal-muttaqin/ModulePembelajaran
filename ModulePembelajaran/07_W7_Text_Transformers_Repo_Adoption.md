@@ -43,7 +43,7 @@ W7 menggabungkan tiga tema yang saling memperkuat:
 - **2. AI Tools sebagai Pendukung** - verifikasi kode AI, protokol synthesis, kapan trust copilot
 - **3. Repo Adoption Primer** - membaca repo asing, `repo_map.md`, modifikasi minimal-invasif
 
-Ketiga tema bertemu dalam satu workflow: mengadopsi HuggingFace repo, memakai AI tools untuk memahami bagian yang asing, dan membuat `repo_map.md` sebagai dokumentasi pemahaman Anda.
+Ketiga tema bertemu dalam satu workflow: mengadopsi HuggingFace repo, memakai AI tools untuk memahami bagian yang belum dikenal, dan membuat `repo_map.md` sebagai dokumentasi pemahaman Anda.
 
 ---
 
@@ -51,7 +51,7 @@ Ketiga tema bertemu dalam satu workflow: mengadopsi HuggingFace repo, memakai AI
 
 ### 1.1 Mengapa Contextual Embeddings?
 
-TF-IDF adalah baseline yang kuat dan sering diabaikan. Bukan tanpa alasan - ia cepat, interpretable, dan sering bekerja baik pada dataset kecil. Tapi ia punya dua kelemahan fundamental:
+TF-IDF adalah baseline yang kuat dan sering diabaikan. Bukan tanpa alasan - ia cepat, interpretable, dan sering efektif pada dataset kecil. Tapi ia punya dua kelemahan fundamental:
 
 **Polisemi.** Kata "bank" dalam "bank sungai" dan "bank uang" mendapat vektor yang identik. TF-IDF tidak bisa membedakannya.
 
@@ -61,7 +61,7 @@ Contextual embeddings (BERT, RoBERTa, IndoBERT) menghasilkan representasi yang b
 
 ### 1.2 Tokenization: Sebelum Training Dimulai
 
-Salah satu sumber bug paling umum dengan pretrained models adalah perbedaan antara tokenizer model dan cara Anda memproses teks. Setiap pretrained model punya tokenizer spesifiknya sendiri; menggunakan tokenizer yang salah menghasilkan input yang tidak cocok dengan apa yang dilihat model saat pretraining.
+Salah satu sumber bug paling umum saat memakai pretrained model adalah perbedaan antara tokenizer model dan cara Anda memproses teks. Setiap pretrained model punya tokenizer spesifiknya sendiri; memakai tokenizer yang salah menghasilkan input yang tidak cocok dengan apa yang dilihat model saat pretraining.
 
 ```python
 from transformers import AutoTokenizer

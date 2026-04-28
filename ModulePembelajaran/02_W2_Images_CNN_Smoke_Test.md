@@ -37,7 +37,7 @@
 
 ## 0. Peta Bab
 
-W2 memperkenalkan tensor citra, arsitektur CNN, dan tiga kebiasaan debugging terpenting yang akan dipakai sepanjang bootcamp. Anda akan melihat run yang belajar, run yang tidak belajar, dan smoke test yang menangkap error sebelum training berjam-jam.
+W2 memperkenalkan tensor citra, arsitektur CNN, dan tiga kebiasaan debugging terpenting yang dipakai sepanjang bootcamp. Bab ini menampilkan run yang belajar, run yang tidak belajar, dan smoke test yang menangkap error sebelum training berjam-jam.
 
 - **2.1** Peta Besar: tensor masuk dan tensor keluar
 - **2.2** Empat keluarga arsitektur sebagai asumsi tentang data (CNN sebagai contoh utama)

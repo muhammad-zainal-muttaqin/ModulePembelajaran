@@ -32,7 +32,7 @@
 
 ## 0. Peta Bab
 
-Modul ini adalah **bootcamp 11 minggu + capstone 3 minggu**. Bab ini memperkenalkan target outcome bootcamp, sembilan kompetensi yang akan Anda bangun, empat sikap riset yang menjalin keseluruhan modul, tiga thread lintas minggu yang menjaga koherensi, ritme sesi mingguan, dan kontrak belajar yang disepakati sebelum melangkah ke materi teknis. Setelah menyelesaikan bab ini, Anda mengerti *mengapa* modul ini ada, *bagaimana* cara terbaik membacanya, dan *apa target realistis* di akhir bootcamp.
+Modul ini adalah **bootcamp 11 minggu + capstone 3 minggu**. Bab ini memperkenalkan target outcome bootcamp, sembilan kompetensi yang dilatih sepanjang modul, empat sikap riset yang menjalin keseluruhan modul, tiga thread lintas minggu yang menjaga koherensi, ritme sesi mingguan, dan kontrak belajar yang disepakati sebelum melangkah ke materi teknis. Setelah menyelesaikan bab ini, Anda mengerti *mengapa* modul ini ada, *bagaimana* cara terbaik membacanya, dan *apa target realistis* di akhir bootcamp.
 
 ---
 
@@ -48,11 +48,11 @@ Setiap pertanyaan itu mengacu pada kompetensi berbeda. Modul ini membangun kompe
 
 ---
 
-## 2. Target Outcome: 60-70% Siap untuk Topik Lab Nyata
+## 2. Target Outcome: 60-70% Siap Mengerjakan Topik Riset Lab
 
 Bootcamp ini **bukan** dirancang untuk membuat Anda menjadi ahli penuh di setiap arah riset yang mungkin dijalankan lab. Targetnya lebih realistis dan lebih berguna:
 
-> Pada akhir bootcamp, Anda diharapkan berada **60-70%** menuju kerja independen di topik lab nyata.
+> Di akhir bootcamp, Anda diharapkan **60-70% siap** mengerjakan topik riset lab secara mandiri.
 
 Itu artinya Anda harus bisa:
 
@@ -73,7 +73,7 @@ Itu **bukan** berarti pada akhir bootcamp Anda harus:
 - menyelesaikan masalah deployment, distillation, atau multimodal fusion dari nol
 - merancang agenda riset siap publikasi tanpa supervisi
 
-Sisa 30-40% diharapkan datang dari: paper reading lanjutan, panduan PI/dosen pembimbing, adopsi repo yang ditargetkan, debugging spesifik domain, dan capstone serta kerja independen setelahnya.
+Sisa 30-40% berasal dari: paper reading lanjutan, panduan PI/dosen pembimbing, adopsi repo yang ditargetkan, debugging spesifik domain, dan capstone serta kerja mandiri setelahnya.
 
 Transisi yang dimaksudkan:
 
@@ -285,7 +285,7 @@ Beberapa kesalahan yang dapat mencegah Anda berkembang, bahkan sebelum bab tekni
 
 **Mengabaikan data.** Godaan untuk langsung *training* tanpa memeriksa data selalu ada, terutama ketika dataset kelihatannya "sudah dibersihkan orang lain". W6 menunjukkan contoh-contoh nyata di mana kelalaian ini mengubur eksperimen berbulan-bulan.
 
-**Berharap menjadi ahli penuh di akhir minggu 11.** Target adalah 60-70% siap, bukan 100%. Sisa 30-40% datang dari kerja independen setelah bootcamp. Tekanan untuk "menguasai semuanya" justru memperlambat.
+**Berharap menjadi ahli penuh di akhir minggu 11.** Target adalah 60-70% siap, bukan 100%. Sisa 30-40% terbentuk dari kerja mandiri setelah bootcamp. Tekanan untuk "menguasai semuanya" justru memperlambat.
 
 ---
 

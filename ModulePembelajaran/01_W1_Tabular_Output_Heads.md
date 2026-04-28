@@ -37,7 +37,7 @@
 
 ## 0. Peta Bab
 
-W1 adalah pintu masuk bootcamp. Bab ini memperkenalkan tiga ide fondasi: **MLP sebagai shape transformer**, **output head + loss matching**, dan **observasi sebelum kesimpulan**. Anda akan menjalankan tiga formulasi tugas (regression, binary, multiclass) di atas satu dataset tabular yang sama, sehingga perbedaan antar tugas terlihat **bukan dari datanya**, melainkan dari pilihan output head dan loss. Pada akhir minggu, Anda punya satu run end-to-end yang berhasil dan kebiasaan menuliskan apa yang Anda *amati* sebelum apa yang Anda *simpulkan*.
+W1 adalah pintu masuk bootcamp. Bab ini memperkenalkan tiga ide fondasi: **MLP sebagai shape transformer**, **output head + loss matching**, dan **observasi sebelum kesimpulan**. Anda mengerjakan tiga formulasi tugas (regression, binary, multiclass) di atas satu dataset tabular yang sama, sehingga perbedaan antar tugas terlihat **bukan dari datanya**, melainkan dari pilihan output head dan loss. Pada akhir minggu, Anda punya satu run end-to-end yang berhasil dan kebiasaan menuliskan apa yang Anda *amati* sebelum apa yang Anda *simpulkan*.
 
 ---
 
@@ -125,7 +125,7 @@ Lab 0 menyiapkan dataset tabular sintetis sederhana dengan 10 fitur. Dari fitur 
 - `y_binary` = sign dari kombinasi linear (0/1)
 - `y_multiclass` = bucketize ke 3 kuantil (kelas 0/1/2)
 
-Dengan demikian, **input** identik, tetapi **output head** dan **loss** berubah. Anda akan menjalankan tiga konfigurasi:
+Dengan demikian, **input** identik, tetapi **output head** dan **loss** berubah. Anda menjalankan tiga konfigurasi:
 
 ```yaml
 # configs/mlp_tabular.yaml - ubah field di bawah untuk swap task
