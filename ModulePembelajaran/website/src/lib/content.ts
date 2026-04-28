@@ -24,7 +24,7 @@ import transformerMiniYaml from "../content/configs/transformer_mini.yaml?raw";
 import aeCifarYaml from "../content/configs/ae_cifar.yaml?raw";
 import glossaryJson from "../content/glossary.json";
 
-export type GlossaryEntry = { id: string; en: string; note: string };
+export type GlossaryEntry = { id: string; en: string; def: string; usage: string };
 
 const RAW: Record<string, string> = {
   "00": c00,
