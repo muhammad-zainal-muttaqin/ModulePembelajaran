@@ -31,7 +31,7 @@
 **Big Map row:** `(C, H, W) -> (N,)` (lanjutan W2, fokus workflow)
 **Rigor habit:** Change one thing at a time
 **Dataset:** CIFAR-10 (reuse dari W2)
-**Lab utama:** Lab 1 selesai + Lab 2 (`lab2_loss_freeze_ablation.ipynb`)
+**Lab utama:** Lab 1 selesai + Lab 2 (`lab_w3_loss_ablation.ipynb`)
 
 ---
 
@@ -234,7 +234,7 @@ Setelah training SimpleCNN dari [W2](02_W2_Images_CNN_Smoke_Test.md), tiga pemer
 
 ### Lab 1 - Baseline CNN (selesai Minggu 3)
 
-Buka `notebooks/lab1_baseline_cnn.ipynb`. Selesaikan empat tugas:
+Buka `notebooks/lab_w2_cnn_baseline.ipynb`. Selesaikan empat tugas:
 
 1. Lengkapi training loop dengan evaluasi pada validation set setiap epoch.
 2. Simpan `train_loss`, `val_loss`, `train_acc`, `val_acc` per epoch, lalu plotkan.
@@ -249,7 +249,7 @@ Buka `notebooks/lab1_baseline_cnn.ipynb`. Selesaikan empat tugas:
 
 ### Lab 1b - Membandingkan Tiga Strategi Representasi (opsional, sangat dianjurkan)
 
-Buka `notebooks/lab1b_representasi.ipynb`. Pada CIFAR-10 yang sama, bandingkan tiga strategi:
+Buka `notebooks/lab_w6_feature_representation.ipynb`. Pada CIFAR-10 yang sama, bandingkan tiga strategi:
 
 1. **Engineered**: HOG manual + MLP kecil (tanpa pretrained weights apapun).
 2. **Extracted**: ResNet-18 pretrained pada ImageNet, di-freeze seluruhnya - hanya linear probe.

@@ -31,7 +31,7 @@
 **Big Map row:** multiple tensors -> shared prediction
 **Rigor habit:** Per-modality ablation dan multimodal failure analysis
 **Dataset:** Multimodal dataset dengan minimal dua modality (sensor + image, atau audio + text)
-**Lab utama:** Lab 8 - Multimodal Ablation (`lab8_multimodal_ablation.ipynb`)
+**Lab utama:** Lab 8 - Multimodal Ablation (`lab_w9_multimodal_ablation.ipynb`)
 
 ---
 
@@ -319,7 +319,7 @@ class PainEstimator(nn.Module):
 
 ## 5. Lab 8 - Multimodal Ablation
 
-Buka `template_repo/notebooks/lab8_multimodal_ablation.ipynb`.
+Buka `template_repo/notebooks/lab_w9_multimodal_ablation.ipynb`.
 
 **Tugas:**
 

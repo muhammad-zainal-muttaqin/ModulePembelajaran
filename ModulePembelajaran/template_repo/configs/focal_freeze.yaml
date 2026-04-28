@@ -1,5 +1,5 @@
 # Variant configuration - FocalLoss + freeze first conv block
-# Used in Lab 2 (Bab 02) ablation: loss × freeze, 2x2 grid.
+# Used in Lab W3 ablation: loss × freeze, 2x2 grid.
 
 experiment_name: focal_freeze
 

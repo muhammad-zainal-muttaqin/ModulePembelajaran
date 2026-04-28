@@ -21,15 +21,15 @@ template_repo/
 ├── experiments/                # output per run (tidak di-commit isinya)
 │   └── .gitkeep
 ├── notebooks/
-│   ├── lab1_baseline_cnn.ipynb
-│   ├── lab2_loss_freeze_ablation.ipynb
-│   ├── lab3_config_logging.ipynb
-│   ├── lab4_eda_leakage.ipynb
-│   ├── lab5_llm_assisted_loop.ipynb
-│   ├── lab6_adopt_external_repo.ipynb
-│   ├── lab7_streamlit_demo.ipynb
-│   ├── lab8_runpod_remote.ipynb
-│   └── lab9_paper_to_experiment.ipynb
+│   ├── lab_w2_cnn_baseline.ipynb
+│   ├── lab_w3_loss_ablation.ipynb
+│   ├── lab_w4_experiment_tracking.ipynb
+│   ├── lab_w6_eda_leakage.ipynb
+│   ├── lab_w7_llm_assisted.ipynb
+│   ├── lab_w7_repo_adoption.ipynb
+│   ├── lab_w12_demo_app.ipynb
+│   ├── lab_w8_remote_training.ipynb
+│   └── lab_w10_paper_to_code.ipynb
 └── docs/
     └── experiment_log_template.md
 ```
@@ -83,12 +83,12 @@ Setiap run menghasilkan folder `experiments/<config_name>_seed<N>/`. Jika kamu m
 
 ## Rujukan ke Bab Modul
 
-- Struktur config + logging: Bab 3 (Reproduksibilitas).
-- Ablation pattern (loss × freeze): Bab 2 (Ide → Eksperimen).
-- Audit leakage sebelum eksperimen: Bab 4 (Validasi Data).
-- Adopsi repo eksternal: Bab 6.
-- Demo dari checkpoint: Bab 7.
-- Menjalankan di RunPod: Bab 8.
+- Struktur config + logging: W4 (Reproducibility).
+- Ablation pattern (loss × freeze): W3 (Loss, Optimizer & Evaluasi).
+- Audit leakage sebelum eksperimen: W6 (Representations & Temporal Leakage).
+- Adopsi repo eksternal: W7 (Text, Transformers & Repo Adoption).
+- Demo dari checkpoint: W12 (Capstone).
+- Remote training: W8 (Foundation Models).
 
 ## Lisensi
 

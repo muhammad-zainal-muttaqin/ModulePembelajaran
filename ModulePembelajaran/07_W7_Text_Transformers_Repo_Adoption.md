@@ -31,7 +31,7 @@
 **Big Map row:** `(T,) -> (N,)`, `(1,)`, `(T, N)`
 **Rigor habit:** Verify AI-generated code, inspect tokenization, map external repos
 **Dataset:** Indonesian text dataset (IndoNLU SmSA)
-**Lab utama:** Lab 5b (`lab5b_domain_teks.ipynb`) + Lab 6 repo adoption (`lab6_adopt_external_repo.ipynb`)
+**Lab utama:** Lab 5b (`lab_w7_text_classification.ipynb`) + Lab 6 repo adoption (`lab_w7_repo_adoption.ipynb`)
 
 ---
 
@@ -160,7 +160,7 @@ Konten repo adoption dari bab ini (urutan membaca, environment setup, modifikasi
 
 ### Lab 5b - Text Classification IndoNLU (lab utama W7)
 
-Buka `notebooks/lab5b_domain_teks.ipynb`.
+Buka `notebooks/lab_w7_text_classification.ipynb`.
 
 **Tugas:**
 1. Load IndoNLU SmSA dataset (sentimen Bahasa Indonesia).
@@ -177,7 +177,7 @@ Buka `notebooks/lab5b_domain_teks.ipynb`.
 
 ### Lab 6 - Repo Adoption Primer
 
-Buka `notebooks/lab6_adopt_external_repo.ipynb`.
+Buka `notebooks/lab_w7_repo_adoption.ipynb`.
 
 **Tugas:**
 1. Clone satu repo riset publik (disediakan curated list di lab).
@@ -721,7 +721,7 @@ Total: ~3 jam dari clone sampai laporan pertama. Bandingkan dengan "dua minggu" 
 
 ## D5. Lab 6 - Mengadopsi dan Memodifikasi Repo Eksternal
 
-Buka [Lab 6 - Adopsi dan Modifikasi Repo Eksternal](template_repo/notebooks/lab6_adopt_external_repo.ipynb).
+Buka [Lab 6 - Adopsi dan Modifikasi Repo Eksternal](template_repo/notebooks/lab_w7_repo_adoption.ipynb).
 
 Tugas:
 
@@ -742,7 +742,7 @@ Tugas:
 
 ### Lab 6b (breadth) - Transformer-Mini dari Nol
 
-Buka [Lab 6b - Transformer-Mini dari Nol](template_repo/notebooks/lab6b_transformer_mini.ipynb). Setelah Anda paham cara membaca repo eksternal, langkah berikutnya adalah paham arsitektur yang paling sering Anda temui di repo riset modern: **Transformer**. Lab ini menyuruh Anda menulis ulang komponen intinya dari nol.
+Buka [Lab 6b - Transformer-Mini dari Nol](template_repo/notebooks/lab_w7_transformer_mini.ipynb). Setelah Anda paham cara membaca repo eksternal, langkah berikutnya adalah paham arsitektur yang paling sering Anda temui di repo riset modern: **Transformer**. Lab ini menyuruh Anda menulis ulang komponen intinya dari nol.
 
 Fokus:
 

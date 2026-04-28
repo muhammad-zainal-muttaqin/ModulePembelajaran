@@ -1,7 +1,7 @@
-# TransformerMini configuration - Lab 6b companion run
+# TransformerMini configuration - Lab W7 companion run
 # Short-sequence classification; pairs with the from-scratch attention
-# walkthrough in Lab 6b. Vocab size is small because the lab uses a toy
-# sentiment subset or a synthetic arithmetic task.
+# walkthrough in lab_w7_transformer_mini. Vocab size is small because
+# the lab uses a toy sentiment subset or a synthetic arithmetic task.
 
 experiment_name: transformer_mini
 

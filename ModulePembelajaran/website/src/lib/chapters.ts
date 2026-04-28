@@ -34,7 +34,7 @@ export const CHAPTERS: ChapterMeta[] = [
     weeks: "1",
     weekNumbers: [1],
     sikap: ["curiosity"],
-    labName: "Lab 0 - Tabular Output Heads",
+    labName: "Lab W1 - MLP Numpy",
     filename: "01_W1_Tabular_Output_Heads.md",
   },
   {
@@ -45,7 +45,7 @@ export const CHAPTERS: ChapterMeta[] = [
     weeks: "2",
     weekNumbers: [2],
     sikap: ["curiosity", "rigor"],
-    labName: "Lab 1 - Baseline CNN",
+    labName: "Lab W2 - Baseline CNN",
     filename: "02_W2_Images_CNN_Smoke_Test.md",
   },
   {
@@ -56,7 +56,7 @@ export const CHAPTERS: ChapterMeta[] = [
     weeks: "3",
     weekNumbers: [3],
     sikap: ["curiosity", "rigor"],
-    labName: "Lab 2 - Loss + Freeze Ablation",
+    labName: "Lab W3 - Loss + Freeze Ablation",
     filename: "03_W3_Loss_Optimizer_Evaluasi.md",
   },
   {
@@ -67,7 +67,7 @@ export const CHAPTERS: ChapterMeta[] = [
     weeks: "4",
     weekNumbers: [4],
     sikap: ["rigor"],
-    labName: "Lab 3 - Config + Logging",
+    labName: "Lab W4 - Config + Logging",
     filename: "04_W4_Reproducibility_Experiment_Matrix.md",
   },
   {
@@ -78,7 +78,7 @@ export const CHAPTERS: ChapterMeta[] = [
     weeks: "5",
     weekNumbers: [5],
     sikap: ["curiosity"],
-    labName: "Lab 3b - Sequence LSTM",
+    labName: "Lab W5 - LSTM Sequence",
     filename: "05_W5_Sequences_RNN_LSTM.md",
   },
   {
@@ -89,7 +89,7 @@ export const CHAPTERS: ChapterMeta[] = [
     weeks: "6",
     weekNumbers: [6],
     sikap: ["skepticism"],
-    labName: "Lab 4 - EDA + Leakage Audit",
+    labName: "Lab W6 - EDA + Leakage Audit",
     filename: "06_W6_Representations_Temporal_Leakage.md",
   },
   {
@@ -100,7 +100,7 @@ export const CHAPTERS: ChapterMeta[] = [
     weeks: "7",
     weekNumbers: [7],
     sikap: ["ownership", "curiosity"],
-    labName: "Lab 5 - LLM-Assisted Loop",
+    labName: "Lab W7 - LLM-Assisted Loop",
     filename: "07_W7_Text_Transformers_Repo_Adoption.md",
   },
   {
@@ -111,7 +111,7 @@ export const CHAPTERS: ChapterMeta[] = [
     weeks: "8",
     weekNumbers: [8],
     sikap: ["curiosity"],
-    labName: "Lab 6 - Adopt External Repo",
+    labName: "Lab W8 - Remote Training",
     filename: "08_W8_Foundation_Models.md",
   },
   {
@@ -122,7 +122,7 @@ export const CHAPTERS: ChapterMeta[] = [
     weeks: "9",
     weekNumbers: [9],
     sikap: ["curiosity"],
-    labName: "Lab 7 - Streamlit Demo",
+    labName: null,
     filename: "09_W9_Multimodal_Reasoning.md",
   },
   {
@@ -133,7 +133,7 @@ export const CHAPTERS: ChapterMeta[] = [
     weeks: "10",
     weekNumbers: [10],
     sikap: ["ownership", "curiosity"],
-    labName: "Lab 8 - RunPod Remote",
+    labName: "Lab W10 - Paper to Code",
     filename: "10_W10_Paper_Reading.md",
   },
   {
@@ -144,7 +144,7 @@ export const CHAPTERS: ChapterMeta[] = [
     weeks: "11",
     weekNumbers: [11],
     sikap: ["ownership", "rigor"],
-    labName: "Lab 9 - Paper to Experiment",
+    labName: "Capstone Proposal",
     filename: "11_W11_Research_Framing.md",
   },
   {

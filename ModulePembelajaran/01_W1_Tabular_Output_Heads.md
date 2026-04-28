@@ -31,7 +31,7 @@
 **Big Map row:** `(F,) -> (1,)`, `(1,)`, `(N,)`
 **Rigor habit:** Observation before conclusion
 **Dataset:** Tabular shared (synthetic) yang mendukung regression, binary classification, dan multiclass dari input yang sama
-**Lab utama:** Lab 0 (`lab0_tabular_output_heads.ipynb`)
+**Lab utama:** Lab 0 (`lab_w1_mlp_numpy.ipynb`)
 
 ---
 
@@ -157,7 +157,7 @@ Catat untuk setiap run:
 
 ## 5. Lab 0 - Tabular Output Heads
 
-**File:** `template_repo/notebooks/lab0_tabular_output_heads.ipynb`
+**File:** `template_repo/notebooks/lab_w1_mlp_numpy.ipynb`
 **Estimasi waktu:** 3-4 jam.
 
 **Langkah:**

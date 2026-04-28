@@ -1,5 +1,5 @@
-# MLP + MNIST configuration - Lab 1c companion run
-# After students implement the numpy-from-scratch MLP in Lab 1c, they can
+# MLP + MNIST configuration - Lab W1 companion run
+# After students implement the numpy-from-scratch MLP in Lab W1, they can
 # rerun the same architecture through the framework training loop using
 # this config, as a sanity check that their manual gradients matched.
 

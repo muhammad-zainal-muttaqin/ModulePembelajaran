@@ -1,4 +1,4 @@
-# Autoencoder + CIFAR-10 configuration - Lab 7b companion run
+# Autoencoder + CIFAR-10 configuration - lab_breadth_autoencoder companion run
 # Train an unsupervised autoencoder on CIFAR-10 images (no labels used),
 # then visualize the bottleneck with t-SNE/UMAP in the notebook.
 

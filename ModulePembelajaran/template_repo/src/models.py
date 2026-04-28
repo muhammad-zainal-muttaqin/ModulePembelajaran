@@ -63,7 +63,7 @@ class SimpleMLP(nn.Module):
     """Multi-layer perceptron for flattened inputs (tabular, MNIST).
 
     Forward pass matches the derivation in Bab 01 Section 2.0b: each block
-    is Linear → activation → optional dropout. Used by Lab 1c as the
+    is Linear → activation → optional dropout. Used by Lab W1 as the
     library-side reference after the numpy-from-scratch exercise.
     """
 
@@ -101,7 +101,7 @@ class SimpleLSTM(nn.Module):
     - "last": use hidden state at the final timestep (classification)
     - "all": return prediction per timestep (forecasting/tagging)
 
-    Used by Lab 3b for synthetic sine-wave one-step-ahead prediction and
+    Used by Lab W5 for synthetic sine-wave one-step-ahead prediction and
     optionally for character-level language modeling.
     """
 
@@ -154,7 +154,7 @@ class _PositionalEncoding(nn.Module):
 class TransformerMini(nn.Module):
     """Encoder-only Transformer for short sequence classification.
 
-    Lab 6b first builds scaled dot-product attention by hand; this class is
+    Lab W7 first builds scaled dot-product attention by hand; this class is
     the PyTorch reference implementation used as the sanity check at the
     end of the notebook. Keeps `d_model` small so students can trace shapes
     on a CPU-only machine.
@@ -197,7 +197,7 @@ class SimpleAutoencoder(nn.Module):
     """Convolutional autoencoder for small RGB images (CIFAR-10 size).
 
     Encoder compresses 32x32x3 into a `bottleneck_dim` vector. Decoder
-    reconstructs the input. Used by Lab 7b for reconstruction, denoising,
+    reconstructs the input. Used by lab_breadth_autoencoder for reconstruction, denoising,
     and latent-space visualization via t-SNE / UMAP.
     """
 

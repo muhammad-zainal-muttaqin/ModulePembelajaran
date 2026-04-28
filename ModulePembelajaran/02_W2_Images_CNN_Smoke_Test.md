@@ -31,7 +31,7 @@
 **Big Map row:** `(C, H, W) -> (N,)`
 **Rigor habit:** Three-level smoke test
 **Dataset:** CIFAR-10 (image classification)
-**Lab utama:** Lab 1 (`lab1_baseline_cnn.ipynb`)
+**Lab utama:** Lab 1 (`lab_w2_cnn_baseline.ipynb`)
 
 ---
 
@@ -291,7 +291,7 @@ Augmentasi hanya pada training set; normalisasi dengan statistik CIFAR-10 yang s
 
 ### Lab 1 - Baseline CNN (Lab utama W2, selesai di W3)
 
-Buka `notebooks/lab1_baseline_cnn.ipynb`. Di W2:
+Buka `notebooks/lab_w2_cnn_baseline.ipynb`. Di W2:
 
 1. Jalankan tiga level smoke test (import, dummy forward, overfit one batch).
 2. Build SimpleCNN, latih baseline dari scratch.
@@ -308,7 +308,7 @@ Selesaikan evaluasi dan error analysis setelah membaca [W3](03_W3_Loss_Optimizer
 
 ### Lab 1c - MLP dari Nol (breadth opsional, kapan saja)
 
-Buka `notebooks/lab1c_mlp_numpy.ipynb`. Tersedia sebagai breadth lab untuk Breadth Check (MLP family). Implementasi backpropagation 7-langkah manual dalam numpy + finite-difference gradient check + parity check vs PyTorch.
+Buka `notebooks/lab_w1_mlp_numpy.ipynb`. Tersedia sebagai breadth lab untuk Breadth Check (MLP family). Implementasi backpropagation 7-langkah manual dalam numpy + finite-difference gradient check + parity check vs PyTorch.
 
 ---
 

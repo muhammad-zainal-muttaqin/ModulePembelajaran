@@ -30,7 +30,7 @@
 
 **Big Map row:** sintesis melalui research artifacts
 **Rigor habit:** Three-pass paper reading dan paper-to-code translation
-**Lab utama:** Lab 9 - Paper Implementation (`lab9_paper_implementation.ipynb`)
+**Lab utama:** Lab 9 - Paper Implementation (`lab_w10_paper_to_code.ipynb`)
 
 ---
 
@@ -298,7 +298,7 @@ Enam langkah dari abstrak paper ke kode minimal yang bisa dijalankan:
 
 ## 5. Lab 9 - Paper Implementation
 
-Buka `template_repo/notebooks/lab9_paper_implementation.ipynb`.
+Buka `template_repo/notebooks/lab_w10_paper_to_code.ipynb`.
 
 **Menu Paper (pilih satu):**
 - Paper A: Focal Loss (Lin et al., 2017) - implementasi dari scratch pada CIFAR-10.

@@ -1,5 +1,5 @@
-# MLP + Tabular configuration - Lab 0 (W1) companion run
-# Lab 0 trains the same MLP on a shared synthetic tabular dataset under three
+# MLP + Tabular configuration - Lab W1 companion run
+# Lab W1 trains the same MLP on a shared synthetic tabular dataset under three
 # task formulations. To switch tasks, change `data.task` and `loss.name`:
 #   regression  -> mse
 #   binary      -> binary_cross_entropy (with logits)

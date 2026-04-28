@@ -15,7 +15,7 @@ ModulePembelajaran/
 ├── 02_W2_Images_CNN_Smoke_Test.md Tensor citra, CNN, three-level smoke test ritual (W2)
 ├── 03_W3_Loss_Optimizer_Evaluasi.md Example-first: galeri 5 run → loss/opt/eval theory (W3)
 ├── 04_W4_Reproducibility_Experiment_Matrix.md Experiment matrix + YAML/seed/checkpoint (W4)
-├── 05_W5_Sequences_RNN_LSTM.md    RNN vs LSTM, gradient flow, Lab 3b mandatory (W5)
+├── 05_W5_Sequences_RNN_LSTM.md    RNN vs LSTM, gradient flow, lab_w5_lstm_sequence wajib (W5)
 ├── 06_W6_Representations_Temporal_Leakage.md Representasi recap + temporal leakage demo (W6)
 ├── 07_W7_Text_Transformers_Repo_Adoption.md Text, transformers, AI tools, repo adoption (W7)
 ├── 08_W8_Foundation_Models.md     Taxonomy modality×family×adaptation (W8) [NEW]
@@ -65,9 +65,9 @@ Modul melatih breadth lima keluarga, bukan hanya CNN. Pemetaan ke W-numbering:
 
 - W1 (Pendahuluan + 01): MLP forward pass tabular
 - W2 (02): CNN + tensor citra + smoke test
-- W5 (05) + Lab 3b: RNN/LSTM gradient flow (Lab 3b wajib)
-- W7 (07) + Lab 5b/6b: Transformer (BERT-family fine-tune) + Lab 6b Transformer-mini dari nol (breadth opsional)
-- Lab 7b: Autoencoder + denoising AE + t-SNE (breadth opsional, dapat dikerjakan kapan saja)
+- W5 (05) + lab_w5_lstm_sequence: RNN/LSTM gradient flow (wajib)
+- W7 (07) + lab_w7_text_classification + lab_w7_transformer_mini: Transformer (BERT-family fine-tune) + Transformer-mini dari nol (breadth opsional)
+- lab_breadth_autoencoder: Autoencoder + denoising AE + t-SNE (breadth opsional, dapat dikerjakan kapan saja)
 - W9 §2.7: peta keluarga model generatif (VAE/GAN/Diffusion/Normalizing Flow), peta mental saja tanpa implementasi
 - W10 Template D dan E: LSTM vs Transformer sequence forecasting + Autoencoder representation learning
 - Pendahuluan (00): Kontrak Belajar klausul Keenam - Breadth Check (forward pass 4 dari 5 keluarga)
@@ -76,16 +76,16 @@ Modul melatih breadth lima keluarga, bukan hanya CNN. Pemetaan ke W-numbering:
 - Lampiran C.8: Template Lab Replikasi Arsitektur untuk Komponen Mandiri Jalur D (Arsitektur Baru)
 
 **Lab breadth baru (`template_repo/notebooks/`):**
-- `lab1c_mlp_numpy.ipynb`: MLP 2-layer dari nol dengan numpy (forward, backward manual 7-langkah, finite-difference gradient check, SGD), parity check dengan `SimpleMLP` PyTorch
-- `lab3b_sequence_lstm.ipynb`: sine+noise one-step-ahead regression, RNN vanilla vs LSTM gradient flow (log-plot vanishing gradient), training dengan grad clipping, visualisasi prediksi
-- `lab6b_transformer_mini.ipynb`: `scaled_dot_product_attention` dari nol, `SingleHeadAttention`, `TinyBlock` (pre-norm LN + GELU FFN), parity check vs `nn.TransformerEncoderLayer`, toy sequence classifier
-- `lab7b_autoencoder.ipynb`: convolutional AE CIFAR-10 unsupervised, rekonstruksi visual, t-SNE bottleneck 32-dim, denoising AE variant, peta ke VAE/GAN/Diffusion
+- `lab_w1_mlp_numpy.ipynb`: MLP 2-layer dari nol dengan numpy (forward, backward manual 7-langkah, finite-difference gradient check, SGD), parity check dengan `SimpleMLP` PyTorch
+- `lab_w5_lstm_sequence.ipynb`: sine+noise one-step-ahead regression, RNN vanilla vs LSTM gradient flow (log-plot vanishing gradient), training dengan grad clipping, visualisasi prediksi
+- `lab_w7_transformer_mini.ipynb`: `scaled_dot_product_attention` dari nol, `SingleHeadAttention`, `TinyBlock` (pre-norm LN + GELU FFN), parity check vs `nn.TransformerEncoderLayer`, toy sequence classifier
+- `lab_breadth_autoencoder.ipynb`: convolutional AE CIFAR-10 unsupervised, rekonstruksi visual, t-SNE bottleneck 32-dim, denoising AE variant, peta ke VAE/GAN/Diffusion
 
 **Arsitektur baru di `template_repo/src/models.py`:**
-- `SimpleMLP(input_dim, hidden_sizes, num_classes, dropout, activation)` - support Lab 1c dan tabular
-- `SimpleLSTM(input_size, hidden_size, num_layers, num_classes, dropout, readout)` - support Lab 3b, readout "last" atau "all"
-- `TransformerMini(vocab_size, d_model, nhead, num_layers, dim_feedforward, max_len, num_classes, dropout)` - support Lab 6b, pakai `nn.TransformerEncoder` + `_PositionalEncoding`
-- `SimpleAutoencoder(image_channels, bottleneck_dim)` - support Lab 7b, method `encode`/`decode`/`forward`
+- `SimpleMLP(input_dim, hidden_sizes, num_classes, dropout, activation)` - support Lab W1 dan tabular
+- `SimpleLSTM(input_size, hidden_size, num_layers, num_classes, dropout, readout)` - support Lab W5, readout "last" atau "all"
+- `TransformerMini(vocab_size, d_model, nhead, num_layers, dim_feedforward, max_len, num_classes, dropout)` - support Lab W7, pakai `nn.TransformerEncoder` + `_PositionalEncoding`
+- `SimpleAutoencoder(image_channels, bottleneck_dim)` - support lab_breadth_autoencoder, method `encode`/`decode`/`forward`
 - `build_model(cfg)` extended: `simple_cnn`, `simple_mlp`, `simple_lstm`, `transformer_mini`, `simple_ae`
 - `apply_freeze` raises ValueError untuk non-SimpleCNN
 
@@ -99,14 +99,14 @@ Modul melatih breadth lima keluarga, bukan hanya CNN. Pemetaan ke W-numbering:
 **Template repo perubahan:**
 - `src/train.py`: bug `warmup_epochs` diperbaiki - sekarang menggunakan `SequentialLR` dengan `LinearLR` warmup sebelum scheduler utama
 - `docs/prereg_template.md`: file baru, template pre-registration lengkap
-- `notebooks/lab1_baseline_cnn.ipynb`: diisi penuh (smoke test, forward pass, log parser, confusion matrix, error analysis)
-- `notebooks/lab2_loss_freeze_ablation.ipynb`: diisi penuh (FocalLoss test, 2×2 grid ablation, bar chart dengan error bars)
-- `notebooks/lab3_config_logging.ipynb`: diisi penuh (reproducibility verification, checkpoint inspection, resume dari checkpoint, multi-seed plot)
-- `notebooks/lab4_eda_leakage.ipynb`: diisi penuh (5-layer EDA, MD5 overlap detection, leakage audit)
-- `notebooks/lab5_llm_assisted_loop.ipynb`: diisi penuh (mixup implementation, 4 sanity tests, comparison training)
-- `notebooks/lab7_streamlit_demo.ipynb`: diisi penuh (aggregation plot, Streamlit template, Gradio annotation template)
-- `notebooks/lab1b_representasi.ipynb`: file baru, Lab 1b representasi fitur 3 strategi
-- `notebooks/lab5b_domain_teks.ipynb`: file baru, Lab 5b klasifikasi sentimen teks IndoNLU SmSA
+- `notebooks/lab_w2_cnn_baseline.ipynb`: diisi penuh (smoke test, forward pass, log parser, confusion matrix, error analysis)
+- `notebooks/lab_w3_loss_ablation.ipynb`: diisi penuh (FocalLoss test, 2×2 grid ablation, bar chart dengan error bars)
+- `notebooks/lab_w4_experiment_tracking.ipynb`: diisi penuh (reproducibility verification, checkpoint inspection, resume dari checkpoint, multi-seed plot)
+- `notebooks/lab_w6_eda_leakage.ipynb`: diisi penuh (5-layer EDA, MD5 overlap detection, leakage audit)
+- `notebooks/lab_w7_llm_assisted.ipynb`: diisi penuh (mixup implementation, 4 sanity tests, comparison training)
+- `notebooks/lab_w12_demo_app.ipynb`: diisi penuh (aggregation plot, Streamlit template, Gradio annotation template)
+- `notebooks/lab_w6_feature_representation.ipynb`: representasi fitur 3 strategi (CIFAR-10)
+- `notebooks/lab_w7_text_classification.ipynb`: klasifikasi sentimen teks IndoNLU SmSA
 - `notebooks/portofolio_mandiri.ipynb`: portfolio running-log entri W4-W10 + refleksi akhir bootcamp; template entri per-bab dengan bagian Setup/Temuan/Kejutan/Yang-Akan-Diubah/Koneksi
 
 ## Template Repo (`template_repo/`)

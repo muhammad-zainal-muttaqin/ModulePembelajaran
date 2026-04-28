@@ -31,7 +31,7 @@
 **Big Map row:** same modeling family, now with research workflow discipline
 **Rigor habit:** Experimental matrix before coding
 **Dataset:** Dataset baru (berbeda dari W2-W3) untuk menguji workflow discipline di luar dataset familiar
-**Lab utama:** Lab 3 (`lab3_config_logging.ipynb`)
+**Lab utama:** Lab 3 (`lab_w4_experiment_tracking.ipynb`)
 
 ---
 
@@ -413,7 +413,7 @@ Intinya: ketidakpastian yang disertai langkah konkret adalah tanda kompetensi. K
 
 ## 5. Lab 2 - Focal Loss + Freeze Layer dengan Ablation
 
-Buka [Lab 2 - Focal Loss dan Freeze Layer](template_repo/notebooks/lab2_loss_freeze_ablation.ipynb).
+Buka [Lab 2 - Focal Loss dan Freeze Layer](template_repo/notebooks/lab_w3_loss_ablation.ipynb).
 
 Tugas:
 
@@ -445,7 +445,7 @@ Empat pilar infrastruktur yang harus ada pada setiap eksperimen yang dilaporkan 
 
 **4. Git hash.** Ikat setiap run ke commit kode yang menghasilkannya dengan `get_git_hash()`. Commit sebelum run final yang dilaporkan. Flag "dirty" memperingatkan uncommitted changes.
 
-Lihat `template_repo/src/utils.py` untuk implementasi keempat pilar. Lab 3 (`lab3_config_logging.ipynb`) membangun keempatnya secara berurutan.
+Lihat `template_repo/src/utils.py` untuk implementasi keempat pilar. Lab 3 (`lab_w4_experiment_tracking.ipynb`) membangun keempatnya secara berurutan.
 
 > [!NOTE]
 > Detail mendalam tentang empat sumber non-determinisme, Worker seeding, TensorBoard setup, dan konvensi Git untuk riset eksperimental tersedia di file ini sebagai materi lanjutan - cari bagian §2.1-§2.10 dari konten legacy. Bacaan ini sangat berguna sebelum W4 assignment.
@@ -466,7 +466,7 @@ Konfigurasi RunPod minimal dan cara push/pull checkpoint lewat rsync atau rclone
 
 ## 5. Lab 3 - Config, Logging & Reproducibility
 
-Buka `template_repo/notebooks/lab3_config_logging.ipynb`. Tugas:
+Buka `template_repo/notebooks/lab_w4_experiment_tracking.ipynb`. Tugas:
 
 1. Tulis `protocol.md` + experiment matrix sebelum menyentuh kode.
 2. Refaktor konfigurasi dari hardcoded ke YAML.

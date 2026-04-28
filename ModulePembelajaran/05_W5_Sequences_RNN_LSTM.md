@@ -31,7 +31,7 @@
 **Big Map row:** `(T, F) -> (1,)`, `(N,)`, `(T'', 1)`
 **Rigor habit:** Long-sequence diagnosis dan justifikasi arsitektur
 **Dataset:** Sequence dataset dengan dependensi panjang yang terlihat
-**Lab utama:** Lab 3b (`lab3b_sequence_lstm.ipynb`) - **wajib di W5**
+**Lab utama:** Lab 3b (`lab_w5_lstm_sequence.ipynb`) - **wajib di W5**
 
 ---
 
@@ -204,7 +204,7 @@ model:
 
 ### Lab 3b - RNN vs LSTM Gradient Flow (wajib W5)
 
-Buka `notebooks/lab3b_sequence_lstm.ipynb`.
+Buka `notebooks/lab_w5_lstm_sequence.ipynb`.
 
 **Tugas utama:**
 

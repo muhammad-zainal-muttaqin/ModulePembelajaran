@@ -8,41 +8,39 @@ type NotebookEntry = { file: string; label: string };
 
 const NOTEBOOKS: Record<string, NotebookEntry[]> = {
   "01": [
-    { file: "lab1c_mlp_numpy.ipynb", label: "Lab 1c - MLP Numpy (breadth)" },
+    { file: "lab_w1_mlp_numpy.ipynb", label: "Lab W1 - MLP Numpy" },
   ],
   "02": [
-    { file: "lab1_baseline_cnn.ipynb", label: "Lab 1 - Baseline CNN" },
+    { file: "lab_w2_cnn_baseline.ipynb", label: "Lab W2 - Baseline CNN" },
   ],
   "03": [
-    { file: "lab1b_representasi.ipynb", label: "Lab 1b - Representasi Fitur" },
-    { file: "lab2_loss_freeze_ablation.ipynb", label: "Lab 2 - Loss + Freeze Ablation" },
+    { file: "lab_w3_loss_ablation.ipynb", label: "Lab W3 - Loss + Freeze Ablation" },
   ],
   "04": [
-    { file: "lab3_config_logging.ipynb", label: "Lab 3 - Config + Logging" },
-    { file: "lab3b_sequence_lstm.ipynb", label: "Lab 3b - RNN vs LSTM (breadth)" },
+    { file: "lab_w4_experiment_tracking.ipynb", label: "Lab W4 - Config + Logging" },
+  ],
+  "05": [
+    { file: "lab_w5_lstm_sequence.ipynb", label: "Lab W5 - RNN vs LSTM" },
   ],
   "06": [
-    { file: "lab4_eda_leakage.ipynb", label: "Lab 4 - EDA + Leakage Audit" },
+    { file: "lab_w6_eda_leakage.ipynb", label: "Lab W6 - EDA + Leakage Audit" },
+    { file: "lab_w6_feature_representation.ipynb", label: "Lab W6 - Representasi Fitur" },
   ],
   "07": [
-    { file: "lab5_llm_assisted_loop.ipynb", label: "Lab 5 - LLM-Assisted Loop" },
-    { file: "lab5b_domain_teks.ipynb", label: "Lab 5b - Sentimen Teks IndoNLU" },
+    { file: "lab_w7_llm_assisted.ipynb", label: "Lab W7 - LLM-Assisted Loop" },
+    { file: "lab_w7_text_classification.ipynb", label: "Lab W7 - Klasifikasi Teks IndoNLU" },
+    { file: "lab_w7_repo_adoption.ipynb", label: "Lab W7 - Adopsi Repo Eksternal" },
+    { file: "lab_w7_transformer_mini.ipynb", label: "Lab W7 - Transformer-mini (breadth)" },
   ],
   "08": [
-    { file: "lab6_adopt_external_repo.ipynb", label: "Lab 6 - Adopt External Repo" },
-    { file: "lab6b_transformer_mini.ipynb", label: "Lab 6b - Transformer-mini (breadth)" },
-  ],
-  "09": [
-    { file: "lab7_streamlit_demo.ipynb", label: "Lab 7 - Streamlit Demo" },
-    { file: "lab7b_autoencoder.ipynb", label: "Lab 7b - Autoencoder + t-SNE (breadth)" },
+    { file: "lab_w8_remote_training.ipynb", label: "Lab W8 - RunPod Remote Training" },
   ],
   "10": [
-    { file: "lab8_runpod_remote.ipynb", label: "Lab 8 - RunPod Remote" },
-  ],
-  "11": [
-    { file: "lab9_paper_to_experiment.ipynb", label: "Lab 9 - Paper to Experiment" },
+    { file: "lab_w10_paper_to_code.ipynb", label: "Lab W10 - Paper to Code" },
   ],
   "12": [
+    { file: "lab_w12_demo_app.ipynb", label: "Lab W12 - Streamlit Demo + Gradio" },
+    { file: "lab_breadth_autoencoder.ipynb", label: "Lab Breadth - Autoencoder + t-SNE" },
     { file: "portofolio_mandiri.ipynb", label: "Portofolio Mandiri - running log Pekan 4-12" },
   ],
 };

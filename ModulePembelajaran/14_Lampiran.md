@@ -839,7 +839,7 @@ W2 -= lr * dW2;  b2 -= lr * db2
 
 Pola ini berulang di setiap layer. Untuk layer lebih dalam, cukup perpanjang langkah 4-6 ke layer sebelumnya. Inilah yang dikomputasi oleh `loss.backward()` dalam PyTorch secara otomatis.
 
-Lab 1c (`lab1c_mlp_numpy.ipynb`) mengimplementasikan ketujuh langkah ini dalam numpy dengan finite-difference gradient check untuk verifikasi.
+Lab 1c (`lab_w1_mlp_numpy.ipynb`) mengimplementasikan ketujuh langkah ini dalam numpy dengan finite-difference gradient check untuk verifikasi.
 
 ---
 

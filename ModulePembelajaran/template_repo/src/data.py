@@ -92,7 +92,7 @@ def _fake_classification_dataset(image_size: int, num_classes: int):
 def _build_mnist(cfg: dict[str, Any], dry_run: bool):
     """MNIST loader; returns tensors flattened to 784-dim when cfg['flatten'] is True.
 
-    Used by Lab 1c (MLP from-scratch) via `configs/mlp_mnist.yaml`.
+    Used by Lab W1 (MLP from-scratch) via `configs/mlp_mnist.yaml`.
     """
     root = cfg["root"]
     flatten = bool(cfg.get("flatten", True))
@@ -145,7 +145,7 @@ class _SineSequenceDataset(torch.utils.data.Dataset):
     """Synthetic sine + noise for one-step-ahead regression.
 
     Each sample is (x, y) where x has shape (seq_len, 1) and y is the next value.
-    Used by Lab 3b via `configs/lstm_timeseries.yaml`.
+    Used by Lab W5 via `configs/lstm_timeseries.yaml`.
     """
 
     def __init__(self, n: int, seq_len: int, noise_std: float, seed: int):
@@ -180,7 +180,7 @@ def _build_sine(cfg: dict[str, Any], dry_run: bool):
 
 def _build_cifar10_unlabeled(cfg: dict[str, Any], dry_run: bool):
     """CIFAR-10 with labels still emitted by DataLoader (for optional t-SNE coloring)
-    but training code treats targets as image reconstruction. Used by Lab 7b via
+    but training code treats targets as image reconstruction. Used by lab_breadth_autoencoder via
     `configs/ae_cifar.yaml`.
     """
     return _build_cifar10(cfg, dry_run)
@@ -228,7 +228,7 @@ class _ToySequenceDataset(torch.utils.data.Dataset):
     Each sample is (tokens, label) where tokens has shape (max_len,) dtype long
     and label is an integer in [0, num_classes). Labels are deterministically
     derived from token sums so accuracy is learnable without any download.
-    Used by Lab 6b via `configs/transformer_mini.yaml`.
+    Used by Lab W7 via `configs/transformer_mini.yaml`.
     """
 
     def __init__(self, n: int, vocab_size: int, max_len: int, num_classes: int, seed: int):
@@ -264,7 +264,7 @@ class _TabularSharedDataset(torch.utils.data.Dataset):
     """Synthetic tabular dataset where the *same* input features support three
     task formulations (regression, binary classification, multiclass).
 
-    Used by Lab 0 (W1) via `configs/mlp_tabular.yaml`. The cfg key `task`
+    Used by Lab W1 via `configs/mlp_tabular.yaml`. The cfg key `task`
     selects which target is returned: "regression", "binary", or "multiclass".
     All three formulations share the underlying generative process, so trainees
     can compare loss-head matching across tasks without changing input data.
