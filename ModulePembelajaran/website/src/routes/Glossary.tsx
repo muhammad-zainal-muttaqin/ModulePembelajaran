@@ -4,16 +4,24 @@ import { GLOSSARY } from "../lib/content";
 export default function Glossary() {
   const [query, setQuery] = useState("");
 
+  const sorted = useMemo(
+    () =>
+      [...GLOSSARY].sort((a, b) =>
+        a.id.toLowerCase().localeCompare(b.id.toLowerCase())
+      ),
+    []
+  );
+
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
-    if (!q) return GLOSSARY;
-    return GLOSSARY.filter(
+    if (!q) return sorted;
+    return sorted.filter(
       (g) =>
         g.id.toLowerCase().includes(q) ||
         g.en.toLowerCase().includes(q) ||
         (g.note || "").toLowerCase().includes(q)
     );
-  }, [query]);
+  }, [query, sorted]);
 
   return (
     <div className="page-narrow">
