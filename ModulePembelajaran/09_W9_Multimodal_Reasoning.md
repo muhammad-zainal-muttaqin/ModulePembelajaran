@@ -104,10 +104,21 @@ Image pixels + Text tokens → concat/project → Shared Transformer → predict
 
 Satu modality digunakan sebagai query dan yang lain sebagai key/value dalam attention mechanism. Model secara eksplisit belajar "bagian mana dari modality A yang relevan untuk setiap elemen modality B?"
 
+> [!NOTE]
+> **Q/K/V primer.** Untuk recap konsep `Q`, `K`, `V` dan rumus `softmax(QK^T/√d)V`, lihat W7 §1 dan Lab `lab_w7_transformer_mini.ipynb`. Ringkasan 3-step:
+>
+> 1. **Q (Query)** dari modality A shape `(B, T_A, d)` - "apa yang sedang saya cari?"
+> 2. **K (Key)** dan **V (Value)** dari modality B shape `(B, T_B, d)` - "apa yang tersedia untuk dicocokkan, dan apa nilai aktualnya?"
+> 3. **Attention scores** `Q @ K^T / √d` shape `(B, T_A, T_B)` - matriks "seberapa relevan tiap elemen B untuk tiap elemen A". Softmax di sumbu `T_B` menghasilkan distribusi probabilitas. Output `softmax(...) @ V` shape `(B, T_A, d)` - rerata berbobot dari V, satu vektor per query.
+>
+> Pembagian `√d` mencegah dot product membesar saat `d` besar (tanpa scaling, softmax jadi terlalu runcing - gradient menyempit).
+
 ```
-Text queries: Q = Linear(text_embedding)
-Image keys/values: K, V = Linear(image_features)
-cross_attn_output = softmax(Q @ K^T / sqrt(d)) @ V
+Text queries:        Q = W_q @ text_embedding       # (B, T_text, d)
+Image keys/values:   K = W_k @ image_features       # (B, T_image, d)
+                     V = W_v @ image_features       # (B, T_image, d)
+attention_weights  = softmax(Q @ K.transpose(-2, -1) / sqrt(d), dim=-1)
+cross_attn_output  = attention_weights @ V          # (B, T_text, d)
 ```
 
 Ini yang digunakan oleh BLIP-2, Flamingo, dan model vision-language modern.
@@ -179,6 +190,9 @@ class MultimodalModel(nn.Module):
 ```
 
 Dengan ini model belajar prediksi yang robust bahkan dengan satu modality hilang.
+
+> [!NOTE]
+> **Kenapa `p_drop = 0.15`?** Bukan angka magis - rule-of-thumb dari literatur regularisasi (mirip dropout neuron 10-30%, mask language modeling BERT 15%). Range yang masuk akal: `p_drop ∈ [0.10, 0.25]`. Lebih kecil → modality dropout tidak cukup kuat untuk mencegah ignored-modality. Lebih besar → model jarang melihat fully multimodal sample, performa full-modality menurun. Untuk dataset di mana satu modality jauh lebih dominan (mis. image jauh lebih informatif dari sensor), naikkan `p_drop` modality dominan ke 0.30-0.40 agar model dipaksa belajar dari sensor lebih sering. Ini hyperparameter yang layak di-sweep di Komponen Mandiri Jalur Analisis.
 
 #### Strategi 2: Learnable Null Token
 

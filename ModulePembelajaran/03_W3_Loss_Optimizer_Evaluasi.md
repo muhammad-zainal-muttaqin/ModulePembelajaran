@@ -91,15 +91,21 @@ Tiga skenario di atas bukan pengecualian - mereka adalah rutinitas riset sehari-
 
 Loss menentukan *apa yang dianggap salah oleh model*. Mengganti loss berarti mengubah arah yang dianggap model sebagai "perbaikan".
 
+> [!NOTE]
+> Untuk recap rumus dan intuisi MSE / BCE / CrossEntropy dengan contoh angka kecil, lihat [W1 §2.2.1-§2.2.3](01_W1_Tabular_Output_Heads.md). Bagian ini fokus pada **kapan memilih loss yang mana** dan dua varian lanjutan (focal loss, label smoothing).
+
 **Untuk klasifikasi:**
-- *Cross-entropy*: pilihan default. Mengukur jarak antara distribusi probabilitas prediksi dan label.
-- *Focal loss* (Lin et al., 2017): memodifikasi cross-entropy dengan faktor `(1-p)^γ` yang menurunkan bobot sampel mudah dan menaikkan bobot sampel sulit. Berguna pada kelas sangat tidak seimbang.
-- *Label smoothing*: mengganti label one-hot dengan distribusi sedikit kabur, mencegah model terlalu percaya diri.
+
+- **Cross-entropy** - pilihan default. Mengukur jarak antara distribusi probabilitas prediksi dan label. Pakai `CrossEntropyLoss` di PyTorch (otomatis gabung softmax + log-likelihood).
+- **Focal loss** (Lin et al., 2017) - memodifikasi cross-entropy dengan faktor `(1-p_t)^γ` yang menurunkan bobot sampel mudah (di mana model sudah benar dan yakin) dan menaikkan bobot sampel sulit. Berguna pada kelas sangat tidak seimbang.
+  - **Contoh numerik.** Untuk kelas minor dengan prediksi `p_t = 0.2` (model salah-yakin) dan `γ = 2`: faktor `(1 - 0.2)² = 0.64`. Untuk kelas mayor dengan `p_t = 0.95` (model benar-yakin): faktor `(1 - 0.95)² = 0.0025`. Loss kelas minor diberi bobot 256× lebih besar dari kelas mayor di iterasi yang sama.
+- **Label smoothing** - mengganti label one-hot `[0, 1, 0]` dengan distribusi sedikit kabur `[0.033, 0.933, 0.033]` (smoothing 0.1, 3 kelas). Mencegah model terlalu percaya diri (overconfident); sering memperbaiki kalibrasi probabilitas.
 
 **Untuk regresi:**
-- *MSE*: hukuman kuadratik - sensitif terhadap outlier, cocok ketika residu kecil sudah bermasalah.
-- *MAE*: linear, lebih robust tetapi kurang tajam di sekitar nol.
-- *Huber loss*: menggabungkan keduanya - kuadratik untuk residu kecil, linear untuk outlier besar.
+
+- **MSE** - hukuman kuadratik. Sensitif terhadap outlier (residu meleset 5 menyumbang loss 25×), cocok ketika residu kecil sudah bermasalah.
+- **MAE** - linear. Lebih robust ke outlier tetapi tidak punya "tarikan" kuat di sekitar nol; konvergensi sering lebih lambat.
+- **Huber loss** - menggabungkan keduanya: kuadratik untuk `|residu| < δ`, linear untuk residu lebih besar. Default δ = 1.0 di PyTorch.
 
 Pertanyaan yang selalu relevan sebelum mengganti loss: *apa jenis kesalahan yang paling mahal di aplikasi Anda?* Jika false negative pada kelas minor lebih mahal, focal loss atau pembobotan kelas langsung membantu. Mengganti loss tanpa alasan jelas menambah satu variabel yang harus dijelaskan di laporan.
 
@@ -114,6 +120,12 @@ Optimizer mengubah gradient menjadi langkah konkret pada parameter.
 > **Catatan: `weight_decay` di AdamW bukan L2 regularisasi.** Pada SGD, menambahkan L2 regularisasi (`λ ||w||²` ke loss) ekuivalen dengan mengurangkan `λw` dari setiap parameter. Pada Adam, hal ini **tidak berlaku**: Adam membagi gradient dengan estimasi variansi, sehingga penalti L2 yang ditambahkan ke loss mendapat efek yang tidak proporsional antar parameter. AdamW memperbaiki ini dengan mengaplikasikan weight decay *langsung* ke parameter (bukan lewat gradient). Akibat praktisnya: `weight_decay=0.01` di AdamW memberi efek regularisasi yang lebih konsisten daripada nilai yang sama di Adam biasa.
 
 Dipasangkan dengan optimizer adalah *scheduler*: mekanisme menurunkan (atau menaikkan lalu menurunkan) learning rate selama training. `OneCycleLR`, `CosineAnnealingLR`, dan `ReduceLROnPlateau` adalah tiga pola yang paling sering Anda jumpai.
+
+> [!TIP]
+> **Aturan praktis Adam vs AdamW.** Pakai **AdamW** sebagai default untuk training dari nol modern (CNN, Transformer). Hindari "Adam + L2 manual ditambahkan ke loss" - itu yang membuat regularisasi tidak konsisten antar parameter. Range yang masuk akal: `lr=3e-4` (Karpathy constant), `weight_decay=1e-4` sampai `1e-2`. Untuk fine-tuning pretrained model, pakai `lr` 10× lebih kecil dari training-dari-nol.
+
+> [!NOTE]
+> **Tentang scheduler dan warmup.** Untuk Lab 2 di W3, learning rate **konstan** sudah cukup; Anda akan menjumpai `OneCycleLR`/`CosineAnnealingLR`/`ReduceLROnPlateau` dan **warmup** (naikkan lr dari 0 ke target di beberapa epoch awal) di W4 saat experiment matrix mulai melibatkan banyak run. Sekarang fokus dulu ke loss + optimizer pasangan-dasar.
 
 ### 2.3 Evaluasi: Bukan Satu Angka
 

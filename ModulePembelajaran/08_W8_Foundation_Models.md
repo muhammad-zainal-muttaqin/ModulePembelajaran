@@ -80,6 +80,13 @@ Konsekuensi praktis: ketika Anda mendapat task baru, pertanyaan pertama adalah "
 
 ### 2.2 Taksonomi Modality x Family x Adaptation
 
+> [!IMPORTANT]
+> **Tiga adaptation modes yang akan muncul berulang di tabel.** Definisi singkat di sini supaya tabel tidak terasa magis. Detail decision tree ada di §2.4.
+>
+> - **Frozen** - bobot pretrained dikunci (`requires_grad = False`). Hanya layer tambahan kecil (linear head, classifier) yang dilatih. Inference tetap melalui seluruh model, tetapi tidak ada backward pass ke backbone. Tercepat dan paling stabil; sub-optimal kalau domain target jauh dari pretraining.
+> - **LoRA** (Low-Rank Adaptation) - sisipkan matriks low-rank `A B` (mis. `r=8`) paralel dengan `W_q` dan `W_v` di setiap attention layer; kunci `W` original. Hanya `A B` dilatih. Trade-off: ~0.5-2% parameter dilatih, performa biasanya 95-99% dari full fine-tuning, training 3-5× lebih cepat. Pakai library `peft` dari HuggingFace.
+> - **Full FT** (full fine-tuning) - semua parameter `requires_grad = True`. Paling fleksibel, paling mahal (memori GPU dan waktu). Risiko overfitting tinggi pada dataset kecil; biasanya butuh learning rate kecil (`1e-5`) dan early stopping.
+
 #### Teks
 
 | Model | Family | Pretraining | Best for | Adaptation modes |
@@ -125,8 +132,8 @@ Aturan praktis: encoder-only untuk pemahaman, decoder-only untuk generasi, encod
 | TimeGPT-1 | Time series | Zero-shot forecasting; commercial |
 | TimesFM | Large-scale TS | General forecasting |
 
-> [!NOTE]
-> Time series foundation models masih banyak yang early-stage research. Evaluasi klaimnya dengan skeptis, terutama jika benchmark overlap dengan domain Anda.
+> [!WARNING]
+> **Time series foundation models (Chronos, TimeGPT, TimesFM) adalah area riset aktif 2023-2024.** Klaim "zero-shot SOTA" sering belum direplikasi independen pada dataset di luar benchmark mereka. Untuk **capstone (W12-W14)**, gunakan ini sebagai *eksplorasi tambahan* setelah baseline LSTM/Transformer dari W5-W7 sudah jalan dan dapat dipertanggungjawabkan. Jangan jadikan time-series FM sebagai baseline tunggal di proposal capstone.
 
 #### Domain-Specific
 
@@ -188,6 +195,35 @@ Contoh:
 - **Pseudo-label generation** - foundation model menghasilkan pseudo-labels untuk unlabeled data.
 
 Dalam semua kasus ini, foundation model tidak ada dalam model final yang di-deploy. Ia meningkatkan proses training. Pola ini penting karena memungkinkan benefit dari foundation model tanpa inference cost-nya.
+
+#### 2.5.1 Knowledge Distillation: Contoh Numerik dengan Soft Target
+
+Untuk task klasifikasi 3 kelas (anjing/kucing/kelinci), teacher menghasilkan logits `z_T = [4.0, 1.0, 0.5]` untuk satu sampel. Student dilatih untuk mereproduksi distribusi probabilitas teacher, **bukan** label keras `[1, 0, 0]`.
+
+**Hard target** (one-hot label asli):
+```
+y_hard = [1, 0, 0]
+```
+
+**Soft target** dengan temperature `T = 4` (smooth distribution):
+```
+softmax(z_T / T)[i] = exp(z_T[i] / T) / Σ_j exp(z_T[j] / T)
+softmax([4.0, 1.0, 0.5] / 4) = softmax([1.0, 0.25, 0.125])
+                             ≈ [0.484, 0.229, 0.202]
+```
+
+**Soft target** tanpa temperature `T = 1`:
+```
+softmax([4.0, 1.0, 0.5]) ≈ [0.939, 0.047, 0.014]   # hampir one-hot, info kelas non-mayoritas hilang
+```
+
+Temperature tinggi `T > 1` membuka informasi "kelas non-mayoritas yang masih plausible" - student belajar bahwa anjing-vs-kucing lebih mirip daripada anjing-vs-kelinci. Loss distillation:
+
+```
+L_KD = CE(softmax(z_S / T),  softmax(z_T / T)) * T²
+```
+
+Faktor `T²` mengompensasi gradient yang menyusut karena temperature. Total loss = `α * L_KD + (1 - α) * L_hard` dengan `α ≈ 0.7-0.9`. Pola ini memungkinkan model student kecil (mis. DistilBERT, ~40% parameter BERT) mencapai 95%+ performa teacher di banyak benchmark.
 
 ---
 

@@ -73,6 +73,13 @@ Bab ini membangun kebiasaan itu.
 
 > **Catatan sebelum mulai:** Eksperimen di bab ini - dan di seluruh modul - boleh menghasilkan hasil yang tidak sesuai hipotesis. Itu bukan kegagalan; itu data. Bagian §2.6 di bab ini membahas cara mendokumentasikan dan melaporkan saat hipotesis tidak terkonfirmasi - baca bagian itu dengan serius, karena situasi tersebut lebih sering terjadi daripada sebaliknya.
 
+> [!IMPORTANT]
+> **Tiga istilah kunci yang akan Anda jumpai berulang di bab ini.** Definisi singkat di sini supaya tidak muncul tiba-tiba.
+>
+> - **Pre-registration** - dokumen tertulis (`protocol.md` di repo Anda) berisi hipotesis, variabel, metrik, dan threshold sukses yang ditulis **sebelum** eksperimen dijalankan. Tujuan: mencegah cerita-setelah-fakta dan konfirmasi bias. Asal istilah dari riset psikologi tahun 2010-an, kini standar di reproducible ML. Timestamp pre-reg adalah bukti bahwa Anda merencanakan sebelum melihat hasil.
+> - **Seed variance** - selisih hasil antar run yang konfigurasinya identik kecuali RNG seed (initialisasi bobot acak, urutan shuffle data, augmentasi acak). Pada CIFAR-10 baseline biasanya ±0.5-1.5% akurasi. Klaim "naik 1.7%" dengan seed variance ±1.5% bisa sekadar noise.
+> - **Effect size** - selisih metrik antara dua kondisi (mis. baseline vs modifikasi). Threshold yang ditetapkan di pre-reg menjawab "berapa besar selisih yang dianggap bermakna untuk aplikasi ini?" - bukan dijawab post-hoc setelah melihat angka.
+
 ### 2.0 Experiment Matrix Before Coding
 
 Sebelum menyentuh kode, tulis **experiment matrix** - tabel yang mendaftar semua run yang akan Anda jalankan beserta konfigurasi masing-masing. Ini bukan formalitas; ini perancah mental yang mencegah tiga masalah umum: (1) Anda lupa menjalankan satu kondisi kritis, (2) Anda menyadari di tengah jalan bahwa dua kondisi tidak sebanding, (3) Anda tidak bisa menjelaskan apa yang berubah di antara run.

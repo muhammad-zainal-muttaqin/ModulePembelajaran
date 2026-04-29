@@ -254,6 +254,9 @@ Proses ini sering mengejutkan. Saya pernah menemukan 15% label pada dataset publ
 
 Pipeline pra-pemrosesan harus *fit pada training set saja*, lalu *transform train, val, dan test* dengan parameter yang sudah di-fit. Ini mencegah kebocoran statistik test ke training.
 
+> [!IMPORTANT]
+> **Intuisi preprocessing leakage.** Kalau Anda hitung `mean` dan `std` dari **semua data** (train + val + test) sebelum split, statistik tersebut sudah "tahu" sesuatu tentang val/test - mis. distribusi outlier di test set akan menggeser mean. Saat training, model menerima input yang sudah di-normalisasi pakai info agregat test. Walau test labels tidak bocor, **distribusi feature test sudah bocor**. Efeknya kecil di dataset besar yang distribusinya stabil, tetapi nyata di dataset kecil atau heterogen. Aturan: `fit` cuma pada train; `transform` train + val + test pakai parameter yang sama.
+
 Salah:
 
 ```python
@@ -311,11 +314,17 @@ Untuk model PyTorch yang memakai augmentasi, prinsip sama: augmentasi hanya di t
 
 Data di dunia nyata sering berbeda dari data training. Tiga bentuk perubahan:
 
-**Covariate shift** - distribusi fitur berubah, tetapi hubungan fitur→target tetap. Contoh: model klasifikasi daun dilatih di musim kemarau, dipakai di musim hujan (warna daun beda, tetapi penyakit tetap terdeteksi dari pola yang sama).
+**Covariate shift** - distribusi fitur `P(x)` berubah, tetapi hubungan fitur→target `P(y|x)` tetap. Model masih bisa di-deploy kalau fitur baru tidak terlalu jauh dari yang dilihat saat training.
+- *Contoh konkret:* model klasifikasi daun penyakit dilatih di musim kemarau (warna lebih kekuningan), dipakai di musim hujan (warna lebih gelap dan basah). Pola visual penyakit yang sama, tetapi distribusi warna pixel bergeser.
+- *Deteksi:* histogram per-channel train vs deploy berbeda; uji KS pada distribusi fitur.
 
-**Label shift** - distribusi target berubah, tetapi distribusi fitur|target tetap. Contoh: proporsi kelas minor meningkat di produksi.
+**Label shift** - distribusi target `P(y)` berubah, tetapi `P(x|y)` tetap. Mengetahui shift jenis ini penting karena solusinya berbeda dari covariate shift.
+- *Contoh konkret:* model deteksi spam dilatih saat spam = 5% dari email, di-deploy saat campaign besar membuat spam = 30%. Tampilan spam tetap sama; hanya proporsinya berubah. Threshold default akan menghasilkan banyak false negative.
+- *Deteksi:* bandingkan `value_counts` label di sample produksi (ground-truth atau proxy lemah) vs train.
 
-**Concept drift** - hubungan fitur→target itu sendiri berubah. Paling sulit. Contoh: perilaku pengguna berubah setelah fitur aplikasi diubah; pola churn lama tidak berlaku lagi.
+**Concept drift** - `P(y|x)` itu sendiri berubah. Hubungan fitur→target tidak lagi yang sama. Paling sulit ditangani; biasanya butuh re-training periodik.
+- *Contoh konkret:* model prediksi churn pelanggan dilatih sebelum app rilis fitur baru. Setelah rilis, pengguna yang sebelumnya churn karena fitur kurang sekarang loyal - dengan fitur input identik, label berubah.
+- *Deteksi:* metrik di production turun walau distribusi fitur stabil; bandingkan akurasi window sliding bulanan.
 
 Diagnosis awal: bandingkan histogram tiap fitur antara train dan test/produksi. Jika histogram berbeda signifikan, Anda menghadapi shift. Uji statistik seperti Kolmogorov-Smirnov dapat memformalkan.
 
@@ -324,6 +333,12 @@ Di proyek kuliah, shift sering sengaja diperkenalkan sebagai latihan. Lab 4 akan
 ### 2.6 Etika Data dan Bias
 
 Sejauh ini kita membahas validasi data dari sudut teknis - leakage, label, pipeline, domain shift. Ada satu dimensi lagi yang sama pentingnya: dimensi etis. Data yang bersih secara teknis belum tentu bersih secara etis. Sebagai asisten riset, Anda tidak hanya bertanggung jawab pada akurasi model, tetapi juga pada dampak dari model yang Anda bangun.
+
+> [!NOTE]
+> Bagian §2.6.1 (bias dataset), §2.6.2 (fairness), dan §2.6.4 (tanggung jawab asisten) adalah **pendalaman opsional** untuk W6. Yang **wajib** dibaca dan diterapkan adalah §2.6.3 (negative results) karena terkait langsung dengan reproducibility dari W4. Dua bagian opsional dimasukkan ke `<details>` collapsible di bawah; buka kalau Anda ingin pendalaman, atau lewati di first-pass dan kembali sebelum capstone.
+
+<details>
+<summary><strong>§2.6.1 Bias Dataset (Pendalaman Opsional)</strong></summary>
 
 #### 2.6.1 Bias Dataset - Lebih dari Sekadar Imbalance
 
@@ -338,6 +353,11 @@ Ketidakseimbangan kelas bukan satu-satunya bentuk bias dalam dataset. Empat jeni
 **Historical bias.** Ketidaksetaraan yang sudah ada di dunia nyata tercermin dalam data. Contoh: dataset *resume screening* yang dilatih pada data historis perekrutan di masa lalu akan mewarisi bias gender atau ras pada keputusan perekrutan masa itu. Ini berbeda dari label bias karena *dunia nyata memang bias*, bukan pemberi label yang keliru.
 
 Keempat jenis bias tidak selalu bisa "diperbaiki" di level data. Beberapa memerlukan perubahan di level metrik evaluasi, desain model, atau bahkan keputusan untuk tidak membangun model sama sekali. Minimum yang bisa Anda lakukan: **dokumentasikan bias yang Anda sadari di audit data Anda**, di samping leakage dan label quality. Bias yang tidak diketahui akan diam-diam hidup di model dan muncul di tempat yang tidak Anda perkirakan.
+
+</details>
+
+<details>
+<summary><strong>§2.6.2 Fairness Awareness (Pendalaman Opsional)</strong></summary>
 
 #### 2.6.2 Fairness Awareness - Tiga Konsep Minimum
 
@@ -355,6 +375,8 @@ Pilihan definisi fairness bergantung pada konteks aplikasi. Tidak ada definisi y
 
 Sumber untuk pendalaman: *Fairness and Machine Learning* (Barocas, Hardt, Narayanan - gratis online) dan *Model Cards for Model Reporting* (Mitchell et al., 2019) - template satu halaman untuk mendokumentasikan bias, asumsi, dan batasan model.
 
+</details>
+
 #### 2.6.3 Negative Results sebagai Kewajiban, Bukan Opsional
 
 W4 (Reproducibility) sudah menyinggung cara menangani hipotesis yang tidak terkonfirmasi. Di sini, kita melihatnya dari sudut etika riset.
@@ -368,6 +390,9 @@ Dalam lingkup lab Anda sendiri, praktiknya sederhana:
 
 Eksperimen yang gagal dan didokumentasikan dengan jujur lebih melindungi reputasi riset Anda daripada eksperimen berhasil yang dilaporkan selektif. PI yang baik akan menaruh lebih banyak kepercayaan pada asisten yang berkata "saya sudah mencoba tiga arah, dua gagal, satu berhasil" daripada asisten yang hanya menampilkan keberhasilan.
 
+<details>
+<summary><strong>§2.6.4 Tanggung Jawab Asisten Riset (Pendalaman Opsional)</strong></summary>
+
 #### 2.6.4 Tanggung Jawab Asisten Riset
 
 Anda mungkin berpikir: "saya hanya asisten, saya menjalankan instruksi PI, tanggung jawab etis ada di PI." Ini separuh benar dan separuh berbahaya. Benar bahwa PI memegang tanggung jawab akhir. Berbahaya karena:
@@ -377,6 +402,8 @@ Anda mungkin berpikir: "saya hanya asisten, saya menjalankan instruksi PI, tangg
 - Di masa depan, *Anda* yang akan menjadi PI. Kebiasaan mempertimbangkan dimensi etis sejak menjadi asisten adalah investasi untuk saat itu.
 
 Ini bukan berarti setiap proyek harus melalui komite etik. Tetapi sebelum Anda menekan "run" pada eksperimen yang melibatkan data manusia, luangkan 5 menit untuk bertanya: "apakah data ini dikumpulkan dengan persetujuan? Apakah model ini akan merugikan kelompok tertentu? Jika hasilnya dipublikasikan, bisakah ia disalahgunakan?" Tidak semua pertanyaan bisa dijawab, tetapi bertanya adalah langkah pertama yang sering dilewatkan.
+
+</details>
 
 ---
 
@@ -595,7 +622,7 @@ Buka `template_repo/notebooks/lab_w6_temporal_leakage.ipynb`.
 2. Build causal feature pipeline: rolling features hanya dari timestep sebelum t, split temporal (80% train, 20% test chronological).
 3. Deliberately break causality: gunakan random split + rolling features tanpa guard temporal.
 4. Latih model pada kedua pipeline, bandingkan F1.
-5. Hitung dan catat "leakage inflation" = F1_leaky - F1_causal.
+5. Hitung dan catat "leakage inflation" = F1_leaky - F1_causal. **Threshold warning yang dipakai modul ini:** inflation ≥ 0.05 absolut **atau** ≥ 10% relatif terhadap F1_causal = leakage signifikan dan harus dilaporkan eksplisit. Inflation < 0.02 absolut bisa noise dari seed.
 6. Tulis satu paragraf: apa yang membuat angka leaky terlihat meyakinkan, dan mengapa tetap salah?
 
 **Deliverables:**

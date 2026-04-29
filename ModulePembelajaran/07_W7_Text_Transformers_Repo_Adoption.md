@@ -61,7 +61,13 @@ Contextual embeddings (BERT, RoBERTa, IndoBERT) menghasilkan representasi yang b
 
 ### 1.2 Tokenization: Sebelum Training Dimulai
 
-Salah satu sumber bug paling umum saat memakai pretrained model adalah perbedaan antara tokenizer model dan cara Anda memproses teks. Setiap pretrained model punya tokenizer spesifiknya sendiri; memakai tokenizer yang salah menghasilkan input yang tidak cocok dengan apa yang dilihat model saat pretraining.
+**Apa itu tokenizer?** Pretrained Transformer tidak melihat string mentah; ia melihat urutan integer (token ID). **Tokenizer** adalah fungsi yang memetakan string ke urutan integer dan sebaliknya. Tiga gaya tokenisasi utama:
+
+- **Word-level** - satu token per kata (whitespace-split). Sederhana, tetapi vocab besar dan rentan OOV (out-of-vocabulary) untuk kata baru.
+- **Character-level** - satu token per karakter. Vocab kecil, tetapi sequence sangat panjang.
+- **Subword (BPE / WordPiece / SentencePiece)** - kompromi: kata umum jadi 1 token; kata jarang dipecah jadi sub-unit. Pakai oleh BERT, GPT, IndoBERT, modern Transformer hampir semuanya. Kata "tidak" mungkin 1 token; kata "tertangkap" mungkin terpisah jadi `["ter", "tangkap"]`.
+
+Setiap pretrained model punya tokenizer spesifik (vocab + algoritma). Bug paling umum saat memakai pretrained model adalah perbedaan antara tokenizer model dan cara Anda memproses teks. Memakai tokenizer yang salah menghasilkan input yang tidak cocok dengan apa yang dilihat model saat pretraining.
 
 ```python
 from transformers import AutoTokenizer
@@ -88,9 +94,16 @@ Dua keputusan yang perlu dibandingkan:
 
 **Fine-tuned** - seluruh model (atau sebagian) dilatih bersama head. Lebih lambat, lebih fleksibel, sering lebih baik pada dataset cukup besar.
 
-**[CLS] pooling** - menggunakan token [CLS] sebagai representasi seluruh sequence. Ini yang dipakai BERT asli untuk classification.
+> [!TIP]
+> **Contoh waktu/biaya konkret (IndoBERT-base, ~110M parameter, dataset SmSA ~12k sampel, GPU T4):**
+> - **Frozen + Linear head** - training ~2-3 menit (1 epoch), val macro-F1 ~0.78-0.82. Inference ~5 ms/sample (forward pass tetap full BERT, tetapi tidak perlu backward).
+> - **Fine-tune full** - training ~15-25 menit (3 epoch), val macro-F1 ~0.85-0.89. Memori GPU ~3-4× lebih besar (perlu simpan gradient untuk semua parameter).
+> 
+> Aturan praktis: kalau dataset < 5k sampel atau Anda butuh prototype cepat, **frozen** dulu. Kalau dataset > 20k atau butuh squeeze last 3-5% performa, **fine-tune**. Antara keduanya: PEFT seperti LoRA (W8) sebagai jalan tengah.
 
-**Mean pooling** - rata-rata semua token embeddings. Sering lebih baik untuk sentence similarity tasks; comparable untuk classification.
+**[CLS] pooling** - menggunakan token `[CLS]` sebagai representasi seluruh sequence. Ini token spesial yang ditambahkan otomatis di awal setiap input oleh tokenizer BERT-family. Selama pretraining BERT, model belajar menaruh ringkasan global di posisi ini lewat next-sentence-prediction objective; itu sebabnya `[CLS]` jadi pilihan natural untuk classification head.
+
+**Mean pooling** - rata-rata embedding semua token (kecuali padding). Sering lebih robust untuk sentence similarity tasks (representasi tidak terlalu "berat sebelah" ke satu posisi), tetapi bisa kehilangan ketegasan kalau cuma sebagian token yang relevan untuk task. Untuk classification, [CLS] dan mean pool biasanya beda 1-3 poin F1; mana yang menang bergantung dataset. Lab 5b membuat 2×2 ini eksplisit supaya Anda bisa lihat sendiri pada dataset Indonesia.
 
 Lab 5b menjalankan 2×2 ini secara eksplisit:
 
@@ -174,6 +187,7 @@ Buka `notebooks/lab_w7_text_classification.ipynb`.
 - [ ] 4 kondisi trained, macro-F1 tersimpan.
 - [ ] 2×2 tabel dalam notebook.
 - [ ] Synthesis note (2 AI views atau 1 AI + 1 dokumentasi).
+- [ ] **Lab 6b (Transformer-mini, breadth)** dijalankan selesai - WAJIB untuk Breadth Check Transformer (lihat Kontrak Belajar §6 Pendahuluan dan §D5 di bab ini).
 
 ### Lab 6 - Repo Adoption Primer
 
