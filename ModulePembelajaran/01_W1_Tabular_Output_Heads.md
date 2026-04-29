@@ -74,9 +74,108 @@ Perhatikan bahwa `D_out` ditentukan oleh **tugas**, bukan oleh data:
 
 Inilah yang dimaksud "MLP sebagai shape transformer": tubuh model sama, kepala (head) berubah sesuai tugas.
 
+#### 2.1.1 Linear Layer: Mekanik dan Intuisi
+
+Bayangkan MLP sebagai pabrik kecil. Input mentah masuk lewat pintu depan; setiap layer adalah meja kerja yang mengubah bentuk barang sebelum dilewatkan ke meja berikutnya. Output keluar dari ujung pabrik.
+
+Apa sebenarnya yang dilakukan satu meja kerja `Linear(in=3, out=2)`? Secara matematis, ia mengambil vektor input 3 elemen dan mengeluarkan vektor 2 elemen lewat perkalian matriks dan penambahan bias:
+
+```
+y = W x + b
+
+W berukuran (2, 3), b berukuran (2,)
+```
+
+Contoh konkret dengan angka kecil. Anggap `W = [[1, 0, -1], [2, 1, 0]]` dan `b = [0.5, -1.0]`. Untuk input `x = [3, 4, 2]`:
+
+```
+y[0] = 1*3 + 0*4 + (-1)*2 + 0.5  = 1.5
+y[1] = 2*3 + 1*4 +   0*2 + (-1)  = 9.0
+```
+
+Jadi `Linear(3, 2)` dengan parameter di atas memetakan `[3, 4, 2]` ke `[1.5, 9.0]`. Dalam praktik, `W` dan `b` dipelajari otomatis lewat training; nilainya bukan ditebak manual.
+
+**Kenapa butuh ReLU (atau aktivasi non-linear lain)?** Stack dua `Linear` tanpa aktivasi sama dengan satu `Linear`: `W₂(W₁ x + b₁) + b₂ = (W₂ W₁) x + (W₂ b₁ + b₂)`. Walaupun lebih dalam secara struktur, kapasitas representasi tidak naik. Aktivasi non-linear menyisipkan "tekuk" di antara layer, sehingga komposisi dua layer bisa membentuk decision boundary lengkung.
+
+`ReLU(x) = max(0, x)` adalah aktivasi paling sederhana: lewatkan input positif apa adanya, ubah input negatif menjadi nol. Visualnya menyerupai patahan di titik nol:
+
+```
+ReLU(x)
+   |
+ 3 |          /
+   |         /
+ 2 |        /
+   |       /
+ 1 |      /
+   |     /
+ 0 |____/_______________ x
+  -3  -2  -1  0  1  2  3
+```
+
+Kombinasi `Linear → ReLU → Linear → ReLU → ...` adalah resep MLP standar. Kedalaman menambah kapasitas representasi, ReLU menjaga aliran gradient tetap waras lewat banyak layer.
+
+#### 2.1.2 Body dan Head: Struktur Dua Bagian
+
+Konsep "body" dan "head" memudahkan refleks ketika menghadapi tugas baru. **Body** adalah bagian model yang sama untuk semua tugas pada data ini: ekstraksi fitur generik dari input. **Head** adalah lapisan akhir yang spesifik untuk tugas: berapa output, dengan aktivasi seperti apa.
+
+```
+                  Body (shared)                      Head (per-task)
+input  ──►  Linear(F, 64) ──► ReLU ──► Linear(64, 32) ──► ReLU ──► Linear(32, D_out) ──►  output
+   (F,)                                                                    │
+                                                       D_out berubah sesuai tugas:
+                                                          regression  → 1
+                                                          binary      → 1 (logit) atau 2 (logits)
+                                                          multiclass(N) → N
+```
+
+Dalam pretrained model (W7-W8), prinsip ini muncul lebih jelas: backbone CNN/Transformer pretrained menjadi body yang di-freeze, dan hanya head kecil yang dilatih untuk task baru. Memisahkan body dan head sejak W1 memudahkan transisi ke pola adaptation tersebut.
+
 ### 2.2 Output Head + Loss Matching
 
-Tabel berikut adalah salah satu yang paling sering Anda butuhkan sepanjang bootcamp. Cetak, tempel di samping monitor.
+Setiap tugas (regression, binary, multiclass) butuh kombinasi head dan loss yang spesifik. Sebelum melihat tabel ringkasan di akhir section, kita bangun intuisi tiga pasangan utama dengan satu contoh angka kecil masing-masing.
+
+#### 2.2.1 Regression: MSE dan Jarak Kuadrat
+
+Tugas regression: prediksi angka kontinu (harga rumah, suhu besok, kadar glukosa). Output head: `Linear(D, 1)` tanpa aktivasi. Loss: **Mean Squared Error**:
+
+```
+MSE = (1/N) Σ (ŷ - y)²
+```
+
+Untuk satu sampel dengan prediksi `ŷ = 0.9` dan target `y = 1.0`, MSE per-sampel = `(0.9 - 1.0)² = 0.01`. Loss ini menghukum prediksi yang jauh secara kuadratis: prediksi yang meleset 0.5 menyumbang loss `0.25`, prediksi yang meleset 1.0 menyumbang loss `1.0` (4× lebih besar, bukan 2×). Sifat ini membuat MSE peka terhadap outlier; kalau dataset penuh outlier, **Mean Absolute Error** (`MAE = |ŷ - y|`) sering lebih stabil.
+
+#### 2.2.2 Binary Classification: BCE dan Sigmoid
+
+Tugas binary: prediksi ya/tidak, positif/negatif. Output head: `Linear(D, 1)` menghasilkan satu **logit** (angka real, bukan probabilitas). Loss: **Binary Cross-Entropy with Logits**:
+
+```
+BCE = -[y log(σ(z)) + (1 - y) log(1 - σ(z))]
+σ(z) = 1 / (1 + e^(-z))            # sigmoid: peras logit ke (0, 1)
+```
+
+**Sigmoid** memetakan logit `z = 0` ke probabilitas 0.5, `z = 2` ke ~0.88, `z = -2` ke ~0.12. Kalau target `y = 1` dan model output logit `z = 2` (yakin benar), loss kecil ≈ 0.13. Kalau target `y = 1` tetapi model output `z = -2` (yakin salah), loss besar ≈ 2.13. Inilah yang dimaksud "log menghukum yang salah-confident": penalti naik tajam saat prediksi makin yakin di sisi yang salah.
+
+PyTorch menyediakan `BCEWithLogitsLoss` yang menggabung sigmoid + log dalam satu langkah numerik stabil. Hindari `Sigmoid` lalu `BCELoss` terpisah; bisa underflow saat logit ekstrem.
+
+#### 2.2.3 Multiclass: CrossEntropy dan Softmax
+
+Tugas multiclass dengan N kelas: prediksi salah satu dari N kategori (misal: anjing/kucing/kelinci, N=3). Output head: `Linear(D, N)` menghasilkan **vektor logit** panjang N. Loss: **Cross-Entropy**:
+
+```
+CE = -log(softmax(z)[y])
+softmax(z)[i] = e^(z_i) / Σ_j e^(z_j)
+```
+
+**Softmax** memetakan vektor logit ke distribusi probabilitas (jumlahnya 1). Misal logit `z = [2.0, 1.0, 0.5]`. Softmax-nya kira-kira `[0.62, 0.23, 0.15]`. Kalau target benar adalah kelas 0, loss = `-log(0.62) ≈ 0.48`. Kalau target benar adalah kelas 2, loss = `-log(0.15) ≈ 1.90`.
+
+`CrossEntropyLoss` di PyTorch menggabung `LogSoftmax + NLLLoss` agar numerik stabil. Anda harus melempar **logit mentah**, bukan probabilitas. Kesalahan paling umum pemula: tambahkan `softmax` di akhir model lalu kirim ke `CrossEntropyLoss`. Hasilnya: gradient mengecil tidak wajar dan training tidak konvergen.
+
+> [!IMPORTANT]
+> **Logit mentah** adalah output `Linear` terakhir tanpa aktivasi. `BCEWithLogitsLoss` dan `CrossEntropyLoss` keduanya mengharapkan logit mentah; sigmoid/softmax dilakukan di dalam loss function untuk stabilitas numerik.
+
+#### 2.2.4 Tabel Ringkasan Pasangan Head-Loss
+
+Setelah memahami intuisi tiga pasangan utama di atas, tabel berikut menjadi alat referensi cepat. Cetak, tempel di samping monitor.
 
 | Tugas | Output head | Aktivasi akhir | Loss yang cocok | Bentuk target |
 |---|---|---|---|---|
@@ -86,20 +185,13 @@ Tabel berikut adalah salah satu yang paling sering Anda butuhkan sepanjang bootc
 | Multiclass (N kelas) | `Linear(D, N)` | tidak ada (logits raw) | `CrossEntropyLoss` | `int64` 0..N-1 |
 | Multilabel | `Linear(D, N)` | tidak ada (logits raw) | `BCEWithLogitsLoss` | `float` vektor 0/1 |
 
-> [!IMPORTANT]
-> Di PyTorch, `CrossEntropyLoss` **menggabungkan** softmax + negative log-likelihood. Anda harus melempar **logits mentah**, bukan output yang sudah lewat softmax. Kesalahan paling umum pemula: menambahkan `softmax` lalu memberi hasilnya ke `CrossEntropyLoss`. Hasilnya: gradient kecil yang tidak masuk akal.
+### 2.3 Backpropagation: Intuisi Tanpa Derivasi
 
-Alasan setiap pasangan masuk akal:
+MLP belajar lewat **backpropagation**: setelah loss dihitung di output, gradient dari loss terhadap setiap parameter dirambatkan **mundur** lewat chain rule, lalu optimizer (mis. AdamW) memperbarui parameter ke arah penurunan loss.
 
-- **MSE untuk regression** mengukur jarak Euclidean antara prediksi dan target. Penurunan MSE = prediksi makin dekat ke target.
-- **BCEWithLogits** menerapkan sigmoid + log-likelihood Bernoulli; turunannya rapi terhadap logit.
-- **CrossEntropy untuk multiclass** generalisasi ke N kelas; secara matematis identik dengan negative log-likelihood pada distribusi categorical.
+Bayangkan jaringan sebagai rantai operasi: `x → Linear₁ → ReLU₁ → Linear₂ → ReLU₂ → Linear₃ → loss`. Saat `loss.backward()` dipanggil, PyTorch berjalan mundur lewat rantai ini, menghitung kontribusi setiap parameter terhadap loss lewat chain rule (rantai turunan; lihat §0.5.4 di [00_Pendahuluan.md](00_Pendahuluan.md)). Setiap layer "tahu" turunan operasinya sendiri; library autograd menggabungnya menjadi gradient utuh untuk seluruh model. Setelah gradient siap, `optimizer.step()` menggeser parameter sebagian kecil ke arah `-gradient` (penurunan loss).
 
-### 2.3 Backpropagation, Disebutkan Bukan Diturunkan
-
-MLP belajar lewat **backpropagation**: setelah loss dihitung, gradient dari loss terhadap setiap parameter dirambatkan mundur via chain rule, lalu optimizer (mis. AdamW) memperbarui parameter ke arah penurunan loss.
-
-Di W1, ini sudah cukup sebagai gambaran. Anda **tidak perlu** menurunkan chain rule manual minggu ini. Derivasi 7-langkah yang ketat tersedia di [Lampiran A.1](14_Lampiran.md#a1-backpropagation-derivasi-manual) untuk dibaca setelah Anda sudah punya intuisi training dari beberapa run sukses. Lab 1c (MLP numpy from-scratch) juga tersedia sebagai breadth lab opsional kapan saja.
+Itu sudah cukup sebagai gambaran W1. Anda **tidak perlu** menurunkan chain rule manual minggu ini. Derivasi 7-langkah yang ketat (`MSE loss + sigmoid` pada dua-layer MLP) tersedia di [Lampiran A.1](14_Lampiran.md#a1-backpropagation-derivasi-manual) untuk dibaca setelah Anda sudah punya intuisi training dari beberapa run sukses. Lab 1c (MLP numpy from-scratch) juga tersedia sebagai breadth lab opsional kapan saja, dan menurunkan backprop secara konkret pada MNIST.
 
 > [!NOTE]
 > Modul lama menempatkan derivasi backprop di awal, sebelum lab pertama. Revisi ini menggesernya ke appendix karena banyak trainee mengalami density terlalu cepat. Jika Anda sudah merasa nyaman dengan kalkulus chain rule, baca Lampiran A.1 paralel dengan W1; jika belum, biarkan dulu, dan kembali setelah W3 ketika Anda sudah punya beberapa loss curve untuk diinterpretasi.
@@ -114,6 +206,43 @@ Sebelum menjalankan training, Anda harus memahami ritme data:
 4. **Split train/val/test.** `train` melatih parameter; `val` digunakan untuk *early stopping* dan tuning hyperparameter; `test` hanya disentuh sekali di akhir untuk angka final.
 
 Aturan paling penting: **statistik preprocessing (mean, std) dihitung dari train saja**, lalu diterapkan ke val dan test. Tidak boleh sebaliknya. Pelanggaran aturan ini disebut *preprocessing leakage* dan akan dibahas mendalam di W6.
+
+### 2.5 Snippet PyTorch End-to-End
+
+Sebelum Anda buka notebook lab dan menemui kode lengkap dengan utilitas dan logging, lihat dulu pola minimum training MLP di PyTorch dalam ~15 baris. Ini bukan kode siap-jalankan untuk Lab 0, melainkan peta yang menggabungkan semua konsep §2.1-§2.4 dalam satu pandangan.
+
+```python
+import torch
+import torch.nn as nn
+
+# Body + head MLP untuk multiclass 3 kelas (lihat §2.1.2)
+model = nn.Sequential(
+    nn.Linear(10, 64), nn.ReLU(),     # body layer 1: 10 fitur -> 64 hidden
+    nn.Linear(64, 32), nn.ReLU(),     # body layer 2: 64 -> 32 hidden
+    nn.Linear(32, 3),                 # head: 32 -> 3 logit
+)
+
+criterion = nn.CrossEntropyLoss()                   # logit mentah, target int (lihat §2.2.3)
+optimizer = torch.optim.AdamW(model.parameters(), lr=3e-4)
+
+for epoch in range(10):
+    for x, y in train_loader:                       # x: (B, 10) float, y: (B,) int64
+        logits = model(x)                           # forward: (B, 3)
+        loss = criterion(logits, y)                 # skalar
+        optimizer.zero_grad()                       # reset gradient lama
+        loss.backward()                             # chain rule mundur (§2.3)
+        optimizer.step()                            # geser parameter
+```
+
+Lima baris kunci yang perlu Anda kenali setiap kali melihat kode training PyTorch:
+
+1. **`logits = model(x)`** - forward pass; shape input `(B, F)`, shape output sesuai tugas.
+2. **`loss = criterion(logits, y)`** - hitung loss; perhatikan target shape harus cocok loss yang dipakai (lihat tabel §2.2.4).
+3. **`optimizer.zero_grad()`** - tanpa ini, gradient batch sebelumnya menumpuk dan training kacau.
+4. **`loss.backward()`** - autograd jalan mundur, isi `.grad` di setiap parameter.
+5. **`optimizer.step()`** - update parameter pakai gradient yang baru dihitung.
+
+Lima baris di atas adalah pola yang berulang sepanjang modul, dari W1 (tabular) sampai W11 (capstone). Apa yang berubah hanyalah definisi `model`, pilihan `criterion`, dan bagaimana `train_loader` dibangun.
 
 ---
 

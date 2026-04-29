@@ -66,6 +66,58 @@ Poinnya: setiap keluarga arsitektur dibangun dengan *asumsi tertentu* tentang be
 
 ---
 
+## 1.5 Citra sebagai Tensor: dari Pixel ke 4D
+
+Sebelum membahas CNN dan smoke test, kita pastikan dulu pintu masuk: bagaimana sebenarnya satu foto berubah menjadi tensor yang bisa diterima `nn.Conv2d`?
+
+### 1.5.1 Pixel sebagai Angka
+
+Sebuah foto grayscale 4×4 hanyalah matriks 4×4 dengan nilai pixel `0..255` (atau `0..1` setelah dinormalkan ke float). Misal foto berikut menyimpan sebuah pola gelap kecil di tengah latar terang:
+
+```
+255 255 255 255
+255 200  50 255
+255  50 200 255
+255 255 255 255
+```
+
+Tensor representasinya: `(H, W) = (4, 4)`. Sumbu pertama adalah baris (tinggi), sumbu kedua adalah kolom (lebar).
+
+### 1.5.2 RGB: Tiga Channel yang Ditumpuk
+
+Foto berwarna sebenarnya adalah **tiga foto grayscale yang ditumpuk**: satu untuk channel merah (R), satu hijau (G), satu biru (B). Setiap channel adalah matriks `H×W` independen. Saat ditumpuk, shape menjadi `(C, H, W)` dengan `C = 3`.
+
+```
+  R-channel        G-channel        B-channel
+  4×4 angka        4×4 angka        4×4 angka
+       │                │                │
+       └────────────────┴────────────────┘
+                        ▼
+              tumpuk jadi (3, 4, 4)
+```
+
+PyTorch memakai konvensi **channel-first**: channel adalah sumbu pertama setelah batch. Beberapa library lain (TensorFlow Keras default) memakai channel-last `(H, W, C)`. Saat porting kode antar library, periksa konvensi terlebih dahulu.
+
+### 1.5.3 Batch: Banyak Gambar Sekaligus
+
+Training tidak memproses satu foto per langkah. Sekumpulan foto sebanyak `B` digabung dalam satu **batch**, sehingga tensor input ke model berbentuk:
+
+```
+(B, C, H, W)
+ │  │  │  │
+ │  │  │  └── lebar gambar
+ │  │  └───── tinggi gambar
+ │  └──────── jumlah channel (RGB → 3, grayscale → 1)
+ └─────────── jumlah gambar dalam batch
+```
+
+Contoh konkret CIFAR-10: 32 foto RGB 32×32 dalam satu batch berbentuk `(32, 3, 32, 32)`. Inilah notasi yang muncul di seluruh bab W2 dan W3.
+
+> [!TIP]
+> Kalau Anda lupa urutan sumbu, panggil `print(x.shape)` setelah `next(iter(loader))`. Tensor dengan empat angka di shape adalah 4D dengan urutan `(B, C, H, W)` di PyTorch.
+
+---
+
 ## 2. Konsep Inti
 
 ### 2.1 Peta Besar: Tensor Masuk, Tensor Keluar
@@ -104,6 +156,14 @@ Dua fenomena penting yang sering disebut paper:
 > Derivasi 7-langkah chain rule untuk MLP (MSE loss + sigmoid) tersedia lengkap di [Lampiran A.1](14_Lampiran.md#a1-backpropagation-derivasi-manual). Bacanya setelah W3 ketika Anda sudah punya beberapa run sukses untuk diinterpretasi. Lab 1c (MLP numpy from-scratch) tersedia sebagai breadth lab opsional dan menurunkan backprop secara konkret pada MNIST.
 
 ### 2.3 Three-Level Smoke Test Ritual
+
+Tiga level smoke test bukan ritual yang dibuat-buat; mereka memetakan **tiga jenis bug paling sering** di pipeline deep learning, dari yang paling murah dideteksi ke yang paling mahal:
+
+1. **Typo / import / path error** - terdeteksi di Level 1 (`import model`). Tidak butuh dataset, tidak butuh forward pass.
+2. **Shape mismatch antar layer** - terdeteksi di Level 2 (dummy forward dengan tensor random). Butuh model dimuat tetapi tidak butuh data nyata.
+3. **Algoritma rusak** (gradient mati, loss tidak turun, target salah-bentuk) - terdeteksi di Level 3 (overfit one batch). Butuh data nyata tetapi hanya 4-8 sampel.
+
+Setiap level lebih mahal dari yang sebelumnya, dan setiap level menangkap kelas bug yang berbeda. Jangan lompat ke Level 3 sebelum Level 1 dan 2 lulus, dan jangan mulai training 30 epoch sebelum Level 3 lulus.
 
 Sebelum training berjam-jam, jalankan tiga tes ini berurutan. Jika satu tes gagal, hentikan dan perbaiki sebelum lanjut.
 
@@ -145,6 +205,89 @@ Sebelum mendalami arsitektur, lihat empat run nyata dan tanyakan diri sendiri: *
 
 Jangan baca jawabannya dulu. Tuliskan hipotesis Anda untuk setiap run dalam satu kalimat. Kita akan kembali ke empat run ini di W3 dengan kerangka diagnosis yang lengkap.
 
+### 2.5 Conv2d: Intuisi Sebelum Kode
+
+`nn.Conv2d` adalah komponen utama CNN. Sebelum melihat parameter di kode SimpleCNN nanti, kita pahami dulu apa yang ia lakukan secara mekanis.
+
+#### 2.5.1 Filter yang Geser
+
+Bayangkan satu **filter** (juga disebut **kernel**) kecil 3×3 berisi 9 angka bobot. Filter ini ditempel di pojok kiri-atas image, dikalikan element-wise dengan 3×3 patch image di bawahnya, lalu dijumlahkan. Hasilnya: satu angka di output.
+
+Kemudian filter digeser satu pixel ke kanan, operasi yang sama diulang, hasilnya angka berikutnya. Geser terus sampai ke sudut kanan-bawah. Hasil keseluruhan adalah **feature map** baru.
+
+```
+Image 5×5 (1 channel):           Filter 3×3:
+                                    ┌─────────┐
+ 1  2  3  4  5                      │ 1  0  -1│
+ 6  7  8  9 10                      │ 1  0  -1│
+11 12 13 14 15                      │ 1  0  -1│
+16 17 18 19 20                      └─────────┘
+21 22 23 24 25
+
+Filter di posisi (0,0) - ambil patch 3×3 kiri-atas:
+  patch  = [[ 1, 2, 3], [ 6, 7, 8], [11, 12, 13]]
+  output[0,0] = 1*1 + 2*0 + 3*(-1)
+              + 6*1 + 7*0 + 8*(-1)
+              + 11*1 + 12*0 + 13*(-1)
+              = -6
+
+Filter geser ke kanan satu pixel, ulangi. Total 3×3 = 9 posisi → output 3×3.
+```
+
+Filter di atas adalah **detektor tepi vertikal sederhana**: ia menjadi besar di lokasi yang berisi transisi terang-ke-gelap dari kiri ke kanan. Dalam praktik, bobot filter dipelajari otomatis lewat training; CNN belajar filter apa yang berguna untuk task-nya.
+
+#### 2.5.2 Kernel, Stride, Padding
+
+Tiga parameter utama `Conv2d`:
+
+- **Kernel size** - ukuran filter. 3×3 paling umum. Kernel 1×1 = projection per-pixel; kernel 7×7 = receptive field besar tapi parameter banyak.
+- **Stride** - berapa pixel filter geser setiap langkah. `stride=1` (default) menggeser satu pixel; `stride=2` menggeser dua pixel sehingga output setengah lebih kecil di tiap dimensi spasial.
+- **Padding** - berapa baris/kolom nol ditambahkan di tepi image sebelum konvolusi. `padding=1` menambah satu lapisan nol di setiap sisi; tanpa padding, output mengecil setiap layer.
+
+#### 2.5.3 Rumus Output Shape
+
+Untuk input dengan dimensi spasial `in`, kernel `k`, padding `p`, stride `s`, dimensi output:
+
+```
+out = (in - k + 2*p) / s + 1
+```
+
+Derivasi singkat: dari `in` pixel (ditambah padding `p` di kiri dan kanan jadi total `in + 2p`), filter butuh ruang sebesar `k` untuk berdiri. Jadi posisi awal filter ada `(in + 2p - k)` slot. Filter geser `s` per langkah, jadi jumlah langkah = `(in + 2p - k) / s`, plus posisi awal = `+ 1`.
+
+Contoh praktis dari SimpleCNN di §3.1:
+
+```
+Conv2d(3, 32, kernel_size=3, padding=1) pada input (B, 3, 32, 32):
+  out = (32 - 3 + 2*1)/1 + 1 = 32          # padding=1 mempertahankan dimensi spasial
+
+MaxPool2d(2) pada input (B, 32, 32, 32):
+  out = (32 - 2 + 0)/2 + 1 = 16            # stride=2 setengahkan
+```
+
+Hafalkan rumus ini. Saat debug shape mismatch (Level 2 smoke test), ini adalah alat pertama Anda.
+
+#### 2.5.4 Receptive Field
+
+Satu pixel di feature map output **tidak hanya melihat satu pixel input**. Ia melihat patch input seukuran kernel. Saat layer Conv2d ditumpuk, satu pixel di feature map dalam melihat patch yang lebih besar di input asli, karena setiap layer mengakumulasi area yang dilihatnya.
+
+```
+Input image (12×12)
+       │
+       ▼ Conv 3×3, padding=1
+Layer 1 feature map (12×12)
+   satu pixel L1 melihat 3×3 patch di input
+       │
+       ▼ Conv 3×3, padding=1
+Layer 2 feature map (12×12)
+   satu pixel L2 melihat 3×3 patch di L1
+   = 5×5 patch di input asli
+```
+
+Ukuran area input yang dilihat satu pixel di feature map disebut **receptive field**. Di layer akhir CNN dalam, receptive field bisa mencakup sebagian besar atau seluruh image - itulah cara CNN menangkap pola besar dari operasi-operasi lokal kecil.
+
+> [!NOTE]
+> Receptive field tumbuh kira-kira `1 + L*(k-1)` untuk `L` layer Conv `k×k` tanpa pooling, dan tumbuh berlipat saat ada pooling. Detail rumus tersedia di paper [*A guide to convolution arithmetic*](https://arxiv.org/abs/1603.07285) (Dumoulin & Visin, 2016).
+
 ### 2.6 Arsitektur sebagai Asumsi tentang Data
 
 Empat keluarga yang paling sering muncul di paper dan repositori riset.
@@ -167,8 +310,16 @@ Setiap layer adalah *fungsi* yang mengubah representasi data menjadi bentuk yang
 
 **Inisialisasi bobot: titik awal yang sering diabaikan.** Memilih nol atau nilai terlalu besar menghancurkan sinyal gradient sejak iterasi pertama.
 
-- **Kaiming (He) initialization** - untuk layer dengan aktivasi ReLU: σ² = 2/fan\_in. PyTorch menerapkannya otomatis untuk `nn.Conv2d` dan `nn.Linear`.
-- **Xavier (Glorot) initialization** - untuk aktivasi simetris (Tanh, Sigmoid): σ² = 2/(fan\_in + fan\_out). Sering dipakai di Transformer.
+Sebelum membahas dua skema standar, perjelas notasinya:
+
+- **σ** (sigma) adalah standar deviasi distribusi bobot saat diinisialisasi. Bobot diambil dari `Normal(mean=0, std=σ)`.
+- **fan_in** adalah jumlah input ke satu neuron. Untuk `Linear(64, 32)`, fan_in dari layer ini = 64. Untuk `Conv2d(C_in=32, C_out=64, kernel=3)`, fan_in = `32 * 3 * 3 = 288`.
+- **fan_out** adalah jumlah output dari satu neuron, kebalikannya.
+
+Dua skema utama:
+
+- **Kaiming (He) initialization** - untuk layer dengan aktivasi ReLU: `σ² = 2/fan_in`, jadi `σ = sqrt(2/fan_in)`. Kenapa angka 2? Karena ReLU mematikan kira-kira separuh aktivasi (yang negatif menjadi 0), variansi sinyal di output layer menyusut menjadi separuh. Mengompensasi dengan faktor 2 di variansi inisialisasi menjaga aliran sinyal stabil lewat banyak layer ReLU. PyTorch menerapkannya otomatis untuk `nn.Conv2d` dan `nn.Linear`.
+- **Xavier (Glorot) initialization** - untuk aktivasi simetris (Tanh, Sigmoid): `σ² = 2/(fan_in + fan_out)`. Sering dipakai di Transformer (yang banyak memakai LayerNorm + GELU).
 
 Anda jarang perlu menginisialisasi sendiri. Tapi ketika mendefinisikan layer kustom atau mendebug model yang tidak mau belajar dari epoch pertama, ini relevan:
 
@@ -192,6 +343,10 @@ model.apply(init_weights)
 
 BN menghitung statistik dari seluruh batch; batch kecil membuat statistik bising dan training tidak stabil. Itulah alasan Transformer yang dilatih dengan batch kecil hampir selalu memakai LayerNorm. Alasan lebih dalam: setiap token harus punya normalisasi yang tidak bergantung token lain di batch - LayerNorm memberi jaminan ini, BN tidak.
 
+**Contoh konkret BatchNorm.** Anggap satu batch berisi 32 image, output dari Conv2d adalah `(32, 64, 16, 16)` (32 image × 64 channel × 16×16 spasial). `BatchNorm2d(64)` hitung mean dari semua nilai di sumbu `(N=32, H=16, W=16)` untuk **channel 1**, lalu untuk **channel 2**, dan seterusnya sampai channel 64. Hasil: 64 mean dan 64 std (satu pasang per channel). Setiap aktivasi lalu dinormalkan: `(x - mean_channel) / sqrt(var_channel + ε)`, kemudian diskalakan dengan parameter `γ` dan digeser dengan `β` yang dipelajari.
+
+Ini berbeda dengan LayerNorm yang menormalkan **per sampel di sumbu fitur**: untuk satu image, hitung mean dari semua nilai `(C, H, W)` lalu normalkan. LayerNorm tidak butuh batch besar karena tidak mengagregasi lintas sampel.
+
 ![BatchNorm, LayerNorm, dan GroupNorm - perbedaan sumbu normalisasi pada tensor (N, C, H, W)](./figures/fig01f_normalization.svg)
 
 **Aktivasi: ReLU, GELU, SiLU.**
@@ -203,6 +358,16 @@ BN menghitung statistik dari seluruh batch; batch kecil membuat statistik bising
 Aturan praktisnya: pakai default yang disebut paper yang Anda replikasi. Mengganti aktivasi tanpa alasan kuat adalah variabel tambahan yang harus dijelaskan di laporan.
 
 ![Kurva fungsi aktivasi ReLU, GELU, dan SiLU pada rentang [-3, 3]](./figures/fig01e_activation_functions.svg)
+
+### 2.8 Augmentation, Dropout, dan Regularization: Kosakata Sebelum Kode
+
+Saat membaca kode SimpleCNN di §3, Anda akan menjumpai tiga istilah ini dipakai tanpa penjelasan. Kita definisikan dulu di sini supaya kode tidak terasa magis.
+
+**Augmentation.** Transformasi acak yang diterapkan **hanya pada batch training** untuk memperluas variasi data. Contoh: `RandomCrop` (potong area acak), `RandomHorizontalFlip` (balik kiri-kanan dengan probabilitas 0.5), `ColorJitter` (ganggu hue/brightness). Tujuan: model belajar fitur yang invarian terhadap transformasi yang masuk akal di dunia nyata. Augmentasi tidak diterapkan di val/test; di sana kita ingin evaluasi pada data apa adanya.
+
+**Dropout.** Layer `nn.Dropout(p)` secara acak menonaktifkan fraksi `p` aktivasi di setiap forward pass saat training (mis. `p=0.3` mematikan 30% neuron). Saat evaluasi (`model.eval()`), dropout otomatis nonaktif. Mengapa berguna? Memaksa model tidak bergantung pada satu jalur jaringan tertentu, sehingga setiap subjaringan kompeten sendiri. Efeknya mirip ensembling banyak model kecil dalam satu model besar.
+
+**Regularization.** Istilah payung untuk segala teknik yang mengurangi overfitting. Termasuk: dropout, augmentation, weight decay (penalti L2 pada bobot di update optimizer), early stopping, dan label smoothing. Teknik-teknik ini paling sering dipakai bersamaan, bukan satu per satu. Rentang efektif (mis. dropout 0.1-0.5, weight decay 1e-5 sampai 1e-3) bergantung pada arsitektur dan ukuran dataset; aturan praktisnya: mulai dari default di paper yang Anda replikasi, lalu sesuaikan kalau ada bukti overfitting (`train acc >> val acc`).
 
 ---
 
@@ -274,6 +439,8 @@ optimizer = torch.optim.AdamW(model.parameters(), lr=3e-4, weight_decay=1e-4)
 ```
 
 Augmentasi hanya pada training set; normalisasi dengan statistik CIFAR-10 yang sama di val/test; batch size 128 cukup stabil untuk BatchNorm; `device` otomatis agar kode jalan di laptop dan server.
+
+**Mengapa angka spesifik di `Normalize`?** Tuple `(0.4914, 0.4822, 0.4465)` adalah **mean per-channel CIFAR-10** (red, green, blue), dihitung sekali dari training set; tuple `(0.2470, 0.2435, 0.2616)` adalah **std per-channel**. Dengan menormalkan input ke zero-mean unit-variance per channel, optimizer punya landscape yang lebih simetris dan konvergen lebih cepat. Setiap dataset baru perlu menghitung statistik sendiri; jangan pakai angka CIFAR-10 untuk PathMNIST atau ImageNet.
 
 ---
 

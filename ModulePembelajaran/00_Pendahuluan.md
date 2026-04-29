@@ -32,7 +32,120 @@
 
 ## 0. Peta Bab
 
-Modul ini adalah **bootcamp 11 minggu + capstone 3 minggu**. Bab ini memperkenalkan target outcome bootcamp, sembilan kompetensi yang dilatih sepanjang modul, empat sikap riset yang menjalin keseluruhan modul, tiga thread lintas minggu yang menjaga koherensi, ritme sesi mingguan, dan kontrak belajar yang disepakati sebelum melangkah ke materi teknis. Setelah menyelesaikan bab ini, Anda mengerti *mengapa* modul ini ada, *bagaimana* cara terbaik membacanya, dan *apa target realistis* di akhir bootcamp.
+Modul ini adalah **bootcamp 11 minggu + capstone 3 minggu**. Bab ini memperkenalkan bahasa dan bekal minimum modul, mini-glosarium istilah inti, target outcome bootcamp, sembilan kompetensi yang dilatih sepanjang modul, empat sikap riset yang menjalin keseluruhan modul, tiga thread lintas minggu yang menjaga koherensi, ritme sesi mingguan, dan kontrak belajar yang disepakati sebelum melangkah ke materi teknis. Setelah menyelesaikan bab ini, Anda mengerti *mengapa* modul ini ada, *bagaimana* cara terbaik membacanya, dan *apa target realistis* di akhir bootcamp.
+
+---
+
+## 0.5 Sebelum Mulai: Bahasa dan Bekal Modul Ini
+
+Modul ini menulis tensor shape, istilah teknis, dan rumus matematis dengan asumsi minimum. Tetapi minimum bukan berarti nol. Sebelum membuka W1, luangkan 20 menit membaca bagian ini supaya istilah-istilah seperti `(F,)`, `(C, H, W)`, "loss", dan "gradient" tidak muncul tiba-tiba di halaman berikutnya.
+
+> [!TIP]
+> Jika Anda sudah terbiasa dengan PyTorch, NumPy, dan kalkulus dasar, lompat ke §0.5.6 (mini-glossary) untuk skim cepat dan lanjut ke §1. Subbagian §0.5.1-§0.5.5 ditujukan untuk pemula yang baru kali pertama menyentuh deep learning.
+
+### 0.5.1 Shape Tensor: Cara Membaca Tuple
+
+"Shape" sebuah tensor adalah daftar berapa banyak elemen di tiap sumbu, ditulis sebagai tuple Python:
+
+| Tuple shape | Arti | Contoh data |
+| --- | --- | --- |
+| `(3,)` | satu sumbu, 3 elemen | satu vektor `[a, b, c]` |
+| `(3, 4)` | dua sumbu, 3 baris × 4 kolom | matriks 3×4 |
+| `(3, 4, 5)` | tiga sumbu | "kubus" 3×4×5 |
+| `(B, F)` | B sampel, masing-masing F fitur | satu batch tabular |
+| `(B, C, H, W)` | B gambar, C channel, tinggi H, lebar W | satu batch citra |
+
+**Koma trailing.** `(3,)` dengan koma di belakang adalah tuple dengan satu elemen; `(3)` tanpa koma adalah angka biasa di Python. Karena shape selalu tuple, koma trailing wajib saat tensor hanya punya satu sumbu.
+
+```python
+import numpy as np
+np.array([1, 2, 3]).shape       # (3,)   - satu sumbu, tiga elemen
+np.array([[1, 2, 3]]).shape     # (1, 3) - dua sumbu, satu baris tiga kolom
+```
+
+### 0.5.2 Konvensi Huruf di Modul
+
+Modul memakai huruf-huruf berikut secara konsisten. Hafalkan sekali; semua bab pakai yang sama.
+
+| Huruf | Singkatan dari | Contoh konteks |
+| --- | --- | --- |
+| `N` | jumlah kelas (number of classes) atau jumlah sampel sesuai konteks | klasifikasi 10 kelas → output `(N,)` dengan N=10 |
+| `F` | jumlah fitur (features) | data tabular 5 kolom → input `(F,)` dengan F=5 |
+| `B` | ukuran batch (batch size) | 32 sampel sekaligus → batch `(B, F)` dengan B=32 |
+| `C` | jumlah channel (channels) | RGB → C=3, grayscale → C=1 |
+| `H`, `W` | tinggi (height) dan lebar (width) gambar | foto 224×224 → H=W=224 |
+| `T` | panjang sequence atau timestep | kalimat 50 token → T=50 |
+
+### 0.5.3 Arti Panah `->` di Shape Map
+
+Setiap kali modul menulis `(F,) -> (1,)` atau `(C, H, W) -> (N,)`, panah `->` berarti **"dari shape A menjadi shape B lewat satu model atau operasi"**. Bukan shape sebelum dan sesudah satu layer, tetapi shape input dan shape output keseluruhan model.
+
+Contoh konkret:
+
+- `(F,) -> (1,)` artinya: **input** vektor F fitur, **output** satu skalar (mis. prediksi harga rumah).
+- `(C, H, W) -> (N,)` artinya: **input** satu gambar, **output** vektor logit/probabilitas N kelas.
+- Data tabular 100 baris × 5 kolom dalam memori berbentuk `(100, 5)`. Satu sampel saja berbentuk `(5,)`. Batch 32 sampel berbentuk `(32, 5)`.
+
+### 0.5.4 Kalkulus Mini: Turunan dan Chain Rule
+
+Anda tidak perlu menguasai kalkulus untuk memulai. Yang dibutuhkan hanya dua intuisi.
+
+**Turunan = kemiringan.** Turunan fungsi `f(x)` di titik `x = a` mengukur seberapa cepat `f` berubah saat `x` digeser sedikit di sekitar `a`. Notasi: `df/dx`. Kalau `f(x) = x²`, maka `df/dx = 2x`. Di `x = 3`, turunan = 6, artinya saat `x` bergeser dari 3 ke 3.01, `f` bergeser kira-kira `6 × 0.01 = 0.06`.
+
+**Chain rule = rantai turunan.** Kalau `y = f(g(x))`, maka turunannya `dy/dx = f'(g(x)) · g'(x)`. Bayangkan dua roda gigi: kalau roda dalam berputar 2× lebih cepat dari input, dan roda luar 3× lebih cepat dari roda dalam, total roda luar 6× lebih cepat dari input.
+
+Inilah yang dilakukan **backpropagation**: rantai panjang turunan dari loss ke setiap parameter, dirambatkan mundur lewat chain rule. Detail derivasi 7-langkah ada di [Lampiran A.1](14_Lampiran.md#a1-backpropagation-derivasi-manual). Untuk W1-W2, intuisi "rantai turunan" sudah cukup.
+
+### 0.5.5 PyTorch Tensor: Primer 3 Menit
+
+PyTorch adalah library deep learning yang dipakai sepanjang modul. Konsep paling dasar: **tensor** = array multi-dimensi dengan dukungan GPU dan autograd.
+
+```python
+import torch
+
+x = torch.tensor([1.0, 2.0, 3.0])
+x.shape          # torch.Size([3])  - sama dengan tuple (3,)
+x.dtype          # torch.float32
+x.float()        # konversi ke float32 (jika belum)
+x.to('cuda')     # pindahkan ke GPU jika tersedia
+```
+
+Tiga hal yang akan Anda lakukan terus-menerus:
+
+1. **Memeriksa shape.** `print(x.shape)` adalah debug pertama saat training error.
+2. **Memindahkan ke device.** `model.to(device)` dan `x.to(device)` agar perhitungan berjalan di GPU/CPU yang konsisten.
+3. **Memanggil `.backward()`.** Setelah `loss = criterion(model(x), y)`, panggilan `loss.backward()` menghitung semua gradient otomatis lewat chain rule.
+
+Broadcasting (PyTorch dan NumPy) secara singkat: jika dua tensor punya shape yang kompatibel, operasi seperti `a + b` memperluas tensor kecil agar cocok dengan tensor besar tanpa menyalin memori. Aturan kompatibilitas: dua sumbu kompatibel jika ukurannya sama atau salah satu sama dengan 1.
+
+> [!TIP]
+> Resource eksternal yang ringan: [NumPy quickstart](https://numpy.org/doc/stable/user/quickstart.html) (10 menit), [PyTorch 60-min Blitz](https://pytorch.org/tutorials/beginner/deep_learning_60min_blitz.html) (panduan resmi). Tidak wajib sebelum W1, tetapi keduanya akan mempercepat W2-W3 jika Anda baru kali pertama pakai keduanya.
+
+### 0.5.6 Mini-Glossary: 19 Istilah yang Akan Sering Muncul
+
+Daftar ini bukan untuk dihafalkan, tetapi untuk di-skim sekali sehingga ketika istilah-istilah ini muncul di W1+ Anda tidak terjebak. Definisi penuh dengan contoh dan catatan ada di [Lampiran 14](14_Lampiran.md).
+
+| Istilah | Arti singkat |
+| --- | --- |
+| **loss** | angka yang mengukur seberapa salah prediksi model; semakin kecil, semakin baik |
+| **gradient** | turunan loss terhadap parameter; menunjuk arah penurunan loss |
+| **optimizer** | algoritma yang memakai gradient untuk memperbarui parameter (mis. SGD, Adam, AdamW) |
+| **baseline** | model atau hasil sederhana sebagai titik banding sebelum klaim peningkatan |
+| **freeze** | mengunci sebagian bobot agar tidak ikut dilatih; biasanya pretrained backbone |
+| **fine-tune** | melatih lanjutan pretrained model pada data baru, biasanya dengan learning rate kecil |
+| **ablation** | eksperimen yang sengaja menghilangkan satu komponen untuk melihat kontribusinya |
+| **leakage** | informasi test atau masa depan yang bocor ke training; menyebabkan akurasi palsu tinggi |
+| **pre-registration** | pernyataan hipotesis dan protokol eksperimen yang ditulis sebelum eksperimen dijalankan |
+| **hyperparameter** | parameter yang Anda set manual sebelum training (mis. learning rate, batch size); tidak dipelajari otomatis |
+| **overfitting** | model menghafal data training, gagal generalisasi ke data baru |
+| **epoch** | satu lewatan penuh atas seluruh dataset training |
+| **batch** | sub-grup kecil dari dataset yang diproses sekaligus dalam satu langkah training |
+| **seed** | angka acak yang dikunci agar hasil bisa direproduksi |
+| **checkpoint** | file yang menyimpan bobot model dan state optimizer di titik tertentu |
+| **augmentation** | transformasi data training (rotasi, crop, dll.) untuk memperluas variasi |
+| **dropout** | teknik regularisasi: secara acak menonaktifkan sebagian neuron tiap forward saat training |
+| **batch norm** | layer yang menormalisasi aktivasi per-batch agar distribusi stabil |
+| **regularization** | teknik untuk mencegah overfitting (mis. dropout, weight decay, augmentation) |
 
 ---
 
@@ -40,11 +153,14 @@ Modul ini adalah **bootcamp 11 minggu + capstone 3 minggu**. Bab ini memperkenal
 
 Bayangkan Anda baru bergabung di laboratorium riset sebagai asisten. Pada hari ketiga, Anda menerima pesan singkat:
 
-> "Tolong coba ubah loss-nya jadi focal, lalu freeze conv1 pada backbone. Bandingkan dengan baseline. Saya butuh hasilnya hari Kamis."
+> "Tolong train model klasifikasi gambar ini, laporkan akurasinya hari Kamis. Bagaimana cara memastikan hasilnya bisa dipercaya?"
 
-Di layar Anda terbuka repo dengan tiga puluh file Python, README satu paragraf, dan sebuah paper yang belum sempat dibaca. *Focal loss* yang mana? `conv1` merujuk ke layer mana? "Bandingkan" pada metrik apa? Bagaimana menjamin dua run tidak berbeda karena seed?
+Email ini terdengar sederhana, tetapi setiap fragmen memuat keputusan: dataset yang mana, "akurasi" pada split mana, bagaimana memastikan dua run tidak berbeda hanya karena seed acak, dan kapan angka layak dilaporkan.
 
 Setiap pertanyaan itu mengacu pada kompetensi berbeda. Modul ini membangun kompetensi-kompetensi tersebut secara sistematis, sehingga email semacam itu menjadi titik awal eksperimen yang terstruktur, bukan sumber kepanikan.
+
+> [!NOTE]
+> Versi yang lebih jargon-heavy dari email ini, *"ubah loss jadi focal, freeze conv1 pada backbone, bandingkan dengan baseline"*, justru menjadi pintu masuk W3 ketika Anda sudah punya bekal untuk membongkar setiap istilahnya. Untuk sekarang, email sederhana di atas sudah cukup memicu pertanyaan-pertanyaan inti.
 
 ---
 
@@ -99,6 +215,9 @@ Email pembuka di atas menyentuh sembilan kompetensi yang menjadi tulang punggung
 
 Anda tidak perlu menguasai kesembilan kompetensi di minggu pertama. Modul dirancang sebagai tangga: setiap minggu mengandalkan kebiasaan yang dibangun di minggu sebelumnya.
 
+> [!TIP]
+> Urutan tangga ini disengaja. Anda akan menyentuh **kompetensi 1-3 di W1-W4**, kompetensi 4 di W6, kompetensi 5-7 di W7-W8, dan kompetensi 8-9 di W9-W11. Jangan khawatir kalau kompetensi 4-9 belum kebayang sekarang. Bahkan dosen pun mengasah kompetensi 9 (berkembang mandiri) sepanjang karier.
+
 ---
 
 ## 4. Empat Sikap Riset
@@ -143,21 +262,21 @@ Peta ini tumbuh setiap minggu sehingga Anda perlahan melihat deep learning sebag
 
 ### 5.2 Research Practice Ladder
 
-Setiap minggu memperkenalkan satu kebiasaan riset yang tetap aktif setelahnya. Bootcamp terasa kumulatif, bukan reset setiap Senin.
+Setiap minggu memperkenalkan satu kebiasaan riset yang tetap aktif setelahnya. Bootcamp terasa kumulatif, bukan reset setiap Senin. Kolom "contoh operasional" memberi gambaran konkret seperti apa kebiasaan itu terlihat dalam pekerjaan sehari-hari.
 
-| Minggu | Rigor habit |
-|---|---|
-| W1 | Observasi sebelum kesimpulan |
-| W2 | Three-level smoke test |
-| W3 | Change one thing at a time |
-| W4 | Reproducibility, traceability, experiment matrix |
-| W5 | Long-sequence diagnosis dan justifikasi arsitektur |
-| W6 | Validasi preprocessing dan kewaspadaan leakage |
-| W7 | Verifikasi kode AI, inspeksi tokenisasi, repo primer |
-| W8 | Model-card literacy, adaptation choice, fair baseline |
-| W9 | Per-modality ablation dan multimodal failure analysis |
-| W10 | Three-pass paper reading dan paper-to-code translation |
-| W11 | 5 Whys, literature-to-experiment, proposal defense |
+| Minggu | Rigor habit | Contoh operasional |
+|---|---|---|
+| W1 | Observasi sebelum kesimpulan | Sebelum bilang "model A lebih baik", tulis dulu apa yang dilihat di kurva (angka, bentuk), baru tafsirkan. |
+| W2 | Three-level smoke test | Sebelum training 30 epoch, jalankan import test → dummy forward → overfit one batch. Stop kalau salah satu gagal. |
+| W3 | Change one thing at a time | Saat membandingkan focal vs CE, samakan optimizer, lr, seed, augmentasi. Hanya loss yang berubah. |
+| W4 | Reproducibility, traceability, experiment matrix | Setiap run punya `config.yaml + git_hash + seed`; semua ablation tertulis di matrix sebelum eksekusi. |
+| W5 | Long-sequence diagnosis dan justifikasi arsitektur | Saat training LSTM tidak konvergen, plot gradient norm per-layer dulu sebelum tweak hyperparameter. |
+| W6 | Validasi preprocessing dan kewaspadaan leakage | Hitung mean/std HANYA dari train; jangan pernah lihat test sebelum angka final. |
+| W7 | Verifikasi kode AI, inspeksi tokenisasi, repo primer | Sebelum commit kode dari LLM, baca baris demi baris dan jalankan minimal smoke test sederhana. |
+| W8 | Model-card literacy, adaptation choice, fair baseline | Sebelum fine-tune, baca model card: dataset asal, lisensi, batas penggunaan, evaluasi yang sudah ada. |
+| W9 | Per-modality ablation dan multimodal failure analysis | Setelah multimodal model jalan, jalankan run dengan satu modality di-zero atau di-acak; jika metric tidak turun, modality itu diabaikan. |
+| W10 | Three-pass paper reading dan paper-to-code translation | Pass 1 (judul-abstrak-kesimpulan), pass 2 (figur dan tabel), pass 3 (rumus). Stop di pass 1 jika tidak relevan. |
+| W11 | 5 Whys, literature-to-experiment, proposal defense | Tulis hipotesis falsifiable (`Δ ≥ X dengan p < Y`), bukan "saya pikir model A lebih baik". |
 
 ### 5.3 Representation Choice
 
