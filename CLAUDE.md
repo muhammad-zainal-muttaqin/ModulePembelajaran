@@ -1,4 +1,4 @@
-# [CLAUDE.md](http://CLAUDE.md)
+# CLAUDE.md
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
@@ -296,6 +296,46 @@ Modul juga di-render di website (`website/src/components/MarkdownRenderer.tsx`) 
 
 - Ketika mengintegrasikan catatan dari folder `Notes - <tanggal>/`, ganti em dash di file asli SEBELUM menyalin ke bab utama. File asli tetap disimpan sebagai referensi (jangan dihapus).
 - Setelah menambah section baru, update juga: (1) tabel of contents di awal bab, (2) rubrik penilaian terkait di `13_Rubrik_Penilaian.md`, (3) catatan integrasi di CLAUDE.md.
+
+## Website (`website/`)
+
+SPA React + Vite yang me-render 16 bab modul sebagai hash-router app. Deploy via GitHub Pages (branch `gh-pages`).
+
+### Commands
+
+```bash
+cd ModulePembelajaran/website
+npm run dev      # sync konten lalu jalankan dev server (port 5173)
+npm run build    # sync konten lalu build ke dist/
+npm run sync     # hanya sync .md → src/content/ (tanpa build)
+npm run lint     # TypeScript type check
+```
+
+### Pipeline Konten
+
+`npm run sync` menjalankan `scripts/sync-content.mjs` yang:
+1. Menyalin 16 file `.md` dari `ModulePembelajaran/` → `website/src/content/chapters/`
+2. Menyalin 6 config YAML dari `template_repo/configs/` → `website/src/content/configs/`
+3. Mem-parse tabel glosarium di `14_Lampiran.md` → `website/src/content/glossary.json`
+4. Menyalin figures dari `ModulePembelajaran/figures/` → `website/public/figures/`
+
+**Penting:** file di `src/content/` adalah hasil generate - jangan edit manual. Edit selalu di `ModulePembelajaran/*.md` lalu jalankan sync.
+
+Setiap kali file `.md` baru ditambah atau di-rename, update dua tempat:
+- `scripts/sync-content.mjs` array `CHAPTERS`
+- `src/lib/content.ts` import `?raw` dan object `RAW`
+
+### Arsitektur Website
+
+**Content loading:** Markdown di-import saat build via Vite `?raw` - semua konten masuk bundle JavaScript, tidak ada fetch runtime. `src/lib/content.ts` melakukan tiga transformasi sebelum render: strip nav `<details>`, rewrite link antar-bab ke hash route (`01_W1.md` → `#/modul/01`), rewrite path gambar ke `/figures/`.
+
+**Routing:** HashRouter (`/#/modul/01`, `/#/glosarium`, dst.) - diperlukan untuk GitHub Pages tanpa server-side routing.
+
+**Markdown rendering:** `src/components/MarkdownRenderer.tsx` memakai `react-markdown` dengan plugin remark-gfm, rehype-slug, rehype-autolink-headings, dan Shiki untuk syntax highlighting. Admonition GFM (`> [!NOTE]` dll.) di-handle oleh plugin custom di renderer yang sama.
+
+**State:** Zustand untuk progres belajar (progress tracking per bab) dan preferensi UI.
+
+**Styling:** Tailwind + kelas `.prose-modul` di `MarkdownRenderer.tsx` yang memberi treatment editorial khusus (lead paragraph lebih besar, admonition berikon, dll.).
 
 ## Konvensi Eksperimen (untuk konten lab)
 
