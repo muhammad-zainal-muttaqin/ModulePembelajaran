@@ -47,9 +47,9 @@ Tabular adalah konteks paling jujur untuk memperkenalkan deep learning. Tidak ad
 
 > Saat Anda melihat tugas baru, identifikasi **shape input** dan **shape output**, lalu pilih **keluarga model** yang secara alami memetakan keduanya.
 
-Empat alasan tabular sebagai entry point:
+Empat alasan tabular dipakai sebagai pintu masuk:
 
-1. **Pipeline minimum.** Tidak perlu transform image; satu DataFrame sudah cukup.
+1. **Pipeline minimum.** Tidak perlu transformasi gambar; satu DataFrame sudah cukup.
 2. **Tiga task formulation pada satu data.** Memungkinkan Anda merasakan perbedaan output head tanpa harus mengganti dataset.
 3. **Loss-head mismatch terlihat eksplisit.** Salah satu cara paling cepat memahami kenapa CrossEntropy butuh logits dan MSE butuh output kontinu adalah dengan sengaja salah-pasangkan keduanya, lalu mengamati training gagal total.
 4. **Tidak ada distraksi domain.** Anda fokus pada mekanik training, bukan pada pertanyaan "kenapa augmentasi flip horizontal masuk akal untuk CIFAR".
@@ -60,7 +60,7 @@ Empat alasan tabular sebagai entry point:
 
 ### 2.1 MLP sebagai Shape Transformer
 
-Multilayer Perceptron (MLP) sederhana mengambil vektor `(F,)` dan menghasilkan vektor `(D_out,)`. Setiap layer `Linear(in, out)` adalah transformasi affine `y = W x + b` diikuti aktivasi non-linear seperti ReLU.
+Multilayer Perceptron (MLP) sederhana mengambil vektor `(F,)` dan menghasilkan vektor `(D_out,)`. Setiap layer `Linear(in, out)` menjalankan transformasi affine `y = W x + b`, lalu diikuti aktivasi non-linear seperti ReLU.
 
 ```text
 input (F,) -> Linear(F, 64) -> ReLU -> Linear(64, 32) -> ReLU -> Linear(32, D_out) -> output (D_out,)
@@ -72,7 +72,7 @@ Perhatikan bahwa `D_out` ditentukan oleh **tugas**, bukan oleh data:
 - binary classification: `D_out = 1` (logit) atau `D_out = 2` (logits dua kelas)
 - multiclass dengan N kelas: `D_out = N`
 
-Inilah yang dimaksud "MLP sebagai shape transformer": tubuh model sama, kepala (head) berubah sesuai tugas.
+Inilah maksud "MLP sebagai shape transformer": tubuh model tetap sama, kepala (head) berubah sesuai tugas.
 
 #### 2.1.1 Linear Layer: Mekanik dan Gambaran
 
@@ -189,7 +189,7 @@ Setelah memahami ketiga pasangan di atas, tabel berikut menjadi alat referensi c
 
 MLP belajar lewat **backpropagation**: setelah loss dihitung di output, gradient dari loss terhadap setiap parameter dirambatkan **mundur** lewat chain rule, lalu optimizer (mis. AdamW) memperbarui parameter ke arah penurunan loss.
 
-Bayangkan jaringan sebagai rantai operasi: `x → Linear₁ → ReLU₁ → Linear₂ → ReLU₂ → Linear₃ → loss`. Saat `loss.backward()` dipanggil, PyTorch berjalan mundur lewat rantai ini, menghitung kontribusi setiap parameter terhadap loss lewat chain rule (rantai turunan; lihat §0.5.4 di [00_Pendahuluan.md](00_Pendahuluan.md)). Setiap layer "tahu" turunan operasinya sendiri; library autograd menggabungnya menjadi gradient utuh untuk seluruh model. Setelah gradient siap, `optimizer.step()` menggeser parameter sebagian kecil ke arah `-gradient` (penurunan loss).
+Bayangkan jaringan sebagai rantai operasi: `x → Linear₁ → ReLU₁ → Linear₂ → ReLU₂ → Linear₃ → loss`. Saat `loss.backward()` dipanggil, PyTorch berjalan mundur lewat rantai ini, menghitung kontribusi setiap parameter terhadap loss lewat chain rule (rantai turunan; lihat §0.5.4 di [00_Pendahuluan.md](00_Pendahuluan.md)). Setiap layer memiliki turunan untuk operasinya sendiri; library autograd menggabungkannya menjadi gradient utuh untuk seluruh model. Setelah gradient siap, `optimizer.step()` menggeser parameter sedikit ke arah `-gradient` (penurunan loss).
 
 Itu sudah cukup sebagai gambaran W1. Anda **tidak perlu** menurunkan chain rule manual minggu ini. Derivasi 7-langkah yang ketat (`MSE loss + sigmoid` pada dua-layer MLP) tersedia di [Lampiran A.1](14_Lampiran.md#a1-backpropagation-derivasi-manual) untuk dibaca setelah Anda sudah punya gambaran training dari beberapa run sukses. Lab 1c (MLP numpy from-scratch) juga tersedia sebagai breadth lab opsional kapan saja, dan menerapkan backprop secara konkret pada MNIST.
 
@@ -248,7 +248,7 @@ Lima baris di atas adalah pola yang berulang sepanjang modul, dari W1 (tabular) 
 
 ## 3. Worked Example: Tiga Tugas pada Satu Dataset
 
-Lab 0 menyiapkan dataset tabular sintetis sederhana dengan 10 fitur. Dari fitur yang sama, kita konstruksi tiga target:
+Lab 0 menyiapkan dataset tabular sintetis sederhana dengan 10 fitur. Dari fitur yang sama, kita membuat tiga target:
 
 - `y_regression` = kombinasi linear dari fitur + noise (kontinu)
 - `y_binary` = sign dari kombinasi linear (0/1)
@@ -295,7 +295,7 @@ Catat untuk setiap run:
 2. **Run regression.** Set `task=regression`, `loss=mse`, `num_classes=1`. Latih 20 epoch. Catat MAE val.
 3. **Run binary.** Set `task=binary`, `loss=cross_entropy`, `num_classes=2`. Catat accuracy val.
 4. **Run multiclass.** Set `task=multiclass`, `loss=cross_entropy`, `num_classes=3`. Catat accuracy + macro-F1 val.
-5. **Mismatch eksperimen sengaja.** Jalankan satu run dengan kombinasi salah (mis. binary task tapi loss=mse). Amati kegagalan. Tuliskan dalam 2 kalimat apa yang gagal.
+5. **Eksperimen mismatch secara sengaja.** Jalankan satu run dengan kombinasi salah (mis. binary task tapi loss=mse). Amati kegagalan. Tuliskan dalam 2 kalimat apa yang gagal.
 6. **Writeup observasi vs interpretasi.** Tulis 1 paragraf observasi murni (apa yang dilihat di angka), 1 paragraf interpretasi (apa yang menurut Anda terjadi).
 
 **Deliverables:**
@@ -313,7 +313,7 @@ Tulis jawaban singkat (1-2 paragraf masing-masing) untuk tiga pertanyaan berikut
 
 1. **Output head yang sama, loss berbeda.** Ada situasi di mana binary classification dijalankan dengan `Linear(D, 1) + BCEWithLogitsLoss` dan situasi lain dengan `Linear(D, 2) + CrossEntropyLoss`. Apa konsekuensi praktisnya? Mana yang Anda pilih untuk Lab 0, dan mengapa?
 2. **Observasi vs interpretasi.** Sebutkan satu pengamatan dari Lab 0 yang tergoda Anda interpretasikan terlalu cepat. Apa pertanyaan tambahan yang seharusnya Anda ajukan sebelum menyimpulkan?
-3. **Big Map awal.** Tulis dua baris Big Map dalam catatan Anda: satu untuk regression Lab 0 dan satu untuk multiclass Lab 0. Apa shape input, shape output, dan keluarga model? Anda akan menambah baris baru di setiap minggu berikutnya.
+3. **Big Map awal.** Tulis dua baris Big Map dalam catatan Anda: satu untuk regression Lab 0 dan satu untuk multiclass Lab 0. Apa shape input, shape output, dan keluarga model? Tambahkan baris baru pada setiap minggu berikutnya.
 
 ---
 

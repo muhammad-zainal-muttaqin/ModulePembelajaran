@@ -60,7 +60,7 @@ Seorang rekan mengirim tiga dataset sekaligus: *"coba klasifikasi dulu, pakai ar
 - **B**: 10.000 gambar daun sawit berlabel *sehat* atau *terkena penyakit*, resolusi 224×224.
 - **C**: 30.000 review produk berbahasa Indonesia, target sentimen positif/negatif.
 
-Tanpa membuka paper apapun, Anda sudah bisa menebak keluarga arsitektur yang cocok. Dataset A punya struktur *flat* - feed-forward network sudah masuk akal. Dataset B berupa grid piksel 2D dengan *translation invariance* - CNN alami di sini. Dataset C berupa urutan kata dengan ketergantungan jangka panjang - Transformer atau RNN yang cocok.
+Tanpa membuka paper apapun, Anda sudah bisa menebak keluarga arsitektur yang cocok. Dataset A punya struktur *flat* - feed-forward network sudah masuk akal. Dataset B berupa grid piksel 2D dengan *translation invariance* - CNN cocok untuk struktur seperti ini. Dataset C berupa urutan kata dengan ketergantungan jangka panjang - Transformer atau RNN lebih masuk akal.
 
 Poinnya: setiap keluarga arsitektur dibangun dengan *asumsi tertentu* tentang bentuk data. Memilih arsitektur berarti memilih asumsi mana yang paling tepat.
 
@@ -122,9 +122,9 @@ Contoh konkret CIFAR-10: 32 foto RGB 32×32 dalam satu batch berbentuk `(32, 3, 
 
 ### 2.1 Peta Besar: Tensor Masuk, Tensor Keluar
 
-Satu kerangka berpikir yang menyederhanakan hampir setiap keputusan desain dalam deep learning: setiap masalah dapat dipahami dengan menjawab dua pertanyaan - *bentuk tensor apa yang masuk*, dan *bentuk apa yang keluar*. Segala sesuatu di antaranya - MLP, CNN, RNN, Transformer - hanyalah mesin transformasi yang memetakan satu bentuk ke bentuk lain.
+Satu kerangka berpikir menyederhanakan hampir setiap keputusan desain dalam deep learning: setiap masalah dapat dipahami dengan menjawab dua pertanyaan - *bentuk tensor apa yang masuk*, dan *bentuk apa yang keluar*. Segala sesuatu di antaranya - MLP, CNN, RNN, Transformer - adalah mesin transformasi yang memetakan satu bentuk ke bentuk lain.
 
-Saat membaca kode repositori yang belum dikenal, hal pertama yang perlu Anda perhatikan adalah bentuk batch di `DataLoader` dan bentuk tensor tepat sebelum fungsi loss. Dari dua angka itu saja, Anda sudah bisa menebak keluarga arsitektur yang masuk akal. Sebaliknya, ketika merancang eksperimen untuk domain baru, menuliskan pasangan tensor input → output di kertas - sebelum satu baris kode pun ditulis - sering kali mempersempit pilihan dari "semua model di dunia" menjadi "satu atau dua keluarga yang masuk akal".
+Saat membaca kode repositori yang belum dikenal, hal pertama yang perlu Anda perhatikan adalah bentuk batch di `DataLoader` dan bentuk tensor tepat sebelum fungsi loss. Dari dua informasi itu saja, Anda sudah bisa menebak keluarga arsitektur yang masuk akal. Sebaliknya, saat merancang eksperimen untuk domain baru, menuliskan pasangan tensor input → output di kertas - sebelum menulis satu baris kode pun - sering kali mempersempit pilihan dari "semua model di dunia" menjadi "satu atau dua keluarga yang masuk akal".
 
 
 | Domain | Contoh Data | Tensor Input | Tensor Output | Contoh Tugas |
@@ -163,7 +163,7 @@ Tiga level smoke test bukan ritual yang dibuat-buat; mereka memetakan **tiga jen
 2. **Shape mismatch antar layer** - terdeteksi di Level 2 (dummy forward dengan tensor random). Butuh model dimuat tetapi tidak butuh data dari dataset.
 3. **Algoritma rusak** (gradient mati, loss tidak turun, target salah-bentuk) - terdeteksi di Level 3 (overfit one batch). Butuh data dari dataset tetapi hanya 4-8 sampel.
 
-Setiap level lebih mahal dari yang sebelumnya, dan setiap level menangkap kelas bug yang berbeda. Jangan lompat ke Level 3 sebelum Level 1 dan 2 lulus, dan jangan mulai training 30 epoch sebelum Level 3 lulus.
+Setiap level lebih mahal daripada level sebelumnya, dan masing-masing menangkap jenis bug yang berbeda. Jangan lompat ke Level 3 sebelum Level 1 dan 2 lulus, dan jangan mulai training 30 epoch sebelum Level 3 lulus.
 
 Sebelum training berjam-jam, jalankan tiga tes ini berurutan. Jika satu tes gagal, hentikan dan perbaiki sebelum lanjut.
 
@@ -211,9 +211,9 @@ Jangan baca jawabannya dulu. Tuliskan hipotesis Anda untuk setiap run dalam satu
 
 #### 2.5.1 Filter yang Geser
 
-Bayangkan satu **filter** (juga disebut **kernel**) kecil 3×3 berisi 9 angka bobot. Filter ini ditempel di pojok kiri-atas image, dikalikan element-wise dengan 3×3 patch image di bawahnya, lalu dijumlahkan. Hasilnya: satu angka di output.
+Bayangkan satu **filter** (juga disebut **kernel**) kecil 3×3 berisi 9 angka bobot. Filter ini ditempel di pojok kiri-atas gambar, dikalikan element-wise dengan patch gambar 3×3 di bawahnya, lalu dijumlahkan. Hasilnya: satu angka di output.
 
-Kemudian filter digeser satu pixel ke kanan, operasi yang sama diulang, hasilnya angka berikutnya. Geser terus sampai ke sudut kanan-bawah. Hasil keseluruhan adalah **feature map** baru.
+Kemudian filter digeser satu pixel ke kanan, operasi yang sama diulang, dan hasilnya menjadi angka berikutnya. Proses ini berlanjut sampai sudut kanan-bawah. Hasil keseluruhannya adalah **feature map** baru.
 
 ```
 Image 5×5 (1 channel):           Filter 3×3:
@@ -234,7 +234,7 @@ Filter di posisi (0,0) - ambil patch 3×3 kiri-atas:
 Filter geser ke kanan satu pixel, ulangi. Total 3×3 = 9 posisi → output 3×3.
 ```
 
-Filter di atas adalah **detektor tepi vertikal sederhana**: ia menjadi besar di lokasi yang berisi transisi terang-ke-gelap dari kiri ke kanan. Dalam praktik, bobot filter dipelajari otomatis lewat training; CNN belajar filter apa yang berguna untuk task-nya.
+Filter di atas adalah **detektor tepi vertikal sederhana**: nilainya menjadi besar di lokasi yang berisi transisi terang-ke-gelap dari kiri ke kanan. Dalam praktiknya, bobot filter dipelajari otomatis lewat training; CNN belajar filter apa yang berguna untuk task-nya.
 
 #### 2.5.2 Kernel, Stride, Padding
 
@@ -252,7 +252,7 @@ Untuk input dengan dimensi spasial `in`, kernel `k`, padding `p`, stride `s`, di
 out = (in - k + 2*p) / s + 1
 ```
 
-Derivasi singkat: dari `in` pixel (ditambah padding `p` di kiri dan kanan jadi total `in + 2p`), filter butuh ruang sebesar `k` untuk berdiri. Jadi posisi awal filter ada `(in + 2p - k)` slot. Filter geser `s` per langkah, jadi jumlah langkah = `(in + 2p - k) / s`, plus posisi awal = `+ 1`.
+Derivasi singkat: dari `in` pixel (ditambah padding `p` di kiri dan kanan menjadi total `in + 2p`), filter butuh ruang sebesar `k`. Jadi posisi awal filter punya `(in + 2p - k)` slot. Filter bergeser `s` per langkah, sehingga jumlah langkah = `(in + 2p - k) / s`, ditambah posisi awal = `+ 1`.
 
 Contoh praktis dari SimpleCNN di §3.1:
 
@@ -283,7 +283,7 @@ Layer 2 feature map (12×12)
    = 5×5 patch di input asli
 ```
 
-Ukuran area input yang dilihat satu pixel di feature map disebut **receptive field**. Di layer akhir CNN dalam, receptive field bisa mencakup sebagian besar atau seluruh image - itulah cara CNN menangkap pola besar dari operasi-operasi lokal kecil.
+Ukuran area input yang dilihat satu pixel di feature map disebut **receptive field**. Di layer akhir CNN yang dalam, receptive field bisa mencakup sebagian besar atau seluruh gambar. Dengan cara inilah CNN menangkap pola besar dari operasi lokal kecil.
 
 > [!NOTE]
 > Receptive field tumbuh kira-kira `1 + L*(k-1)` untuk `L` layer Conv `k×k` tanpa pooling, dan tumbuh berlipat saat ada pooling. Detail rumus tersedia di paper [*A guide to convolution arithmetic*](https://arxiv.org/abs/1603.07285) (Dumoulin & Visin, 2016).
@@ -373,7 +373,7 @@ Saat membaca kode SimpleCNN di §3, tiga istilah ini dipakai tanpa penjelasan. K
 
 ## 3. Worked Example: SimpleCNN pada CIFAR-10
 
-Tujuan: membangun CNN minimal yang dapat training penuh, menjelaskan setiap keputusan desain.
+Tujuan: membangun CNN minimal yang dapat dilatih penuh, sekaligus menjelaskan setiap keputusan desain.
 
 ### 3.1 Definisi Model
 
@@ -461,8 +461,8 @@ Augmentasi hanya pada training set; normalisasi dengan statistik CIFAR-10 yang s
 Buka `notebooks/lab_w2_cnn_baseline.ipynb`. Di W2:
 
 1. Jalankan tiga level smoke test (import, dummy forward, overfit one batch).
-2. Build SimpleCNN, latih baseline dari scratch.
-3. Build pretrained fine-tune baseline (ResNet-18 frozen backbone).
+2. Bangun SimpleCNN, latih baseline dari scratch.
+3. Bangun baseline pretrained fine-tune (ResNet-18 frozen backbone).
 4. Dokumentasikan: di level mana smoke test akan menangkap setiap jenis error.
 
 Selesaikan evaluasi dan error analysis setelah membaca [W3](03_W3_Loss_Optimizer_Evaluasi.md).

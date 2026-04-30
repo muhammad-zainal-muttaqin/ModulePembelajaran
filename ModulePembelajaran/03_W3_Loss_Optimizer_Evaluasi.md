@@ -37,7 +37,7 @@
 
 ## 0. Peta Bab
 
-W3 adalah minggu example-first. Sebelum membaca teori tentang loss dan optimizer, Anda mengamati lima run konkret dan diminta mengidentifikasi apa yang terjadi. Baru setelah itu kita tarik pola dan penjelasannya.
+W3 adalah minggu berbasis contoh. Sebelum membaca teori tentang loss dan optimizer, Anda mengamati lima run konkret dan diminta mengidentifikasi apa yang terjadi. Baru setelah itu kita menarik pola dan penjelasannya.
 
 - **1.5** Galeri Lima Run (sebelum teori)
 - **2.1** Loss sebagai pilihan - bukan bawaan default
@@ -46,7 +46,7 @@ W3 adalah minggu example-first. Sebelum membaca teori tentang loss dan optimizer
 - **2.4** Tiga strategi representasi fitur
 - **2.5** Diagnosis loss curve - capstone W3
 
-**Recap W2:** Anda sudah memahami tensor I/O, empat keluarga arsitektur, dan three-level smoke test ritual. W3 membangun di atasnya.
+**Rekap W2:** Anda sudah memahami tensor I/O, empat keluarga arsitektur, dan three-level smoke test ritual. W3 melanjutkan fondasi itu.
 
 ---
 
@@ -89,10 +89,10 @@ Tiga skenario di atas bukan pengecualian - mereka adalah rutinitas riset sehari-
 
 ### 2.1 Loss sebagai Pilihan
 
-Loss menentukan *apa yang dianggap salah oleh model*. Mengganti loss berarti mengubah arah yang dianggap model sebagai "perbaikan".
+Loss menentukan *apa yang dianggap salah oleh model*. Mengganti loss berarti mengubah arah yang dibaca model sebagai "perbaikan".
 
 > [!NOTE]
-> Untuk recap rumus dan cara kerja MSE / BCE / CrossEntropy dengan contoh angka kecil, lihat [W1 §2.2.1-§2.2.3](01_W1_Tabular_Output_Heads.md). Bagian ini fokus pada **kapan memilih loss yang mana** dan dua varian lanjutan (focal loss, label smoothing).
+> Untuk rekap rumus dan cara kerja MSE / BCE / CrossEntropy dengan contoh angka kecil, lihat [W1 §2.2.1-§2.2.3](01_W1_Tabular_Output_Heads.md). Bagian ini fokus pada **kapan memilih loss yang mana** dan dua varian lanjutan (focal loss, label smoothing).
 
 **Untuk klasifikasi:**
 
@@ -117,7 +117,8 @@ Optimizer mengubah gradient menjadi langkah konkret pada parameter.
 - **Adam dan AdamW.** Adaptif - setiap parameter mendapat learning rate yang disesuaikan. Sangat cepat konvergen di epoch awal. AdamW memperbaiki Adam dengan memisahkan *weight decay* dari gradient momentum.
 - **LAMB.** Varian untuk *batch size* besar (ribuan sampel). Relevan di pre-training besar (BERT, GPT), jarang diperlukan di proyek kuliah.
 
-> **Catatan: `weight_decay` di AdamW bukan L2 regularisasi.** Pada SGD, menambahkan L2 regularisasi (`λ ||w||²` ke loss) ekuivalen dengan mengurangkan `λw` dari setiap parameter. Pada Adam, hal ini **tidak berlaku**: Adam membagi gradient dengan estimasi variansi, sehingga penalti L2 yang ditambahkan ke loss mendapat efek yang tidak proporsional antar parameter. AdamW memperbaiki ini dengan mengaplikasikan weight decay *langsung* ke parameter (bukan lewat gradient). Akibat praktisnya: `weight_decay=0.01` di AdamW memberi efek regularisasi yang lebih konsisten daripada nilai yang sama di Adam biasa.
+> [!NOTE]
+> **`weight_decay` di AdamW bukan L2 regularisasi.** Pada SGD, menambahkan L2 regularisasi (`λ ||w||²` ke loss) ekuivalen dengan mengurangkan `λw` dari setiap parameter. Pada Adam, hal ini **tidak berlaku**: Adam membagi gradient dengan estimasi variansi, sehingga penalti L2 yang ditambahkan ke loss mendapat efek yang tidak proporsional antar parameter. AdamW memperbaiki ini dengan menerapkan weight decay *langsung* ke parameter (bukan lewat gradient). Akibat praktisnya: `weight_decay=0.01` di AdamW memberi efek regularisasi yang lebih konsisten daripada nilai yang sama di Adam biasa.
 
 Dipasangkan dengan optimizer adalah *scheduler*: mekanisme menurunkan (atau menaikkan lalu menurunkan) learning rate selama training. `OneCycleLR`, `CosineAnnealingLR`, dan `ReduceLROnPlateau` adalah tiga pola yang paling sering Anda jumpai.
 
@@ -147,13 +148,13 @@ Di samping metrik, Anda juga perlu strategi validasi:
 
 ### 2.4 Representasi Fitur: Tiga Pilihan Desain
 
-Salah satu keputusan yang paling sering menentukan performa model bukan pilihan arsitektur, melainkan pilihan representasi - diambil jauh sebelum training dimulai. Pada modalitas dan tugas yang sama, representasi yang berbeda kerap menghasilkan selisih performa lebih besar dari mengganti arsitektur.
+Salah satu keputusan yang paling sering menentukan performa model bukan pilihan arsitektur, melainkan pilihan representasi. Keputusan ini diambil jauh sebelum training dimulai. Pada modalitas dan tugas yang sama, representasi yang berbeda kerap menghasilkan selisih performa lebih besar daripada mengganti arsitektur.
 
 **Engineered.** Fitur dirancang manusia dengan pengetahuan domain - statistik agregat, transformasi matematis, atau fitur klasik. Di gambar: histogram warna, HOG, SIFT. Di sinyal CGM: mean, koefisien variasi, *time-in-range*. Representasi *engineered* murah secara komputasi, mudah diinterpretasi, dan sering menjadi baseline yang mengejutkan kuat ketika data latih terbatas.
 
 **Extracted.** Fitur diambil dari *hidden layer* model *pretrained* yang di-freeze. Di visi: *hidden states* dari CNN atau ViT pretrained pada ImageNet. Di teks: token `[CLS]` atau mean pooling dari BERT. Kompromi menarik: representasi kaya dari model besar tanpa biaya training penuh, dengan syarat domain target tidak terlalu jauh dari domain pretraining.
 
-**Learned.** Representasi dipelajari langsung dari data melalui training *end-to-end* atau *self-supervised*. Fine-tuning BERT, melatih 1D CNN dari nol pada sinyal ECG, atau me-fine-tune ResNet pada dataset medis semuanya termasuk kategori ini. Biasanya paling kuat ketika data latih memadai, tetapi paling haus data dan paling mahal dilatih.
+**Learned.** Representasi dipelajari langsung dari data melalui training *end-to-end* atau *self-supervised*. Fine-tuning BERT, melatih 1D CNN dari nol pada sinyal ECG, atau fine-tune ResNet pada dataset medis semuanya termasuk kategori ini. Biasanya paling kuat ketika data latih memadai, tetapi paling haus data dan paling mahal dilatih.
 
 
 | Domain | Engineered | Extracted | Learned |
@@ -172,7 +173,7 @@ Taksonomi ini penting saat merumuskan variabel eksperimen. Membandingkan "BERT f
 
 ### 2.5 Membaca Sinyal: Diagnosis dari Loss Curve
 
-Lima pola yang paling sering ditemui, masing-masing dengan hipotesis dan langkah test. Diagram di bawah adalah peta navigasi cepat; jika Anda baru pertama kali mendiagnosis, mulai dari pertanyaan di simpul paling atas dan ikuti cabang sesuai kondisi Anda.
+Lima pola berikut paling sering ditemui, masing-masing dengan hipotesis dan langkah tes. Diagram di bawah adalah peta navigasi cepat; jika Anda baru pertama kali mendiagnosis, mulai dari pertanyaan di simpul paling atas dan ikuti cabang sesuai kondisi Anda.
 
 ```mermaid
 flowchart TD
@@ -200,19 +201,19 @@ flowchart TD
 ```
 
 **Pola 1: Loss training tinggi, tidak turun dari awal.**
-Model tidak belajar sama sekali. Hipotesis: (a) learning rate terlalu kecil, atau (b) bug di forward pass. Langkah test: jalankan *overfit one batch* - ambil 4-8 sampel, jalankan ratusan iterasi hanya pada sampel itu. Jika loss tidak turun mendekati nol, ada bug di arsitektur atau loss function. Jika turun, model sehat - masalahnya di tempat lain. Naikkan LR 10× dan lihat apakah kurva mulai bergerak.
+Model tidak belajar sama sekali. Hipotesis: (a) learning rate terlalu kecil, atau (b) bug di forward pass. Langkah tes: jalankan *overfit one batch* - ambil 4-8 sampel, jalankan ratusan iterasi hanya pada sampel itu. Jika loss tidak turun mendekati nol, ada bug di arsitektur atau loss function. Jika turun, model sehat - masalahnya di tempat lain. Naikkan LR 10× dan lihat apakah kurva mulai bergerak.
 
 **Pola 2: Loss training turun, tapi loss validasi stagnan atau lebih tinggi sejak awal.**
-Overfitting sangat cepat. Hipotesis: dataset terlalu kecil relatif terhadap kapasitas model, atau ada data leakage. Langkah test: kurangi kapasitas model atau tambah regularisasi. Jika val loss tidak membaik sama sekali, curigai leakage.
+Overfitting sangat cepat. Hipotesis: dataset terlalu kecil relatif terhadap kapasitas model, atau ada data leakage. Langkah tes: kurangi kapasitas model atau tambah regularisasi. Jika val loss tidak membaik sama sekali, curigai leakage.
 
 **Pola 3: Loss training dan validasi turun sejajar, tetapi val jauh di atas train di akhir.**
-Overfitting klasik. Langkah test: identifikasi epoch terbaik dari kurva val (sebelum titik divergen) dan gunakan *early stopping*.
+Overfitting klasik. Langkah tes: identifikasi epoch terbaik dari kurva val (sebelum titik divergen) dan gunakan *early stopping*.
 
 **Pola 4: Loss validasi turun tapi loss training stagnan di angka tinggi.**
-*Underfitting* - model terlalu kecil atau LR terlalu rendah. Paradoksnya val bisa lebih baik dari train jika val set kebetulan lebih mudah. Langkah test: periksa apakah augmentasi terlalu agresif.
+*Underfitting* - model terlalu kecil atau LR terlalu rendah. Paradoksnya, val bisa lebih baik dari train jika val set kebetulan lebih mudah. Langkah tes: periksa apakah augmentasi terlalu agresif.
 
 **Pola 5: Loss meledak - tiba-tiba `NaN` atau naik tajam.**
-Gradient explosion. Hipotesis: (a) LR terlalu besar, atau (b) tidak ada gradient clipping. Langkah test: kurangi LR 10× atau tambahkan `grad_clip = 1.0`. Untuk RNN dan Transformer, gradient clipping hampir selalu diperlukan.
+Gradient explosion. Hipotesis: (a) LR terlalu besar, atau (b) tidak ada gradient clipping. Langkah tes: kurangi LR 10× atau tambahkan `grad_clip = 1.0`. Untuk RNN dan Transformer, gradient clipping hampir selalu diperlukan.
 
 ![Lima pola loss curve untuk diagnosis: underfitting, overfitting, early divergence, val lebih rendah dari train, dan konvergensi normal](./figures/fig01c_loss_curves_diagnostic.svg)
 
@@ -251,7 +252,7 @@ Buka `notebooks/lab_w2_cnn_baseline.ipynb`. Selesaikan empat tugas:
 1. Lengkapi training loop dengan evaluasi pada validation set setiap epoch.
 2. Simpan `train_loss`, `val_loss`, `train_acc`, `val_acc` per epoch, lalu plotkan.
 3. Hitung dan plot confusion matrix pada test set.
-4. Pilih 10 kesalahan paling *confident*, visualisasikan, tulis 3-4 kalimat amatan tentang pola kesalahan.
+4. Pilih 10 kesalahan dengan confidence tertinggi, visualisasikan, lalu tulis 3-4 kalimat amatan tentang pola kesalahan.
 
 **Checklist verifikasi:**
 - [ ] Train accuracy ≥ 75%, val accuracy ≥ 70% setelah 20 epoch.
@@ -275,7 +276,7 @@ Pertanyaan yang dijawab setelah lab: Pada dataset terbatas (500 sampel per kelas
 
 1. Saat Anda mengganti `CrossEntropyLoss` menjadi `FocalLoss`, apa saja variabel yang *secara implisit* juga berubah walaupun Anda tidak menyentuhnya? (Petunjuk: pikirkan learning rate efektif, tekanan pada kelas minor, stabilitas awal training.) Bagaimana ini memengaruhi cara Anda merancang perbandingan?
 2. Anda ditugaskan membangun klasifikasi kualitas biji kopi dari foto *close-up* dengan hanya 300 gambar per kelas untuk empat kelas. Bandingkan tiga strategi representasi secara singkat. Manakah yang paling masuk akal dicoba terlebih dahulu dan mengapa? Pada penambahan data sejumlah berapa Anda akan mempertimbangkan berpindah strategi?
-3. **Koneksi ke Capstone.** Saat masuk Capstone (W12-W14) nanti, Anda akan diminta memilih topik dan membangun baseline. Dari kerangka tensor input → output, empat keluarga arsitektur, dan tiga strategi representasi, tuliskan satu kalimat: *"Saat membaca repo Capstone nanti, pertanyaan pertama yang akan saya tanyakan ke diri sendiri adalah ..."*.
+3. **Koneksi ke Capstone.** Saat masuk Capstone (W12-W14) nanti, Anda diminta memilih topik dan membangun baseline. Dari kerangka tensor input → output, empat keluarga arsitektur, dan tiga strategi representasi, tuliskan satu kalimat: *"Saat membaca repo Capstone nanti, pertanyaan pertama yang saya ajukan ke diri sendiri adalah ..."*.
 
 ---
 
@@ -289,6 +290,6 @@ Pertanyaan yang dijawab setelah lab: Pada dataset terbatas (500 sampel per kelas
 
 ## Lanjut ke W4
 
-Anda sudah memiliki kerangka lengkap untuk memahami dan membangun sistem ML/DL dari tensor input sampai diagnosis loss curve. W4 mengubah fokus dari *memahami sistem* menjadi *merancang eksperimen yang reproduksibel*: YAML config, seed locking, run folder structure, dan experiment matrix.
+Anda sudah memiliki kerangka lengkap untuk memahami dan membangun sistem ML/DL dari tensor input sampai diagnosis loss curve. W4 menggeser fokus dari *memahami sistem* menjadi *merancang eksperimen yang reproduksibel*: YAML config, seed locking, struktur folder run, dan experiment matrix.
 
 Buka [W4 - Reproducibility & Experiment Matrix](04_W4_Reproducibility_Experiment_Matrix.md) ketika siap.
