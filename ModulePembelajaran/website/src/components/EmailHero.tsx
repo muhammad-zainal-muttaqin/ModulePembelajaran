@@ -15,10 +15,10 @@ export default function EmailHero() {
           </div>
           <h1 className="font-serif font-semibold text-display-lg tracking-tight mb-6">
             Dua kalimat dari dosen.<br />
-            <span className="text-rigor dark:text-curiosity">Tiga puluh keputusan riset.</span>
+            <span className="text-rigor dark:text-curiosity">Semua keputusan ada di tangan Anda.</span>
           </h1>
           <p className="text-lg md:text-xl text-ink/75 dark:text-parchment/80 max-w-xl mb-8 leading-relaxed">
-            Satu email dua kalimat dari dosen pembimbing bisa membuka tiga puluh file Python, satu paper yang belum sempat dibaca, dan satu hipotesis yang belum Anda rumuskan. Modul ini mengajar Anda menjawabnya dengan tenang.
+            Email dua kalimat dari dosen pembimbing menyimpan puluhan keputusan yang tidak disebut: baseline mana, seed berapa, metrik apa, kapan angka layak dilaporkan. Modul ini melatih Anda membuat keputusan-keputusan itu secara sistematis.
           </p>
           <div className="flex flex-wrap gap-3">
             <Link to="/modul/00" className="btn-primary text-base px-5 py-2.5">
@@ -46,10 +46,10 @@ export default function EmailHero() {
               <div className="text-xs text-ink/70 dark:text-parchment/50 uppercase tracking-wider mb-1">Subjek</div>
               <div className="text-base mb-5 font-sans font-medium">eksperimen minggu ini</div>
               <blockquote className="border-l-4 border-rigor pl-4 py-1 text-base md:text-lg italic leading-relaxed">
-                "Tolong coba ubah loss-nya jadi focal, lalu freeze conv1 pada backbone. Bandingkan dengan baseline. Saya butuh hasilnya hari Kamis."
+                "Tolong uji focal loss dan freeze blok awal pada backbone. Bandingkan dengan baseline yang adil, lalu kirim ringkasan hasil hari Kamis."
               </blockquote>
               <div className="mt-6 flex items-center justify-between text-sm font-sans">
-                <span className="text-ink/70 dark:text-parchment/60">2 kalimat. 30 file Python. 1 paper.</span>
+                <span className="text-ink/70 dark:text-parchment/60">2 kalimat. Tidak ada panduan lebih lanjut.</span>
                 <span className="chip bg-skepticism-soft text-skepticism-deep dark:bg-skepticism/20 dark:text-skepticism">
                   7 hari
                 </span>

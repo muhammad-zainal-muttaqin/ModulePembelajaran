@@ -153,14 +153,14 @@ Daftar ini bukan untuk dihafalkan. Baca sekilas sekali agar istilah-istilah ini 
 
 Bayangkan Anda baru bergabung di laboratorium riset sebagai asisten. Pada hari ketiga, Anda menerima pesan singkat:
 
-> "Tolong train model klasifikasi gambar ini, laporkan akurasinya hari Kamis. Bagaimana cara memastikan hasilnya bisa dipercaya?"
+> "Tolong latih model klasifikasi gambar ini. Saya butuh laporan singkat hari Kamis: metrik utama, baseline pembanding, dan alasan kenapa angkanya bisa dipercaya."
 
-Email ini terdengar sederhana, tetapi setiap fragmen memuat keputusan: dataset yang mana, "akurasi" pada split mana, bagaimana memastikan dua run tidak berbeda hanya karena seed acak, dan kapan angka layak dilaporkan.
+Email ini terdengar sederhana, tetapi setiap fragmen menyimpan keputusan yang tidak disebut: dataset yang mana, "akurasi" pada split mana, bagaimana memastikan dua run tidak berbeda hanya karena seed acak, dan kapan angka layak dilaporkan.
 
-Setiap pertanyaan itu mengacu pada kompetensi berbeda. Modul ini membangun kompetensi-kompetensi tersebut secara sistematis, sehingga email semacam itu menjadi titik awal eksperimen yang terstruktur, bukan sumber kepanikan.
+Semua keputusan itu ada di tangan Anda. Modul ini melatih Anda membuat keputusan-keputusan tersebut secara sistematis, sehingga email semacam itu menjadi titik awal eksperimen yang terstruktur, bukan sumber kepanikan.
 
 > [!NOTE]
-> Versi yang lebih padat jargon dari email ini, *"ubah loss jadi focal, freeze conv1 pada backbone, bandingkan dengan baseline"*, baru dibahas di W3 ketika Anda sudah punya kosakata untuk membongkar setiap istilahnya. Untuk sekarang, email sederhana di atas sudah cukup memicu pertanyaan-pertanyaan inti.
+> Versi teknis dari pesan yang sama muncul lagi di W4: *"Tolong uji focal loss dan freeze blok awal pada backbone. Bandingkan dengan baseline yang adil, lalu kirim ringkasan hasil hari Kamis."* Untuk sekarang, email sederhana di atas sudah cukup memicu pertanyaan-pertanyaan inti.
 
 ---
 

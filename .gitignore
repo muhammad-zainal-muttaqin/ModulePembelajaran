@@ -34,6 +34,7 @@ ENV/
 .idea/
 *.swp
 *.swo
+desktop.ini
 
 # OS
 .DS_Store

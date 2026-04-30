@@ -57,11 +57,11 @@ Setelah W4, setiap eksperimen yang Anda laporkan punya jejak yang bisa ditunjukk
 
 Ingat email PI dari Bab 00:
 
-> "Tolong coba ubah loss-nya jadi focal, lalu freeze conv1 pada backbone. Bandingkan dengan baseline. Saya butuh hasilnya hari Kamis."
+> "Tolong uji focal loss dan freeze blok awal pada backbone. Bandingkan dengan baseline yang adil, lalu kirim ringkasan hasil hari Kamis."
 
-**Cara A - langsung kerja.** Anda membuka `train.py`, mengganti `CrossEntropyLoss` menjadi `FocalLoss`, menambahkan `for p in backbone.conv1.parameters(): p.requires_grad = False`, menjalankan training 20 epoch, mengirim akurasi ke Slack: *"baseline 78.4%, mod 80.1%, naik 1.7%"*.
+**Cara A - langsung kerja.** Anda membuka `train.py`, mengganti `CrossEntropyLoss` menjadi `FocalLoss`, menambahkan `for p in model.block1.parameters(): p.requires_grad = False`, menjalankan training 20 epoch, mengirim akurasi ke Slack: *"baseline 78.4%, mod 80.1%, naik 1.7%"*.
 
-**Cara B - merancang lebih dulu.** Anda duduk 30 menit. Menulis satu halaman: apa yang dimaksud "baseline"; `gamma` berapa untuk focal loss; apakah kedua run memakai seed sama; apakah `conv1` yang di-freeze adalah layer backbone atau layer pertama dari CNN custom; apakah "bandingkan" berarti satu run masing-masing atau tiga run untuk mengurangi *noise*; metrik mana yang paling berbicara pada kelas minor (yang biasanya jadi motivasi utama memakai focal loss). Setelah semua jelas, Anda kerja selama tiga hari, melaporkan hasil dengan tabel, plot, dan interpretasi.
+**Cara B - merancang lebih dulu.** Anda duduk 30 menit. Menulis satu halaman: apa yang dimaksud "baseline"; `gamma` berapa untuk focal loss; apakah kedua run memakai seed sama; blok awal mana yang di-freeze, layer awal backbone pretrained atau `block1` pada CNN custom; apakah "bandingkan" berarti satu run masing-masing atau tiga run untuk mengurangi *noise*; metrik mana yang paling berbicara pada kelas minor (yang biasanya jadi motivasi utama memakai focal loss). Setelah semua jelas, Anda kerja selama tiga hari, melaporkan hasil dengan tabel, plot, dan interpretasi.
 
 Kedua cara menghasilkan angka. Hanya Cara B menghasilkan *eksperimen* - sesuatu yang bisa dipertanggungjawabkan ketika PI bertanya "kenapa kenaikan 1.7% ini bisa dipercaya?" Perbedaannya bukan kecerdasan; perbedaannya adalah *kebiasaan merancang sebelum menjalankan*.
 
@@ -164,7 +164,7 @@ Contoh konkret, langsung bisa ditiru:
 - Total: setengah hari kerja.
 ```
 
-Satu halaman ini mengubah "coba focal loss, freeze conv1" menjadi rancangan yang bisa dibaca, didiskusikan, dan dijalankan oleh orang lain tanpa tebakan. Protokol tersimpan di repo bersama kode. Dokumen ini merekam rencana sebelum hasil keluar; berguna sebagai cek kejujuran nanti ketika Anda tergoda mengubah cerita agar sesuai data.
+Satu halaman ini mengubah "uji focal loss dan freeze blok awal" menjadi rancangan yang bisa dibaca, didiskusikan, dan dijalankan oleh orang lain tanpa tebakan. Protokol tersimpan di repo bersama kode. Dokumen ini merekam rencana sebelum hasil keluar; berguna sebagai cek kejujuran nanti ketika Anda tergoda mengubah cerita agar sesuai data.
 
 ### 2.3 Mengendalikan Variabel
 
@@ -263,12 +263,12 @@ Mari kita kerjakan email PI langkah demi langkah, membangun protokol yang baru s
 
 ### 3.1 Membaca Instruksi secara Kritis
 
-Instruksi: *"Ubah loss jadi focal, freeze conv1, bandingkan dengan baseline."*
+Instruksi: *"Uji focal loss dan freeze blok awal; bandingkan dengan baseline yang adil."*
 
 Ambiguitas yang harus Anda ajukan ke PI (lewat pesan singkat atau di pertemuan mingguan):
 
 - **"Focal loss"**: versi asli Lin et al. 2017 (γ, α) atau variannya? Nilai γ berapa? α dipakai atau tidak?
-- **"Conv1"**: layer `conv1` dalam arti kode mana? Jika backbone ResNet-18, `conv1` adalah layer pertama 7×7; jika SimpleCNN kita, tidak ada atribut bernama `conv1` (kita pakai `block1`). Konfirmasi yang dimaksud.
+- **"Blok awal"**: bagian mana dalam kode? Jika backbone ResNet-18, ini bisa berarti `conv1` atau `layer1`; jika SimpleCNN kita, istilah yang cocok adalah `block1`. Konfirmasi bagian yang dimaksud.
 - **"Bandingkan"**: berapa seed, berapa epoch, metrik mana yang menentukan?
 - **"Baseline"**: konfigurasi mana persisnya? Apakah baseline yang ada di repo sudah pakai augmentasi, atau polos?
 
