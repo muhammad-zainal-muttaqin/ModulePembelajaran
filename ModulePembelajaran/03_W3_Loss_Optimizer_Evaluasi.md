@@ -64,7 +64,7 @@ Perhatikan lima loss curve berikut (masing-masing menampilkan train loss dan val
 
 **Run 4 - Unstable training:** Train loss turun sampai epoch 12, lalu tiba-tiba meledak ke `NaN`. Val loss ikut hilang.
 
-**Run 5 - Noisy but improving:** Train loss turun tapi dengan noise besar (naik-turun tiap epoch). Val loss secara umum turun meski fluktuatif.
+**Run 5 - Noisy but improving:** Train loss turun tapi dengan noise besar (naik-turun tiap epoch). Val loss cenderung turun meski fluktuatif.
 
 **Pertanyaan untuk Anda:**
 
