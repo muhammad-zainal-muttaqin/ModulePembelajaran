@@ -379,6 +379,6 @@ Konsep: membaca paper secara terarah, merumuskan pertanyaan falsifiable, meranca
 
 ## Lanjut ke W11
 
-Semua skill bootcamp sudah dibangun. W11 menggabungkan semuanya untuk satu tujuan: menyusun proposal capstone yang bisa dipertahankan. Research framing, 5 Whys, literature-to-experiment synthesis, dan oral proposal defense.
+Semua skill bootcamp sudah dibangun. W11 menggabungkan semuanya untuk satu tujuan: menyusun framing riset yang siap dipertahankan di W12. Framework Input → Middle → Output, menu framing, dan triage literatur.
 
 Buka [W11 - Research Framing](11_W11_Research_Framing.md) ketika siap.

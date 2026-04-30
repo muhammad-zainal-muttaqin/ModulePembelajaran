@@ -4,7 +4,7 @@ Modul ini dirancang untuk mahasiswa S1 yang ingin belajar *riset* machine learni
 
 **Versi web interaktif:** [muhammad-zainal-muttaqin.github.io/ModulePembelajaran](https://muhammad-zainal-muttaqin.github.io/ModulePembelajaran/) - SPA untuk membaca 15 bab (termasuk Panduan Instruktur), mengisi jurnal refleksi, melacak progres 14 minggu, self-assess 9 kompetensi, dan menggenerate protokol eksperimen. Sumber website di [`website/`](website/).
 
-Satu semester berjalan **11 minggu bootcamp + 3 minggu capstone**. Setiap minggu membawa satu *rigor habit* baru yang dibangun di atas yang sebelumnya, satu atau lebih lab, dan satu thread yang menghubungkan ke Big Map keseluruhan. Di akhir bootcamp, mahasiswa mempertahankan proposal capstone secara lisan sebelum 3 minggu eksekusi capstone dimulai.
+Satu semester berjalan **11 minggu bootcamp + 4 minggu capstone**. Setiap minggu membawa satu *rigor habit* baru yang dibangun di atas yang sebelumnya, satu atau lebih lab, dan satu thread yang menghubungkan ke Big Map keseluruhan. Di akhir bootcamp, mahasiswa mempertahankan framing riset di W12 sebelum 4 minggu eksekusi capstone dimulai.
 
 ---
 
@@ -20,7 +20,7 @@ Jika dua prasyarat pertama belum solid, kerjakan lebih dulu *primer* pada [Lampi
 
 ---
 
-## Peta 11+3 Minggu
+## Peta 11+4 Minggu
 
 ### Bootcamp (Minggu 1-11)
 
@@ -36,7 +36,7 @@ Jika dua prasyarat pertama belum solid, kerjakan lebih dulu *primer* pada [Lampi
 | 8 | Foundation models taxonomy + adaptation choice | [08](08_W8_Foundation_Models.md) | FM Map | Model-card literacy |
 | 9 | Multimodal reasoning + per-modality ablation | [09](09_W9_Multimodal_Reasoning.md) | Lab 8 | Per-modality ablation |
 | 10 | Paper reading 3-pass + paper-to-code | [10](10_W10_Paper_Reading.md) | Lab 9 | Three-pass reading |
-| 11 | Research framing + capstone proposal defense | [11](11_W11_Research_Framing.md) | Proposal oral | 5 Whys + proposal defense |
+| 11 | Research framing (Input → Middle → Output) + komitmen framing | [11](11_W11_Research_Framing.md) | Workshop framing | Dekomposisi Input → Middle → Output + triage literatur |
 
 ### Capstone (Minggu 12-15)
 
@@ -109,7 +109,7 @@ ModulePembelajaran/
 
 ## Untuk Dosen Pengampu
 
-Baca `15_Panduan_Instruktur.md` untuk panduan operasional lengkap: filosofi modul, pacing 11+3 minggu, emphasis per-bab, cara membaca rubrik, cara menilai portofolio, dan skenario kelas yang umum. Rubrik evaluasi ada di `13_Rubrik_Penilaian.md`. Tabel migrasi dari modul 14-minggu lama tersedia di `14_Lampiran.md` §H.
+Baca `15_Panduan_Instruktur.md` untuk panduan operasional lengkap: filosofi modul, pacing 11+4 minggu, emphasis per-bab, cara membaca rubrik, cara menilai portofolio, dan skenario kelas yang umum. Rubrik evaluasi ada di `13_Rubrik_Penilaian.md`. Tabel migrasi dari modul 14-minggu lama tersedia di `14_Lampiran.md` §H.
 
 ---
 

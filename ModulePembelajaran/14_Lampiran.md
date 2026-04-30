@@ -1286,7 +1286,7 @@ runpodctl remove pod [pod-id]
 
 - **Prasyarat Python/Kalkulus belum solid?** -> Lampiran §F
 - **Self-checklist mingguan (apa yang harus saya bisa)?** -> Lampiran §G
-- **Cara menulis pre-registration?** -> W11 + Lampiran §C.1
+- **Cara menulis pre-registration?** -> W12 + Lampiran §C.1
 - **Template Capstone Proposal?** -> Lampiran §C.13
 - **Rubrik penilaian?** -> [Rubrik Penilaian](13_Rubrik_Penilaian.md)
 - **Panduan Instruktur (pacing, emphasis, grading)?** -> [Panduan Instruktur](15_Panduan_Instruktur.md)
@@ -1324,7 +1324,7 @@ runpodctl remove pod [pod-id]
 
 ---
 
-## H. Migrasi 14 -> 11+3 Minggu {#h-migrasi}
+## H. Migrasi 14 -> 11+4 Minggu {#h-migrasi}
 
 Panduan untuk mahasiswa yang pernah menggunakan modul versi 14 minggu, atau dosen yang mengadaptasi.
 

@@ -194,7 +194,7 @@ Sisa 30-40% berasal dari: paper reading lanjutan, panduan PI/dosen pembimbing, a
 Transisi yang dimaksudkan:
 
 - **Bootcamp (Minggu 1-11):** bangun peta, workflow, dan kebiasaan
-- **Capstone (Minggu 12-14):** terapkan dalam satu masalah yang dibatasi
+- **Capstone (Minggu 12-15):** terapkan dalam satu masalah yang dibatasi
 - **RA research:** lanjutkan belajar mandiri pada masalah di lab
 
 ---
@@ -387,7 +387,7 @@ Modul ini disusun sebagai urutan linier W1 → W11. Tabel berikut menunjukkan mi
 | **W9** Multimodal | W8 | Pemahaman foundation model dan adaptation |
 | **W10** Paper Reading | W4, W7 | Bisa baca repo; bisa menjalankan eksperimen reproduksibel |
 | **W11** Research Framing | W10 | Pengalaman menerjemahkan paper jadi kode |
-| **W12-14** Capstone | W1-W11 | Seluruh pipeline + research framing matang |
+| **W12-15** Capstone | W1-W11 | Seluruh pipeline + research framing matang |
 
 > [!NOTE]
 > Dependensi linier W1→W11 memang disengaja. Berbeda dengan modul lama yang punya bab paralel, struktur bootcamp memastikan setiap kebiasaan riset baru bertumpu pada kebiasaan minggu sebelumnya. Hindari melompat: misalnya, W7 (text + repo adoption) menuntut workflow reproducibility dari W4 dan eksperimen matrix dari W5.
