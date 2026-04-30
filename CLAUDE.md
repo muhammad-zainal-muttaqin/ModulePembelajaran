@@ -10,7 +10,7 @@ Modul pembelajaran **11 minggu bootcamp + 3 minggu capstone** untuk mahasiswa S1
 
 ```
 ModulePembelajaran/
-├── 00_Pendahuluan.md              Intro + target outcome + cross-week threads + session rhythm
+├── 00_Pendahuluan.md              Intro + target outcome + alur lintas minggu + ritme sesi
 ├── 01_W1_Tabular_Output_Heads.md  MLP as shape transformer, output head + loss matching (W1)
 ├── 02_W2_Images_CNN_Smoke_Test.md Tensor citra, CNN, three-level smoke test ritual (W2)
 ├── 03_W3_Loss_Optimizer_Evaluasi.md Example-first: galeri 5 run → loss/opt/eval theory (W3)
@@ -110,7 +110,7 @@ Modul melatih breadth lima keluarga, bukan hanya CNN. Pemetaan ke W-numbering:
 - `notebooks/lab_w12_demo_app.ipynb`: diisi penuh (aggregation plot, Streamlit template, Gradio annotation template)
 - `notebooks/lab_w6_feature_representation.ipynb`: representasi fitur 3 strategi (CIFAR-10)
 - `notebooks/lab_w7_text_classification.ipynb`: klasifikasi sentimen teks IndoNLU SmSA
-- `notebooks/portofolio_mandiri.ipynb`: portfolio running-log entri W4-W10 + refleksi akhir bootcamp; template entri per-bab dengan bagian Setup/Temuan/Kejutan/Yang-Akan-Diubah/Koneksi
+- `notebooks/portofolio_mandiri.ipynb`: portofolio log berjalan entri W4-W10 + refleksi akhir bootcamp; template entri per-bab dengan bagian Setup/Temuan/Kejutan/Yang-Akan-Diubah/Koneksi
 
 ## Template Repo (`template_repo/`)
 
@@ -177,9 +177,20 @@ Aturan wajib saat menambah atau mengedit konten `.md` dan sel markdown notebook:
 
 **Diksi Natural (hindari rasa "terjemahan literal"):**
 
-Penulis modul adalah penutur asli Indonesia. Prosa harus terasa ditulis langsung dalam Indonesia, bukan diterjemahkan dari English academic prose. Pakai pasangan diksi berikut sebagai default; kaku di kiri, natural di kanan:
+Penulis modul adalah penutur asli Indonesia. Prosa harus terasa ditulis langsung dalam Indonesia, bukan diterjemahkan dari English academic prose. Jangan hanya mengandalkan regex; baca ulang kalimatnya dan tanyakan: "apakah penutur Indonesia akan menulis kalimat ini dari nol?"
 
-| Kaku (hindari) | Natural (pakai) | Catatan |
+Prinsip audit:
+
+1. **Utamakan maksud, bukan padanan kata.** Jika kalimat terasa seperti struktur Inggris yang diberi kata Indonesia, restrukturisasi kalimatnya.
+2. **Jangan memaksa metafora.** Jika maksudnya urutan, pakai `urutan`, `alur`, `bertahap`, atau `melanjutkan dari`; jangan pakai metafora seperti tangga, jalan, atau "di atas" kecuali benar-benar membantu.
+3. **Jangan personifikasi abstrak.** Modul, dokumen, protokol, dan sistem boleh "memuat", "menjelaskan", atau "merekam"; jangan dibuat seperti pihak yang menyepakati, bergerak, atau berpikir.
+4. **Hindari future auxiliary sebagai default.** `Anda akan ...` boleh untuk kejadian masa depan yang nyata, tetapi pembuka section deskriptif lebih natural dengan present/impersonal.
+5. **Pertahankan istilah teknis Inggris yang memang teknis.** `loss`, `gradient`, `checkpoint`, `seed`, `freeze`, `ablation`, `fine-tune` tetap boleh. Untuk frasa umum non-teknis, pakai Indonesia: `sumber belajar`, `glosarium singkat`, `opsional`, `tercakup`, `secara mandiri`.
+6. **Jika menemukan pola baru, update tabel ini.** Jangan biarkan perbaikan hanya hidup di diff.
+
+Katalog pola di bawah adalah contoh yang pernah ditemukan di modul. Kaku di kiri, natural di kanan:
+
+| Kaku / calque (hindari) | Natural (pakai) | Catatan |
 |---|---|---|
 | `secara praktis` | `dalam praktiknya` | |
 | `bekerja ampuh / bekerja kuat` | `sangat efektif` / `sangat ampuh` | |
@@ -201,7 +212,7 @@ Penulis modul adalah penutur asli Indonesia. Prosa harus terasa ditulis langsung
 | `bekerja baik` (= "works well") | `efektif` / `berfungsi dengan baik` | "Bekerja" sebagai metafora kinerja calque "to work" |
 | `menemukan diri sendiri` (= "find yourself") | hapus "diri sendiri" / restrukturisasi | Calque "you'll find yourself doing X"; cukup "Anda tergoda..." / "Anda cenderung..." |
 | `mini-glosarium` | `glosarium singkat` | "Mini-" sebagai prefix bahasa Inggris tidak natural di ID |
-| `bahasa dan bekal minimum` | `kosakata dasar` / `prasyarat kosakata` | Konstruksi "bekal minimum" calque "minimum prerequisites" |
+| `bahasa dan bekal minimum` / `bekal modul` | `kosakata dasar` / `prasyarat modul` | Konstruksi "bekal minimum" calque "minimum prerequisites" |
 | `Apa yang Anda akan [V]` | `Apa yang akan Anda [V]` | Urutan kata baku ID: interogatif → `akan` → subjek → verba |
 | `dengan asumsi minimum` (= "with minimal assumptions") | `dengan prasyarat seminimal mungkin` / `tanpa banyak asumsi` | Nomina "asumsi" tidak berjodoh dengan "minimum" sebagai modifier langsung |
 | `intuisi` (= abstrak "intuition/concept") | `pemahaman` / `gambaran` / `cara kerja` / `prinsip` | "Intuisi" dalam ID bermakna naluri/insting; untuk "understanding of a concept" pilih kata sesuai konteks: gambaran (umum), pemahaman (konsep), cara kerja (mekanisme), prinsip (aturan). Pengecualian: "kejujuran intuisi" / "memvalidasi intuisi" — di sini "intuisi" berarti dugaan/tebakan, sah dipakai |
@@ -222,8 +233,20 @@ Penulis modul adalah penutur asli Indonesia. Prosa harus terasa ditulis langsung
 | `ini mengalahkan tujuan` (= "defeats the purpose") | `ini merusak tujuan` / `ini bertentangan dengan tujuan` | Idiom "mengalahkan tujuan" tidak natural dalam Indonesia |
 | `bukti mengalahkan kesan` | `bukti lebih penting daripada kesan` | Hindari slogan hasil terjemahan "X beats Y" |
 | `tanggal lebih tua dari commit` | `tanggal lebih awal dari commit` | Untuk urutan waktu dokumen/commit, `lebih awal` lebih jelas daripada `lebih tua` |
+| `prasyarat dijaga serendah mungkin` | `prasyarat dibuat seringan mungkin` / `prasyarat ditetapkan seminimal mungkin` | `Dijaga` untuk prasyarat terasa seperti calque "kept low" |
+| `di atas X` (= "on top of X" abstrak) | `berbasis X` / `bertumpu pada X` / `melanjutkan dari X` | Hindari metafora vertikal untuk relasi kurikulum/kode kecuali benar-benar spasial |
+| `Resource eksternal` | `sumber belajar` / `sumber rujukan` | Pakai istilah Indonesia untuk frasa umum non-teknis |
+| `di-cover` | `tercakup` / `dibahas` | Hindari campuran Inggris-Indonesia jika padanan Indonesia jelas |
+| `optional` | `opsional` | Gunakan bentuk serapan Indonesia |
+| `kerjakan secara independen` | `kerjakan secara mandiri` | Sesuai aturan `kerja independen` di atas |
+| `train MLP` | `latih MLP` | Untuk verba umum, pakai Indonesia |
+| `shared dataset` | `dataset bersama` | |
+| `curve interpretation` | `interpretasi kurva` | |
+| `capstone project` | `proyek capstone` | |
+| `portfolio` | `portofolio` | Gunakan bentuk serapan Indonesia |
+| `trajektori belajar` | `perjalanan belajar` | `Trajektori` terlalu teknis untuk refleksi belajar |
 
-**Pola yang sering luput dan wajib dihindari:** konstruksi spasial-metaforis ("berada X menuju Y", "di jalur untuk Z"), post-nominal kata sifat hasil terjemahan kata-per-kata ("topik lab nyata" = "real lab topics", "data sintetis nyata"), dan future auxiliary "Anda akan + V" sebagai pembuka section deskriptif. Tiga pola ini terdengar jelas seperti terjemahan literal dan harus diubah, bahkan jika bentuk individu kata-katanya sudah ada di kamus PUEBI.
+**Pola yang sering luput dan wajib dihindari:** konstruksi spasial-metaforis ("berada X menuju Y", "di jalur untuk Z", "di atas Lab 3b"), post-nominal kata sifat hasil terjemahan kata-per-kata ("topik lab nyata" = "real lab topics", "data sintetis nyata"), personifikasi abstrak ("modul menyepakati", "sistem berputar sendiri"), frasa Inggris tempelan untuk hal umum ("by design", "shared dataset"), dan future auxiliary "Anda akan + V" sebagai pembuka section deskriptif. Pola-pola ini harus diubah walaupun kata per katanya ada di kamus PUEBI.
 
 Pola pembuka section pengantar yang melibatkan pembaca: pakai "kita" sebagai penanda inklusif (mis. "Sebelum **kita** membahas..."), terutama saat menjembatani konsep baru.
 
