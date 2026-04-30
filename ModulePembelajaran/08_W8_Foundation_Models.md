@@ -28,21 +28,21 @@
 
 > *Foundation model bukan "model yang bagus". Model ini sudah mempelajari representasi kaya dari jutaan atau miliaran contoh sehingga Anda tidak harus mulai dari nol. Pertanyaannya bukan "apakah saya boleh memakainya" - pertanyaannya adalah "adaptasi apa yang paling masuk akal untuk skenario ini?"*
 
-**Big Map row:** input apapun dengan pretrained priors
-**Rigor habit:** Model-card literacy, adaptation choice, fair baseline selection
-**Dataset:** Reuse dataset dari minggu sebelumnya untuk perbandingan langsung
+**Baris Big Map:** input apa pun dengan prior dari pretrained model
+**Rigor habit:** Literasi model card, pilihan adaptasi, baseline yang adil
+**Dataset:** Pakai ulang dataset dari minggu sebelumnya untuk perbandingan langsung
 **Lab utama:** Foundation Model Map + selection memo
 
 ---
 
 ## 0. Peta Bab
 
-W8 membangun pemahaman sistematis tentang ekosistem foundation models:
+W8 membangun pemahaman sistematis tentang ekosistem foundation model:
 
 - **2.1** Apa yang membuat sebuah model menjadi "foundation model"?
-- **2.2** Taksonomi modality x family x adaptation
+- **2.2** Taksonomi modalitas x keluarga model x adaptasi
 - **2.3** Membaca model card secara kritis
-- **2.4** Adaptation choice decision tree
+- **2.4** Pohon keputusan untuk memilih adaptasi
 - **2.5** Teacher model dan training-time supervision
 - **3** Worked Example: IndoBERT dengan tiga strategi adaptasi
 
@@ -52,7 +52,7 @@ W8 membangun pemahaman sistematis tentang ekosistem foundation models:
 
 Bayangkan Anda ditugaskan membangun classifier untuk teks medis Bahasa Indonesia. Pilihan:
 
-**Dari nol:** Train LSTM dari scratch. Dataset Anda 5.000 sampel - mungkin cukup untuk pola dasar, tapi vocabulary medis sangat sparse.
+**Dari nol:** Latih LSTM dari awal. Dataset Anda 5.000 sampel - mungkin cukup untuk pola dasar, tetapi kosakata medis sangat jarang.
 
 **Dengan foundation model:** Mulai dari IndoBERT yang sudah memahami tata bahasa dan konteks Bahasa Indonesia dari jutaan kalimat. Fine-tune hanya 3 epoch. Hasilnya hampir pasti lebih baik dengan lebih sedikit data dan waktu.
 
@@ -70,18 +70,18 @@ W8 memberi kerangka untuk menjawab ketiga pertanyaan ini.
 
 ### 2.1 Apa Itu Foundation Model dalam Praktiknya?
 
-Foundation model bukan definisi teknis yang ketat. Dalam konteks riset praktis, ia merujuk ke model yang:
+Foundation model bukan definisi teknis yang ketat. Dalam konteks riset praktis, istilah ini merujuk ke model yang:
 
 1. **Pretrained pada data besar** - teks, gambar, audio, atau multimodal pada skala yang tidak praktis untuk dilatih sendiri.
-2. **Representasi yang dapat ditransfer** - hidden states atau embeddings berguna untuk banyak downstream tasks.
+2. **Representasi yang dapat ditransfer** - hidden states atau embeddings berguna untuk banyak tugas hilir.
 3. **Dapat diadaptasi tanpa training penuh** - frozen extraction, lightweight adapters (LoRA), atau fine-tuning sebagian sudah memberikan hasil kompetitif.
 
-Konsekuensi praktis: ketika Anda mendapat task baru, pertanyaan pertama adalah "apakah tersedia foundation model yang relevan?" bukan "arsitektur apa yang akan saya bangun dari nol?"
+Konsekuensi praktis: ketika Anda mendapat tugas baru, pertanyaan pertama adalah "apakah tersedia foundation model yang relevan?" bukan "arsitektur apa yang akan saya bangun dari nol?"
 
-### 2.2 Taksonomi Modality x Family x Adaptation
+### 2.2 Taksonomi Modalitas x Keluarga Model x Adaptasi
 
 > [!IMPORTANT]
-> **Tiga adaptation modes yang dipakai berulang di tabel.** Definisi singkat di sini supaya tabel tidak terasa magis. Detail decision tree ada di §2.4.
+> **Tiga mode adaptasi yang dipakai berulang di tabel.** Definisi singkat di sini supaya tabel tidak terasa magis. Detail pohon keputusan ada di §2.4.
 >
 > - **Frozen** - bobot pretrained dikunci (`requires_grad = False`). Hanya layer tambahan kecil (linear head, classifier) yang dilatih. Inference tetap melalui seluruh model, tetapi tidak ada backward pass ke backbone. Tercepat dan paling stabil; sub-optimal kalau domain target jauh dari pretraining.
 > - **LoRA** (Low-Rank Adaptation) - sisipkan matriks low-rank `A B` (mis. `r=8`) paralel dengan `W_q` dan `W_v` di setiap attention layer; kunci `W` original. Hanya `A B` dilatih. Trade-off: ~0.5-2% parameter dilatih, performa biasanya 95-99% dari full fine-tuning, training 3-5× lebih cepat. Pakai library `peft` dari HuggingFace.
@@ -196,7 +196,7 @@ Contoh:
 
 Dalam semua kasus ini, foundation model tidak ada dalam model final yang di-deploy. Ia meningkatkan proses training. Pola ini penting karena memungkinkan benefit dari foundation model tanpa inference cost-nya.
 
-#### 2.5.1 Knowledge Distillation: Contoh Numerik dengan Soft Target
+#### 2.5.1 Knowledge Distillation: Contoh Numerik dengan Target Lunak
 
 Untuk task klasifikasi 3 kelas (anjing/kucing/kelinci), teacher menghasilkan logits `z_T = [4.0, 1.0, 0.5]` untuk satu sampel. Student dilatih untuk mereproduksi distribusi probabilitas teacher, **bukan** label keras `[1, 0, 0]`.
 
@@ -309,20 +309,20 @@ Format: [Lampiran C.9](14_Lampiran.md#c9-template-komponen-mandiri).
 
 1. Anda mendapat task baru: deteksi emosi dari rekaman suara Bahasa Indonesia. Dari taksonomi §2.2, identifikasi dua kandidat foundation model. Untuk masing-masing, tulis dua argumen mendukung dan satu risiko utama.
 2. Seorang kolaborator mengklaim "model X mencapai SOTA di benchmark Y, jadi kita pakai ini". Apa tiga pertanyaan yang akan Anda tanyakan sebelum menyetujui?
-3. Thread Representation Choice: frozen features adalah "extracted", full FT adalah "learned". Di mana LoRA berada dalam taksonomi W3 ini? Mengapa perbedaan ini penting untuk keputusan adaptasi?
+3. Alur Representation Choice: frozen features adalah "extracted", full FT adalah "learned". Di mana LoRA berada dalam taksonomi W3 ini? Mengapa perbedaan ini penting untuk keputusan adaptasi?
 
 ---
 
 ## 7. Bacaan Lanjutan
 
 - **Bommasani et al. - *On the Opportunities and Risks of Foundation Models*** (2021). Paper definitif. Baca bagian 1 (Introduction) dan 3 (Capabilities).
-- **Hu et al. - *LoRA: Low-Rank Adaptation of Large Language Models*** (2021). Baca Section 4 (main experiments).
+- **Hu et al. - *LoRA: Low-Rank Adaptation of Large Language Models*** (2021). Baca bagian 4 (main experiments).
 - **Mitchell et al. - *Model Cards for Model Reporting*** (2019). Template model card yang digunakan industri.
 
 ---
 
 ## Lanjut ke W9
 
-W8 membangun pemahaman single-modality foundation models. W9 memperluas ke terrain yang lebih kompleks: bagaimana menggabungkan dua atau lebih modality, bagaimana mendeteksi apakah model benar-benar menggunakan semua modality, dan bagaimana menangani situasi di mana satu modality hilang.
+W8 membangun pemahaman foundation model untuk satu modalitas. W9 memperluas ke wilayah yang lebih kompleks: bagaimana menggabungkan dua atau lebih modalitas, bagaimana mendeteksi apakah model benar-benar menggunakan semua modalitas, dan bagaimana menangani situasi ketika satu modalitas hilang.
 
 Buka [W9 - Multimodal Reasoning](09_W9_Multimodal_Reasoning.md) ketika siap.

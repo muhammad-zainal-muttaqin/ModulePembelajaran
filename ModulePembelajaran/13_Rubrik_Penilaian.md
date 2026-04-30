@@ -32,7 +32,7 @@
 
 ## 0. Peta Bab
 
-Rubrik ini memetakan sembilan kompetensi ke empat level penguasaan dengan deskriptor yang dapat diobservasi, memberikan bobot nilai yang dapat disesuaikan dosen, dan menjelaskan cara rubrik dipakai sepanjang semester. Bagian akhir menyatukan rubrik dengan capstone project agar penilaian akhir bersandar pada bukti konkret, bukan kesan.
+Rubrik ini memetakan sembilan kompetensi ke empat level penguasaan dengan deskriptor yang dapat diobservasi, memberikan bobot nilai yang dapat disesuaikan dosen, dan menjelaskan cara rubrik dipakai sepanjang semester. Bagian akhir menyatukan rubrik dengan proyek capstone agar penilaian akhir bersandar pada bukti konkret, bukan kesan.
 
 ---
 
@@ -70,7 +70,7 @@ Bobot berikut adalah saran yang dapat disesuaikan dosen menurut fokus kelas. Tot
 | 7   | Alat pendukung ringan                | 4%    |
 | 8   | Platform & tool baru                 | 6%    |
 | 9   | Pengembangan mandiri                 | 10%   |
-| –   | **Capstone project**                 | 10%   |
+| –   | **Proyek capstone**                  | 10%   |
 | 10  | Eksplorasi Mandiri & Komunikasi      | 10% (*) |
 
 
@@ -216,7 +216,7 @@ Rubrik dievaluasi di **tiga titik**, bukan hanya akhir semester.
 
 **Titik 2 - Minggu 10 (setelah Lab 6).** Tinjauan kedua mencakup kompetensi 4–6. Pada titik ini, mahasiswa diharapkan sudah Developing atau lebih untuk kompetensi 1–3. Diskusi berfokus pada pola kerja: apakah catatan eksperimen konsisten, apakah verifikasi pipeline dilakukan rutin, dan apakah interaksi dengan LLM sudah teratur.
 
-**Titik 3 - Akhir minggu 14 (setelah capstone).** Evaluasi menyeluruh untuk semua kompetensi, menggunakan bukti dari lab, laporan capstone, dan demo. Level final dicatat per kompetensi, lalu digabungkan dengan bobot menjadi nilai akhir.
+**Titik 3 - Akhir minggu 14 (setelah capstone).** Evaluasi menyeluruh untuk semua kompetensi, menggunakan bukti dari lab, laporan capstone, dan demo. Level akhir dicatat per kompetensi, lalu digabungkan dengan bobot menjadi nilai akhir.
 
 ---
 

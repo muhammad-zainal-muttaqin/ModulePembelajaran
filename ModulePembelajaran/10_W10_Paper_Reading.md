@@ -28,8 +28,8 @@
 
 > *Riset tidak berakhir ketika semester selesai. Keterampilan membaca paper secara terstruktur dan menerjemahkannya menjadi kode yang bisa dijalankan adalah yang memisahkan peneliti pemula dari peneliti yang terus berkembang.*
 
-**Big Map row:** sintesis melalui research artifacts
-**Rigor habit:** Three-pass paper reading dan paper-to-code translation
+**Baris Big Map:** sintesis melalui artefak riset
+**Rigor habit:** Membaca paper tiga putaran dan menerjemahkan paper ke kode
 **Lab utama:** Lab W10 - Paper to Code (`lab_w10_paper_to_code.ipynb`)
 
 ---
@@ -39,8 +39,8 @@
 W10 fokus pada dua skill yang sering diasumsikan ada tapi jarang diajarkan eksplisit:
 
 - **2.1** Kurasi paper: dari banjir ke aliran kecil
-- **2.2** Three-pass paper reading method (Keshav 2007) - eksplisit dengan template
-- **2.3** Paper-to-code translation workflow - 6 langkah dari abstract ke minimal runnable
+- **2.2** Metode membaca paper tiga putaran (Keshav 2007) - eksplisit dengan template
+- **2.3** Alur paper-to-code - 6 langkah dari abstract ke kode minimal yang bisa dijalankan
 - **2.4** Menjalankan satu ablation kecil untuk memahami kontribusi paper
 - **2.5** Peta keluarga model generatif (vocab reference)
 
@@ -50,7 +50,7 @@ Setelah W10, Anda bisa mengambil paper dari arXiv, membacanya secara terstruktur
 
 ## 1. Motivasi: Satu Tahun Setelah Kelas
 
-Bayangkan setahun dari sekarang. Anda sudah lulus atau sedang TA semester akhir. Tidak ada lagi silabus, tidak ada lagi dosen yang mengirim email "minggu ini coba ini". Anda tertarik pada satu bidang - katakanlah *medical image segmentation* - dan ingin menjadi kompeten di dalamnya.
+Bayangkan setahun dari sekarang. Anda sudah lulus atau sedang menjadi TA semester akhir. Tidak ada lagi silabus, tidak ada lagi dosen yang mengirim email "minggu ini coba ini". Anda tertarik pada satu bidang - katakanlah *medical image segmentation* - dan ingin menjadi kompeten di dalamnya.
 
 Dua mahasiswa menghadapi situasi yang sama dengan dua strategi.
 
@@ -76,9 +76,9 @@ Empat tingkat filter, dari kasar ke halus:
 
 **Filter 2 - Judul.** 80% paper dapat Anda tolak dari judul: bukan bidangmu, bukan tipe pertanyaan yang Anda cari. Proses 50 judul dalam 5 menit; yang tersisa mungkin 10.
 
-**Filter 3 - Abstrak.** Baca abstrak dari 10 paper. Tanya: apakah *klaim* mereka menarik bagiku? Apakah *metodenya* terasa belajar atau mainstream? Pilih top 5.
+**Filter 3 - Abstrak.** Baca abstrak dari 10 paper. Tanya: apakah *klaim* mereka menarik bagi saya? Apakah *metodenya* memberi sesuatu yang bisa dipelajari, atau sekadar mengikuti arus utama? Pilih top 5.
 
-**Filter 4 - Pembaca cepat.** Baca introduction + figure pertama + tabel hasil dari 5 paper. Sekarang Anda tahu: mana yang worth deep-dive, mana yang cukup diingat sebagai "ada di luar sana".
+**Filter 4 - Baca cepat.** Baca introduction + figure pertama + tabel hasil dari 5 paper. Sekarang Anda tahu: mana yang layak dibaca mendalam, mana yang cukup diingat sebagai "ada di luar sana".
 
 Dari 500 paper/minggu → 5 paper dibaca cepat → 1-2 paper dibaca penuh. Rasio 1:250. Awalnya terasa membuang, sebenarnya itu efisiensi.
 
@@ -131,7 +131,7 @@ Yang mengganggumu atau yang ingin Anda gali.
 Satu kalimat: mengapa paper ini relevan (atau tidak).
 ```
 
-Simpan di `docs/papers/<short_title>.md`. Setelah 20 paper, Anda punya literatur pribadi yang bisa di-grep. Dalam tiga bulan, pencarian ulang seperti ini akan sering terpakai.
+Simpan di `docs/papers/<short_title>.md`. Setelah 20 paper, Anda punya literatur pribadi yang bisa dicari dengan `grep`/`rg`. Dalam tiga bulan, pencarian ulang seperti ini akan sering terpakai.
 
 ### 2.4 5 Whys: Dari Minat ke Pertanyaan yang Dapat Dikerjakan
 
@@ -183,7 +183,7 @@ Kondisi konkret yang membuatmu menyatakan H nol benar.
 
 Setelah eksperimen selesai, buka pre-reg, bandingkan dengan hasil aktual, tulis *amendment* bila ada deviasi. Sering kali Anda akan tergoda mengubah metrik atau menambah baseline baru - pre-reg menjaga disiplin untuk melaporkan *ketika itu terjadi*, bukan menyembunyikannya.
 
-Jangan jadikan pre-reg birokrasi. Tujuannya bukan dokumen sempurna; tujuannya adalah Anda-tiga-jam-kemudian tidak bisa menipu Anda-sekarang.
+Jangan jadikan pre-reg birokrasi. Tujuannya bukan dokumen sempurna; tujuannya agar diri Anda tiga jam kemudian tidak bisa menipu diri Anda yang sekarang.
 
 ### 2.6 Rutinitas Mingguan yang Tahan Lama
 
@@ -208,7 +208,7 @@ Rutinitas ini sederhana karena sederhana yang bertahan. Yang rumit ditinggalkan 
 
 ### 2.7 Peta Keluarga Model Generatif
 
-Modul ini men-*cover* arsitektur diskriminatif secara hands-on (MLP di Lab 1c, CNN di Lab 1, LSTM di Lab 3b, Transformer encoder di Lab 6b, Autoencoder di Lab 7b). Satu keluarga besar yang tidak masuk jadwal hands-on adalah **model generatif** - model yang belajar menghasilkan sampel baru dari distribusi data. Alasannya bukan kurang penting - justru sebaliknya: sekitar sepertiga paper ML modern melibatkan komponen generatif. Alasan praktisnya adalah ongkos latihan dan *tuning*: model generatif yang stabil butuh compute, dataset, dan keterampilan diagnostik yang melebihi scope semester ini.
+Modul ini membahas arsitektur diskriminatif secara hands-on (MLP di Lab 1c, CNN di Lab 1, LSTM di Lab 3b, Transformer encoder di Lab 6b, Autoencoder di Lab 7b). Satu keluarga besar yang tidak masuk jadwal hands-on adalah **model generatif** - model yang belajar menghasilkan sampel baru dari distribusi data. Alasannya bukan kurang penting, justru sebaliknya: sekitar sepertiga paper ML modern melibatkan komponen generatif. Alasan praktisnya adalah ongkos latihan dan *tuning*: model generatif yang stabil butuh compute, dataset, dan keterampilan diagnostik yang melebihi cakupan semester ini.
 
 Karena itu, bagian ini memberi Anda **peta mental** agar Anda bisa membaca paper generatif dengan struktur - tahu apa yang sedang dilakukan paper, apa pertanyaan standar yang wajib Anda ajukan, dan kapan harus waspada.
 
@@ -223,7 +223,7 @@ Karena itu, bagian ini memberi Anda **peta mental** agar Anda bisa membaca paper
 
 **Lab 7b sudah memberi Anda pijakan.** Autoencoder standar di Lab 7b adalah langkah pertama menuju VAE: encoder, decoder, bottleneck, dan reconstruction loss semua ada. VAE hanya menambah tiga hal: encoder mengeluarkan `(μ, σ)` bukan `z` langsung, sampling dengan *reparameterization trick*, dan loss KL terhadap prior. Jalur praktisnya: fork Lab 7b, tambah tiga modifikasi itu - ini adalah jalur yang cocok untuk **Komponen Mandiri Jalur 4 (Arsitektur Baru)**.
 
-Ketika PI Anda menyebutkan "coba diffusion untuk data kita", Anda harus bisa mengenali dari abstrak: apakah paper pakai generator sebagai *augmentation*, *imputation*, atau *end-to-end task*. Tabel di atas memberi Anda vocab yang cukup untuk percakapan pertama. Tiga paper pembuka di tabel adalah kandidat kuat untuk *paper slot* di rutinitas mingguan Anda di Lab 9.
+Ketika PI Anda menyebutkan "coba diffusion untuk data kita", Anda harus bisa mengenali dari abstrak: apakah paper pakai generator sebagai *augmentation*, *imputation*, atau *end-to-end task*. Tabel sebelumnya memberi Anda kosakata yang cukup untuk percakapan pertama. Tiga paper pembuka di tabel adalah kandidat kuat untuk *paper slot* di rutinitas mingguan Anda di Lab 9.
 
 ---
 
@@ -263,7 +263,7 @@ Rani menulis pre-reg:
 
 Apa yang Rani tulis di jurnal pertanyaan:
 
-> ELR masih membantu di structured noise tetapi margin menyusut. Pertanyaan baru: apakah teknik yang secara eksplisit memodelkan pair-wise transition (seperti noise-adaptation layer) akan lebih besar marginnya di structured? Kandidat paper minggu depan: Sukhbaatar et al. 2015, Patrini et al. 2017.
+> ELR masih membantu di structured noise tetapi margin menyusut. Pertanyaan baru: apakah teknik yang secara eksplisit memodelkan pair-wise transition (seperti noise-adaptation layer) menghasilkan margin lebih besar di structured noise? Kandidat paper minggu depan: Sukhbaatar et al. 2015, Patrini et al. 2017.
 
 Rani telah menjadi peneliti aktif. Dalam satu minggu - tanpa pembimbing memberi instruksi - ia memilih paper, memformulasikan pertanyaan yang dapat diuji, menjalankan eksperimen kecil, menemukan pola, dan punya pertanyaan berikutnya. Kebiasaan risetnya mulai berjalan mandiri.
 
@@ -279,11 +279,11 @@ Rani telah menjadi peneliti aktif. Dalam satu minggu - tanpa pembimbing memberi 
 
 **Pitfall 4 - 5 Whys berhenti di "karena menarik".** Lima whys yang semuanya tentang *motivasi emosional* tidak pernah mendarat ke variabel yang diukur. *Cara deteksi:* di pertanyaan akhir, harus ada kata kerja konkret ("ukur", "bandingkan", "ablasi") dan variabel konkret ("loss", "augmentasi", "arsitektur"). Bila tidak ada, gali lagi satu why.
 
-**Pitfall 5 - Rutinitas yang tidak proporsional dengan hidupmu.** 6 jam/minggu adalah rekomendasi mahasiswa dengan beban kuliah normal. Pekerja full-time mungkin hanya 3 jam. *Cara deteksi:* jika setelah sebulan rutinitas terhenti, bukan Anda yang malas - target-nya yang terlalu tinggi. Pangkas 50%; apa yang bertahan lebih berharga dari apa yang sempurna di atas kertas.
+**Pitfall 5 - Rutinitas yang tidak proporsional dengan hidupmu.** 6 jam/minggu adalah rekomendasi mahasiswa dengan beban kuliah normal. Pekerja full-time mungkin hanya 3 jam. *Cara deteksi:* jika setelah sebulan rutinitas terhenti, masalahnya mungkin bukan kemalasan, melainkan target yang terlalu tinggi. Pangkas 50%; apa yang bertahan lebih berharga daripada rencana sempurna di atas kertas.
 
 ---
 
-### 2.3 Paper-to-Code Translation Workflow
+### 2.3 Alur Paper-to-Code
 
 Enam langkah dari abstrak paper ke kode minimal yang bisa dijalankan:
 
@@ -344,7 +344,7 @@ Target waktu: 6-8 jam.
 
 ## Komponen Mandiri (W10)
 
-Konsep: membaca paper secara terarah, merumuskan pertanyaan falsifiable, merancang eksperimen lanjutan. Ini entri portofolio terakhir sebelum capstone - setelah mengisinya, kerjakan juga sel "Refleksi Portofolio" di notebook: lihat kembali semua entri Anda dan tuliskan satu paragraf trajektori belajar. Format dan kriteria: [Lampiran C.9](14_Lampiran.md#c9-template-komponen-mandiri).
+Konsep: membaca paper secara terarah, merumuskan pertanyaan falsifiable, merancang eksperimen lanjutan. Ini entri portofolio terakhir sebelum capstone - setelah mengisinya, kerjakan juga sel "Refleksi Portofolio" di notebook: lihat kembali semua entri Anda dan tuliskan satu paragraf perjalanan belajar. Format dan kriteria: [Lampiran C.9](14_Lampiran.md#c9-template-komponen-mandiri).
 
 | Jalur | Tugas minggu ini |
 | --- | --- |
@@ -353,7 +353,7 @@ Konsep: membaca paper secara terarah, merumuskan pertanyaan falsifiable, meranca
 | **C - Desain** | Tulis pre-registration untuk ide riset yang muncul dari pengalaman Anda sendiri sepanjang semester (bukan dari paper orang lain). Minimal: motivasi, hipotesis falsifiable, protokol, dan kondisi kegagalan. |
 | **D - Arsitektur Baru** | Implementasikan satu paper tentang arsitektur yang belum dibahas di modul (mis. ResNeXt, MobileNet, DETR). Forward pass + learning curve + 1 paragraf perbedaan vs arsitektur yang sudah dipelajari. |
 
-**Deliverable:** Entri portofolio W10 + sel Refleksi Portofolio di `notebooks/portofolio_mandiri.ipynb`. Presentasi highlight portofolio 10 menit di awal W11.
+**Luaran:** Entri portofolio W10 + sel Refleksi Portofolio di `notebooks/portofolio_mandiri.ipynb`. Presentasi sorotan portofolio 10 menit di awal W11.
 
 ---
 

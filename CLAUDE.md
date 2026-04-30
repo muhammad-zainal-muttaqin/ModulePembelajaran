@@ -245,8 +245,25 @@ Katalog pola di bawah adalah contoh yang pernah ditemukan di modul. Kaku di kiri
 | `capstone project` | `proyek capstone` | |
 | `portfolio` | `portofolio` | Gunakan bentuk serapan Indonesia |
 | `trajektori belajar` | `perjalanan belajar` | `Trajektori` terlalu teknis untuk refleksi belajar |
+| `Big Map row` | `Baris Big Map` | Label metadata jangan dibiarkan Inggris jika padanan Indonesia jelas |
+| `shape transformer` | `pengubah bentuk tensor` | Hindari istilah tempelan jika konsepnya bisa dijelaskan natural |
+| `loss-head mismatch` | `ketidakcocokan loss dan head` | Untuk judul/pitfall, utamakan frasa Indonesia yang langsung terbaca |
+| `task formulation` | `perumusan tugas` / `tiga tugas` | Jangan pakai noun phrase Inggris untuk konsep umum |
+| `run yang sehat` / `galeri runs` | `training yang sehat` / `galeri training` / `contoh training` | `Run` boleh sebagai entitas eksperimen, tetapi untuk narasi pembaca sering lebih natural diganti |
+| `three-level smoke test ritual` | `smoke test tiga level` | Hindari `ritual` jika maksudnya prosedur/debugging habit |
+| `experiment matrix` | `matriks eksperimen` | Untuk frasa umum yang sudah punya padanan langsung |
+| `seed locking` | `penguncian seed` | Terjemahkan struktur umum; `seed` tetap istilah teknis |
+| `peta navigasi cepat` untuk diagnosis | `peta diagnosis cepat` | Jangan memaksakan metafora navigasi jika maksudnya diagnosis |
+| `data inspection` | `pemeriksaan data` | Hindari label Inggris untuk aktivitas umum |
+| `deliverable(s)` | `luaran` | Untuk bagian tugas/rubrik, `luaran` lebih natural daripada `deliverable` |
+| `skope minimal` | `cakupan minimal` | Pakai bentuk Indonesia baku, bukan ejaan campuran |
+| `modality` dalam prosa umum | `modalitas` | Istilah teknis boleh di tabel/glosarium, tetapi narasi Indonesia lebih natural dengan `modalitas` |
+| `workflow discipline` | `disiplin alur kerja` | Jangan biarkan noun phrase Inggris menempel di metadata |
+| `ritual` untuk prosedur | `formalitas` / `prosedur` / nama prosedurnya langsung | `Ritual` terdengar janggal jika maksudnya kebiasaan teknis/debugging |
+| `sum to 1` | `jumlahnya 1` / `jumlah probabilitasnya 1` | Hindari klausa Inggris pendek di tengah penjelasan Indonesia |
+| `di-cover` / `sudah di-cover` | `dibahas` / `tercakup` | Hindari campuran imbuhan Indonesia + verba Inggris |
 
-**Pola yang sering luput dan wajib dihindari:** konstruksi spasial-metaforis ("berada X menuju Y", "di jalur untuk Z", "di atas Lab 3b"), post-nominal kata sifat hasil terjemahan kata-per-kata ("topik lab nyata" = "real lab topics", "data sintetis nyata"), personifikasi abstrak ("modul menyepakati", "sistem berputar sendiri"), frasa Inggris tempelan untuk hal umum ("by design", "shared dataset"), dan future auxiliary "Anda akan + V" sebagai pembuka section deskriptif. Pola-pola ini harus diubah walaupun kata per katanya ada di kamus PUEBI.
+**Pola yang sering luput dan wajib dihindari:** konstruksi spasial-metaforis ("berada X menuju Y", "di jalur untuk Z", "di atas Lab 3b"), post-nominal kata sifat hasil terjemahan kata-per-kata ("topik lab nyata" = "real lab topics", "data sintetis nyata"), personifikasi abstrak ("modul menyepakati", "sistem berputar sendiri"), frasa Inggris tempelan untuk hal umum ("by design", "shared dataset", "shape transformer", "task formulation", "data inspection", "deliverables"), label metadata Inggris yang sebenarnya mudah diterjemahkan ("Big Map row"), dan future auxiliary "Anda akan + V" sebagai pembuka section deskriptif. Pola-pola ini harus diubah walaupun kata per katanya ada di kamus PUEBI.
 
 Pola pembuka section pengantar yang melibatkan pembaca: pakai "kita" sebagai penanda inklusif (mis. "Sebelum **kita** membahas..."), terutama saat menjembatani konsep baru.
 

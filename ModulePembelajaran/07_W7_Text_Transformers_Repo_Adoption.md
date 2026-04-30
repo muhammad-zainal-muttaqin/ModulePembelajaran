@@ -28,7 +28,7 @@
 
 > *TF-IDF memberi tahu Anda kata apa yang ada. Contextual embeddings memberi tahu Anda apa yang dimaksud kata itu di konteks spesifik ini. Transformers mengubah teks bukan menjadi fitur, melainkan menjadi makna yang bisa dibandingkan.*
 
-**Big Map row:** `(T,) -> (N,)`, `(1,)`, `(T, N)`
+**Baris Big Map:** `(T,) -> (N,)`, `(1,)`, `(T, N)`
 **Rigor habit:** Verify AI-generated code, inspect tokenization, map external repos
 **Dataset:** Indonesian text dataset (IndoNLU SmSA)
 **Lab utama:** Lab 5b (`lab_w7_text_classification.ipynb`) + Lab 6 repo adoption (`lab_w7_repo_adoption.ipynb`)
@@ -43,7 +43,7 @@ W7 menggabungkan tiga tema yang saling memperkuat:
 - **2. AI Tools sebagai Pendukung** - verifikasi kode AI, protokol synthesis, kapan trust copilot
 - **3. Repo Adoption Primer** - membaca repo yang belum dikenal, `repo_map.md`, modifikasi minimal-invasif
 
-Ketiga tema bertemu dalam satu workflow: mengadopsi HuggingFace repo, memakai AI tools untuk memahami bagian yang belum dikenal, dan membuat `repo_map.md` sebagai dokumentasi pemahaman Anda.
+Ketiga tema bertemu dalam satu alur kerja: mengadopsi repo HuggingFace, memakai AI tools untuk memahami bagian yang belum dikenal, dan membuat `repo_map.md` sebagai dokumentasi pemahaman Anda.
 
 ---
 
@@ -90,7 +90,7 @@ Tugas penting W7: inspeksi tokenizer pada 5-10 sampel dari dataset Anda sebelum 
 
 Dua keputusan yang perlu dibandingkan:
 
-**Frozen backbone** - hanya head kecil yang dilatih di atas fixed embeddings. Cepat, murah, stabil. Cocok untuk dataset kecil atau ketika domain sangat mirip dengan pretraining.
+**Frozen backbone** - hanya head kecil yang dilatih memakai embedding tetap. Cepat, murah, stabil. Cocok untuk dataset kecil atau ketika domain sangat mirip dengan pretraining.
 
 **Fine-tuned** - seluruh model (atau sebagian) dilatih bersama head. Lebih lambat, lebih fleksibel, sering lebih baik pada dataset cukup besar.
 
@@ -101,7 +101,7 @@ Dua keputusan yang perlu dibandingkan:
 > 
 > Aturan praktis: kalau dataset < 5k sampel atau Anda butuh prototype cepat, **frozen** dulu. Kalau dataset > 20k atau butuh squeeze last 3-5% performa, **fine-tune**. Antara keduanya: PEFT seperti LoRA (W8) sebagai jalan tengah.
 
-**[CLS] pooling** - menggunakan token `[CLS]` sebagai representasi seluruh sequence. Ini token spesial yang ditambahkan otomatis di awal setiap input oleh tokenizer BERT-family. Selama pretraining BERT, model belajar menaruh ringkasan global di posisi ini lewat next-sentence-prediction objective; itu sebabnya `[CLS]` jadi pilihan natural untuk classification head.
+**[CLS] pooling** - menggunakan token `[CLS]` sebagai representasi seluruh sequence. Ini token spesial yang ditambahkan otomatis di awal setiap input oleh tokenizer keluarga BERT. Selama pretraining BERT, model belajar menaruh ringkasan global di posisi ini lewat objective next-sentence prediction; itu sebabnya `[CLS]` jadi pilihan natural untuk classification head.
 
 **Mean pooling** - rata-rata embedding semua token (kecuali padding). Sering lebih robust untuk sentence similarity tasks (representasi tidak terlalu "berat sebelah" ke satu posisi), tetapi bisa kehilangan ketegasan kalau cuma sebagian token yang relevan untuk task. Untuk classification, [CLS] dan mean pool biasanya beda 1-3 poin F1; mana yang menang bergantung dataset. Lab 5b membuat 2×2 ini eksplisit supaya Anda bisa lihat sendiri pada dataset Indonesia.
 
@@ -194,7 +194,7 @@ Buka `notebooks/lab_w7_text_classification.ipynb`.
 Buka `notebooks/lab_w7_repo_adoption.ipynb`.
 
 **Tugas:**
-1. Clone satu repo riset publik (disediakan curated list di lab).
+1. Clone satu repo riset publik (daftar pilihan disediakan di lab).
 2. Tulis `repo_map.md`: entry point, model, loss, config, DataLoader.
 3. Modifikasi minimal satu komponen (ganti config, tambah logging).
 4. Buat branch git, commit diff, inspeksi diff sebelum merge.
@@ -218,13 +218,13 @@ Format: [Lampiran C.9](14_Lampiran.md#c9-template-komponen-mandiri).
 
 1. Anda mendapat dataset teks medis dalam Bahasa Indonesia (10.000 sampel, 5 kelas). IndoBERT atau BioBERT yang akan Anda coba pertama? Tulis justifikasi satu paragraf menggunakan framework dari W8 Foundation Models yang akan datang.
 2. AI tool memberikan kode tokenisasi yang "terlihat benar". Setelah inspeksi, Anda menemukan ia menghilangkan token [CLS] sebelum pooling. Apakah ini selalu salah? Kapan bisa diterima?
-3. `repo_map.md` yang Anda tulis di W7: seberapa berbeda dari yang akan Anda tulis di W9 (multimodal repo)? Apa yang berubah dalam cara Anda membaca repo saat ada lebih dari satu modality?
+3. `repo_map.md` yang Anda tulis di W7: seberapa berbeda dari yang akan Anda tulis di W9 (repo multimodal)? Apa yang berubah dalam cara Anda membaca repo saat ada lebih dari satu modalitas?
 
 ---
 
 ## 6. Bacaan Lanjutan
 
-- **Devlin et al. - *BERT: Pre-training of Deep Bidirectional Transformers*** (2018). Baca Abstract + Section 3 (pretraining) + Section 4.1 (fine-tuning). Skip appendix.
+- **Devlin et al. - *BERT: Pre-training of Deep Bidirectional Transformers*** (2018). Baca Abstract + bagian 3 (pretraining) + bagian 4.1 (fine-tuning). Lewati appendix.
 - **HuggingFace - *Course Chapter 2: Using Transformers***. Tutorial interaktif untuk tokenizer dan pipeline HuggingFace.
 - **Khoirunisa et al. - *IndoNLU: Benchmark and Resources for Evaluating Indonesian NLP*** (2020). Konteks untuk Lab 5b dataset.
 
@@ -232,7 +232,7 @@ Format: [Lampiran C.9](14_Lampiran.md#c9-template-komponen-mandiri).
 
 # Pendalaman W7 - Repo Adoption Deep Dive
 
-Bagian di atas memperkenalkan tiga tema W7 secara ringkas. Pendalaman berikut khusus untuk tema Repo Adoption - tema dengan kurva belajar paling curam dan dampak paling besar pada produktivitas riset Anda di semester berikutnya. Anda boleh membaca bagian ini di W7, atau menundanya sebagai referensi saat Capstone (W12-14) ketika harus mengadopsi repo orang lain.
+Bagian sebelumnya memperkenalkan tiga tema W7 secara ringkas. Pendalaman berikut khusus untuk tema Repo Adoption - tema dengan kurva belajar paling curam dan dampak paling besar pada produktivitas riset Anda di semester berikutnya. Anda boleh membaca bagian ini di W7, atau menundanya sebagai referensi saat Capstone (W12-14) ketika harus mengadopsi repo orang lain.
 
 ---
 
@@ -811,7 +811,7 @@ Konsep: membaca kode orang lain dengan cepat, memetakan arsitektur repo riset, d
 | **B - Analisis** | Buat diagram komponen arsitektur repo Lab 6 (entry point, model, loss, optimizer, logging). Bandingkan dengan template_repo: apa yang lebih baik, apa yang kurang, apa yang hilang. |
 | **C - Desain** | Tulis laporan adopsi 1 halaman untuk repo Lab 6: apa yang berhasil, apa yang gagal, dan minimal 3 perubahan konkret agar repo ini dapat dipakai tim 5 orang selama 3 bulan. |
 
-**Deliverable:** Entri portofolio Pendalaman W7 di `notebooks/portofolio_mandiri.ipynb`. Presentasi 10 menit pada sesi review berikutnya.
+**Luaran:** Entri portofolio Pendalaman W7 di `notebooks/portofolio_mandiri.ipynb`. Presentasi 10 menit pada sesi review berikutnya.
 
 ---
 
@@ -830,12 +830,12 @@ Konsep: membaca kode orang lain dengan cepat, memetakan arsitektur repo riset, d
 - **Peter Seibel - *Code is not literature*** (esai, 2014). Argumen mengapa kode dibaca secara berbeda dari teks naratif; implikasinya untuk strategi membaca.
 - **Michael Feathers - *Working Effectively with Legacy Code*** (buku). Walaupun ditujukan untuk software engineering, Bab 1-3 relevan untuk siapa saja yang akan sering bekerja dengan kode warisan.
 - **Greg Wilson et al. - *Good Enough Practices in Scientific Computing*** (PLOS Comp Biol, 2017). Standar minimal yang bisa Anda harapkan - atau ikuti saat menulis repo sendiri nanti.
-- **GitHub - *About Pull Requests*** (docs.github.com). Panduan teknis untuk memahami workflow kontribusi.
+- **GitHub - *About Pull Requests*** (docs.github.com). Panduan teknis untuk memahami alur kerja kontribusi.
 
 ---
 
 ## Lanjut ke W8
 
-Anda sudah bisa memakai pretrained transformer, mengadopsi repo yang belum dikenal, dan menggunakan AI tools dengan protokol yang bertanggung jawab. W8 memperluas pemahaman ke seluruh landscape foundation models: bukan hanya text, tetapi vision, audio, time series, dan multimodal - serta bagaimana memilih strategi adaptasi yang tepat.
+Anda sudah bisa memakai pretrained transformer, mengadopsi repo yang belum dikenal, dan menggunakan AI tools dengan protokol yang bertanggung jawab. W8 memperluas pemahaman ke lanskap foundation model: bukan hanya text, tetapi vision, audio, time series, dan multimodal - serta bagaimana memilih strategi adaptasi yang tepat.
 
 Buka [W8 - Foundation Models](08_W8_Foundation_Models.md) ketika siap.

@@ -26,11 +26,11 @@
 
 # 04 · W4 - Reproducibility & Experiment Matrix
 
-> *Eksperimen yang tidak bisa direproduksi hanyalah anekdot. Experiment matrix yang ditulis sebelum kode adalah janji kepada diri sendiri bahwa hasilnya akan bisa dipertanggungjawabkan.*
+> *Eksperimen yang tidak bisa direproduksi hanyalah anekdot. Matriks eksperimen yang ditulis sebelum kode adalah janji kepada diri sendiri bahwa hasilnya akan bisa dipertanggungjawabkan.*
 
-**Big Map row:** same modeling family, now with research workflow discipline
-**Rigor habit:** Experimental matrix before coding
-**Dataset:** Dataset baru (berbeda dari W2-W3) untuk menguji workflow discipline di luar dataset familiar
+**Baris Big Map:** keluarga model yang sama, sekarang dengan disiplin alur kerja riset
+**Rigor habit:** Matriks eksperimen sebelum coding
+**Dataset:** Dataset baru (berbeda dari W2-W3) untuk menguji disiplin alur kerja di luar dataset yang sudah dikenal
 **Lab utama:** Lab 3 (`lab_w4_experiment_tracking.ipynb`)
 
 ---
@@ -39,7 +39,7 @@
 
 W4 adalah titik balik dari "bisa training" menjadi "bisa riset". Materi minggu ini mencakup:
 
-- **2.0** Experiment matrix before coding
+- **2.0** Matriks eksperimen sebelum coding
 - **2.1** Lima pertanyaan sebelum menyentuh kode
 - **2.2** Protokol eksperimen satu halaman
 - **2.3** Mengendalikan variabel: satu hal satu waktu
@@ -80,9 +80,9 @@ Bab ini membangun kebiasaan itu.
 > - **Seed variance** - selisih hasil antar run yang konfigurasinya identik kecuali RNG seed (initialisasi bobot acak, urutan shuffle data, augmentasi acak). Pada CIFAR-10 baseline biasanya ±0.5-1.5% akurasi. Klaim "naik 1.7%" dengan seed variance ±1.5% bisa sekadar noise.
 > - **Effect size** - selisih metrik antara dua kondisi (mis. baseline vs modifikasi). Threshold yang ditetapkan di pre-reg menjawab "berapa besar selisih yang dianggap bermakna untuk aplikasi ini?" - bukan dijawab post-hoc setelah melihat angka.
 
-### 2.0 Experiment Matrix Before Coding
+### 2.0 Matriks Eksperimen Sebelum Coding
 
-Sebelum menyentuh kode, tulis **experiment matrix** - tabel yang mendaftar semua run yang akan Anda jalankan beserta konfigurasi masing-masing. Ini bukan formalitas; ini perancah mental yang mencegah tiga masalah umum:
+Sebelum menyentuh kode, tulis **matriks eksperimen** - tabel yang mendaftar semua run yang akan Anda jalankan beserta konfigurasi masing-masing. Ini bukan formalitas; ini alat bantu berpikir yang mencegah tiga masalah umum:
 1. lupa menjalankan satu kondisi kritis,
 2. baru menyadari di tengah jalan bahwa dua kondisi tidak sebanding,
 3. tidak bisa menjelaskan apa yang berubah di antara run.
@@ -95,10 +95,10 @@ Format minimal:
 | focal_s42 | `loss` | `FocalLoss(γ=2.0)` | 42 | planned |
 | freeze_s42 | `freeze_until` | `block1` | 42 | planned |
 
-Tulis matrix ini di `protocol.md` di folder eksperimen, **sebelum** baris kode pertama. Timestamp file adalah bukti bahwa Anda merencanakan sebelum melihat hasil.
+Tulis matriks ini di `protocol.md` di folder eksperimen, **sebelum** baris kode pertama. Timestamp file adalah bukti bahwa Anda merencanakan sebelum melihat hasil.
 
 > [!IMPORTANT]
-> "Experimental matrix before coding" adalah rigor habit W4. Setiap eksperimen yang dilaporkan setelah W4 harus punya matrix tertulis. Tidak ada matrix = angka tidak bisa dipertanggungjawabkan.
+> "Matriks eksperimen sebelum coding" adalah rigor habit W4. Setiap eksperimen yang dilaporkan setelah W4 harus punya matriks tertulis. Tidak ada matriks = angka tidak bisa dipertanggungjawabkan.
 
 ### 2.1 Lima Pertanyaan Sebelum Menyentuh Kode
 
@@ -121,7 +121,7 @@ Tentukan *sebelum* Anda melihat hasil. Urutkan: metrik utama, metrik sekunder, m
 - Pengaman: akurasi keseluruhan tidak turun > 1%; train/val gap tidak meningkat drastis.
 
 **5. Bentuk hasil apa yang Anda harapkan, dan apa yang mengejutkan?**  
-Pikirkan dua dunia sebelum menjalankan: dunia di mana hipotesis benar, dunia di mana ia salah. Apa yang Anda lihat di log? Apa yang akan Anda simpulkan? Jika Anda tidak bisa membayangkan ini, eksperimenmu belum cukup jelas.
+Pikirkan dua kemungkinan sebelum menjalankan eksperimen: hipotesis benar, atau hipotesis salah. Apa yang akan terlihat di log? Apa yang akan Anda simpulkan? Jika Anda tidak bisa membayangkan keduanya, rancangan eksperimen belum cukup jelas.
 
 ### 2.2 Protokol Eksperimen Satu Halaman
 
@@ -187,7 +187,7 @@ Baca secara vertikal: kolom `LR` seragam, berarti learning rate bukan variabel. 
 
 ![Desain ablation study: baseline dan tiga varian dengan satu variabel berubah per kondisi](./figures/fig02a_ablation_design.svg)
 
-**Variabel yang saling bergantung.** Ada satu jebakan yang sering tidak disadari: *batch size dan learning rate tidak independen*. Menggandakan batch size sambil mempertahankan LR yang sama secara efektif mengurangi ukuran update relatif - hasilnya sering lebih lambat konvergen atau performa lebih rendah. Aturan praktis yang umum diterima: jika batch size naik k kali, LR juga naik k kali (*linear scaling rule*, Goyal et al. 2017). Ini bukan hukum besi - tetapi artinya ketika Anda mengubah batch size, LR bukan variabel yang aman untuk dianggap konstan.
+**Variabel yang saling bergantung.** Ada satu jebakan yang sering tidak disadari: *batch size dan learning rate saling terkait*. Menggandakan batch size sambil mempertahankan LR yang sama secara efektif mengurangi ukuran update relatif - hasilnya sering lebih lambat konvergen atau performa lebih rendah. Aturan praktis yang umum diterima: jika batch size naik k kali, LR juga naik k kali (*linear scaling rule*, Goyal et al. 2017). Ini bukan hukum besi, tetapi artinya ketika Anda mengubah batch size, LR bukan variabel yang aman untuk dianggap konstan.
 
 **Tiga strategi menginisialisasi baseline hyperparameter.** Sebelum bisa mengontrol variabel, Anda perlu baseline yang konfigurasinya masuk akal. Tiga strategi umum, dari paling mudah ke paling teliti:
 
@@ -326,7 +326,7 @@ optimizer = torch.optim.AdamW(trainable, lr=3e-4, weight_decay=1e-4)
 Dua pelajaran implementasi:
 
 1. `**FocalLoss` ditulis dengan dokumentasi alasan, bukan apa.** Komentar `gamma=0 → cross-entropy` memberi verifikasi cepat; ketika γ=0, hasil harus sama persis dengan baseline - ini uji minimal yang mudah untuk memastikan tidak ada bug.
-2. **Optimizer hanya diberi parameter trainable.** Ini lebih dari kosmetik: beberapa optimizer (termasuk AdamW) mempertahankan state per parameter; memasukkan parameter frozen akan membuang memori dan sedikit waktu. Lebih penting, filter ini membuat niat kode eksplisit.
+2. **Optimizer hanya diberi parameter yang dilatih.** Ini lebih dari kosmetik: beberapa optimizer (termasuk AdamW) mempertahankan state per parameter; memasukkan parameter frozen akan membuang memori dan sedikit waktu. Lebih penting, filter ini membuat niat kode eksplisit.
 
 ### 3.4 Menjalankan dan Melaporkan
 
@@ -346,7 +346,7 @@ Interpretasi (tulis sebelum PI bertanya):
 - **Catatan pengamanan.** Train/val gap naik tipis (0.09 → 0.11), sinyal awal overfitting lebih tinggi pada varian focal. Perlu dipantau jika melanjutkan ke dataset lebih besar.
 - **Langkah berikutnya yang diusulkan.** Gamma sweep (γ ∈ {1.0, 2.0, 3.0}) untuk mencari titik optimal; mencoba freeze parsial (hanya conv, bukan BN).
 
-Laporan satu paragraf seperti di atas memberi PI informasi yang bisa dia pakai untuk keputusan berikutnya. Bandingkan dengan "baseline 78.4%, mod 80.1%, naik 1.7%" di Cara A.
+Laporan satu paragraf seperti contoh sebelumnya memberi PI informasi yang bisa dia pakai untuk keputusan berikutnya. Bandingkan dengan "baseline 78.4%, mod 80.1%, naik 1.7%" di Cara A.
 
 ### 3.5 Komunikasi Efektif dengan Dosen Pembimbing
 
@@ -468,7 +468,7 @@ Aturan praktis: tetap di laptop/Colab selama training selesai < 30 menit. Pindah
 - Dataset tidak muat di RAM laptop.
 - Anda butuh GPU dengan VRAM > 8GB.
 
-Pada W4, Anda diperkenalkan ke workflow RunPod dasar: launch pod → SSH → jalankan training → pull checkpoint → **matikan pod**. Mematikan pod adalah kebiasaan paling kritis - tagihan GPU terus berjalan selama pod hidup.
+Pada W4, Anda diperkenalkan ke alur kerja RunPod dasar: launch pod → SSH → jalankan training → pull checkpoint → **matikan pod**. Mematikan pod adalah kebiasaan paling kritis - tagihan GPU terus berjalan selama pod hidup.
 
 Konfigurasi RunPod minimal dan cara push/pull checkpoint lewat rsync atau rclone tersedia di [Lampiran C.15](14_Lampiran.md#c15-lightweight-research-tools).
 
@@ -478,7 +478,7 @@ Konfigurasi RunPod minimal dan cara push/pull checkpoint lewat rsync atau rclone
 
 Buka `template_repo/notebooks/lab_w4_experiment_tracking.ipynb`. Tugas:
 
-1. Tulis `protocol.md` + experiment matrix sebelum menyentuh kode.
+1. Tulis `protocol.md` + matriks eksperimen sebelum menyentuh kode.
 2. Refaktor konfigurasi dari hardcoded ke YAML.
 3. Tambahkan `set_seed()` dan `get_git_hash()` ke training loop.
 4. Logging TensorBoard per epoch (loss, accuracy, LR).
@@ -496,7 +496,7 @@ Buka `template_repo/notebooks/lab_w4_experiment_tracking.ipynb`. Tugas:
 
 ## Komponen Mandiri (W4)
 
-Konsep: experiment matrix + reproducibility infrastructure. Format, kriteria, dan panduan presentasi: [Lampiran C.9](14_Lampiran.md#c9-template-komponen-mandiri).
+Konsep: matriks eksperimen + infrastruktur reproduksibilitas. Format, kriteria, dan panduan presentasi: [Lampiran C.9](14_Lampiran.md#c9-template-komponen-mandiri).
 
 | Jalur | Tugas minggu ini |
 | --- | --- |
@@ -504,7 +504,7 @@ Konsep: experiment matrix + reproducibility infrastructure. Format, kriteria, da
 | **B - Analisis** | Ambil tiga paper klasifikasi gambar dari arXiv. Untuk masing-masing, identifikasi variabel yang diuji, baseline yang dipakai, dan hipotesis tersirat. Simpulkan pola rancangan yang paling sering diabaikan. |
 | **C - Desain** | Pilih satu dataset klasifikasi publik (selain CIFAR-10). Tulis protokol eksperimen lima bagian lengkap tanpa menjalankannya. Justifikasi setiap pilihan desain: mengapa metrik ini, mengapa baseline ini, mengapa delta threshold ini. |
 
-**Deliverable:** Entri portofolio Pekan 4 di `notebooks/portofolio_mandiri.ipynb`. Presentasi 10 menit di awal Pekan 5.
+**Luaran:** Entri portofolio Pekan 4 di `notebooks/portofolio_mandiri.ipynb`. Presentasi 10 menit di awal Pekan 5.
 
 ---
 
@@ -527,6 +527,6 @@ Konsep: experiment matrix + reproducibility infrastructure. Format, kriteria, da
 
 ## Lanjut ke W5
 
-Workflow reproduksibel kini terbangun. Minggu berikutnya memperluas Big Map ke domain sequence: tensor `(T, F)` masuk, dan arsitektur recurrent muncul karena urutan itu penting.
+Alur kerja reproduksibel kini terbangun. Minggu berikutnya memperluas Big Map ke domain sequence: tensor `(T, F)` masuk, dan arsitektur recurrent muncul karena urutan itu penting.
 
 Buka [W5 - Sequences: RNN & LSTM](05_W5_Sequences_RNN_LSTM.md) ketika siap.

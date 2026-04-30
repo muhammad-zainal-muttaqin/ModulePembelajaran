@@ -28,7 +28,7 @@
 
 > *Training selesai, kurva loss muncul di layar. Inilah momen di mana banyak pemula berhenti karena tidak tahu harus membaca apa. Loss curve bukan sekadar "turun = bagus, naik = buruk" - ia adalah sinyal diagnostik yang bisa memberi tahu apa yang salah bahkan sebelum Anda memeriksa kode.*
 
-**Big Map row:** `(C, H, W) -> (N,)` (lanjutan W2, fokus workflow)
+**Baris Big Map:** `(C, H, W) -> (N,)` (lanjutan W2, fokus alur kerja)
 **Rigor habit:** Change one thing at a time
 **Dataset:** CIFAR-10 (reuse dari W2)
 **Lab utama:** Lab 1 selesai + Lab 2 (`lab_w3_loss_ablation.ipynb`)
@@ -37,49 +37,49 @@
 
 ## 0. Peta Bab
 
-W3 adalah minggu berbasis contoh. Sebelum membaca teori tentang loss dan optimizer, Anda mengamati lima run konkret dan diminta mengidentifikasi apa yang terjadi. Baru setelah itu kita menarik pola dan penjelasannya.
+W3 adalah minggu berbasis contoh. Sebelum membaca teori tentang loss dan optimizer, Anda mengamati lima contoh training konkret dan diminta mengidentifikasi apa yang terjadi. Baru setelah itu kita menarik pola dan penjelasannya.
 
-- **1.5** Galeri Lima Run (sebelum teori)
+- **1.5** Galeri Lima Training (sebelum teori)
 - **2.1** Loss sebagai pilihan - bukan bawaan default
 - **2.2** Optimizer dan weight decay
 - **2.3** Evaluasi: bukan satu angka
 - **2.4** Tiga strategi representasi fitur
 - **2.5** Diagnosis loss curve - capstone W3
 
-**Rekap W2:** Anda sudah memahami tensor I/O, empat keluarga arsitektur, dan three-level smoke test ritual. W3 melanjutkan fondasi itu.
+**Rekap W2:** Anda sudah memahami tensor I/O, empat keluarga arsitektur, dan smoke test tiga level. W3 melanjutkan fondasi itu.
 
 ---
 
-## 1.5 Galeri Lima Run: Sebelum Membaca Teori
+## 1.5 Galeri Lima Training: Sebelum Membaca Teori
 
 Ini bukan soal. Ini latihan observasi.
 
-Perhatikan lima loss curve berikut (masing-masing menampilkan train loss dan val loss selama 20 epoch):
+Perhatikan lima loss curve berikut. Masing-masing menampilkan train loss dan val loss selama 20 epoch.
 
-**Run 1 - Healthy convergence:** Train loss dan val loss turun sejajar, keduanya mencapai angka rendah. Val sedikit di atas train - gap stabil.
+**Run 1 - Konvergensi sehat:** Train loss dan val loss turun sejajar, keduanya mencapai angka rendah. Val sedikit di atas train; gap stabil.
 
-**Run 2 - Overfitting:** Train loss terus turun mulus, val loss turun sampai epoch 6 lalu naik perlahan. Divergensi makin lebar.
+**Run 2 - Overfitting:** Train loss terus turun mulus, val loss turun sampai epoch 6 lalu naik perlahan. Jarak kedua kurva makin lebar.
 
-**Run 3 - No learning:** Train loss tidak bergerak dari epoch pertama. Val juga stagnan. Kedua kurva datar.
+**Run 3 - Tidak belajar:** Train loss tidak bergerak dari epoch pertama. Val juga stagnan. Kedua kurva datar.
 
-**Run 4 - Unstable training:** Train loss turun sampai epoch 12, lalu tiba-tiba meledak ke `NaN`. Val loss ikut hilang.
+**Run 4 - Training tidak stabil:** Train loss turun sampai epoch 12, lalu tiba-tiba meledak ke `NaN`. Val loss ikut hilang.
 
-**Run 5 - Noisy but improving:** Train loss turun tapi dengan noise besar (naik-turun tiap epoch). Val loss cenderung turun meski fluktuatif.
+**Run 5 - Bising tetapi membaik:** Train loss turun tetapi sangat bising (naik-turun tiap epoch). Val loss cenderung turun meski fluktuatif.
 
 **Pertanyaan untuk Anda:**
 
 - Run mana yang paling mengkhawatirkan? Kenapa?
 - Untuk Run 3, apa hipotesis pertama Anda?
 - Untuk Run 2, perubahan apa yang akan Anda coba pertama?
-- Run 5 - apakah ini masalah? Kapan noise di loss curve mulai menjadi masalah?
+- Run 5: apakah ini masalah? Kapan noise di loss curve mulai menjadi masalah?
 
-Tuliskan jawaban singkat sebelum membaca bagian berikutnya. Kita akan kembali ke galeri ini di Section 2.5 dengan kerangka diagnosis lengkap.
+Tuliskan jawaban singkat sebelum membaca bagian berikutnya. Kita akan kembali ke galeri ini di §2.5 dengan kerangka diagnosis lengkap.
 
 ---
 
 ## 1. Motivasi: Ketika Training Terasa Aneh
 
-Anda menjalankan SimpleCNN 20 epoch. Loss training turun mulus. Lalu Anda bandingkan dengan loss validasi - ia stagnan sejak epoch 4. Apa yang salah? Atau: loss tiba-tiba melompat ke `NaN` di epoch ke-8. Atau: loss training tidak bergerak sama sekali dari epoch pertama.
+Anda menjalankan SimpleCNN 20 epoch. Loss training turun mulus. Saat dibandingkan dengan loss validasi, ternyata loss validasi stagnan sejak epoch 4. Apa yang salah? Atau, loss tiba-tiba melompat ke `NaN` di epoch ke-8. Atau, loss training tidak bergerak sama sekali dari epoch pertama.
 
 Tiga skenario di atas bukan pengecualian - mereka adalah rutinitas riset sehari-hari. Bab ini memberi Anda bahasa untuk menamai masalah-masalah tersebut dan langkah sistematis untuk menanganinya.
 
@@ -92,7 +92,7 @@ Tiga skenario di atas bukan pengecualian - mereka adalah rutinitas riset sehari-
 Loss menentukan *apa yang dianggap salah oleh model*. Mengganti loss berarti mengubah arah yang dibaca model sebagai "perbaikan".
 
 > [!NOTE]
-> Untuk rekap rumus dan cara kerja MSE / BCE / CrossEntropy dengan contoh angka kecil, lihat [W1 §2.2.1-§2.2.3](01_W1_Tabular_Output_Heads.md). Bagian ini fokus pada **kapan memilih loss yang mana** dan dua varian lanjutan (focal loss, label smoothing).
+> Untuk rekap rumus dan cara kerja MSE / BCE / CrossEntropy dengan contoh angka kecil, lihat [W1 §2.2.1-§2.2.3](01_W1_Tabular_Output_Heads.md). Bagian ini fokus pada **kapan memilih loss tertentu** dan dua varian lanjutan (focal loss, label smoothing).
 
 **Untuk klasifikasi:**
 
@@ -111,9 +111,9 @@ Pertanyaan yang selalu relevan sebelum mengganti loss: *apa jenis kesalahan yang
 
 ### 2.2 Optimizer: Bagaimana Langkah Diputuskan
 
-Optimizer mengubah gradient menjadi langkah konkret pada parameter.
+Optimizer mengubah gradient menjadi langkah pembaruan pada parameter.
 
-- **SGD (+ momentum).** Tertua, paling sederhana, sering paling kuat hasilnya setelah tuning yang tekun. Membutuhkan *learning rate schedule* yang dirancang hati-hati. Banyak paper *state-of-the-art* di visi komputer tetap memakai SGD.
+- **SGD (+ momentum).** Paling tua dan paling sederhana, tetapi sering menghasilkan performa sangat kuat setelah tuning yang tekun. Membutuhkan *learning rate schedule* yang dirancang hati-hati. Banyak paper *state-of-the-art* di visi komputer tetap memakai SGD.
 - **Adam dan AdamW.** Adaptif - setiap parameter mendapat learning rate yang disesuaikan. Sangat cepat konvergen di epoch awal. AdamW memperbaiki Adam dengan memisahkan *weight decay* dari gradient momentum.
 - **LAMB.** Varian untuk *batch size* besar (ribuan sampel). Relevan di pre-training besar (BERT, GPT), jarang diperlukan di proyek kuliah.
 
@@ -126,11 +126,11 @@ Dipasangkan dengan optimizer adalah *scheduler*: mekanisme menurunkan (atau mena
 > **Aturan praktis Adam vs AdamW.** Pakai **AdamW** sebagai default untuk training dari nol modern (CNN, Transformer). Hindari "Adam + L2 manual ditambahkan ke loss" - itu yang membuat regularisasi tidak konsisten antar parameter. Range yang masuk akal: `lr=3e-4` (Karpathy constant), `weight_decay=1e-4` sampai `1e-2`. Untuk fine-tuning pretrained model, pakai `lr` 10× lebih kecil dari training-dari-nol.
 
 > [!NOTE]
-> **Tentang scheduler dan warmup.** Untuk Lab 2 di W3, learning rate **konstan** sudah cukup; `OneCycleLR`/`CosineAnnealingLR`/`ReduceLROnPlateau` dan **warmup** (naikkan lr dari 0 ke target di beberapa epoch awal) baru dibahas di W4 saat experiment matrix mulai melibatkan banyak run. Sekarang fokus dulu ke loss + optimizer pasangan-dasar.
+> **Tentang scheduler dan warmup.** Untuk Lab 2 di W3, learning rate **konstan** sudah cukup; `OneCycleLR`/`CosineAnnealingLR`/`ReduceLROnPlateau` dan **warmup** (naikkan lr dari 0 ke target di beberapa epoch awal) baru dibahas di W4 saat matriks eksperimen mulai melibatkan banyak run. Sekarang fokus dulu ke pasangan dasar loss dan optimizer.
 
 ### 2.3 Evaluasi: Bukan Satu Angka
 
-Satu kesalahan klasik: membanggakan akurasi 95% tanpa menyadari kelas positif hanya muncul 5% di data - sehingga *dummy classifier* yang selalu memprediksi "negatif" juga mencapai 95%.
+Satu kesalahan klasik: membanggakan akurasi 95% tanpa menyadari kelas positif hanya 5% dari data. Dalam kondisi itu, *dummy classifier* yang selalu memprediksi "negatif" juga mencapai 95%.
 
 | Metrik | Kapan dipakai | Kelemahan |
 | --- | --- | --- |
@@ -148,13 +148,13 @@ Di samping metrik, Anda juga perlu strategi validasi:
 
 ### 2.4 Representasi Fitur: Tiga Pilihan Desain
 
-Salah satu keputusan yang paling sering menentukan performa model bukan pilihan arsitektur, melainkan pilihan representasi. Keputusan ini diambil jauh sebelum training dimulai. Pada modalitas dan tugas yang sama, representasi yang berbeda kerap menghasilkan selisih performa lebih besar daripada mengganti arsitektur.
+Salah satu keputusan yang paling sering menentukan performa model bukan pilihan arsitektur, melainkan pilihan representasi. Keputusan ini diambil jauh sebelum training dimulai. Pada modalitas dan tugas yang sama, perbedaan representasi kerap menghasilkan selisih performa lebih besar daripada pergantian arsitektur.
 
 **Engineered.** Fitur dirancang manusia dengan pengetahuan domain - statistik agregat, transformasi matematis, atau fitur klasik. Di gambar: histogram warna, HOG, SIFT. Di sinyal CGM: mean, koefisien variasi, *time-in-range*. Representasi *engineered* murah secara komputasi, mudah diinterpretasi, dan sering menjadi baseline yang mengejutkan kuat ketika data latih terbatas.
 
 **Extracted.** Fitur diambil dari *hidden layer* model *pretrained* yang di-freeze. Di visi: *hidden states* dari CNN atau ViT pretrained pada ImageNet. Di teks: token `[CLS]` atau mean pooling dari BERT. Kompromi menarik: representasi kaya dari model besar tanpa biaya training penuh, dengan syarat domain target tidak terlalu jauh dari domain pretraining.
 
-**Learned.** Representasi dipelajari langsung dari data melalui training *end-to-end* atau *self-supervised*. Fine-tuning BERT, melatih 1D CNN dari nol pada sinyal ECG, atau fine-tune ResNet pada dataset medis semuanya termasuk kategori ini. Biasanya paling kuat ketika data latih memadai, tetapi paling haus data dan paling mahal dilatih.
+**Learned.** Representasi dipelajari langsung dari data melalui training *end-to-end* atau *self-supervised*. Fine-tuning BERT, melatih 1D CNN dari nol pada sinyal ECG, atau fine-tune ResNet pada dataset medis semuanya termasuk kategori ini. Strategi ini biasanya paling kuat ketika data latih memadai, tetapi paling membutuhkan banyak data dan paling mahal dilatih.
 
 
 | Domain | Engineered | Extracted | Learned |
@@ -173,7 +173,7 @@ Taksonomi ini penting saat merumuskan variabel eksperimen. Membandingkan "BERT f
 
 ### 2.5 Membaca Sinyal: Diagnosis dari Loss Curve
 
-Lima pola berikut paling sering ditemui, masing-masing dengan hipotesis dan langkah tes. Diagram di bawah adalah peta navigasi cepat; jika Anda baru pertama kali mendiagnosis, mulai dari pertanyaan di simpul paling atas dan ikuti cabang sesuai kondisi Anda.
+Lima pola berikut paling sering ditemui, masing-masing dengan hipotesis dan langkah tes. Diagram di bawah adalah peta diagnosis cepat; jika Anda baru pertama kali mendiagnosis, mulai dari pertanyaan di simpul paling atas dan ikuti cabang sesuai kondisi Anda.
 
 ```mermaid
 flowchart TD
@@ -207,7 +207,7 @@ Model tidak belajar sama sekali. Hipotesis: (a) learning rate terlalu kecil, ata
 Overfitting sangat cepat. Hipotesis: dataset terlalu kecil relatif terhadap kapasitas model, atau ada data leakage. Langkah tes: kurangi kapasitas model atau tambah regularisasi. Jika val loss tidak membaik sama sekali, curigai leakage.
 
 **Pola 3: Loss training dan validasi turun sejajar, tetapi val jauh di atas train di akhir.**
-Overfitting klasik. Langkah tes: identifikasi epoch terbaik dari kurva val (sebelum titik divergen) dan gunakan *early stopping*.
+Overfitting klasik. Langkah tes: identifikasi epoch terbaik dari kurva val sebelum kedua kurva mulai menjauh, lalu gunakan *early stopping*.
 
 **Pola 4: Loss validasi turun tapi loss training stagnan di angka tinggi.**
 *Underfitting* - model terlalu kecil atau LR terlalu rendah. Paradoksnya, val bisa lebih baik dari train jika val set kebetulan lebih mudah. Langkah tes: periksa apakah augmentasi terlalu agresif.
@@ -217,7 +217,7 @@ Gradient explosion. Hipotesis: (a) LR terlalu besar, atau (b) tidak ada gradient
 
 ![Lima pola loss curve untuk diagnosis: underfitting, overfitting, early divergence, val lebih rendah dari train, dan konvergensi normal](./figures/fig01c_loss_curves_diagnostic.svg)
 
-**Overfit satu batch** adalah alat diagnosis terpenting untuk membedakan bug kode dari masalah hiperparameter. Karpathy menyebutnya sebagai *"the most important debugging tool"*.
+**Overfit satu batch** adalah alat diagnosis terpenting untuk membedakan bug kode dari masalah hiperparameter. Karpathy menyebutnya *"the most important debugging tool"*.
 
 Jika loss curve Anda tidak cocok dengan kelima pola di atas, jangan menebak. Kembali ke simpul paling atas diagram: overfit satu batch. Hasil tes itu - apakah loss turun ke nol atau tidak - akan memisahkan bug kode dari masalah hiperparameter dan mengarahkan Anda ke cabang diagnosis yang tepat.
 
@@ -290,6 +290,6 @@ Pertanyaan yang dijawab setelah lab: Pada dataset terbatas (500 sampel per kelas
 
 ## Lanjut ke W4
 
-Anda sudah memiliki kerangka lengkap untuk memahami dan membangun sistem ML/DL dari tensor input sampai diagnosis loss curve. W4 menggeser fokus dari *memahami sistem* menjadi *merancang eksperimen yang reproduksibel*: YAML config, seed locking, struktur folder run, dan experiment matrix.
+Anda sudah memiliki kerangka lengkap untuk memahami dan membangun sistem ML/DL dari tensor input sampai diagnosis loss curve. W4 menggeser fokus dari *memahami sistem* menjadi *merancang eksperimen yang reproduksibel*: YAML config, penguncian seed, struktur folder run, dan matriks eksperimen.
 
 Buka [W4 - Reproducibility & Experiment Matrix](04_W4_Reproducibility_Experiment_Matrix.md) ketika siap.

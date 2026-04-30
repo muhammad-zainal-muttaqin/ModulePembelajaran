@@ -28,16 +28,16 @@
 
 > *Sebelum membahas arsitektur yang rumit, kita mulai dari pertanyaan yang paling sederhana: shape apa yang masuk, dan shape apa yang harus keluar?*
 
-**Big Map row:** `(F,) -> (1,)`, `(1,)`, `(N,)`
+**Baris Big Map:** `(F,) -> (1,)`, `(1,)`, `(N,)`
 **Rigor habit:** Observation before conclusion
-**Dataset:** Tabular shared (synthetic) yang mendukung regression, binary classification, dan multiclass dari input yang sama
+**Dataset:** Tabular bersama sintetis yang mendukung regresi, klasifikasi biner, dan multiclass dari input yang sama
 **Lab utama:** Lab 0 (`lab_w1_tabular_heads.ipynb`)
 
 ---
 
 ## 0. Peta Bab
 
-W1 adalah pintu masuk bootcamp. Bab ini memperkenalkan tiga ide fondasi: **MLP sebagai shape transformer**, **output head + loss matching**, dan **observasi sebelum kesimpulan**. Anda mengerjakan tiga formulasi tugas (regression, binary, multiclass) di atas satu dataset tabular yang sama, sehingga perbedaan antar tugas terlihat **bukan dari datanya**, melainkan dari pilihan output head dan loss. Pada akhir minggu, Anda punya satu run end-to-end yang berhasil dan kebiasaan menuliskan apa yang Anda *amati* sebelum apa yang Anda *simpulkan*.
+W1 adalah pintu masuk bootcamp. Bab ini memperkenalkan tiga ide fondasi: **MLP sebagai pengubah bentuk tensor**, **kecocokan output head dan loss**, dan **observasi sebelum kesimpulan**. Anda mengerjakan tiga tugas (regresi, klasifikasi biner, multiclass) pada satu dataset tabular yang sama, sehingga perbedaan antar tugas terlihat **bukan dari datanya**, melainkan dari pilihan output head dan loss. Pada akhir minggu, Anda punya satu training end-to-end yang berhasil dan kebiasaan menuliskan apa yang Anda *amati* sebelum apa yang Anda *simpulkan*.
 
 ---
 
@@ -50,15 +50,15 @@ Tabular adalah konteks paling jujur untuk memperkenalkan deep learning. Tidak ad
 Empat alasan tabular dipakai sebagai pintu masuk:
 
 1. **Pipeline minimum.** Tidak perlu transformasi gambar; satu DataFrame sudah cukup.
-2. **Tiga task formulation pada satu data.** Memungkinkan Anda merasakan perbedaan output head tanpa harus mengganti dataset.
-3. **Loss-head mismatch terlihat eksplisit.** Salah satu cara paling cepat memahami kenapa CrossEntropy butuh logits dan MSE butuh output kontinu adalah dengan sengaja salah-pasangkan keduanya, lalu mengamati training gagal total.
+2. **Tiga perumusan tugas pada satu data.** Anda bisa merasakan perbedaan output head tanpa harus mengganti dataset.
+3. **Ketidakcocokan loss dan head terlihat jelas.** Salah satu cara paling cepat memahami kenapa CrossEntropy butuh logits dan MSE butuh output kontinu adalah dengan sengaja salah-pasangkan keduanya, lalu mengamati training gagal total.
 4. **Tidak ada distraksi domain.** Anda fokus pada mekanik training, bukan pada pertanyaan "kenapa augmentasi flip horizontal masuk akal untuk CIFAR".
 
 ---
 
 ## 2. Konsep Inti
 
-### 2.1 MLP sebagai Shape Transformer
+### 2.1 MLP sebagai Pengubah Bentuk Tensor
 
 Multilayer Perceptron (MLP) sederhana mengambil vektor `(F,)` dan menghasilkan vektor `(D_out,)`. Setiap layer `Linear(in, out)` menjalankan transformasi affine `y = W x + b`, lalu diikuti aktivasi non-linear seperti ReLU.
 
@@ -72,7 +72,7 @@ Perhatikan bahwa `D_out` ditentukan oleh **tugas**, bukan oleh data:
 - binary classification: `D_out = 1` (logit) atau `D_out = 2` (logits dua kelas)
 - multiclass dengan N kelas: `D_out = N`
 
-Inilah maksud "MLP sebagai shape transformer": tubuh model tetap sama, kepala (head) berubah sesuai tugas.
+Inilah maksud "MLP sebagai pengubah bentuk tensor": tubuh model tetap sama, kepala (head) berubah sesuai tugas.
 
 #### 2.1.1 Linear Layer: Mekanik dan Gambaran
 
@@ -128,7 +128,7 @@ input  ──►  Linear(F, 64) ──► ReLU ──► Linear(64, 32) ──�
                                                           multiclass(N) → N
 ```
 
-Dalam pretrained model (W7-W8), prinsip ini muncul lebih jelas: backbone CNN/Transformer pretrained menjadi body yang di-freeze, dan hanya head kecil yang dilatih untuk task baru. Memisahkan body dan head sejak W1 memudahkan transisi ke pola adaptation tersebut.
+Pada model pretrained (W7-W8), prinsip ini lebih jelas: backbone CNN/Transformer pretrained menjadi body yang di-freeze, dan hanya head kecil yang dilatih untuk tugas baru. Memisahkan body dan head sejak W1 memudahkan transisi ke pola adaptasi tersebut.
 
 ### 2.2 Output Head + Loss Matching
 
@@ -175,7 +175,7 @@ softmax(z)[i] = e^(z_i) / Σ_j e^(z_j)
 
 #### 2.2.4 Tabel Ringkasan Pasangan Head-Loss
 
-Setelah memahami ketiga pasangan di atas, tabel berikut menjadi alat referensi cepat. Cetak, tempel di samping monitor.
+Setelah memahami ketiga pasangan di atas, gunakan tabel berikut sebagai rujukan cepat. Cetak dan tempel di samping monitor.
 
 | Tugas | Output head | Aktivasi akhir | Loss yang cocok | Bentuk target |
 |---|---|---|---|---|
@@ -209,7 +209,7 @@ Aturan paling penting: **statistik preprocessing (mean, std) dihitung dari train
 
 ### 2.5 Snippet PyTorch End-to-End
 
-Sebelum Anda buka notebook lab dan menjumpai kode lengkap dengan utilitas dan logging, lihat dulu pola minimum training MLP di PyTorch dalam ~15 baris. Ini bukan kode siap-jalankan untuk Lab 0, melainkan peta yang menggabungkan semua konsep §2.1-§2.4 dalam satu pandangan.
+Sebelum membuka notebook lab dan menjumpai kode lengkap dengan utilitas dan logging, lihat dulu pola minimum training MLP di PyTorch dalam ~15 baris. Ini bukan kode siap-jalankan untuk Lab 0, melainkan ringkasan yang menggabungkan semua konsep §2.1-§2.4 dalam satu tempat.
 
 ```python
 import torch
@@ -257,7 +257,7 @@ Lab 0 menyiapkan dataset tabular sintetis sederhana dengan 10 fitur. Dari fitur 
 Dengan demikian, **input** identik, tetapi **output head** dan **loss** berubah. Anda menjalankan tiga konfigurasi:
 
 ```yaml
-# configs/mlp_tabular.yaml - ubah field di bawah untuk swap task
+# configs/mlp_tabular.yaml - ubah field di bawah untuk mengganti tugas
 data.task: regression   # atau binary, multiclass
 loss.name: mse          # atau binary_cross_entropy, cross_entropy
 model.num_classes: 1    # atau 2, 3
@@ -274,7 +274,7 @@ Catat untuk setiap run:
 
 ## 4. Pitfalls dan Miskonsepsi
 
-**Mismatch loss-head menghasilkan training senyap.** Jika Anda memberi target `int` ke MSE, atau target `float` ke CrossEntropy, error message PyTorch sering kabur. Ciri training rusak: loss konstan dari epoch pertama, atau berubah dengan cara yang tidak masuk akal. Sebelum debug arsitektur, periksa pasangan loss-head-target.
+**Ketidakcocokan loss dan head bisa merusak training tanpa pesan jelas.** Jika Anda memberi target `int` ke MSE, atau target `float` ke CrossEntropy, pesan error PyTorch sering kabur. Ciri training rusak: loss konstan dari epoch pertama, atau berubah dengan cara yang tidak masuk akal. Sebelum mendebug arsitektur, periksa pasangan loss, head, dan target.
 
 **Mengira "lebih dalam = lebih bagus".** MLP dengan 5 layer tersembunyi sering lebih buruk daripada 2 layer pada tabular kecil. Tabular bukan domain di mana kedalaman selalu menang. Mulai dari yang dangkal.
 
@@ -298,12 +298,12 @@ Catat untuk setiap run:
 5. **Eksperimen mismatch secara sengaja.** Jalankan satu run dengan kombinasi salah (mis. binary task tapi loss=mse). Amati kegagalan. Tuliskan dalam 2 kalimat apa yang gagal.
 6. **Writeup observasi vs interpretasi.** Tulis 1 paragraf observasi murni (apa yang dilihat di angka), 1 paragraf interpretasi (apa yang menurut Anda terjadi).
 
-**Deliverables:**
+**Luaran:**
 
 - 3 run config (regression, binary, multiclass) di `experiments/`
 - 1 notebook lab0 dengan output sel terisi
 - 1 writeup `observasi_vs_interpretasi.md` (template di [Lampiran C.6](14_Lampiran.md#c6-template-entri-portofolio))
-- Smoke test repository sudah berhasil
+- Smoke test repository berhasil
 
 ---
 
@@ -313,7 +313,7 @@ Tulis jawaban singkat (1-2 paragraf masing-masing) untuk tiga pertanyaan berikut
 
 1. **Output head yang sama, loss berbeda.** Ada situasi di mana binary classification dijalankan dengan `Linear(D, 1) + BCEWithLogitsLoss` dan situasi lain dengan `Linear(D, 2) + CrossEntropyLoss`. Apa konsekuensi praktisnya? Mana yang Anda pilih untuk Lab 0, dan mengapa?
 2. **Observasi vs interpretasi.** Sebutkan satu pengamatan dari Lab 0 yang tergoda Anda interpretasikan terlalu cepat. Apa pertanyaan tambahan yang seharusnya Anda ajukan sebelum menyimpulkan?
-3. **Big Map awal.** Tulis dua baris Big Map dalam catatan Anda: satu untuk regression Lab 0 dan satu untuk multiclass Lab 0. Apa shape input, shape output, dan keluarga model? Tambahkan baris baru pada setiap minggu berikutnya.
+3. **Big Map awal.** Tulis dua baris Big Map dalam catatan Anda: satu untuk regresi Lab 0 dan satu untuk multiclass Lab 0. Apa bentuk input, bentuk output, dan keluarga model? Tambahkan baris baru pada setiap minggu berikutnya.
 
 ---
 
@@ -327,4 +327,4 @@ Tulis jawaban singkat (1-2 paragraf masing-masing) untuk tiga pertanyaan berikut
 
 ## Lanjut ke W2
 
-Setelah Lab 0 selesai, buka [W2 - Images, CNN & Smoke Test Ritual](02_W2_Images_CNN_Smoke_Test.md). Bab tersebut memperkenalkan tensor citra `(C, H, W)`, cara kerja CNN sebagai pendeteksi pola lokal, dan tiga-level smoke test ritual sebagai kebiasaan debugging utama.
+Setelah Lab 0 selesai, buka [W2 - Images, CNN & Smoke Test Ritual](02_W2_Images_CNN_Smoke_Test.md). Bab tersebut memperkenalkan tensor citra `(C, H, W)`, cara kerja CNN sebagai pendeteksi pola lokal, dan smoke test tiga level sebagai kebiasaan debugging utama.

@@ -79,15 +79,15 @@ Ritme sesi: 30 menit prior-week findings | 40 menit materi baru + demo | 10 meni
 
 | Minggu | Bab | Lab | Topik | Emphasis Dosen | Sikap Dominan | Checkpoint |
 | --- | --- | --- | --- | --- | --- | --- |
-| 1 | 00 + 01 W1 | Lab 0 | Orientasi + tabular output heads | Tekankan kontrak belajar, target 60-70%, tiga thread cross-week. Minta tanda tangan kontrak. Mulai Lab 0 bersama. | Curiosity | Kontrak ditandatangani; Lab 0 smoke test jalan |
-| 2 | 02 W2 | Lab 1 | Images, CNN, smoke test ritual | Demo three-level smoke test secara live. Tunjukkan run yang berhasil vs gagal. Backprop diperkenalkan konseptual saja. | Curiosity | Smoke test 3-level selesai; SimpleCNN forward pass jalan |
+| 1 | 00 + 01 W1 | Lab 0 | Orientasi + tabular output heads | Tekankan kontrak belajar, target 60-70%, tiga alur lintas minggu. Minta tanda tangan kontrak. Mulai Lab 0 bersama. | Curiosity | Kontrak ditandatangani; Lab 0 smoke test jalan |
+| 2 | 02 W2 | Lab 1 | Images, CNN, smoke test | Demo smoke test tiga level secara live. Tunjukkan training yang berhasil vs gagal. Backprop diperkenalkan konseptual saja. | Curiosity | Smoke test 3-level selesai; SimpleCNN forward pass jalan |
 | 3 | 03 W3 | Lab 1 + Lab 2 | Loss, optimizer, galeri run | Mulai dari galeri 5 run - tanya diagnosis sebelum teori. Selesaikan Lab 1 (confusion matrix, error analysis). | Curiosity | Lab 1 checklist selesai; loss curve 5 pola bisa dibedakan |
-| 4 | 04 W4 | Lab 3 | Reproducibility + experiment matrix | Wajibkan experiment matrix sebelum kode. Periksa timestamp `protocol.md`. Drill: git hash di checkpoint. | Rigor | Matrix tertulis sebelum run; 3 seed baseline selesai |
+| 4 | 04 W4 | Lab 3 | Reproducibility + matriks eksperimen | Wajibkan matriks eksperimen sebelum kode. Periksa timestamp `protocol.md`. Drill: git hash di checkpoint. | Rigor | Matriks tertulis sebelum run; 3 seed baseline selesai |
 | 5 | 05 W5 | Lab 3b | Sequences RNN/LSTM | **Lab 3b wajib**. Tunjukkan gradient flow secara visual - jangan hanya ceritakan. Minta architecture justification statement. | Curiosity + Rigor | Lab 3b selesai; gradient plot ada; justification tertulis |
 | 6 | 06 W6 | Lab 6 baru | Representations + temporal leakage | Demo leakage yang menipu: tampilkan F1 tinggi lalu tunjukkan validasi tanpa temporal guard. Delta harus dramatis. | Skepticism | Lab 6 temporal leakage: delta leaky vs causal terdokumentasi |
 | 7 | 07 W7 | Lab 5b + Lab 6 | Text, transformers, repo adoption | 2×2 comparison frozen/fine-tune × [CLS]/mean-pool. Minta `repo_map.md` pertama. Synthesis note AI tools. | Ownership | repo_map.md terisi; 2×2 macro-F1 ada |
 | 8 | 08 W8 | Foundation Map | Foundation models taxonomy | Drill model card reading - 7 pertanyaan wajib. Dorong skeptisisme pada benchmark claims. | Skepticism + Ownership | Foundation model map 3-4 model + selection memo |
-| 9 | 09 W9 | Lab 8 | Multimodal + per-modality ablation | Tunjukkan ignored-modality problem secara empiris. "Hasil bagus" bukan cukup - ablation wajib. | Skepticism | 7 ablation conditions selesai; ignored-modality check done |
+| 9 | 09 W9 | Lab 8 | Multimodal + ablasi per-modalitas | Tunjukkan ignored-modality problem secara empiris. "Hasil bagus" belum cukup - ablation wajib. | Skepticism | 7 kondisi ablation selesai; ignored-modality check selesai |
 | 10 | 10 W10 | Lab 9 | Paper reading + implementation | 3-pass method eksplisit. Minta mahasiswa membawa paper yang sudah di-skim ke kelas. Paper-to-code steps. | Rigor + Curiosity | Three-pass notes + core method terimplementasi |
 | 11 | 11 W11 | Proposal | Research framing + capstone proposal | **W11 adalah setup capstone**. 5 Whys drill. Oral defense 10-15 menit per mahasiswa. Sign off proposal sebelum W12. | Integrasi empat sikap | Proposal disetujui; pre-registration di-commit |
 | 12 | 12 Capstone | Capstone W12 | Scope, EDA, baseline reproducible | Cek: data tersedia? Baseline running? Leakage audit? Jangan biarkan mulai W13 tanpa baseline clean. | Rigor | `eda.md` + baseline 3-seed + git hash checkpoint |
@@ -97,7 +97,7 @@ Ritme sesi: 30 menit prior-week findings | 40 menit materi baru + demo | 10 meni
 ### Catatan Pacing
 
 - **W1 dan W2 (§1.5 baru):** masing-masing bab memiliki section §1.5 baru ("MLP dari Pintu Depan" di W1 dan "Citra Sebagai Tensor: Dari Pixel ke 4D" di W2). Tambahkan ~20-30 menit ke estimasi waktu membaca untuk dua bab ini. Jika sesi tatap muka 2 jam, kurangi satu pitfall discussion atau tunda demo smoke test yang kedua ke sesi berikutnya.
-- **W4 (Reproducibility):** minggu paling padat infrastruktur (config YAML, seed, checkpoint, experiment matrix, komunikasi PI). Jangan tambahkan lab breadth di minggu ini; biarkan Lab 3b masuk W5 sebagai mandatory dan Lab 6b/7b paralel di pekan-pekan berikutnya.
+- **W4 (Reproducibility):** minggu paling padat infrastruktur (config YAML, seed, checkpoint, matriks eksperimen, komunikasi PI). Jangan tambahkan lab breadth di minggu ini; biarkan Lab 3b masuk W5 sebagai wajib dan Lab 6b/7b paralel di pekan-pekan berikutnya.
 - **W5 (LSTM):** paling padat secara konseptual - lihat §1.5 baru (BPTT primer, vanishing gradient numerik, LSTM annotated). Estimasikan mahasiswa butuh 1-2 jam membaca sebelum sesi. Jika waktu kelas hanya 2 jam, pisahkan: sesi pertama = §2.1-2.2 (RNN + vanishing), sesi kedua = §2.3-2.4 (LSTM + GRU).
 - **W7 (Text + Repo Adoption):** padat karena mengintegrasikan AI tools, transformers, dan repo adoption dari modul lama. Jika mahasiswa terbebani, prioritaskan `repo_map.md` dan 2×2 frozen/fine-tune; demo Streamlit boleh dikerjakan paralel.
 - **W12-W14 (Capstone):** mahasiswa seharusnya sudah punya semua keterampilan teknis. Tugas Anda di fase ini: baca protokol mereka, uji apakah klaim mereka bisa direproduksi, dan pastikan laporan tidak overclaim.
@@ -110,7 +110,7 @@ Setiap bab punya collapsible `<details><summary>Pendalaman</summary>` untuk mate
 |---|---|---|
 | W1 §2.4 | Derivasi backprop manual 7-langkah | Opsional: mahasiswa yang ingin bukti matematis. Lampiran A.1 lebih lengkap. |
 | W2 §2.3 | Depthwise separable convolution, dilated conv | Opsional: hanya jika ada yang bertanya tentang efisiensi model. |
-| W3 §2.3 | Cosine annealing, OneCycleLR scheduler | Opsional di W3; wajib di W4 saat experiment matrix dibahas. |
+| W3 §2.3 | Cosine annealing, OneCycleLR scheduler | Opsional di W3; wajib di W4 saat matriks eksperimen dibahas. |
 | W5 §2.4 | GRU gate equations | Opsional: cukup sebutkan GRU sebagai "LSTM lebih ringan". Detail tidak wajib. |
 | W7 Part 2 (D1-D7) | Advanced repo adoption (D1-D7, ~600 baris) | Opsional selama bootcamp; wajib untuk capstone yang mengadopsi repo besar. Arahkan mahasiswa ke sini saat W12. |
 | W8 §2.3 | PEFT library details, LoRA hyperparameter sweep | Opsional: hanya jika ada yang melakukan fine-tuning LLM di capstone. |
@@ -132,7 +132,7 @@ Konten di luar `<details>` adalah **core content** - wajib untuk semua mahasiswa
 
 ### W2 - Images, CNN & Smoke Test
 
-- **Kritis:** Three-level smoke test ritual (§2.3). Demo live: tunjukkan run yang berhasil vs gagal di proyektor. Backprop diperkenalkan konseptual; derivasi 7-langkah ada di Lampiran A.1 untuk dibaca setelah mahasiswa sudah punya gambaran training.
+- **Kritis:** Smoke test tiga level (§2.3). Demo live: tunjukkan training yang berhasil vs gagal di proyektor. Backprop diperkenalkan konseptual; derivasi 7-langkah ada di Lampiran A.1 untuk dibaca setelah mahasiswa sudah punya gambaran training.
 - **Pitfall:** Mahasiswa skip smoke test karena "kelihatannya jalan". Tunjukkan kasus di mana training tampak normal di awal tapi diam-diam memuat label salah.
 - **Refleksi berbobot:** Pertanyaan tentang shape mismatch: "Apa indikator pertama bahwa input/output shape tidak sesuai?"
 - **Kaitan rubrik:** Kompetensi 1 (Memahami sistem ML/DL). Target: Novice→Developing.
@@ -148,7 +148,7 @@ Konten di luar `<details>` adalah **core content** - wajib untuk semua mahasiswa
 
 ### W4 - Reproducibility & Experiment Matrix
 
-- **Kritis:** Wajibkan experiment matrix sebelum kode. Periksa timestamp `protocol.md` - jika setelah hasil training, itu rasionalisasi bukan protokol. §3.5 (Komunikasi Efektif PI dengan SQRC) drill role-play. §2.6 (Etika Data) singgung negative results sebagai kewajiban.
+- **Kritis:** Wajibkan matriks eksperimen sebelum kode. Periksa timestamp `protocol.md` - jika setelah hasil training, itu rasionalisasi bukan protokol. §3.5 (Komunikasi Efektif PI dengan SQRC) drill role-play. §2.6 (Etika Data) singgung negative results sebagai kewajiban.
 - **Pitfall:** Mahasiswa mengira `set_seed(42)` cukup. Tunjukkan non-determinisme CUDA: dua run dengan seed sama bisa berbeda 0.5% akurasi. Solusi: `torch.backends.cudnn.deterministic = True`.
 - **Refleksi berbobot:** Pertanyaan #4 (koneksi ke capstone) - minta mahasiswa membacakan draft 3 bagian protokol.
 - **Kaitan rubrik:** Kompetensi 2 + Kompetensi 3. Target: Developing→Proficient.
@@ -160,12 +160,12 @@ Konten di luar `<details>` adalah **core content** - wajib untuk semua mahasiswa
 - **Pitfall:** Mahasiswa menghafal LSTM gates tanpa menghubungkan ke gradient flow. Minta gambar gate sambil menjelaskan kenapa cell state tidak vanish.
 - **Refleksi berbobot:** "Dataset mana yang secara default akan Anda tangani dengan LSTM, dan mana yang Transformer? Kapan ragu?"
 - **Kaitan rubrik:** Kompetensi 1 breadth (RNN/LSTM family). Target: Developing.
-- **Waktu lab:** Lab 3b (RNN vs LSTM): 4-6 jam mandatory.
+- **Waktu lab:** Lab 3b (RNN vs LSTM): 4-6 jam wajib.
 
 ### W6 - Representations & Temporal Leakage
 
 - **Kritis:** Demo leakage yang menipu: §0.6 menunjukkan delta dramatis 0.92 → 0.63. Tampilkan F1 tinggi dulu, lalu reveal validasi tanpa temporal guard. Lab 6c (peer code review) sebagai aktivitas berpasangan.
-- **Pitfall:** EDA sebagai ritual (`df.describe()`, histogram, selesai). Minta mahasiswa menulis pertanyaan *sebelum* melihat data.
+- **Pitfall:** EDA sebagai formalitas (`df.describe()`, histogram, selesai). Minta mahasiswa menulis pertanyaan *sebelum* melihat data.
 - **Refleksi berbobot:** "Anda mendapat akurasi 99% pada dataset baru. Apa tiga hal pertama yang Anda periksa?"
 - **Kaitan rubrik:** Kompetensi 4 (Validasi data) + Kompetensi 6 (peer review). Target: Developing→Proficient.
 - **Waktu lab:** Lab 6 (temporal leakage): 6-8 jam. Lab 6c pair review: 2 jam.
@@ -188,7 +188,7 @@ Konten di luar `<details>` adalah **core content** - wajib untuk semua mahasiswa
 
 ### W9 - Multimodal Reasoning
 
-- **Kritis:** Per-modality ablation. Tunjukkan ignored-modality problem secara empiris: model "sukses" tanpa benar-benar memakai salah satu modalitas. "Hasil bagus" bukan cukup; ablation 7-condition wajib.
+- **Kritis:** Ablasi per-modalitas. Tunjukkan ignored-modality problem secara empiris: model "sukses" tanpa benar-benar memakai salah satu modalitas. "Hasil bagus" belum cukup; tujuh kondisi ablation wajib.
 - **Pitfall:** Fusion strategi dipilih berdasar trend, bukan analisis. Minta justifikasi sebelum implementasi.
 - **Refleksi berbobot:** "Modalitas mana yang seharusnya paling kontributif untuk dataset Anda? Apakah hasil ablation memvalidasi intuisi itu?"
 - **Kaitan rubrik:** Kompetensi 1 breadth (multimodal) + Kompetensi 4 (skeptisisme). Target: Developing→Proficient.
@@ -196,8 +196,8 @@ Konten di luar `<details>` adalah **core content** - wajib untuk semua mahasiswa
 
 ### W10 - Paper Reading & Implementation
 
-- **Kritis:** 3-pass method eksplisit. Minta mahasiswa membawa paper yang sudah di-skim ke kelas. Paper-to-code workflow: dari klaim → kode minimum yang mereproduksi.
-- **Pitfall:** 3-pass dipakai sebagai ritual, bukan alat. Pass 1 tanpa pertanyaan adalah membaca cepat. Minta tulisan satu pertanyaan *sebelum* Pass 1.
+- **Kritis:** Metode 3-pass eksplisit. Minta mahasiswa membawa paper yang sudah di-skim ke kelas. Alur paper-to-code: dari klaim → kode minimum yang mereproduksi.
+- **Pitfall:** 3-pass dipakai sebagai formalitas, bukan alat. Pass 1 tanpa pertanyaan hanyalah membaca cepat. Minta tulisan satu pertanyaan *sebelum* Pass 1.
 - **Refleksi berbobot:** "Setelah membaca satu paper, apa eksperimen pertama yang akan Anda jalankan?"
 - **Kaitan rubrik:** Kompetensi 9 (paper reading + reproduksi). Target: Developing→Proficient.
 - **Waktu lab:** Lab 9 (paper-to-code): 6-8 jam. Komponen Mandiri W10 = entri portofolio terakhir + Refleksi Portofolio.
@@ -208,7 +208,7 @@ Konten di luar `<details>` adalah **core content** - wajib untuk semua mahasiswa
 - **Pitfall:** Mahasiswa mengambil proyek terlalu besar. Batas sehat: satu dataset, satu pertanyaan riset, maksimal 4 ablation. "Membandingkan 5 arsitektur pada 3 dataset" bukan capstone - itu tesis.
 - **Refleksi berbobot:** "Setelah 5 Whys, apa pertanyaan riset yang tersisa? Falsifiable?"
 - **Kaitan rubrik:** Integrasi semua kompetensi (proposal + oral defense). Target: Proficient.
-- **Waktu lab:** W11 menggantikan lab dengan deliverable proposal + pre-registration. Estimasi 8-12 jam termasuk revisi pasca oral defense.
+- **Waktu lab:** W11 menggantikan lab dengan luaran proposal + pre-registration. Estimasi 8-12 jam termasuk revisi pasca oral defense.
 
 ### W12-W14 - Capstone
 

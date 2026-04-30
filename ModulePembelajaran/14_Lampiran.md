@@ -57,17 +57,17 @@ Istilah teknis ML/DL sebagian besar berasal dari Bahasa Inggris. Glosarium ini m
 | convolution / Conv2d | - | Operasi sliding window pada input. Deteksi fitur spasial dengan weight sharing. | - |
 | convolutional network (CNN) | - | Arsitektur NN yang menggunakan convolution untuk ekstraksi fitur spasial. | - |
 | cross-attention | - | Query dari satu sequence, key/value dari sequence lain. Memodelkan hubungan inter-sequence. | - |
-| cross-attention fusion | fusi cross-attention | Satu modality sebagai query, modality lain sebagai key/value dalam attention. | - |
+| cross-attention fusion | fusi cross-attention | Satu modalitas sebagai query, modalitas lain sebagai key/value dalam attention. | - |
 | denoising autoencoder (DAE) | - | Autoencoder: input = corrupted, target = original. Belajar representasi robust terhadap noise. | - |
 | diffusion model | - | Model generatif yang denoise secara bertahap dari noise ke data. | Nama diri. |
 | downstream task | tugas hilir | Tugas spesifik target setelah pretraining (klasifikasi, regresi, dll.). | - |
-| early fusion | fusi awal | Menggabungkan input dari modality berbeda di awal, sebelum encoding bersama. | - |
+| early fusion | fusi awal | Menggabungkan input dari modalitas berbeda di awal, sebelum encoding bersama. | - |
 | ELBO (Evidence Lower Bound) | - | Batas bawah bukti dalam VAE. Loss = reconstruction term + KL divergence term. | - |
 | embedding | - | Representasi vektor padat dari data diskrit (kata, token, dll). | Tidak diterjemahkan. |
 | emergent abilities | kemampuan emergen | Kemampuan yang muncul tiba-tiba saat model melewati threshold skala tertentu. | - |
 | encoder / decoder | - | Encoder memproses input ke representasi; decoder menghasilkan output dari representasi. | Tidak diterjemahkan. |
 | feature map | peta fitur | Output dari operasi convolution. Representasi input setelah filter. | - |
-| feed-forward network (FFN) | - | Jaringan yang memproses tiap posisi secara independen dalam Transformer. | - |
+| feed-forward network (FFN) | - | Jaringan yang memproses tiap posisi secara terpisah dalam Transformer. | - |
 | few-shot | - | Model menyelesaikan tugas dengan beberapa contoh saja (biasanya dalam prompt). | - |
 | fine-tuning | - | Adaptasi model pretrained ke tugas spesifik dengan training lanjutan. | Pakai "fine-tune" / "fine-tuning". Hindari "penyesuaian halus". |
 | foundation model | - | Model pretrained pada data besar, transferable ke banyak downstream tasks. | - |
@@ -81,20 +81,20 @@ Istilah teknis ML/DL sebagian besar berasal dari Bahasa Inggris. Glosarium ini m
 | inductive bias | bias induktif | Asumsi arsitektur yang membuat model lebih efisien belajar pola tertentu. | - |
 | kernel / filter | - | Matriks kecil pada convolution. Mendeteksi pola lokal: edge, tekstur, pola sederhana. | - |
 | KL divergence | divergensi KL | Ukuran perbedaan dua distribusi probabilitas. Regularisasi VAE. | - |
-| late fusion | fusi akhir | Menggabungkan representasi dari modality berbeda di akhir (setelah encoding terpisah). | - |
+| late fusion | fusi akhir | Menggabungkan representasi dari modalitas berbeda di akhir (setelah encoding terpisah). | - |
 | latent space | ruang laten | Ruang representasi terkompresi di bottleneck. | "Ruang laten" lazim di akademik. |
 | layer | - | Unit komputasi dalam NN. | Pakai "layer" sebagai pinjaman: "layer konvolusi", "layer awal". Hindari "lapisan" di konteks NN. |
 | LoRA (Low-Rank Adaptation) | - | Metode adaptasi efisien dengan matriks low-rank parallel dengan weights asli. | - |
 | LSTM cell | - | Varian RNN dengan gate mechanism (input, forget, output). | Nama diri. |
 | maxPooling / MaxPool2d | - | Downsampling: ambil nilai maksimum dalam window. Reduksi dimensi spasial. | - |
-| modality dropout | - | Teknik training yang secara acak mematikan satu modality untuk robustness. | - |
+| modality dropout | - | Teknik training yang secara acak mematikan satu modalitas untuk robustness. | - |
 | model card | - | Dokumen yang mendeskripsikan capabilities, limitations, dan biases sebuah model. | - |
 | multi-head attention (MHA) | - | Attention paralel di beberapa subspace representasi. | Nama diri. |
 | multilayer perceptron (MLP) | - | Arsitektur *feed-forward* dasar. | - |
 | neural network (NN) | - | Model komputasi terinspirasi jaringan neuron biologis. | Pakai "neural network" atau "NN", bukan "jaringan saraf tiruan". |
 | normalizing flow | - | Model generatif dengan transformasi invertible bertumpuk. Density estimation exact. | - |
 | padding | - | Penambahan border di sekeliling input sebelum convolution. Menjaga dimensi spasial. | - |
-| per-modality ablation | ablasi per-modalitas | Eksperimen yang menghapus atau mengacak satu modality untuk mengukur kontribusinya. | - |
+| per-modality ablation | ablasi per-modalitas | Eksperimen yang menghapus atau mengacak satu modalitas untuk mengukur kontribusinya. | - |
 | perplexity (PPL) | - | exp(CrossEntropy). Metrik language model. Lower = model lebih yakin pada teks. | - |
 | positional encoding | - | Informasi posisi token ditambahkan ke embedding. | Tidak diterjemahkan. |
 | pretrained model | - | Model yang sudah dilatih pada data besar, siap di-fine-tune. | Pakai "pretrained" apa adanya. |
@@ -215,7 +215,7 @@ Istilah teknis ML/DL sebagian besar berasal dari Bahasa Inggris. Glosarium ini m
 | hypothesis | hipotesis | Dugaan terukur yang bisa diuji. | Jamak: hipotesis-hipotesis. |
 | hypothesis (directional / null) | hipotesis (search / nol) | Directional: prediksi arah efek. Null: tidak ada efek / perbedaan. | - |
 | interaction effect | efek interaksi | Efek kombinasi dua variabel atau lebih yang tidak aditif. | - |
-| main effect | efek utama | Efek rata-rata satu variabel di semua level variabel lain dalam experiment matrix. | - |
+| main effect | efek utama | Efek rata-rata satu variabel di semua level variabel lain dalam matriks eksperimen. | - |
 | multiple comparisons | perbandingan berganda | Makin banyak hipotesis diuji, makin tinggi false positive rate. | - |
 | p-hacking | - | Menguji banyak hipotesis sampai menemukan hasil signifikan. Questionable research. | - |
 | pre-registration | praregistrasi | Mendokumentasikan hipotesis dan protokol sebelum eksperimen. | Dua-duanya diterima. |
@@ -342,7 +342,7 @@ Tabel ini menunjukkan di mana istilah Tier-1 **pertama kali muncul** dalam uruta
 
 ### A.12 Worked Examples untuk Istilah Prioritas
 
-Bagian ini melengkapi definisi glosarium di atas dengan satu contoh angka konkret per istilah. Cocok untuk referensi cepat saat mengerjakan lab.
+Bagian ini melengkapi definisi glosarium sebelumnya dengan satu contoh angka konkret per istilah. Cocok untuk referensi cepat saat mengerjakan lab.
 
 **loss** - Scalar yang mengukur jarak prediksi ke target. Contoh MSE: prediksi = 0.9, target = 1.0. MSE = (0.9 - 1.0)² = 0.01. Makin kecil, makin baik.
 
@@ -360,11 +360,11 @@ Bagian ini melengkapi definisi glosarium di atas dengan satu contoh angka konkre
 
 **sigmoid** - `σ(x) = 1/(1 + e^{-x})`. Memetakan ℝ → (0, 1). Contoh: `σ(0) = 0.5`, `σ(2) = 0.88`, `σ(-2) = 0.12`. Digunakan di output head untuk binary classification (output = probabilitas kelas positif).
 
-**softmax** - Memetakan vektor logits ke distribusi probabilitas. Contoh: logits `[2.0, 1.0, 0.1]` → softmax → `[0.659, 0.242, 0.099]`. Selalu sum to 1. Digunakan di output head untuk multiclass classification.
+**softmax** - Memetakan vektor logits ke distribusi probabilitas. Contoh: logits `[2.0, 1.0, 0.1]` → softmax → `[0.659, 0.242, 0.099]`. Jumlah probabilitasnya selalu 1. Digunakan di output head untuk multiclass classification.
 
 **ReLU** - `ReLU(x) = max(0, x)`. Contoh: `ReLU(-3) = 0`, `ReLU(2) = 2`. Sederhana, tidak vanish untuk x > 0. Default activation untuk layer tersembunyi.
 
-**kernel / stride / padding** - Pada `Conv2d(in=1, out=1, kernel_size=3, stride=1, padding=0)` dengan input 5×5: kernel 3×3 slide di atas input; stride=1 geser 1 pixel per langkah; padding=0 tidak tambahkan border. Output size = (5 - 3 + 2×0)/1 + 1 = 3×3.
+**kernel / stride / padding** - Pada `Conv2d(in=1, out=1, kernel_size=3, stride=1, padding=0)` dengan input 5×5: kernel 3×3 bergeser di input; stride=1 berarti bergeser 1 pixel per langkah; padding=0 berarti tidak menambah border. Output size = (5 - 3 + 2×0)/1 + 1 = 3×3.
 
 **receptive field** - Area input yang mempengaruhi satu neuron output. Satu Conv2d(3×3) → receptive field = 3×3. Dua Conv2d(3×3) bertumpuk → receptive field = 5×5 (setiap layer tambah 2 pixel). Semakin dalam, semakin besar area yang "dilihat" neuron.
 
@@ -692,7 +692,7 @@ Setiap awal sesi (mulai Pekan 5), ada slot 10 menit per orang untuk mempresentas
 
 ### C.8 Template Lab Replikasi Arsitektur (Jalur 4 - Arsitektur Baru)
 
-Jalur ini dipilih saat Anda ingin mempelajari satu keluarga arsitektur NN yang *belum* di-cover lab wajib minggu itu. Tujuan: forward pass berhasil dijalankan pada *toy task*, bukan state-of-the-art. Template di bawah mengikuti pola pelaporan yang sama dengan template entri portofolio (C.6), dengan tambahan bagian spesifik untuk replikasi arsitektur.
+Jalur ini dipilih saat Anda ingin mempelajari satu keluarga arsitektur NN yang *belum* dibahas di lab wajib minggu itu. Tujuan: forward pass berhasil dijalankan pada *toy task*, bukan state-of-the-art. Template di bawah mengikuti pola pelaporan yang sama dengan template entri portofolio (C.6), dengan tambahan bagian spesifik untuk replikasi arsitektur.
 
 ```markdown
 ## Entri Arsitektur - Pekan <N>
@@ -725,7 +725,7 @@ Jalur ini dipilih saat Anda ingin mempelajari satu keluarga arsitektur NN yang *
 **Kriteria sukses Jalur 4:**
 - Arsitektur dibangun dengan kode yang Anda pahami (bukan copy-paste utuh). Acceptable: menyalin struktur umum, mengetik ulang dan memodifikasi sendiri. Unacceptable: menempel modul utuh dari Hugging Face tanpa bisa menjelaskan perannya.
 - Learning curve menunjukkan loss menurun atau metrik sukses meningkat. Arsitektur yang stagnan *juga* dilaporkan - sebutkan hipotesis Anda tentang kenapa (mis. "hyperparameter tidak di-tune", "toy task terlalu mudah").
-- Koneksi eksplisit ke arsitektur yang sudah di-cover lab wajib. Tidak cukup menulis "GRU lebih ringan dari LSTM"; tulis "GRU saya kurang 1 gate dibanding LSTM, dan parameter berkurang ~25%, tapi pada toy task ini akurasi hampir sama".
+- Koneksi eksplisit ke arsitektur yang sudah dibahas di lab wajib. Tidak cukup menulis "GRU lebih ringan dari LSTM"; tulis "GRU saya kurang 1 gate dibanding LSTM, dan parameter berkurang ~25%, tapi pada toy task ini akurasi hampir sama".
 
 ### C.9 Template Komponen Mandiri
 
@@ -733,12 +733,12 @@ Template generik untuk semua Komponen Mandiri (W4-W10). Setiap bab mingguan meny
 
 **Empat jalur yang tersedia setiap minggu:**
 
-| Jalur | Inti kegiatan | Artefak di portfolio |
+| Jalur | Inti kegiatan | Artefak di portofolio |
 | --- | --- | --- |
 | **A - Implementasi** | Menambah, mengubah, atau menguji kode pada repo eksperimen. | Cuplikan kode + angka benchmark sebelum/sesudah + 1 paragraf interpretasi. |
 | **B - Analisis** | Menyelidiki perilaku model, data, atau hasil yang sudah ada. | Visualisasi + 2-3 temuan spesifik + hipotesis turunan. |
 | **C - Desain** | Merancang eksperimen baru tanpa harus menjalankannya penuh. | Protokol terstruktur (format W4 §3) + justifikasi hipotesis + estimasi biaya-waktu. |
-| **D - Arsitektur Baru** | Mereplikasi satu keluarga arsitektur yang belum di-cover lab wajib minggu itu. | Forward pass berhasil dijalankan pada toy task + 1 plot learning curve + 1 paragraf perbedaan vs arsitektur yang sudah dipelajari. Template lengkap di C.8. |
+| **D - Arsitektur Baru** | Mereplikasi satu keluarga arsitektur yang belum dibahas di lab wajib minggu itu. | Forward pass berhasil dijalankan pada toy task + 1 plot learning curve + 1 paragraf perbedaan vs arsitektur yang sudah dipelajari. Template lengkap di C.8. |
 
 **Kriteria sukses per entri** (detail di Rubrik Kompetensi 10, [13_Rubrik_Penilaian.md](13_Rubrik_Penilaian.md)):
 - Bukti eksekusi jelas (kode commit, plot, atau dokumen).
@@ -746,7 +746,7 @@ Template generik untuk semua Komponen Mandiri (W4-W10). Setiap bab mingguan meny
 - Koneksi eksplisit ke konsep bab minggu itu.
 - Entri yang hanya mengulang isi lab dinilai Novice; entri yang menunjukkan pilihan berdasarkan *gap* skill sendiri atau pertanyaan riset turunan dinilai Proficient.
 
-**Deliverable standar:** Entri portofolio di `notebooks/portofolio_mandiri.ipynb` sesuai template C.6. Siap presentasi 10 menit di awal pekan berikutnya sesuai panduan C.7.
+**Luaran standar:** Entri portofolio di `notebooks/portofolio_mandiri.ipynb` sesuai template C.6. Siap presentasi 10 menit di awal pekan berikutnya sesuai panduan C.7.
 
 **Tugas spesifik per pekan:** Lihat bagian "Komponen Mandiri" di bab masing-masing untuk tugas konkret per jalur sesuai konsep minggu itu.
 
@@ -957,7 +957,7 @@ Dua belas tabel di bawah adalah alat bantu bagi Anda untuk memeriksa pemahaman s
 
 | Saya harus bisa... | Belum | Mulai | Sudah |
 |---|---|---|---|
-| Melakukan EDA 3-lapis dengan pertanyaan pemandu (bukan daftar ritual) | | | |
+| Melakukan EDA 3-lapis dengan pertanyaan pemandu (bukan daftar formalitas) | | | |
 | Membedakan 5 jenis data leakage dan menyebutkan tes cepat masing-masing | | | |
 | Mengaudit kualitas label: distribusi, konsistensi, sampel salah | | | |
 | Memverifikasi pipeline preprocessing tidak memakai statistik test set | | | |
@@ -1033,7 +1033,7 @@ Checklist ini melengkapi - bukan menggantikan - rubrik penilaian di [13_Rubrik_P
 
 ## A.1 Backpropagation Derivasi Manual
 
-*Catatan: untuk intuitisi dan penggunaan praktis, lihat W2 §2.2. Section ini menyediakan derivasi lengkap 7-langkah untuk MLP 2-layer dengan MSE loss + sigmoid.*
+*Catatan: untuk pemahaman praktis, lihat W2 §2.2. Bagian ini menyediakan derivasi lengkap 7-langkah untuk MLP 2-layer dengan MSE loss + sigmoid.*
 
 ### Setup
 
@@ -1127,7 +1127,7 @@ Salin template ini ke `repo_map.md` di root folder eksperimen Anda setiap kali m
 
 ## C.13 Capstone Proposal One-Pager {#c13-capstone-proposal-one-pager}
 
-Template untuk W11 deliverable wajib. Isi semua bagian sebelum oral defense.
+Template untuk luaran wajib W11. Isi semua bagian sebelum oral defense.
 
 ```markdown
 # Capstone Proposal: [judul singkat]
@@ -1146,7 +1146,7 @@ Template untuk W11 deliverable wajib. Isi semua bagian sebelum oral defense.
 **Intervention:** [apa yang berbeda dari baseline]  
 **Relevansi:** [mengapa perubahan ini menjawab pertanyaan penelitian]
 
-## 3. Experiment Matrix
+## 3. Matriks Eksperimen
 
 | Run | Loss | Arch | Freeze | LR | Seed | Expected outcome |
 |---|---|---|---|---|---|---|
@@ -1181,7 +1181,7 @@ Template untuk W9 Lab 8 dan capstone multimodal. Copy ke `docs/ablation_protocol
 # Per-Modality Ablation Protocol
 
 **Experiment:** [nama]  
-**Modalities:** [list modality yang digunakan]
+**Modalitas:** [daftar modalitas yang digunakan]
 
 ## Ablation Conditions
 
@@ -1213,10 +1213,10 @@ Template untuk W9 Lab 8 dan capstone multimodal. Copy ke `docs/ablation_protocol
 
 ## Diagnosis
 
-- Ignored modality found? [Yes/No]
-- Which modality ignored? [or "None confirmed"]
+- Ignored modality ditemukan? [Ya/Tidak]
+- Modalitas mana yang diabaikan? [atau "tidak ada yang terkonfirmasi"]
 - Evidence: [gradient norms / ablation delta]
-- Mitigation applied: [modality dropout / null token / none]
+- Mitigasi yang diterapkan: [modality dropout / null token / tidak ada]
 ```
 
 ---
@@ -1293,19 +1293,19 @@ runpodctl remove pod [pod-id]
 - **Template laporan capstone?** -> Lampiran §C.2
 - **Memilih template capstone?** -> [Capstone 3 Minggu](12_Capstone_3_Minggu.md) §2.2
 - **Membaca paper dalam tiga putaran (3-pass)?** -> W10 §2.2
-- **Paper-to-code workflow?** -> W10 §2.3
+- **Alur paper-to-code?** -> W10 §2.3
 - **Audit temporal leakage?** -> W6 §0.6 + Lab 6
 - **Temporal leakage konkret?** -> W6 §0.6
 - **Etika data dan bias (fairness, negative results)?** -> W6 §2.6
 - **Struktur config YAML?** -> W4 §2.7
-- **Git workflow untuk riset (commit convention, branching)?** -> W4 §2.7 + old Bab 03 §2.10
+- **Alur kerja Git untuk riset (commit convention, branching)?** -> W4 §2.7 + Bab 03 lama §2.10
 - **Adopsi repo eksternal?** -> W7 §3
 - **Repo map template?** -> Lampiran §C.12
 - **Verifikasi output LLM?** -> W7 §2.1
 - **Synthesis rule sebelum eksekusi?** -> W7 §2.2
 - **Komunikasi efektif dengan dosen pembimbing?** -> W4 §3.5
 - **Diagnosis loss curve (decision tree)?** -> W3 §2.5
-- **Three-level smoke test?** -> W2 §2.3
+- **Smoke test tiga level?** -> W2 §2.3
 - **Output head + loss matching tabel?** -> W1 §2.2
 - **Backpropagation derivasi manual?** -> Lampiran §A.1
 - **Template entri portofolio mandiri?** -> Lampiran §C.6
@@ -1313,8 +1313,8 @@ runpodctl remove pod [pod-id]
 - **Template weekly experiment log ringan?** -> Lampiran §C.10
 - **Template update mingguan ke PI/supervisor?** -> Lampiran §C.11
 - **Format dan kriteria Komponen Mandiri?** -> Lampiran §C.9
-- **Foundation model taxonomy (modality x family)?** -> W8 §2.2
-- **Adaptation choice decision tree (frozen/LoRA/full FT)?** -> W8 §2.4
+- **Taksonomi foundation model (modalitas x keluarga model)?** -> W8 §2.2
+- **Pohon keputusan adaptasi (frozen/LoRA/full FT)?** -> W8 §2.4
 - **Per-modality ablation protocol?** -> Lampiran §C.14
 - **Multimodal fusion strategies?** -> W9 §2.1
 - **Missing modality strategies?** -> W9 §2.3
@@ -1330,20 +1330,20 @@ Panduan untuk mahasiswa yang pernah menggunakan modul versi 14 minggu, atau dose
 
 | Bab Lama | Minggu Lama | Bab Baru | Minggu Baru | Perubahan utama |
 |---|---|---|---|---|
-| Bab 00 Pendahuluan | 1 | Bab 00 Pendahuluan | 1 | +Target Outcome, +Cross-Week Threads, +Session Rhythm |
-| Bab 01a Fondasi NN | 2 | 02 W2 Images CNN Smoke Test | 2 | Backprop dipindah ke Lampiran A.1; +Smoke Test Ritual section |
+| Bab 00 Pendahuluan | 1 | Bab 00 Pendahuluan | 1 | +Target Outcome, +alur lintas minggu, +ritme sesi |
+| Bab 01a Fondasi NN | 2 | 02 W2 Images CNN Smoke Test | 2 | Backprop dipindah ke Lampiran A.1; +bagian Smoke Test |
 | Bab 01b Loss/Opt/Eval | 3 | 03 W3 Loss Optimizer Evaluasi | 3 | +Galeri 5 loss curves opener (example-first) |
-| Bab 02 Ide ke Eksperimen | 4 | 04 W4 Reproducibility | 4 | +Experiment Matrix section; +Infrastruktur Reproduksibilitas; Bab 03 lama diinline |
-| Bab 03 Eksperimen Reproduksibel | 5-6 | 05 W5 Sequences RNN LSTM | 5 | Konten lama dipindah ke W4; konten sequence BARU; Lab 3b jadi mandatory |
-| Bab 04 Validasi Data | 7 | 06 W6 Representations Temporal Leakage | 6 | +Representasi recap; +Temporal Leakage concrete example; +Lab 6 temporal leakage |
+| Bab 02 Ide ke Eksperimen | 4 | 04 W4 Reproducibility | 4 | +bagian Matriks Eksperimen; +Infrastruktur Reproduksibilitas; Bab 03 lama diinline |
+| Bab 03 Eksperimen Reproduksibel | 5-6 | 05 W5 Sequences RNN LSTM | 5 | Konten lama dipindah ke W4; konten sequence baru; Lab 3b jadi wajib |
+| Bab 04 Validasi Data | 7 | 06 W6 Representations Temporal Leakage | 6 | +rekap representasi; +contoh konkret temporal leakage; +Lab 6 temporal leakage |
 | Bab 05 AI Tools | 8 | (merge ke 07 W7) | 7 | Dimerge ke W7; AI tools protocol ringkas |
 | Bab 06 Adopsi Repo Riset | 9 | 07 W7 Text Transformers Repo Adoption | 7 | +Text/Transformer section; AI tools + repo adoption merge |
 | Bab 07 Alat Pendukung Ringan | 10 | (Lampiran C.15) | - | Streamlit/Gradio dipindah ke Lampiran C.15 |
 | Bab 08 Platform & Tool Baru | 11 | (note di W4 §2.8) | 4 | RunPod intro dipindah ke W4; detail di C.15 |
 | Bab 09 Pengembangan Mandiri | 12 | 10 W10 Paper Reading + 11 W11 Research Framing | 10-11 | Split jadi 2 bab; +paper-to-code; +5 Whys; +proposal defense |
-| Bab 10 Capstone 2 minggu | 13-14 | 12 Capstone 3 Minggu | 12-14 | Diperluas jadi 3 minggu dengan explicit W12/W13/W14 |
-| (tidak ada) | - | 08 W8 Foundation Models | 8 | BARU: taxonomy modality x family x adaptation |
-| (tidak ada) | - | 09 W9 Multimodal Reasoning | 9 | BARU: fusion, ablation, missing modality |
+| Bab 10 Capstone 2 minggu | 13-14 | 12 Capstone 3 Minggu | 12-14 | Diperluas jadi 3 minggu dengan W12/W13/W14 eksplisit |
+| (tidak ada) | - | 08 W8 Foundation Models | 8 | Baru: taksonomi modalitas x keluarga model x adaptasi |
+| (tidak ada) | - | 09 W9 Multimodal Reasoning | 9 | Baru: fusion, ablation, missing modality |
 
 ---
 

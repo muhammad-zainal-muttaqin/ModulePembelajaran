@@ -28,7 +28,7 @@
 
 > *Model yang tidak ingat masa lalu hanya bisa belajar pola saat ini. Arsitektur recurrent hadir justru karena urutan itu penting - apa yang terjadi sebelumnya mengubah makna apa yang terjadi sekarang.*
 
-**Big Map row:** `(T, F) -> (1,)`, `(N,)`, `(T'', 1)`
+**Baris Big Map:** `(T, F) -> (1,)`, `(N,)`, `(T'', 1)`
 **Rigor habit:** Long-sequence diagnosis dan justifikasi arsitektur
 **Dataset:** Sequence dataset dengan dependensi panjang yang terlihat
 **Lab utama:** Lab 3b (`lab_w5_lstm_sequence.ipynb`) - **wajib di W5**
@@ -39,7 +39,7 @@
 
 W5 memperluas Big Map ke domain sequence. Setelah W5, Anda dapat:
 
-- memahami tiga keluarga output head untuk sequence tasks
+- memahami tiga keluarga output head untuk tugas sequence
 - membangun dan melatih RNN vanilla serta LSTM/GRU
 - melihat vanishing gradient secara konkret dalam satu perbandingan
 - memilih arsitektur sequence berdasarkan panjang dependensi
@@ -63,7 +63,7 @@ Jawaban ketiga pertanyaan ini menentukan keluarga arsitektur.
 
 ## 1.5 BPTT dan Vanishing Gradient: Sebelum Membaca Formula RNN
 
-W5 adalah bab paling padat secara teknis sejauh ini. Sebelum kita menulis rumus RNN dan LSTM dengan banyak huruf Yunani, kita pasti pijakan dulu: apa sebenarnya yang membuat training sequence model berbeda dari training MLP/CNN biasa, dan kenapa "vanishing gradient" menjadi masalah serius di sini.
+W5 adalah bab paling padat secara teknis sejauh ini. Sebelum menulis rumus RNN dan LSTM dengan banyak huruf Yunani, kita kuatkan dulu pijakannya: apa sebenarnya yang membuat training sequence model berbeda dari training MLP/CNN biasa, dan kenapa "vanishing gradient" menjadi masalah serius di sini.
 
 ### 1.5.1 BPTT: Chain Rule pada Urutan Waktu
 
@@ -119,7 +119,7 @@ Beberapa rumus LSTM nanti memakai simbol ⊙. Ini **element-wise multiplication*
 [1, 2, 3] ⊙ [4, 5, 6] = [1*4, 2*5, 3*6] = [4, 10, 18]
 ```
 
-Berbeda dengan `@` (matrix product) yang mengontraksi sumbu, ⊙ menjaga bentuk. Untuk dua vektor shape `(d,)`, hasil ⊙ juga shape `(d,)`. Untuk dua matriks shape `(B, d)`, hasil ⊙ juga shape `(B, d)`. Dipakai di LSTM sebagai "gate yang menyaring komponen-komponen vektor secara independen".
+Berbeda dengan `@` (matrix product) yang mengontraksi sumbu, ⊙ menjaga bentuk. Untuk dua vektor shape `(d,)`, hasil ⊙ juga shape `(d,)`. Untuk dua matriks shape `(B, d)`, hasil ⊙ juga shape `(B, d)`. Di LSTM, operasi ini dipakai sebagai "gate yang menyaring komponen-komponen vektor secara mandiri".
 
 ---
 
@@ -195,7 +195,7 @@ Bandingkan dengan RNN vanilla: setiap langkah mundur, gradient dikalikan dengan 
 Bayangkan sequence sensor pasien: glukosa setiap 5 menit selama 24 jam (288 timestep). Cell state `c_t` menyimpan "kondisi pasien terakhir kali stabil". Forget gate `f_t` adalah keputusan model di tiap timestep: *apakah kondisi sebelumnya masih relevan?*
 
 - Saat data normal mengalir → `f_t ≈ 1.0` → cell state hampir tidak berubah, ingatkan kondisi stabil.
-- Saat anomali (lonjakan glukosa tiba-tiba akibat makan berat) → `f_t` turun ke ~0.3 untuk komponen yang terkait kondisi pre-makan; cell state diperbarui dengan informasi baru.
+- Saat anomali (lonjakan glukosa tiba-tiba akibat makan berat) → `f_t` turun ke ~0.3 untuk komponen yang terkait kondisi sebelum makan; cell state diperbarui dengan informasi baru.
 - Saat pasien tidur dan sinyal sangat lambat → `f_t` ≈ 1.0 lagi, cell state ingatkan kondisi tidur tanpa terganggu fluktuasi noise kecil.
 
 Forget gate mempelajari *kapan* informasi lama harus dilupakan. Tanpa training, model tidak tahu - tetapi gradient yang merambat lewat sequence membentuk gate untuk kondisi yang relevan.
@@ -259,7 +259,7 @@ Setiap pemilihan arsitektur harus bisa dijelaskan. Template minimal:
 
 > "Saya memilih [LSTM/GRU/RNN/Transformer] karena task ini [butuh memori jangka panjang / sequence singkat / butuh paralelisasi / konteks bilateral]. Dataset punya panjang sequence [T], dan [LSTM] secara empirik lebih baik pada [tugas dengan dependensi > 20 langkah] dibandingkan [RNN vanilla yang cenderung gagal akibat vanishing gradient]."
 
-Template ini akan dipakai kembali di W7 (Transformer) dan W9 (multimodal). Mulai latih menulis satu kalimat justifikasi untuk setiap pilihan arsitektur yang Anda buat.
+Template ini akan dipakai kembali di W7 (Transformer) dan W9 (multimodal). Mulai sekarang, biasakan menulis satu kalimat justifikasi untuk setiap pilihan arsitektur yang Anda buat.
 
 ### 2.6 Long-Sequence Diagnosis
 
@@ -313,9 +313,9 @@ model:
 
 **"LSTM selalu lebih baik dari GRU."** Tidak ada aturan universal. GRU lebih cepat dilatih dan sering performa sebanding. Coba keduanya sebelum memilih.
 
-**"Hidden state terakhir mewakili seluruh sequence."** Untuk sequence sangat panjang, bahkan LSTM bisa lupa informasi awal. Solusi: bidirectional LSTM, atau attention di atas hidden states semua timestep.
+**"Hidden state terakhir mewakili seluruh sequence."** Untuk sequence sangat panjang, bahkan LSTM bisa lupa informasi awal. Solusi: bidirectional LSTM, atau attention pada hidden states semua timestep.
 
-**"Saya bisa shuffle data time series bebas."** Berbahaya. Untuk forecasting, shuffling antar sequence OK. Shuffling dalam sequence atau split data secara random (bukan temporal) menyebabkan leakage yang akan dibahas di W6.
+**"Saya bisa shuffle data time series bebas."** Berbahaya. Untuk forecasting, shuffling antar sequence boleh. Shuffling di dalam sequence atau split data secara acak (bukan temporal) menyebabkan leakage yang akan dibahas di W6.
 
 **Gradient clipping.** RNN/LSTM tanpa gradient clipping sering mengalami exploding gradient. Tambahkan `torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=1.0)` sebelum `optimizer.step()` sebagai default.
 
@@ -333,7 +333,7 @@ Buka `notebooks/lab_w5_lstm_sequence.ipynb`.
 2. Latih RNN vanilla vs LSTM pada `seq_len=50`, plot val MAE comparison.
 3. Ulangi pada `seq_len=200`, amati divergensi performa.
 4. Plot gradient norm per timestep untuk keduanya; simpan gambar ke `experiments/lab3b/`.
-5. Tulis architecture justification statement menggunakan template §2.5.
+5. Tulis pernyataan justifikasi arsitektur menggunakan template §2.5.
 6. Coba GRU sebagai alternatif ketiga; bandingkan training time vs LSTM.
 
 **Checklist:**
@@ -356,7 +356,7 @@ Eksplorasi lebih dalam dari tugas utama. Format: [Lampiran C.9](14_Lampiran.md#c
 
 | Jalur | Tugas minggu ini |
 |---|---|
-| **Implementasi** | Implementasikan bidirectional LSTM di atas Lab 3b. Apakah performa lebih baik pada `seq_len=200`? Mengapa atau mengapa tidak? |
+| **Implementasi** | Implementasikan bidirectional LSTM dengan basis Lab 3b. Apakah performa lebih baik pada `seq_len=200`? Mengapa atau mengapa tidak? |
 | **Analisis** | Coba ablasi: hidden size 16 vs 32 vs 64 vs 128 pada sine sequence. Plot val MAE vs jumlah parameter. Ada sweet spot? |
 | **Desain** | Rancang (tanpa jalankan) eksperimen untuk membandingkan LSTM vs Transformer (W7) pada sequence panjang. Hipotesis apa yang perlu Anda test? |
 | **Arsitektur Baru** | Implementasikan temporal CNN (1D Conv + MaxPool) sebagai baseline non-recurrent untuk sine forecasting. Bagaimana performa dibanding LSTM pada dependensi panjang? |

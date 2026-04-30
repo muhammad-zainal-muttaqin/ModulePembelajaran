@@ -28,7 +28,7 @@
 
 > *Arsitektur bukan daftar definisi untuk dihafalkan. Arsitektur adalah keputusan desain yang berangkat dari pertanyaan: pola apa yang dibawa data Anda, dan struktur model apa yang paling cocok untuk pola itu?*
 
-**Big Map row:** `(C, H, W) -> (N,)`
+**Baris Big Map:** `(C, H, W) -> (N,)`
 **Rigor habit:** Three-level smoke test
 **Dataset:** CIFAR-10 (image classification)
 **Lab utama:** Lab 1 (`lab_w2_cnn_baseline.ipynb`)
@@ -37,38 +37,38 @@
 
 ## 0. Peta Bab
 
-W2 memperkenalkan tensor citra, arsitektur CNN, dan tiga kebiasaan debugging terpenting yang dipakai sepanjang bootcamp. Bab ini menampilkan run yang belajar, run yang tidak belajar, dan smoke test yang menangkap error sebelum training berjam-jam.
+W2 memperkenalkan tensor citra, arsitektur CNN, dan tiga kebiasaan debugging terpenting yang dipakai sepanjang bootcamp. Bab ini menampilkan contoh training yang berhasil belajar, contoh training yang gagal belajar, dan smoke test yang menangkap error sebelum training berjalan berjam-jam.
 
 - **2.1** Peta Besar: tensor masuk dan tensor keluar
 - **2.2** Empat keluarga arsitektur sebagai asumsi tentang data (CNN sebagai contoh utama)
-- **2.3** Three-Level Smoke Test Ritual
-- **2.4** Galeri Runs: sebelum membaca teori
+- **2.3** Three-Level Smoke Test
+- **2.4** Galeri Training: sebelum membaca teori
 - **2.5** Layer sebagai transformasi: inisialisasi, normalisasi, aktivasi
 - **Lampiran A.1** Backpropagation derivasi manual (opsional, tersedia setelah W2)
 
 Setelah W2, lanjut ke [W3](03_W3_Loss_Optimizer_Evaluasi.md) untuk loss, optimizer, evaluasi, dan diagnosis loss curve.
 
-**Lab minggu ini:** Lab 1c (MLP numpy, breadth opsional) dan Lab 1 (baseline CNN, mulai di W2, selesai di W3).
+**Lab minggu ini:** Lab 1c (MLP numpy, breadth opsional) dan Lab 1 (baseline CNN, dimulai di W2, selesai di W3).
 
 ---
 
 ## 1. Motivasi: Tiga Dataset di Meja Anda
 
-Seorang rekan mengirim tiga dataset sekaligus: *"coba klasifikasi dulu, pakai arsitektur yang menurut Anda paling masuk akal"*.
+Seorang rekan mengirim tiga dataset sekaligus: *"tolong coba klasifikasikan dulu, pakai arsitektur yang menurut Anda paling masuk akal"*.
 
 - **A**: tabel medis - 20 kolom hasil lab darah pasien, target diabetes ya/tidak.
 - **B**: 10.000 gambar daun sawit berlabel *sehat* atau *terkena penyakit*, resolusi 224×224.
 - **C**: 30.000 review produk berbahasa Indonesia, target sentimen positif/negatif.
 
-Tanpa membuka paper apapun, Anda sudah bisa menebak keluarga arsitektur yang cocok. Dataset A punya struktur *flat* - feed-forward network sudah masuk akal. Dataset B berupa grid piksel 2D dengan *translation invariance* - CNN cocok untuk struktur seperti ini. Dataset C berupa urutan kata dengan ketergantungan jangka panjang - Transformer atau RNN lebih masuk akal.
+Tanpa membuka paper apa pun, Anda sudah bisa menebak keluarga arsitektur yang cocok. Dataset A berupa fitur tabular datar; feed-forward network sudah masuk akal. Dataset B berupa grid piksel 2D dengan *translation invariance*; CNN cocok untuk struktur seperti ini. Dataset C berupa urutan kata dengan ketergantungan jangka panjang; Transformer atau RNN lebih masuk akal.
 
 Poinnya: setiap keluarga arsitektur dibangun dengan *asumsi tertentu* tentang bentuk data. Memilih arsitektur berarti memilih asumsi mana yang paling tepat.
 
 ---
 
-## 1.5 Citra sebagai Tensor: dari Pixel ke 4D
+## 1.5 Citra sebagai Tensor: dari Pixel ke Tensor 4D
 
-Sebelum membahas CNN dan smoke test, kita pastikan dulu pintu masuk: bagaimana sebenarnya satu foto berubah menjadi tensor yang bisa diterima `nn.Conv2d`?
+Sebelum membahas CNN dan smoke test, kita pastikan dulu titik awalnya: bagaimana sebenarnya satu foto berubah menjadi tensor yang bisa diterima `nn.Conv2d`?
 
 ### 1.5.1 Pixel sebagai Angka
 
@@ -122,9 +122,9 @@ Contoh konkret CIFAR-10: 32 foto RGB 32×32 dalam satu batch berbentuk `(32, 3, 
 
 ### 2.1 Peta Besar: Tensor Masuk, Tensor Keluar
 
-Satu kerangka berpikir menyederhanakan hampir setiap keputusan desain dalam deep learning: setiap masalah dapat dipahami dengan menjawab dua pertanyaan - *bentuk tensor apa yang masuk*, dan *bentuk apa yang keluar*. Segala sesuatu di antaranya - MLP, CNN, RNN, Transformer - adalah mesin transformasi yang memetakan satu bentuk ke bentuk lain.
+Satu kerangka berpikir menyederhanakan hampir setiap keputusan desain dalam deep learning: setiap masalah dapat dipahami dengan menjawab dua pertanyaan - *bentuk tensor apa yang masuk*, dan *bentuk apa yang keluar*. Segala sesuatu di antaranya - MLP, CNN, RNN, Transformer - bertugas mengubah satu bentuk tensor menjadi bentuk lain.
 
-Saat membaca kode repositori yang belum dikenal, hal pertama yang perlu Anda perhatikan adalah bentuk batch di `DataLoader` dan bentuk tensor tepat sebelum fungsi loss. Dari dua informasi itu saja, Anda sudah bisa menebak keluarga arsitektur yang masuk akal. Sebaliknya, saat merancang eksperimen untuk domain baru, menuliskan pasangan tensor input → output di kertas - sebelum menulis satu baris kode pun - sering kali mempersempit pilihan dari "semua model di dunia" menjadi "satu atau dua keluarga yang masuk akal".
+Saat membaca kode repositori yang belum dikenal, hal pertama yang perlu Anda perhatikan adalah bentuk batch di `DataLoader` dan bentuk tensor tepat sebelum fungsi loss. Dari dua informasi itu saja, Anda sudah bisa menebak keluarga arsitektur yang masuk akal. Sebaliknya, saat merancang eksperimen untuk domain baru, tulis dulu pasangan tensor input → output di kertas sebelum menulis satu baris kode pun. Cara ini sering mempersempit pilihan dari "semua model di dunia" menjadi "satu atau dua keluarga yang masuk akal".
 
 
 | Domain | Contoh Data | Tensor Input | Tensor Output | Contoh Tugas |
@@ -155,9 +155,9 @@ Dua fenomena penting yang sering disebut paper:
 > [!NOTE]
 > Derivasi 7-langkah chain rule untuk MLP (MSE loss + sigmoid) tersedia lengkap di [Lampiran A.1](14_Lampiran.md#a1-backpropagation-derivasi-manual). Baca setelah W3, ketika Anda sudah punya beberapa run sukses untuk diinterpretasi. Lab 1c (MLP numpy from-scratch) tersedia sebagai breadth lab opsional dan menerapkan backprop secara konkret pada MNIST.
 
-### 2.3 Three-Level Smoke Test Ritual
+### 2.3 Three-Level Smoke Test
 
-Tiga level smoke test bukan ritual yang dibuat-buat; mereka memetakan **tiga jenis bug paling sering** di pipeline deep learning, dari yang paling murah dideteksi ke yang paling mahal:
+Tiga level smoke test bukan formalitas; masing-masing menargetkan **tiga jenis bug paling sering** di pipeline deep learning, dari yang paling murah dideteksi ke yang paling mahal:
 
 1. **Typo / import / path error** - terdeteksi di Level 1 (`import model`). Tidak butuh dataset, tidak butuh forward pass.
 2. **Shape mismatch antar layer** - terdeteksi di Level 2 (dummy forward dengan tensor random). Butuh model dimuat tetapi tidak butuh data dari dataset.
@@ -194,16 +194,16 @@ for i in range(100):
 > [!IMPORTANT]
 > Overfit one batch adalah tes paling diagnostik. Jika gagal: ada bug di kode Anda, bukan di hyperparameter. Jika berhasil: model sehat, masalah performa berasal dari data, augmentasi, atau regularisasi.
 
-### 2.4 Galeri Runs: Sebelum Membaca Teori
+### 2.4 Galeri Training: Sebelum Membaca Teori
 
-Sebelum mendalami arsitektur, lihat empat run konkret dan tanyakan diri sendiri: *apa yang berbeda?*
+Sebelum mendalami arsitektur, lihat empat contoh training konkret dan tanyakan diri sendiri: *apa yang berbeda?*
 
-- **Run A:** Loss training dan val turun sejajar, keduanya mencapai angka rendah di epoch 20. Ini run yang sehat.
+- **Run A:** Loss training dan val turun sejajar, keduanya mencapai angka rendah di epoch 20. Ini training yang sehat.
 - **Run B:** Loss training turun mulus tapi loss val stagnan sejak epoch 4. Sesuatu sudah salah di sini - apa?
 - **Run C:** Loss training tidak bergerak sama sekali dari epoch pertama. Apakah ini masalah learning rate atau bug?
 - **Run D:** Loss meledak ke `NaN` di epoch ke-8 setelah awalnya turun normal.
 
-Jangan baca jawabannya dulu. Tuliskan hipotesis Anda untuk setiap run dalam satu kalimat. Kita akan kembali ke empat run ini di W3 dengan kerangka diagnosis yang lengkap.
+Jangan baca jawabannya dulu. Tuliskan hipotesis Anda untuk setiap contoh dalam satu kalimat. Kita akan kembali ke empat contoh ini di W3 dengan kerangka diagnosis yang lengkap.
 
 ### 2.5 Conv2d: Gambaran Sebelum Kode
 
@@ -234,7 +234,7 @@ Filter di posisi (0,0) - ambil patch 3×3 kiri-atas:
 Filter geser ke kanan satu pixel, ulangi. Total 3×3 = 9 posisi → output 3×3.
 ```
 
-Filter di atas adalah **detektor tepi vertikal sederhana**: nilainya menjadi besar di lokasi yang berisi transisi terang-ke-gelap dari kiri ke kanan. Dalam praktiknya, bobot filter dipelajari otomatis lewat training; CNN belajar filter apa yang berguna untuk task-nya.
+Filter di atas adalah **detektor tepi vertikal sederhana**: nilainya menjadi besar di lokasi yang berisi transisi terang-ke-gelap dari kiri ke kanan. Dalam praktiknya, bobot filter dipelajari otomatis lewat training; CNN belajar filter apa yang berguna untuk tugasnya.
 
 #### 2.5.2 Kernel, Stride, Padding
 
@@ -306,7 +306,7 @@ Setiap keluarga di atas dapat Anda baca sebagai "MLP + asumsi spesifik domain". 
 
 ### 2.7 Layer sebagai Transformasi Representasi
 
-Setiap layer adalah *fungsi* yang mengubah representasi data menjadi bentuk yang lebih berguna bagi layer berikutnya. Di CNN, layer awal belajar detail kecil (tepi, tekstur), layer dalam menggabungkannya menjadi konsep lebih tinggi. Dalam praktiknya: saat *fine-tune* model pretrained, layer awal biasanya aman di-*freeze*, layer akhir perlu beradaptasi dengan domain baru.
+Setiap layer adalah *fungsi* yang mengubah representasi data menjadi bentuk yang lebih berguna bagi layer berikutnya. Di CNN, layer awal belajar detail kecil (tepi, tekstur), layer dalam menggabungkannya menjadi konsep lebih tinggi. Dalam praktiknya, saat *fine-tune* model pretrained, layer awal biasanya aman di-*freeze*, sedangkan layer akhir perlu beradaptasi dengan domain baru.
 
 **Inisialisasi bobot: titik awal yang sering diabaikan.** Memilih nol atau nilai terlalu besar menghancurkan sinyal gradient sejak iterasi pertama.
 
@@ -363,7 +363,7 @@ Aturan praktisnya: pakai default yang disebut paper yang Anda replikasi. Menggan
 
 Saat membaca kode SimpleCNN di §3, tiga istilah ini dipakai tanpa penjelasan. Kita definisikan dulu di sini supaya kode tidak terasa magis.
 
-**Augmentation.** Transformasi acak yang diterapkan **hanya pada batch training** untuk memperluas variasi data. Contoh: `RandomCrop` (potong area acak), `RandomHorizontalFlip` (balik kiri-kanan dengan probabilitas 0.5), `ColorJitter` (ganggu hue/brightness). Tujuan: model belajar fitur yang invarian terhadap transformasi yang masuk akal di dunia nyata. Augmentasi tidak diterapkan di val/test; di sana kita ingin evaluasi pada data apa adanya.
+**Augmentation.** Transformasi acak yang diterapkan **hanya pada batch training** untuk memperluas variasi data. Contoh: `RandomCrop` (potong area acak), `RandomHorizontalFlip` (balik kiri-kanan dengan probabilitas 0.5), `ColorJitter` (ubah hue/brightness). Tujuannya agar model belajar fitur yang tetap stabil terhadap transformasi yang masuk akal di dunia nyata. Augmentasi tidak diterapkan di val/test; di sana kita ingin evaluasi pada data apa adanya.
 
 **Dropout.** Layer `nn.Dropout(p)` secara acak menonaktifkan fraksi `p` aktivasi di setiap forward pass saat training (mis. `p=0.3` mematikan 30% neuron). Saat evaluasi (`model.eval()`), dropout otomatis nonaktif. Mengapa berguna? Memaksa model tidak bergantung pada satu jalur jaringan tertentu, sehingga setiap subjaringan kompeten sendiri. Efeknya mirip ensembling banyak model kecil dalam satu model besar.
 
@@ -373,7 +373,7 @@ Saat membaca kode SimpleCNN di §3, tiga istilah ini dipakai tanpa penjelasan. K
 
 ## 3. Worked Example: SimpleCNN pada CIFAR-10
 
-Tujuan: membangun CNN minimal yang dapat dilatih penuh, sekaligus menjelaskan setiap keputusan desain.
+Tujuan bagian ini adalah membangun CNN minimal yang dapat dilatih penuh, sekaligus menjelaskan setiap keputusan desain.
 
 ### 3.1 Definisi Model
 
@@ -462,7 +462,7 @@ Buka `notebooks/lab_w2_cnn_baseline.ipynb`. Di W2:
 
 1. Jalankan tiga level smoke test (import, dummy forward, overfit one batch).
 2. Bangun SimpleCNN, latih baseline dari scratch.
-3. Bangun baseline pretrained fine-tune (ResNet-18 frozen backbone).
+3. Bangun baseline fine-tuning pretrained (ResNet-18 frozen backbone).
 4. Dokumentasikan: di level mana smoke test akan menangkap setiap jenis error.
 
 Selesaikan evaluasi dan error analysis setelah membaca [W3](03_W3_Loss_Optimizer_Evaluasi.md).
@@ -497,6 +497,6 @@ Buka `notebooks/lab_w1_mlp_numpy.ipynb`. Tersedia sebagai breadth lab untuk Brea
 
 ## Lanjut ke W3
 
-Fondasi sudah berdiri. Bab berikutnya (W3) menuntaskan: loss sebagai pilihan, optimizer sebagai mekanisme langkah, evaluasi yang jujur, tiga strategi representasi fitur, dan cara membaca loss curve untuk mendiagnosis masalah training - dimulai dari galeri run konkret sebelum teori.
+Fondasi sudah siap. Bab berikutnya (W3) menuntaskan: loss sebagai pilihan, optimizer sebagai mekanisme langkah, evaluasi yang jujur, tiga strategi representasi fitur, dan cara membaca loss curve untuk mendiagnosis masalah training. Bab itu dimulai dari galeri contoh training konkret sebelum teori.
 
 Buka [W3 - Loss, Optimizer & Evaluasi](03_W3_Loss_Optimizer_Evaluasi.md) ketika siap.

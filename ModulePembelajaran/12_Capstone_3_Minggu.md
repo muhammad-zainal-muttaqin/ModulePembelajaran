@@ -34,15 +34,15 @@
 
 ## 0. Peta Bab
 
-Bab ini memandu Anda menyusun proyek capstone 3 minggu yang mengintegrasikan minimal enam dari sembilan kompetensi modul. Anda sudah masuk dengan proposal yang disetujui dan pre-registration yang sudah di-commit dari W11. Capstone dimulai dari W12 dengan data inspection, bukan dengan memilih topik.
+Bab ini memandu Anda menyusun proyek capstone 3 minggu yang mengintegrasikan minimal enam dari sembilan kompetensi modul. Anda sudah masuk dengan proposal yang disetujui dan pre-registration yang sudah di-commit dari W11. Capstone dimulai dari W12 dengan pemeriksaan data, bukan dengan memilih topik.
 
 > [!IMPORTANT]
-> Capstone dimulai dari proposal yang sudah disetujui dan pre-registration yang sudah di-commit di W11. Jika W11 deliverables belum selesai, selesaikan dulu sebelum W12.
+> Capstone dimulai dari proposal yang sudah disetujui dan pre-registration yang sudah di-commit di W11. Jika luaran W11 belum selesai, selesaikan dulu sebelum W12.
 
 **Setiap minggu punya:**
-- **Questions to answer** - pertanyaan spesifik yang harus bisa Anda jawab di akhir minggu itu
-- **Required outputs** - artefak konkret yang harus ada
-- **Checkpoint** - 15 menit dengan dosen/PI untuk verifikasi progress
+- **Pertanyaan yang harus dijawab** - pertanyaan spesifik yang harus bisa Anda jawab di akhir minggu itu
+- **Luaran wajib** - artefak konkret yang harus ada
+- **Checkpoint** - 15 menit dengan dosen/PI untuk verifikasi progres
 
 ---
 
@@ -70,7 +70,7 @@ Proyek capstone harus memenuhi empat kriteria sekaligus. Proyek yang mengorbanka
 
 **Menggunakan paling sedikit enam kompetensi modul.** Tabel kompetensi ↔ capstone ada di 2.3 di bawah. Proyek yang hanya memakai tiga-empat kompetensi terlalu ringan untuk menjadi capstone.
 
-**Menghasilkan artefak publik.** Repository yang orang lain bisa clone dan jalankan; laporan yang orang lain bisa baca mandiri; demo yang orang lain bisa coba. Jika semua hanya ada di laptop Anda, capstone gagal memenuhi ownership yang sejati.
+**Menghasilkan artefak publik.** Repository yang orang lain bisa clone dan jalankan; laporan yang orang lain bisa baca mandiri; demo yang orang lain bisa coba. Jika semua hanya ada di laptop Anda, capstone belum menunjukkan ownership yang matang.
 
 ### 2.2 Tiga Template Proyek
 
@@ -91,7 +91,7 @@ Lima proyek berikut telah diuji: kompleksitasnya cocok untuk mahasiswa S1 di 4 m
 - Framework: Hugging Face Transformers + Datasets.
 - Compute: dapat dijalankan di T4 / RTX 3060 / A40; total ~5-10 jam GPU.
 
-**Skope minimal.**
+**Cakupan minimal.**
 
 1. EDA dataset, laporan distribusi kelas, panjang teks, sampel mencurigakan.
 2. Fine-tune dua model dengan hyperparameter yang setara (learning rate, batch, epoch).
@@ -115,7 +115,7 @@ Lima proyek berikut telah diuji: kompleksitasnya cocok untuk mahasiswa S1 di 4 m
 - Model: `openai/clip-vit-base-patch32` (gambar), `indolem/indobert-base-uncased` (teks), klasifier sederhana (answer vocabulary ~300 kata paling sering).
 - Compute: A40 atau L4; total ~10 jam GPU.
 
-**Skope minimal.**
+**Cakupan minimal.**
 
 1. EDA dataset: distribusi tipe pertanyaan, distribusi jawaban (power law biasanya).
 2. Translate + spot-check manual 100 pertanyaan; dokumentasikan kesalahan translasi yang umum.
@@ -142,7 +142,7 @@ Lima proyek berikut telah diuji: kompleksitasnya cocok untuk mahasiswa S1 di 4 m
 - Framework: PyTorch + template_repo modul ini.
 - Compute: laptop CPU/GPU kecil cukup untuk subset; dapat skala ke A40 untuk replikasi penuh.
 
-**Skope minimal.**
+**Cakupan minimal.**
 
 1. Train ResNet-18 pada PathMNIST; baseline akurasi.
 2. Bangun 3 test sets terperturbasi (stain, blur, noise) + 1 test set clean.
@@ -169,7 +169,7 @@ Lima proyek berikut telah diuji: kompleksitasnya cocok untuk mahasiswa S1 di 4 m
 - Framework: PyTorch + template_repo.
 - Compute: laptop CPU cukup; GPU kecil untuk iterasi lebih cepat.
 
-**Skope minimal.**
+**Cakupan minimal.**
 
 1. Implementasi LSTM baseline untuk 1-step dan 24-step-ahead prediction; 3 seed.
 2. Implementasi Transformer encoder + positional encoding; 3 seed.
@@ -196,7 +196,7 @@ Lima proyek berikut telah diuji: kompleksitasnya cocok untuk mahasiswa S1 di 4 m
 - Framework: PyTorch + template_repo.
 - Compute: laptop GPU / RTX 3060 cukup; ~2-4 jam GPU total.
 
-**Skope minimal.**
+**Cakupan minimal.**
 
 1. Train AE unsupervised di 50k sampel tanpa label; visualisasi rekonstruksi.
 2. Ambil bottleneck frozen; latih linear probe pada 100/1000 label per kelas; laporkan akurasi.
@@ -242,7 +242,7 @@ Capstone adalah mini research cycle. Default yang sehat:
 
 **W12 - Scope, EDA, Baseline, Reproducible Setup**
 
-*Questions to answer by end of W12:*
+*Pertanyaan yang harus dijawab pada akhir W12:*
 - Apa tugas yang tepat secara eksplisit?
 - Apa baseline, dan apakah sudah bisa run?
 - Metrik apa yang paling penting?
@@ -253,7 +253,7 @@ Capstone adalah mini research cycle. Default yang sehat:
 - Hari 2-3: EDA dataset - distribusi kelas, sample inspection, leakage audit.
 - Hari 4-5: Setup baseline, smoke test, jalankan pertama kali. 3 seed baseline.
 
-*Required outputs:*
+*Luaran wajib:*
 - `prereg.md` (dari W11, sudah di-commit sebelum mulai)
 - `eda.md` - temuan EDA, audit leakage, preprocessing decisions
 - Baseline config YAML + first reproducible run
@@ -261,7 +261,7 @@ Capstone adalah mini research cycle. Default yang sehat:
 
 **W13 - Main Experiment & Focused Ablation**
 
-*Questions to answer by end of W13:*
+*Pertanyaan yang harus dijawab pada akhir W13:*
 - Apakah intervention membantu?
 - Seberapa besar efeknya, dan apakah signifikan?
 - Apa penjelasan paling plausibel?
@@ -271,7 +271,7 @@ Capstone adalah mini research cycle. Default yang sehat:
 - Hari 3-4: Jalankan main experiment (baseline vs intervention, 3 seed masing-masing).
 - Hari 5: Satu focused ablation yang membantu interpretasi. Error analysis draft.
 
-*Required outputs:*
+*Luaran wajib:*
 - Baseline vs intervention comparison (tabel angka)
 - Satu ablation atau representasi comparison
 - Loss curves, metrik, dan draft interpretasi
@@ -279,7 +279,7 @@ Capstone adalah mini research cycle. Default yang sehat:
 
 **W14 - Analysis, Report, Demo, Presentation**
 
-*Questions to answer by end of W14:*
+*Pertanyaan yang harus dijawab pada akhir W14:*
 - Apa yang dipelajari?
 - Apa yang tidak berhasil?
 - Apa eksperimen berikutnya jika proyek dilanjutkan?
@@ -289,7 +289,7 @@ Capstone adalah mini research cycle. Default yang sehat:
 - Hari 3-4: Tulis laporan 6-8 halaman. README repo dipoles.
 - Hari 5: Persiapan presentasi final. Tag repo `v1.0`.
 
-*Required outputs:*
+*Luaran wajib:*
 - Final report (6-8 halaman)
 - Reproducible repo (clone-and-run)
 - Demo (jika task memungkinkan)
@@ -297,9 +297,9 @@ Capstone adalah mini research cycle. Default yang sehat:
 
 Setiap minggu: **checkpoint 15 menit** dengan dosen/PI. Tunjukkan required outputs minggu itu. Jika terlambat: pangkas scope, jangan tambah waktu. Proyek yang dipangkas di minggu kedua masih bisa sukses; proyek yang "hampir selesai" di minggu keempat hampir selalu kecewa.
 
-### 2.5 Tiga Deliverable
+### 2.5 Tiga Luaran
 
-**Deliverable 1 - Repository.**
+**Luaran 1 - Repository.**
 
 Struktur minimum:
 
@@ -324,7 +324,7 @@ capstone-<nama>/
 
 Repo harus dapat di-setup orang lain dari README dalam < 30 menit, termasuk download data.
 
-**Deliverable 2 - Laporan 6-8 halaman.**
+**Luaran 2 - Laporan 6-8 halaman.**
 
 Struktur yang direkomendasikan:
 
@@ -339,7 +339,7 @@ Struktur yang direkomendasikan:
 
 Template tersedia di `14_Lampiran.md`. Gunakan LaTeX atau Markdown → PDF; hindari Word untuk proyek ini (versi-kontrol lebih mudah dengan teks).
 
-**Deliverable 3 - Demo.**
+**Luaran 3 - Demo.**
 
 Live demo yang dapat diakses dalam rapat presentasi (`streamlit run demo/app.py`). Syarat: setidaknya input + output yang bermakna; bonus: comparison mode (baseline vs intervensi berdampingan) dan error inspection (cari contoh yang model keliru).
 
@@ -452,7 +452,7 @@ Proyek Dito mungkin "kecil" dibanding paper publikasi, tetapi padat dan dapat di
 
 **Pitfall 3 - Demo dibuat untuk mengesankan, bukan menginformasikan.** Interface cantik, tetapi tidak menunjukkan kelemahan model. *Cara deteksi:* demo Anda harus memudahkan menemukan contoh di mana model *gagal* - ini tanda kejujuran.
 
-**Pitfall 4 - Hasil disajikan tanpa error bar.** "Model kami 89.3%" tanpa ±. Pembaca tidak tahu apakah perbedaan 0.5% meaningful atau noise. *Cara deteksi:* setiap angka utama di laporan harus punya standar deviasi dari setidaknya 3 seed.
+**Pitfall 4 - Hasil disajikan tanpa error bar.** "Model kami 89.3%" tanpa ±. Pembaca tidak tahu apakah perbedaan 0.5% bermakna atau noise. *Cara deteksi:* setiap angka utama di laporan harus punya standar deviasi dari setidaknya 3 seed.
 
 **Pitfall 5 - Mengklaim lebih dari yang data dukung.** "Method kami membuktikan bahwa TTA universal meningkatkan robustness." Satu proyek dengan satu dataset tidak "membuktikan universal" apapun. *Cara deteksi:* kata "universal", "general", "definitively" di kesimpulan adalah bendera merah. Ganti dengan "menunjukkan, pada dataset dan kondisi yang diuji".
 

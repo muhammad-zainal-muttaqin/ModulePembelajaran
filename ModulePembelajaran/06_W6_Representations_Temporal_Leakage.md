@@ -28,7 +28,7 @@
 
 > *Akurasi 99% bukan prestasi - ia adalah alarm. Hampir selalu ada penjelasan yang lebih membosankan daripada "model kami sangat pintar": data yang bocor, label yang salah, atau pipeline yang memberi model informasi yang seharusnya tidak ia lihat. Skeptisisme terhadap angka sendiri adalah sikap yang memisahkan peneliti dari operator model.*
 
-**Big Map row:** `(T, F) -> (1,)`, `(N,)`, `(T'', 1)` (lanjutan W5, fokus representasi + validasi)
+**Baris Big Map:** `(T, F) -> (1,)`, `(N,)`, `(T'', 1)` (lanjutan W5, fokus representasi + validasi)
 **Rigor habit:** Validate preprocessing dan prevent temporal leakage
 **Dataset:** Sensor atau time-series dataset
 **Lab utama:** Lab W6 - Temporal Leakage (`lab_w6_temporal_leakage.ipynb`) + EDA (`lab_w6_eda_leakage.ipynb`)
@@ -48,7 +48,7 @@ W6 menggabungkan dua tema yang saling terkait erat:
 - **2.5** Domain shift
 - **2.6** Etika data dan bias
 
-Setelah W6, Anda akan memeriksa setiap pipeline preprocessing dengan pertanyaan: "Apakah ada informasi masa depan yang bocor ke training?"
+Setelah W6, Anda memeriksa setiap pipeline preprocessing dengan pertanyaan: "Apakah ada informasi masa depan yang bocor ke training?"
 
 ---
 
@@ -82,7 +82,7 @@ X_train, X_test = train_test_split(df, test_size=0.2, shuffle=True)
 
 **Masalah 1 - Random split.** Sampel dari jam 14:00 bisa masuk train, dan sampel jam 13:00 dari hari yang sama masuk test. Model "melihat" data setelah titik test ketika training.
 
-**Masalah 2 - Rolling feature melampaui batas.** Nilai `rolling_mean_24h` pada titik ke-T dihitung dari T-23 hingga T. Jika salah satu dari T-23..T-1 ada di test set tetapi T ada di train set, fitur training mengandung informasi test.
+**Masalah 2 - Rolling feature melampaui batas.** Nilai `rolling_mean_24h` pada titik ke-T dihitung dari T-23 hingga T. Jika salah satu titik T-23..T-1 ada di test set tetapi T ada di train set, fitur training mengandung informasi test.
 
 **Hasil yang Anda lihat:** akurasi F1 = 0.92. Kelihatan bagus. Tapi saat deployed, model hanya mencapai F1 = 0.63. Inilah angka yang menipu akibat temporal leakage.
 
@@ -110,7 +110,7 @@ test = df[df['timestamp'] > cutoff]
 
 Seorang mahasiswa pascasarjana melatih model klasifikasi citra medis untuk mendeteksi penyakit paru-paru dari rontgen dada. Akurasi validasi: 97%. Saat review, seorang kolega bertanya: "apakah model belajar mengenali penyakit, atau belajar mengenali rumah sakitnya?" Ternyata setiap rumah sakit memakai mesin rontgen berbeda dengan ciri visual khas di sudut gambar; data positif dan negatif berasal dari sumber yang berbeda. Model tidak pernah melihat paru-paru - ia mengklasifikasi *sumber*. Enam bulan kerja diulang.
 
-Kewaspadaan terhadap data bukan tugas tambahan. Tanpanya, seluruh eksperimen berdiri di atas pasir.
+Kewaspadaan terhadap data bukan tugas tambahan. Tanpanya, seluruh eksperimen bergantung pada dasar yang rapuh.
 
 ---
 
@@ -186,11 +186,11 @@ Ingat: laporan otomatis adalah titik awal, bukan akhir. Ia menunjukkan *apa*; An
 
 **1. Target leakage.** Fitur yang dihitung *setelah* atau *dari* target. Contoh: `total_payments` di prediksi default kredit - jumlah pembayaran hanya tersedia setelah pinjaman berakhir, jadi tidak bisa ada di data training untuk model prediksi awal.
 
-**2. Train-test contamination.** Baris yang sama muncul di train dan test. Sering terjadi saat split dilakukan setelah proses yang menciptakan duplikasi (misalnya agregasi yang meniru baris).
+**2. Train-test contamination.** Baris yang sama ada di train dan test. Ini sering terjadi saat split dilakukan setelah proses yang menciptakan duplikasi, misalnya agregasi yang meniru baris.
 
 **3. Temporal leakage.** Data masa depan masuk ke prediksi masa lalu. Umum di time series - pemisahan train/test dengan random split padahal data punya urutan waktu. Solusinya: split berdasarkan waktu, bukan acak.
 
-**4. Group leakage.** Data dari subjek yang sama muncul di train dan test. Contoh: pasien yang sama punya beberapa rontgen; satu masuk train, satu masuk test - model bisa belajar mengenali pasien, bukan penyakit. Solusinya: split berdasarkan grup (pasien, pengguna, sesi).
+**4. Group leakage.** Data dari subjek yang sama ada di train dan test. Contoh: pasien yang sama punya beberapa rontgen; satu masuk train, satu masuk test. Model bisa belajar mengenali pasien, bukan penyakit. Solusinya: split berdasarkan grup (pasien, pengguna, sesi).
 
 **5. Preprocessing leakage.** Statistik untuk normalisasi (mean, std) dihitung dari seluruh dataset termasuk test. Ini memberi model informasi agregat test. Solusinya: fit preprocessing hanya pada train, transform train+test dengan parameter yang sudah di-fit.
 
@@ -255,7 +255,7 @@ Proses ini sering mengejutkan. Saya pernah menemukan 15% label pada dataset publ
 Pipeline pra-pemrosesan harus *fit pada training set saja*, lalu *transform train, val, dan test* dengan parameter yang sudah di-fit. Ini mencegah kebocoran statistik test ke training.
 
 > [!IMPORTANT]
-> **Gambaran preprocessing leakage.** Kalau Anda hitung `mean` dan `std` dari **semua data** (train + val + test) sebelum split, statistik tersebut sudah "tahu" sesuatu tentang val/test - mis. distribusi outlier di test set akan menggeser mean. Saat training, model menerima input yang sudah di-normalisasi pakai info agregat test. Walau test labels tidak bocor, **distribusi feature test sudah bocor**. Efeknya kecil di dataset besar yang distribusinya stabil, tetapi nyata di dataset kecil atau heterogen. Aturan: `fit` cuma pada train; `transform` train + val + test pakai parameter yang sama.
+> **Gambaran preprocessing leakage.** Kalau Anda hitung `mean` dan `std` dari **semua data** (train + val + test) sebelum split, statistik tersebut sudah "tahu" sesuatu tentang val/test - misalnya distribusi outlier di test set akan menggeser mean. Saat training, model menerima input yang sudah dinormalisasi memakai informasi agregat test. Walau label test tidak bocor, **distribusi fitur test sudah bocor**. Efeknya kecil di dataset besar yang distribusinya stabil, tetapi nyata di dataset kecil atau heterogen. Aturan: `fit` hanya pada train; `transform` train + val + test memakai parameter yang sama.
 
 Salah:
 
@@ -326,7 +326,7 @@ Data di dunia nyata sering berbeda dari data training. Tiga bentuk perubahan:
 - *Contoh konkret:* model prediksi churn pelanggan dilatih sebelum app rilis fitur baru. Setelah rilis, pengguna yang sebelumnya churn karena fitur kurang sekarang loyal - dengan fitur input identik, label berubah.
 - *Deteksi:* metrik di production turun walau distribusi fitur stabil; bandingkan akurasi window sliding bulanan.
 
-Diagnosis awal: bandingkan histogram tiap fitur antara train dan test/produksi. Jika histogram berbeda signifikan, Anda menghadapi shift. Uji statistik seperti Kolmogorov-Smirnov dapat memformalkan.
+Diagnosis awal: bandingkan histogram tiap fitur antara train dan test/produksi. Jika histogram berbeda signifikan, Anda menghadapi shift. Uji statistik seperti Kolmogorov-Smirnov dapat membuatnya lebih formal.
 
 Di proyek kuliah, shift sering sengaja diperkenalkan sebagai latihan. Lab 4 akan memindahkan model yang dilatih di CIFAR-10 ke dataset medis PathMNIST - *domain shift* yang akan membuat akurasi turun drastis, memberi Anda kesempatan menyaksikan dan mendeteksinya.
 
@@ -363,7 +363,7 @@ Keempat jenis bias tidak selalu bisa "diperbaiki" di level data. Beberapa memerl
 
 Keadilan (*fairness*) dalam ML adalah bidang penelitian sendiri. Anda tidak diharapkan menjadi pakar, tetapi tiga konsep ini adalah minimum yang perlu diketahui sebelum melepas model ke dunia:
 
-**Fairness through unawareness tidak efektif.** Menghapus fitur sensitif (gender, ras, agama) tidak otomatis membuat model adil. Fitur-fitur yang tampak netral - kode pos, jenis perangkat, jam aktivitas - bisa menjadi *proxy* untuk fitur sensitif. Model akan belajar menggunakannya secara tidak langsung, dan bias tetap ada, tetapi kini lebih sulit dideteksi.
+**Fairness through unawareness tidak efektif.** Menghapus fitur sensitif (gender, ras, agama) tidak otomatis membuat model adil. Fitur-fitur yang tampak netral - kode pos, jenis perangkat, jam aktivitas - bisa menjadi *proxy* untuk fitur sensitif. Model bisa belajar menggunakannya secara tidak langsung, sehingga bias tetap ada tetapi lebih sulit dideteksi.
 
 **Definisi fairness tidak tunggal.** Dua definisi yang paling sering dipakai:
 - *Demographic parity*: proporsi prediksi positif sama antar kelompok. Masalah: bisa tercapai dengan menerima kandidat tidak berkualitas dari satu kelompok dan menolak kandidat berkualitas dari kelompok lain.
@@ -538,7 +538,7 @@ Laporan ini masuk ke `experiments/lab4/audit.md`, dibaca bersama protokol eksper
 
 **"EDA cukup sekali di awal proyek."** Tidak. Setiap kali Anda memutuskan mengubah subset data, menambah sumber, atau memfilter sampel, jalankan EDA ulang pada data hasil perubahan. Distribusi bisa berubah tanpa Anda sadari.
 
-**"Saya akan periksa leakage nanti."** Sama seperti "saya akan simpan config nanti" - tidak pernah terjadi. Periksa leakage sebelum run training pertama. Akurasi tinggi yang ternyata karena leakage membuat Anda membuang waktu di eksperimen turunan yang semua berdasarkan metrik palsu.
+**"Saya akan periksa leakage nanti."** Sama seperti "saya akan simpan config nanti" - biasanya tidak terjadi. Periksa leakage sebelum run training pertama. Akurasi tinggi yang ternyata karena leakage membuat Anda membuang waktu di eksperimen turunan yang semuanya bergantung pada metrik palsu.
 
 **"Dataset publik sudah bersih."** Hampir tidak pernah. ImageNet punya label salah; CIFAR-10 punya duplikasi antar split; dataset medis publik sering punya *patient leakage*. Jangan anggap dataset publik bebas dari pemeriksaan.
 
@@ -585,7 +585,7 @@ Konsep: memeriksa data sebelum mempercayai hasil - distribusi kelas, leakage ter
 | **B - Analisis** | Rancang dua skenario leakage hipotetis yang tidak terdeteksi oleh pipeline Lab 4: satu pada split, satu pada fitur turunan. Jelaskan mekanismenya dan langkah tambahan untuk mendeteksinya. |
 | **C - Desain** | Rancang protokol split untuk dataset dengan ID entitas berulang (mis. ID pasien atau ID pembicara). Tulis dua versi: yang mudah-tapi-salah (random split) dan yang benar. Buat argumen mengapa versi salah sering lolos tanpa disadari. |
 
-**Deliverable:** Entri portofolio W6 di `notebooks/portofolio_mandiri.ipynb`. Presentasi 10 menit di awal W7.
+**Luaran:** Entri portofolio W6 di `notebooks/portofolio_mandiri.ipynb`. Presentasi 10 menit di awal W7.
 
 ---
 
@@ -625,7 +625,7 @@ Buka `template_repo/notebooks/lab_w6_temporal_leakage.ipynb`.
 5. Hitung dan catat "leakage inflation" = F1_leaky - F1_causal. **Threshold warning yang dipakai modul ini:** inflation ≥ 0.05 absolut **atau** ≥ 10% relatif terhadap F1_causal = leakage signifikan dan harus dilaporkan eksplisit. Inflation < 0.02 absolut bisa noise dari seed.
 6. Tulis satu paragraf: apa yang membuat angka leaky terlihat meyakinkan, dan mengapa tetap salah?
 
-**Deliverables:**
+**Luaran:**
 - Pipeline causal vs leaky dengan kode terdokumentasi.
 - Tabel perbandingan F1 (causal vs leaky vs delta).
 - 1 paragraf "kenapa ini menipu".

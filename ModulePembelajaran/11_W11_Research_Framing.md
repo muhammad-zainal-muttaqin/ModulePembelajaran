@@ -28,8 +28,8 @@
 
 > *Hipotesis yang baik adalah janji kepada diri sendiri: ini yang akan saya uji, ini yang akan saya hitung, ini yang akan saya akui sebagai kegagalan. Tanpa janji itu, eksperimen adalah ekspedisi, bukan penelitian.*
 
-**Big Map row:** konsolidasi
-**Rigor habit:** 5 Whys, literature-to-experiment synthesis, proposal defense
+**Baris Big Map:** konsolidasi
+**Rigor habit:** 5 Whys, sintesis literatur-ke-eksperimen, proposal defense
 **Lab utama:** Capstone proposal 1-page + oral defense
 
 ---
@@ -56,7 +56,7 @@ Dua mahasiswa dengan topik serupa ("model untuk klasifikasi sinyal ECG"):
 
 **Mahasiswa A** memulai W12 langsung dengan download dataset, buat CNN, training. Minggu 14: "model saya mencapai 85% akurasi tapi saya tidak yakin apakah baseline yang tepat dan tidak tahu apa yang ingin saya tunjukkan."
 
-**Mahasiswa B** menghabiskan W11 untuk: identifikasi pertanyaan spesifik ("apakah LSTM lebih baik dari CNN 1D pada dependensi panjang dalam ECG arrhythmia?"), pilih baseline yang defensible (CNN 1D dari paper 2020), tulis experiment matrix, estimasi compute, lakukan pre-execution review, tulis pre-registration, dan defend oral. W12-14: eksekusi bersih karena sudah tahu apa yang diukur.
+**Mahasiswa B** menghabiskan W11 untuk: identifikasi pertanyaan spesifik ("apakah LSTM lebih baik dari CNN 1D pada dependensi panjang dalam ECG arrhythmia?"), pilih baseline yang defensible (CNN 1D dari paper 2020), tulis matriks eksperimen, estimasi compute, lakukan review sebelum eksekusi, tulis pre-registration, dan pertahankan proposal secara lisan. W12-14: eksekusi bersih karena sudah tahu apa yang diukur.
 
 W11 adalah investasi satu minggu yang menentukan kualitas tiga minggu capstone.
 
@@ -94,7 +94,7 @@ Dari paper yang dibaca di W10, ekstrak lima elemen:
 | **Metrik** | Apa yang diukur? | AP pada COCO detection benchmark |
 | **Simplest faithful experiment** | Versi paling kecil yang masih tes klaim utama? | Binary classification dengan kelas imbalanced |
 
-Dari lima elemen ini, rancang experiment matrix untuk capstone Anda. Setiap baris matrix harus bisa dijawab dengan satu run.
+Dari lima elemen ini, rancang matriks eksperimen untuk capstone Anda. Setiap baris matriks harus bisa dijawab dengan satu run.
 
 ### 2.3 Baseline Selection: Mengapa Ini, Bukan Itu?
 
@@ -129,7 +129,7 @@ Harus falsifiable. Ada kondisi kegagalan yang eksplisit.
 Apa baseline? Apa yang diubah? Mengapa perubahan ini relevan untuk pertanyaan?
 
 **3. Experiment matrix (tabel)**
-Semua run yang direncanakan, dengan konfigurasi dan expected outcome.
+Semua run yang direncanakan, dengan konfigurasi dan hasil yang diperkirakan.
 
 **4. Metrik sukses dan kegagalan (2-3 kalimat)**
 Apa yang harus terjadi untuk hipotesis dianggap dikonfirmasi? Apa yang harus terjadi untuk dianggap disangkal?
@@ -202,7 +202,7 @@ Sukses: intervention macro F1 > baseline + 0.03 pada semua 3 seed. Gagal: selisi
 
 **"Proposal adalah formalitas."** Tidak. Proposal yang buruk menyebabkan capstone yang buruk - bukan karena nilainya, tetapi karena 3 minggu tanpa arah yang jelas adalah 3 minggu terbuang.
 
-**"Saya akan figure it out setelah mulai."** Tanda capstone yang akan bermasalah. W12 sangat pendek (1 minggu) untuk EDA + baseline. Tanpa proposal yang jelas, W12 habis untuk memutuskan apa yang harus dikerjakan.
+**"Saya akan cari tahu setelah mulai."** Tanda capstone yang akan bermasalah. W12 sangat pendek (1 minggu) untuk EDA + baseline. Tanpa proposal yang jelas, W12 habis untuk memutuskan apa yang harus dikerjakan.
 
 **"Hipotesis saya terlalu sederhana."** Lebih baik hipotesis sederhana yang bisa dijawab dengan bersih, daripada hipotesis ambisius yang tidak bisa diuji dalam 3 minggu. Scopenya kecil tidak apa-apa.
 
@@ -210,12 +210,12 @@ Sukses: intervention macro F1 > baseline + 0.03 pada semua 3 seed. Gagal: selisi
 
 ---
 
-## 4. Deliverables W11
+## 4. Luaran W11
 
 1. **Capstone proposal one-pager** (template: [Lampiran C.13](14_Lampiran.md#c13-capstone-proposal-one-pager))
 2. **Pre-registration document** (template: `template_repo/docs/prereg_template.md`)
 3. **Baseline selection memo** (1 paragraf)
-4. **Experiment matrix** (tabel dalam proposal)
+4. **Matriks eksperimen** (tabel dalam proposal)
 5. **Feasibility/risk memo** (bullet points dalam proposal)
 6. **Short synthesis memo** - bagaimana berbagai views (AI, peer, paper) disintesis menjadi proposal ini
 7. **Oral defense** (10-15 menit + Q&A)
@@ -233,7 +233,7 @@ Ini adalah entri portofolio terakhir (entri ke-8, W11). Setelah mengisinya, kerj
 | **Desain** | Tulis "capstone pre-mortem": apa tiga skenario di mana capstone Anda gagal? Apa tanda-tanda awalnya? |
 | **Arsitektur Baru** | Tidak dianjurkan di W11 - fokus pada proposal dan pre-registration. |
 
-**Deliverable:** Entri portofolio W11 + Refleksi Portofolio + Capstone proposal + Oral defense.
+**Luaran:** Entri portofolio W11 + Refleksi Portofolio + proposal capstone + oral defense.
 
 ---
 
