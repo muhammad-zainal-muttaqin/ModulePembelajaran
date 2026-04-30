@@ -38,6 +38,8 @@ ENV/
 # OS
 .DS_Store
 Thumbs.db
+desktop.ini
+.git-desktopini-backup/
 
 # Logs & misc
 *.log

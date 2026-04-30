@@ -4,5 +4,6 @@ dist/
 src/content/
 *.log
 .DS_Store
+desktop.ini
 .env
 .env.local
