@@ -34,7 +34,7 @@
 
 Istilah teknis ML/DL sebagian besar berasal dari Bahasa Inggris. Glosarium ini mendokumentasikan istilah baku yang dipakai modul. **Aturan utama: istilah teknis ML/DL dipertahankan dalam Bahasa Inggris** (loss, checkpoint, baseline, fine-tune, freeze, layer, confusion matrix, hidden states, dll.). Padanan Indonesia hanya dicantumkan jika benar-benar lazim dan natural dipakai (akurasi, presisi, regularisasi, augmentasi). Hindari padanan kaku seperti "matriks kebingungan", "fungsi kerugian", "garis dasar", "jaringan saraf tiruan" - di prosa modul tetap pakai istilah English.
 
-**Daftar isi glosarium:** A.1 Arsitektur & Model | A.2 Pelatihan | A.3 Data | A.4 Evaluasi | A.5 Eksperimen & Reproduksibilitas | A.6 Perangkat | A.7 Sikap Riset | A.8 Aktivasi & Normalisasi | A.9 Inisialisasi, Optimizer & Scheduler | A.10 Loss Function
+**Daftar isi glosarium:** A.1 Arsitektur & Model | A.2 Pelatihan | A.3 Data | A.4 Evaluasi | A.5 Eksperimen & Reproduksibilitas | A.6 Perangkat | A.7 Sikap Riset | A.8 Aktivasi & Normalisasi | A.9 Inisialisasi, Optimizer & Scheduler | A.10 Loss Function | A.11 Indeks First-Use per Bab | A.12 Worked Examples Istilah Prioritas
 
 ### A.1 Arsitektur & Model
 
@@ -304,6 +304,101 @@ Istilah teknis ML/DL sebagian besar berasal dari Bahasa Inggris. Glosarium ini m
 | MAE / L1Loss | - | Mean Absolute Error. Lebih robust terhadap outlier dibanding MSE. | - |
 | MSELoss / MSE | - | Mean Squared Error. Loss default regresi. | - |
 | reconstruction loss | loss rekonstruksi | MSE atau BCE antara input dan output autoencoder. Ukur kualitas rekonstruksi. | - |
+
+### A.11 Indeks First-Use per Bab
+
+Tabel ini menunjukkan di mana istilah Tier-1 **pertama kali muncul** dalam urutan modul. Gunakan untuk mengarahkan mahasiswa yang menemukan istilah asing di tengah bab ke definisi pertamanya.
+
+| Istilah | First-use chapter | Link definisi |
+|---|---|---|
+| loss | W1 §2.2 | [A.10](#a10-loss-function) |
+| gradient | W1 §2.4 | [A.2 Pelatihan](#a2-pelatihan) |
+| optimizer | W1 §2.3 | [A.2 Pelatihan](#a2-pelatihan) |
+| learning rate | W1 §2.3 | [A.9](#a9-inisialisasi-optimizer--scheduler) |
+| epoch | W1 §2.3 | [A.2 Pelatihan](#a2-pelatihan) |
+| batch | W1 §2.3 | [A.2 Pelatihan](#a2-pelatihan) |
+| overfitting | W1 §2.5 | [A.2 Pelatihan](#a2-pelatihan) |
+| baseline | W1 §2.5 | [A.5](#a5-eksperimen--reproduksibilitas) |
+| sigmoid | W1 §2.2 | [A.8](#a8-aktivasi--normalisasi) |
+| softmax | W1 §2.2 | [A.8](#a8-aktivasi--normalisasi) |
+| ReLU | W1 §2.1 | [A.8](#a8-aktivasi--normalisasi) |
+| kernel / stride / padding | W2 §2.2 | [A.1](#a1-arsitektur--model) |
+| receptive field | W2 §2.2 | [A.1](#a1-arsitektur--model) |
+| Kaiming init | W2 §2.4 | [A.9](#a9-inisialisasi-optimizer--scheduler) |
+| regularization | W3 §2.2 | [A.2 Pelatihan](#a2-pelatihan) |
+| dropout | W3 §2.2 | [A.2 Pelatihan](#a2-pelatihan) |
+| batch norm | W2 §2.4 | [A.8](#a8-aktivasi--normalisasi) |
+| augmentation | W2 §2.4 | [A.3 Data](#a3-data) |
+| seed | W4 §2.1 | [A.5](#a5-eksperimen--reproduksibilitas) |
+| checkpoint | W4 §2.2 | [A.5](#a5-eksperimen--reproduksibilitas) |
+| accuracy / precision / recall | W3 §2.4 | [A.4 Evaluasi](#a4-evaluasi) |
+| ablation | W3 §2.5 | [A.5](#a5-eksperimen--reproduksibilitas) |
+| momentum / weight decay | W3 §2.3 | [A.9](#a9-inisialisasi-optimizer--scheduler) |
+| embedding | W7 §1.1 | [A.1](#a1-arsitektur--model) |
+| freeze / fine-tune | W7 §1.2 | [A.1](#a1-arsitektur--model) |
+| attention | W7 §1.3 | [A.1](#a1-arsitektur--model) |
+| Transformer | W7 §1.3 | [A.1](#a1-arsitektur--model) |
+| leakage | W6 §2.3 | [A.3 Data](#a3-data) |
+
+### A.12 Worked Examples untuk Istilah Prioritas
+
+Bagian ini melengkapi definisi glosarium di atas dengan satu contoh angka konkret per istilah. Cocok untuk referensi cepat saat mengerjakan lab.
+
+**loss** - Scalar yang mengukur jarak prediksi ke target. Contoh MSE: prediksi = 0.9, target = 1.0. MSE = (0.9 - 1.0)² = 0.01. Makin kecil, makin baik.
+
+**gradient** - Turunan parsial loss terhadap setiap parameter. Contoh: `∂L/∂w = 2.3` berarti jika `w` naik sedikit, loss naik 2.3× lipat. Optimizer akan menggerakkan `w` ke arah berlawanan.
+
+**learning rate** - Skalar pengali gradient saat update. `w_baru = w_lama - lr × gradient`. Dengan `lr = 0.01` dan `gradient = 2.3`: `w_baru = w_lama - 0.023`. Terlalu besar → divergen; terlalu kecil → lambat konvergen.
+
+**epoch** - Satu kali model melihat seluruh dataset training. Jika dataset 1000 sampel dan batch size 32, satu epoch = ⌈1000/32⌉ = 32 step. Setelah 10 epoch, setiap sampel sudah dilihat 10 kali.
+
+**batch** - Subset sampel yang diproses sebelum satu update parameter. `batch_size = 32` berarti: hitung loss dari 32 sampel → rata-rata → backprop → satu step optimizer. Lebih besar → estimasi gradient lebih stabil, butuh lebih banyak memori.
+
+**overfitting** - Model bagus di training, buruk di validasi. Cara deteksi: plot loss training vs validasi. Jika training turun tapi validasi stagnan atau naik → overfitting. Solusi pertama: regularization (dropout, weight decay) atau tambah data.
+
+**baseline** - Model paling sederhana yang reasonable untuk perbandingan. Bukan model terlemah (seperti random) - melainkan "pendekatan terbaik yang diketahui sebelum kontribusi Anda." Baseline yang buruk merusak seluruh eksperimen.
+
+**sigmoid** - `σ(x) = 1/(1 + e^{-x})`. Memetakan ℝ → (0, 1). Contoh: `σ(0) = 0.5`, `σ(2) = 0.88`, `σ(-2) = 0.12`. Digunakan di output head untuk binary classification (output = probabilitas kelas positif).
+
+**softmax** - Memetakan vektor logits ke distribusi probabilitas. Contoh: logits `[2.0, 1.0, 0.1]` → softmax → `[0.659, 0.242, 0.099]`. Selalu sum to 1. Digunakan di output head untuk multiclass classification.
+
+**ReLU** - `ReLU(x) = max(0, x)`. Contoh: `ReLU(-3) = 0`, `ReLU(2) = 2`. Sederhana, tidak vanish untuk x > 0. Default activation untuk layer tersembunyi.
+
+**kernel / stride / padding** - Pada `Conv2d(in=1, out=1, kernel_size=3, stride=1, padding=0)` dengan input 5×5: kernel 3×3 slide di atas input; stride=1 geser 1 pixel per langkah; padding=0 tidak tambahkan border. Output size = (5 - 3 + 2×0)/1 + 1 = 3×3.
+
+**receptive field** - Area input yang mempengaruhi satu neuron output. Satu Conv2d(3×3) → receptive field = 3×3. Dua Conv2d(3×3) bertumpuk → receptive field = 5×5 (setiap layer tambah 2 pixel). Semakin dalam, semakin besar area yang "dilihat" neuron.
+
+**Kaiming init** - Inisialisasi bobot dengan `std = sqrt(2/fan_in)`. Angka 2 mengkompensasi bahwa ReLU mematikan ~50% neuron. Tanpa ini, signal cenderung menyusut exponensial setiap layer yang dalam.
+
+**regularization** - Penalti pada parameter besar untuk mencegah overfitting. L2 regularization (weight decay): loss_total = loss_task + λ × Σ(w²). Dengan λ=1e-4 dan suatu parameter w=0.5: kontribusi penalti = 1e-4 × 0.25 = 2.5×10⁻⁵.
+
+**dropout** - Saat training, matikan setiap neuron secara acak dengan probabilitas p. `Dropout(p=0.3)` pada layer dengan 100 neuron → rata-rata 30 neuron dimatikan per forward pass. Saat inference, semua neuron aktif tetapi output dikali (1-p) untuk normalisasi ekspektasi.
+
+**batch norm** - Normalisasi aktivasi dalam satu batch. Contoh: batch 32 gambar, channel 1. BatchNorm hitung mean dan std dari 32 nilai di channel itu → normalisasi ke mean=0, std=1 → scale dan shift dengan parameter γ, β yang dilatih. Membantu gradient flow dan memungkinkan learning rate lebih besar.
+
+**augmentation** - Transformasi acak pada data training untuk memperluas keragaman tanpa data baru. Contoh: `RandomHorizontalFlip(p=0.5)` membalik gambar secara horizontal dengan peluang 50%. Model melihat gambar yang "berbeda" setiap epoch meski data asli sama.
+
+**seed** - Angka untuk inisialisasi random number generator. `torch.manual_seed(42)` memastikan `torch.randn(3)` selalu menghasilkan angka yang sama di run berikutnya. Wajib set sebelum inisialisasi model, DataLoader shuffle, dan split dataset.
+
+**checkpoint** - Snapshot model yang disimpan ke disk. Minimal berisi: `model.state_dict()`, `optimizer.state_dict()`, epoch, metrik, config, dan git hash. Tanpa git hash, Anda tidak bisa tau kode mana yang menghasilkan checkpoint itu enam bulan kemudian.
+
+**accuracy / precision / recall** - Pada dataset 100 sampel, 10 positif: TP=8, FP=3, FN=2, TN=87. Accuracy=(8+87)/100=0.95. Precision=8/(8+3)=0.73. Recall=8/(8+2)=0.80. Accuracy bisa menyesatkan di kelas imbalanced (kelas mayoritas mendominasi).
+
+**ablation** - Eksperimen di mana satu komponen dihapus atau dinonaktifkan. "Ablation without focal loss": jalankan baseline yang identik kecuali ganti focal loss dengan cross-entropy biasa. Jika performa turun signifikan, komponen itu memang berkontribusi.
+
+**momentum** - Dalam SGD dengan momentum, update weight tidak hanya dari gradient saat ini tetapi juga "kecepatan" dari langkah sebelumnya: `v = 0.9×v + lr×grad`. Seperti bola yang menggelinding - akumulasi gradien konsisten, reduksi gradien noisy.
+
+**weight decay** - Penalti L2 yang diimplementasi langsung di optimizer (bukan di loss). Dalam AdamW: `w = w - lr × (grad + wd × w)`. Secara efektif "tarik" parameter ke arah nol setiap step. Default yang baik: `wd=1e-2` untuk AdamW.
+
+**embedding** - Lookup table yang memetakan integer (token ID) ke vektor kontinu. `nn.Embedding(vocab_size=1000, embedding_dim=64)`: token 42 → baris ke-42 dari matriks 1000×64. Vektor inilah yang dilatih untuk mencerminkan relasi semantik antar token.
+
+**freeze / fine-tune** - Freeze: `param.requires_grad = False` untuk semua parameter backbone. Model tidak berubah saat backward pass. Fine-tune: `requires_grad = True` untuk semua atau sebagian layer. Fine-tune penuh pada dataset kecil berisiko overfitting; freeze+head sering lebih aman.
+
+**attention** - `Attention(Q, K, V) = softmax(Q×K^T / √d) × V`. Q/K/V adalah matriks yang di-project dari input. Softmax menghasilkan bobot "seberapa relevan K_j untuk Q_i". Output = rata-rata berbobot dari V. Intuisi: setiap posisi "bertanya" (Q) dan mendapat jawaban berbobot dari semua posisi lain (K/V).
+
+**Transformer** - Arsitektur berbasis self-attention yang tidak menggunakan recurrence. Input sequence diproses secara paralel: setiap token attend ke semua token lain secara simultan. Kunci: multi-head attention + positional encoding (karena tanpa recurrence model tidak tahu urutan).
+
+**leakage** - Informasi dari test set (atau masa depan) yang "bocor" ke training. Contoh temporal: fit StandardScaler pada semua data sebelum split → scaler sudah "tahu" statistik test set. Konsekuensi: metrik validasi terlalu optimis; model gagal di deployment.
 
 ---
 

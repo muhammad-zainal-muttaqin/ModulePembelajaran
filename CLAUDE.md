@@ -55,9 +55,9 @@ ModulePembelajaran/
 - **W10** (`10_W10_Paper_Reading.md`): 3-pass paper reading + paper-to-code workflow; templates A-E (termasuk LSTM/Transformer dan Autoencoder breadth)
 - **W11** (`11_W11_Research_Framing.md`): 5-Whys, capstone proposal, oral defense (note: by design tidak ada heading `## Worked Example` / `## Lab Hands-on` eksplisit; deliverable proposal menggantikan lab notebook)
 - **W12-W14** (`12_Capstone_3_Minggu.md`): timeline 3-minggu capstone (EDA+baseline / experiment / analysis+demo)
-- **Rubrik** (`13_Rubrik_Penilaian.md`): 4-level mastery + Kompetensi 10 (Eksplorasi Mandiri & Komunikasi); bobot Kompetensi 1: 14%, Kompetensi 7: 4%
-- **Lampiran** (`14_Lampiran.md`): glosarium ID↔EN; A.1 backprop derivasi 7-langkah; C.6-C.11 (entri portofolio, presentasi, lab breadth, Komponen Mandiri, weekly log, weekly update PI); §G Self-Checklist Mingguan; §H tabel migrasi
-- **Panduan Dosen** (`15_Panduan_Dosen.md`): pacing 11+3 + emphasis per-W + skenario kelas
+- **Rubrik** (`13_Rubrik_Penilaian.md`): 4-level mastery + Kompetensi 10 (Eksplorasi Mandiri & Komunikasi); bobot Kompetensi 1: 14%, Kompetensi 7: 4%; **Breadth Check Policy** callout di Kompetensi 1 (mana lab wajib vs opsional; Lab 6b = `lab_w7_transformer_mini` wajib untuk breadth; Pendalaman collapsible tidak masuk syarat minimum)
+- **Lampiran** (`14_Lampiran.md`): glosarium ID↔EN; A.1 backprop derivasi 7-langkah; **A.11 Indeks First-Use per Bab** (28 istilah Tier-1 → chapter pertama dipakai + link); **A.12 Worked Examples Istilah Prioritas** (28 istilah dengan contoh angka konkret); C.6-C.11 (entri portofolio, presentasi, lab breadth, Komponen Mandiri, weekly log, weekly update PI); §G Self-Checklist Mingguan; §H tabel migrasi
+- **Panduan Dosen** (`15_Panduan_Dosen.md`): pacing 11+3 + emphasis per-W + **peta Pendalaman opsional vs wajib per bab** + skenario kelas (termasuk Skenario 5 "Kelas Berjuang di W5 LSTM")
 
 **Breadth Arsitektur NN (lima keluarga: MLP, CNN, RNN/LSTM, Transformer, Autoencoder):**
 

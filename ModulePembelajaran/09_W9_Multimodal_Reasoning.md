@@ -236,6 +236,36 @@ Model mungkin mengasosiasikan event dari waktu yang salah. Jika audio dan video 
 2. **Event-to-window mapping** - untuk event-based data, map setiap event ke window dari stream kontinu terdekat.
 3. **Temporal position encoding** - encode waktu absolut sebagai feature eksplisit; biarkan model belajar alignment sendiri (lebih fleksibel tapi butuh data lebih banyak).
 
+#### Worked Example: Sensor Timestamp Misalignment
+
+Anggap kita punya dataset pergerakan robot dengan dua stream:
+- **IMU (accelerometer):** 100 Hz, satu sample setiap 10 ms.
+- **Kamera:** 30 fps, satu frame setiap 33 ms.
+
+Label kejadian (misalnya "tabrakan") dianotasi oleh manusia dengan presisi ~100 ms.
+
+**Skenario misalignment:** sistem logging menggunakan clock yang berbeda untuk kedua sensor. Setelah satu jam, clock IMU sudah drift +250 ms dari clock kamera. Artinya, frame kamera t=3600.000s sebenarnya berkorespondensi dengan data IMU di t=3600.250s - beda ~25 sample IMU.
+
+**Apa yang terjadi tanpa koreksi:** model cross-attention belajar mencocokkan visual "robot hampir tabrakan" dengan data IMU dari 250 ms sebelumnya - saat robot masih bergerak normal. Model mungkin tetap bisa prediksi dengan baik di training set (karena drift konsisten), tetapi gagal pada sensor baru dengan drift berbeda.
+
+**Cara deteksi drift:**
+```python
+# Cek apakah ada sistem logging mencatat timestamp keduanya
+# Atau: plot korelasi antara event di IMU dan kamera
+# Jika korelasi puncak ada di lag != 0, itu tanda drift
+import numpy as np
+# Hitung cross-correlation sinyal IMU dan estimasi motion dari kamera
+lags = np.arange(-50, 51)  # ±500 ms dalam unit 10 ms
+# Puncak korelasi di lag=25 → drift 250 ms
+```
+
+**Koreksi sederhana:** simpan offset drift dan geser satu stream:
+```python
+imu_timestamps = imu_timestamps - 0.250  # koreksi drift 250 ms
+```
+
+**Pelajaran:** selalu log timestamp dari sumber waktu yang sama (NTP synced) untuk semua sensor. Jika sudah terlanjur, sertakan koreksi drift sebagai bagian preprocessing yang terdokumentasi - bukan patch diam-diam.
+
 ### 2.5 Per-Modality Ablation Protocol
 
 Setiap paper dan laporan multimodal harus menjalankan ablation ini sebelum klaim apapun:
@@ -252,6 +282,16 @@ Setiap paper dan laporan multimodal harus menjalankan ablation ini sebelum klaim
 | Random image | random noise (text+sensor real) | Ignored-modality check |
 
 Template protocol ini tersedia di [Lampiran C.14](14_Lampiran.md#c14-per-modality-ablation-protocol).
+
+> [!NOTE]
+> **Feasibility untuk capstone 3-4 minggu.** 7 kondisi di atas adalah protokol penuh (rekomendasi untuk paper atau laporan akhir). Jika waktu terbatas, **5 kondisi minimum** sudah informatif:
+> 1. Full model (semua modality)
+> 2. Image only
+> 3. Sensor only
+> 4. Image + Sensor
+> 5. Random image (ignored-modality check)
+>
+> Kondisi text-only dan text+sensor boleh jadi stretch goal jika pipeline masih punya kapasitas. Yang tidak boleh dilewati adalah kondisi #5 (random image): tanpa itu Anda tidak bisa membuktikan model benar-benar memakai image.
 
 > [!IMPORTANT]
 > Jika "Image only" performanya hampir sama dengan "Full model", Anda punya masked modality problem. Selesaikan ini sebelum mengklaim bahwa sistem Anda multimodal.

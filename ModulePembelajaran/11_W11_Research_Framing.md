@@ -137,12 +137,49 @@ Apa yang harus terjadi untuk hipotesis dianggap dikonfirmasi? Apa yang harus ter
 **5. Feasibility dan risiko (bullet points)**
 Data tersedia?, compute estimates, fallback jika rencana utama gagal.
 
+**Contoh one-pager yang konkret** (template yang bisa langsung disalin):
+
+---
+*Judul: Augmentasi Warna vs Augmentasi Geometri pada Klasifikasi Dermoskopi dengan Data Terbatas*
+
+**1. Pertanyaan penelitian**
+Apakah augmentasi warna (Color Jitter + Random Erasing) mengungguli augmentasi geometri (RandomHFlip + RandomRotation) pada ResNet-18 fine-tune untuk klasifikasi 7 kelas dermoskopi HAM10000 dengan subset 500 sampel berlabel per kelas, diukur dengan macro F1 pada test set?
+
+**2. Baseline dan intervention**
+Baseline: ResNet-18 fine-tune hanya dengan RandomHFlip + RandomRotation (augmentasi geometri standar). Intervention: ganti seluruh augmentasi dengan Color Jitter (brightness=0.4, contrast=0.4, saturation=0.4) + Random Erasing (p=0.5). Pemilihan karena lesi kulit sangat sensitif terhadap variasi warna pencahayaan kamera dermoskopi.
+
+**3. Experiment matrix**
+
+| Run | Augmentasi | Seeds | Expected F1 |
+|---|---|---|---|
+| Baseline | Geometric | 42, 1337, 0 | ~0.70 |
+| Intervention | Color | 42, 1337, 0 | hipotesis: >0.70 |
+| Ablasi: kombinasi | Geometric + Color | 42 saja | referensi |
+
+**4. Metrik sukses dan kegagalan**
+Sukses: intervention macro F1 > baseline + 0.03 pada semua 3 seed. Gagal: selisih < 0.02 atau arah tidak konsisten antar seed (variasi seed > selisih efek).
+
+**5. Feasibility dan risiko**
+- Data: HAM10000 tersedia publik (7470 sampel). Subset 500×7 = 3500 diambil stratified.
+- Compute: ResNet-18 fine-tune 30 epoch ~15 menit/run × 7 run = ~2 jam GPU total. RTX 3060 lokal cukup.
+- Risiko utama: class imbalance HAM10000 (NV 67%, AKIEC 3%). Fallback: gunakan weighted sampling alih-alih stratified jika baseline F1 < 0.60.
+
+---
+
 > [!IMPORTANT]
 > Proposal harus disetujui oleh dosen/PI sebelum W12 dimulai. Jangan mulai coding capstone sebelum proposal di-sign off.
 
 ### 2.6 Oral Defense Format
 
 10-15 menit presentasi + Q&A.
+
+> [!TIP]
+> **Strategi batch untuk kelas besar.** Dengan 30 mahasiswa, oral defense individual membutuhkan sekitar 8-10 jam. Dua strategi yang berhasil:
+>
+> - **Gelombang dua hari:** 5 mahasiswa di akhir W11, 25 mahasiswa di awal W12 (hari 1-2). Gelombang pertama memberi dosen umpan balik lebih awal; gelombang kedua mendapat contoh dari sesama.
+> - **Zoom asinkron:** mahasiswa merekam presentasi 10 menit + slide, kirim via LMS. Dosen menonton dan memberi feedback tertulis. Q&A dilakukan via komentar atau sesi 5 menit tersinkronisasi. Kurang interaktif tetapi skalabel untuk kelas >25 orang.
+>
+> Yang penting: proposal **wajib disetujui** sebelum W12. Format pertahanannya fleksibel; deadline-nya tidak.
 
 **Struktur presentasi (10 menit):**
 

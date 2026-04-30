@@ -187,6 +187,9 @@ Jangan jadikan pre-reg birokrasi. Tujuannya bukan dokumen sempurna; tujuannya ad
 
 ### 2.6 Rutinitas Mingguan: Sistem yang Bertahan
 
+> [!NOTE]
+> Rutinitas ini dirancang sebagai bekal mandiri **setelah modul berakhir**, bukan sebagai kewajiban tambahan di tengah semester. Selama kelas berjalan, Anda sudah punya lab, Komponen Mandiri, dan capstone sebagai latihan terjadwal. Gunakan bagian ini sebagai referensi untuk membangun kebiasaan jangka panjang setelah lulus atau setelah bootcamp selesai.
+
 Rutinitas praktis yang dapat Anda pakai sendiri setelah kelas berakhir:
 
 | Hari | Aktivitas | Durasi |
@@ -212,8 +215,8 @@ Karena itu, bagian ini memberi Anda **peta mental** agar Anda bisa membaca paper
 
 | Keluarga | Ide inti | Training signal | Kapan dipakai | Failure mode khas | Paper pembuka |
 | --- | --- | --- | --- | --- | --- |
-| VAE | Encoder ke distribusi Gaussian, decoder dari sampel | Rekonstruksi + KL terhadap prior | Ketika butuh representasi kontinu yang bisa di-sampel; *conditional generation* | Rekonstruksi kabur, *posterior collapse* (decoder abaikan z) | Kingma & Welling 2013 (*Auto-Encoding Variational Bayes*) |
-| GAN | Generator vs discriminator, permainan minimax | Discriminator mengklasifikasi real/fake | Generasi gambar tajam, *style transfer*, *image-to-image* | Mode collapse, training tidak stabil, sulit dievaluasi | Goodfellow et al. 2014 (*Generative Adversarial Nets*) |
+| VAE | Encoder ke distribusi Gaussian, decoder dari sampel | Rekonstruksi + KL terhadap prior | Ketika butuh representasi kontinu yang bisa di-sampel; *conditional generation* | *Posterior collapse*: decoder mengabaikan z dan hanya mengandalkan decoder prior - terjadi saat KL term terlalu mendominasi loss, menyebabkan representasi latent tidak informatif | Kingma & Welling 2013 (*Auto-Encoding Variational Bayes*) |
+| GAN | Generator vs discriminator, permainan minimax | Discriminator mengklasifikasi real/fake | Generasi gambar tajam, *style transfer*, *image-to-image* | *Mode collapse*: generator hanya menghasilkan subset kecil dari distribusi data (misalnya hanya wajah dengan ekspresi datar, bukan seluruh variasi) meski training loss terlihat stabil | Goodfellow et al. 2014 (*Generative Adversarial Nets*) |
 | Diffusion | Tambah noise bertahap, belajar un-noise | Prediksi noise pada setiap langkah | State-of-the-art image/video generation, kontrol *conditioning* | Inference lambat (banyak step), butuh compute besar | Ho et al. 2020 (*Denoising Diffusion Probabilistic Models*) |
 | Normalizing Flow | Transformasi bijeksi yang dibalik dari noise ke data | Likelihood eksak | Ketika butuh likelihood eksak (deteksi anomali, kompresi) | Arsitektur terbatas (harus invertible), kapasitas lebih kecil | Rezende & Mohamed 2015 (*Variational Inference with Normalizing Flows*) |
 
@@ -290,6 +293,19 @@ Enam langkah dari abstrak paper ke kode minimal yang bisa dijalankan:
 4. **Build minimal runnable version.** Implementasikan hanya core contribution pada dataset kecil/toy. Smoke test dulu.
 5. **Verify parity check.** Apakah ada angka di paper yang bisa direproduksi dengan implementasi Anda pada konfigurasi yang sama? Jika paper punya official code, bandingkan.
 6. **Satu ablation.** Hapus atau modifikasi satu komponen core contribution. Apakah performa drop seperti yang diklaim paper?
+
+**Estimasi waktu training per arsitektur (referensi cepat):**
+
+| Arsitektur | Dataset | GPU (RTX 3060) | CPU (laptop) |
+|---|---|---|---|
+| ResNet-18 / SimpleCNN | CIFAR-10, 50 epoch | ~20-30 menit | ~3-4 jam |
+| MLP 3-layer | MNIST/Tabular | ~5 menit | ~15-30 menit |
+| SimpleLSTM, 100 epoch | sine sequence (10k) | ~5-10 menit | ~20-40 menit |
+| BERT-tiny fine-tune | SST-2, 3 epoch | ~15-25 menit | tidak praktis |
+| IndoBERT-base fine-tune | SmSA, 3 epoch | ~30-45 menit | tidak praktis |
+| Autoencoder CIFAR-10 | 30 epoch | ~15-20 menit | ~1-2 jam |
+
+Angka-angka ini adalah patokan "apakah pipeline saya terlalu lambat?" - bukan angka pasti. Jika training ResNet Anda 10× lebih lambat dari tabel, periksa: data loading bottleneck, batch size terlalu kecil, atau model yang tidak sengaja dipindah ke CPU. Gunakan `nvidia-smi` untuk memastikan GPU benar-benar dipakai.
 
 > [!TIP]
 > Paper sering menyembunyikan detail penting di appendix atau code repository. Selalu cek keduanya. Juga perhatikan "implementation details" section - sering ada hyperparameter kritis yang tidak ada di main text.

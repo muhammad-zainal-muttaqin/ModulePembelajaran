@@ -88,12 +88,22 @@ Setiap baris di bawah adalah kompetensi; setiap kolom adalah level. Deskriptor d
 
 ### Kompetensi 1 - Memahami Sistem ML/DL Praktis
 
+> [!NOTE]
+> **Breadth Check Policy.** Untuk mencapai level *Proficient* pada Kompetensi 1, mahasiswa wajib menyelesaikan **4 dari 5 keluarga arsitektur** berikut:
+> - **MLP:** Lab 1c (numpy manual) - **wajib**
+> - **CNN:** Lab 1 (CIFAR-10 baseline) - **wajib**
+> - **RNN/LSTM:** Lab 3b (`lab_w5_lstm_sequence.ipynb`) - **wajib**
+> - **Transformer:** Lab 6b (`lab_w7_transformer_mini.ipynb`) - **wajib** untuk breadth check; bukan opsional
+> - **Autoencoder:** Lab 7b (`lab_breadth_autoencoder.ipynb`) - opsional; dapat diganti dengan arsitektur baru di Komponen Mandiri Jalur D
+>
+> Konten di dalam `<details><summary>Pendalaman</summary>` (misalnya derivasi backprop, GRU equations, D1-D7 repo adoption) adalah **opsional** dan tidak masuk syarat minimum breadth check - tetapi dapat dipakai sebagai bukti untuk level *Masterpiece*.
+
 
 | Level       | Deskriptor                                                                                                                                                            |
 | ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Novice      | Menyebut nama arsitektur dan loss, tetapi ragu saat diminta memilih untuk kasus tertentu. Mengenali CNN dan MLP dari *worked example*, tidak bisa mengimplementasinya secara manual, dan belum pernah menjalankan forward pass untuk keluarga RNN, Transformer, atau Autoencoder. |
 | Developing  | Memilih arsitektur/loss yang umum untuk jenis data tertentu (CNN untuk gambar, cross-entropy untuk klasifikasi), menjelaskan alasan singkat. Bisa mengimplementasi forward pass MLP **atau** CNN dari nol (salah satu, tidak keduanya). Mengenali arsitektur RNN/LSTM dan Transformer ketika membaca kode, tetapi belum bisa menulis sendiri blok intinya. |
-| Proficient  | Membaca pasangan tensor input → output langsung dari kode atau deskripsi arsitektur yang belum dikenal dalam beberapa menit. Membandingkan dua pilihan arsitektur/loss untuk satu kasus, menjelaskan trade-off (mis. focal loss pada kelas imbalance). Menjelaskan peran layer dalam representasi dan membedakan tiga strategi representasi (engineered / extracted / learned) dengan alasan pemilihan yang jelas. **Breadth arsitektur:** mengimplementasi *forward + backward* MLP 2-layer manual (Lab 1c), memakai RNN/LSTM (Lab 3b) dan Transformer encoder block (Lab 6b) dari library dengan memahami parameter-nya, memvisualisasikan embedding autoencoder dan membaca cluster t-SNE (Lab 7b). |
+| Proficient  | Membaca pasangan tensor input → output langsung dari kode atau deskripsi arsitektur yang belum dikenal dalam beberapa menit. Membandingkan dua pilihan arsitektur/loss untuk satu kasus, menjelaskan trade-off (mis. focal loss pada kelas imbalance). Menjelaskan peran layer dalam representasi dan membedakan tiga strategi representasi (engineered / extracted / learned) dengan alasan pemilihan yang jelas. **Breadth arsitektur (minimum 4 dari 5):** mengimplementasi *forward + backward* MLP 2-layer manual (Lab 1c), memakai RNN/LSTM (Lab 3b) dan Transformer encoder block (Lab 6b - **wajib untuk breadth**) dari library dengan memahami parameter-nya, memvisualisasikan embedding autoencoder dan membaca cluster t-SNE (Lab 7b). |
 | Masterpiece | Merumuskan pilihan arsitektur, loss, atau strategi representasi yang tidak standar untuk dataset atau constraint yang tidak biasa, menjelaskan mengapa pilihan umum tidak cocok, dan mengargumentasikan kombinasi representasi (mis. engineered + extracted sebagai ansambel) yang tidak disebut eksplisit di modul. **Breadth arsitektur:** mengimplementasi *scaled dot-product attention* dari nol, menjelaskan trade-off MLP vs CNN vs RNN vs Transformer untuk jenis data yang belum pernah dijumpai modul, membaca paper dari keluarga generatif (VAE/GAN/Diffusion) dan meringkas arsitekturnya dalam 5 menit. |
 
 

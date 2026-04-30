@@ -343,6 +343,18 @@ Template tersedia di `14_Lampiran.md`. Gunakan LaTeX atau Markdown → PDF; hind
 
 Live demo yang dapat diakses dalam rapat presentasi (`streamlit run demo/app.py`). Syarat: setidaknya input + output yang bermakna; bonus: comparison mode (baseline vs intervensi berdampingan) dan error inspection (cari contoh yang model keliru).
 
+**Streamlit vs Gradio - kapan masing-masing cocok:**
+
+| Kebutuhan | Pilihan | Alasan |
+|---|---|---|
+| Plot interaktif (loss curve, confusion matrix, scatter embedding) | **Streamlit** | `st.plotly_chart`, `st.dataframe`, sidebar widget; lebih mudah untuk dashboard analitis |
+| Upload file / gambar → prediksi | **Gradio** | `gr.Interface(fn, inputs="image", outputs="label")` selesai dalam 5 baris; cocok untuk demo model |
+| Komponen mandiri (slider hyperparameter, tabel experiment) | **Streamlit** | State management lebih mudah untuk UI kompleks |
+| Demo cepat untuk presentasi atau paper | **Gradio** | `share=True` buat public link instan tanpa deploy; cocok untuk demo sementara |
+| Deployment ke Hugging Face Spaces | **Gradio** | Native integration; `demo.launch()` langsung jalan |
+
+Untuk capstone: **Gradio** cukup jika task Anda adalah "input → prediksi" (klasifikasi gambar, teks, time series). Gunakan **Streamlit** jika Anda ingin menampilkan analisis eksperimen (ablation table, error analysis dengan filter interaktif). Tidak perlu memilih satu saja - banyak capstone yang punya `demo/app_gradio.py` untuk presentasi publik dan `demo/analysis.py` (Streamlit) untuk eksplorasi lokal.
+
 ### 2.6 Presentasi Akhir
 
 15-20 menit presentasi + 10 menit tanya jawab, struktur yang direkomendasikan:
@@ -361,6 +373,51 @@ Tip: latihan dua kali, rekam sekali, tonton. Anda akan melihat sendiri kalimat-k
 ---
 
 ## 3. Worked Example: Template C yang Disederhanakan
+
+#### Cara Membuat Aggregation Plot yang Informatif
+
+Aggregation plot adalah tabel hasil dalam bentuk visual - membandingkan beberapa kondisi sekaligus dengan error bar. Ini adalah gambar pertama yang dilihat pembaca laporan Anda.
+
+**Contoh: baseline vs TTA vs TTA-ringan, 3 seed, 2 kondisi test.**
+
+```python
+import pandas as pd
+import matplotlib.pyplot as plt
+import numpy as np
+
+# Data dari experiments/results.csv
+results = {
+    "Baseline":   {"clean": [89.2, 88.9, 89.5], "perturbed": [74.1, 73.8, 74.4]},
+    "TTA":        {"clean": [89.0, 88.7, 89.3], "perturbed": [79.8, 79.3, 80.1]},
+    "TTA-ringan": {"clean": [89.1, 88.8, 89.4], "perturbed": [79.0, 78.6, 79.5]},
+}
+
+conditions = ["clean", "perturbed"]
+models = list(results.keys())
+x = np.arange(len(conditions))
+width = 0.25
+
+fig, ax = plt.subplots(figsize=(8, 5))
+for i, model in enumerate(models):
+    means = [np.mean(results[model][c]) for c in conditions]
+    stds  = [np.std(results[model][c]) for c in conditions]
+    ax.bar(x + i*width, means, width, label=model, yerr=stds, capsize=4)
+
+ax.set_xticks(x + width)
+ax.set_xticklabels(["Test Clean", "Test Stain-Perturbed"])
+ax.set_ylabel("Accuracy (%)")
+ax.set_title("Baseline vs TTA Strategies (mean ± std, n=3 seeds)")
+ax.legend()
+plt.tight_layout()
+plt.savefig("experiments/aggregation_plot.png", dpi=150)
+```
+
+**Yang membuat plot ini informatif:**
+1. Error bar dari std 3 seed - pembaca bisa menilai apakah perbedaan antar model lebih besar dari noise.
+2. Dua kondisi test berdampingan - efek augmentasi pada clean dan perturbed terlihat sekaligus.
+3. Caption yang konkret - judul plot menyatakan: metrik apa, perbandingan apa, berapa seed.
+
+**Yang sering dilupakan:** plot tanpa error bar, atau hanya seed tunggal. Jika hasilnya "89.2 vs 89.0", pembaca tidak bisa tahu apakah itu perbedaan atau noise.
 
 Seorang mahasiswa, Dito, memilih Template C. Rangkuman timeline kerjanya:
 

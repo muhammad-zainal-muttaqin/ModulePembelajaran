@@ -96,9 +96,27 @@ Ritme sesi: 30 menit prior-week findings | 40 menit materi baru + demo | 10 meni
 
 ### Catatan Pacing
 
+- **W1 dan W2 (§1.5 baru):** masing-masing bab memiliki section §1.5 baru ("MLP dari Pintu Depan" di W1 dan "Citra Sebagai Tensor: Dari Pixel ke 4D" di W2). Tambahkan ~20-30 menit ke estimasi waktu membaca untuk dua bab ini. Jika sesi tatap muka 2 jam, kurangi satu pitfall discussion atau tunda demo smoke test yang kedua ke sesi berikutnya.
 - **W4 (Reproducibility):** minggu paling padat infrastruktur (config YAML, seed, checkpoint, experiment matrix, komunikasi PI). Jangan tambahkan lab breadth di minggu ini; biarkan Lab 3b masuk W5 sebagai mandatory dan Lab 6b/7b paralel di pekan-pekan berikutnya.
+- **W5 (LSTM):** paling padat secara konseptual - lihat §1.5 baru (BPTT primer, vanishing gradient numerik, LSTM annotated). Estimasikan mahasiswa butuh 1-2 jam membaca sebelum sesi. Jika waktu kelas hanya 2 jam, pisahkan: sesi pertama = §2.1-2.2 (RNN + vanishing), sesi kedua = §2.3-2.4 (LSTM + GRU).
 - **W7 (Text + Repo Adoption):** padat karena mengintegrasikan AI tools, transformers, dan repo adoption dari modul lama. Jika mahasiswa terbebani, prioritaskan `repo_map.md` dan 2×2 frozen/fine-tune; demo Streamlit boleh dikerjakan paralel.
 - **W12-W14 (Capstone):** mahasiswa seharusnya sudah punya semua keterampilan teknis. Tugas Anda di fase ini: baca protokol mereka, uji apakah klaim mereka bisa direproduksi, dan pastikan laporan tidak overclaim.
+
+### Peta `<details>Pendalaman</summary>` - Opsional vs Wajib
+
+Setiap bab punya collapsible `<details><summary>Pendalaman</summary>` untuk material lanjutan. Tabel berikut membantu Anda memutuskan mana yang perlu disampaikan di kelas.
+
+| Bab | Topik Pendalaman | Rekomendasi |
+|---|---|---|
+| W1 §2.4 | Derivasi backprop manual 7-langkah | Opsional: mahasiswa yang ingin bukti matematis. Lampiran A.1 lebih lengkap. |
+| W2 §2.3 | Depthwise separable convolution, dilated conv | Opsional: hanya jika ada yang bertanya tentang efisiensi model. |
+| W3 §2.3 | Cosine annealing, OneCycleLR scheduler | Opsional di W3; wajib di W4 saat experiment matrix dibahas. |
+| W5 §2.4 | GRU gate equations | Opsional: cukup sebutkan GRU sebagai "LSTM lebih ringan". Detail tidak wajib. |
+| W7 Part 2 (D1-D7) | Advanced repo adoption (D1-D7, ~600 baris) | Opsional selama bootcamp; wajib untuk capstone yang mengadopsi repo besar. Arahkan mahasiswa ke sini saat W12. |
+| W8 §2.3 | PEFT library details, LoRA hyperparameter sweep | Opsional: hanya jika ada yang melakukan fine-tuning LLM di capstone. |
+| W10 §2.6 | Rutinitas mingguan lengkap | Opsional selama kelas (sudah diberi callout); dibahas saat sesi terakhir W11 sebagai "bekal setelah lulus". |
+
+Konten di luar `<details>` adalah **core content** - wajib untuk semua mahasiswa. Konten di dalam `<details>` adalah pengayaan; tidak muncul di rubrik secara langsung kecuali jika mahasiswa memilihnya sebagai Komponen Mandiri.
 
 ---
 
@@ -327,7 +345,25 @@ Contoh: "Analisis F1 per kelas sudah baik karena kamu menghubungkan penurunan ke
 3. Role-play: Anda berperan sebagai PI yang sibuk dan memberi instruksi ambigu. Minta mahasiswa merespon dengan satu kalimat konfirmasi + asumsi.
 4. Tekankan bahwa 80% pekerjaan asisten riset adalah mengklarifikasi, bukan mengeksekusi.
 
-### Skenario 5: Semua Mahasiswa Memakai LLM untuk Mengerjakan Lab
+### Skenario 5: Kelas Berjuang di W5 LSTM
+
+**Gejala:** Di tengah W5, banyak mahasiswa tampak diam saat diajak diskusi, pertanyaan refleksi kosong, atau notebook Lab 3b tidak dimulai. Beberapa mahasiswa mengaku "paham di permukaan tapi tidak bisa jelasin kenapa LSTM lebih baik."
+
+W5 secara konsisten menjadi titik paling curam di modul - BPTT, vanishing gradient, dan gate mechanism LSTM semuanya baru dalam satu minggu.
+
+**Tindakan:**
+
+1. **Diagnosis cepat di awal sesi W5.** Beri pertanyaan anchor: "Tanpa membuka catatan, jelaskan dalam satu kalimat mengapa vanilla RNN kesulitan dengan sequence panjang." Jika lebih dari setengah kelas diam, W5 perlu diperlambat.
+
+2. **Pisahkan sesi konseptual dari implementasi.** Sesi pertama: fokus §2.1-2.2 (RNN + vanishing gradient numerik - contoh 0.5^10 = 0.001 ada di bab). Tunjukkan gradient flow plot secara live dari Lab 3b sebelum mahasiswa mengerjakan sendiri. Sesi kedua: §2.3-2.4 (LSTM gate + cell state). Lab 3b dikerjakan sebagai homework setelah dua sesi itu.
+
+3. **Gunakan §1.5 BPTT primer.** Bagian §1.5 di W5 berisi derivasi BPTT dengan contoh numerik - bukan sekadar rumus. Minta mahasiswa membaca ulang §1.5 sebelum Lab 3b. Jika mereka masih stuck di forward pass LSTM, arahkan ke "satu timestep manual" di §2.3 (hidden_size=4, hitung i_t, f_t, o_t, c_t satu per satu).
+
+4. **Jangan skip Lab 3b.** Lab ini wajib (Breadth Check Kompetensi 1). Jika waktu habis, pangkas satu analisis lain (misalnya analisis lanjutan dari Lab 2), bukan Lab 3b. Gradient flow plot vanishing vs LSTM adalah bukti visual yang tidak bisa diganti narasi.
+
+5. **Frame ulang kesulitan.** Katakan langsung: "W5 memang paling sulit. Jika Anda merasa pusing, itu normal. Yang perlu Anda bawa keluar dari W5 bukan hafalan gate equations, melainkan dua hal: (1) kenapa vanilla RNN gagal di sequence panjang, dan (2) cell state adalah 'jalan tol' yang melindungi gradient."
+
+### Skenario 6: Semua Mahasiswa Memakai LLM untuk Mengerjakan Lab (W7+)
 
 **Gejala:** Kode di semua notebook mirip (gaya variabel, komentar, struktur), dan mahasiswa tidak bisa menjelaskan bagian tertentu.
 
