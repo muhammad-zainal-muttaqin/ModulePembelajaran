@@ -181,7 +181,7 @@ Tulis apa yang Anda tebak hasilnya. Ini menjaga kejujuran intuisi.
 Kondisi konkret yang membuatmu menyatakan H nol benar.
 ```
 
-Setelah eksperimen selesai, buka pre-reg, bandingkan dengan hasil aktual, tulis *amendment* bila ada deviasi. Sering kali Anda akan menemukan diri sendiri tergoda mengubah metrik atau menambah baseline baru - pre-reg menjaga disiplin untuk melaporkan *ketika itu terjadi*, bukan menyembunyikannya.
+Setelah eksperimen selesai, buka pre-reg, bandingkan dengan hasil aktual, tulis *amendment* bila ada deviasi. Sering kali Anda akan tergoda mengubah metrik atau menambah baseline baru - pre-reg menjaga disiplin untuk melaporkan *ketika itu terjadi*, bukan menyembunyikannya.
 
 Jangan jadikan pre-reg birokrasi. Tujuannya bukan dokumen sempurna; tujuannya adalah Anda-tiga-jam-kemudian tidak bisa menipu Anda-sekarang.
 

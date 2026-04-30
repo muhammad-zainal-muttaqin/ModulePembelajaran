@@ -193,7 +193,7 @@ Sukses: intervention macro F1 > baseline + 0.03 pada semua 3 seed. Gagal: selisi
 **Q&A yang harus Anda siapkan jawabannya:**
 - "Mengapa baseline ini, bukan Y?"
 - "Bagaimana jika hasilnya negatif - apakah itu tetap informative?"
-- "Apa yang Anda akan lakukan di minggu pertama?"
+- "Apa yang akan Anda lakukan di minggu pertama?"
 - "Apakah scope ini realistis untuk 3 minggu?"
 
 ---

@@ -32,13 +32,13 @@
 
 ## 0. Peta Bab
 
-Modul ini adalah **bootcamp 11 minggu + capstone 3 minggu**. Bab ini memperkenalkan bahasa dan bekal minimum modul, mini-glosarium istilah inti, target outcome bootcamp, sembilan kompetensi yang dilatih sepanjang modul, empat sikap riset yang menjalin keseluruhan modul, tiga thread lintas minggu yang menjaga koherensi, ritme sesi mingguan, dan kontrak belajar yang disepakati sebelum melangkah ke materi teknis. Setelah menyelesaikan bab ini, Anda mengerti *mengapa* modul ini ada, *bagaimana* cara terbaik membacanya, dan *apa target realistis* di akhir bootcamp.
+Modul ini adalah **bootcamp 11 minggu + capstone 3 minggu**. Bab ini memperkenalkan kosakata dasar modul, glosarium singkat, target outcome bootcamp, sembilan kompetensi yang dilatih sepanjang modul, empat sikap riset yang menjalin keseluruhan modul, tiga thread lintas minggu yang menjaga koherensi, ritme sesi mingguan, dan kontrak belajar yang disepakati sebelum melangkah ke materi teknis. Setelah menyelesaikan bab ini, Anda mengerti *mengapa* modul ini ada, *bagaimana* cara terbaik membacanya, dan *apa target realistis* di akhir bootcamp.
 
 ---
 
 ## 0.5 Sebelum Mulai: Bahasa dan Bekal Modul Ini
 
-Modul ini menulis tensor shape, istilah teknis, dan rumus matematis dengan asumsi minimum. Tetapi minimum bukan berarti nol. Sebelum membuka W1, luangkan 20 menit membaca bagian ini supaya istilah-istilah seperti `(F,)`, `(C, H, W)`, "loss", dan "gradient" tidak muncul tiba-tiba di halaman berikutnya.
+Prasyarat modul ini sengaja dijaga serendah mungkin, tetapi bukan tanpa prasyarat sama sekali. Sebelum membuka W1, luangkan 20 menit membaca bagian ini supaya istilah-istilah seperti `(F,)`, `(C, H, W)`, "loss", dan "gradient" tidak muncul tiba-tiba di halaman berikutnya.
 
 > [!TIP]
 > Jika Anda sudah terbiasa dengan PyTorch, NumPy, dan kalkulus dasar, lompat ke §0.5.6 (mini-glossary) untuk skim cepat dan lanjut ke §1. Subbagian §0.5.1-§0.5.5 ditujukan untuk pemula yang baru kali pertama menyentuh deep learning.
@@ -88,13 +88,13 @@ Contoh konkret:
 
 ### 0.5.4 Kalkulus Mini: Turunan dan Chain Rule
 
-Anda tidak perlu menguasai kalkulus untuk memulai. Yang dibutuhkan hanya dua intuisi.
+Anda tidak perlu menguasai kalkulus untuk memulai. Cukup dua intuisi dasar.
 
 **Turunan = kemiringan.** Turunan fungsi `f(x)` di titik `x = a` mengukur seberapa cepat `f` berubah saat `x` digeser sedikit di sekitar `a`. Notasi: `df/dx`. Kalau `f(x) = x²`, maka `df/dx = 2x`. Di `x = 3`, turunan = 6, artinya saat `x` bergeser dari 3 ke 3.01, `f` bergeser kira-kira `6 × 0.01 = 0.06`.
 
 **Chain rule = rantai turunan.** Kalau `y = f(g(x))`, maka turunannya `dy/dx = f'(g(x)) · g'(x)`. Bayangkan dua roda gigi: kalau roda dalam berputar 2× lebih cepat dari input, dan roda luar 3× lebih cepat dari roda dalam, total roda luar 6× lebih cepat dari input.
 
-Inilah yang dilakukan **backpropagation**: rantai panjang turunan dari loss ke setiap parameter, dirambatkan mundur lewat chain rule. Detail derivasi 7-langkah ada di [Lampiran A.1](14_Lampiran.md#a1-backpropagation-derivasi-manual). Untuk W1-W2, intuisi "rantai turunan" sudah cukup.
+Inilah yang dilakukan **backpropagation**: mengambil rantai panjang turunan dari loss sampai ke setiap parameter, lalu merambatkannya mundur lewat chain rule. Detail derivasi 7-langkah ada di [Lampiran A.1](14_Lampiran.md#a1-backpropagation-derivasi-manual). Untuk W1-W2, intuisi "rantai turunan" sudah cukup.
 
 ### 0.5.5 PyTorch Tensor: Primer 3 Menit
 
