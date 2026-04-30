@@ -14,8 +14,8 @@
 | 08 | [W8 - Foundation Models](08_W8_Foundation_Models.md) | 8 |
 | 09 | [W9 - Multimodal Reasoning](09_W9_Multimodal_Reasoning.md) | 9 |
 | 10 | [W10 - Paper Reading & Implementation](10_W10_Paper_Reading.md) | 10 |
-| 11 | [W11 - Research Framing & Capstone Proposal](11_W11_Research_Framing.md) | 11 |
-| 12 | [Capstone 3 Minggu](12_Capstone_3_Minggu.md) | 12-14 |
+| 11 | [W11 - Research Framing](11_W11_Research_Framing.md) | 11 |
+| 12 | [Capstone - Proyek Riset](12_Capstone.md) | 12-15 |
 | 13 | [Rubrik Penilaian](13_Rubrik_Penilaian.md) | – |
 | 14 | [Lampiran](14_Lampiran.md) | – |
 | 15 | [Panduan Instruktur](15_Panduan_Instruktur.md) | – |
@@ -32,7 +32,7 @@
 
 ## 0. Peta Bab
 
-Modul ini adalah **bootcamp 11 minggu + capstone 3 minggu**. Bab ini memperkenalkan kosakata dasar, glosarium singkat, target outcome bootcamp, sembilan kompetensi inti, empat sikap riset, tiga alur lintas minggu, ritme sesi, dan kontrak belajar sebelum materi teknis dimulai. Setelah menyelesaikan bab ini, Anda memahami tujuan modul, cara membacanya, dan target realistis di akhir bootcamp.
+Modul ini adalah **bootcamp 11 minggu + capstone 4 minggu**. Bab ini memperkenalkan kosakata dasar, glosarium singkat, target outcome bootcamp, sembilan kompetensi inti, empat sikap riset, tiga alur lintas minggu, ritme sesi, dan kontrak belajar sebelum materi teknis dimulai. Setelah menyelesaikan bab ini, Anda memahami tujuan modul, cara membacanya, dan target realistis di akhir bootcamp.
 
 ---
 
@@ -276,7 +276,7 @@ Setiap minggu memperkenalkan satu kebiasaan riset yang tetap dipakai setelahnya.
 | W8 | Model-card literacy, adaptation choice, fair baseline | Sebelum fine-tune, baca model card: dataset asal, lisensi, batas penggunaan, evaluasi yang sudah ada. |
 | W9 | Per-modality ablation dan multimodal failure analysis | Setelah multimodal model jalan, jalankan run dengan satu modality di-zero atau di-acak; jika metric tidak turun, modality itu diabaikan. |
 | W10 | Three-pass paper reading dan paper-to-code translation | Pass 1 (judul-abstrak-kesimpulan), pass 2 (figur dan tabel), pass 3 (rumus). Stop di pass 1 jika tidak relevan. |
-| W11 | 5 Whys, literature-to-experiment, proposal defense | Tulis hipotesis falsifiable (`Δ ≥ X dengan p < Y`), bukan "saya pikir model A lebih baik". |
+| W11 | Input→Middle→Output framing, triage literatur, seleksi gap | Tulis hipotesis falsifiable (`Δ ≥ X dengan p < Y`), bukan "saya pikir model A lebih baik". Framing yang baik punya gap yang tidak bisa diisi pipeline standar apa adanya. |
 
 ### 5.3 Representation Choice
 
@@ -355,7 +355,7 @@ Lab dalam modul ini bukan kumpulan latihan terpisah. Lab-lab utama memakai basis
 - **Lab 6b** (Transformer-mini from-scratch, breadth, opsional di W7)
 - **Lab 7b** (Autoencoder + denoising AE + t-SNE, breadth)
 
-Pada minggu 12-14, Anda menyelesaikan **proyek capstone** yang mengintegrasikan minimal enam kompetensi dan keempat sikap. Detail ada di `12_Capstone_3_Minggu.md`.
+Pada minggu 12-15, Anda menyelesaikan **proyek capstone** yang mengintegrasikan minimal enam kompetensi dan keempat sikap. Detail ada di `12_Capstone.md`.
 
 Mulai W4, setiap bab juga memiliki satu **Komponen Mandiri** - pilihan jalur eksplorasi mingguan yang Anda kerjakan secara mandiri dan catat di `notebooks/portofolio_mandiri.ipynb`. Portofolio berisi 8 entri (W4-W11) dan ditutup dengan refleksi perjalanan belajar. Template entri dan panduan presentasi 10 menit ada di `14_Lampiran.md` bagian C.6 dan C.7.
 

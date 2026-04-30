@@ -14,8 +14,8 @@
 | 08 | [W8 - Foundation Models](08_W8_Foundation_Models.md) | 8 |
 | 09 | [W9 - Multimodal Reasoning](09_W9_Multimodal_Reasoning.md) | 9 |
 | ▶ 10 | W10 - Paper Reading & Implementation | 10 |
-| 11 | [W11 - Research Framing & Capstone Proposal](11_W11_Research_Framing.md) | 11 |
-| 12 | [Capstone 3 Minggu](12_Capstone_3_Minggu.md) | 12-14 |
+| 11 | [W11 - Research Framing](11_W11_Research_Framing.md) | 11 |
+| 12 | [Capstone - Proyek Riset](12_Capstone.md) | 12-15 |
 | 13 | [Rubrik Penilaian](13_Rubrik_Penilaian.md) | – |
 | 14 | [Lampiran](14_Lampiran.md) | – |
 | 15 | [Panduan Instruktur](15_Panduan_Instruktur.md) | – |
@@ -381,4 +381,4 @@ Konsep: membaca paper secara terarah, merumuskan pertanyaan falsifiable, meranca
 
 Semua skill bootcamp sudah dibangun. W11 menggabungkan semuanya untuk satu tujuan: menyusun proposal capstone yang bisa dipertahankan. Research framing, 5 Whys, literature-to-experiment synthesis, dan oral proposal defense.
 
-Buka [W11 - Research Framing & Capstone Proposal](11_W11_Research_Framing.md) ketika siap.
+Buka [W11 - Research Framing](11_W11_Research_Framing.md) ketika siap.

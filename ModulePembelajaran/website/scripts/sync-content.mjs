@@ -23,7 +23,7 @@ const CHAPTERS = [
   "09_W9_Multimodal_Reasoning.md",
   "10_W10_Paper_Reading.md",
   "11_W11_Research_Framing.md",
-  "12_Capstone_3_Minggu.md",
+  "12_Capstone.md",
   "13_Rubrik_Penilaian.md",
   "14_Lampiran.md",
   "15_Panduan_Instruktur.md",

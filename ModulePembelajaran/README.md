@@ -38,13 +38,14 @@ Jika dua prasyarat pertama belum solid, kerjakan lebih dulu *primer* pada [Lampi
 | 10 | Paper reading 3-pass + paper-to-code | [10](10_W10_Paper_Reading.md) | Lab 9 | Three-pass reading |
 | 11 | Research framing + capstone proposal defense | [11](11_W11_Research_Framing.md) | Proposal oral | 5 Whys + proposal defense |
 
-### Capstone (Minggu 12-14)
+### Capstone (Minggu 12-15)
 
 | Minggu | Fase | Bab | Required outputs |
 |---|---|---|---|
-| 12 | Scope, EDA, Baseline reproducible | [12](12_Capstone_3_Minggu.md) | `prereg.md`, `eda.md`, baseline 3-seed |
-| 13 | Main experiment + focused ablation | [12](12_Capstone_3_Minggu.md) | Comparison table, ablation, curves |
-| 14 | Analysis, report, demo, presentation | [12](12_Capstone_3_Minggu.md) | Final report, repo, demo, presentasi |
+| 12 | Filter dan komitmen framing; Eksperimen 1 | [12](12_Capstone.md) | Framing disetujui; pre-reg Eks 1 di-commit; Eks 1 mulai |
+| 13 | Rethink dan iterasi; Eksperimen 2 | [12](12_Capstone.md) | Dokumen rethink; pre-reg Eks 2 di-commit |
+| 14 | Presentasi final (research talks 20 mnt) | [12](12_Capstone.md) | Laporan draft; demo; feedback Q&A |
+| 15 | Pengumpulan final (tanpa sesi kelas) | [12](12_Capstone.md) | Laporan final + repo tag `v1.0` + demo |
 
 ---
 
@@ -96,11 +97,11 @@ ModulePembelajaran/
 ├── 08_W8_Foundation_Models.md                 W8: Foundation models taxonomy (NEW)
 ├── 09_W9_Multimodal_Reasoning.md              W9: Multimodal fusion + ablation (NEW)
 ├── 10_W10_Paper_Reading.md                    W10: 3-pass reading + paper-to-code
-├── 11_W11_Research_Framing.md                 W11: Research framing + capstone proposal (NEW)
-├── 12_Capstone_3_Minggu.md                    W12-14: Capstone 3 phases
-├── 13_Rubrik_Penilaian.md                     Rubrik + sub-rubrik capstone phases
+├── 11_W11_Research_Framing.md                 W11: Input→Middle→Output framing + literature triage
+├── 12_Capstone.md                             W12-15: Capstone 4 phases (filter/rethink/communicate/submit)
+├── 13_Rubrik_Penilaian.md                     Rubrik + sub-rubrik 4 fase capstone
 ├── 14_Lampiran.md                             Glosarium + A.1 backprop + C.12-C.15 + H
-├── 15_Panduan_Instruktur.md                        Pacing 11+3, emphasis per-week
+├── 15_Panduan_Instruktur.md                        Pacing 11+4, emphasis per-week
 └── template_repo/                             Skeleton repo riset
 ```
 

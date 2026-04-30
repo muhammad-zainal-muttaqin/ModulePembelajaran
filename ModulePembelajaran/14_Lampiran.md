@@ -14,8 +14,8 @@
 | 08 | [W8 - Foundation Models](08_W8_Foundation_Models.md) | 8 |
 | 09 | [W9 - Multimodal Reasoning](09_W9_Multimodal_Reasoning.md) | 9 |
 | 10 | [W10 - Paper Reading & Implementation](10_W10_Paper_Reading.md) | 10 |
-| 11 | [W11 - Research Framing & Capstone Proposal](11_W11_Research_Framing.md) | 11 |
-| 12 | [Capstone 3 Minggu](12_Capstone_3_Minggu.md) | 12-14 |
+| 11 | [W11 - Research Framing](11_W11_Research_Framing.md) | 11 |
+| 12 | [Capstone - Proyek Riset](12_Capstone.md) | 12-15 |
 | 13 | [Rubrik Penilaian](13_Rubrik_Penilaian.md) | - |
 | ▶ 14 | Lampiran | - |
 | 15 | [Panduan Instruktur](15_Panduan_Instruktur.md) | - |
@@ -1008,7 +1008,7 @@ Dua belas tabel di bawah adalah alat bantu bagi Anda untuk memeriksa pemahaman s
 | Mengelola biaya GPU cloud: memilih spot vs on-demand, memantau tagihan | | | |
 | Lab 8: training di RunPod selesai; pod dimatikan; tagihan < $5 | | | |
 
-### W11 - Research Framing & Capstone Proposal
+### W11 - Research Framing
 
 | Saya harus bisa... | Belum | Mulai | Sudah |
 |---|---|---|---|
@@ -1291,7 +1291,7 @@ runpodctl remove pod [pod-id]
 - **Rubrik penilaian?** -> [Rubrik Penilaian](13_Rubrik_Penilaian.md)
 - **Panduan Instruktur (pacing, emphasis, grading)?** -> [Panduan Instruktur](15_Panduan_Instruktur.md)
 - **Template laporan capstone?** -> Lampiran §C.2
-- **Memilih template capstone?** -> [Capstone 3 Minggu](12_Capstone_3_Minggu.md) §2.2
+- **Memilih framing capstone?** -> [Capstone - Proyek Riset](12_Capstone.md) §2
 - **Membaca paper dalam tiga putaran (3-pass)?** -> W10 §2.2
 - **Alur paper-to-code?** -> W10 §2.3
 - **Audit temporal leakage?** -> W6 §0.6 + Lab 6
@@ -1318,8 +1318,8 @@ runpodctl remove pod [pod-id]
 - **Per-modality ablation protocol?** -> Lampiran §C.14
 - **Multimodal fusion strategies?** -> W9 §2.1
 - **Missing modality strategies?** -> W9 §2.3
-- **Capstone 3-week timeline?** -> [Capstone 3 Minggu](12_Capstone_3_Minggu.md) §2.4
-- **Sub-rubrik capstone per fase (W12/W13/W14)?** -> [Rubrik Penilaian](13_Rubrik_Penilaian.md) §5.1
+- **Timeline capstone 4 minggu (W12-W15)?** -> [Capstone - Proyek Riset](12_Capstone.md) §1
+- **Sub-rubrik capstone per fase (W12-W15)?** -> [Rubrik Penilaian](13_Rubrik_Penilaian.md) §5.1
 - **Lightweight research tools (Streamlit/Gradio/RunPod)?** -> Lampiran §C.15
 
 ---
@@ -1340,8 +1340,8 @@ Panduan untuk mahasiswa yang pernah menggunakan modul versi 14 minggu, atau dose
 | Bab 06 Adopsi Repo Riset | 9 | 07 W7 Text Transformers Repo Adoption | 7 | +Text/Transformer section; AI tools + repo adoption merge |
 | Bab 07 Alat Pendukung Ringan | 10 | (Lampiran C.15) | - | Streamlit/Gradio dipindah ke Lampiran C.15 |
 | Bab 08 Platform & Tool Baru | 11 | (note di W4 §2.8) | 4 | RunPod intro dipindah ke W4; detail di C.15 |
-| Bab 09 Pengembangan Mandiri | 12 | 10 W10 Paper Reading + 11 W11 Research Framing | 10-11 | Split jadi 2 bab; +paper-to-code; +5 Whys; +proposal defense |
-| Bab 10 Capstone 2 minggu | 13-14 | 12 Capstone 3 Minggu | 12-14 | Diperluas jadi 3 minggu dengan W12/W13/W14 eksplisit |
+| Bab 09 Pengembangan Mandiri | 12 | 10 W10 Paper Reading + 11 W11 Research Framing | 10-11 | Split jadi 2 bab; +paper-to-code; +Input→Middle→Output framing; +framing menu; +literature triage |
+| Bab 10 Capstone 2 minggu | 13-14 | 12 Capstone 4 Minggu | 12-15 | Diperluas jadi 4 minggu; W12 filter/framing defense; W13 rethink+iterasi; W14 presentasi final; W15 pengumpulan |
 | (tidak ada) | - | 08 W8 Foundation Models | 8 | Baru: taksonomi modalitas x keluarga model x adaptasi |
 | (tidak ada) | - | 09 W9 Multimodal Reasoning | 9 | Baru: fusion, ablation, missing modality |
 

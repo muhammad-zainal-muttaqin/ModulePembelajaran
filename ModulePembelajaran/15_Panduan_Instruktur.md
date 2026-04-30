@@ -14,8 +14,8 @@
 | 08 | [W8 - Foundation Models](08_W8_Foundation_Models.md) | 8 |
 | 09 | [W9 - Multimodal Reasoning](09_W9_Multimodal_Reasoning.md) | 9 |
 | 10 | [W10 - Paper Reading & Implementation](10_W10_Paper_Reading.md) | 10 |
-| 11 | [W11 - Research Framing & Capstone Proposal](11_W11_Research_Framing.md) | 11 |
-| 12 | [Capstone 3 Minggu](12_Capstone_3_Minggu.md) | 12-14 |
+| 11 | [W11 - Research Framing](11_W11_Research_Framing.md) | 11 |
+| 12 | [Capstone - Proyek Riset](12_Capstone.md) | 12-15 |
 | 13 | [Rubrik Penilaian](13_Rubrik_Penilaian.md) | – |
 | 14 | [Lampiran](14_Lampiran.md) | – |
 | ▶ 15 | Panduan Instruktur | – |
@@ -71,7 +71,7 @@ Anda tidak perlu menjelaskan isi bab. Mahasiswa sudah membacanya. Tugas Anda ada
 
 ---
 
-## 2. Pacing 11 Minggu Bootcamp + 3 Minggu Capstone
+## 2. Pacing 11 Minggu Bootcamp + 4 Minggu Capstone
 
 Tabel di bawah adalah panduan mingguan. "Checkpoint" adalah bukti minimal bahwa mahasiswa siap lanjut ke minggu berikutnya.
 
@@ -89,10 +89,11 @@ Ritme sesi: 30 menit prior-week findings | 40 menit materi baru + demo | 10 meni
 | 8 | 08 W8 | Foundation Map | Foundation models taxonomy | Drill model card reading - 7 pertanyaan wajib. Dorong skeptisisme pada benchmark claims. | Skepticism + Ownership | Foundation model map 3-4 model + selection memo |
 | 9 | 09 W9 | Lab 8 | Multimodal + ablasi per-modalitas | Tunjukkan ignored-modality problem secara empiris. "Hasil bagus" belum cukup - ablation wajib. | Skepticism | 7 kondisi ablation selesai; ignored-modality check selesai |
 | 10 | 10 W10 | Lab 9 | Paper reading + implementation | 3-pass method eksplisit. Minta mahasiswa membawa paper yang sudah di-skim ke kelas. Paper-to-code steps. | Rigor + Curiosity | Three-pass notes + core method terimplementasi |
-| 11 | 11 W11 | Proposal | Research framing + capstone proposal | **W11 adalah setup capstone**. 5 Whys drill. Oral defense 10-15 menit per mahasiswa. Sign off proposal sebelum W12. | Integrasi empat sikap | Proposal disetujui; pre-registration di-commit |
-| 12 | 12 Capstone | Capstone W12 | Scope, EDA, baseline reproducible | Cek: data tersedia? Baseline running? Leakage audit? Jangan biarkan mulai W13 tanpa baseline clean. | Rigor | `eda.md` + baseline 3-seed + git hash checkpoint |
-| 13 | 12 Capstone | Capstone W13 | Main experiment + ablation | Cek: intervention vs baseline adil? Ablation menjawab interpretasi? Baca draft interpretation. | Skepticism + Rigor | Comparison table + ablation + interpretation draft |
-| 14 | 12 Capstone | Capstone W14 | Analysis, report, demo, presentasi | Baca laporan: apakah limitasi dinyatakan jujur? Demo menampilkan failure case? Repo bisa di-clone? | Ownership | Laporan + repo + demo terkumpul |
+| 11 | 11 W11 | Workshop Framing | Research framing (Input-Middle-Output + filter literatur) | **W11 adalah setup capstone**. Live demo dekomposisi dataset. Workshop menu framing + triage literatur. Mahasiswa keluar dengan 3-5 framing kandidat. | Integrasi empat sikap | Dokumen dekomposisi + tabel triage literatur; siap presentasi di W12 |
+| 12 | 12 Capstone | Pertahanan Framing + Eks 1 | Filter dan komitmen framing; mulai Eksperimen 1 | Pimpin pertahanan framing (15 mnt/mahasiswa). Setujui atau kembalikan. Setelah setuju: mahasiswa menulis pre-registration sebelum kode berjalan. | Rigor | Framing disetujui; pre-reg Eksperimen 1 di-commit; Eksperimen 1 mulai jalan |
+| 13 | 12 Capstone | Rethink + Eks 2 | Pikirkan ulang; desain dan jalankan Eksperimen 2 | Fokus pada dokumen rethink: apakah perubahan arah traceable ke angka spesifik? Tanya: "Kalau Eks 1 terbalik, Eks 2 berbeda?" | Skepticism + Rigor | Dokumen rethink jujur; pre-reg Eksperimen 2 di-commit |
+| 14 | 12 Capstone | Presentasi Final | Research talks 20 menit (15+5 Q&A) | Q&A: apakah klaim sesuai bukti? "Proves" harus diganti "suggests". Demo menampilkan failure case? Laporan bisa direproduksi? | Ownership | Laporan draft final; repo + demo siap; feedback dari Q&A dicatat |
+| 15 | 12 Capstone | - | Pengumpulan final (tanpa sesi kelas) | Tidak ada sesi tatap muka. Tenggat akhir W15: laporan final + repo bertag `v1.0` + demo berjalan dari lingkungan bersih. | Ownership | Laporan + repo + demo terkumpul; tag `v1.0` di-push |
 
 ### Catatan Pacing
 
@@ -100,7 +101,7 @@ Ritme sesi: 30 menit prior-week findings | 40 menit materi baru + demo | 10 meni
 - **W4 (Reproducibility):** minggu paling padat infrastruktur (config YAML, seed, checkpoint, matriks eksperimen, komunikasi PI). Jangan tambahkan lab breadth di minggu ini; biarkan Lab 3b masuk W5 sebagai wajib dan Lab 6b/7b paralel di pekan-pekan berikutnya.
 - **W5 (LSTM):** paling padat secara konseptual - lihat §1.5 baru (BPTT primer, vanishing gradient numerik, LSTM annotated). Estimasikan mahasiswa butuh 1-2 jam membaca sebelum sesi. Jika waktu kelas hanya 2 jam, pisahkan: sesi pertama = §2.1-2.2 (RNN + vanishing), sesi kedua = §2.3-2.4 (LSTM + GRU).
 - **W7 (Text + Repo Adoption):** padat karena mengintegrasikan AI tools, transformers, dan repo adoption dari modul lama. Jika mahasiswa terbebani, prioritaskan `repo_map.md` dan 2×2 frozen/fine-tune; demo Streamlit boleh dikerjakan paralel.
-- **W12-W14 (Capstone):** mahasiswa seharusnya sudah punya semua keterampilan teknis. Tugas Anda di fase ini: baca protokol mereka, uji apakah klaim mereka bisa direproduksi, dan pastikan laporan tidak overclaim.
+- **W12-W15 (Capstone):** mahasiswa seharusnya sudah punya semua keterampilan teknis. Tugas Anda di fase ini: setujui atau kembalikan framing di W12, uji apakah rethink benar-benar berubah berdasarkan data di W13, pastikan klaim sesuai bukti di W14, dan verifikasi reproducibility repo sebelum W15 ditutup.
 
 ### Peta `<details>Pendalaman</summary>` - Opsional vs Wajib
 
@@ -202,21 +203,25 @@ Konten di luar `<details>` adalah **core content** - wajib untuk semua mahasiswa
 - **Kaitan rubrik:** Kompetensi 9 (paper reading + reproduksi). Target: Developing→Proficient.
 - **Waktu lab:** Lab 9 (paper-to-code): 6-8 jam. Komponen Mandiri W10 = entri portofolio terakhir + Refleksi Portofolio.
 
-### W11 - Research Framing & Capstone Proposal
+### W11 - Research Framing
 
-- **Kritis:** **W11 adalah setup capstone**. 5 Whys drill di kelas. Oral defense 10-15 menit per mahasiswa di akhir minggu. Sign off proposal sebelum W12 - jangan biarkan mahasiswa mulai capstone tanpa proposal disetujui.
-- **Pitfall:** Mahasiswa mengambil proyek terlalu besar. Batas sehat: satu dataset, satu pertanyaan riset, maksimal 4 ablation. "Membandingkan 5 arsitektur pada 3 dataset" bukan capstone - itu tesis.
-- **Refleksi berbobot:** "Setelah 5 Whys, apa pertanyaan riset yang tersisa? Falsifiable?"
-- **Kaitan rubrik:** Integrasi semua kompetensi (proposal + oral defense). Target: Proficient.
-- **Waktu lab:** W11 menggantikan lab dengan luaran proposal + pre-registration. Estimasi 8-12 jam termasuk revisi pasca oral defense.
+- **Kritis:** **W11 adalah setup capstone**. Pimpin live demo dekomposisi dataset di kelas (dataset ditentukan Bu Fatma sebelum W11). Workshop 3 sesi: menu framing, triage literatur, seleksi dan komitmen. Mahasiswa keluar dengan 3-5 framing kandidat dan tabel triage literatur.
+- **Pitfall:** Mahasiswa mengambil framing terlalu besar atau tanpa gap nyata. Gap yang nyata: sesuatu yang tidak bisa diselesaikan pipeline standar apa adanya. Dorong framing yang bisa ditutup dalam 3 minggu kerja fokus.
+- **Refleksi berbobot:** "Dari 3-5 framing yang kamu buat, mana yang gapnya paling nyata dan bisa diisi dalam waktu capstone? Literatur apa yang kamu temukan yang memperkuat atau menggugurkan pilihan itu?"
+- **Kaitan rubrik:** Integrasi semua kompetensi (framing + triage literatur). Target: Proficient.
+- **Waktu lab:** W11 menggantikan lab dengan luaran dokumen dekomposisi (3-5 framing) + tabel triage literatur. Estimasi 6-10 jam termasuk penelusuran literatur mandiri.
 
-### W12-W14 - Capstone
+### W12-W15 - Capstone
 
-- **Kritis:** W12 checkpoint: data tersedia? Baseline running? Leakage audit? Jangan biarkan mulai W13 tanpa baseline clean. W13: intervention vs baseline adil? Ablation menjawab interpretasi? W14: limitasi dinyatakan jujur? Demo menampilkan failure case? Repo bisa di-clone?
-- **Pitfall:** Mahasiswa terlalu fokus eksperimen, tidak punya waktu untuk laporan. Tegakkan: laporan ditulis paralel, bukan di akhir.
-- **Refleksi:** Tidak ada refleksi terstruktur. Gantikan dengan sesi "post-mortem" 15 menit per mahasiswa: apa yang berhasil, apa yang gagal, apa yang akan dilakukan berbeda.
-- **Kaitan rubrik:** Semua kompetensi dinilai sumatif berdasarkan artefak capstone.
-- **Waktu:** 15-20 jam per mahasiswa per minggu (3 minggu penuh = 45-60 jam).
+- **Kritis per minggu:**
+  - W12: pimpin pertahanan framing (15 mnt/mahasiswa); setujui atau kembalikan; jangan biarkan Eksperimen 1 dimulai sebelum framing disetujui dan pre-registration di-commit.
+  - W13: periksa dokumen rethink - apakah perubahan arah traceable ke angka spesifik dari Eksperimen 1? Tanya: "Kalau Eksperimen 1 arahnya terbalik, Eksperimen 2 kamu berbeda?" Jika tidak, rethinknya belum jujur.
+  - W14: Q&A final talks - apakah klaim sesuai bukti? Demo harus bisa menampilkan failure case, bukan hanya sukses.
+  - W15: tidak ada sesi kelas. Tenggat pengumpulan: laporan final (6-8 halaman) + repo bertag `v1.0` + demo berjalan dari lingkungan bersih.
+- **Pitfall:** Rethink yang tidak berubah - Eksperimen 2 identik dengan yang direncanakan sejak awal, tidak dipengaruhi hasil Eksperimen 1. Tangkap ini di W13. Pitfall lain: laporan ditulis dari nol di W15. Tegakkan penulisan paralel sejak W13.
+- **Refleksi:** Tidak ada refleksi terstruktur di capstone. Gantikan dengan sesi "post-mortem" 15 menit per mahasiswa setelah W14: apa yang berhasil, apa yang gagal, apa yang akan dilakukan berbeda.
+- **Kaitan rubrik:** Semua kompetensi dinilai sumatif berdasarkan artefak capstone (lihat §5.1 sub-rubrik 4 fase di `13_Rubrik_Penilaian.md`).
+- **Waktu:** 15-20 jam per mahasiswa per minggu (4 minggu = 60-80 jam).
 
 ---
 
@@ -239,7 +244,7 @@ Rubrik di [13_Rubrik_Penilaian.md](13_Rubrik_Penilaian.md) menggunakan empat lev
 
 1. **W4 (akhir Lab 3).** Tinjauan formatif pertama. Fokus: Kompetensi 1-3. Tujuan: deteksi dini mahasiswa yang tertinggal. Belum ada nilai.
 2. **W7 (akhir Lab 6).** Tinjauan formatif kedua. Fokus: Kompetensi 4-6 + cek ulang Kompetensi 1-3.
-3. **W14 (akhir Capstone).** Evaluasi sumatif. Semua kompetensi dinilai berdasarkan artefak dari seluruh semester.
+3. **W15 (akhir Capstone).** Evaluasi sumatif. Semua kompetensi dinilai berdasarkan artefak dari seluruh semester.
 
 ### Cara Menentukan Level dari Artefak
 

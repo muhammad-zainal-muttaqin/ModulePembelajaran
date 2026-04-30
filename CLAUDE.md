@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Tujuan Proyek
 
-Modul pembelajaran **11 minggu bootcamp + 3 minggu capstone** untuk mahasiswa S1 (semester 4–6) yang menjadi **asisten dosen riset ML/DL**. Target outcome: 60-70% siap untuk topik lab. Fokus bukan pada framework, tetapi pada empat sikap riset: **Curiosity, Rigor, Skepticism, Ownership**. Referensi utama: `EXPECTED_OUTCOME.txt` (9 outcome), `TODO.txt` (konteks dan pesan dosen).
+Modul pembelajaran **11 minggu bootcamp + 4 minggu capstone** untuk mahasiswa S1 (semester 4–6) yang menjadi **asisten dosen riset ML/DL**. Target outcome: 60-70% siap untuk topik lab. Fokus bukan pada framework, tetapi pada empat sikap riset: **Curiosity, Rigor, Skepticism, Ownership**. Referensi utama: `EXPECTED_OUTCOME.txt` (9 outcome), `TODO.txt` (konteks dan pesan dosen).
 
 ## Struktur Konten (Post-Revisi April 2026)
 
@@ -21,11 +21,11 @@ ModulePembelajaran/
 ├── 08_W8_Foundation_Models.md     Taxonomy modality×family×adaptation (W8) [NEW]
 ├── 09_W9_Multimodal_Reasoning.md  Fusion, per-modality ablation, missing modality (W9) [NEW]
 ├── 10_W10_Paper_Reading.md        3-pass paper reading + paper-to-code workflow (W10)
-├── 11_W11_Research_Framing.md     5-Whys, capstone proposal, oral defense (W11) [NEW]
-├── 12_Capstone_3_Minggu.md        W12 EDA+baseline / W13 experiment / W14 analysis (W12-14)
+├── 11_W11_Research_Framing.md     Input→Middle→Output framework, framing menu, filter literatur, live demo dataset, workshop kelas (W11)
+├── 12_Capstone.md                 W12 filter+framing defense / W13 rethink+iterasi / W14 presentasi final / W15 pengumpulan (W12-15)
 ├── 13_Rubrik_Penilaian.md         4-level mastery + sub-rubrik per capstone phase
 ├── 14_Lampiran.md                 Glosarium + Lampiran A.1 backprop + C.12-C.15 + H migration
-├── 15_Panduan_Instruktur.md            Pacing 11+3 + emphasis per-week + skenario kelas
+├── 15_Panduan_Instruktur.md            Pacing 11+4 + emphasis per-week + skenario kelas
 └── template_repo/                 Skeleton repo riset
 ```
 
@@ -33,10 +33,13 @@ ModulePembelajaran/
 
 - `ModulePembelajaran/Notes - 17 April 2026/petabesar.md` → konten dasar tensor/arsitektur masuk ke W1-W2
 - `ModulePembelajaran/Notes - 17 April 2026/representasifitur.md` → konten representasi fitur masuk ke W3 + W6
-- `ModulePembelajaran/Notes - 27 April 2026/revisi_bootcamp.md` → blueprint overhaul 11 minggu bootcamp + 3 minggu capstone (struktur saat ini)
+- `ModulePembelajaran/Notes - 27 April 2026/revisi_bootcamp.md` → blueprint overhaul 11 minggu bootcamp + 3 minggu capstone (struktur awal)
+- `ModulePembelajaran/Notes - 30 April 2026/11_W11_Research_Framing new.md` → overhaul W11: framework Input→Middle→Output + framing menu + literature triage (terintegrasi 30 April 2026)
+- `ModulePembelajaran/Notes - 30 April 2026/12_Capstone new.md` → overhaul capstone: 3 → 4 minggu, struktur filter/rethink/communicate/submit (terintegrasi 30 April 2026)
 
-**Perubahan struktural besar (April 2026 - Overhaul 27 April):**
-- Modul lama 10-bab format-topik → 11-minggu bootcamp (W1-W11) + 3-minggu capstone (W12-W14), format weekly
+**Perubahan struktural besar:**
+- **(27 April 2026)** Modul lama 10-bab format-topik → 11-minggu bootcamp (W1-W11) + 3-minggu capstone (W12-W14), format weekly
+- **(30 April 2026)** Overhaul W11: framework 5-Whys diganti Input→Middle→Output + framing menu + literature triage + live demo dataset placeholder; file capstone di-rename `12_Capstone_3_Minggu.md` → `12_Capstone.md`; capstone diperpanjang 3 → 4 minggu (W12-W15); W15 = submission week tanpa sesi tatap muka
 - File-file lama diarsipkan ke `ModulePembelajaran/_archive/` (sengaja disimpan untuk referensi tabel migrasi di Lampiran §H, tidak dirender website)
 - Mapping bab lama → bab baru terdokumentasi di `14_Lampiran.md` Lampiran H
 - Konvensi penomoran konten: gunakan **W-numbering** (W1-W14) di teks bab; gunakan nama file (mis. `13_Rubrik_Penilaian.md`) saat me-link
@@ -53,11 +56,11 @@ ModulePembelajaran/
 - **W8** (`08_W8_Foundation_Models.md`): taxonomy modality×family×adaptation, model card literacy, §2.1.1 matriks evaluasi tool
 - **W9** (`09_W9_Multimodal_Reasoning.md`): fusion strategies, per-modality ablation, missing modality, peta keluarga generatif
 - **W10** (`10_W10_Paper_Reading.md`): 3-pass paper reading + paper-to-code workflow; templates A-E (termasuk LSTM/Transformer dan Autoencoder breadth)
-- **W11** (`11_W11_Research_Framing.md`): 5-Whys, capstone proposal, oral defense (sengaja tidak ada heading `## Worked Example` / `## Lab Hands-on` eksplisit; deliverable proposal menggantikan lab notebook)
-- **W12-W14** (`12_Capstone_3_Minggu.md`): timeline 3-minggu capstone (EDA+baseline / experiment / analysis+demo)
+- **W11** (`11_W11_Research_Framing.md`): framework Input→Middle→Output (3 pertanyaan: entitas/output/input, peta Middle+gap, validasi gap); framing menu (4-6 framing kandidat); literature triage loop; placeholder live demo dataset (Bu Fatma fasilitasi); workshop 3 sesi; deliverable: dokumen dekomposisi + tabel triage + daftar pendek framing untuk W12
+- **W12-W15** (`12_Capstone.md`): timeline 4-minggu capstone - W12 filter+framing defense+Eks1 pre-reg, W13 rethink+Eks2 pre-reg, W14 final research talks (20 mnt), W15 pengumpulan tanpa sesi kelas
 - **Rubrik** (`13_Rubrik_Penilaian.md`): 4-level mastery + Kompetensi 10 (Eksplorasi Mandiri & Komunikasi); bobot Kompetensi 1: 14%, Kompetensi 7: 4%; **Breadth Check Policy** callout di Kompetensi 1 (mana lab wajib vs opsional; Lab 6b = `lab_w7_transformer_mini` wajib untuk breadth; Pendalaman collapsible tidak masuk syarat minimum)
 - **Lampiran** (`14_Lampiran.md`): glosarium ID↔EN; A.1 backprop derivasi 7-langkah; **A.11 Indeks First-Use per Bab** (28 istilah Tier-1 → chapter pertama dipakai + link); **A.12 Worked Examples Istilah Prioritas** (28 istilah dengan contoh angka konkret); C.6-C.11 (entri portofolio, presentasi, lab breadth, Komponen Mandiri, weekly log, weekly update PI); §G Self-Checklist Mingguan; §H tabel migrasi
-- **Panduan Instruktur** (`15_Panduan_Instruktur.md`): pacing 11+3 + emphasis per-W + **peta Pendalaman opsional vs wajib per bab** + skenario kelas (termasuk Skenario 5 "Kelas Berjuang di W5 LSTM")
+- **Panduan Instruktur** (`15_Panduan_Instruktur.md`): pacing 11+4 + emphasis per-W + **peta Pendalaman opsional vs wajib per bab** + skenario kelas (termasuk Skenario 5 "Kelas Berjuang di W5 LSTM")
 
 **Breadth Arsitektur NN (lima keluarga: MLP, CNN, RNN/LSTM, Transformer, Autoencoder):**
 

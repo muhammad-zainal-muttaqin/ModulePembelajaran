@@ -14,8 +14,8 @@
 | 08 | [W8 - Foundation Models](08_W8_Foundation_Models.md) | 8 |
 | 09 | [W9 - Multimodal Reasoning](09_W9_Multimodal_Reasoning.md) | 9 |
 | 10 | [W10 - Paper Reading & Implementation](10_W10_Paper_Reading.md) | 10 |
-| 11 | [W11 - Research Framing & Capstone Proposal](11_W11_Research_Framing.md) | 11 |
-| 12 | [Capstone 3 Minggu](12_Capstone_3_Minggu.md) | 12-14 |
+| 11 | [W11 - Research Framing](11_W11_Research_Framing.md) | 11 |
+| 12 | [Capstone - Proyek Riset](12_Capstone.md) | 12-15 |
 | ▶ 13 | Rubrik Penilaian | – |
 | 14 | [Lampiran](14_Lampiran.md) | – |
 | 15 | [Panduan Instruktur](15_Panduan_Instruktur.md) | – |
@@ -236,33 +236,41 @@ Capstone menilai **integrasi** kompetensi dan penerapan sikap riset pada proyek 
 
 Level capstone berkontribusi 10% ke nilai akhir dengan pemetaan yang sama (Novice = 50, Developing = 70, Proficient = 85, Masterpiece = 95), dirata-rata lintas lima dimensi.
 
-### 5.1 Sub-Rubrik Per Fase Capstone (3 Minggu)
+### 5.1 Sub-Rubrik Per Fase Capstone (4 Minggu)
 
-Penilaian capstone didistribusi ke tiga fase untuk memastikan feedback diberikan selama proses, bukan hanya di akhir.
+Penilaian capstone didistribusi ke empat fase untuk memastikan feedback diberikan selama proses, bukan hanya di akhir.
 
-**W12 - Setup Phase (30% dari nilai capstone)**
-
-| Kriteria | Novice | Developing | Proficient | Masterpiece |
-|---|---|---|---|---|
-| **EDA dan audit** | Dataset dipakai tanpa inspeksi | EDA dasar; 1 isu ditemukan | EDA 3 lapis + leakage audit + preprocessing decisions documented | Menemukan isu yang mengubah scope proyek |
-| **Baseline berjalan** | Baseline ada tapi tidak reproducible | Baseline jalan dengan 1 seed | Baseline dengan 3 seed + YAML config + git hash | Baseline dengan CI sederhana atau smoke test |
-| **Pre-registration** | Tidak ada atau dibuat setelah training | Ada tapi generik, tanpa kondisi kegagalan | Hipotesis falsifiable dengan kondisi kegagalan eksplisit | Pre-reg merencanakan fallback jika primary gagal |
-
-**W13 - Execution Phase (40% dari nilai capstone)**
+**W12 - Filter dan Komitmen (25% dari nilai capstone)**
 
 | Kriteria | Novice | Developing | Proficient | Masterpiece |
 |---|---|---|---|---|
-| **Main experiment** | Training berjalan; tidak ada perbandingan adil | Baseline vs intervention; 1 seed | Baseline vs intervention; 3 seed; tabel angka | Per-seed variance dilaporkan; uji signifikansi |
-| **Focused ablation** | Tidak ada ablation | 1 ablation ad hoc | 1 ablation yang langsung menjawab interpretasi | Ablation mengisolasi penyebab, bukan hanya variasi |
-| **Interpretation draft** | Tidak ada interpretasi | "Model A lebih baik dari B" tanpa penjelasan | Interpretasi dikaitkan ke hipotesis dan kondisi eksperimen | Interpretation membedakan apa yang terbukti vs spekulasi |
+| **Pertahanan framing** | Framing tidak bisa dipertahankan saat ditanya | Framing ada tapi gap tidak jelas | Gap diidentifikasi; temporal/causal check dilakukan; literatur 2-3 paper | Gap nyata; triage literatur menyeluruh; backup framing siap |
+| **Pre-registration Eksperimen 1** | Tidak ada atau dibuat setelah training | Ada tapi generik, tanpa kondisi kegagalan | Hipotesis falsifiable; kondisi kegagalan eksplisit; seeds ditentukan | Pre-reg merencanakan fallback jika primary gagal; commit sebelum kode berjalan |
+| **Memulai Eksperimen 1** | Eksperimen belum mulai di akhir W12 | Setup berjalan; belum ada hasil | Baseline berjalan dengan ≥1 seed; logging aktif | Baseline + condition awal; hasil pertama sudah ada |
 
-**W14 - Communication Phase (30% dari nilai capstone)**
+**W13 - Pikirkan Ulang dan Iterasi (35% dari nilai capstone)**
 
 | Kriteria | Novice | Developing | Proficient | Masterpiece |
 |---|---|---|---|---|
-| **Laporan** | Deskriptif saja | Struktur latar-metode-hasil-diskusi | Narasi runtut; limitasi dinyatakan; grafik terpilih dengan alasan | Dapat dibaca peneliti lain dalam 30 menit tanpa penjelasan tambahan |
-| **Repo reproducibility** | Kode ada tapi sulit dijalankan | README ada; dependencies tercatat | Satu perintah reproduce hasil utama | Smoke test berjalan; environment terkunci |
-| **Demo** | Tidak ada demo | Demo jalan tapi hanya sukses cases | Demo menampilkan failure cases dan confidence distribution | Demo informatif untuk pengguna non-teknis |
+| **Hasil Eksperimen 1** | Tidak ada hasil atau tidak bisa direproduksi | Hasil ada; 1 seed; tanpa variance | Baseline vs kondisi utama; 3 seed; tabel angka | Per-seed variance dilaporkan; hasil dikaitkan ke hipotesis |
+| **Dokumen rethink** | Tidak ada atau menyalin rencana awal | Mencatat hasil tanpa perubahan arah | Perubahan arah traceable ke angka spesifik yang diamati; 2 paper baru ditemukan setelah melihat hasil | Mendiagnosis mengapa hasil berbeda dari ekspektasi; Eksperimen 2 secara eksplisit menjawab pertanyaan yang muncul dari Eksperimen 1 |
+| **Pre-registration Eksperimen 2** | Tidak ada | Ada tapi identik dengan Eksperimen 1 | Eksperimen 2 berbeda dari yang direncanakan semula berdasarkan rethink; kondisi dispecifikasi | Pre-reg bisa menjawab: "kalau Eksperimen 1 arahnya terbalik, Eksperimen 2 juga berbeda?" |
+
+**W14 - Presentasi Final (30% dari nilai capstone)**
+
+| Kriteria | Novice | Developing | Proficient | Masterpiece |
+|---|---|---|---|---|
+| **Research talk (15 mnt)** | Presentasi deskriptif; tidak ada argumen | Struktur ada; rethink disebutkan tapi dangkal | Alur logis dari gap → Eks 1 → rethink → Eks 2 → kontribusi; klaim sesuai data | Q&A dijawab dengan bukti spesifik; klaim dibatasi ke kondisi eksperimen |
+| **Klaim vs bukti** | Overclaiming umum; tanpa batasan scope | Klaim ada caveats tapi masih lebar | Klaim dibatasi eksplisit ke dataset dan kondisi yang diuji | Membedakan apa yang terbukti, apa yang disugestikan, dan apa yang masih spekulasi |
+| **Demo (saat presentasi)** | Tidak ada demo | Demo jalan; hanya sukses cases | Demo menampilkan failure cases; bisa dicari kasus yang model gagal | Demo informatif dan memperlihatkan keterbatasan metode |
+
+**W15 - Pengumpulan Final (10% dari nilai capstone)**
+
+| Kriteria | Novice | Developing | Proficient | Masterpiece |
+|---|---|---|---|---|
+| **Laporan final** | Draf kasar; banyak bagian kosong | Semua bagian ada; penulisan kurang rapi | 6-8 halaman; narasi runtut; limitasi dinyatakan jujur; setiap angka lacak ke eksperimen | Dapat dibaca peneliti lain dalam 30 menit tanpa penjelasan tambahan |
+| **Reproducibility repo** | Kode ada tapi sulit dijalankan | README ada; dependencies tercatat | Clone → setup → hasil utama dalam <30 menit; tag `v1.0` | Smoke test berjalan dari lingkungan bersih; config dan seed terdokumentasi |
+| **Revisi berdasarkan feedback** | Tidak ada revisi dari feedback W14 | Revisi kosmetik saja | Perubahan substantif mengacu feedback spesifik dari sesi W14 | Semua poin Q&A W14 tercermin di laporan atau disebutkan sebagai limitasi |
 
 ---
 
@@ -282,4 +290,4 @@ Tiga prinsip menjaga rubrik tetap adil dan konsisten.
 
 Rubrik ini bukan kejutan di akhir semester. Setiap awal bab menunjukkan kompetensi yang sedang dilatih dan level yang wajar dicapai pada minggu itu. Jika Anda merasa tertinggal, bicarakan dengan dosen pada titik tinjauan terdekat - lebih cepat selalu lebih baik daripada menunggu akhir semester.
 
-Baca `12_Capstone_3_Minggu.md` di akhir modul untuk memahami bagaimana seluruh kompetensi akan diuji secara terintegrasi dalam tiga fase.
+Baca `12_Capstone.md` di akhir modul untuk memahami bagaimana seluruh kompetensi akan diuji secara terintegrasi dalam empat fase.
