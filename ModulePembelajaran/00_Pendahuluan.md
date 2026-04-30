@@ -32,7 +32,7 @@
 
 ## 0. Peta Bab
 
-Modul ini adalah **bootcamp 11 minggu + capstone 3 minggu**. Bab ini memperkenalkan kosakata dasar modul, glosarium singkat, target outcome bootcamp, sembilan kompetensi yang dilatih sepanjang modul, empat sikap riset yang menjalin keseluruhan modul, tiga thread lintas minggu yang menjaga koherensi, ritme sesi mingguan, dan kontrak belajar yang disepakati sebelum melangkah ke materi teknis. Setelah menyelesaikan bab ini, Anda mengerti *mengapa* modul ini ada, *bagaimana* cara terbaik membacanya, dan *apa target realistis* di akhir bootcamp.
+Modul ini adalah **bootcamp 11 minggu + capstone 3 minggu**. Bab ini memperkenalkan kosakata dasar modul, glosarium singkat, target outcome bootcamp, sembilan kompetensi yang dilatih sepanjang modul, empat sikap riset yang menjalin keseluruhan modul, tiga thread lintas minggu yang menjaga koherensi, ritme sesi mingguan, dan kontrak belajar yang disepakati sebelum melangkah ke materi teknis. Setelah menyelesaikan bab ini, Anda mengerti *mengapa* modul ini disusun, *bagaimana* cara terbaik membacanya, dan *apa target realistis* di akhir bootcamp.
 
 ---
 
@@ -213,16 +213,16 @@ Email pembuka di atas menyentuh sembilan kompetensi yang menjadi tulang punggung
 8. **Multimodal reasoning** (W9). Menganalisis fusion strategy, per-modality ablation, dan missing-modality fallback.
 9. **Berkembang mandiri** (W10-W11). Membaca paper secara terarah, menyusun pertanyaan yang baik, dan merancang eksperimen lanjutan berikut pre-registration-nya.
 
-Anda tidak perlu menguasai kesembilan kompetensi di minggu pertama. Modul dirancang sebagai tangga: setiap minggu mengandalkan kebiasaan yang dibangun di minggu sebelumnya.
+Anda tidak perlu menguasai kesembilan kompetensi di minggu pertama. Modul disusun bertahap: setiap minggu mengandalkan kebiasaan yang dibangun di minggu sebelumnya.
 
 > [!TIP]
-> Urutan tangga ini disengaja. Anda akan menyentuh **kompetensi 1-3 di W1-W4**, kompetensi 4 di W6, kompetensi 5-7 di W7-W8, dan kompetensi 8-9 di W9-W11. Jangan khawatir kalau kompetensi 4-9 belum kebayang sekarang. Bahkan dosen pun mengasah kompetensi 9 (berkembang mandiri) sepanjang karier.
+> Urutan bertahap ini disengaja. **W1-W4 melatih kompetensi 1-3**, W6 melatih kompetensi 4, W7-W8 melatih kompetensi 5-7, dan W9-W11 melatih kompetensi 8-9. Jangan khawatir kalau kompetensi 4-9 belum kebayang sekarang. Bahkan dosen pun mengasah kompetensi 9 (berkembang mandiri) sepanjang karier.
 
 ---
 
 ## 4. Empat Sikap Riset
 
-Kompetensi teknis tidak akan bertahan lama tanpa sikap yang benar. Empat sikap berikut muncul berulang sepanjang modul, sering kali tanpa disebut eksplisit, melalui pilihan contoh dan pertanyaan refleksi.
+Kompetensi teknis cepat tumpul kalau tidak dibiasakan bersama sikap riset yang tepat. Empat sikap berikut ditanamkan sepanjang modul lewat pilihan contoh dan pertanyaan refleksi, sering kali tanpa disebut secara eksplisit.
 
 **Curiosity** - rasa ingin tahu yang gelisah. Ketika angka akurasi meloncat dari 78% ke 80% setelah Anda mengganti loss, sikap ini yang bertanya: "apakah kenaikan ini konsisten jika aku jalankan tiga kali dengan seed berbeda, atau sekadar kebetulan?" Curiosity menuntunmu ke eksperimen tambahan sebelum menulis laporan.
 
@@ -232,7 +232,7 @@ Kompetensi teknis tidak akan bertahan lama tanpa sikap yang benar. Empat sikap b
 
 **Ownership** - rasa memiliki yang melampaui alat. LLM mungkin menulis separuh kode Anda; repository orang lain mungkin menyediakan arsitektur; RunPod mungkin menjalankan training. Tetapi saat dosen bertanya mengapa pilihan tertentu diambil, jawabannya tetap tanggung jawab Anda. Ownership berarti Anda bisa menjelaskan setiap keputusan yang namamu tercantum padanya.
 
-Keempat sikap tidak diajarkan sebagai doktrin. Anda akan mengenalinya dalam pitfall yang dibahas, dalam checklist yang diulang, dan dalam pertanyaan refleksi di akhir tiap bab.
+Keempat sikap tidak diajarkan sebagai doktrin. Sikap-sikap itu muncul dalam pitfall yang dibahas, dalam checklist yang diulang, dan dalam pertanyaan refleksi di akhir tiap bab.
 
 ---
 
@@ -254,7 +254,7 @@ Setiap minggu kembali ke pertanyaan yang sama:
 | W5 | `(T, F) -> (1,)`, `(N,)`, `(T'', 1)` (sequence) |
 | W6 | sama seperti W5, fokus representasi & leakage |
 | W7 | `(T,) -> (N,)`, `(1,)`, `(T, N)` (teks) |
-| W8 | input apapun dengan pretrained priors |
+| W8 | input apapun yang memanfaatkan pretrained priors |
 | W9 | multiple tensors -> shared prediction (multimodal) |
 | W10-W11 | sintesis lintas keluarga |
 
@@ -318,7 +318,7 @@ Format ini memastikan setiap sesi:
 
 ## 7. Kontrak Belajar
 
-Modul ini paling efektif ketika Anda dan modul menyepakati hal-hal berikut.
+Modul ini paling efektif jika Anda mengikuti kesepakatan berikut.
 
 1. **Mengerjakan lab pada minggu yang sama dengan membacanya.** Menunda lab berarti menunda pemahaman, dan minggu berikutnya akan terasa seperti deretan istilah yang tidak tersambung.
 2. **Menulis catatan eksperimen sendiri.** Bukan menyalin output, tetapi menjawab: apa yang aku jalankan, apa yang terjadi, apa arti hasilnya, dan apa yang akan kulakukan selanjutnya. Format catatan ada di `14_Lampiran.md`.
@@ -372,7 +372,7 @@ Mulai W4, setiap bab juga memiliki satu **Komponen Mandiri** - pilihan jalur eks
 
 ## 9. Peta Dependensi Konsep
 
-Modul ini dirancang sebagai tangga linier W1 → W11. Tabel berikut menunjukkan minggu mana yang harus Anda selesaikan sebelum minggu tertentu. "Selesai" berarti lab utamanya sudah dijalankan dan Anda bisa menjelaskan ide utamanya.
+Modul ini disusun sebagai urutan linier W1 → W11. Tabel berikut menunjukkan minggu mana yang harus Anda selesaikan sebelum minggu tertentu. "Selesai" berarti lab utamanya sudah dijalankan dan Anda bisa menjelaskan ide utamanya.
 
 | Minggu | Prasyarat minimum | Konsep kunci |
 | --- | --- | --- |
@@ -390,7 +390,7 @@ Modul ini dirancang sebagai tangga linier W1 → W11. Tabel berikut menunjukkan 
 | **W12-14** Capstone | W1-W11 | Seluruh pipeline + research framing matang |
 
 > [!NOTE]
-> Dependensi linier W1→W11 by design. Berbeda dengan modul lama yang punya bab paralel, struktur bootcamp memastikan setiap kebiasaan riset baru dilatih di atas kebiasaan minggu sebelumnya. Hindari melompat: misalnya, W7 (text + repo adoption) menuntut workflow reproducibility dari W4 dan eksperimen matrix dari W5.
+> Dependensi linier W1→W11 memang disengaja. Berbeda dengan modul lama yang punya bab paralel, struktur bootcamp memastikan setiap kebiasaan riset baru dilatih di atas kebiasaan minggu sebelumnya. Hindari melompat: misalnya, W7 (text + repo adoption) menuntut workflow reproducibility dari W4 dan eksperimen matrix dari W5.
 
 **Rantai lab breadth arsitektur**: Lab 0 (MLP tabular, W1) atau Lab 1c (MLP numpy, opsional) → Lab 1 (CNN, W2) → Lab 3b (RNN/LSTM, W5) → Lab 5b/Lab 6b (Transformer, W7) → Lab 7b (Autoencoder, breadth opsional). Empat dari lima keluarga sudah tercakup oleh lab wajib W1-W7; Lab 7b melengkapi keluarga Autoencoder untuk Breadth Check di Kontrak Belajar.
 

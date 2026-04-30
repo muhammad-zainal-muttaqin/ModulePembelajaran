@@ -318,7 +318,7 @@ Peta seperti ini memberimu jawaban cepat untuk pertanyaan:
 - "Bagaimana saya ganti backbone jadi ViT?" → `models/vit.py` sudah ada; cek `configs/vit.yaml`.
 - "Dataset apa yang dipakai?" → `data.py` + `scripts/download_data.sh`.
 
-Gambarkan peta di kertas atau `notes.md`. Anda akan merujuknya berulang.
+Gambarkan peta di kertas atau `notes.md`. Peta ini akan dirujuk berulang.
 
 ### 2.3 Smoke Test Sebelum Training Penuh
 

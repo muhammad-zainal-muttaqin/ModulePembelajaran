@@ -451,7 +451,7 @@ Salin checklist ini di bagian atas setiap folder eksperimen baru (`experiments/<
 
 ### C.1 Template Pre-Registration
 
-Salin ke `docs/preregs/<YYYY-MM-DD>_<nama_eksperimen>.md` sebelum menulis kode eksperimen. Tanggal di nama file harus lebih lama dari commit pertama kode eksperimen.
+Salin ke `docs/preregs/<YYYY-MM-DD>_<nama_eksperimen>.md` sebelum menulis kode eksperimen. Tanggal di nama file harus lebih awal dari commit pertama kode eksperimen.
 
 ```markdown
 # Pre-Registration: <judul eksperimen singkat>
@@ -894,7 +894,7 @@ Anda perlu pernah melatih setidaknya satu model klasifikasi dengan scikit-learn:
 
 ## G. Self-Checklist Mingguan
 
-Dua belas tabel di bawah adalah alat bantu bagi Anda untuk memeriksa pemahaman sendiri setiap akhir minggu. Centang "Sudah" hanya jika benar-benar bisa melakukannya *tanpa melihat catatan*. "Mulai" berarti bisa dengan bantuan atau referensi. Jika ada "Belum" di minggu sebelumnya, selesaikan sebelum lanjut ke minggu berikutnya - konsep di modul ini bertumpu seperti tangga.
+Dua belas tabel di bawah adalah alat bantu bagi Anda untuk memeriksa pemahaman sendiri setiap akhir minggu. Centang "Sudah" hanya jika benar-benar bisa melakukannya *tanpa melihat catatan*. "Mulai" berarti bisa dengan bantuan atau referensi. Jika ada "Belum" di minggu sebelumnya, selesaikan sebelum lanjut ke minggu berikutnya - konsep di modul ini disusun bertahap.
 
 ### Minggu 1 - Orientasi (Bab 00)
 
@@ -1347,4 +1347,4 @@ Panduan untuk mahasiswa yang pernah menggunakan modul versi 14 minggu, atau dose
 
 ---
 
-*Modul ini selesai ketika Anda merasa cukup percaya diri untuk memulai proyek riset sendiri - bukan ketika setiap halaman sudah Anda baca. Semoga Anda membawa empat sikap itu lebih lama dari satu semester.*
+*Anda boleh menganggap modul ini selesai ketika sudah cukup percaya diri untuk memulai proyek riset sendiri - bukan ketika setiap halaman sudah dibaca. Semoga empat sikap itu tetap terbawa setelah semester ini selesai.*

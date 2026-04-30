@@ -270,7 +270,7 @@ Penilaian capstone didistribusi ke tiga fase untuk memastikan feedback diberikan
 
 Tiga prinsip menjaga rubrik tetap adil dan konsisten.
 
-**Bukti mengalahkan kesan.** Level ditetapkan berdasarkan artefak konkret - notebook, laporan, commit history, catatan eksperimen - bukan memori dari diskusi lisan.
+**Bukti lebih penting daripada kesan.** Level ditetapkan berdasarkan artefak konkret - notebook, laporan, commit history, catatan eksperimen - bukan memori dari diskusi lisan.
 
 **Kemajuan dihargai.** Mahasiswa yang memulai semester di level Novice pada banyak kompetensi dan mencapai Developing konsisten pada akhir semester telah memenuhi tujuan modul. Masterpiece tidak disyaratkan untuk nilai tertinggi kecuali pada kompetensi spesifik yang ditekankan dosen pengampu.
 
@@ -280,6 +280,6 @@ Tiga prinsip menjaga rubrik tetap adil dan konsisten.
 
 ## 7. Untuk Mahasiswa
 
-Rubrik ini bukan kejutan di akhir semester. Setiap awal bab, Anda akan tahu kompetensi apa yang sedang dilatih dan level mana yang wajar dicapai pada minggu itu. Jika Anda merasa tertinggal, bicarakan dengan dosen pada titik tinjauan terdekat - lebih cepat selalu lebih baik daripada menunggu akhir semester.
+Rubrik ini bukan kejutan di akhir semester. Setiap awal bab menunjukkan kompetensi yang sedang dilatih dan level yang wajar dicapai pada minggu itu. Jika Anda merasa tertinggal, bicarakan dengan dosen pada titik tinjauan terdekat - lebih cepat selalu lebih baik daripada menunggu akhir semester.
 
 Baca `12_Capstone_3_Minggu.md` di akhir modul untuk memahami bagaimana seluruh kompetensi akan diuji secara terintegrasi dalam tiga fase.

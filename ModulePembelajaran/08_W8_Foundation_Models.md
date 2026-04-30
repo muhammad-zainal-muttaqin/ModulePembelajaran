@@ -26,7 +26,7 @@
 
 # 08 · W8 - Foundation Models
 
-> *Foundation model bukan "model yang bagus". Ia adalah model yang sudah mempelajari representasi kaya dari jutaan atau miliaran contoh sehingga Anda tidak harus mulai dari nol. Pertanyaannya bukan "apakah saya boleh memakainya" - pertanyaannya adalah "adaptasi apa yang paling masuk akal untuk skenario ini?"*
+> *Foundation model bukan "model yang bagus". Model ini sudah mempelajari representasi kaya dari jutaan atau miliaran contoh sehingga Anda tidak harus mulai dari nol. Pertanyaannya bukan "apakah saya boleh memakainya" - pertanyaannya adalah "adaptasi apa yang paling masuk akal untuk skenario ini?"*
 
 **Big Map row:** input apapun dengan pretrained priors
 **Rigor habit:** Model-card literacy, adaptation choice, fair baseline selection
@@ -76,12 +76,12 @@ Foundation model bukan definisi teknis yang ketat. Dalam konteks riset praktis, 
 2. **Representasi yang dapat ditransfer** - hidden states atau embeddings berguna untuk banyak downstream tasks.
 3. **Dapat diadaptasi tanpa training penuh** - frozen extraction, lightweight adapters (LoRA), atau fine-tuning sebagian sudah memberikan hasil kompetitif.
 
-Konsekuensi praktis: ketika Anda mendapat task baru, pertanyaan pertama adalah "apakah ada foundation model yang relevan?" bukan "arsitektur apa yang akan saya bangun dari nol?"
+Konsekuensi praktis: ketika Anda mendapat task baru, pertanyaan pertama adalah "apakah tersedia foundation model yang relevan?" bukan "arsitektur apa yang akan saya bangun dari nol?"
 
 ### 2.2 Taksonomi Modality x Family x Adaptation
 
 > [!IMPORTANT]
-> **Tiga adaptation modes yang akan muncul berulang di tabel.** Definisi singkat di sini supaya tabel tidak terasa magis. Detail decision tree ada di §2.4.
+> **Tiga adaptation modes yang dipakai berulang di tabel.** Definisi singkat di sini supaya tabel tidak terasa magis. Detail decision tree ada di §2.4.
 >
 > - **Frozen** - bobot pretrained dikunci (`requires_grad = False`). Hanya layer tambahan kecil (linear head, classifier) yang dilatih. Inference tetap melalui seluruh model, tetapi tidak ada backward pass ke backbone. Tercepat dan paling stabil; sub-optimal kalau domain target jauh dari pretraining.
 > - **LoRA** (Low-Rank Adaptation) - sisipkan matriks low-rank `A B` (mis. `r=8`) paralel dengan `W_q` dan `W_v` di setiap attention layer; kunci `W` original. Hanya `A B` dilatih. Trade-off: ~0.5-2% parameter dilatih, performa biasanya 95-99% dari full fine-tuning, training 3-5× lebih cepat. Pakai library `peft` dari HuggingFace.

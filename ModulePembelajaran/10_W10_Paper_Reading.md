@@ -185,7 +185,7 @@ Setelah eksperimen selesai, buka pre-reg, bandingkan dengan hasil aktual, tulis 
 
 Jangan jadikan pre-reg birokrasi. Tujuannya bukan dokumen sempurna; tujuannya adalah Anda-tiga-jam-kemudian tidak bisa menipu Anda-sekarang.
 
-### 2.6 Rutinitas Mingguan: Sistem yang Bertahan
+### 2.6 Rutinitas Mingguan yang Tahan Lama
 
 > [!NOTE]
 > Rutinitas ini dirancang sebagai bekal mandiri **setelah modul berakhir**, bukan sebagai kewajiban tambahan di tengah semester. Selama kelas berjalan, Anda sudah punya lab, Komponen Mandiri, dan capstone sebagai latihan terjadwal. Gunakan bagian ini sebagai referensi untuk membangun kebiasaan jangka panjang setelah lulus atau setelah bootcamp selesai.
@@ -265,7 +265,7 @@ Apa yang Rani tulis di jurnal pertanyaan:
 
 > ELR masih membantu di structured noise tetapi margin menyusut. Pertanyaan baru: apakah teknik yang secara eksplisit memodelkan pair-wise transition (seperti noise-adaptation layer) akan lebih besar marginnya di structured? Kandidat paper minggu depan: Sukhbaatar et al. 2015, Patrini et al. 2017.
 
-Rani telah menjadi peneliti aktif. Dalam satu minggu - tanpa pembimbing memberi instruksi - ia memilih paper, memformulasikan pertanyaan yang dapat diuji, menjalankan eksperimen kecil, menemukan pola, dan punya pertanyaan berikutnya. Sistem yang berputar sendiri.
+Rani telah menjadi peneliti aktif. Dalam satu minggu - tanpa pembimbing memberi instruksi - ia memilih paper, memformulasikan pertanyaan yang dapat diuji, menjalankan eksperimen kecil, menemukan pola, dan punya pertanyaan berikutnya. Kebiasaan risetnya mulai berjalan mandiri.
 
 ---
 
@@ -273,9 +273,9 @@ Rani telah menjadi peneliti aktif. Dalam satu minggu - tanpa pembimbing memberi 
 
 **Pitfall 1 - Membaca untuk merasa pintar, bukan untuk membangun sesuatu.** Anda mengonsumsi paper sebanyak 5/minggu tetapi tidak pernah menjalankan eksperimen sendiri. *Cara deteksi:* buka jurnal pertanyaanmu. Jika semua poin berupa ringkasan paper, bukan pertanyaanmu sendiri yang diuji atau akan diuji, Anda sedang mengonsumsi.
 
-**Pitfall 2 - Paper baru dikejar, paper fondasi dilewat.** Hanya membaca paper 2024-2025 tanpa paper 2015-2018 yang membangun field. *Cara deteksi:* saat membaca related work paper baru, perhatikan rujukan yang muncul berulang di banyak paper modern - itu paper fondasi; sisakan satu slot/bulan untuknya.
+**Pitfall 2 - Paper baru dikejar, paper fondasi dilewat.** Hanya membaca paper 2024-2025 tanpa paper 2015-2018 yang membangun field. *Cara deteksi:* saat membaca related work paper baru, perhatikan rujukan yang sering muncul di banyak paper modern - itu paper fondasi; sisakan satu slot/bulan untuknya.
 
-**Pitfall 3 - Pre-reg ditulis setelah melihat hasil.** "Oh ternyata hasilnya begini - biar saya tulis pre-reg yang cocok." Ini mengalahkan tujuan. *Cara deteksi:* tanggal file pre-reg harus lebih tua dari tanggal commit pertama kode eksperimen. Bila tidak, Anda sedang membohongi diri.
+**Pitfall 3 - Pre-reg ditulis setelah melihat hasil.** "Oh ternyata hasilnya begini - biar saya tulis pre-reg yang cocok." Ini merusak tujuan pre-registration. *Cara deteksi:* tanggal file pre-reg harus lebih awal dari tanggal commit pertama kode eksperimen. Bila tidak, Anda sedang membohongi diri.
 
 **Pitfall 4 - 5 Whys berhenti di "karena menarik".** Lima whys yang semuanya tentang *motivasi emosional* tidak pernah mendarat ke variabel yang diukur. *Cara deteksi:* di pertanyaan akhir, harus ada kata kerja konkret ("ukur", "bandingkan", "ablasi") dan variabel konkret ("loss", "augmentasi", "arsitektur"). Bila tidak ada, gali lagi satu why.
 

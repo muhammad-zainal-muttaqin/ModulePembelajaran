@@ -63,7 +63,7 @@ Setiap bab mengikuti ritme tetap:
 7. **Refleksi** - tiga pertanyaan terbuka untuk menguji pemahaman.
 8. **Bacaan Lanjutan** - kurasi singkat, masing-masing dengan alasan.
 
-Kerjakan lab pada minggu yang sama dengan bacanya. Menunda lab membuat konsep berikutnya terasa seperti deretan istilah tanpa pijakan.
+Kerjakan lab pada minggu yang sama dengan membaca materinya. Menunda lab membuat konsep berikutnya terasa seperti deretan istilah tanpa pijakan.
 
 ---
 

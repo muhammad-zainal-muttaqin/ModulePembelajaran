@@ -26,7 +26,7 @@
 
 # 02 · W2 - Images, CNN & Smoke Test Ritual
 
-> *Arsitektur bukan daftar definisi untuk dihafalkan. Ia adalah keputusan desain yang berangkat dari pertanyaan: bentuk apa yang melekat pada data Anda, dan struktur apa yang paling alami mengikutinya?*
+> *Arsitektur bukan daftar definisi untuk dihafalkan. Arsitektur adalah keputusan desain yang berangkat dari pertanyaan: pola apa yang dibawa data Anda, dan struktur model apa yang paling cocok untuk pola itu?*
 
 **Big Map row:** `(C, H, W) -> (N,)`
 **Rigor habit:** Three-level smoke test
@@ -153,7 +153,7 @@ Dua fenomena penting yang sering disebut paper:
 - **Exploding gradient** - gradient meledak saat bobot besar; *gradient clipping* adalah solusinya.
 
 > [!NOTE]
-> Derivasi 7-langkah chain rule untuk MLP (MSE loss + sigmoid) tersedia lengkap di [Lampiran A.1](14_Lampiran.md#a1-backpropagation-derivasi-manual). Bacanya setelah W3 ketika Anda sudah punya beberapa run sukses untuk diinterpretasi. Lab 1c (MLP numpy from-scratch) tersedia sebagai breadth lab opsional dan menurunkan backprop secara konkret pada MNIST.
+> Derivasi 7-langkah chain rule untuk MLP (MSE loss + sigmoid) tersedia lengkap di [Lampiran A.1](14_Lampiran.md#a1-backpropagation-derivasi-manual). Baca setelah W3, ketika Anda sudah punya beberapa run sukses untuk diinterpretasi. Lab 1c (MLP numpy from-scratch) tersedia sebagai breadth lab opsional dan menerapkan backprop secara konkret pada MNIST.
 
 ### 2.3 Three-Level Smoke Test Ritual
 
@@ -361,7 +361,7 @@ Aturan praktisnya: pakai default yang disebut paper yang Anda replikasi. Menggan
 
 ### 2.8 Augmentation, Dropout, dan Regularization: Kosakata Sebelum Kode
 
-Saat membaca kode SimpleCNN di §3, Anda akan menjumpai tiga istilah ini dipakai tanpa penjelasan. Kita definisikan dulu di sini supaya kode tidak terasa magis.
+Saat membaca kode SimpleCNN di §3, tiga istilah ini dipakai tanpa penjelasan. Kita definisikan dulu di sini supaya kode tidak terasa magis.
 
 **Augmentation.** Transformasi acak yang diterapkan **hanya pada batch training** untuk memperluas variasi data. Contoh: `RandomCrop` (potong area acak), `RandomHorizontalFlip` (balik kiri-kanan dengan probabilitas 0.5), `ColorJitter` (ganggu hue/brightness). Tujuan: model belajar fitur yang invarian terhadap transformasi yang masuk akal di dunia nyata. Augmentasi tidak diterapkan di val/test; di sana kita ingin evaluasi pada data apa adanya.
 

@@ -53,7 +53,7 @@ ModulePembelajaran/
 - **W8** (`08_W8_Foundation_Models.md`): taxonomy modality×family×adaptation, model card literacy, §2.1.1 matriks evaluasi tool
 - **W9** (`09_W9_Multimodal_Reasoning.md`): fusion strategies, per-modality ablation, missing modality, peta keluarga generatif
 - **W10** (`10_W10_Paper_Reading.md`): 3-pass paper reading + paper-to-code workflow; templates A-E (termasuk LSTM/Transformer dan Autoencoder breadth)
-- **W11** (`11_W11_Research_Framing.md`): 5-Whys, capstone proposal, oral defense (note: by design tidak ada heading `## Worked Example` / `## Lab Hands-on` eksplisit; deliverable proposal menggantikan lab notebook)
+- **W11** (`11_W11_Research_Framing.md`): 5-Whys, capstone proposal, oral defense (sengaja tidak ada heading `## Worked Example` / `## Lab Hands-on` eksplisit; deliverable proposal menggantikan lab notebook)
 - **W12-W14** (`12_Capstone_3_Minggu.md`): timeline 3-minggu capstone (EDA+baseline / experiment / analysis+demo)
 - **Rubrik** (`13_Rubrik_Penilaian.md`): 4-level mastery + Kompetensi 10 (Eksplorasi Mandiri & Komunikasi); bobot Kompetensi 1: 14%, Kompetensi 7: 4%; **Breadth Check Policy** callout di Kompetensi 1 (mana lab wajib vs opsional; Lab 6b = `lab_w7_transformer_mini` wajib untuk breadth; Pendalaman collapsible tidak masuk syarat minimum)
 - **Lampiran** (`14_Lampiran.md`): glosarium ID↔EN; A.1 backprop derivasi 7-langkah; **A.11 Indeks First-Use per Bab** (28 istilah Tier-1 → chapter pertama dipakai + link); **A.12 Worked Examples Istilah Prioritas** (28 istilah dengan contoh angka konkret); C.6-C.11 (entri portofolio, presentasi, lab breadth, Komponen Mandiri, weekly log, weekly update PI); §G Self-Checklist Mingguan; §H tabel migrasi
@@ -207,6 +207,21 @@ Penulis modul adalah penutur asli Indonesia. Prosa harus terasa ditulis langsung
 | `intuisi` (= abstrak "intuition/concept") | `pemahaman` / `gambaran` / `cara kerja` / `prinsip` | "Intuisi" dalam ID bermakna naluri/insting; untuk "understanding of a concept" pilih kata sesuai konteks: gambaran (umum), pemahaman (konsep), cara kerja (mekanisme), prinsip (aturan). Pengecualian: "kejujuran intuisi" / "memvalidasi intuisi" — di sini "intuisi" berarti dugaan/tebakan, sah dipakai |
 | `secara umum` sebagai penanda tren pada data tunggal | `cenderung` / `pada umumnya` / hapus | "Secara umum" valid untuk generalisasi multi-data; untuk tren kurva tunggal pakai "cenderung" |
 | `X bukan berarti Y` sebagai kalimat mandiri setelah kalimat sebelumnya | gabungkan: `..., tetapi bukan berarti Y` | Pola dua kalimat "A. Tetapi A bukan berarti B." adalah konstruksi khas terjemahan; lebih natural digabung |
+| metafora campuran seperti `urutan tangga` / `tangga linier` | `urutan bertahap` / `urutan linier` / `disusun bertahap` | Jangan memaksa metafora spasial jika maksudnya hanya urutan pedagogis |
+| `modul ini ada` (= "why this module exists") | `modul ini disusun` / `tujuan modul ini` | `Ada` untuk tujuan abstrak terasa seperti calque "exists" |
+| frasa Inggris tempelan seperti `by design`, `density terlalu cepat` | `memang disengaja`, `terlalu padat dalam waktu singkat` | Jangan campur fragmen Inggris jika ada padanan Indonesia yang jelas |
+| `Bacanya setelah...` sebagai instruksi | `Baca setelah...` | Hindari nominalisasi lisan yang kaku di instruksi modul |
+| `menurunkan backprop` | `menerapkan backprop` / `menjabarkan backprop` | `Menurunkan` hanya natural untuk derivasi formal; untuk lab praktik pakai `menerapkan` |
+| `Anda dan modul menyepakati` | `Anda mengikuti kesepakatan` / `kontrak belajar berikut` | Modul bukan pihak yang menyepakati; personifikasi ini terdengar janggal |
+| `kompetensi teknis tidak akan bertahan lama tanpa sikap yang benar` | `kompetensi teknis cepat tumpul kalau tidak dibiasakan bersama sikap riset yang tepat` | Hindari `bertahan lama` untuk kemampuan dan `sikap yang benar` yang terdengar moralistik/terjemahan |
+| `X muncul berulang sepanjang modul` | `X ditanamkan sepanjang modul` / `X dibahas berulang` | Untuk sikap/nilai, `ditanamkan` lebih natural daripada `muncul berulang` |
+| `dengan bacanya` | `dengan membacanya` / restrukturisasi | Hindari bentuk nominal lisan yang kaku dalam instruksi tertulis |
+| `Ia adalah versi Anda sebelum hasil keluar` | `Dokumen ini merekam rencana sebelum hasil keluar` | Hindari personifikasi abstrak yang terasa seperti "it is your version..." |
+| `sistem yang berputar sendiri` | `alur kerja yang mulai mandiri` / `kebiasaan riset yang berjalan mandiri` | Metafora mekanis ini janggal untuk proses belajar/riset |
+| `kerja nyata dimulai` | `pelaksanaan dimulai` / `fase kerja dimulai` | `Nyata` sebagai penegas abstrak sering bisa diganti dengan kata yang lebih konkret |
+| `ini mengalahkan tujuan` (= "defeats the purpose") | `ini merusak tujuan` / `ini bertentangan dengan tujuan` | Idiom "mengalahkan tujuan" tidak natural dalam Indonesia |
+| `bukti mengalahkan kesan` | `bukti lebih penting daripada kesan` | Hindari slogan hasil terjemahan "X beats Y" |
+| `tanggal lebih tua dari commit` | `tanggal lebih awal dari commit` | Untuk urutan waktu dokumen/commit, `lebih awal` lebih jelas daripada `lebih tua` |
 
 **Pola yang sering luput dan wajib dihindari:** konstruksi spasial-metaforis ("berada X menuju Y", "di jalur untuk Z"), post-nominal kata sifat hasil terjemahan kata-per-kata ("topik lab nyata" = "real lab topics", "data sintetis nyata"), dan future auxiliary "Anda akan + V" sebagai pembuka section deskriptif. Tiga pola ini terdengar jelas seperti terjemahan literal dan harus diubah, bahkan jika bentuk individu kata-katanya sudah ada di kamus PUEBI.
 

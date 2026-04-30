@@ -26,7 +26,7 @@
 
 # 15 · Panduan Dosen
 
-> *Modul ini bukan buku teks yang dibacakan dari depan kelas. Ia adalah tangga eksperimen yang membutuhkan fasilitator - seseorang yang tahu kapan memberi ruang untuk gagal, kapan mengajukan pertanyaan yang lebih tajam, dan kapan mundur agar mahasiswa menemukan sendiri jawabannya.*
+> *Modul ini bukan buku teks yang dibacakan dari depan kelas. Modul ini adalah rangkaian eksperimen bertahap yang membutuhkan fasilitator - seseorang yang tahu kapan memberi ruang untuk gagal, kapan mengajukan pertanyaan yang lebih tajam, dan kapan mundur agar mahasiswa menemukan sendiri jawabannya.*
 
 ---
 

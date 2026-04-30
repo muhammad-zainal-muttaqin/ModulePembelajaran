@@ -5,7 +5,7 @@
 **Dibuat oleh:** [Nama]
 
 > **Penting:** File ini harus di-commit SEBELUM kode eksperimen pertama ditulis.
-> Verifikasi dengan: `git log --follow docs/preregs/<file>.md` - tanggal commit harus lebih tua dari commit kode.
+> Verifikasi dengan: `git log --follow docs/preregs/<file>.md` - tanggal commit harus lebih awal dari commit kode.
 
 ---
 

@@ -125,7 +125,7 @@ Dipasangkan dengan optimizer adalah *scheduler*: mekanisme menurunkan (atau mena
 > **Aturan praktis Adam vs AdamW.** Pakai **AdamW** sebagai default untuk training dari nol modern (CNN, Transformer). Hindari "Adam + L2 manual ditambahkan ke loss" - itu yang membuat regularisasi tidak konsisten antar parameter. Range yang masuk akal: `lr=3e-4` (Karpathy constant), `weight_decay=1e-4` sampai `1e-2`. Untuk fine-tuning pretrained model, pakai `lr` 10× lebih kecil dari training-dari-nol.
 
 > [!NOTE]
-> **Tentang scheduler dan warmup.** Untuk Lab 2 di W3, learning rate **konstan** sudah cukup; Anda akan menjumpai `OneCycleLR`/`CosineAnnealingLR`/`ReduceLROnPlateau` dan **warmup** (naikkan lr dari 0 ke target di beberapa epoch awal) di W4 saat experiment matrix mulai melibatkan banyak run. Sekarang fokus dulu ke loss + optimizer pasangan-dasar.
+> **Tentang scheduler dan warmup.** Untuk Lab 2 di W3, learning rate **konstan** sudah cukup; `OneCycleLR`/`CosineAnnealingLR`/`ReduceLROnPlateau` dan **warmup** (naikkan lr dari 0 ke target di beberapa epoch awal) baru dibahas di W4 saat experiment matrix mulai melibatkan banyak run. Sekarang fokus dulu ke loss + optimizer pasangan-dasar.
 
 ### 2.3 Evaluasi: Bukan Satu Angka
 
@@ -168,7 +168,7 @@ Salah satu keputusan yang paling sering menentukan performa model bukan pilihan 
 
 Setelah memilih jalur utama, beberapa keputusan turunan segera mengikuti: apakah model *pretrained* di-freeze penuh atau sebagian? Layer mana yang dibuka? Bagaimana mereduksi *hidden states* menjadi satu vektor - token `[CLS]`, mean pooling, atau konkatenasi beberapa layer?
 
-Taksonomi ini akan penting di Bab 02 saat merumuskan variabel eksperimen. Membandingkan "BERT frozen + head kecil" dengan "BERT fine-tune penuh" bukan sekadar membandingkan dua model - Anda membandingkan dua strategi representasi dengan tingkat kebebasan yang sangat berbeda.
+Taksonomi ini penting saat merumuskan variabel eksperimen. Membandingkan "BERT frozen + head kecil" dengan "BERT fine-tune penuh" bukan sekadar membandingkan dua model - Anda membandingkan dua strategi representasi dengan tingkat kebebasan yang sangat berbeda.
 
 ### 2.5 Membaca Sinyal: Diagnosis dari Loss Curve
 

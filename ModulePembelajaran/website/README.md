@@ -49,7 +49,7 @@ src/
 
 | Path | Isi |
 |------|-----|
-| `#/` | Landing: EmailHero + 4 sikap + tangga 14 minggu + 9 kompetensi |
+| `#/` | Landing: EmailHero + 4 sikap + alur 14 minggu + 9 kompetensi |
 | `#/modul` | Grid 13 bab |
 | `#/modul/:id` | Reader bab dengan ToC sidebar + jurnal refleksi |
 | `#/rubrik` | Self-assessment 9x4 + rubrik lengkap |

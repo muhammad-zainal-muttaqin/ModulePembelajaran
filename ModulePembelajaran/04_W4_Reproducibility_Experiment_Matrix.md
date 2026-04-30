@@ -74,7 +74,7 @@ Bab ini membangun kebiasaan itu.
 > **Catatan sebelum mulai:** Eksperimen di bab ini - dan di seluruh modul - boleh menghasilkan hasil yang tidak sesuai hipotesis. Itu bukan kegagalan; itu data. Bagian §2.6 di bab ini membahas cara mendokumentasikan dan melaporkan saat hipotesis tidak terkonfirmasi - baca bagian itu dengan serius, karena situasi tersebut lebih sering terjadi daripada sebaliknya.
 
 > [!IMPORTANT]
-> **Tiga istilah kunci yang akan Anda jumpai berulang di bab ini.** Definisi singkat di sini supaya tidak muncul tiba-tiba.
+> **Tiga istilah kunci yang dipakai berulang di bab ini.** Definisi singkat di sini supaya tidak muncul tiba-tiba.
 >
 > - **Pre-registration** - dokumen tertulis (`protocol.md` di repo Anda) berisi hipotesis, variabel, metrik, dan threshold sukses yang ditulis **sebelum** eksperimen dijalankan. Tujuan: mencegah cerita-setelah-fakta dan konfirmasi bias. Asal istilah dari riset psikologi tahun 2010-an, kini standar di reproducible ML. Timestamp pre-reg adalah bukti bahwa Anda merencanakan sebelum melihat hasil.
 > - **Seed variance** - selisih hasil antar run yang konfigurasinya identik kecuali RNG seed (initialisasi bobot acak, urutan shuffle data, augmentasi acak). Pada CIFAR-10 baseline biasanya ±0.5-1.5% akurasi. Klaim "naik 1.7%" dengan seed variance ±1.5% bisa sekadar noise.
@@ -164,7 +164,7 @@ Contoh konkret, langsung bisa ditiru:
 - Total: setengah hari kerja.
 ```
 
-Satu halaman ini mengubah "coba focal loss, freeze conv1" menjadi rancangan yang bisa dibaca, didiskusikan, dan dijalankan oleh orang lain tanpa tebakan. Protokol tersimpan di repo bersama kode. Ia adalah versi Anda sebelum hasil keluar; berguna sebagai cek kejujuran nanti ketika Anda tergoda mengubah cerita agar sesuai data.
+Satu halaman ini mengubah "coba focal loss, freeze conv1" menjadi rancangan yang bisa dibaca, didiskusikan, dan dijalankan oleh orang lain tanpa tebakan. Protokol tersimpan di repo bersama kode. Dokumen ini merekam rencana sebelum hasil keluar; berguna sebagai cek kejujuran nanti ketika Anda tergoda mengubah cerita agar sesuai data.
 
 ### 2.3 Mengendalikan Variabel
 
@@ -217,7 +217,7 @@ Ada perbedaan halus antara *hipotesis* dan *harapan*. Hipotesis berisi prediksi 
 
 Hipotesis yang spesifik melindungi Anda dari dua bahaya:
 
-1. **Konfirmasi bias.** Tanpa target konkret, Anda akan melihat hasil apa saja yang sedikit lebih baik sebagai "bukti bahwa hipotesisnya benar". Dengan target 3 poin, kenaikan 0.5 poin adalah *tidak mengkonfirmasi*, bukan sukses kecil.
+1. **Konfirmasi bias.** Tanpa target konkret, hasil apa saja yang sedikit lebih baik mudah terbaca sebagai "bukti bahwa hipotesisnya benar". Dengan target 3 poin, kenaikan 0.5 poin adalah *tidak mengkonfirmasi*, bukan sukses kecil.
 2. **Cerita setelah fakta.** Tanpa prediksi tertulis sebelum run, mudah sekali menarasikan hasil aktual sebagai "yang kita harapkan sejak awal". Protokol tertulis mencegah ini.
 
 Hipotesis tidak harus benar. Hipotesis yang ternyata salah sering lebih informatif daripada yang benar - karena ia memaksa Anda mencari penjelasan. Laboratorium yang paling produktif memperlakukan hipotesis salah bukan sebagai kegagalan, tetapi sebagai data.

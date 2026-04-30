@@ -110,7 +110,7 @@ test = df[df['timestamp'] > cutoff]
 
 Seorang mahasiswa pascasarjana melatih model klasifikasi citra medis untuk mendeteksi penyakit paru-paru dari rontgen dada. Akurasi validasi: 97%. Saat review, seorang kolega bertanya: "apakah model belajar mengenali penyakit, atau belajar mengenali rumah sakitnya?" Ternyata setiap rumah sakit memakai mesin rontgen berbeda dengan ciri visual khas di sudut gambar; data positif dan negatif berasal dari sumber yang berbeda. Model tidak pernah melihat paru-paru - ia mengklasifikasi *sumber*. Enam bulan kerja diulang.
 
-Kewaspadaan terhadap data bukan tugas tambahan. Ia adalah fondasi tanpa-mana seluruh eksperimen berdiri di atas pasir.
+Kewaspadaan terhadap data bukan tugas tambahan. Tanpanya, seluruh eksperimen berdiri di atas pasir.
 
 ---
 
@@ -464,7 +464,7 @@ plt.tight_layout()
 plt.savefig('experiments/lab4/samples_per_class.png')
 ```
 
-Inspeksi visual ini penting: Anda akan melihat perbedaan antar kelas, menilai apakah tugas tampak "masuk akal", dan menemukan anomali (gambar hitam, gambar kosong, gambar dengan artefak).
+Inspeksi visual ini penting: perbedaan antar kelas terlihat, kewajaran tugas bisa dinilai, dan anomali dapat tertangkap (gambar hitam, gambar kosong, gambar dengan artefak).
 
 ### 3.4 Cek Leakage: Duplikasi Antar Split
 

@@ -255,6 +255,6 @@ Ini adalah entri portofolio terakhir (entri ke-8, W11). Setelah mengisinya, kerj
 
 ## Lanjut ke Capstone
 
-Proposal sudah disetujui. Pre-registration sudah di-commit. Sekarang tiga minggu kerja nyata dimulai.
+Proposal sudah disetujui. Pre-registration sudah di-commit. Sekarang fase kerja tiga minggu dimulai.
 
 Buka [Capstone 3 Minggu](12_Capstone_3_Minggu.md) ketika siap.

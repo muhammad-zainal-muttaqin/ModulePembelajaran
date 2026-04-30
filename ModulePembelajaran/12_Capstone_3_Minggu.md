@@ -218,7 +218,7 @@ Gunakan tabel berikut sebagai self-check di akhir minggu ke-2: di mana saya berd
 | #   | Kompetensi           | Bukti minimum di capstone                                                                            |
 | --- | -------------------- | ---------------------------------------------------------------------------------------------------- |
 | 1   | Memahami ML/DL       | Paragraf "mengapa arsitektur ini" di laporan; bukan hanya nama.                                      |
-| 2   | Ide → Eksperimen     | Pre-registration file di repo, tanggal < commit pertama eksperimen.                                  |
+| 2   | Ide → Eksperimen     | File pre-registration di repo, tanggal < commit pertama eksperimen.                                  |
 | 3   | Reproduksibilitas    | Seed tercatat, config YAML, ≥3 seed per kondisi, checkpoint menyertakan git hash.                    |
 | 4   | Validasi data        | Laporan EDA satu bagian, audit leakage eksplisit (atau argumen bahwa tidak berlaku).                 |
 | 5   | AI tools             | Dokumentasi di `docs/llm_log.md` - di mana LLM membantu, bagaimana diverifikasi.                     |
@@ -368,7 +368,7 @@ Untuk capstone: **Gradio** cukup jika task Anda adalah "input → prediksi" (kla
 7. **Limitations + Future Work (2 menit).** Jujur.
 8. **Q&A.**
 
-Tip: latihan dua kali, rekam sekali, tonton. Anda akan melihat sendiri kalimat-kalimat yang tidak perlu.
+Tip: latihan dua kali, rekam sekali, tonton. Rekaman biasanya memperlihatkan kalimat-kalimat yang tidak perlu.
 
 ---
 
