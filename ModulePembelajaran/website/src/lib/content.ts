@@ -12,7 +12,7 @@ import c08 from "../content/chapters/08_W8_Foundation_Models.md?raw";
 import c09 from "../content/chapters/09_W9_Multimodal_Reasoning.md?raw";
 import c10 from "../content/chapters/10_W10_Paper_Reading.md?raw";
 import c11 from "../content/chapters/11_W11_Research_Framing.md?raw";
-import c12 from "../content/chapters/12_Capstone_3_Minggu.md?raw";
+import c12 from "../content/chapters/12_Capstone.md?raw";
 import c13 from "../content/chapters/13_Rubrik_Penilaian.md?raw";
 import c14 from "../content/chapters/14_Lampiran.md?raw";
 import c15 from "../content/chapters/15_Panduan_Instruktur.md?raw";
