@@ -19,8 +19,7 @@ export default function Glossary() {
       (g) =>
         g.id.toLowerCase().includes(q) ||
         g.en.toLowerCase().includes(q) ||
-        (g.def || "").toLowerCase().includes(q) ||
-        (g.usage || "").toLowerCase().includes(q)
+        (g.note || "").toLowerCase().includes(q)
     );
   }, [query, sorted]);
 
@@ -60,8 +59,7 @@ export default function Glossary() {
               <tr className="bg-parchment dark:bg-white/5 text-left text-sm">
                 <th className="px-4 py-3 font-medium">Indonesia</th>
                 <th className="px-4 py-3 font-medium">English</th>
-                <th className="px-4 py-3 font-medium">Pengertian</th>
-                <th className="px-4 py-3 font-medium">Catatan Penggunaan</th>
+                <th className="px-4 py-3 font-medium">Pengertian / Catatan</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-black/5 dark:divide-white/5">
@@ -69,8 +67,7 @@ export default function Glossary() {
                 <tr key={i} className="hover:bg-parchment/40 dark:hover:bg-white/[0.03]">
                   <td className="px-4 py-3 font-medium">{g.id}</td>
                   <td className="px-4 py-3 font-mono text-sm text-rigor dark:text-curiosity">{g.en}</td>
-                  <td className="px-4 py-3 text-sm text-ink/70 dark:text-parchment/75">{g.def !== "-" ? g.def : ""}</td>
-                  <td className="px-4 py-3 text-sm text-ink/50 dark:text-parchment/60">{g.usage !== "-" ? g.usage : ""}</td>
+                  <td className="px-4 py-3 text-sm text-ink/70 dark:text-parchment/75">{g.note !== "-" ? g.note : ""}</td>
                 </tr>
               ))}
             </tbody>
