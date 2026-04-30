@@ -228,7 +228,7 @@ export const SIKAP_META: Record<Sikap, { label: string; color: string; tagline: 
     label: "Ownership",
     color: "ownership",
     tagline: "Rasa memiliki yang melampaui alat",
-    essence: "LLM boleh menulis kode, tanggung jawab tetap kamu.",
+    essence: "LLM boleh menulis kode, tanggung jawab tetap Anda.",
   },
 };
 
@@ -237,7 +237,7 @@ export const EXPECTED_OUTCOMES = [
   "Menerjemahkan ide penelitian dan instruksi PI menjadi eksperimen konkret.",
   "Melaksanakan eksperimen dengan benar dan dapat direproduksi.",
   "Memeriksa data dan memvalidasi prapemrosesan sebelum mempercayai hasilnya.",
-  "Menggunakan tools AI sebagai support penelitian tanpa outsource pemikiran.",
+  "Menggunakan tools AI sebagai pendukung penelitian tanpa mengalihdayakan pemikiran.",
   "Mengadopsi dan menyesuaikan research repository yang tidak dikenal secara mandiri.",
   "Membuat alat pendukung penelitian yang ringan dengan cepat.",
   "Mengadopsi platform dan tool baru sesuai kebutuhan.",

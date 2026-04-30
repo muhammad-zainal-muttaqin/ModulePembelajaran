@@ -16,7 +16,7 @@ export default function Home() {
         <div className="page-header">
           <div className="eyebrow">Empat sikap riset</div>
           <h2 className="section-title">
-            Kompetensi teknis tidak bertahan tanpa sikap yang benar.
+            Kompetensi teknis cepat tumpul kalau tidak dibiasakan bersama sikap riset yang tepat.
           </h2>
           <p className="page-lead">
             Empat sikap berikut mengalir di seluruh modul - sering tanpa disebut eksplisit - melalui pilihan contoh, pitfall, dan pertanyaan refleksi.
@@ -73,11 +73,8 @@ export default function Home() {
           <h2 className="font-serif text-heading-1 font-semibold mb-4">
             Hari Kamis akan datang.
           </h2>
-          <p className="text-sm text-white/70 mb-4 max-w-2xl mx-auto">
-            <em>Callback dari hero: email dosen meminta hasil eksperimen pertama pada hari Kamis.</em>
-          </p>
           <p className="text-lg text-white/85 mb-8 max-w-2xl mx-auto leading-relaxed">
-            Bukan dengan panik, tetapi dengan protokol, baseline, dan seed yang terkunci. Modul ini adalah tangga menuju ke sana.
+            Bukan dengan panik, tetapi dengan protokol, baseline, dan seed yang terkunci. Modul ini mempersiapkan Anda untuk momen itu.
           </p>
           <div className="flex flex-wrap justify-center gap-3">
             <Link to="/modul/00" className="btn bg-curiosity text-ink hover:bg-curiosity-deep hover:text-white">
