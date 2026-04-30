@@ -82,7 +82,10 @@ Bab ini membangun kebiasaan itu.
 
 ### 2.0 Experiment Matrix Before Coding
 
-Sebelum menyentuh kode, tulis **experiment matrix** - tabel yang mendaftar semua run yang akan Anda jalankan beserta konfigurasi masing-masing. Ini bukan formalitas; ini perancah mental yang mencegah tiga masalah umum: (1) Anda lupa menjalankan satu kondisi kritis, (2) Anda menyadari di tengah jalan bahwa dua kondisi tidak sebanding, (3) Anda tidak bisa menjelaskan apa yang berubah di antara run.
+Sebelum menyentuh kode, tulis **experiment matrix** - tabel yang mendaftar semua run yang akan Anda jalankan beserta konfigurasi masing-masing. Ini bukan formalitas; ini perancah mental yang mencegah tiga masalah umum:
+1. lupa menjalankan satu kondisi kritis,
+2. baru menyadari di tengah jalan bahwa dua kondisi tidak sebanding,
+3. tidak bisa menjelaskan apa yang berubah di antara run.
 
 Format minimal:
 

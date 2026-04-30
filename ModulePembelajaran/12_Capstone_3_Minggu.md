@@ -132,7 +132,7 @@ Lima proyek berikut telah diuji: kompleksitasnya cocok untuk mahasiswa S1 di 4 m
 
 **Inti pertanyaan (contoh):** Apakah teknik *test-time augmentation* meningkatkan akurasi klasifikasi pada dataset PathMNIST ketika test set di-perturbasi dengan variasi warna (simulasi pewarnaan H&E berbeda) - dibanding baseline tanpa augmentasi uji?
 
-**Mengapa menarik.** Domain shift adalah masalah nyata di medical imaging, dan solusi TTA ringan (tanpa retraining) adalah intervensi yang dapat diuji dengan bersih. Dataset MedMNIST cukup kecil untuk dijalankan di laptop.
+**Mengapa menarik.** Domain shift adalah masalah umum di medical imaging, dan solusi TTA ringan (tanpa retraining) adalah intervensi yang dapat diuji dengan bersih. Dataset MedMNIST cukup kecil untuk dijalankan di laptop.
 
 **Bahan.**
 

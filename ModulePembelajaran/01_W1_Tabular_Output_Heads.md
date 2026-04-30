@@ -209,7 +209,7 @@ Aturan paling penting: **statistik preprocessing (mean, std) dihitung dari train
 
 ### 2.5 Snippet PyTorch End-to-End
 
-Sebelum Anda buka notebook lab dan menemui kode lengkap dengan utilitas dan logging, lihat dulu pola minimum training MLP di PyTorch dalam ~15 baris. Ini bukan kode siap-jalankan untuk Lab 0, melainkan peta yang menggabungkan semua konsep §2.1-§2.4 dalam satu pandangan.
+Sebelum Anda buka notebook lab dan menjumpai kode lengkap dengan utilitas dan logging, lihat dulu pola minimum training MLP di PyTorch dalam ~15 baris. Ini bukan kode siap-jalankan untuk Lab 0, melainkan peta yang menggabungkan semua konsep §2.1-§2.4 dalam satu pandangan.
 
 ```python
 import torch

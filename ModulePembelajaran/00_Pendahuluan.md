@@ -195,7 +195,7 @@ Transisi yang dimaksudkan:
 
 - **Bootcamp (Minggu 1-11):** bangun peta, workflow, dan kebiasaan
 - **Capstone (Minggu 12-14):** terapkan dalam satu masalah yang dibatasi
-- **RA research:** lanjutkan belajar mandiri pada masalah lab nyata
+- **RA research:** lanjutkan belajar mandiri pada masalah di lab
 
 ---
 
@@ -308,7 +308,11 @@ Setiap minggu mengikuti format yang stabil 2 jam (120 menit):
 | Rigor habit of the week | 10 menit | Kebiasaan riset eksplisit yang dikaitkan ke assignment |
 | Assignment walkthrough | 40 menit | Langkah pertama bersama; mahasiswa lanjut mandiri di rumah |
 
-Format ini memastikan setiap sesi (1) menutup loop minggu sebelumnya, (2) membuka konsep baru, (3) menanamkan satu kebiasaan riset eksplisit, dan (4) memberi momentum awal untuk assignment minggu itu.
+Format ini memastikan setiap sesi:
+1. menutup loop minggu sebelumnya,
+2. membuka konsep baru,
+3. menanamkan satu kebiasaan riset eksplisit, dan
+4. memberi momentum awal untuk assignment minggu itu.
 
 ---
 
@@ -402,7 +406,7 @@ Beberapa kesalahan yang dapat mencegah Anda berkembang, bahkan sebelum bab tekni
 
 **Menunda pembuatan catatan eksperimen.** Memori manusia tidak bisa merekam dua puluh run ablation yang serupa. Menunda catatan berarti pada hari pelaporan Anda akan menjalankan ulang eksperimen hanya untuk mengingat hasilnya.
 
-**Mengabaikan data.** Godaan untuk langsung *training* tanpa memeriksa data selalu ada, terutama ketika dataset kelihatannya "sudah dibersihkan orang lain". W6 menunjukkan contoh-contoh nyata di mana kelalaian ini mengubur eksperimen berbulan-bulan.
+**Mengabaikan data.** Godaan untuk langsung *training* tanpa memeriksa data selalu ada, terutama ketika dataset kelihatannya "sudah dibersihkan orang lain". W6 menunjukkan contoh konkret di mana kelalaian ini mengubur eksperimen berbulan-bulan.
 
 **Berharap menjadi ahli penuh di akhir minggu 11.** Target adalah 60-70% siap, bukan 100%. Sisa 30-40% terbentuk dari kerja mandiri setelah bootcamp. Tekanan untuk "menguasai semuanya" justru memperlambat.
 

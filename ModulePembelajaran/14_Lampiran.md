@@ -73,7 +73,7 @@ Istilah teknis ML/DL sebagian besar berasal dari Bahasa Inggris. Glosarium ini m
 | foundation model | - | Model pretrained pada data besar, transferable ke banyak downstream tasks. | - |
 | freeze / frozen | - | Parameter model tidak diupdate saat training. | Pakai "di-freeze", bukan "dibekukan". |
 | gate mechanism | mekanisme gerbang | Input / forget / output gate pada LSTM. Mengontrol aliran informasi: baca, simpan, lupa. | - |
-| generalization | generalisasi | Kemampuan model bekerja baik pada data yang belum pernah dilihat. Tujuan utama ML. | - |
+| generalization | generalisasi | Kemampuan model berfungsi dengan baik pada data yang belum pernah dilihat. Tujuan utama ML. | - |
 | generative adversarial network (GAN) | - | Dua jaringan (generator + discriminator) dilatih saling berlomba. | Nama diri. |
 | GRU (Gated Recurrent Unit) | - | Varian RNN dengan gate, lebih ringkas dari LSTM. | Nama diri. |
 | hidden state | status tersembunyi | h_t: output LSTM/RNN pada timestep t. Membawa informasi konteks hingga titik itu. | - |
