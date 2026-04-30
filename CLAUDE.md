@@ -25,7 +25,7 @@ ModulePembelajaran/
 ├── 12_Capstone_3_Minggu.md        W12 EDA+baseline / W13 experiment / W14 analysis (W12-14)
 ├── 13_Rubrik_Penilaian.md         4-level mastery + sub-rubrik per capstone phase
 ├── 14_Lampiran.md                 Glosarium + Lampiran A.1 backprop + C.12-C.15 + H migration
-├── 15_Panduan_Dosen.md            Pacing 11+3 + emphasis per-week + skenario kelas
+├── 15_Panduan_Instruktur.md            Pacing 11+3 + emphasis per-week + skenario kelas
 └── template_repo/                 Skeleton repo riset
 ```
 
@@ -57,7 +57,7 @@ ModulePembelajaran/
 - **W12-W14** (`12_Capstone_3_Minggu.md`): timeline 3-minggu capstone (EDA+baseline / experiment / analysis+demo)
 - **Rubrik** (`13_Rubrik_Penilaian.md`): 4-level mastery + Kompetensi 10 (Eksplorasi Mandiri & Komunikasi); bobot Kompetensi 1: 14%, Kompetensi 7: 4%; **Breadth Check Policy** callout di Kompetensi 1 (mana lab wajib vs opsional; Lab 6b = `lab_w7_transformer_mini` wajib untuk breadth; Pendalaman collapsible tidak masuk syarat minimum)
 - **Lampiran** (`14_Lampiran.md`): glosarium ID↔EN; A.1 backprop derivasi 7-langkah; **A.11 Indeks First-Use per Bab** (28 istilah Tier-1 → chapter pertama dipakai + link); **A.12 Worked Examples Istilah Prioritas** (28 istilah dengan contoh angka konkret); C.6-C.11 (entri portofolio, presentasi, lab breadth, Komponen Mandiri, weekly log, weekly update PI); §G Self-Checklist Mingguan; §H tabel migrasi
-- **Panduan Dosen** (`15_Panduan_Dosen.md`): pacing 11+3 + emphasis per-W + **peta Pendalaman opsional vs wajib per bab** + skenario kelas (termasuk Skenario 5 "Kelas Berjuang di W5 LSTM")
+- **Panduan Instruktur** (`15_Panduan_Instruktur.md`): pacing 11+3 + emphasis per-W + **peta Pendalaman opsional vs wajib per bab** + skenario kelas (termasuk Skenario 5 "Kelas Berjuang di W5 LSTM")
 
 **Breadth Arsitektur NN (lima keluarga: MLP, CNN, RNN/LSTM, Transformer, Autoencoder):**
 

@@ -18,7 +18,7 @@
 | 12 | [Capstone 3 Minggu](12_Capstone_3_Minggu.md) | 12-14 |
 | 13 | [Rubrik Penilaian](13_Rubrik_Penilaian.md) | – |
 | 14 | [Lampiran](14_Lampiran.md) | – |
-| 15 | [Panduan Dosen](15_Panduan_Dosen.md) | – |
+| 15 | [Panduan Instruktur](15_Panduan_Instruktur.md) | – |
 
 </details>
 

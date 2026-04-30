@@ -26,7 +26,7 @@ const CHAPTERS = [
   "12_Capstone_3_Minggu.md",
   "13_Rubrik_Penilaian.md",
   "14_Lampiran.md",
-  "15_Panduan_Dosen.md",
+  "15_Panduan_Instruktur.md",
 ];
 
 const CONFIGS = [

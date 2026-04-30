@@ -2,7 +2,7 @@
 
 Modul ini dirancang untuk mahasiswa S1 yang ingin belajar *riset* machine learning dan deep learning - bukan sekadar menjalankan model, tetapi memahami mengapa eksperimen dirancang seperti itu, bagaimana hasilnya dipercaya, dan apa yang harus dilakukan ketika instruksi dari dosen pembimbing masih terbuka.
 
-**Versi web interaktif:** [muhammad-zainal-muttaqin.github.io/ModulePembelajaran](https://muhammad-zainal-muttaqin.github.io/ModulePembelajaran/) - SPA untuk membaca 15 bab (termasuk Panduan Dosen), mengisi jurnal refleksi, melacak progres 14 minggu, self-assess 9 kompetensi, dan menggenerate protokol eksperimen. Sumber website di [`website/`](website/).
+**Versi web interaktif:** [muhammad-zainal-muttaqin.github.io/ModulePembelajaran](https://muhammad-zainal-muttaqin.github.io/ModulePembelajaran/) - SPA untuk membaca 15 bab (termasuk Panduan Instruktur), mengisi jurnal refleksi, melacak progres 14 minggu, self-assess 9 kompetensi, dan menggenerate protokol eksperimen. Sumber website di [`website/`](website/).
 
 Satu semester berjalan **11 minggu bootcamp + 3 minggu capstone**. Setiap minggu membawa satu *rigor habit* baru yang dibangun di atas yang sebelumnya, satu atau lebih lab, dan satu thread yang menghubungkan ke Big Map keseluruhan. Di akhir bootcamp, mahasiswa mempertahankan proposal capstone secara lisan sebelum 3 minggu eksekusi capstone dimulai.
 
@@ -100,7 +100,7 @@ ModulePembelajaran/
 ├── 12_Capstone_3_Minggu.md                    W12-14: Capstone 3 phases
 ├── 13_Rubrik_Penilaian.md                     Rubrik + sub-rubrik capstone phases
 ├── 14_Lampiran.md                             Glosarium + A.1 backprop + C.12-C.15 + H
-├── 15_Panduan_Dosen.md                        Pacing 11+3, emphasis per-week
+├── 15_Panduan_Instruktur.md                        Pacing 11+3, emphasis per-week
 └── template_repo/                             Skeleton repo riset
 ```
 
@@ -108,7 +108,7 @@ ModulePembelajaran/
 
 ## Untuk Dosen Pengampu
 
-Baca `15_Panduan_Dosen.md` untuk panduan operasional lengkap: filosofi modul, pacing 11+3 minggu, emphasis per-bab, cara membaca rubrik, cara menilai portofolio, dan skenario kelas yang umum. Rubrik evaluasi ada di `13_Rubrik_Penilaian.md`. Tabel migrasi dari modul 14-minggu lama tersedia di `14_Lampiran.md` §H.
+Baca `15_Panduan_Instruktur.md` untuk panduan operasional lengkap: filosofi modul, pacing 11+3 minggu, emphasis per-bab, cara membaca rubrik, cara menilai portofolio, dan skenario kelas yang umum. Rubrik evaluasi ada di `13_Rubrik_Penilaian.md`. Tabel migrasi dari modul 14-minggu lama tersedia di `14_Lampiran.md` §H.
 
 ---
 

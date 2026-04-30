@@ -18,13 +18,13 @@
 | 12 | [Capstone 3 Minggu](12_Capstone_3_Minggu.md) | 12-14 |
 | 13 | [Rubrik Penilaian](13_Rubrik_Penilaian.md) | – |
 | 14 | [Lampiran](14_Lampiran.md) | – |
-| ▶ 15 | Panduan Dosen | – |
+| ▶ 15 | Panduan Instruktur | – |
 
 </details>
 
 ---
 
-# 15 · Panduan Dosen
+# 15 · Panduan Instruktur
 
 > *Modul ini bukan buku teks yang dibacakan dari depan kelas. Modul ini adalah rangkaian eksperimen bertahap yang membutuhkan fasilitator - seseorang yang tahu kapan memberi ruang untuk gagal, kapan mengajukan pertanyaan yang lebih tajam, dan kapan mundur agar mahasiswa menemukan sendiri jawabannya.*
 

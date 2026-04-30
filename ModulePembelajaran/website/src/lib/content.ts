@@ -15,7 +15,7 @@ import c11 from "../content/chapters/11_W11_Research_Framing.md?raw";
 import c12 from "../content/chapters/12_Capstone_3_Minggu.md?raw";
 import c13 from "../content/chapters/13_Rubrik_Penilaian.md?raw";
 import c14 from "../content/chapters/14_Lampiran.md?raw";
-import c15 from "../content/chapters/15_Panduan_Dosen.md?raw";
+import c15 from "../content/chapters/15_Panduan_Instruktur.md?raw";
 import baselineYaml from "../content/configs/baseline.yaml?raw";
 import focalFreezeYaml from "../content/configs/focal_freeze.yaml?raw";
 import mlpMnistYaml from "../content/configs/mlp_mnist.yaml?raw";
@@ -47,7 +47,10 @@ const RAW: Record<string, string> = {
 
 // Strip <details> navigasi yang ada di awal tiap file (redundant dengan nav SPA).
 function stripTopNav(md: string): string {
-  return md.replace(/^<details>[\s\S]*?<\/details>\s*\n?/, "").replace(/^---\s*\n/, "");
+  return md
+    .replace(/^﻿/, "")
+    .replace(/^<details>[\s\S]*?<\/details>\s*\n?/, "")
+    .replace(/^---\s*\n/, "");
 }
 
 // Rewrite inter-module links: `01_W1_Tabular_Output_Heads.md` -> `#/modul/01`.

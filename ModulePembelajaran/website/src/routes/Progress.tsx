@@ -75,7 +75,7 @@ export default function ProgressPage() {
       <header className="page-header">
         <h1 className="page-title">Progres Saya</h1>
         <p className="page-lead">
-          Semua data tersimpan lokal di peramban ini. Export ke JSON/Markdown untuk backup atau serahkan ke dosen.
+          Semua data tersimpan lokal di peramban ini. Export ke JSON/Markdown untuk backup atau serahkan ke instruktur.
         </p>
       </header>
 

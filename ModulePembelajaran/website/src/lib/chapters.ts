@@ -183,13 +183,13 @@ export const CHAPTERS: ChapterMeta[] = [
   {
     id: "15",
     number: 15,
-    title: "Panduan Dosen",
+    title: "Panduan Instruktur",
     subtitle: "Filosofi, pacing, emphasis per-bab, cara nilai portofolio",
     weeks: "-",
     weekNumbers: [],
     sikap: ["ownership", "rigor"],
     labName: null,
-    filename: "15_Panduan_Dosen.md",
+    filename: "15_Panduan_Instruktur.md",
   },
 ];
 

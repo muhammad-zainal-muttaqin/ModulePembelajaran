@@ -18,7 +18,7 @@
 | 12 | [Capstone 3 Minggu](12_Capstone_3_Minggu.md) | 12-14 |
 | 13 | [Rubrik Penilaian](13_Rubrik_Penilaian.md) | - |
 | ▶ 14 | Lampiran | - |
-| 15 | [Panduan Dosen](15_Panduan_Dosen.md) | - |
+| 15 | [Panduan Instruktur](15_Panduan_Instruktur.md) | - |
 
 </details>
 
@@ -1289,7 +1289,7 @@ runpodctl remove pod [pod-id]
 - **Cara menulis pre-registration?** -> W11 + Lampiran §C.1
 - **Template Capstone Proposal?** -> Lampiran §C.13
 - **Rubrik penilaian?** -> [Rubrik Penilaian](13_Rubrik_Penilaian.md)
-- **Panduan Dosen (pacing, emphasis, grading)?** -> [Panduan Dosen](15_Panduan_Dosen.md)
+- **Panduan Instruktur (pacing, emphasis, grading)?** -> [Panduan Instruktur](15_Panduan_Instruktur.md)
 - **Template laporan capstone?** -> Lampiran §C.2
 - **Memilih template capstone?** -> [Capstone 3 Minggu](12_Capstone_3_Minggu.md) §2.2
 - **Membaca paper dalam tiga putaran (3-pass)?** -> W10 §2.2
