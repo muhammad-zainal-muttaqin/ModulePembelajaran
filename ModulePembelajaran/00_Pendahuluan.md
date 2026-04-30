@@ -88,13 +88,13 @@ Contoh konkret:
 
 ### 0.5.4 Kalkulus Mini: Turunan dan Chain Rule
 
-Anda tidak perlu menguasai kalkulus untuk memulai. Cukup dua intuisi dasar.
+Anda tidak perlu menguasai kalkulus untuk memulai. Cukup dua pemahaman dasar.
 
 **Turunan = kemiringan.** Turunan fungsi `f(x)` di titik `x = a` mengukur seberapa cepat `f` berubah saat `x` digeser sedikit di sekitar `a`. Notasi: `df/dx`. Kalau `f(x) = x²`, maka `df/dx = 2x`. Di `x = 3`, turunan = 6, artinya saat `x` bergeser dari 3 ke 3.01, `f` bergeser kira-kira `6 × 0.01 = 0.06`.
 
 **Chain rule = rantai turunan.** Kalau `y = f(g(x))`, maka turunannya `dy/dx = f'(g(x)) · g'(x)`. Bayangkan dua roda gigi: kalau roda dalam berputar 2× lebih cepat dari input, dan roda luar 3× lebih cepat dari roda dalam, total roda luar 6× lebih cepat dari input.
 
-Inilah yang dilakukan **backpropagation**: mengambil rantai panjang turunan dari loss sampai ke setiap parameter, lalu merambatkannya mundur lewat chain rule. Detail derivasi 7-langkah ada di [Lampiran A.1](14_Lampiran.md#a1-backpropagation-derivasi-manual). Untuk W1-W2, intuisi "rantai turunan" sudah cukup.
+Inilah yang dilakukan **backpropagation**: mengambil rantai panjang turunan dari loss sampai ke setiap parameter, lalu merambatkannya mundur lewat chain rule. Detail derivasi 7-langkah ada di [Lampiran A.1](14_Lampiran.md#a1-backpropagation-derivasi-manual). Untuk W1-W2, cukup paham bahwa "rantai turunan" itulah cara kerjanya.
 
 ### 0.5.5 PyTorch Tensor: Primer 3 Menit
 

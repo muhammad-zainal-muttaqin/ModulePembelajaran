@@ -204,6 +204,7 @@ Penulis modul adalah penutur asli Indonesia. Prosa harus terasa ditulis langsung
 | `bahasa dan bekal minimum` | `kosakata dasar` / `prasyarat kosakata` | Konstruksi "bekal minimum" calque "minimum prerequisites" |
 | `Apa yang Anda akan [V]` | `Apa yang akan Anda [V]` | Urutan kata baku ID: interogatif → `akan` → subjek → verba |
 | `dengan asumsi minimum` (= "with minimal assumptions") | `dengan prasyarat seminimal mungkin` / `tanpa banyak asumsi` | Nomina "asumsi" tidak berjodoh dengan "minimum" sebagai modifier langsung |
+| `intuisi` (= abstrak "intuition/concept") | `pemahaman` / `konsep` | "Intuisi" dalam ID bermakna naluri/insting; untuk "understanding of a concept" pakai "pemahaman" |
 | `X bukan berarti Y` sebagai kalimat mandiri setelah kalimat sebelumnya | gabungkan: `..., tetapi bukan berarti Y` | Pola dua kalimat "A. Tetapi A bukan berarti B." adalah konstruksi khas terjemahan; lebih natural digabung |
 
 **Pola yang sering luput dan wajib dihindari:** konstruksi spasial-metaforis ("berada X menuju Y", "di jalur untuk Z"), post-nominal kata sifat hasil terjemahan kata-per-kata ("topik lab nyata" = "real lab topics", "data sintetis nyata"), dan future auxiliary "Anda akan + V" sebagai pembuka section deskriptif. Tiga pola ini terdengar jelas seperti terjemahan literal dan harus diubah, bahkan jika bentuk individu kata-katanya sudah ada di kamus PUEBI.

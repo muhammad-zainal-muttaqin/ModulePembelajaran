@@ -92,7 +92,7 @@ Tiga skenario di atas bukan pengecualian - mereka adalah rutinitas riset sehari-
 Loss menentukan *apa yang dianggap salah oleh model*. Mengganti loss berarti mengubah arah yang dianggap model sebagai "perbaikan".
 
 > [!NOTE]
-> Untuk recap rumus dan intuisi MSE / BCE / CrossEntropy dengan contoh angka kecil, lihat [W1 §2.2.1-§2.2.3](01_W1_Tabular_Output_Heads.md). Bagian ini fokus pada **kapan memilih loss yang mana** dan dua varian lanjutan (focal loss, label smoothing).
+> Untuk recap rumus dan cara kerja MSE / BCE / CrossEntropy dengan contoh angka kecil, lihat [W1 §2.2.1-§2.2.3](01_W1_Tabular_Output_Heads.md). Bagian ini fokus pada **kapan memilih loss yang mana** dan dua varian lanjutan (focal loss, label smoothing).
 
 **Untuk klasifikasi:**
 
@@ -282,7 +282,7 @@ Pertanyaan yang dijawab setelah lab: Pada dataset terbatas (500 sampel per kelas
 ## 7. Bacaan Lanjutan
 
 - **Andrej Karpathy - *A Recipe for Training Neural Networks*** (2019). Bagian "overfit a single batch" dan "visualize just before the net" adalah checklist diagnosis yang sangat praktis.
-- **Lin et al. - *Focal Loss for Dense Object Detection*** (ICCV 2017). Baca bagian 3 untuk intuisi; lewati eksperimen detection.
+- **Lin et al. - *Focal Loss for Dense Object Detection*** (ICCV 2017). Baca bagian 3 untuk gambaran konseptualnya; lewati eksperimen detection.
 - **The Deep Learning Book (Goodfellow et al.), Bab 8.** Optimizer secara lebih mendalam.
 
 ---

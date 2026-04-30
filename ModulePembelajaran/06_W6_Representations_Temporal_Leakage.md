@@ -603,7 +603,7 @@ Konsep: memeriksa data sebelum mempercayai hasil - distribusi kelas, leakage ter
 
 ## 7. Bacaan Lanjutan
 
-- **Kaufman, Rosset, Perlich - *Leakage in Data Mining: Formulation, Detection, and Avoidance*** (KDD 2011). Taksonomi klasik tentang leakage; panjang tetapi bagian 2-3 cukup untuk intuisi.
+- **Kaufman, Rosset, Perlich - *Leakage in Data Mining: Formulation, Detection, and Avoidance*** (KDD 2011). Taksonomi klasik tentang leakage; panjang tetapi bagian 2-3 cukup untuk memahami konsepnya.
 - **Northcutt et al. - *Pervasive Label Errors in Test Sets Destabilize Machine Learning Benchmarks*** (NeurIPS 2021). Menunjukkan berapa banyak label salah di benchmark populer (ImageNet, CIFAR-10). Tonik skeptisisme.
 - **Geirhos et al. - *Shortcut Learning in Deep Neural Networks*** (Nature Machine Intelligence, 2020). Mengapa model "belajar" dengan cara yang tidak kita harapkan, dan bagaimana mendeteksinya.
 - **Cleanlab documentation** (cleanlab.readthedocs.io). Library praktis untuk deteksi label noise; dibaca sebagai alternatif dari implementasi manual di Lab 4.

@@ -109,7 +109,7 @@ Tiga rezim:
 Inilah "vanishing gradient problem" - bukan masalah teori abstrak, tetapi konsekuensi langsung perkalian berulang di chain rule. LSTM (§2.3) dirancang khusus untuk memutus rantai perkalian ini.
 
 > [!NOTE]
-> Untuk vector/matrix `W_h`, ukuran yang relevan adalah **eigenvalue terbesar** (spectral radius). Kalau spectral radius < 1, gradient vanish; kalau > 1, explode. Rumus T-langkah pakai matrix power, bukan skalar power, tetapi intuisinya sama.
+> Untuk vector/matrix `W_h`, ukuran yang relevan adalah **eigenvalue terbesar** (spectral radius). Kalau spectral radius < 1, gradient vanish; kalau > 1, explode. Rumus T-langkah pakai matrix power, bukan skalar power, tetapi prinsipnya sama.
 
 ### 1.5.3 Symbol ⊙ (Hadamard Product) Primer
 

@@ -132,7 +132,7 @@ Dalam pretrained model (W7-W8), prinsip ini muncul lebih jelas: backbone CNN/Tra
 
 ### 2.2 Output Head + Loss Matching
 
-Setiap tugas (regression, binary, multiclass) butuh kombinasi head dan loss yang spesifik. Sebelum melihat tabel ringkasan di akhir section, kita bangun intuisi tiga pasangan utama dengan satu contoh angka kecil masing-masing.
+Setiap tugas (regression, binary, multiclass) butuh kombinasi head dan loss yang spesifik. Sebelum melihat tabel ringkasan di akhir section, kita pahami tiga pasangan utama lewat satu contoh angka kecil masing-masing.
 
 #### 2.2.1 Regression: MSE dan Jarak Kuadrat
 
@@ -175,7 +175,7 @@ softmax(z)[i] = e^(z_i) / Σ_j e^(z_j)
 
 #### 2.2.4 Tabel Ringkasan Pasangan Head-Loss
 
-Setelah memahami intuisi tiga pasangan utama di atas, tabel berikut menjadi alat referensi cepat. Cetak, tempel di samping monitor.
+Setelah memahami ketiga pasangan di atas, tabel berikut menjadi alat referensi cepat. Cetak, tempel di samping monitor.
 
 | Tugas | Output head | Aktivasi akhir | Loss yang cocok | Bentuk target |
 |---|---|---|---|---|
@@ -191,7 +191,7 @@ MLP belajar lewat **backpropagation**: setelah loss dihitung di output, gradient
 
 Bayangkan jaringan sebagai rantai operasi: `x → Linear₁ → ReLU₁ → Linear₂ → ReLU₂ → Linear₃ → loss`. Saat `loss.backward()` dipanggil, PyTorch berjalan mundur lewat rantai ini, menghitung kontribusi setiap parameter terhadap loss lewat chain rule (rantai turunan; lihat §0.5.4 di [00_Pendahuluan.md](00_Pendahuluan.md)). Setiap layer "tahu" turunan operasinya sendiri; library autograd menggabungnya menjadi gradient utuh untuk seluruh model. Setelah gradient siap, `optimizer.step()` menggeser parameter sebagian kecil ke arah `-gradient` (penurunan loss).
 
-Itu sudah cukup sebagai gambaran W1. Anda **tidak perlu** menurunkan chain rule manual minggu ini. Derivasi 7-langkah yang ketat (`MSE loss + sigmoid` pada dua-layer MLP) tersedia di [Lampiran A.1](14_Lampiran.md#a1-backpropagation-derivasi-manual) untuk dibaca setelah Anda sudah punya intuisi training dari beberapa run sukses. Lab 1c (MLP numpy from-scratch) juga tersedia sebagai breadth lab opsional kapan saja, dan menurunkan backprop secara konkret pada MNIST.
+Itu sudah cukup sebagai gambaran W1. Anda **tidak perlu** menurunkan chain rule manual minggu ini. Derivasi 7-langkah yang ketat (`MSE loss + sigmoid` pada dua-layer MLP) tersedia di [Lampiran A.1](14_Lampiran.md#a1-backpropagation-derivasi-manual) untuk dibaca setelah Anda sudah punya gambaran training dari beberapa run sukses. Lab 1c (MLP numpy from-scratch) juga tersedia sebagai breadth lab opsional kapan saja, dan menurunkan backprop secara konkret pada MNIST.
 
 > [!NOTE]
 > Modul lama menempatkan derivasi backprop di awal, sebelum lab pertama. Revisi ini menggesernya ke appendix karena banyak trainee mengalami density terlalu cepat. Jika Anda sudah merasa nyaman dengan kalkulus chain rule, baca Lampiran A.1 paralel dengan W1; jika belum, biarkan dulu, dan kembali setelah W3 ketika Anda sudah punya beberapa loss curve untuk diinterpretasi.
@@ -327,4 +327,4 @@ Tulis jawaban singkat (1-2 paragraf masing-masing) untuk tiga pertanyaan berikut
 
 ## Lanjut ke W2
 
-Setelah Lab 0 selesai, buka [W2 - Images, CNN & Smoke Test Ritual](02_W2_Images_CNN_Smoke_Test.md). Bab tersebut memperkenalkan tensor citra `(C, H, W)`, intuisi CNN sebagai pendeteksi pola lokal, dan tiga-level smoke test ritual sebagai kebiasaan debugging utama.
+Setelah Lab 0 selesai, buka [W2 - Images, CNN & Smoke Test Ritual](02_W2_Images_CNN_Smoke_Test.md). Bab tersebut memperkenalkan tensor citra `(C, H, W)`, cara kerja CNN sebagai pendeteksi pola lokal, dan tiga-level smoke test ritual sebagai kebiasaan debugging utama.

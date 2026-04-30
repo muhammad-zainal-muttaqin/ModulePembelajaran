@@ -132,7 +132,7 @@ Konten di luar `<details>` adalah **core content** - wajib untuk semua mahasiswa
 
 ### W2 - Images, CNN & Smoke Test
 
-- **Kritis:** Three-level smoke test ritual (§2.3). Demo live: tunjukkan run yang berhasil vs gagal di proyektor. Backprop diperkenalkan konseptual; derivasi 7-langkah ada di Lampiran A.1 untuk dibaca setelah ada intuisi training.
+- **Kritis:** Three-level smoke test ritual (§2.3). Demo live: tunjukkan run yang berhasil vs gagal di proyektor. Backprop diperkenalkan konseptual; derivasi 7-langkah ada di Lampiran A.1 untuk dibaca setelah mahasiswa sudah punya gambaran training.
 - **Pitfall:** Mahasiswa skip smoke test karena "kelihatannya jalan". Tunjukkan kasus di mana training tampak normal di awal tapi diam-diam memuat label salah.
 - **Refleksi berbobot:** Pertanyaan tentang shape mismatch: "Apa indikator pertama bahwa input/output shape tidak sesuai?"
 - **Kaitan rubrik:** Kompetensi 1 (Memahami sistem ML/DL). Target: Novice→Developing.
