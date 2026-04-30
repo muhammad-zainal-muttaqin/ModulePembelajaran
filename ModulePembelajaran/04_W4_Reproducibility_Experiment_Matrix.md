@@ -205,7 +205,7 @@ Di luar seed, sumber noise lain: urutan data, kernel CUDA yang non-deterministik
 
 **Kapan perbedaan cukup besar untuk diklaim?** Mean ± std memberi gambaran variabilitas, tetapi tidak langsung menjawab pertanyaan "apakah ini nyata atau noise?" Dua aturan praktis yang berguna:
 
-1. **Aturan 2σ**: Jika Δ antara dua kondisi lebih besar dari 2 × σ gabungan keduanya, perbedaannya lebih mungkin nyata daripada sekadar variasi seed. Ini bukan uji statistik formal, tetapi cukup untuk laporan internal.
+1. **Aturan 2σ**: Jika Δ antara dua kondisi lebih besar dari 2 × σ gabungan keduanya, perbedaannya lebih mungkin bermakna daripada sekadar variasi seed. Ini bukan uji statistik formal, tetapi cukup untuk laporan internal.
 
 2. **Effect size threshold**: Tetapkan δ minimum sebelum eksperimen berjalan (di pre-registration). Jika kenaikan yang diprediksi penting adalah 2 poin F1, kenaikan 0.3 poin tidak bermakna dalam praktiknya meski angkanya "naik". Peningkatan < 0.5 poin pada dataset besar dengan 3 seed hampir selalu noise.
 
@@ -236,7 +236,7 @@ Misalnya hipotesis "F1 naik ≥ 3 poin" tapi hasil aktual Δ = 1.8 poin. Jangan 
 
 #### Skenario B - Hasil berlawanan arah dari prediksi
 
-Hipotesis "focal loss meningkatkan F1" tapi hasilnya F1 turun 1.2 poin. Ini lebih informatif dari skenario A. Sebelum menyimpulkan "focal loss tidak bekerja", lakukan:
+Hipotesis "focal loss meningkatkan F1" tapi hasilnya F1 turun 1.2 poin. Ini lebih informatif dari skenario A. Sebelum menyimpulkan "focal loss tidak efektif", lakukan:
 
 1. **Audit implementasi** - apakah `gamma=0` menghasilkan CE yang identik?
 2. **Cek distribusi loss tiap kelas** - apakah focal loss terlalu agresif menekan kelas mudah?
@@ -253,7 +253,7 @@ Ini *terutama* membutuhkan skeptisisme. Jika hipotesis "naik 3 poin" tapi aktual
 3. **Verifikasi intervensi** - tidak secara tidak sengaja mengubah sesuatu yang lain (misal: augmentasi, normalisasi)?
 
 > [!NOTE]
-> **Hasil negatif yang didokumentasikan dengan baik adalah kontribusi nyata untuk riset** - ia mencegah orang lain membuang waktu di arah yang sama. Di lab Anda sendiri, catatan negatif melindungi Anda dari mengulangi eksperimen yang sama enam bulan kemudian.
+> **Hasil negatif yang didokumentasikan dengan baik adalah kontribusi berarti untuk riset** - ia mencegah orang lain membuang waktu di arah yang sama. Di lab Anda sendiri, catatan negatif melindungi Anda dari mengulangi eksperimen yang sama enam bulan kemudian.
 
 ---
 
@@ -354,7 +354,7 @@ Sejauh ini kita membahas penerjemahan instruksi PI menjadi protokol. Namun riset
 
 #### 3.5.1 Format Update Mingguan ke PI
 
-Update mingguan yang baik adalah kebiasaan paling sederhana dan paling berdampak dalam hubungan asisten-PI. Formatnya ringkas - empat bagian (progress, kendala, rencana, satu pertanyaan) yang dapat ditulis dalam 10-15 menit. Yang penting kirim *sebelum* diminta; konsistensi membangun kepercayaan lebih cepat daripada hasil spektakuler yang datang tiba-tiba.
+Update mingguan yang baik adalah kebiasaan paling sederhana dan paling berdampak dalam hubungan asisten-PI. Formatnya ringkas - empat bagian (progress, kendala, rencana, satu pertanyaan) yang dapat ditulis dalam 10-15 menit. Yang penting kirim *sebelum* diminta; konsistensi membangun kepercayaan lebih cepat daripada hasil spektakuler yang muncul mendadak.
 
 Template salin-pakai lengkap dengan contoh terisi dan tiga prinsip update yang baik tersedia di [Lampiran §C.11](14_Lampiran.md#c11-template-update-mingguan-ke-pi). Pakai template ini sebagai titik awal, lalu sesuaikan dengan ritme komunikasi dosen Anda - sebagian PI lebih suka email, sebagian lebih suka shared document yang ditambah setiap pekan.
 
@@ -369,7 +369,7 @@ Saat Anda butuh masukan PI di luar update rutin, pakai kerangka **SQRC** - empat
 | **R** | Resolution attempt | Apa yang sudah dicoba? | "Saya sudah kurangi LR 10×, loss tetap naik. Saya sudah overfit satu batch - loss turun ke nol. Saya periksa distribusi label di train/val: seimbang." |
 | **C** | Call | Permintaan spesifik untuk PI. | "Dari ketiga kemungkinan - overfitting, bug split, atau learning rate - mana yang paling mungkin berdasarkan pola ini? Atau ada diagnosis lain yang saya lewatkan?" |
 
-SQRC bekerja karena tiga alasan:
+SQRC efektif karena tiga alasan:
 - PI tahu Anda sudah berusaha sendiri (R), sehingga dia tidak perlu memulai dari nol.
 - PI bisa langsung melompat ke inti masalah tanpa bertanya balik "learning rate-nya berapa?".
 - Anda belajar dari pola diagnosis PI - semakin sering Anda memakai SQRC, semakin sedikit Anda perlu bertanya.
@@ -397,7 +397,7 @@ Asisten riset pemula sering merasa harus terlihat yakin. Padahal, PI yang baik l
 | Kurang tepat | Lebih tepat | Mengapa |
 | --- | --- | --- |
 | "Modelnya berhasil." | "Hasil preliminary dengan 1 seed menunjukkan F1 minor naik 6 poin. Saya belum mereplikasi dengan seed berbeda, jadi belum bisa memastikan kenaikan ini bukan noise." | Mengakui keterbatasan sambil tetap melaporkan hasil |
-| "Focal loss tidak bekerja." | "Pada konfigurasi yang saya uji (γ=2.0, 3 seed, CIFAR-10 balanced), focal loss tidak meningkatkan F1. Mungkin berbeda pada dataset dengan imbalance lebih ekstrem." | Menyatakan hasil tanpa generalisasi berlebihan |
+| "Focal loss tidak efektif." | "Pada konfigurasi yang saya uji (γ=2.0, 3 seed, CIFAR-10 balanced), focal loss tidak meningkatkan F1. Mungkin berbeda pada dataset dengan imbalance lebih ekstrem." | Menyatakan hasil tanpa generalisasi berlebihan |
 | "Saya tidak tahu kenapa loss-nya begini." | "Saya menduga penyebabnya salah satu dari dua: LR terlalu tinggi, atau ada bug di normalisasi. Saya akan uji hipotesis pertama dulu dengan LR 10× lebih kecil." | Mengakui ketidaktahuan + langkah konkret |
 | "Menurut paper X, ini solved." | "Paper X melaporkan hasil kuat pada dataset mereka. Saya belum bisa mereproduksi pada dataset kita - mungkin karena perbedaan distribusi kelas." | Menghormati temuan paper tanpa mengabaikan hasil sendiri |
 
@@ -417,7 +417,7 @@ Intinya: ketidakpastian yang disertai langkah konkret adalah tanda kompetensi. K
 
 **Tidak menulis hipotesis sama sekali.** Tanpa hipotesis, setiap hasil "menarik". Dengan hipotesis, hasil terbagi jelas menjadi konfirmasi, sanggahan, atau kebetulan - dan Anda tahu apa langkah selanjutnya di masing-masing kasus.
 
-**Menyembunyikan ablation yang "gagal".** Anda menjalankan sepuluh eksperimen; sembilan tidak bekerja, satu iya. Laporan hanya menampilkan yang berhasil. Ini menyesatkan PI dan masa depan diri Anda sendiri. Laporkan semua yang Anda jalankan; ablation yang gagal sering lebih informatif daripada yang berhasil.
+**Menyembunyikan ablation yang "gagal".** Anda menjalankan sepuluh eksperimen; sembilan tidak berhasil, satu iya. Laporan hanya menampilkan yang berhasil. Ini menyesatkan PI dan masa depan diri Anda sendiri. Laporkan semua yang Anda jalankan; ablation yang gagal sering lebih informatif daripada yang berhasil.
 
 ---
 

@@ -74,7 +74,7 @@ Perhatikan bahwa `D_out` ditentukan oleh **tugas**, bukan oleh data:
 
 Inilah yang dimaksud "MLP sebagai shape transformer": tubuh model sama, kepala (head) berubah sesuai tugas.
 
-#### 2.1.1 Linear Layer: Mekanik dan Intuisi
+#### 2.1.1 Linear Layer: Mekanik dan Gambaran
 
 Bayangkan MLP sebagai pabrik kecil. Input mentah masuk lewat pintu depan; setiap layer adalah meja kerja yang mengubah bentuk barang sebelum dilewatkan ke meja berikutnya. Output keluar dari ujung pabrik.
 
@@ -185,7 +185,7 @@ Setelah memahami ketiga pasangan di atas, tabel berikut menjadi alat referensi c
 | Multiclass (N kelas) | `Linear(D, N)` | tidak ada (logits raw) | `CrossEntropyLoss` | `int64` 0..N-1 |
 | Multilabel | `Linear(D, N)` | tidak ada (logits raw) | `BCEWithLogitsLoss` | `float` vektor 0/1 |
 
-### 2.3 Backpropagation: Intuisi Tanpa Derivasi
+### 2.3 Backpropagation: Gambaran Tanpa Derivasi
 
 MLP belajar lewat **backpropagation**: setelah loss dihitung di output, gradient dari loss terhadap setiap parameter dirambatkan **mundur** lewat chain rule, lalu optimizer (mis. AdamW) memperbarui parameter ke arah penurunan loss.
 

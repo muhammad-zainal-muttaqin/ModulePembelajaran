@@ -37,7 +37,7 @@
 
 ## 0. Peta Bab
 
-W3 adalah minggu example-first. Sebelum membaca teori tentang loss dan optimizer, Anda mengamati lima run nyata dan diminta mengidentifikasi apa yang terjadi. Baru setelah itu kita tarik pola dan penjelasannya.
+W3 adalah minggu example-first. Sebelum membaca teori tentang loss dan optimizer, Anda mengamati lima run konkret dan diminta mengidentifikasi apa yang terjadi. Baru setelah itu kita tarik pola dan penjelasannya.
 
 - **1.5** Galeri Lima Run (sebelum teori)
 - **2.1** Loss sebagai pilihan - bukan bawaan default
@@ -147,7 +147,7 @@ Di samping metrik, Anda juga perlu strategi validasi:
 
 ### 2.4 Representasi Fitur: Tiga Pilihan Desain
 
-Salah satu keputusan yang paling sering menentukan *seberapa baik* model bekerja bukan pilihan arsitektur, melainkan pilihan representasi - diambil jauh sebelum training dimulai. Pada modalitas dan tugas yang sama, representasi yang berbeda kerap menghasilkan selisih performa lebih besar dari mengganti arsitektur.
+Salah satu keputusan yang paling sering menentukan performa model bukan pilihan arsitektur, melainkan pilihan representasi - diambil jauh sebelum training dimulai. Pada modalitas dan tugas yang sama, representasi yang berbeda kerap menghasilkan selisih performa lebih besar dari mengganti arsitektur.
 
 **Engineered.** Fitur dirancang manusia dengan pengetahuan domain - statistik agregat, transformasi matematis, atau fitur klasik. Di gambar: histogram warna, HOG, SIFT. Di sinyal CGM: mean, koefisien variasi, *time-in-range*. Representasi *engineered* murah secara komputasi, mudah diinterpretasi, dan sering menjadi baseline yang mengejutkan kuat ketika data latih terbatas.
 

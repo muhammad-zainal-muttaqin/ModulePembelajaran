@@ -102,13 +102,13 @@ test = df[df['timestamp'] > cutoff]
 **Demonstrasi inflasi:** Lab 6 akan menunjukkan delta ini secara eksplisit: F1 dengan leakage vs F1 tanpa leakage pada dataset yang sama. Angka leaky akan terlihat lebih menarik, dan itulah persis bahayanya.
 
 > [!WARNING]
-> Leakage temporal seringkali tidak menghasilkan F1 = 1.0 yang jelas mencurigakan. Ia menghasilkan angka "bagus" seperti 0.88 yang "masuk akal" - cukup untuk meyakinkan Anda dan reviewer bahwa model bekerja. Yang salah bukan angkanya; yang salah adalah cara mendapatkannya.
+> Leakage temporal seringkali tidak menghasilkan F1 = 1.0 yang jelas mencurigakan. Ia menghasilkan angka "bagus" seperti 0.88 yang "masuk akal" - cukup untuk meyakinkan Anda dan reviewer bahwa modelnya valid. Yang salah bukan angkanya; yang salah adalah cara mendapatkannya.
 
 ---
 
 ## 1. Motivasi: Data yang Terlihat Baik Bisa Membohongi
 
-Seorang mahasiswa pascasarjana melatih model klasifikasi citra medis untuk mendeteksi penyakit paru-paru dari rontgen dada. Akurasi validasi: 97%. Saat review, seorang kolega bertanya: "apakah model belajar mengenali penyakit, atau belajar mengenali rumah sakitnya?" Ternyata setiap rumah sakit memakai mesin rontgen berbeda dengan ciri visual khas di sudut gambar; data positif dan negatif datang dari sumber yang berbeda. Model tidak pernah melihat paru-paru - ia mengklasifikasi *sumber*. Enam bulan kerja diulang.
+Seorang mahasiswa pascasarjana melatih model klasifikasi citra medis untuk mendeteksi penyakit paru-paru dari rontgen dada. Akurasi validasi: 97%. Saat review, seorang kolega bertanya: "apakah model belajar mengenali penyakit, atau belajar mengenali rumah sakitnya?" Ternyata setiap rumah sakit memakai mesin rontgen berbeda dengan ciri visual khas di sudut gambar; data positif dan negatif berasal dari sumber yang berbeda. Model tidak pernah melihat paru-paru - ia mengklasifikasi *sumber*. Enam bulan kerja diulang.
 
 Kewaspadaan terhadap data bukan tugas tambahan. Ia adalah fondasi tanpa-mana seluruh eksperimen berdiri di atas pasir.
 
@@ -255,7 +255,7 @@ Proses ini sering mengejutkan. Saya pernah menemukan 15% label pada dataset publ
 Pipeline pra-pemrosesan harus *fit pada training set saja*, lalu *transform train, val, dan test* dengan parameter yang sudah di-fit. Ini mencegah kebocoran statistik test ke training.
 
 > [!IMPORTANT]
-> **Intuisi preprocessing leakage.** Kalau Anda hitung `mean` dan `std` dari **semua data** (train + val + test) sebelum split, statistik tersebut sudah "tahu" sesuatu tentang val/test - mis. distribusi outlier di test set akan menggeser mean. Saat training, model menerima input yang sudah di-normalisasi pakai info agregat test. Walau test labels tidak bocor, **distribusi feature test sudah bocor**. Efeknya kecil di dataset besar yang distribusinya stabil, tetapi nyata di dataset kecil atau heterogen. Aturan: `fit` cuma pada train; `transform` train + val + test pakai parameter yang sama.
+> **Gambaran preprocessing leakage.** Kalau Anda hitung `mean` dan `std` dari **semua data** (train + val + test) sebelum split, statistik tersebut sudah "tahu" sesuatu tentang val/test - mis. distribusi outlier di test set akan menggeser mean. Saat training, model menerima input yang sudah di-normalisasi pakai info agregat test. Walau test labels tidak bocor, **distribusi feature test sudah bocor**. Efeknya kecil di dataset besar yang distribusinya stabil, tetapi nyata di dataset kecil atau heterogen. Aturan: `fit` cuma pada train; `transform` train + val + test pakai parameter yang sama.
 
 Salah:
 
@@ -363,7 +363,7 @@ Keempat jenis bias tidak selalu bisa "diperbaiki" di level data. Beberapa memerl
 
 Keadilan (*fairness*) dalam ML adalah bidang penelitian sendiri. Anda tidak diharapkan menjadi pakar, tetapi tiga konsep ini adalah minimum yang perlu diketahui sebelum melepas model ke dunia:
 
-**Fairness through unawareness tidak bekerja.** Menghapus fitur sensitif (gender, ras, agama) tidak otomatis membuat model adil. Fitur-fitur yang tampak netral - kode pos, jenis perangkat, jam aktivitas - bisa menjadi *proxy* untuk fitur sensitif. Model akan belajar menggunakannya secara tidak langsung, dan bias tetap ada, tetapi kini lebih sulit dideteksi.
+**Fairness through unawareness tidak efektif.** Menghapus fitur sensitif (gender, ras, agama) tidak otomatis membuat model adil. Fitur-fitur yang tampak netral - kode pos, jenis perangkat, jam aktivitas - bisa menjadi *proxy* untuk fitur sensitif. Model akan belajar menggunakannya secara tidak langsung, dan bias tetap ada, tetapi kini lebih sulit dideteksi.
 
 **Definisi fairness tidak tunggal.** Dua definisi yang paling sering dipakai:
 - *Demographic parity*: proporsi prediksi positif sama antar kelompok. Masalah: bisa tercapai dengan menerima kandidat tidak berkualitas dari satu kelompok dan menolak kandidat berkualitas dari kelompok lain.
@@ -401,7 +401,7 @@ Anda mungkin berpikir: "saya hanya asisten, saya menjalankan instruksi PI, tangg
 - Anda mungkin diminta mengumpulkan dataset yang mengandung informasi pribadi tanpa persetujuan. Atau mengerjakan proyek yang aplikasinya bisa membahayakan kelompok rentan. Dalam situasi ini, Anda punya hak - dan dalam banyak kode etik profesional, kewajiban - untuk menyuarakan keberatan.
 - Di masa depan, *Anda* yang akan menjadi PI. Kebiasaan mempertimbangkan dimensi etis sejak menjadi asisten adalah investasi untuk saat itu.
 
-Ini bukan berarti setiap proyek harus melalui komite etik. Tetapi sebelum Anda menekan "run" pada eksperimen yang melibatkan data manusia, luangkan 5 menit untuk bertanya: "apakah data ini dikumpulkan dengan persetujuan? Apakah model ini akan merugikan kelompok tertentu? Jika hasilnya dipublikasikan, bisakah ia disalahgunakan?" Tidak semua pertanyaan bisa dijawab, tetapi bertanya adalah langkah pertama yang sering dilewatkan.
+Ini bukan berarti setiap proyek harus melalui komite etik, tetapi sebelum Anda menekan "run" pada eksperimen yang melibatkan data manusia, luangkan 5 menit untuk bertanya: "apakah data ini dikumpulkan dengan persetujuan? Apakah model ini akan merugikan kelompok tertentu? Jika hasilnya dipublikasikan, bisakah ia disalahgunakan?" Tidak semua pertanyaan bisa dijawab, tetapi bertanya adalah langkah pertama yang sering dilewatkan.
 
 </details>
 
@@ -634,6 +634,6 @@ Buka `template_repo/notebooks/lab_w6_temporal_leakage.ipynb`.
 
 ## Lanjut ke W7
 
-Setelah W6, Anda punya kewaspadaan data yang solid. W7 memperluas Big Map ke domain teks dan memperkenalkan pretrained Transformer sebagai alat, serta cara membaca dan memodifikasi repo riset asing.
+Setelah W6, Anda punya kewaspadaan data yang solid. W7 memperluas Big Map ke domain teks dan memperkenalkan pretrained Transformer sebagai alat, serta cara membaca dan memodifikasi repo riset yang belum dikenal.
 
 Buka [W7 - Text, Transformers & Repo Adoption](07_W7_Text_Transformers_Repo_Adoption.md) ketika siap.

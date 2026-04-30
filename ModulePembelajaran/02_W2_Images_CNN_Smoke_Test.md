@@ -160,8 +160,8 @@ Dua fenomena penting yang sering disebut paper:
 Tiga level smoke test bukan ritual yang dibuat-buat; mereka memetakan **tiga jenis bug paling sering** di pipeline deep learning, dari yang paling murah dideteksi ke yang paling mahal:
 
 1. **Typo / import / path error** - terdeteksi di Level 1 (`import model`). Tidak butuh dataset, tidak butuh forward pass.
-2. **Shape mismatch antar layer** - terdeteksi di Level 2 (dummy forward dengan tensor random). Butuh model dimuat tetapi tidak butuh data nyata.
-3. **Algoritma rusak** (gradient mati, loss tidak turun, target salah-bentuk) - terdeteksi di Level 3 (overfit one batch). Butuh data nyata tetapi hanya 4-8 sampel.
+2. **Shape mismatch antar layer** - terdeteksi di Level 2 (dummy forward dengan tensor random). Butuh model dimuat tetapi tidak butuh data dari dataset.
+3. **Algoritma rusak** (gradient mati, loss tidak turun, target salah-bentuk) - terdeteksi di Level 3 (overfit one batch). Butuh data dari dataset tetapi hanya 4-8 sampel.
 
 Setiap level lebih mahal dari yang sebelumnya, dan setiap level menangkap kelas bug yang berbeda. Jangan lompat ke Level 3 sebelum Level 1 dan 2 lulus, dan jangan mulai training 30 epoch sebelum Level 3 lulus.
 
@@ -177,7 +177,7 @@ logits = model(x)
 assert logits.shape == (2, 10), f"got {logits.shape}"
 ```
 
-**Level 3 - Overfit one batch.** Ambil 4-8 sampel dari dataset nyata. Jalankan 50-100 iterasi hanya pada sampel itu. Jika loss tidak mendekati nol, ada bug di training loop atau loss function, bukan masalah hyperparameter.
+**Level 3 - Overfit one batch.** Ambil 4-8 sampel dari dataset sebenarnya. Jalankan 50-100 iterasi hanya pada sampel itu. Jika loss tidak mendekati nol, ada bug di training loop atau loss function, bukan masalah hyperparameter.
 
 ```python
 x, y = next(iter(train_loader))  # satu batch kecil
@@ -196,7 +196,7 @@ for i in range(100):
 
 ### 2.4 Galeri Runs: Sebelum Membaca Teori
 
-Sebelum mendalami arsitektur, lihat empat run nyata dan tanyakan diri sendiri: *apa yang berbeda?*
+Sebelum mendalami arsitektur, lihat empat run konkret dan tanyakan diri sendiri: *apa yang berbeda?*
 
 - **Run A:** Loss training dan val turun sejajar, keduanya mencapai angka rendah di epoch 20. Ini run yang sehat.
 - **Run B:** Loss training turun mulus tapi loss val stagnan sejak epoch 4. Sesuatu sudah salah di sini - apa?
@@ -205,7 +205,7 @@ Sebelum mendalami arsitektur, lihat empat run nyata dan tanyakan diri sendiri: *
 
 Jangan baca jawabannya dulu. Tuliskan hipotesis Anda untuk setiap run dalam satu kalimat. Kita akan kembali ke empat run ini di W3 dengan kerangka diagnosis yang lengkap.
 
-### 2.5 Conv2d: Intuisi Sebelum Kode
+### 2.5 Conv2d: Gambaran Sebelum Kode
 
 `nn.Conv2d` adalah komponen utama CNN. Sebelum melihat parameter di kode SimpleCNN nanti, kita pahami dulu apa yang ia lakukan secara mekanis.
 

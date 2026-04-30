@@ -41,7 +41,7 @@ W7 menggabungkan tiga tema yang saling memperkuat:
 
 - **1. Text & Transformers** - dari TF-IDF ke contextual embeddings, tokenization, frozen vs fine-tune, [CLS] vs mean pool
 - **2. AI Tools sebagai Pendukung** - verifikasi kode AI, protokol synthesis, kapan trust copilot
-- **3. Repo Adoption Primer** - membaca repo asing, `repo_map.md`, modifikasi minimal-invasif
+- **3. Repo Adoption Primer** - membaca repo yang belum dikenal, `repo_map.md`, modifikasi minimal-invasif
 
 Ketiga tema bertemu dalam satu workflow: mengadopsi HuggingFace repo, memakai AI tools untuk memahami bagian yang belum dikenal, dan membuat `repo_map.md` sebagai dokumentasi pemahaman Anda.
 
@@ -238,7 +238,7 @@ Bagian di atas memperkenalkan tiga tema W7 secara ringkas. Pendalaman berikut kh
 
 ## D1. Motivasi: Dua Minggu yang Seharusnya Empat Jam
 
-Seorang asisten baru di lab menerima tugas: "reproduksi hasil paper X, lalu coba ganti encoder-nya dengan ViT". Link repo dilampirkan. Mahasiswa itu meng-clone, menjalankan `pip install -r requirements.txt`, error. Melacak error, menemukan versi CUDA tidak cocok; reinstall PyTorch. Error lagi, kali ini library `mmcv` minta versi spesifik. Setelah tiga hari gulat dengan setup, akhirnya `python train.py` jalan - tetapi dataset tidak terunduh otomatis, dokumentasi tentang lokasi data tidak ada, mahasiswa harus membaca 400 baris kode data loader untuk menemukan path yang diharapkan. Hari ketujuh, eksperimen baseline akhirnya jalan. Dua minggu berlalu sebelum modifikasi pertama bisa dicoba.
+Seorang asisten baru di lab menerima tugas: "reproduksi hasil paper X, lalu coba ganti encoder-nya dengan ViT". Link repo dilampirkan. Mahasiswa itu meng-clone, menjalankan `pip install -r requirements.txt`, error. Melacak error, menemukan versi CUDA tidak cocok; reinstall PyTorch. Error lagi, kali ini library `mmcv` minta versi spesifik. Setelah tiga hari gulat dengan setup, akhirnya `python train.py` jalan - tetapi dataset tidak terunduh otomatis, dokumentasi tentang lokasi data tidak ada, mahasiswa harus membaca 400 baris kode data loader untuk melihat path yang diharapkan. Hari ketujuh, eksperimen baseline akhirnya jalan. Dua minggu berlalu sebelum modifikasi pertama bisa dicoba.
 
 Mahasiswa kedua dapat tugas sama. Ia meluangkan empat jam pertama *tidak menjalankan apa-apa*: membaca README, memeriksa struktur folder, menelusuri `train.py` dari entry point, mencari bagian konfigurasi, memetakan bagaimana data di-load. Ia mencatat pertanyaan-pertanyaan terbuka. Setelah pemahaman peta terbentuk, ia setup environment secara sistematis, menjalankan smoke test dengan dummy data, dan baru mengunduh dataset penuh. Dua hari berikutnya, modifikasi encoder sudah bisa dicoba.
 
@@ -393,7 +393,7 @@ rg "build_model\(" src/
 pyright src/
 ```
 
-Walau kode tidak punya type hints, pyright sering menemukan inkonsistensi yang memberi petunjuk tentang niat.
+Walau kode tidak punya type hints, pyright sering menunjukkan inkonsistensi yang memberi petunjuk tentang niat.
 
 **Git log untuk memahami evolusi:**
 
@@ -472,7 +472,7 @@ Satu commit per perubahan logis. "Add mixup augmentation support" adalah satu co
 
 ### 2.6 Ketika Dokumentasi Minim atau Tidak Ada
 
-Banyak repo riset hanya punya README satu paragraf. Taktik saat Anda harus bekerja dengannya:
+Banyak repo riset hanya punya README satu paragraf. Taktik saat Anda harus memakai atau memodifikasinya:
 
 **Baca `requirements.txt` sebagai petunjuk teknologi.** Tergantung library yang dipakai, Anda bisa menebak: `pytorch-lightning` → kode terstruktur rapi per fase; `hydra-core` → config kompleks multi-file; `wandb` → logging di cloud.
 
@@ -836,6 +836,6 @@ Konsep: membaca kode orang lain dengan cepat, memetakan arsitektur repo riset, d
 
 ## Lanjut ke W8
 
-Anda sudah bisa bekerja dengan pretrained transformer, mengadopsi repo asing, dan menggunakan AI tools dengan protokol yang bertanggung jawab. W8 memperluas pemahaman ke seluruh landscape foundation models: bukan hanya text, tetapi vision, audio, time series, dan multimodal - serta bagaimana memilih strategi adaptasi yang tepat.
+Anda sudah bisa memakai pretrained transformer, mengadopsi repo yang belum dikenal, dan menggunakan AI tools dengan protokol yang bertanggung jawab. W8 memperluas pemahaman ke seluruh landscape foundation models: bukan hanya text, tetapi vision, audio, time series, dan multimodal - serta bagaimana memilih strategi adaptasi yang tepat.
 
 Buka [W8 - Foundation Models](08_W8_Foundation_Models.md) ketika siap.

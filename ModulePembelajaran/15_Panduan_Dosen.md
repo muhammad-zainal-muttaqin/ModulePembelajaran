@@ -158,7 +158,7 @@ Konten di luar `<details>` adalah **core content** - wajib untuk semua mahasiswa
 
 - **Kritis:** **Lab 3b wajib**. Tunjukkan gradient flow secara visual (log-plot vanishing gradient) - jangan hanya ceritakan. Minta architecture justification statement: kenapa LSTM, bukan vanilla RNN.
 - **Pitfall:** Mahasiswa menghafal LSTM gates tanpa menghubungkan ke gradient flow. Minta gambar gate sambil menjelaskan kenapa cell state tidak vanish.
-- **Refleksi berbobot:** "Dataset mana yang Anda akan defaulnya pakai LSTM, dan mana yang Transformer? Kapan ragu?"
+- **Refleksi berbobot:** "Dataset mana yang secara default akan Anda tangani dengan LSTM, dan mana yang Transformer? Kapan ragu?"
 - **Kaitan rubrik:** Kompetensi 1 breadth (RNN/LSTM family). Target: Developing.
 - **Waktu lab:** Lab 3b (RNN vs LSTM): 4-6 jam mandatory.
 
@@ -371,7 +371,7 @@ W5 secara konsisten menjadi titik paling curam di modul - BPTT, vanishing gradie
 1. Jangan larang LLM. Alihkan ke W7 (AI tools sebagai pendukung): "Anda boleh pakai LLM, tetapi Anda harus bisa menjelaskan setiap baris."
 2. Uji lisan: panggil mahasiswa secara acak, minta mereka menjelaskan satu fungsi yang mereka submit. Jika tidak bisa, minta mereka menulis ulang dengan gaya sendiri.
 3. Normalisasi: gunakan LLM interaction log (Lampiran C.3). Minta mahasiswa mencatat prompt yang mereka pakai. Transparansi lebih efektif daripada larangan.
-4. Tekankan bahwa nilai datang dari pemahaman, bukan dari kode yang jalan.
+4. Tekankan bahwa nilai berasal dari pemahaman, bukan dari kode yang jalan.
 
 ---
 
@@ -387,6 +387,6 @@ W5 secara konsisten menjadi titik paling curam di modul - BPTT, vanishing gradie
 
 ## 8. Penutup
 
-Modul ini dibangun dengan keyakinan bahwa asisten riset yang baik bukanlah yang paling cepat menulis kode, melainkan yang paling jujur pada data, paling disiplin dalam mencatat, dan paling berani mengakui ketidaktahuan. Jika Anda sebagai dosen membawa keyakinan yang sama ke dalam kelas - memperlakukan setiap pertanyaan mahasiswa sebagai awal eksplorasi, bukan akhir jawaban - modul ini akan bekerja.
+Modul ini dibangun dengan keyakinan bahwa asisten riset yang baik bukanlah yang paling cepat menulis kode, melainkan yang paling jujur pada data, paling disiplin dalam mencatat, dan paling berani mengakui ketidaktahuan. Jika Anda sebagai dosen membawa keyakinan yang sama ke dalam kelas - memperlakukan setiap pertanyaan mahasiswa sebagai awal eksplorasi, bukan akhir jawaban - modul ini akan efektif.
 
-Selamat mengajar. Mulailah dengan Pendahuluan, dan biarkan mahasiswa menemukan sendiri mengapa curiosity, rigor, skepticism, dan ownership lebih penting daripada framework apapun.
+Selamat mengajar. Mulailah dengan Pendahuluan, dan biarkan mahasiswa menyadari sendiri mengapa curiosity, rigor, skepticism, dan ownership lebih penting daripada framework apapun.

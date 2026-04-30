@@ -131,7 +131,7 @@ Yang mengganggumu atau yang ingin Anda gali.
 Satu kalimat: mengapa paper ini relevan (atau tidak).
 ```
 
-Simpan di `docs/papers/<short_title>.md`. Setelah 20 paper, Anda punya literatur pribadi yang bisa di-grep. Dalam tiga bulan, Anda akan terkejut seberapa sering Anda mencari kembali.
+Simpan di `docs/papers/<short_title>.md`. Setelah 20 paper, Anda punya literatur pribadi yang bisa di-grep. Dalam tiga bulan, pencarian ulang seperti ini akan sering terpakai.
 
 ### 2.4 5 Whys: Dari Minat ke Pertanyaan yang Dapat Dikerjakan
 

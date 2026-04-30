@@ -274,7 +274,7 @@ Tiga prinsip menjaga rubrik tetap adil dan konsisten.
 
 **Kemajuan dihargai.** Mahasiswa yang memulai semester di level Novice pada banyak kompetensi dan mencapai Developing konsisten pada akhir semester telah memenuhi tujuan modul. Masterpiece tidak disyaratkan untuk nilai tertinggi kecuali pada kompetensi spesifik yang ditekankan dosen pengampu.
 
-**Refleksi diperhitungkan.** Sebagian penilaian sikap datang dari catatan refleksi mahasiswa sendiri. Refleksi yang jujur - termasuk mengakui kesalahan - lebih bernilai daripada refleksi yang menyajikan kesuksesan tanpa kesulitan.
+**Refleksi diperhitungkan.** Sebagian penilaian sikap berasal dari catatan refleksi mahasiswa sendiri. Refleksi yang jujur - termasuk mengakui kesalahan - lebih bernilai daripada refleksi yang menyajikan kesuksesan tanpa kesulitan.
 
 ---
 

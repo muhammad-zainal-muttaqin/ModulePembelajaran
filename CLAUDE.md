@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Tujuan Proyek
 
-Modul pembelajaran **11 minggu bootcamp + 3 minggu capstone** untuk mahasiswa S1 (semester 4–6) yang menjadi **asisten dosen riset ML/DL**. Target outcome: 60-70% siap untuk topik lab nyata. Fokus bukan pada framework, tetapi pada empat sikap riset: **Curiosity, Rigor, Skepticism, Ownership**. Referensi utama: `EXPECTED_OUTCOME.txt` (9 outcome), `TODO.txt` (konteks dan pesan dosen).
+Modul pembelajaran **11 minggu bootcamp + 3 minggu capstone** untuk mahasiswa S1 (semester 4–6) yang menjadi **asisten dosen riset ML/DL**. Target outcome: 60-70% siap untuk topik lab. Fokus bukan pada framework, tetapi pada empat sikap riset: **Curiosity, Rigor, Skepticism, Ownership**. Referensi utama: `EXPECTED_OUTCOME.txt` (9 outcome), `TODO.txt` (konteks dan pesan dosen).
 
 ## Struktur Konten (Post-Revisi April 2026)
 

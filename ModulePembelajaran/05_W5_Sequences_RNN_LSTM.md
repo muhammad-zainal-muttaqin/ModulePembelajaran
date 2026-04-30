@@ -160,7 +160,7 @@ Hidden state `h_t` berperan sebagai "memori" yang diperbarui setiap langkah. Ini
 
 ### 2.3 LSTM: Gate sebagai Solusi
 
-Long Short-Term Memory (LSTM) memperkenalkan **cell state** `c_t` yang terpisah dari hidden state, dan tiga **gate** yang mengontrol aliran informasi. Konsep gate: vektor dengan nilai antara 0 dan 1 (hasil dari `σ` = sigmoid) yang dikalikan element-wise (`⊙`, lihat §1.5.3) ke vektor lain - bekerja seperti "kran" yang memutuskan komponen mana yang lewat dan komponen mana yang ditahan.
+Long Short-Term Memory (LSTM) memperkenalkan **cell state** `c_t` yang terpisah dari hidden state, dan tiga **gate** yang mengontrol aliran informasi. Konsep gate: vektor dengan nilai antara 0 dan 1 (hasil dari `σ` = sigmoid) yang dikalikan element-wise (`⊙`, lihat §1.5.3) ke vektor lain - berfungsi seperti "keran" yang memutuskan komponen mana yang lewat dan komponen mana yang ditahan.
 
 #### 2.3.1 Rumus Annotated
 
@@ -190,7 +190,7 @@ Kunci di baris cell state: `c_t = f_t ⊙ c_{t-1} + i_t ⊙ g_t`. Saat backprop,
 
 Bandingkan dengan RNN vanilla: setiap langkah mundur, gradient dikalikan dengan `W_h` (matriks belajar, bisa kecil). Setelah 100 langkah, gradient `~ 0`. LSTM tidak punya rantai perkalian matriks ini di cell state - hanya rantai gate, dan gate bisa belajar ke nilai 1 untuk "buka jalur".
 
-#### 2.3.3 Forget Gate: Intuisi Konkret
+#### 2.3.3 Forget Gate: Gambaran Konkret
 
 Bayangkan sequence sensor pasien: glukosa setiap 5 menit selama 24 jam (288 timestep). Cell state `c_t` menyimpan "kondisi pasien terakhir kali stabil". Forget gate `f_t` adalah keputusan model di tiap timestep: *apakah kondisi sebelumnya masih relevan?*
 

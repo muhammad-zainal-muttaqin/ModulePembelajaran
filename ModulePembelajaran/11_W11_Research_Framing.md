@@ -66,7 +66,7 @@ W11 adalah investasi satu minggu yang menentukan kualitas tiga minggu capstone.
 
 ### 2.1 5 Whys: Dari Topik ke Pertanyaan Falsifiable
 
-Teknik 5 Whys dari lean manufacturing bekerja juga untuk research framing. Mulai dari topik yang luas, tanya "mengapa ini menarik?" berulang kali sampai menemukan pertanyaan yang konkret dan falsifiable.
+Teknik 5 Whys dari lean manufacturing juga efektif untuk research framing. Mulai dari topik yang luas, tanya "mengapa ini menarik?" berulang kali sampai menemukan pertanyaan yang konkret dan falsifiable.
 
 **Contoh:**
 

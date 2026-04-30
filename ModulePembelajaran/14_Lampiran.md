@@ -307,7 +307,7 @@ Istilah teknis ML/DL sebagian besar berasal dari Bahasa Inggris. Glosarium ini m
 
 ### A.11 Indeks First-Use per Bab
 
-Tabel ini menunjukkan di mana istilah Tier-1 **pertama kali muncul** dalam urutan modul. Gunakan untuk mengarahkan mahasiswa yang menemukan istilah asing di tengah bab ke definisi pertamanya.
+Tabel ini menunjukkan di mana istilah Tier-1 **pertama kali muncul** dalam urutan modul. Gunakan untuk mengarahkan mahasiswa yang menemukan istilah yang belum dikenal di tengah bab ke definisi pertamanya.
 
 | Istilah | First-use chapter | Link definisi |
 |---|---|---|
@@ -394,7 +394,7 @@ Bagian ini melengkapi definisi glosarium di atas dengan satu contoh angka konkre
 
 **freeze / fine-tune** - Freeze: `param.requires_grad = False` untuk semua parameter backbone. Model tidak berubah saat backward pass. Fine-tune: `requires_grad = True` untuk semua atau sebagian layer. Fine-tune penuh pada dataset kecil berisiko overfitting; freeze+head sering lebih aman.
 
-**attention** - `Attention(Q, K, V) = softmax(Q×K^T / √d) × V`. Q/K/V adalah matriks yang di-project dari input. Softmax menghasilkan bobot "seberapa relevan K_j untuk Q_i". Output = rata-rata berbobot dari V. Intuisi: setiap posisi "bertanya" (Q) dan mendapat jawaban berbobot dari semua posisi lain (K/V).
+**attention** - `Attention(Q, K, V) = softmax(Q×K^T / √d) × V`. Q/K/V adalah matriks yang di-project dari input. Softmax menghasilkan bobot "seberapa relevan K_j untuk Q_i". Output = rata-rata berbobot dari V. Cara kerjanya: setiap posisi "bertanya" (Q) dan mendapat jawaban berbobot dari semua posisi lain (K/V).
 
 **Transformer** - Arsitektur berbasis self-attention yang tidak menggunakan recurrence. Input sequence diproses secara paralel: setiap token attend ke semua token lain secara simultan. Kunci: multi-head attention + positional encoding (karena tanpa recurrence model tidak tahu urutan).
 
@@ -692,7 +692,7 @@ Setiap awal sesi (mulai Pekan 5), ada slot 10 menit per orang untuk mempresentas
 
 ### C.8 Template Lab Replikasi Arsitektur (Jalur 4 - Arsitektur Baru)
 
-Jalur ini dipilih saat Anda ingin mempelajari satu keluarga arsitektur NN yang *belum* di-cover lab wajib minggu itu. Tujuan: forward pass bekerja pada *toy task*, bukan state-of-the-art. Template di bawah mengikuti pola pelaporan yang sama dengan template entri portofolio (C.6), dengan tambahan bagian spesifik untuk replikasi arsitektur.
+Jalur ini dipilih saat Anda ingin mempelajari satu keluarga arsitektur NN yang *belum* di-cover lab wajib minggu itu. Tujuan: forward pass berhasil dijalankan pada *toy task*, bukan state-of-the-art. Template di bawah mengikuti pola pelaporan yang sama dengan template entri portofolio (C.6), dengan tambahan bagian spesifik untuk replikasi arsitektur.
 
 ```markdown
 ## Entri Arsitektur - Pekan <N>
@@ -716,7 +716,7 @@ Jalur ini dipilih saat Anda ingin mempelajari satu keluarga arsitektur NN yang *
 *Satu plot (loss vs epoch atau metrik sukses). Maksimal 10-30 epoch. Tujuan: membuktikan arsitektur bisa belajar sesuatu, bukan mengejar akurasi tinggi.*
 
 ### 5. Perbandingan dengan arsitektur yang sudah dipelajari
-*1-2 paragraf. Kapan arsitektur baru ini lebih cocok? Kapan lebih boros (parameter, waktu, memori)? Apakah Anda bisa membayangkan dataset di lab yang akan memberi keuntungan nyata bagi arsitektur ini?*
+*1-2 paragraf. Kapan arsitektur baru ini lebih cocok? Kapan lebih boros (parameter, waktu, memori)? Apakah Anda bisa membayangkan dataset di lab yang akan memberi manfaat konkret bagi arsitektur ini?*
 
 ### 6. Pertanyaan yang muncul
 *Satu pertanyaan yang Anda ingin kejar minggu depan (dapat memicu jalur Implementasi atau Analisis di entri portofolio berikutnya).*
@@ -738,7 +738,7 @@ Template generik untuk semua Komponen Mandiri (W4-W10). Setiap bab mingguan meny
 | **A - Implementasi** | Menambah, mengubah, atau menguji kode pada repo eksperimen. | Cuplikan kode + angka benchmark sebelum/sesudah + 1 paragraf interpretasi. |
 | **B - Analisis** | Menyelidiki perilaku model, data, atau hasil yang sudah ada. | Visualisasi + 2-3 temuan spesifik + hipotesis turunan. |
 | **C - Desain** | Merancang eksperimen baru tanpa harus menjalankannya penuh. | Protokol terstruktur (format W4 §3) + justifikasi hipotesis + estimasi biaya-waktu. |
-| **D - Arsitektur Baru** | Mereplikasi satu keluarga arsitektur yang belum di-cover lab wajib minggu itu. | Forward pass bekerja pada toy task + 1 plot learning curve + 1 paragraf perbedaan vs arsitektur yang sudah dipelajari. Template lengkap di C.8. |
+| **D - Arsitektur Baru** | Mereplikasi satu keluarga arsitektur yang belum di-cover lab wajib minggu itu. | Forward pass berhasil dijalankan pada toy task + 1 plot learning curve + 1 paragraf perbedaan vs arsitektur yang sudah dipelajari. Template lengkap di C.8. |
 
 **Kriteria sukses per entri** (detail di Rubrik Kompetensi 10, [13_Rubrik_Penilaian.md](13_Rubrik_Penilaian.md)):
 - Bukti eksekusi jelas (kode commit, plot, atau dokumen).
@@ -806,7 +806,7 @@ Aturan praktis: jika Anda tidak yakin, mulai dengan C.10. Jika di pertengahan pe
 
 ### C.11 Template Update Mingguan ke PI
 
-Template salin-pakai untuk update rutin ke dosen pembimbing/PI, biasanya dikirim sebelum sesi mingguan atau di awal pekan. Bedanya dari C.4 dan C.10: kedua template itu *inward-facing* (catatan untuk diri sendiri), sedangkan C.11 *outward-facing* untuk komunikasi dengan supervisor. Konsistensi mingguan membangun kepercayaan PI lebih cepat daripada hasil spektakuler yang datang tiba-tiba.
+Template salin-pakai untuk update rutin ke dosen pembimbing/PI, biasanya dikirim sebelum sesi mingguan atau di awal pekan. Bedanya dari C.4 dan C.10: kedua template itu *inward-facing* (catatan untuk diri sendiri), sedangkan C.11 *outward-facing* untuk komunikasi dengan supervisor. Konsistensi mingguan membangun kepercayaan PI lebih cepat daripada hasil spektakuler yang muncul mendadak.
 
 **Format (4 bagian + 1 pertanyaan):**
 
@@ -980,7 +980,7 @@ Dua belas tabel di bawah adalah alat bantu bagi Anda untuk memeriksa pemahaman s
 
 | Saya harus bisa... | Belum | Mulai | Sudah |
 |---|---|---|---|
-| Memetakan entry point -> model -> loss -> config repo asing dalam 30 menit | | | |
+| Memetakan entry point -> model -> loss -> config repo yang belum dikenal dalam 30 menit | | | |
 | Mengatasi error setup umum (dependency, path, CUDA version) | | | |
 | Melakukan modifikasi minimal-invasif pada repo orang lain | | | |
 | Menulis kategori error analysis (minimal 3 kategori) | | | |
