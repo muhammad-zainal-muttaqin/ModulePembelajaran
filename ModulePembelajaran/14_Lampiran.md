@@ -87,14 +87,14 @@ Istilah teknis ML/DL sebagian besar berasal dari Bahasa Inggris. Glosarium ini m
 | LoRA (Low-Rank Adaptation) | - | Metode adaptasi efisien dengan matriks low-rank parallel dengan weights asli. | - |
 | LSTM cell | - | Varian RNN dengan gate mechanism (input, forget, output). | Nama diri. |
 | maxPooling / MaxPool2d | - | Downsampling: ambil nilai maksimum dalam window. Reduksi dimensi spasial. | - |
-| modality dropout | - | Teknik training yang secara acak mematikan satu modalitas untuk robustness. | - |
+| modalitas dropout | - | Teknik training yang secara acak mematikan satu modalitas untuk robustness. | - |
 | model card | - | Dokumen yang mendeskripsikan capabilities, limitations, dan biases sebuah model. | - |
 | multi-head attention (MHA) | - | Attention paralel di beberapa subspace representasi. | Nama diri. |
 | multilayer perceptron (MLP) | - | Arsitektur *feed-forward* dasar. | - |
 | neural network (NN) | - | Model komputasi terinspirasi jaringan neuron biologis. | Pakai "neural network" atau "NN", bukan "jaringan saraf tiruan". |
 | normalizing flow | - | Model generatif dengan transformasi invertible bertumpuk. Density estimation exact. | - |
 | padding | - | Penambahan border di sekeliling input sebelum convolution. Menjaga dimensi spasial. | - |
-| per-modality ablation | ablasi per-modalitas | Eksperimen yang menghapus atau mengacak satu modalitas untuk mengukur kontribusinya. | - |
+| per-modality ablation | ablation per modalitas | Eksperimen yang menghapus atau mengacak satu modalitas untuk mengukur kontribusinya. | - |
 | perplexity (PPL) | - | exp(CrossEntropy). Metrik language model. Lower = model lebih yakin pada teks. | - |
 | positional encoding | - | Informasi posisi token ditambahkan ke embedding. | Tidak diterjemahkan. |
 | pretrained model | - | Model yang sudah dilatih pada data besar, siap di-fine-tune. | Pakai "pretrained" apa adanya. |
@@ -113,7 +113,7 @@ Istilah teknis ML/DL sebagian besar berasal dari Bahasa Inggris. Glosarium ini m
 | stride | langkah | Step pergeseran kernel saat convolution. Stride > 1 mereduksi dimensi spasial. | - |
 | teacher forcing | - | Training sequence: ground truth dipakai sebagai input langkah berikutnya, bukan prediksi model. | - |
 | temporal alignment | penyelarasan temporal | Sinkronisasi timestep dari stream data yang berbeda sampling rate. | - |
-| three-pass reading | baca tiga-putaran | Metode Keshav (2007): skim -> close-read -> critical read. | - |
+| baca tiga putaraning | baca tiga-putaran | Metode Keshav (2007): skim -> close-read -> critical read. | - |
 | tokenization | tokenisasi | Pemecahan teks menjadi unit lebih kecil: subword, kata, atau karakter. | - |
 | transfer learning | - | Pengetahuan dari satu tugas dipakai untuk meningkatkan performa di tugas lain. | - |
 | Transformer | - | Arsitektur NN berbasis attention, backbone LLM modern. | Nama diri, jangan diterjemahkan. |
@@ -127,7 +127,7 @@ Istilah teknis ML/DL sebagian besar berasal dari Bahasa Inggris. Glosarium ini m
 | Istilah (English) | Padanan Indonesia (jika lazim) | Pengertian | Catatan Penggunaan |
 |---|---|---|---|
 | autograd | - | Automatic differentiation PyTorch. Hitung gradient otomatis dari computational graph. | - |
-| backward pass / backpropagation | propagasi balik | Hitung gradient setiap weight terhadap loss via chain rule. | - |
+| backward pass / backpropagation | propagasi balik | Hitung gradient setiap weight terhadap loss melalui chain rule. | - |
 | batch size | - | Jumlah sampel per iterasi training. | Tidak diterjemahkan. |
 | checkpoint | - | Snapshot model (weights + optimizer + config) yang disimpan. | Pakai "checkpoint". Hindari "titik simpan". |
 | device | - | Tempat tensor diproses: CPU atau CUDA GPU. | "Pindahkan model ke device." |
@@ -221,10 +221,10 @@ Istilah teknis ML/DL sebagian besar berasal dari Bahasa Inggris. Glosarium ini m
 | pre-registration | praregistrasi | Mendokumentasikan hipotesis dan protokol sebelum eksperimen. | Dua-duanya diterima. |
 | replicated result | hasil yang direplikasi | Hasil yang dikonfirmasi dengan seed berbeda atau oleh peneliti lain. | - |
 | reproducibility | reproduksibilitas | Eksperimen dapat diulang dengan hasil yang sama jika seed, config, dan komit sama. | - |
-| research question | pertanyaan riset | Pertanyaan spesifik, terukur, dan falsifiable yang menjadi fokus riset. | - |
+| research question | pertanyaan riset | Pertanyaan spesifik, terukur, dan dapat dipalsukan yang menjadi fokus riset. | - |
 | seed | - | Nilai awal untuk random number generator. Kunci reproduksibilitas. | Tidak diterjemahkan. |
 | smoke test (3-level) | - | L1: import modul. L2: forward satu batch. L3: satu epoch training. Verifikasi pipeline. | - |
-| SQRC | - | Situation, Question, Resolution attempt, Call. Framework komunikasi riset. | - |
+| SQRC | - | Situation, Question, Resolution attempt, Call. Kerangka komunikasi riset. | - |
 | variant | varian | Versi berbeda dari suatu metode dalam perbandingan. | - |
 
 ### A.6 Perangkat
@@ -250,7 +250,7 @@ Istilah teknis ML/DL sebagian besar berasal dari Bahasa Inggris. Glosarium ini m
 |---|---|---|---|
 | curiosity | keingintahuan | Dorongan untuk memahami mengapa dan bagaimana model berperilaku. | - |
 | observation before conclusion | observasi sebelum simpulan | Lihat data dulu, baru simpulkan. Lawan dari "conclusion-driven analysis". | - |
-| ownership | tanggung jawab | Mengakui dan mengampuni hasil eksperimen sendiri (baik/buruk). | Konteks riset: "mengampuni hasilmu sendiri". |
+| ownership | tanggung jawab | Bertanggung jawab atas hasil eksperimen sendiri, baik maupun buruk. | Konteks riset: "bertanggung jawab atas hasil sendiri". |
 | reproducibility | reproduksibilitas | Eksperimen dapat diulang dengan hasil yang sama jika seed, config, dan commit hash sama. | - |
 | rigor | ketelitian | Kebiasaan sistematis dan disiplin dalam menjalankan eksperimen. | - |
 | rigor habit | kebiasaan ketelitian | Kebiasaan sistematis: smoke test, reproducibility, ablation, pre-registration. | - |
@@ -408,7 +408,7 @@ Salin checklist ini di bagian atas setiap folder eksperimen baru (`experiments/<
 
 ### B.1 Sebelum Menjalankan (Pre-flight)
 
-- Pertanyaan riset ditulis dalam satu kalimat falsifiable.
+- Pertanyaan riset ditulis dalam satu kalimat yang dapat dipalsukan.
 - Baseline jelas dan adil (tanpa "handicap" tersembunyi).
 - Satu metrik utama ditetapkan; metrik sekunder (bila ada) dicatat.
 - Minimum 3 seed direncanakan per kondisi.
@@ -465,9 +465,9 @@ Salin ke `docs/preregs/<YYYY-MM-DD>_<nama_eksperimen>.md` sebelum menulis kode e
 
 <Mengapa pertanyaan ini layak dijawab sekarang. Konteks praktis atau teoretis.>
 
-## 2. Hipotesis (satu kalimat falsifiable)
+## 2. Hipotesis (satu kalimat yang dapat dipalsukan)
 
-Aku memprediksi **<metode X>** akan menghasilkan **<metrik M>** yang lebih **<tinggi/rendah>**
+Saya memprediksi **<metode X>** akan menghasilkan **<metrik M>** yang lebih **<tinggi/rendah>**
 sebesar **≥ Δ** dibandingkan dengan **<baseline B>** pada **<dataset D>**,
 ketika dijalankan pada **<kondisi/protokol>**.
 
@@ -485,11 +485,11 @@ ketika dijalankan pada **<kondisi/protokol>**.
 
 ## 4. Hasil yang Diharapkan (satu paragraf)
 
-<Tebakan awalmu sebelum melihat hasil. Menjaga kejujuran intuisi.>
+<Tebakan awal Anda sebelum melihat hasil. Menjaga kejujuran intuisi.>
 
 ## 5. Kondisi Kegagalan Hipotesis
 
-<Kondisi konkret yang membuatmu menyatakan H0 benar: misalnya "Δ < 1% atau σ > Δ".>
+<Kondisi konkret yang membuat Anda menyatakan H0 benar: misalnya "Δ < 1% atau σ > Δ".>
 
 ## 6. Amendments (diisi setelah eksperimen)
 
@@ -514,7 +514,7 @@ Tanggal: <YYYY-MM-DD>
 - Ringkasan kontribusi (2-3 poin).
 
 ## 2. Related Work
-- 2-4 paper inti; untuk tiap paper: apa yang mereka lakukan + bagaimana beda dengan proyekmu.
+- 2-4 paper inti; untuk tiap paper: apa yang mereka lakukan + bagaimana beda dengan proyek Anda.
 - Hindari menulis "A did X. B did Y. C did Z." tanpa integrasi.
 
 ## 3. Method
@@ -565,7 +565,7 @@ Salin ke `docs/llm_log.md`. Update setiap pemakaian LLM yang non-trivial; baris 
 # LLM Interaction Log
 Proyek: <nama proyek>
 
-| Tanggal | Tool | Tujuan | Prompt kunci | Verifikasi | Hasil |
+| Tanggal | Alat | Tujuan | Prompt kunci | Verifikasi | Hasil |
 |---------|------|--------|--------------|------------|-------|
 | YYYY-MM-DD | Claude 3.5 | Parse format CSV tidak standar | "Tulis fungsi Python yang..." | Run di 3 sampel CSV | Dipakai, minor fix. |
 | YYYY-MM-DD | Copilot | Auto-complete training loop | inline completion | Bandingkan dengan template_repo/src/train.py | Ditolak 40%, diterima 60%. |
@@ -626,7 +626,7 @@ Salin ke `docs/papers/<short_title>.md`. Format Bab 9.
 **Tanggal baca:** YYYY-MM-DD
 
 ## TL;DR (1-2 kalimat)
-<Klaim utama paper, dalam kalimatmu sendiri.>
+<Klaim utama paper, dalam kalimat Anda sendiri.>
 
 ## Metode (3-5 kalimat)
 <Bagaimana mereka melakukannya. Rumus penting bila relevan.>
@@ -654,7 +654,7 @@ Salin satu blok ini ke sel markdown di `notebooks/portofolio_mandiri.ipynb` untu
 **Alasan memilih jalur ini:** <Satu kalimat: apa yang ingin Anda pelajari atau buktikan.>
 
 ### Setup
-*Apa yang dikerjakan, tool/dataset/config yang dipakai, dan berapa lama.*
+*Apa yang dikerjakan, alat/dataset/config yang dipakai, dan berapa lama.*
 
 ### Temuan
 *Apa yang ditemukan. Sertakan angka, grafik, atau output kunci. Hindari "saya berhasil" tanpa angka.*
@@ -849,7 +849,7 @@ Tabel rujukan saat Anda kehilangan arah.
 | Curiosity  | "Mengapa model berperilaku begini?"                 | Anda menghabiskan waktu mempertanyakan *yang aneh*, bukan hanya mengejar metrik. |
 | Rigor      | "Bisakah orang lain mereproduksi ini?"              | Seed, config, git hash, pre-reg.                                                 |
 | Skepticism | "Apa penjelasan paling membosankan dari hasil ini?" | Audit leakage, baseline-kuat, error analysis.                                    |
-| Ownership  | "Siapa yang akan menjawab jika saya tidak?"         | Dokumen lengkap, verifikasi LLM, repo yang runnable.                             |
+| Ownership  | "Siapa yang akan menjawab jika saya tidak?"         | Dokumen lengkap, verifikasi LLM, repositori yang bisa dijalankan.                             |
 
 
 ---
@@ -982,7 +982,7 @@ Dua belas tabel di bawah adalah alat bantu bagi Anda untuk memeriksa pemahaman s
 |---|---|---|---|
 | Memetakan entry point -> model -> loss -> config repo yang belum dikenal dalam 30 menit | | | |
 | Mengatasi error setup umum (dependency, path, CUDA version) | | | |
-| Melakukan modifikasi minimal-invasif pada repo orang lain | | | |
+| Melakukan modifikasi seminimal mungkin pada repo orang lain | | | |
 | Menulis kategori error analysis (minimal 3 kategori) | | | |
 | Me-review kode rekan: menemukan magic number, hardcoded path, missing docs | | | |
 | Lab 6: satu PR/issue ke repo publik; error analysis selesai | | | |
@@ -993,8 +993,8 @@ Dua belas tabel di bawah adalah alat bantu bagi Anda untuk memeriksa pemahaman s
 | Saya harus bisa... | Belum | Mulai | Sudah |
 |---|---|---|---|
 | Membuat demo Streamlit/Gradio yang bisa diakses lewat browser | | | |
-| Menampilkan confusion matrix dan failure case, bukan hanya akurasi | | | |
-| Menjelaskan apa yang bisa disimpulkan pengguna dari tool yang Anda buat | | | |
+| Menampilkan confusion matrix dan kasus gagal, bukan hanya akurasi | | | |
+| Menjelaskan apa yang bisa disimpulkan pengguna dari alat yang Anda buat | | | |
 | Lab 7: demo interaktif online; link bisa diakses | | | |
 | Lab 7b (breadth): Autoencoder + denoising AE + t-SNE selesai | | | |
 
@@ -1002,9 +1002,9 @@ Dua belas tabel di bawah adalah alat bantu bagi Anda untuk memeriksa pemahaman s
 
 | Saya harus bisa... | Belum | Mulai | Sudah |
 |---|---|---|---|
-| Mengikuti 5 langkah adopsi tool baru (quickstart -> replikasi -> adaptasi -> integrasi -> catatan) | | | |
+| Mengikuti 5 langkah adopsi alat baru (quickstart -> replikasi -> adaptasi -> integrasi -> catatan) | | | |
 | Menyewa GPU di RunPod, SSH, training, tarik checkpoint, matikan pod | | | |
-| Mengevaluasi tool baru dengan matriks 5 dimensi (dokumentasi, repro, ekosistem, biaya, komunitas) | | | |
+| Mengevaluasi alat baru dengan matriks 5 dimensi (dokumentasi, repro, ekosistem, biaya, komunitas) | | | |
 | Mengelola biaya GPU cloud: memilih spot vs on-demand, memantau tagihan | | | |
 | Lab 8: training di RunPod selesai; pod dimatikan; tagihan < $5 | | | |
 
@@ -1012,11 +1012,11 @@ Dua belas tabel di bawah adalah alat bantu bagi Anda untuk memeriksa pemahaman s
 
 | Saya harus bisa... | Belum | Mulai | Sudah |
 |---|---|---|---|
-| Membaca paper dengan metode 3-pass (skim -> close-read -> kritis) | | | |
-| Mengisi template paper notes (TL;DR, metode, bukti, pertanyaan/kritik, hubungan) | | | |
-| Menulis pre-registration singkat sebelum eksperimen baru | | | |
-| Merumuskan pertanyaan lanjutan yang dapat dipalsukan dari satu paper | | | |
-| Lab 9: paper notes + pre-registration selesai | | | |
+| Menghasilkan 3-5 framing kandidat dari satu dataset | | | |
+| Menentukan entitas, input, output, Middle, dan gap untuk tiap framing | | | |
+| Menjalankan filter literatur cepat untuk setiap framing kandidat | | | |
+| Memilah framing menjadi baru, sebagian terjawab, atau jenuh | | | |
+| Menyiapkan framing utama, framing cadangan, dan alasan framing yang dihapus untuk W12 | | | |
 
 ### Cara Memakai Checklist Ini
 
@@ -1127,7 +1127,7 @@ Salin template ini ke `repo_map.md` di root folder eksperimen Anda setiap kali m
 
 ## C.13 Capstone Proposal One-Pager {#c13-capstone-proposal-one-pager}
 
-Template untuk luaran wajib W11. Isi semua bagian sebelum oral defense.
+Template untuk luaran wajib W11. Isi semua bagian sebelum pertahanan framing W12.
 
 ```markdown
 # Capstone Proposal: [judul singkat]
@@ -1138,9 +1138,9 @@ Template untuk luaran wajib W11. Isi semua bagian sebelum oral defense.
 
 ## 1. Pertanyaan Penelitian
 
-[Satu kalimat falsifiable. Contoh: "Apakah X lebih baik dari Y pada Z, diukur dengan M, dengan delta minimal D?"]
+[Satu kalimat dapat dipalsukan. Contoh: "Apakah X lebih baik dari Y pada Z, diukur dengan M, dengan delta minimal D?"]
 
-## 2. Baseline dan Intervention
+## 2. Baseline dan Intervensi
 
 **Baseline:** [apa, dari mana, mengapa ini yang dipilih]  
 **Intervention:** [apa yang berbeda dari baseline]  
@@ -1173,12 +1173,12 @@ Disetujui oleh: _____________  Tanggal: _____________
 
 ---
 
-## C.14 Per-Modality Ablation Protocol {#c14-per-modality-ablation-protocol}
+## C.14 Protokol Ablation Per Modalitas {#c14-per-modalitas-ablation-protocol}
 
 Template untuk W9 Lab 8 dan capstone multimodal. Copy ke `docs/ablation_protocol.md`.
 
 ```markdown
-# Per-Modality Ablation Protocol
+# Protokol Ablation Per Modalitas
 
 **Experiment:** [nama]  
 **Modalitas:** [daftar modalitas yang digunakan]
@@ -1194,9 +1194,9 @@ Template untuk W9 Lab 8 dan capstone multimodal. Copy ke `docs/ablation_protocol
 | img+text | Real | Real | MASKED | Does sensor add value? |
 | img+sensor | Real | MASKED | Real | Does text add value? |
 | text+sensor | MASKED | Real | Real | Does image add value? |
-| rand_img | RANDOM | Real | Real | Ignored-modality check |
-| rand_text | Real | RANDOM | Real | Ignored-modality check |
-| rand_sensor | Real | Real | RANDOM | Ignored-modality check |
+| rand_img | RANDOM | Real | Real | Cek modalitas terabaikan |
+| rand_text | Real | RANDOM | Real | Cek modalitas terabaikan |
+| rand_sensor | Real | Real | RANDOM | Cek modalitas terabaikan |
 
 ## Masking Strategy
 
@@ -1213,15 +1213,15 @@ Template untuk W9 Lab 8 dan capstone multimodal. Copy ke `docs/ablation_protocol
 
 ## Diagnosis
 
-- Ignored modality ditemukan? [Ya/Tidak]
+- Ignored modalitas ditemukan? [Ya/Tidak]
 - Modalitas mana yang diabaikan? [atau "tidak ada yang terkonfirmasi"]
 - Evidence: [gradient norms / ablation delta]
-- Mitigasi yang diterapkan: [modality dropout / null token / tidak ada]
+- Mitigasi yang diterapkan: [modalitas dropout / null token / tidak ada]
 ```
 
 ---
 
-## C.15 Lightweight Research Tools {#c15-lightweight-research-tools}
+## C.15 Alat Riset Ringan {#c15-lightweight-research-tools}
 
 Alat ringan yang berguna untuk riset sehari-hari, tidak perlu bab penuh.
 
@@ -1244,7 +1244,7 @@ if uploaded:
 
     st.write("Prediction:", prediction)
     st.write("Confidence:", confidence)
-    # Selalu tampilkan failure cases jika ada
+    # Selalu tampilkan kasus gagal jika ada
 ```
 
 Jalankan: `streamlit run demo/app.py`. Deploy: `streamlit cloud` (gratis untuk proyek publik).
@@ -1292,7 +1292,7 @@ runpodctl remove pod [pod-id]
 - **Panduan Instruktur (pacing, emphasis, grading)?** -> [Panduan Instruktur](15_Panduan_Instruktur.md)
 - **Template laporan capstone?** -> Lampiran §C.2
 - **Memilih framing capstone?** -> [Capstone - Proyek Riset](12_Capstone.md) §2
-- **Membaca paper dalam tiga putaran (3-pass)?** -> W10 §2.2
+- **Membaca paper dalam tiga putaran?** -> W10 §2.2
 - **Alur paper-to-code?** -> W10 §2.3
 - **Audit temporal leakage?** -> W6 §0.6 + Lab 6
 - **Temporal leakage konkret?** -> W6 §0.6
@@ -1315,12 +1315,12 @@ runpodctl remove pod [pod-id]
 - **Format dan kriteria Komponen Mandiri?** -> Lampiran §C.9
 - **Taksonomi foundation model (modalitas x keluarga model)?** -> W8 §2.2
 - **Pohon keputusan adaptasi (frozen/LoRA/full FT)?** -> W8 §2.4
-- **Per-modality ablation protocol?** -> Lampiran §C.14
-- **Multimodal fusion strategies?** -> W9 §2.1
-- **Missing modality strategies?** -> W9 §2.3
+- **protokol ablation per modalitas?** -> Lampiran §C.14
+- **Strategi fusion multimodal?** -> W9 §2.1
+- **Missing modalitas strategies?** -> W9 §2.3
 - **Timeline capstone 4 minggu (W12-W15)?** -> [Capstone - Proyek Riset](12_Capstone.md) §1
 - **Sub-rubrik capstone per fase (W12-W15)?** -> [Rubrik Penilaian](13_Rubrik_Penilaian.md) §5.1
-- **Lightweight research tools (Streamlit/Gradio/RunPod)?** -> Lampiran §C.15
+- **Alat riset ringan (Streamlit/Gradio/RunPod)?** -> Lampiran §C.15
 
 ---
 
@@ -1330,20 +1330,20 @@ Panduan untuk mahasiswa yang pernah menggunakan modul versi 14 minggu, atau dose
 
 | Bab Lama | Minggu Lama | Bab Baru | Minggu Baru | Perubahan utama |
 |---|---|---|---|---|
-| Bab 00 Pendahuluan | 1 | Bab 00 Pendahuluan | 1 | +Target Outcome, +alur lintas minggu, +ritme sesi |
+| Bab 00 Pendahuluan | 1 | Bab 00 Pendahuluan | 1 | +Target Hasil, +alur lintas minggu, +ritme sesi |
 | Bab 01a Fondasi NN | 2 | 02 W2 Images CNN Smoke Test | 2 | Backprop dipindah ke Lampiran A.1; +bagian Smoke Test |
 | Bab 01b Loss/Opt/Eval | 3 | 03 W3 Loss Optimizer Evaluasi | 3 | +Galeri 5 loss curves opener (example-first) |
 | Bab 02 Ide ke Eksperimen | 4 | 04 W4 Reproducibility | 4 | +bagian Matriks Eksperimen; +Infrastruktur Reproduksibilitas; Bab 03 lama diinline |
 | Bab 03 Eksperimen Reproduksibel | 5-6 | 05 W5 Sequences RNN LSTM | 5 | Konten lama dipindah ke W4; konten sequence baru; Lab 3b jadi wajib |
 | Bab 04 Validasi Data | 7 | 06 W6 Representations Temporal Leakage | 6 | +rekap representasi; +contoh konkret temporal leakage; +Lab 6 temporal leakage |
-| Bab 05 AI Tools | 8 | (merge ke 07 W7) | 7 | Dimerge ke W7; AI tools protocol ringkas |
-| Bab 06 Adopsi Repo Riset | 9 | 07 W7 Text Transformers Repo Adoption | 7 | +Text/Transformer section; AI tools + repo adoption merge |
+| Bab 05 Alat AI | 8 | (merge ke 07 W7) | 7 | Dimerge ke W7; alat AI protocol ringkas |
+| Bab 06 Adopsi Repo Riset | 9 | 07 W7 Text Transformers Repo Adoption | 7 | +Text/Transformer section; alat AI + repo adoption merge |
 | Bab 07 Alat Pendukung Ringan | 10 | (Lampiran C.15) | - | Streamlit/Gradio dipindah ke Lampiran C.15 |
-| Bab 08 Platform & Tool Baru | 11 | (note di W4 §2.8) | 4 | RunPod intro dipindah ke W4; detail di C.15 |
+| Bab 08 Platform & Alat Baru | 11 | (note di W4 §2.8) | 4 | RunPod intro dipindah ke W4; detail di C.15 |
 | Bab 09 Pengembangan Mandiri | 12 | 10 W10 Paper Reading + 11 W11 Research Framing | 10-11 | Split jadi 2 bab; +paper-to-code; +Input→Middle→Output framing; +framing menu; +literature triage |
-| Bab 10 Capstone 2 minggu | 13-14 | 12 Capstone 4 Minggu | 12-15 | Diperluas jadi 4 minggu; W12 filter/framing defense; W13 rethink+iterasi; W14 presentasi final; W15 pengumpulan |
+| Bab 10 Capstone 2 minggu | 13-14 | 12 Capstone 4 Minggu | 12-15 | Diperluas jadi 4 minggu; W12 filter/pertahanan framing; W13 tinjauan ulang+iterasi; W14 presentasi final; W15 pengumpulan |
 | (tidak ada) | - | 08 W8 Foundation Models | 8 | Baru: taksonomi modalitas x keluarga model x adaptasi |
-| (tidak ada) | - | 09 W9 Multimodal Reasoning | 9 | Baru: fusion, ablation, missing modality |
+| (tidak ada) | - | 09 W9 Multimodal Reasoning | 9 | Baru: fusion, ablation, missing modalitas |
 
 ---
 

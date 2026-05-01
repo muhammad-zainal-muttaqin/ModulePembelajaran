@@ -26,7 +26,7 @@
 
 # 12 · Capstone - Proyek Riset
 
-> *Capstone bukan ujian terakhir. Ini adalah pertama kalinya kamu memiliki pertanyaan riset dari awal framing hingga komunikasi, dan bertanggung jawab atas setiap keputusan di antara keduanya.*
+> *Capstone bukan ujian terakhir. Ini adalah pertama kalinya Anda memiliki pertanyaan riset dari awal framing hingga komunikasi, dan bertanggung jawab atas setiap keputusan di antara keduanya.*
 
 **Minggu:** 12-15
 **In charge:** Bu Fatma + RA
@@ -36,11 +36,11 @@
 
 ## 0. Apa Itu Capstone
 
-Capstone adalah proyek riset yang terbatas dan berbasis hipotesis. Kamu masuk dengan framing yang sudah disetujui. Kamu keluar dengan laporan riset, repositori yang dapat direproduksi, demo yang berfungsi, dan presentasi final.
+Capstone adalah proyek riset yang terbatas dan berbasis hipotesis. Anda masuk dengan framing yang sudah disetujui. Anda keluar dengan laporan riset, repositori yang dapat direproduksi, demo yang berfungsi, dan presentasi final.
 
-Sepuluh minggu bootcamp mengajarkan cara mengeksekusi: diberi masalah yang terdefinisi dan dataset yang terdefinisi, bangun model, latih dengan benar, dan evaluasi secara jujur. Capstone meminta kamu melakukan sesuatu yang lebih sulit: memiliki pertanyaan riset dari awal hingga akhir - merumuskannnya, mengujinya, merevisinya saat bukti mendorong balik, dan mengkomunikasikan apa yang benar-benar ditemukan.
+Sepuluh minggu bootcamp mengajarkan cara mengeksekusi: diberi masalah yang terdefinisi dan dataset yang terdefinisi, bangun model, latih dengan benar, dan evaluasi secara jujur. Capstone meminta Anda melakukan sesuatu yang lebih sulit: memiliki pertanyaan riset dari awal hingga akhir - merumuskannya, mengujinya, merevisinya saat bukti mendorong balik, dan mengomunikasikan apa yang benar-benar ditemukan.
 
-Prosesnya tidak akan berjalan persis seperti yang direncanakan. Itu bukan tanda ada yang salah. Proyek riset yang berjalan persis seperti yang direncanakan kemungkinan tidak menanyakan pertanyaan yang sesungguhnya. Momen memikirkan ulang - ketika hasil Eksperimen 1 memaksamu merevisi hipotesis dan desain - adalah pusat capstone, bukan jalan menyimpang darinya.
+Prosesnya tidak akan berjalan persis seperti yang direncanakan. Itu bukan tanda ada yang salah. Proyek riset yang berjalan persis seperti yang direncanakan kemungkinan tidak menanyakan pertanyaan yang sesungguhnya. Momen meninjau ulang - ketika hasil Eksperimen 1 memaksa Anda merevisi hipotesis dan desain - adalah pusat capstone, bukan jalan menyimpang darinya.
 
 Capstone yang baik punya:
 - Gap yang sesungguhnya di Middle. Sesuatu yang tidak bisa diselesaikan oleh pipeline standar yang diterapkan apa adanya
@@ -51,18 +51,18 @@ Cakupannya boleh sederhana. Proyek kecil yang dieksekusi dengan baik lebih berha
 
 ---
 
-## 1. Arc Empat Minggu
+## 1. Alur Empat Minggu
 
 Capstone berjalan empat minggu. W11 adalah framing (dibahas di dokumen Research Framing). W12-W15 adalah capstone yang sebenarnya.
 
 | Minggu | Tema | Yang sedang dikerjakan |
 |---|---|---|
 | 12 | Filter dan komitmen | Presentasikan framing, dapatkan persetujuan, jalankan Eksperimen 1 |
-| 13 | Pikirkan ulang dan iterasi | Presentasikan hasil, pikirkan ulang, rancang dan jalankan Eksperimen 2 |
+| 13 | Tinjau ulang dan iterasi | Presentasikan hasil, tinjau ulang, rancang dan jalankan Eksperimen 2 |
 | 14 | Komunikasikan | Presentasikan Eksperimen 2, selesaikan penulisan, finalisasi demo, presentasi final |
 | 15 | Kumpulkan | Poles luaran berdasarkan umpan balik W14; kumpulkan laporan, repo, demo |
 
-Setiap minggu punya satu pertemuan tatap muka dan satu periode kerja antarsesi. Pertemuan tatap muka berbasis presentasi: kamu menunjukkan apa yang kamu punya, kelompok mempertanyakannya, Bu Fatma memberi arahan. Tidak ada ceramah. Bu Fatma dan RA hadir untuk membimbing, bukan mengajar.
+Setiap minggu punya satu pertemuan tatap muka dan satu periode kerja antarsesi. Pertemuan tatap muka berbasis presentasi: Anda menunjukkan apa yang Anda punya, kelompok mempertanyakannya, Bu Fatma memberi arahan. Tidak ada ceramah. Bu Fatma dan RA hadir untuk membimbing, bukan mengajar.
 
 ---
 
@@ -78,9 +78,9 @@ Setiap peserta mempresentasikan:
 - Framing utama yang diusulkan dan cadangan, dengan Middle yang digambar di papan (kotak, panah, gap ditandai)
 
 Kelompok dan Bu Fatma memberikan tanggapan terhadap framing:
-- "Pemeriksaan literatur menemukan paper X. Apakah paper itu mengisi gap yang kamu identifikasi?"
-- "Middle-mu tidak punya gap. Seluruh pipeline-nya standar. Apa yang akan kamu ubah?"
-- "Framing ini lulus cek temporal, tapi apakah input-nya benar-benar ada pada saat prediksi dalam deployment yang realistis?"
+- "Pemeriksaan literatur menemukan paper X. Apakah paper itu mengisi gap yang Anda identifikasi?"
+- "Middle Anda tidak punya gap. Seluruh pipeline-nya standar. Apa yang akan Anda ubah?"
+- "Framing ini lulus cek temporal, tapi apakah input-nya benar-benar ada pada saat prediksi dalam skenario deployment yang realistis?"
 - "Mengapa framing ini daripada cadangan? Apa yang membuat gap ini lebih menarik?"
 
 **Bu Fatma menyetujui atau mengembalikan setiap framing.** Framing yang dikembalikan harus direvisi. Peserta tidak memulai desain eksperimen sebelum framing disetujui. Perkirakan 1-2 peserta perlu diskusi di hari yang sama dengan Bu Fatma atau RA sebelum framing-nya diloloskan.
@@ -103,11 +103,11 @@ Seeds: [seed mana, berapa banyak]
 Hasil yang diharapkan: [apa yang diharapkan terjadi jika hipotesis benar]
 ```
 
-Commit file ini sebelum menjalankan eksperimen apapun. Kalau perlu menyimpang dari pre-registration selama eksekusi, dokumentasikan penyimpangan dan alasannya. Penyimpangan itu sendiri bukan masalah, tapi penyimpangan yang tidak terdokumentasi adalah.
+Commit file ini sebelum menjalankan eksperimen apa pun. Kalau perlu menyimpang dari pre-registration selama eksekusi, dokumentasikan penyimpangan dan alasannya. Penyimpangan itu sendiri bukan masalah, tapi penyimpangan yang tidak terdokumentasi adalah.
 
-**Eksperimen 1: mulai dijalankan.** Minimal: baseline dan kondisi utama, keduanya dengan 3 seed, semua run dicatat, hasil disimpan. Tidak masalah jika eksperimen masih berjalan saat W13 tiba. Bawa apapun yang sudah ada.
+**Eksperimen 1: mulai dijalankan.** Minimal: baseline dan kondisi utama, keduanya dengan 3 seed, semua run dicatat, hasil disimpan. Tidak masalah jika eksperimen masih berjalan saat W13 tiba. Bawa apa pun yang sudah ada.
 
-**Dokumen tinjauan ulang:** mulai dibuat segera setelah ada hasil apapun, bahkan yang parsial. Tidak perlu menunggu semuanya selesai. Format:
+**Dokumen tinjauan ulang:** mulai dibuat segera setelah ada hasil apa pun, bahkan yang parsial. Tidak perlu menunggu semuanya selesai. Format:
 
 ```
 Pengamatan (bukan kesimpulan):
@@ -137,9 +137,9 @@ Bawa dokumen tinjauan ulang ke W13. Tidak perlu lengkap. Harus jujur tentang apa
 
 ### 3.1 Sesi Kelas (90 menit)
 
-**Format:** Presentasi individual, 15 menit masing-masing. Fokusnya adalah tinjauan ulang, bukan hasil. Bawa apapun yang ada.
+**Format:** Presentasi individual, 15 menit masing-masing. Fokusnya adalah tinjauan ulang, bukan hasil. Bawa apa pun yang ada.
 
-Hasil Eksperimen 1 mungkin parsial atau masih awal. Itu tidak masalah. Riset jarang tiba tepat waktu. Yang penting adalah kamu sudah melihat hasil apapun yang ada dan benar-benar memikirkan artinya.
+Hasil Eksperimen 1 mungkin parsial atau masih awal. Itu tidak masalah. Riset jarang tiba tepat waktu. Yang penting adalah Anda sudah melihat hasil apa pun yang ada dan benar-benar memikirkan artinya.
 
 Setiap peserta mempresentasikan:
 - Hasil Eksperimen 1 (5 menit): apa yang dijalankan, apa yang terlihat sejauh ini, meskipun tidak lengkap - satu plot atau tabel
@@ -148,11 +148,11 @@ Setiap peserta mempresentasikan:
 - Tanggapan kelompok + Bu Fatma (2 menit)
 
 Pertanyaan yang mungkin diajukan kelompok dan Bu Fatma:
-- "Penjelasan alternatif apa yang bisa menghasilkan hasil yang sama ini tanpa metode kamu berkontribusi apapun?"
-- "Apa dari hasil itu yang benar-benar memaksa perubahan dalam tinjauanmu? Bisakah kamu menunjuk angka spesifik?"
-- "Dua paper barumu. Apakah kamu menemukannya sebelum atau setelah memutuskan arah Eksperimen 2?"
-- "Kalau Eksperimen 1 menghasilkan arah yang berlawanan, seperti apa Eksperimen 2-mu?"
-- "Kalau Eksperimen 2 juga menghasilkan hasil yang tidak meyakinkan, apa rencana cadanganmu?"
+- "Penjelasan alternatif apa yang bisa menghasilkan hasil yang sama ini tanpa metode Anda berkontribusi apa pun?"
+- "Apa dari hasil itu yang benar-benar memaksa perubahan dalam tinjauan Anda? Bisakah Anda menunjuk angka spesifik?"
+- "Dua paper baru Anda. Apakah Anda menemukannya sebelum atau setelah memutuskan arah Eksperimen 2?"
+- "Kalau Eksperimen 1 menghasilkan arah yang berlawanan, seperti apa Eksperimen 2 Anda?"
+- "Kalau Eksperimen 2 juga menghasilkan hasil yang tidak meyakinkan, apa rencana cadangan Anda?"
 
 Dua pertanyaan terakhir adalah yang paling diagnostik. Peserta yang tidak bisa menjawab "kalau Eksperimen 1 hasilnya terbalik" berarti belum benar-benar terlibat dengan hasilnya. Mereka menulis tinjauan ulang yang sudah direncanakan sebelumnya.
 
@@ -174,13 +174,13 @@ Tinjauan ulang adalah luaran terpenting dari capstone. Tinjauan ulang yang berka
 
 ### 4.1 Sesi Kelas (120 menit, diperpanjang)
 
-**Format:** Presentasi riset final, 20 menit masing-masing (15 menit talk + 5 menit tanya jawab).
+**Format:** Presentasi riset final, 20 menit masing-masing (15 menit presentasi + 5 menit tanya jawab).
 
 Ini adalah pertemuan tatap muka terakhir. Semua hal diselesaikan di sini.
 
-Struktur talk:
+Struktur presentasi:
 1. Apa pertanyaannya dan mengapa itu penting (2 menit)
-2. Seperti apa Middle-nya dan di mana gap-nya (2 menit)
+2. Seperti apa Middle-nya dan di mana letak gap-nya (2 menit)
 3. Eksperimen 1: apa yang dijalankan, apa yang terjadi, apa yang diajarkan (3 menit)
 4. Tinjauan ulang: mengapa Eksperimen 2 berbeda dari Eksperimen 1 (2 menit)
 5. Eksperimen 2: hasil, interpretasi, apa yang bisa diklaim (3 menit)
@@ -190,9 +190,9 @@ Struktur talk:
 Tanya jawab harus punya setidaknya satu pertanyaan tajam per presentasi yang menyasar bagian argumen yang paling lemah - dari Bu Fatma, RA, atau peserta lain.
 
 **Fokus Bu Fatma saat tanya jawab:**
-- "Pendahuluanmu mengklaim X. Apakah hasilmu benar-benar mendukung X, atau hanya sesuatu yang lebih lemah?"
-- "Karya terkaitmu tidak menyebutkan paper Y. Itu adalah karya terkait terdekat. Mengapa absen?"
-- "Kamu bilang metodenya lebih robust. Robust dalam kondisi apa, dibanding apa? Tulis ulang untuk sesuai dengan cakupan eksperimenmu yang sebenarnya."
+- "Pendahuluan Anda mengklaim X. Apakah hasil Anda benar-benar mendukung X, atau hanya sesuatu yang lebih lemah?"
+- "Karya terkait Anda tidak menyebutkan paper Y. Itu adalah karya terkait terdekat. Mengapa absen?"
+- "Anda bilang metodenya lebih robust. Robust dalam kondisi apa, dibanding apa? Tulis ulang untuk sesuai dengan cakupan eksperimen Anda yang sebenarnya."
 - "Demo hanya menampilkan prediksi yang berhasil. Tunjukkan kasus kegagalan."
 
 **Masalah umum yang perlu dimunculkan saat tanya jawab, bukan dibiarkan ke laporan:**
@@ -241,11 +241,11 @@ Gunakan minggu antara W14 dan tenggat pengumpulan untuk:
 
 Setiap pertemuan tatap muka dalam capstone mengikuti struktur yang sama: setiap peserta mempresentasikan kerja saat ini kepada kelompok, dan kelompok - termasuk Bu Fatma dan RA - menanggapi.
 
-Format ini melayani beberapa tujuan yang lebih sulit dicapai dalam pembimbingan satu-satu. Saat tinjauan ulang satu peserta diidentifikasi sebagai "ini hanya eksperimen berikut yang sudah kamu rencanakan, bukan respons yang sesungguhnya terhadap data," semua peserta di ruangan mengkalibrasi ulang pemikiran mereka sendiri. Saat Bu Fatma menangkap masalah framing di W12, koreksinya terlihat oleh semua orang, bukan hanya satu orang yang framing-nya dikembalikan.
+Format ini membantu mencapai beberapa tujuan yang lebih sulit dicapai dalam pembimbingan satu-satu. Saat tinjauan ulang satu peserta dikenali sebagai "ini hanya eksperimen berikut yang sudah Anda rencanakan, bukan respons yang sesungguhnya terhadap data," semua peserta di ruangan menyetel ulang pemikiran mereka sendiri. Saat Bu Fatma menangkap masalah framing di W12, koreksinya terlihat oleh semua orang, bukan hanya satu orang yang framing-nya dikembalikan.
 
 Presentasi juga memberi Bu Fatma gambaran jelas tentang posisi setiap peserta dibanding yang lain. Siapa yang benar-benar stuck? Siapa yang punya momentum? Siapa yang mengeksekusi dengan baik tapi menanyakan pertanyaan yang ternyata sudah terjawab dalam literatur? Pola-pola ini lebih mudah dilihat saat semua kerja ada di ruangan yang sama.
 
-Pertanyaan yang diajukan saat presentasi ("apa yang akan memfalsifikasi ini?", "kalau Eksperimen 1 hasilnya terbalik, apa yang berubah?", "apakah pendahuluanmu benar-benar sesuai dengan apa yang ditunjukkan hasilmu?") adalah pertanyaan yang harus kamu pelajari untuk tanyakan pada dirimu sendiri sebelum pertemuan. Tujuannya bukan untuk menyudutkan siapapun. Tujuannya adalah membangun kebiasaan mengantisipasi kritik sebelum datang - yang persis itulah yang membuat peneliti menjadi lebih baik seiring waktu.
+Pertanyaan yang diajukan saat presentasi ("apa yang akan memfalsifikasi ini?", "kalau Eksperimen 1 hasilnya terbalik, apa yang berubah?", "apakah pendahuluan Anda benar-benar sesuai dengan apa yang ditunjukkan hasil Anda?") adalah pertanyaan yang perlu Anda pelajari untuk diajukan kepada diri sendiri sebelum pertemuan. Tujuannya bukan untuk menyudutkan siapa pun. Tujuannya adalah membangun kebiasaan mengantisipasi kritik sebelum datang - yang persis itulah yang membuat peneliti menjadi lebih baik seiring waktu.
 
 ---
 
@@ -274,7 +274,7 @@ Pertanyaan yang diajukan saat presentasi ("apa yang akan memfalsifikasi ini?", "
 | Pre-registration Eksperimen 1 | Setelah framing disetujui (W12) | Di-commit sebelum eksperimen pertama dijalankan |
 | Dokumen tinjauan ulang + 2 paper baru | Dibawa ke W13 | Hasil parsial boleh; refleksi jujur diperlukan |
 | Pre-registration Eksperimen 2 | Disepakati di atau setelah W13 | Di-commit sebelum Eksperimen 2 dijalankan |
-| Presentasi final | Sesi kelas W14 | Research talk (15 menit + 5 menit tanya jawab) |
+| Presentasi final | Sesi kelas W14 | Presentasi riset (15 menit + 5 menit tanya jawab) |
 | Laporan final | Tenggat W15 | 6-8 halaman, semua bagian |
 | Repositori final | Tenggat W15 | Dapat direproduksi, diberi tag `v1.0` |
 | Demo final | Tenggat W15 | Berjalan dari lingkungan yang baru |
@@ -291,7 +291,7 @@ Ini adalah cara paling umum proyek capstone mengalami kesulitan. Mengetahuinya l
 
 **Penulisan yang dimulai di minggu terakhir.** Kalau laporan ditulis dari awal di W15, hasilnya akan dangkal dan terburu-buru. Tulis bagian metode selama Eksperimen 1. Tulis bagian hasil saat eksperimen selesai. Tulis pendahuluan saat kontribusinya sudah jelas. W15 untuk memoles, bukan memulai.
 
-**Hasil tanpa variansi.** Satu hasil dengan satu seed yang dilaporkan sebagai "89,2%" tidak memberi pembaca informasi apapun tentang keandalan. Setiap hasil utama perlu standar deviasi dari setidaknya 3 seed. Kalau perbedaan antar kondisi lebih kecil dari standar deviasi, hasilnya tidak meyakinkan. Katakan demikian.
+**Hasil tanpa variansi.** Satu hasil dengan satu seed yang dilaporkan sebagai "89,2%" tidak memberi pembaca informasi apa pun tentang keandalan. Setiap hasil utama perlu standar deviasi dari setidaknya 3 seed. Kalau perbedaan antar kondisi lebih kecil dari standar deviasi, hasilnya tidak meyakinkan. Katakan demikian.
 
 **Demo yang hanya menampilkan keberhasilan.** Demo yang dirancang hanya untuk menampilkan prediksi yang benar adalah artefak pemasaran, bukan alat riset. Buat mudah untuk menemukan kasus di mana model gagal. Ini adalah tanda kejujuran, dan sering mengungkap hal yang lebih menarik daripada keberhasilannya.
 
@@ -303,16 +303,16 @@ Ini adalah cara paling umum proyek capstone mengalami kesulitan. Mengetahuinya l
 
 ## Refleksi
 
-1. **Tinjauan ulang yang sesungguhnya.** Bayangkan Eksperimen 1 menunjukkan bahwa intervensimu tidak membantu. Tulis satu paragraf tinjauan ulang yang jujur. Apa yang akan diubah untuk Eksperimen 2? Bagaimana cara membedakan "hasil ini mengajarkan sesuatu" dari "hasil ini mengecewakan dan saya akan abaikan"?
+1. **Tinjauan ulang yang sesungguhnya.** Bayangkan Eksperimen 1 menunjukkan bahwa intervensi Anda tidak membantu. Tulis satu paragraf tinjauan ulang yang jujur. Apa yang akan diubah untuk Eksperimen 2? Bagaimana cara membedakan "hasil ini mengajarkan sesuatu" dari "hasil ini mengecewakan dan saya akan abaikan"?
 
 2. **Klaim vs. bukti.** Ambil satu kesimpulan dari sebuah paper yang dibaca di W10. Tulis ulang kesimpulan itu agar sesuai dengan cakupan eksperimen yang sebenarnya - bukan yang ambisius, tapi yang akurat. Seperti apa kalimatnya?
 
-3. **Demo sebagai alat riset.** Bayangkan kamu membangun demo untuk capstonenya. Bagaimana cara membuatnya mudah bagi pengguna untuk menemukan kasus kegagalan? Apa tiga tipe kegagalan yang paling ingin kamu ungkap?
+3. **Demo sebagai alat riset.** Bayangkan Anda membangun demo untuk capstone Anda. Bagaimana cara membuatnya mudah bagi pengguna untuk menemukan kasus kegagalan? Apa tiga tipe kegagalan yang paling ingin Anda ungkap?
 
 ---
 
 ## Bacaan Lanjutan
 
-- **[W11 - Research Framing](11_W11_Research_Framing.md)** - framework dekomposisi dan template, untuk referensi saat mempersiapkan pertahanan framing W12.
+- **[W11 - Research Framing](11_W11_Research_Framing.md)** - kerangka dekomposisi dan template, untuk referensi saat mempersiapkan pertahanan framing W12.
 - **`template_repo/docs/prereg_template.md`** - template pre-registration yang sudah ada di repo; gunakan untuk Eksperimen 1 dan 2.
 - **[Rubrik Penilaian](13_Rubrik_Penilaian.md)** - rubrik capstone, untuk memahami bagaimana setiap fase dievaluasi.

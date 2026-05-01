@@ -28,8 +28,8 @@
 
 > *Eksperimen yang tidak bisa direproduksi hanyalah anekdot. Matriks eksperimen yang ditulis sebelum kode adalah janji kepada diri sendiri bahwa hasilnya akan bisa dipertanggungjawabkan.*
 
-**Baris Big Map:** keluarga model yang sama, sekarang dengan disiplin alur kerja riset
-**Rigor habit:** Matriks eksperimen sebelum coding
+**Baris peta besar:** keluarga model yang sama, sekarang dengan disiplin alur kerja riset
+**Kebiasaan riset:** Matriks eksperimen sebelum coding
 **Dataset:** Dataset baru (berbeda dari W2-W3) untuk menguji disiplin alur kerja di luar dataset yang sudah dikenal
 **Lab utama:** Lab 3 (`lab_w4_experiment_tracking.ipynb`)
 
@@ -98,7 +98,7 @@ Format minimal:
 Tulis matriks ini di `protocol.md` di folder eksperimen, **sebelum** baris kode pertama. Timestamp file adalah bukti bahwa Anda merencanakan sebelum melihat hasil.
 
 > [!IMPORTANT]
-> "Matriks eksperimen sebelum coding" adalah rigor habit W4. Setiap eksperimen yang dilaporkan setelah W4 harus punya matriks tertulis. Tidak ada matriks = angka tidak bisa dipertanggungjawabkan.
+> "Matriks eksperimen sebelum coding" adalah kebiasaan riset W4. Setiap eksperimen yang dilaporkan setelah W4 harus punya matriks tertulis. Tidak ada matriks = angka tidak bisa dipertanggungjawabkan.
 
 ### 2.1 Lima Pertanyaan Sebelum Menyentuh Kode
 
@@ -209,7 +209,7 @@ Di luar seed, sumber noise lain: urutan data, kernel CUDA yang non-deterministik
 
 2. **Effect size threshold**: Tetapkan δ minimum sebelum eksperimen berjalan (di pre-registration). Jika kenaikan yang diprediksi penting adalah 2 poin F1, kenaikan 0.3 poin tidak bermakna dalam praktiknya meski angkanya "naik". Peningkatan < 0.5 poin pada dataset besar dengan 3 seed hampir selalu noise.
 
-Untuk publikasi atau laporan formal, pertimbangkan *paired t-test* atau *Wilcoxon signed-rank test* jika Anda punya cukup run (≥5 seed per kondisi). Namun di tahap eksplorasi awal, threshold δ yang ditetapkan sebelumnya lebih berguna daripada p-value yang dicomputasi setelah melihat data.
+Untuk publikasi atau laporan formal, pertimbangkan *paired t-test* atau *Wilcoxon signed-rank test* jika Anda punya cukup run (≥5 seed per kondisi). Namun di tahap eksplorasi awal, threshold δ yang ditetapkan sebelumnya lebih berguna daripada p-value yang dihitung setelah melihat data.
 
 ### 2.5 Hipotesis yang Dapat Dipalsukan vs Pengharapan
 
@@ -217,7 +217,7 @@ Ada perbedaan halus antara *hipotesis* dan *harapan*. Hipotesis berisi prediksi 
 
 Hipotesis yang spesifik melindungi Anda dari dua bahaya:
 
-1. **Konfirmasi bias.** Tanpa target konkret, hasil apa saja yang sedikit lebih baik mudah terbaca sebagai "bukti bahwa hipotesisnya benar". Dengan target 3 poin, kenaikan 0.5 poin adalah *tidak mengkonfirmasi*, bukan sukses kecil.
+1. **Bias konfirmasi.** Tanpa target konkret, hasil apa saja yang sedikit lebih baik mudah terbaca sebagai "bukti bahwa hipotesisnya benar". Dengan target 3 poin, kenaikan 0.5 poin adalah *tidak mengkonfirmasi*, bukan sukses kecil.
 2. **Cerita setelah fakta.** Tanpa prediksi tertulis sebelum run, mudah sekali menarasikan hasil aktual sebagai "yang kita harapkan sejak awal". Protokol tertulis mencegah ini.
 
 Hipotesis tidak harus benar. Hipotesis yang ternyata salah sering lebih informatif daripada yang benar - karena ia memaksa Anda mencari penjelasan. Laboratorium yang paling produktif memperlakukan hipotesis salah bukan sebagai kegagalan, tetapi sebagai data.
@@ -230,7 +230,7 @@ Ini situasi yang hampir pasti Anda alami: eksperimen sudah berjalan, hasilnya ti
 
 Misalnya hipotesis "F1 naik ≥ 3 poin" tapi hasil aktual Δ = 1.8 poin. Jangan langsung klaim "hipotesis terkonfirmasi sebagian" - itu bukan cara kerja pre-registration. Langkah yang tepat:
 
-1. **Verifikasi protokol** *exact match* - apakah semua variabel benar-benar dikontrol sesuai pre-reg?
+1. **Verifikasi protokol** *cocok persis* - apakah semua variabel benar-benar dikontrol sesuai pre-reg?
 2. **Tambah 2 seed lagi** untuk memastikan angka tidak berubah arah.
 3. **Jika tetap 1.8 poin**, simpulkan hipotesis tidak terkonfirmasi dan catat sebagai temuan negatif.
 
@@ -364,10 +364,10 @@ Saat Anda butuh masukan PI di luar update rutin, pakai kerangka **SQRC** - empat
 
 | Langkah | Singkatan | Isi | Contoh |
 | --- | --- | --- | --- |
-| **S** | Situation | Apa yang terjadi? Satu kalimat fakta. | "Loss validation naik sejak epoch 8, sementara train loss terus turun." |
-| **Q** | Question | Apa yang ingin dijawab atau dicapai? | "Saya ingin tahu apakah ini overfitting atau ada bug di data split." |
-| **R** | Resolution attempt | Apa yang sudah dicoba? | "Saya sudah kurangi LR 10×, loss tetap naik. Saya sudah overfit satu batch - loss turun ke nol. Saya periksa distribusi label di train/val: seimbang." |
-| **C** | Call | Permintaan spesifik untuk PI. | "Dari ketiga kemungkinan - overfitting, bug split, atau learning rate - mana yang paling mungkin berdasarkan pola ini? Atau ada diagnosis lain yang saya lewatkan?" |
+| **S** | Situasi | Apa yang terjadi? Satu kalimat fakta. | "Loss validation naik sejak epoch 8, sementara train loss terus turun." |
+| **Q** | Pertanyaan | Apa yang ingin dijawab atau dicapai? | "Saya ingin tahu apakah ini overfitting atau ada bug di data split." |
+| **R** | Upaya penyelesaian | Apa yang sudah dicoba? | "Saya sudah kurangi LR 10×, loss tetap naik. Saya sudah overfit satu batch - loss turun ke nol. Saya periksa distribusi label di train/val: seimbang." |
+| **C** | Permintaan | Permintaan spesifik untuk PI. | "Dari ketiga kemungkinan - overfitting, bug split, atau learning rate - mana yang paling mungkin berdasarkan pola ini? Atau ada diagnosis lain yang saya lewatkan?" |
 
 SQRC efektif karena tiga alasan:
 - PI tahu Anda sudah berusaha sendiri (R), sehingga dia tidak perlu memulai dari nol.
@@ -510,7 +510,7 @@ Konsep: matriks eksperimen + infrastruktur reproduksibilitas. Format, kriteria, 
 
 ## 6. Refleksi
 
-1. Anda menemukan bahwa baseline di repo riset lab Anda memakai `lr=1e-3`, padahal pengalaman Anda bilang `3e-4` lebih stabil dengan AdamW. Anda ingin membandingkan focal loss dengan baseline. Tuliskan dua rencana eksperimen alternatif untuk menangani diskrepansi ini, beserta argumen kapan masing-masing lebih tepat.
+1. Anda menemukan bahwa baseline di repo riset lab Anda memakai `lr=1e-3`, padahal pengalaman Anda bilang `3e-4` lebih stabil dengan AdamW. Anda ingin membandingkan focal loss dengan baseline. Tuliskan dua rencana eksperimen alternatif untuk menangani ketidakselarasan ini, beserta argumen kapan masing-masing lebih tepat.
 2. Hipotesis Anda gagal: F1 kelas minor tidak naik, akurasi keseluruhan turun. Apa tiga pertanyaan berikutnya yang akan Anda kejar? Urutkan dari yang paling murah (tidak perlu training baru) ke yang paling mahal.
 3. Dosen pembimbing meminta Anda "cari teknik mitigasi imbalance yang paling ampuh untuk dataset kita". Instruksi ini jauh lebih terbuka daripada email di bagian 1. Tulis lima pertanyaan klarifikasi yang paling penting Anda ajukan *sebelum* memilih teknik apapun.
 4. **Koneksi ke Capstone.** Di W11 Anda akan menulis proposal capstone lengkap untuk topik Anda sendiri. Latihan sekarang: untuk satu topik kandidat Capstone yang Anda pikirkan, tuliskan draft 3 bagian protokol (tujuan, variabel, hipotesis) hanya dalam satu paragraf. Bagian mana yang paling sulit Anda tulis sekarang, dan apa yang perlu Anda pelajari di bab-bab berikutnya agar bagian itu menjadi mudah?

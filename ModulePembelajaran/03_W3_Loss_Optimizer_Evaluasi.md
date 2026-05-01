@@ -28,8 +28,8 @@
 
 > *Training selesai, kurva loss muncul di layar. Inilah momen di mana banyak pemula berhenti karena tidak tahu harus membaca apa. Loss curve bukan sekadar "turun = bagus, naik = buruk" - ia adalah sinyal diagnostik yang bisa memberi tahu apa yang salah bahkan sebelum Anda memeriksa kode.*
 
-**Baris Big Map:** `(C, H, W) -> (N,)` (lanjutan W2, fokus alur kerja)
-**Rigor habit:** Change one thing at a time
+**Baris peta besar:** `(C, H, W) -> (N,)` (lanjutan W2, fokus alur kerja)
+**Kebiasaan riset:** Ubah satu hal pada satu waktu
 **Dataset:** CIFAR-10 (reuse dari W2)
 **Lab utama:** Lab 1 selesai + Lab 2 (`lab_w3_loss_ablation.ipynb`)
 

@@ -28,8 +28,8 @@
 
 > *Akurasi 99% bukan prestasi - ia adalah alarm. Hampir selalu ada penjelasan yang lebih membosankan daripada "model kami sangat pintar": data yang bocor, label yang salah, atau pipeline yang memberi model informasi yang seharusnya tidak ia lihat. Skeptisisme terhadap angka sendiri adalah sikap yang memisahkan peneliti dari operator model.*
 
-**Baris Big Map:** `(T, F) -> (1,)`, `(N,)`, `(T'', 1)` (lanjutan W5, fokus representasi + validasi)
-**Rigor habit:** Validate preprocessing dan prevent temporal leakage
+**Baris peta besar:** `(T, F) -> (1,)`, `(N,)`, `(T'', 1)` (lanjutan W5, fokus representasi + validasi)
+**Kebiasaan riset:** Validate preprocessing dan prevent temporal leakage
 **Dataset:** Sensor atau time-series dataset
 **Lab utama:** Lab W6 - Temporal Leakage (`lab_w6_temporal_leakage.ipynb`) + EDA (`lab_w6_eda_leakage.ipynb`)
 
@@ -84,7 +84,7 @@ X_train, X_test = train_test_split(df, test_size=0.2, shuffle=True)
 
 **Masalah 2 - Rolling feature melampaui batas.** Nilai `rolling_mean_24h` pada titik ke-T dihitung dari T-23 hingga T. Jika salah satu titik T-23..T-1 ada di test set tetapi T ada di train set, fitur training mengandung informasi test.
 
-**Hasil yang Anda lihat:** akurasi F1 = 0.92. Kelihatan bagus. Tapi saat deployed, model hanya mencapai F1 = 0.63. Inilah angka yang menipu akibat temporal leakage.
+**Hasil yang Anda lihat:** akurasi F1 = 0.92. Kelihatan bagus. Tapi saat dipakai di produksi, model hanya mencapai F1 = 0.63. Inilah angka yang menipu akibat temporal leakage.
 
 **Solusi yang benar:**
 
@@ -146,7 +146,7 @@ flowchart LR
 - Apakah distribusi fitur sama antara train dan test? Jika berbeda, mengapa?
 - Apakah ada pola temporal yang tidak diharapkan?
 
-Tool pembantu EDA:
+Alat pembantu EDA:
 
 ```python
 import pandas as pd
@@ -202,7 +202,7 @@ Tabel deteksi:
 |---|---|---|
 | Target leakage | Satu fitur punya korelasi ekstrem dengan target | Uji "model dengan fitur ini saja" - jika akurasi sudah tinggi, curigai |
 | Train-test contamination | Akurasi validasi dekat atau melebihi train | Hitung overlap ID/hash antara split |
-| Temporal leakage | Performa turun drastis di data masa depan | Split by time dan bandingkan |
+| Temporal leakage | Performa turun drastis di data masa depan | Pisah berdasarkan waktu dan bandingkan |
 | Group leakage | Val acc tinggi tetapi performa di pasien baru rendah | Group split, retrain |
 | Preprocessing leakage | Efek kecil tetapi konsisten | Refactor: fit hanya pada train |
 
@@ -518,7 +518,7 @@ Setelah semua pemeriksaan, tulis ringkasan:
 **Resolusi:** 28×28×3. Kecil, tidak perlu augmentasi berat.
 **Overlap split:** train-val 0, train-test 0, val-test 0.
 **Anomali visual:** tidak ditemukan (inspeksi 10 sampel per kelas).
-**Label inconsistency:** 12 pasangan suspek dari strategi proxy,
+**Ketidakkonsistenan label:** 12 pasangan suspek dari strategi proxy,
 dari 89996 sampel (0.013%). Diabaikan untuk eksperimen kuliah.
 **Domain shift dari CIFAR-10:** drastis (fotografi natural vs
 histopatologi medis). Diharapkan model pre-trained di CIFAR-10
@@ -560,7 +560,7 @@ Tugas:
 
 1. Unduh PathMNIST dan jalankan EDA tiga lapis: bentuk/integritas, distribusi/anomali, hubungan/kejutan. Hasilkan minimal 4 figur (distribusi kelas per split, sampel per kelas, statistik per channel, matriks confusion awal).
 2. Jalankan cek overlap antar split dengan image hashing. Catat hasilnya di `audit.md`.
-3. Implementasikan strategi deteksi label inconsistency (near-duplicate dengan label berbeda, atau disagreement model baseline). Inspeksi 10 pasangan suspek secara manual.
+3. Implementasikan strategi deteksi ketidakkonsistenan label (near-duplicate dengan label berbeda, atau disagreement model baseline). Inspeksi 10 pasangan suspek secara manual.
 4. Buat pipeline pra-pemrosesan yang fit-only-on-train. Verifikasi dengan membandingkan output transform di train vs val - statistik normalisasi val harus memakai mean/std dari train, bukan dari val.
 5. Jalankan baseline training pendek (5 epoch) dengan dan tanpa augmentasi. Bandingkan train/val gap.
 6. Tulis `audit.md` satu halaman yang mencakup seluruh temuan dan keputusan eksperimen.
@@ -597,7 +597,7 @@ Konsep: memeriksa data sebelum mempercayai hasil - distribusi kelas, leakage ter
 
 3. Dataset PathMNIST yang Anda pakai di Lab 4 tidak memiliki informasi pasien - setiap sampel dianggap independen. Bagaimana Anda akan menangani ini jika dataset memiliki ID pasien dan setiap pasien memiliki beberapa slide? Jelaskan protokol split yang benar dan mengapa random split biasa akan gagal.
 
-4. **Koneksi ke Capstone.** Pada Capstone (W12-W15), Anda akan memilih dataset - bisa dari paper, Kaggle, atau repo lab. Tuliskan checklist 5-layer EDA (lihat section 2) dalam format yang bisa Anda lampirkan ke draft proposal Capstone Anda. Bagian mana dari checklist yang paling mungkin Anda *skip* karena tekanan waktu, dan apa konsekuensi paling buruk dari skip itu di Capstone?
+4. **Koneksi ke Capstone.** Pada Capstone (W12-W15), Anda akan memilih dataset - bisa dari paper, Kaggle, atau repo lab. Tuliskan checklist 5-layer EDA (lihat bagian 2) dalam format yang bisa Anda lampirkan ke draft proposal Capstone Anda. Bagian mana dari checklist yang paling mungkin Anda *skip* karena tekanan waktu, dan apa konsekuensi paling buruk dari skip itu di Capstone?
 
 ---
 
@@ -618,9 +618,9 @@ Buka `template_repo/notebooks/lab_w6_temporal_leakage.ipynb`.
 
 **Tugas:**
 
-1. Load sensor/time-series dataset (disediakan sebagai synthetic dataset).
-2. Build causal feature pipeline: rolling features hanya dari timestep sebelum t, split temporal (80% train, 20% test chronological).
-3. Deliberately break causality: gunakan random split + rolling features tanpa guard temporal.
+1. Muat dataset sensor/time-series (disediakan sebagai dataset sintetis).
+2. Bangun pipeline fitur kausal: rolling features hanya dari timestep sebelum t, pemisahan temporal (80% train, 20% test kronologis).
+3. Rusak kausalitas secara sengaja: gunakan random split + rolling features tanpa pengaman temporal.
 4. Latih model pada kedua pipeline, bandingkan F1.
 5. Hitung dan catat "leakage inflation" = F1_leaky - F1_causal. **Threshold warning yang dipakai modul ini:** inflation ≥ 0.05 absolut **atau** ≥ 10% relatif terhadap F1_causal = leakage signifikan dan harus dilaporkan eksplisit. Inflation < 0.02 absolut bisa noise dari seed.
 6. Tulis satu paragraf: apa yang membuat angka leaky terlihat meyakinkan, dan mengapa tetap salah?

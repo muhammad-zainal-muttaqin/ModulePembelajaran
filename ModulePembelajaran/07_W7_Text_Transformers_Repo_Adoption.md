@@ -28,9 +28,9 @@
 
 > *TF-IDF memberi tahu Anda kata apa yang ada. Contextual embeddings memberi tahu Anda apa yang dimaksud kata itu di konteks spesifik ini. Transformers mengubah teks bukan menjadi fitur, melainkan menjadi makna yang bisa dibandingkan.*
 
-**Baris Big Map:** `(T,) -> (N,)`, `(1,)`, `(T, N)`
-**Rigor habit:** Verify AI-generated code, inspect tokenization, map external repos
-**Dataset:** Indonesian text dataset (IndoNLU SmSA)
+**Baris peta besar:** `(T,) -> (N,)`, `(1,)`, `(T, N)`
+**Kebiasaan riset:** Verifikasi kode dari AI, inspeksi tokenisasi, petakan repositori eksternal
+**Dataset:** Dataset teks Indonesia (IndoNLU SmSA)
 **Lab utama:** Lab 5b (`lab_w7_text_classification.ipynb`) + Lab 6 repo adoption (`lab_w7_repo_adoption.ipynb`)
 
 ---
@@ -40,10 +40,10 @@
 W7 menggabungkan tiga tema yang saling memperkuat:
 
 - **1. Text & Transformers** - dari TF-IDF ke contextual embeddings, tokenization, frozen vs fine-tune, [CLS] vs mean pool
-- **2. AI Tools sebagai Pendukung** - verifikasi kode AI, protokol synthesis, kapan trust copilot
-- **3. Repo Adoption Primer** - membaca repo yang belum dikenal, `repo_map.md`, modifikasi minimal-invasif
+- **2. Alat AI sebagai Pendukung** - verifikasi kode AI, protokol synthesis, kapan trust copilot
+- **3. Repo Adoption Primer** - membaca repo yang belum dikenal, `repo_map.md`, modifikasi seminimal mungkin
 
-Ketiga tema bertemu dalam satu alur kerja: mengadopsi repo HuggingFace, memakai AI tools untuk memahami bagian yang belum dikenal, dan membuat `repo_map.md` sebagai dokumentasi pemahaman Anda.
+Ketiga tema bertemu dalam satu alur kerja: mengadopsi repo HuggingFace, memakai alat AI untuk memahami bagian yang belum dikenal, dan membuat `repo_map.md` sebagai dokumentasi pemahaman Anda.
 
 ---
 
@@ -124,7 +124,7 @@ Tiga formulasi umum di domain teks:
 
 ---
 
-## 2. AI Tools sebagai Pendukung (Ringkasan Protokol)
+## 2. Alat AI sebagai Pendukung (Ringkasan Protokol)
 
 Modul ini tidak melarang AI coding tools. Ia mewajibkan **protokol verifikasi** dan **synthesis sebelum eksekusi**.
 
@@ -132,11 +132,11 @@ Modul ini tidak melarang AI coding tools. Ia mewajibkan **protokol verifikasi** 
 
 Setiap kode yang dihasilkan AI harus diverifikasi sebelum dipakai:
 
-1. **Shape verification** - apakah input/output shape yang diklaim cocok dengan kode?
-2. **Edge case test** - jalankan dengan satu sampel dan periksa hasilnya secara manual.
+1. **Verifikasi bentuk tensor** - apakah input/output shape yang diklaim cocok dengan kode?
+2. **Uji kasus tepi** - jalankan dengan satu sampel dan periksa hasilnya secara manual.
 3. **Baris-per-baris read** - Anda harus bisa menjelaskan fungsi setiap baris.
 
-Jika tidak bisa menjelaskan baris tertentu setelah membacanya dua kali, itu bukan kode yang harus disubmit dengan nama Anda.
+Jika tidak bisa menjelaskan baris tertentu setelah membacanya dua kali, itu bukan kode yang harus dikumpulkan dengan nama Anda.
 
 ### 2.2 Synthesis Rule: Dua Sumber Sebelum Eksekusi
 
@@ -150,7 +150,7 @@ Tulis satu paragraf synthesis: "Sumber A menyarankan X karena P. Sumber B menyar
 
 ### 2.3 AI untuk Non-Kode
 
-AI tools berguna melampaui kode:
+alat AI berguna melampaui kode:
 - **Membaca paper** - "tolong rangkum bagian 3.2 dan identifikasi asumsi yang tidak diucapkan eksplisit"
 - **Mendiskusikan hipotesis** - "diberikan bahwa distribusi kelas sangat tidak seimbang, apakah ada alasan untuk tidak memakai focal loss?"
 - **Navigasi repo** - "bagaimana alur data dari DataLoader ke model dalam repo ini?" (dengan memberikan struktur folder sebagai konteks)
@@ -159,13 +159,13 @@ AI tools berguna melampaui kode:
 
 ## 3. Repo Adoption Primer
 
-Konten repo adoption dari bab ini (urutan membaca, environment setup, modifikasi minimal-invasif) tersedia pada bagian ini dari file asli. Ringkasan kebiasaan utama:
+Konten repo adoption dari bab ini (urutan membaca, environment setup, modifikasi seminimal mungkin) tersedia pada bagian ini dari file asli. Ringkasan kebiasaan utama:
 
 **Urutan baca:** README → paper/laporan → struktur folder → entry point (`train.py`) → model & loss → DataLoader
 
 **repo_map.md template:** Dokumentasikan pemahaman Anda tentang repo baru dalam file `repo_map.md`. Template tersedia di [Lampiran C.12](14_Lampiran.md#c12-template-repo-map). Anda akan membuat `repo_map.md` dua kali: satu di W7 (repo teks/transformer), satu di W9 (repo multimodal).
 
-**Modifikasi minimal-invasif:** Buat branch baru, buat perubahan sekecil mungkin untuk menjalankan eksperimen Anda, dokumentasikan diff. Ini memudahkan merge kembali dan memudahkan debugging saat sesuatu rusak.
+**Modifikasi seminimal mungkin:** Buat branch baru, buat perubahan sekecil mungkin untuk menjalankan eksperimen Anda, dokumentasikan diff. Ini memudahkan merge kembali dan memudahkan debugging saat sesuatu rusak.
 
 ---
 
@@ -176,7 +176,7 @@ Konten repo adoption dari bab ini (urutan membaca, environment setup, modifikasi
 Buka `notebooks/lab_w7_text_classification.ipynb`.
 
 **Tugas:**
-1. Load IndoNLU SmSA dataset (sentimen Bahasa Indonesia).
+1. Muat dataset IndoNLU SmSA (sentimen Bahasa Indonesia).
 2. Inspeksi tokenizer IndoBERT pada 10 sampel: screenshot atau print output.
 3. Jalankan 2×2 experiment (frozen/fine-tune × [CLS]/mean-pool).
 4. Bandingkan macro-F1 keempat kondisi. Mana yang terbaik? Mengapa?
@@ -194,7 +194,7 @@ Buka `notebooks/lab_w7_text_classification.ipynb`.
 Buka `notebooks/lab_w7_repo_adoption.ipynb`.
 
 **Tugas:**
-1. Clone satu repo riset publik (daftar pilihan disediakan di lab).
+1. Clone satu repositori riset publik (daftar pilihan disediakan di lab).
 2. Tulis `repo_map.md`: entry point, model, loss, config, DataLoader.
 3. Modifikasi minimal satu komponen (ganti config, tambah logging).
 4. Buat branch git, commit diff, inspeksi diff sebelum merge.
@@ -242,7 +242,7 @@ Seorang asisten baru di lab menerima tugas: "reproduksi hasil paper X, lalu coba
 
 Mahasiswa kedua dapat tugas sama. Ia meluangkan empat jam pertama *tidak menjalankan apa-apa*: membaca README, memeriksa struktur folder, menelusuri `train.py` dari entry point, mencari bagian konfigurasi, memetakan bagaimana data di-load. Ia mencatat pertanyaan-pertanyaan terbuka. Setelah pemahaman peta terbentuk, ia setup environment secara sistematis, menjalankan smoke test dengan dummy data, dan baru mengunduh dataset penuh. Dua hari berikutnya, modifikasi encoder sudah bisa dicoba.
 
-Perbedaan kecepatan tujuh kali lipat bukan karena bakat. Perbedaannya adalah *strategi membaca* sebelum menjalankan. Bab ini memberimu strategi yang sama.
+Perbedaan kecepatan tujuh kali lipat bukan karena bakat. Perbedaannya adalah *strategi membaca* sebelum menjalankan. Bab ini memberi Anda strategi yang sama.
 
 ---
 
@@ -312,7 +312,7 @@ repo/
 └── README.md
 ```
 
-Peta seperti ini memberimu jawaban cepat untuk pertanyaan:
+Peta seperti ini memberi Anda jawaban cepat untuk pertanyaan:
 
 - "Di mana saya mengubah loss?" → `losses.py` dan `configs/*.yaml`.
 - "Bagaimana saya ganti backbone jadi ViT?" → `models/vit.py` sudah ada; cek `configs/vit.yaml`.
@@ -417,7 +417,7 @@ Jika satu bagian membingungkan, lihat siapa yang menulisnya dan commit apa yang 
 Saat Anda menambah fitur atau mengubah perilaku, pilih pola yang *tidak mengganggu* kode orang lain. Ini penting untuk:
 
 - Memudahkan *upstream merge* jika repo berubah.
-- Membuat pekerjaanmu dapat dibalik (revert) dengan bersih.
+- Membuat pekerjaan Anda dapat dibalik (revert) dengan bersih.
 - Membuat pull request Anda lebih mudah di-review.
 
 **Pola 1: Tambahkan opsi, jangan ubah default.**
@@ -492,7 +492,7 @@ Setelah Anda memahami repo cukup baik untuk memodifikasi, Anda juga bisa menyumb
 
 **Perbaikan bug kecil.** Typo, off-by-one, import yang salah, versi library yang di-pin terlalu ketat. Satu PR per perbaikan.
 
-**Fitur yang umum diinginkan.** Jika repo belum punya `--dry-run` atau `set_seed` yang deterministik, tambahkan. Jelaskan motivasi di PR description.
+**Fitur yang umum diinginkan.** Jika repo belum punya `--dry-run` atau `set_seed` yang deterministik, tambahkan. Jelaskan motivasi di deskripsi PR.
 
 Etika kontribusi: sebelum mengirim PR besar, buka issue dulu menanyakan apakah kontribusi semacam itu akan diterima. Menghemat waktu Anda dan maintainer.
 
@@ -505,7 +505,7 @@ Ketika adopsi repo atau eksperimen gagal, respons pertama yang paling sering ada
 Environment, dependency, path, atau konfigurasi tidak benar.
 
 - **Tanda:** error saat `import`, `ModuleNotFoundError`, `FileNotFoundError`, CUDA version mismatch.
-- **Langkah test:**
+- **Langkah uji:**
   1. Jalankan `python -c "import torch; print(torch.__version__)"` dan `import [nama_library]`.
   2. Bandingkan output `pip freeze` dengan `requirements.txt`.
   3. Cek apakah path dataset di config benar.
@@ -515,7 +515,7 @@ Environment, dependency, path, atau konfigurasi tidak benar.
 Dataset tidak ada, format tidak sesuai, leakage, atau preprocessing berbeda dari yang diharapkan model.
 
 - **Tanda:** error di DataLoader, akurasi terlalu tinggi dari awal, loss tidak wajar (terlalu kecil atau NaN langsung).
-- **Langkah test:**
+- **Langkah uji:**
   1. Print shape dan range nilai dari batch pertama.
   2. Visualisasikan 4-8 sampel - pastikan gambar/teks kelihatan wajar.
   3. Periksa label: apakah distribusinya masuk akal?
@@ -525,14 +525,14 @@ Dataset tidak ada, format tidak sesuai, leakage, atau preprocessing berbeda dari
 Bug di forward pass, loss function, atau training loop.
 
 - **Tanda:** loss tidak turun sama sekali, NaN loss, prediksi selalu kelas yang sama, gradient nol.
-- **Langkah test:** *overfit one batch* - ambil 4 sampel, jalankan 100-200 iterasi hanya pada itu. Model harus mencapai loss mendekati nol. Jika tidak, ada bug di model atau loss.
+- **Langkah uji:** *overfit one batch* - ambil 4 sampel, jalankan 100-200 iterasi hanya pada itu. Model harus mencapai loss mendekati nol. Jika tidak, ada bug di model atau loss.
 
 #### Kategori 4 - Experiment Error
 
 Konfigurasi tidak sesuai rancangan: seed tidak di-set, variabel yang seharusnya dikontrol tidak terkontrol, metrik yang dilaporkan bukan yang direncanakan.
 
 - **Tanda:** hasil yang tidak bisa direproduksi, metrik berbeda dari yang ada di pre-registration, kondisi ablation tidak sesuai grid.
-- **Langkah test:** baca ulang pre-registration dan bandingkan dengan config YAML yang benar-benar dipakai. Cek commit hash di checkpoint.
+- **Langkah uji:** baca ulang pre-registration dan bandingkan dengan config YAML yang benar-benar dipakai. Cek commit hash di checkpoint.
 
 Tabel ringkas untuk referensi cepat:
 
@@ -717,11 +717,11 @@ Total: ~3 jam dari clone sampai laporan pertama. Bandingkan dengan "dua minggu" 
 
 ## D4. Pitfalls & Miskonsepsi
 
-**"Saya akan jalankan dulu, baru baca kalau error."** Strategi ini membuatmu terbiasa dengan bentrok permukaan (versi library, path, typo). Anda menghabiskan hari-hari mengatasi masalah yang sebenarnya akan hilang dengan satu jam membaca.
+**"Saya akan jalankan dulu, baru baca kalau error."** Strategi ini membuat Anda terbiasa dengan bentrok permukaan (versi library, path, typo). Anda menghabiskan hari-hari mengatasi masalah yang sebenarnya akan hilang dengan satu jam membaca.
 
 **"Mengedit `train.py` langsung adalah cara tercepat."** Cepat untuk eksperimen sekali, mahal untuk jangka panjang. Setiap perubahan di tengah file besar adalah utang teknis; dalam dua minggu Anda tidak akan ingat mana modifikasi Anda dan mana dari repo asli.
 
-**"PR tidak diterima berarti pekerjaan saya sia-sia."** Tidak. Anda belajar membaca dan memodifikasi kode, yang merupakan skill jangka panjang. PR yang ditolak seringkali tetap dipakai sebagai basis diskusi; maintainer kadang mengambil ide Anda dan mengimplementasi ulang sesuai standar repo.
+**"PR tidak diterima berarti pekerjaan saya sia-sia."** Tidak. Anda belajar membaca dan memodifikasi kode, yang merupakan keterampilan jangka panjang. PR yang ditolak seringkali tetap dipakai sebagai basis diskusi; maintainer kadang mengambil ide Anda dan mengimplementasi ulang sesuai standar repo.
 
 **"Saya tidak perlu commit lokal sampai semua selesai."** Buruk. Commit kecil sepanjang proses adalah save-point - jika modifikasi Anda merusak sesuatu, Anda bisa `git diff HEAD~3` untuk melihat persis apa yang berubah.
 
@@ -742,9 +742,9 @@ Tugas:
 1. Pilih satu repository klasifikasi image yang sederhana (pytorch/examples/mnist, atau reference implementation Fast.ai beginner). Clone ke folder Anda.
 2. Ikuti urutan pembacaan (README → struktur → entry point → model → data → config). Tulis peta satu halaman di `docs/repo_map.md`.
 3. Jalankan smoke test tiga level. Jika `--dry-run` tidak ada, tambahkan sendiri dan commit.
-4. Tambahkan satu fitur minimal-invasif: pilihan focal loss, atau pilihan freeze layer pertama, atau flag deterministik (set_seed + cudnn.deterministic).
+4. Tambahkan satu fitur seminimal mungkin: pilihan focal loss, atau pilihan freeze layer pertama, atau flag deterministik (set_seed + cudnn.deterministic).
 5. Jalankan baseline + variasi Anda (2 kondisi × 2 seed). Laporkan hasil dalam `docs/report.md`.
-6. Siapkan draft PR description (tidak perlu benar-benar submit kecuali Anda ingin) yang menjelaskan: motivasi, perubahan, cara pakai, cara reproduksi hasil.
+6. Siapkan draft deskripsi PR (tidak perlu benar-benar dikirim kecuali Anda ingin) yang menjelaskan: motivasi, perubahan, cara pakai, cara reproduksi hasil.
 
 **Checklist verifikasi**:
 
@@ -752,7 +752,7 @@ Tugas:
 - Smoke test level 3 berjalan dan keluar tanpa training penuh.
 - Modifikasi dibuat di file baru atau dengan argumen opsional (tidak mengubah default lama).
 - Commit history kecil dan bermakna (minimal 4 commit terpisah).
-- Draft PR description mencakup motivasi, perubahan, pemakaian, reproduksi.
+- Draft deskripsi PR mencakup motivasi, perubahan, pemakaian, reproduksi.
 
 ### Lab 6b (breadth) - Transformer-Mini dari Nol
 
@@ -775,7 +775,7 @@ Setelah Anda lancar membaca repo orang lain, latihan berikutnya adalah membantu 
 1. Pilih satu repository publik yang belum pernah Anda baca. Bisa dari daftar rekomendasi di bawah, atau repo riset yang Anda temukan sendiri.
 2. Clone repository tersebut. Jangan membaca README lebih dari 5 menit - fokus pada kode.
 3. Petakan empat komponen inti: entry point, model, loss, data loader. Catat path file dan line number untuk masing-masing.
-4. Tulis satu "Issue" (tidak perlu benar-benar di-submit) yang mengidentifikasi satu area yang perlu dokumentasi tambahan, satu bug potensial, atau satu magic number yang tidak dijelaskan.
+4. Tulis satu "Issue" (tidak perlu benar-benar dikirim) yang mengidentifikasi satu area yang perlu dokumentasi tambahan, satu bug potensial, atau satu magic number yang tidak dijelaskan.
 
 **Tugas bersama (20 menit):**
 5. Tukar repository dengan pasangan. Baca mapping pasangan Anda. Apakah Anda setuju dengan pemetaannya? Ada yang terlewat?
@@ -797,13 +797,13 @@ Setelah Anda lancar membaca repo orang lain, latihan berikutnya adalah membantu 
 - [ ] Minimal 3 temuan konkret per orang (bukan "kode sudah rapi").
 - [ ] `peer_review_log.md` di-commit ke repo masing-masing.
 
-**Mengapa ini penting:** Di lab riset, Anda akan jauh lebih sering *mendiskusikan* kode dengan rekan daripada menulis kode sendirian. Peer review adalah skill yang sama pentingnya dengan menulis kode - dan modul ini memberi Anda satu latihan formal sebelum Anda melakukannya secara informal sepanjang sisa semester.
+**Mengapa ini penting:** Di lab riset, Anda akan jauh lebih sering *mendiskusikan* kode dengan rekan daripada menulis kode sendirian. Peer review adalah keterampilan yang sama pentingnya dengan menulis kode - dan modul ini memberi Anda satu latihan formal sebelum Anda melakukannya secara informal sepanjang sisa semester.
 
 ---
 
 ## Komponen Mandiri Pendalaman (Repo Adoption)
 
-Konsep: membaca kode orang lain dengan cepat, memetakan arsitektur repo riset, dan memodifikasi secara minimal-invasif. Format dan kriteria: [Lampiran C.9](14_Lampiran.md#c9-template-komponen-mandiri).
+Konsep: membaca kode orang lain dengan cepat, memetakan arsitektur repo riset, dan memodifikasi secara seminimal mungkin. Format dan kriteria: [Lampiran C.9](14_Lampiran.md#c9-template-komponen-mandiri).
 
 | Jalur | Tugas minggu ini |
 | --- | --- |
@@ -836,6 +836,6 @@ Konsep: membaca kode orang lain dengan cepat, memetakan arsitektur repo riset, d
 
 ## Lanjut ke W8
 
-Anda sudah bisa memakai pretrained transformer, mengadopsi repo yang belum dikenal, dan menggunakan AI tools dengan protokol yang bertanggung jawab. W8 memperluas pemahaman ke lanskap foundation model: bukan hanya text, tetapi vision, audio, time series, dan multimodal - serta bagaimana memilih strategi adaptasi yang tepat.
+Anda sudah bisa memakai pretrained transformer, mengadopsi repo yang belum dikenal, dan menggunakan alat AI dengan protokol yang bertanggung jawab. W8 memperluas pemahaman ke lanskap foundation model: bukan hanya text, tetapi vision, audio, time series, dan multimodal - serta bagaimana memilih strategi adaptasi yang tepat.
 
 Buka [W8 - Foundation Models](08_W8_Foundation_Models.md) ketika siap.

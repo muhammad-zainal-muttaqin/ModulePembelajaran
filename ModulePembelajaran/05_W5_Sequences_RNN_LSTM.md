@@ -28,8 +28,8 @@
 
 > *Model yang tidak ingat masa lalu hanya bisa belajar pola saat ini. Arsitektur recurrent hadir justru karena urutan itu penting - apa yang terjadi sebelumnya mengubah makna apa yang terjadi sekarang.*
 
-**Baris Big Map:** `(T, F) -> (1,)`, `(N,)`, `(T'', 1)`
-**Rigor habit:** Long-sequence diagnosis dan justifikasi arsitektur
+**Baris peta besar:** `(T, F) -> (1,)`, `(N,)`, `(T'', 1)`
+**Kebiasaan riset:** Diagnosis sequence panjang dan justifikasi arsitektur
 **Dataset:** Sequence dataset dengan dependensi panjang yang terlihat
 **Lab utama:** Lab 3b (`lab_w5_lstm_sequence.ipynb`) - **wajib di W5**
 
@@ -43,7 +43,7 @@ W5 memperluas Big Map ke domain sequence. Setelah W5, Anda dapat:
 - membangun dan melatih RNN vanilla serta LSTM/GRU
 - melihat vanishing gradient secara konkret dalam satu perbandingan
 - memilih arsitektur sequence berdasarkan panjang dependensi
-- menulis architecture justification statement yang konkret
+- menulis pernyataan justifikasi arsitektur yang konkret
 
 ---
 
@@ -156,7 +156,7 @@ Penjelasan simbol baris-per-baris:
 
 Hidden state `h_t` berperan sebagai "memori" yang diperbarui setiap langkah. Inisialisasi `h_0 = 0` (default) atau learned. Untuk sequence classification, output diambil dari `h_T` (langkah terakhir). Untuk forecasting, output `y_t = W_o h_t` di setiap langkah.
 
-**Vanishing gradient secara konkret.** Sudah dibahas di §1.5.2 dengan tabel angka: dengan `|w_h| = 0.5`, gradient setelah 10 langkah mundur ≈ 0.001; setelah 50 langkah ≈ `9e-16`. Lab 3b memvisualkan ini dengan plot log-scale gradient norm per timestep. Penurunan eksponensial terlihat jelas pada RNN vanilla; LSTM menjaga gradient relatif flat.
+**Vanishing gradient secara konkret.** Sudah dibahas di §1.5.2 dengan tabel angka: dengan `|w_h| = 0.5`, gradient setelah 10 langkah mundur ≈ 0.001; setelah 50 langkah ≈ `9e-16`. Lab 3b memvisualisasikan gejala ini dengan plot log-scale gradient norm per timestep. Penurunan eksponensial terlihat jelas pada RNN vanilla; LSTM menjaga gradient relatif flat.
 
 ### 2.3 LSTM: Gate sebagai Solusi
 
@@ -186,7 +186,7 @@ Notasi `[h_{t-1}, x_t]` artinya konkatenasi vektor: kalau `h_{t-1}` shape `(d_h,
 
 #### 2.3.2 Kenapa Ini Memutus Vanishing Gradient
 
-Kunci di baris cell state: `c_t = f_t ⊙ c_{t-1} + i_t ⊙ g_t`. Saat backprop, turunan `∂c_t/∂c_{t-1} = f_t` (hanya gate, bukan perkalian matriks `W_h` yang berulang). Kalau forget gate `f_t ≈ 1` di sepanjang sequence, gradient cell state mengalir mundur **tanpa menyusut**. Ini "highway" gradient yang menjaga sinyal dari timestep awal tetap hidup walau sequence panjang.
+Kunci di baris cell state: `c_t = f_t ⊙ c_{t-1} + i_t ⊙ g_t`. Saat backprop, turunan `∂c_t/∂c_{t-1} = f_t` (hanya gate, bukan perkalian matriks `W_h` yang berulang). Kalau forget gate `f_t ≈ 1` di sepanjang sequence, gradient cell state mengalir mundur **tanpa menyusut**. Ini jalur cepat gradient yang menjaga sinyal dari timestep awal tetap hidup walau sequence panjang.
 
 Bandingkan dengan RNN vanilla: setiap langkah mundur, gradient dikalikan dengan `W_h` (matriks belajar, bisa kecil). Setelah 100 langkah, gradient `~ 0`. LSTM tidak punya rantai perkalian matriks ini di cell state - hanya rantai gate, dan gate bisa belajar ke nilai 1 untuk "buka jalur".
 
@@ -194,9 +194,9 @@ Bandingkan dengan RNN vanilla: setiap langkah mundur, gradient dikalikan dengan 
 
 Bayangkan sequence sensor pasien: glukosa setiap 5 menit selama 24 jam (288 timestep). Cell state `c_t` menyimpan "kondisi pasien terakhir kali stabil". Forget gate `f_t` adalah keputusan model di tiap timestep: *apakah kondisi sebelumnya masih relevan?*
 
-- Saat data normal mengalir → `f_t ≈ 1.0` → cell state hampir tidak berubah, ingatkan kondisi stabil.
+- Saat data normal mengalir → `f_t ≈ 1.0` → cell state hampir tidak berubah, sehingga gambaran kondisi stabil tetap dipertahankan.
 - Saat anomali (lonjakan glukosa tiba-tiba akibat makan berat) → `f_t` turun ke ~0.3 untuk komponen yang terkait kondisi sebelum makan; cell state diperbarui dengan informasi baru.
-- Saat pasien tidur dan sinyal sangat lambat → `f_t` ≈ 1.0 lagi, cell state ingatkan kondisi tidur tanpa terganggu fluktuasi noise kecil.
+- Saat pasien tidur dan sinyal sangat lambat → `f_t` ≈ 1.0 lagi, cell state mempertahankan gambaran kondisi tidur tanpa terganggu fluktuasi noise kecil.
 
 Forget gate mempelajari *kapan* informasi lama harus dilupakan. Tanpa training, model tidak tahu - tetapi gradient yang merambat lewat sequence membentuk gate untuk kondisi yang relevan.
 
@@ -265,8 +265,8 @@ Template ini akan dipakai kembali di W7 (Transformer) dan W9 (multimodal). Mulai
 
 Ketika model sequence tidak belajar dengan baik, lima hipotesis pertama:
 
-1. **Vanishing gradient** - cek gradient norm per layer/timestep; jika turun eksponensial, switch ke LSTM/GRU.
-2. **Sequence terlalu panjang** - coba truncate ke panjang yang lebih pendek; jika performa membaik, dependensi lokal sudah cukup.
+1. **Vanishing gradient** - cek gradient norm per layer/timestep; jika turun eksponensial, beralih ke LSTM/GRU.
+2. **Sequence terlalu panjang** - coba potong sequence menjadi lebih pendek; jika performa membaik, dependensi lokal sudah cukup.
 3. **Shuffle data yang salah** - pada time series, jangan shuffle antar sequence; hanya shuffle *urutan sequence* di DataLoader, bukan urutan timestep di dalam sequence.
 4. **Leakage temporal** - fitur yang dibuat dari masa depan bocor ke training. Ini dibahas mendalam di W6.
 5. **Gradient clipping terlalu ketat** - RNN/LSTM sering butuh gradient clipping; terlalu ketat menghambat pembelajaran.
@@ -341,7 +341,7 @@ Buka `notebooks/lab_w5_lstm_sequence.ipynb`.
 - [ ] Smoke test untuk RNN dan LSTM lulus.
 - [ ] Plot gradient flow menunjukkan vanishing pada RNN.
 - [ ] Tabel perbandingan MAE (RNN vs LSTM vs GRU) untuk seq_len=50 dan seq_len=200.
-- [ ] Architecture justification statement tertulis di notebook.
+- [ ] Pernyataan justifikasi arsitektur tertulis di notebook.
 - [ ] Gradient clipping aktif di semua model.
 
 ### Lab 3b Breadth Check

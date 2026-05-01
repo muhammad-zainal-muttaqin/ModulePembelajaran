@@ -32,7 +32,7 @@
 
 ## 0. Peta Bab
 
-Modul ini adalah **bootcamp 11 minggu + capstone 4 minggu**. Bab ini memperkenalkan kosakata dasar, glosarium singkat, target outcome bootcamp, sembilan kompetensi inti, empat sikap riset, tiga alur lintas minggu, ritme sesi, dan kontrak belajar sebelum materi teknis dimulai. Setelah menyelesaikan bab ini, Anda memahami tujuan modul, cara membacanya, dan target realistis di akhir bootcamp.
+Modul ini adalah **bootcamp 11 minggu + capstone 4 minggu**. Bab ini memperkenalkan kosakata dasar, glosarium singkat, target hasil bootcamp, sembilan kompetensi inti, empat sikap riset, tiga alur lintas minggu, ritme sesi, dan kontrak belajar sebelum materi teknis dimulai. Setelah menyelesaikan bab ini, Anda memahami tujuan modul, cara membacanya, dan target realistis di akhir bootcamp.
 
 ---
 
@@ -98,7 +98,7 @@ Anda tidak perlu menguasai kalkulus untuk memulai. Cukup dua pemahaman dasar.
 
 **Chain rule = rantai turunan.** Kalau `y = f(g(x))`, maka turunannya `dy/dx = f'(g(x)) · g'(x)`. Bayangkan dua roda gigi: kalau roda dalam berputar 2× lebih cepat dari input, dan roda luar 3× lebih cepat dari roda dalam, total roda luar 6× lebih cepat dari input.
 
-Inilah yang dilakukan **backpropagation**: mengambil rantai panjang turunan dari loss sampai ke setiap parameter, lalu merambatkannya mundur lewat chain rule. Detail derivasi 7-langkah ada di [Lampiran A.1](14_Lampiran.md#a1-backpropagation-derivasi-manual). Untuk W1-W2, cukup paham bahwa "rantai turunan" itulah cara kerjanya.
+Inilah yang dilakukan **backpropagation**: mengambil rantai panjang turunan dari loss sampai ke setiap parameter, lalu merambatkannya mundur melalui chain rule. Detail derivasi 7-langkah ada di [Lampiran A.1](14_Lampiran.md#a1-backpropagation-derivasi-manual). Untuk W1-W2, cukup paham bahwa "rantai turunan" itulah cara kerjanya.
 
 ### 0.5.5 PyTorch Tensor: Primer 3 Menit
 
@@ -118,7 +118,7 @@ Tiga hal ini dikerjakan terus-menerus:
 
 1. **Memeriksa shape.** `print(x.shape)` adalah debug pertama saat training error.
 2. **Memindahkan ke device.** `model.to(device)` dan `x.to(device)` agar perhitungan berjalan di GPU/CPU yang konsisten.
-3. **Memanggil `.backward()`.** Setelah `loss = criterion(model(x), y)`, panggilan `loss.backward()` menghitung semua gradient otomatis lewat chain rule.
+3. **Memanggil `.backward()`.** Setelah `loss = criterion(model(x), y)`, panggilan `loss.backward()` menghitung semua gradient otomatis melalui chain rule.
 
 Broadcasting (PyTorch dan NumPy) secara singkat: jika dua tensor punya shape yang kompatibel, operasi seperti `a + b` memperluas tensor kecil agar cocok dengan tensor besar tanpa menyalin memori. Aturan kompatibilitas: dua sumbu kompatibel jika ukurannya sama atau salah satu sama dengan 1.
 
@@ -167,7 +167,7 @@ Semua keputusan itu ada di tangan Anda. Modul ini melatih Anda membuat keputusan
 
 ---
 
-## 2. Target Outcome: 60-70% Siap Mengerjakan Topik Riset Lab
+## 2. Target Hasil: 60-70% Siap Mengerjakan Topik Riset Lab
 
 Bootcamp ini **bukan** dirancang untuk membuat Anda menjadi ahli penuh di setiap arah riset yang mungkin dijalankan lab. Targetnya lebih realistis dan lebih berguna:
 
@@ -175,14 +175,14 @@ Bootcamp ini **bukan** dirancang untuk membuat Anda menjadi ahli penuh di setiap
 
 Itu artinya Anda harus bisa:
 
-- mengidentifikasi tipe tugas dan framing tensor shape
+- mengidentifikasi tipe tugas dan framing bentuk tensor
 - memilih keluarga model baseline yang masuk akal
-- fine-tune atau mengadaptasi pretrained model atau repo riset eksternal
+- melakukan fine-tune atau mengadaptasi pretrained model atau repo riset eksternal
 - merancang perbandingan terkontrol berskala kecil
 - mengenali perilaku training yang mencurigakan
 - menginspeksi data dan mengantisipasi leakage
 - membaca paper secara terstruktur
-- menulis pre-registration dan mempertahankan hipotesis falsifiable
+- menulis pre-registration dan mempertahankan hipotesis dapat dipalsukan
 
 Itu **bukan** berarti pada akhir bootcamp Anda harus:
 
@@ -192,13 +192,13 @@ Itu **bukan** berarti pada akhir bootcamp Anda harus:
 - menyelesaikan masalah deployment, distillation, atau multimodal fusion dari nol
 - merancang agenda riset siap publikasi tanpa supervisi
 
-Sisa 30-40% berasal dari: paper reading lanjutan, panduan PI/dosen pembimbing, adopsi repo yang ditargetkan, debugging spesifik domain, dan capstone serta kerja mandiri setelahnya.
+Sisa 30-40% berasal dari: pembacaan paper lanjutan, panduan PI/dosen pembimbing, adopsi repo yang ditargetkan, debugging spesifik domain, dan capstone serta kerja mandiri setelahnya.
 
 Transisi yang dimaksudkan:
 
 - **Bootcamp (Minggu 1-11):** bangun peta, alur kerja, dan kebiasaan
 - **Capstone (Minggu 12-15):** terapkan dalam satu masalah yang dibatasi
-- **RA research:** lanjutkan belajar mandiri pada masalah di lab
+- **riset RA:** lanjutkan belajar mandiri pada masalah di lab
 
 ---
 
@@ -210,10 +210,10 @@ Email pembuka di atas berkaitan dengan sembilan kompetensi yang menjadi tulang p
 2. **Menerjemahkan ide menjadi eksperimen** (W3-W4). Mengubah instruksi terbuka menjadi rancangan konkret dengan variabel, baseline, hipotesis, dan metrik.
 3. **Eksperimen reproduksibel** (W4). Menulis konfigurasi, mengunci seed, mencatat jejak, dan menyusun ablation yang bisa diverifikasi orang lain.
 4. **Validasi data dan kewaspadaan leakage** (W6). Memeriksa data sebelum mempercayai hasilnya, mulai dari distribusi kelas hingga *temporal leakage* yang tersembunyi.
-5. **AI tools sebagai pendukung** (W7-W8). Memakai LLM dan coding copilot untuk mempercepat kerja tanpa menyerahkan pemahaman dan tanggung jawab.
-6. **Adopsi repository riset yang belum dikenal** (W7, W9). Membaca kode orang lain dengan cepat, menyiapkan lingkungan, dan memodifikasi secara minimal-invasif.
-7. **Foundation model dan adaptation strategy** (W8). Mengenali kapan sebuah pretrained model layak diadopsi, kapan frozen, kapan LoRA, kapan full fine-tuning.
-8. **Multimodal reasoning** (W9). Menganalisis fusion strategy, per-modality ablation, dan missing-modality fallback.
+5. **Alat AI sebagai pendukung** (W7-W8). Memakai LLM dan coding copilot untuk mempercepat kerja tanpa menyerahkan pemahaman dan tanggung jawab.
+6. **Adopsi repositori riset yang belum dikenal** (W7, W9). Membaca kode orang lain dengan cepat, menyiapkan lingkungan, dan memodifikasi secara seminimal mungkin.
+7. **Foundation model dan strategi adaptasi** (W8). Mengenali kapan sebuah pretrained model layak diadopsi, kapan frozen, kapan LoRA, kapan full fine-tuning.
+8. **Penalaran multimodal** (W9). Menganalisis strategi penggabungan, ablation per modalitas, dan fallback saat modalitas hilang.
 9. **Berkembang mandiri** (W10-W11). Membaca paper secara terarah, menyusun pertanyaan yang baik, dan merancang eksperimen lanjutan berikut pre-registration-nya.
 
 Anda tidak perlu menguasai kesembilan kompetensi di minggu pertama. Modul disusun bertahap: setiap minggu bertumpu pada kebiasaan dari minggu sebelumnya.
@@ -227,13 +227,13 @@ Anda tidak perlu menguasai kesembilan kompetensi di minggu pertama. Modul disusu
 
 Kompetensi teknis cepat tumpul kalau tidak dibiasakan bersama sikap riset yang tepat. Empat sikap berikut ditanamkan sepanjang modul lewat pilihan contoh dan pertanyaan refleksi, sering kali tanpa disebut secara eksplisit.
 
-**Curiosity** - rasa ingin tahu yang gelisah. Ketika angka akurasi meloncat dari 78% ke 80% setelah Anda mengganti loss, sikap ini yang bertanya: "apakah kenaikan ini konsisten jika aku jalankan tiga kali dengan seed berbeda, atau sekadar kebetulan?" Curiosity menuntunmu ke eksperimen tambahan sebelum menulis laporan.
+**Curiosity** - rasa ingin tahu yang gelisah. Ketika angka akurasi meloncat dari 78% ke 80% setelah Anda mengganti loss, sikap ini yang bertanya: "apakah kenaikan ini konsisten jika aku jalankan tiga kali dengan seed berbeda, atau sekadar kebetulan?" Curiosity menuntun Anda ke eksperimen tambahan sebelum menulis laporan.
 
 **Rigor** - disiplin dalam prosedur. Bukan sekadar "rapi", tetapi taat pada aturan seperti: satu variabel berubah pada satu waktu, seluruh konfigurasi disimpan bersama checkpoint, setiap angka di laporan dapat dilacak kembali ke run mana. Rigor melelahkan di awal dan menyelamatkan Anda berjam-jam di akhir.
 
-**Skepticism** - kesediaan untuk tidak mempercayai angka sendiri. Akurasi 99% pada hari pertama bukan kabar baik, itu lampu merah. Hampir selalu ada *leakage*, label yang bocor, atau data test yang tercampur dengan training. Skeptisisme memaksamu memeriksa sebelum berbangga.
+**Skepticism** - kesediaan untuk tidak mempercayai angka sendiri. Akurasi 99% pada hari pertama bukan kabar baik, itu lampu merah. Hampir selalu ada *leakage*, label yang bocor, atau data test yang tercampur dengan training. Skeptisisme memaksa Anda memeriksa sebelum berbangga.
 
-**Ownership** - rasa memiliki yang melampaui alat. LLM mungkin menulis separuh kode Anda; repository orang lain mungkin menyediakan arsitektur; RunPod mungkin menjalankan training. Tetapi saat dosen bertanya mengapa pilihan tertentu diambil, jawabannya tetap tanggung jawab Anda. Ownership berarti Anda bisa menjelaskan setiap keputusan yang namamu tercantum padanya.
+**Ownership** - rasa memiliki yang melampaui alat. LLM mungkin menulis separuh kode Anda; repositori orang lain mungkin menyediakan arsitektur; RunPod mungkin menjalankan training. Tetapi saat dosen bertanya mengapa pilihan tertentu diambil, jawabannya tetap tanggung jawab Anda. Ownership berarti Anda bisa menjelaskan setiap keputusan yang nama Anda tercantum padanya.
 
 Keempat sikap tidak diajarkan sebagai doktrin. Sikap-sikap itu muncul dalam pitfall yang dibahas, dalam checklist yang diulang, dan dalam pertanyaan refleksi di akhir tiap bab.
 
@@ -250,7 +250,7 @@ Setiap minggu kembali ke pertanyaan yang sama:
 > Tensor shape apa yang masuk, shape apa yang keluar, dan keluarga model apa yang secara alami cocok untuk pemetaan itu?
 
 
-| Minggu  | Baris Big Map                                      |
+| Minggu  | Baris peta besar                                      |
 | ------- | -------------------------------------------------- |
 | W1      | `(F,) -> (1,)`, `(1,)`, `(N,)` (tabular)           |
 | W2-W3   | `(C, H, W) -> (N,)` (citra)                        |
@@ -258,8 +258,8 @@ Setiap minggu kembali ke pertanyaan yang sama:
 | W5      | `(T, F) -> (1,)`, `(N,)`, `(T'', 1)` (sequence)    |
 | W6      | sama seperti W5, fokus representasi & leakage      |
 | W7      | `(T,) -> (N,)`, `(1,)`, `(T, N)` (teks)            |
-| W8      | input apapun yang memanfaatkan pretrained priors   |
-| W9      | multiple tensors -> shared prediction (multimodal) |
+| W8      | input apa pun yang memanfaatkan prior dari pretrained model   |
+| W9      | beberapa tensor -> prediksi bersama (multimodal) |
 | W10-W11 | sintesis lintas keluarga                           |
 
 
@@ -270,19 +270,19 @@ Peta ini bertambah lengkap setiap minggu sehingga Anda perlahan melihat deep lea
 Setiap minggu memperkenalkan satu kebiasaan riset yang tetap dipakai setelahnya. Bootcamp dibuat kumulatif, bukan mulai ulang setiap Senin. Kolom "contoh operasional" memberi gambaran konkret tentang penerapan kebiasaan itu dalam pekerjaan sehari-hari.
 
 
-| Minggu | Rigor habit                                                | Contoh operasional                                                                                                                                                        |
+| Minggu | Kebiasaan riset                                                | Contoh operasional                                                                                                                                                        |
 | ------ | ---------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | W1     | Observasi sebelum kesimpulan                               | Sebelum bilang "model A lebih baik", tulis dulu apa yang dilihat di kurva (angka, bentuk), baru tafsirkan.                                                                |
-| W2     | Three-level smoke test                                     | Sebelum training 30 epoch, jalankan import test → dummy forward → overfit one batch. Stop kalau salah satu gagal.                                                         |
-| W3     | Change one thing at a time                                 | Saat membandingkan focal vs CE, samakan optimizer, lr, seed, augmentasi. Hanya loss yang berubah.                                                                         |
-| W4     | Reproducibility, traceability, matriks eksperimen          | Setiap run punya `config.yaml + git_hash + seed`; semua ablation tertulis di matriks sebelum eksekusi.                                                                    |
-| W5     | Long-sequence diagnosis dan justifikasi arsitektur         | Saat training LSTM tidak konvergen, plot gradient norm per-layer dulu sebelum tweak hyperparameter.                                                                       |
+| W2     | Smoke test tiga level                                     | Sebelum training 30 epoch, jalankan import test → dummy forward → overfit one batch. Stop kalau salah satu gagal.                                                         |
+| W3     | Ubah satu hal pada satu waktu                                 | Saat membandingkan focal vs CE, samakan optimizer, lr, seed, augmentasi. Hanya loss yang berubah.                                                                         |
+| W4     | Reproduksibilitas, keterlacakan, matriks eksperimen          | Setiap run punya `config.yaml + git_hash + seed`; semua ablation tertulis di matriks sebelum eksekusi.                                                                    |
+| W5     | Diagnosis sequence panjang dan justifikasi arsitektur         | Saat training LSTM tidak konvergen, plot gradient norm per-layer dulu sebelum tweak hyperparameter.                                                                       |
 | W6     | Validasi preprocessing dan kewaspadaan leakage             | Hitung mean/std HANYA dari train; jangan pernah lihat test sebelum angka final.                                                                                           |
 | W7     | Verifikasi kode AI, inspeksi tokenisasi, repo primer       | Sebelum commit kode dari LLM, baca baris demi baris dan jalankan minimal smoke test sederhana.                                                                            |
-| W8     | Model-card literacy, adaptation choice, fair baseline      | Sebelum fine-tune, baca model card: dataset asal, lisensi, batas penggunaan, evaluasi yang sudah ada.                                                                     |
-| W9     | Per-modality ablation dan multimodal failure analysis      | Setelah multimodal model jalan, jalankan run dengan satu modality di-zero atau di-acak; jika metric tidak turun, modality itu diabaikan.                                  |
-| W10    | Three-pass paper reading dan paper-to-code translation     | Pass 1 (judul-abstrak-kesimpulan), pass 2 (figur dan tabel), pass 3 (rumus). Stop di pass 1 jika tidak relevan.                                                           |
-| W11    | Input→Middle→Output framing, triage literatur, seleksi gap | Tulis hipotesis falsifiable (`Δ ≥ X dengan p < Y`), bukan "saya pikir model A lebih baik". Framing yang baik punya gap yang tidak bisa diisi pipeline standar apa adanya. |
+| W8     | Literasi model card, pilihan adaptasi, baseline yang adil      | Sebelum fine-tune, baca model card: dataset asal, lisensi, batas penggunaan, evaluasi yang sudah ada.                                                                     |
+| W9     | Ablation per modalitas dan multimodal failure analysis      | Setelah multimodal model jalan, jalankan run dengan satu modalitas di-zero atau di-acak; jika metric tidak turun, modalitas itu diabaikan.                                  |
+| W10    | Membaca paper tiga putaran dan menerjemahkannya ke kode     | Putaran 1 (judul-abstrak-kesimpulan), putaran 2 (figur dan tabel), putaran 3 (rumus). Stop di putaran 1 jika tidak relevan.                                                           |
+| W11    | Input→Middle→Output framing, triage literatur, seleksi gap | Tulis hipotesis dapat dipalsukan (`Δ ≥ X dengan p < Y`), bukan "saya pikir model A lebih baik". Framing yang baik punya gap yang tidak bisa diisi pipeline standar apa adanya. |
 
 
 ### 5.3 Representation Choice
@@ -311,10 +311,10 @@ Setiap minggu mengikuti format yang stabil 2 jam (120 menit):
 
 | Segmen                  | Durasi   | Tujuan                                                     |
 | ----------------------- | -------- | ---------------------------------------------------------- |
-| Prior-week findings     | 30 menit | Mahasiswa membagikan temuan minggu sebelumnya              |
-| New technical material  | 40 menit | Konsep + live demo singkat                                 |
-| Rigor habit of the week | 10 menit | Kebiasaan riset eksplisit yang dikaitkan ke assignment     |
-| Assignment walkthrough  | 40 menit | Langkah pertama bersama; mahasiswa lanjut mandiri di rumah |
+| Temuan minggu sebelumnya     | 30 menit | Mahasiswa membagikan temuan minggu sebelumnya              |
+| Materi teknis baru  | 40 menit | Konsep + live demo singkat                                 |
+| Kebiasaan riset minggu ini | 10 menit | Kebiasaan riset eksplisit yang dikaitkan ke tugas          |
+| Pendampingan tugas  | 40 menit | Langkah pertama bersama; mahasiswa lanjut mandiri di rumah |
 
 
 Format ini memastikan setiap sesi:
@@ -322,7 +322,7 @@ Format ini memastikan setiap sesi:
 1. menuntaskan tindak lanjut minggu sebelumnya,
 2. membuka konsep baru,
 3. menanamkan satu kebiasaan riset eksplisit, dan
-4. memberi momentum awal untuk assignment minggu itu.
+4. memberi momentum awal untuk tugas minggu itu.
 
 ---
 
@@ -337,7 +337,7 @@ Modul ini paling efektif jika Anda mengikuti kesepakatan berikut.
 5. **Komponen Mandiri mingguan, mulai W4.** Catat di `notebooks/portofolio_mandiri.ipynb`; presentasi 10 menit di awal sesi berikutnya. Format dan kriteria: [Lampiran C.9](14_Lampiran.md#c9-template-komponen-mandiri).
 6. **Breadth Check sebelum Capstone.** Tunjukkan forward pass berjalan dari **empat dari lima keluarga arsitektur**: MLP (Lab 0/1c), CNN (Lab 1), RNN/LSTM (Lab 3b), Transformer (Lab 6b/W7), Autoencoder (Lab 7b). Ini memastikan Anda lulus sebagai asisten yang bisa mengenali dan memodifikasi keluarga NN yang muncul di paper lintas domain, bukan hanya spesialis CIFAR-10.
 7. **Eksperimen yang gagal tetapi didokumentasikan dengan baik dinilai setara dengan yang berhasil.** Yang dievaluasi adalah kualitas pemikiran, analisis, dan dokumentasi Anda, bukan apakah hipotesis terkonfirmasi. Hasil negatif yang dijelaskan dengan jujur lebih bernilai daripada hasil positif yang tidak bisa dipertanggungjawabkan.
-8. **Application-first, theory-grounded.** Modul memperkenalkan ide melalui run konkret dan perbandingan terlebih dahulu. Teori berat (derivasi backprop manual, optimizer theory long-form) tersedia di Lampiran A untuk dibaca setelah Anda punya hasil konkret untuk diinterpretasi.
+8. **Mulai dari aplikasi, ditopang teori.** Modul memperkenalkan ide melalui run konkret dan perbandingan terlebih dahulu. Teori berat (derivasi backprop manual, optimizer theory long-form) tersedia di Lampiran A untuk dibaca setelah Anda punya hasil konkret untuk diinterpretasi.
 
 ---
 
@@ -355,9 +355,9 @@ Lab dalam modul ini bukan kumpulan latihan terpisah. Lab-lab utama memakai basis
 - **Lab 4 (W4 ekstensi atau W6)** - EDA + leakage audit: PathMNIST atau dataset baru; audit pipeline dari leakage.
 - **Lab 6 - Temporal Leakage (W6)** - Sensor/timeseries dataset; bangun causal feature, sengaja patahkan kausalitas, tunjukkan inflasi metric yang invalid.
 - **Lab 5b (W7)** - Klasifikasi sentimen IndoNLU SmSA: 2x2 perbandingan frozen vs fine-tune, [CLS] vs mean pool.
-- **Lab 6 - Repo Adoption (W7)** - Clone repo riset, modifikasi minimal-invasif, tulis `repo_map.md`.
-- **Lab 8 - Multimodal Ablation (W9)** - Reproduce/adopt multimodal repo, per-modality ablation, missing-modality test, repo map kedua.
-- **Lab 9 - Paper Implementation (W10)** - Pilih satu paper dari curated menu, three-pass read, implement core method, satu ablation kecil.
+- **Lab 6 - Repo Adoption (W7)** - Clone repo riset, modifikasi seminimal mungkin, tulis `repo_map.md`.
+- **Lab 8 - Multimodal Ablation (W9)** - Reproduce/adopt multimodal repo, ablation per modalitas, uji modalitas hilang, repo map kedua.
+- **Lab W10 - Implementasi Paper (W10)** - Pilih satu paper dari menu terkurasi, baca tiga putaran, implement metode inti, satu ablation kecil.
 
 **Lab Breadth (memenuhi Kontrak Belajar poin 6):**
 

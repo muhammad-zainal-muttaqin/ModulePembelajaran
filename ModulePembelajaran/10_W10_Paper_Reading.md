@@ -24,30 +24,30 @@
 
 ---
 
-# 10 · W10 - Paper Reading & Paper Implementation
+# 10 · W10 - Paper Reading & Implementasi Paper
 
 > *Riset tidak berakhir ketika semester selesai. Keterampilan membaca paper secara terstruktur dan menerjemahkannya menjadi kode yang bisa dijalankan adalah yang memisahkan peneliti pemula dari peneliti yang terus berkembang.*
 
-**Baris Big Map:** sintesis melalui artefak riset
-**Rigor habit:** Membaca paper tiga putaran dan menerjemahkan paper ke kode
+**Baris peta besar:** sintesis melalui artefak riset
+**Kebiasaan riset:** Membaca paper tiga putaran dan menerjemahkan paper ke kode
 **Lab utama:** Lab W10 - Paper to Code (`lab_w10_paper_to_code.ipynb`)
 
 ---
 
 ## 0. Peta Bab
 
-W10 fokus pada satu skill besar yang sering diasumsikan ada tapi jarang diajarkan eksplisit: membaca paper ML secara teknis dan menerjemahkannya menjadi implementasi kecil yang bisa diuji.
+W10 fokus pada satu keterampilan besar yang sering diasumsikan ada tapi jarang diajarkan eksplisit: membaca paper ML secara teknis dan menerjemahkannya menjadi implementasi kecil yang bisa diuji.
 
-- **2.1** Landscape publikasi ML: preprint, workshop, conference, journal
+- **2.1** Peta kanal publikasi ML: preprint, workshop, conference, journal
 - **2.2** Kurasi paper: dari banjir ke aliran kecil
 - **2.3** Metode membaca paper tiga putaran (Keshav 2007) - eksplisit dengan template
 - **2.4** Catatan paper yang berguna untuk implementasi
 - **2.5** Alur paper-to-code - 6 langkah dari abstract ke kode minimal yang bisa dijalankan
 - **2.6** Menjalankan satu ablation kecil untuk memahami kontribusi paper
-- **2.7** Rutinitas mingguan untuk menjaga skill paper-to-code
-- **2.8** Peta keluarga model generatif (vocab reference)
+- **2.7** Rutinitas mingguan untuk menjaga keterampilan paper-to-code
+- **2.8** Peta keluarga model generatif (referensi kosakata)
 
-Setelah W10, Anda bisa mengambil paper dari arXiv, membacanya secara terstruktur, dan menjalankan implementasi core method-nya dalam satu minggu.
+Setelah W10, Anda bisa mengambil paper dari arXiv, membacanya secara terstruktur, dan menjalankan implementasi metode intinya dalam satu minggu.
 
 ---
 
@@ -67,7 +67,7 @@ Perbedaan bukan bakat. Perbedaannya adalah sistem: filter paper, metode membaca,
 
 ## 2. Konsep Inti
 
-### 2.1 Landscape Publikasi ML: Preprint, Workshop, Conference, Journal
+### 2.1 Peta Kanal Publikasi ML: Preprint, Workshop, Conference, Journal
 
 Sebelum membaca paper, Anda perlu tahu status publikasinya. Di ML modern, ide sering beredar lebih cepat daripada proses peer-review. Itu baik untuk belajar cepat, tetapi berbahaya jika semua PDF diperlakukan seolah punya otoritas yang sama.
 
@@ -91,13 +91,13 @@ Catatan skeptis: klaim utama bergantung pada satu dataset; belum ada ablation un
 
 **Navigasi arXiv.** Tiga kategori paling relevan untuk ML/DL: `cs.LG` (Machine Learning), `cs.CV` (Computer Vision), `cs.CL` (NLP/LLM). Untuk medical imaging: `eess.IV`. Cari via `arxiv.org/search` dengan filter kategori + kata kunci. ID paper `2312.01234` berarti Desember 2023, urutan 01234; URL PDF: `arxiv.org/pdf/2312.01234`. Simpan ID, bukan judul. Saat mengutip, gunakan versi yang Anda baca (`v1`, `v2`, dst) karena beda versi bisa punya perbedaan substansial. Papers With Code (`paperswithcode.com`) menghubungkan paper ke kode resmi dan benchmark.
 
-arXiv menerbitkan ratusan paper ML per hari. Membaca semua mustahil. Tujuan kurasi: saring menjadi 5-10 paper per minggu yang layak 30 menit waktumu.
+arXiv menerbitkan ratusan paper ML per hari. Membaca semua mustahil. Tujuan kurasi: saring menjadi 5-10 paper per minggu yang layak 30 menit waktu Anda.
 
 Empat tingkat filter, dari kasar ke halus:
 
 **Filter 1 - Kategori + kata kunci.** Di arXiv, berlangganan kategori spesifik (`cs.CV`, `cs.LG`, `eess.IV` untuk medical imaging). Tambahkan filter kata kunci dari minat spesifik. Alat: Google Scholar Alerts, arxiv-sanity, Papers with Code RSS.
 
-**Filter 2 - Judul.** 80% paper dapat Anda tolak dari judul: bukan bidangmu, bukan tipe pertanyaan yang Anda cari. Proses 50 judul dalam 5 menit; yang tersisa mungkin 10.
+**Filter 2 - Judul.** 80% paper dapat Anda tolak dari judul: bukan bidang Anda, bukan tipe pertanyaan yang Anda cari. Proses 50 judul dalam 5 menit; yang tersisa mungkin 10.
 
 **Filter 3 - Abstrak.** Baca abstrak dari 10 paper. Tanya: apakah *klaim* mereka menarik bagi saya? Apakah *metodenya* memberi sesuatu yang bisa dipelajari, atau sekadar mengikuti arus utama? Pilih top 5.
 
@@ -125,7 +125,7 @@ flowchart TB
 
 Bila setelah 10 menit Anda tidak bisa menjawab ketiganya, paper mungkin tidak ditulis dengan baik - atau bidangnya terlalu jauh dari Anda. Putuskan: lanjut putaran 2, atau berhenti dan pilih paper lain.
 
-**Putaran 2 - Detail (30-45 menit).** Baca linear tetapi *aktif*: catat pertanyaan di margin. Fokus: method section (bagaimana tepatnya mereka melakukannya?), experimental setup (dataset, baseline, metrik, ablation), dan figure/tabel satu per satu. Lewati related work kecuali bidangnya baru bagimu.
+**Putaran 2 - Detail (30-45 menit).** Baca linear tetapi *aktif*: catat pertanyaan di margin. Fokus: method section (bagaimana tepatnya mereka melakukannya?), experimental setup (dataset, baseline, metrik, ablation), dan figure/tabel satu per satu. Lewati related work kecuali bidangnya baru bagi Anda.
 
 Catat 3-5 pertanyaan teknis yang Anda punya: detail yang tidak jelas, pilihan yang aneh, baseline yang kurang, asumsi yang tidak diuji, atau bagian yang perlu dicek di kode resmi. Pertanyaan-pertanyaan ini bernilai lebih dari ringkasan paper-nya sendiri karena langsung mengarahkan implementasi.
 
@@ -139,7 +139,7 @@ Catatan yang Anda tidak pernah buka lagi tidak berguna. Empat bagian yang cukup 
 # <judul ringkas> (authors, venue, year)
 
 ## TL;DR (1-2 kalimat)
-Apa yang paper ini klaim, dalam kalimatmu sendiri.
+Apa yang paper ini klaim, dalam kalimat Anda sendiri.
 
 ## Metode (3-5 kalimat)
 Bagaimana mereka melakukannya. Sisipkan sketsa atau rumus penting.
@@ -160,12 +160,12 @@ Simpan di `docs/papers/<short_title>.md`. Setelah 20 paper, Anda punya literatur
 
 Enam langkah dari abstrak paper ke kode minimal yang bisa dijalankan:
 
-1. **Identifikasi core contribution.** Apa satu inovasi terpenting paper ini? Bukan seluruh arsitektur - satu komponen kunci. Tulis dalam satu kalimat.
+1. **Identifikasi kontribusi inti.** Apa satu inovasi terpenting paper ini? Bukan seluruh arsitektur - satu komponen kunci. Tulis dalam satu kalimat.
 2. **Temukan input/output shape.** Apa tensor yang masuk ke metode baru, dan apa yang keluar? Bila tidak eksplisit di paper, cek pseudocode atau codebase.
-3. **Pisahkan essential dari engineering detail.** Banyak paper punya banyak trick tambahan. Identifikasi mana yang essential untuk core contribution, mana yang optimisasi sekunder.
-4. **Build minimal runnable version.** Implementasikan hanya core contribution pada dataset kecil/toy. Smoke test dulu.
-5. **Verify parity check.** Apakah ada angka di paper yang bisa direproduksi dengan implementasi Anda pada konfigurasi yang sama? Jika paper punya official code, bandingkan.
-6. **Satu ablation.** Hapus atau modifikasi satu komponen core contribution. Apakah performa drop seperti yang diklaim paper?
+3. **Pisahkan inti dari detail rekayasa.** Banyak paper punya banyak trik tambahan. Identifikasi mana yang inti untuk kontribusi inti, mana yang optimisasi sekunder.
+4. **Buat versi minimal yang bisa dijalankan.** Implementasikan hanya kontribusi inti pada dataset kecil atau toy dataset. Smoke test dulu.
+5. **Verifikasi kecocokan angka.** Apakah ada angka di paper yang bisa direproduksi dengan implementasi Anda pada konfigurasi yang sama? Jika paper punya kode resmi, bandingkan.
+6. **Satu ablation.** Hapus atau modifikasi satu komponen kontribusi inti. Apakah performa turun seperti yang diklaim paper?
 
 **Estimasi waktu training per arsitektur (referensi cepat):**
 
@@ -181,7 +181,7 @@ Enam langkah dari abstrak paper ke kode minimal yang bisa dijalankan:
 Angka-angka ini adalah patokan "apakah pipeline saya terlalu lambat?" - bukan angka pasti. Jika training ResNet Anda 10× lebih lambat dari tabel, periksa: data loading bottleneck, batch size terlalu kecil, atau model yang tidak sengaja dipindah ke CPU. Gunakan `nvidia-smi` untuk memastikan GPU benar-benar dipakai.
 
 > [!TIP]
-> Paper sering menyembunyikan detail penting di appendix atau code repository. Selalu cek keduanya. Juga perhatikan "implementation details" section - sering ada hyperparameter kritis yang tidak ada di main text.
+> Paper sering menyembunyikan detail penting di appendix atau code repository. Selalu cek keduanya. Juga perhatikan "detail implementasi" section - sering ada hyperparameter kritis yang tidak ada di teks utama.
 
 ### 2.6 Ablation Kecil: Cara Menguji Klaim Metode
 
@@ -189,7 +189,7 @@ Ablation bukan eksperimen besar. Untuk W10, ablation berarti satu perubahan terk
 
 Contoh ablation yang realistis:
 
-| Paper/metode | Core contribution | Ablation kecil |
+| Paper/metode | Kontribusi inti | Ablation kecil |
 | --- | --- | --- |
 | Focal Loss | Faktor `(1 - p_t)^γ` menurunkan bobot contoh mudah | Bandingkan `γ=0` (cross-entropy) vs `γ=2` pada dataset kecil |
 | DropBlock | Dropout blok spasial untuk CNN | Bandingkan dropout biasa vs DropBlock dengan keep_prob sama |
@@ -228,7 +228,7 @@ Karena itu, bagian ini memberi Anda **peta mental** agar Anda bisa membaca paper
 
 | Keluarga | Ide inti | Training signal | Kapan dipakai | Failure mode khas | Paper pembuka |
 | --- | --- | --- | --- | --- | --- |
-| VAE | Encoder ke distribusi Gaussian, decoder dari sampel | Rekonstruksi + KL terhadap prior | Ketika butuh representasi kontinu yang bisa di-sampel; *conditional generation* | *Posterior collapse*: decoder mengabaikan z dan hanya mengandalkan decoder prior - terjadi saat KL term terlalu mendominasi loss, menyebabkan representasi latent tidak informatif | Kingma & Welling 2013 (*Auto-Encoding Variational Bayes*) |
+| VAE | Encoder ke distribusi Gaussian, decoder dari sampel | Rekonstruksi + KL terhadap prior | Ketika butuh representasi kontinu yang bisa di-sampel; *conditional generation* | *Posterior collapse*: decoder mengabaikan z dan hanya mengandalkan prior decoder - terjadi saat KL term terlalu mendominasi loss, menyebabkan representasi latent tidak informatif | Kingma & Welling 2013 (*Auto-Encoding Variational Bayes*) |
 | GAN | Generator vs discriminator, permainan minimax | Discriminator mengklasifikasi real/fake | Generasi gambar tajam, *style transfer*, *image-to-image* | *Mode collapse*: generator hanya menghasilkan subset kecil dari distribusi data (misalnya hanya wajah dengan ekspresi datar, bukan seluruh variasi) meski training loss terlihat stabil | Goodfellow et al. 2014 (*Generative Adversarial Nets*) |
 | Diffusion | Tambah noise bertahap, belajar un-noise | Prediksi noise pada setiap langkah | State-of-the-art image/video generation, kontrol *conditioning* | Inference lambat (banyak step), butuh compute besar | Ho et al. 2020 (*Denoising Diffusion Probabilistic Models*) |
 | Normalizing Flow | Transformasi bijeksi yang dibalik dari noise ke data | Likelihood eksak | Ketika butuh likelihood eksak (deteksi anomali, kompresi) | Arsitektur terbatas (harus invertible), kapasitas lebih kecil | Rezende & Mohamed 2015 (*Variational Inference with Normalizing Flows*) |
@@ -236,7 +236,7 @@ Karena itu, bagian ini memberi Anda **peta mental** agar Anda bisa membaca paper
 
 **Lab 7b sudah memberi Anda pijakan.** Autoencoder standar di Lab 7b adalah langkah pertama menuju VAE: encoder, decoder, bottleneck, dan reconstruction loss semua ada. VAE hanya menambah tiga hal: encoder mengeluarkan `(μ, σ)` bukan `z` langsung, sampling dengan *reparameterization trick*, dan loss KL terhadap prior. Jalur praktisnya: fork Lab 7b, tambah tiga modifikasi itu - ini adalah jalur yang cocok untuk **Komponen Mandiri Jalur 4 (Arsitektur Baru)**.
 
-Ketika PI Anda menyebutkan "coba diffusion untuk data kita", Anda harus bisa mengenali dari abstrak: apakah paper pakai generator sebagai *augmentation*, *imputation*, atau *end-to-end task*. Tabel sebelumnya memberi Anda kosakata yang cukup untuk percakapan pertama. Tiga paper pembuka di tabel adalah kandidat kuat untuk *paper slot* di rutinitas mingguan Anda di Lab 9.
+Ketika PI Anda menyebutkan "coba diffusion untuk data kita", Anda harus bisa mengenali dari abstrak: apakah paper pakai generator sebagai *augmentation*, *imputation*, atau *end-to-end task*. Tabel sebelumnya memberi Anda kosakata yang cukup untuk percakapan pertama. Tiga paper pembuka di tabel adalah kandidat kuat untuk *slot bacaan paper* di rutinitas mingguan Anda di Lab W10.
 
 ---
 
@@ -248,7 +248,7 @@ Skenario dari seorang mahasiswa fiktif, Rani, yang ingin belajar teknik *focal l
 
 **Selasa - three-pass.** Putaran 1: klaim utama paper adalah cross-entropy terlalu didominasi contoh mudah pada deteksi objek yang sangat imbalanced. Putaran 2: Rani membaca bagian loss dan menemukan bentuk inti: `FL(p_t) = -(1 - p_t)^γ log(p_t)`. Putaran 3 hanya fokus ke ablation `γ`, bukan seluruh RetinaNet.
 
-**Rabu - paper-to-code.** Rani menulis catatan input/output: input loss adalah logits dan target class; output adalah scalar loss. Ia memisahkan essential dari engineering detail: tidak perlu implement RetinaNet, anchor matching, atau FPN. Untuk Lab W10, cukup implement focal loss pada classifier kecil dengan dataset imbalanced.
+**Rabu - paper-to-code.** Rani menulis catatan input/output: input loss adalah logits dan target class; output adalah scalar loss. Ia memisahkan inti dari detail rekayasa: tidak perlu implement RetinaNet, anchor matching, atau FPN. Untuk Lab W10, cukup implement focal loss pada classifier kecil dengan dataset imbalanced.
 
 **Kamis - implementasi.** Rani menambahkan `FocalLoss` di `src/losses.py`, membuat smoke test:
 
@@ -263,7 +263,7 @@ Jika `gamma=0` tidak identik dengan cross-entropy dalam toleransi numerik, imple
 
 **Sabtu - laporan.** Hasil focal loss sedikit lebih baik pada kelas minoritas tetapi akurasi total turun tipis. Rani menulis gap-nya: paper asli mengevaluasi object detection dengan extreme foreground/background imbalance, sedangkan lab memakai klasifikasi kecil. Ini bukan reproduksi penuh, tetapi cukup untuk memahami mekanisme loss dan batas transfer klaimnya.
 
-Rani telah melakukan skill W10: memilih paper, membaca secara teknis, mengekstrak komponen inti, mengimplementasikan versi minimal, menjalankan ablation, dan menulis batas klaim dengan jujur.
+Rani telah melakukan keterampilan W10: memilih paper, membaca secara teknis, mengekstrak komponen inti, mengimplementasikan versi minimal, menjalankan ablation, dan menulis batas klaim dengan jujur.
 
 ---
 
@@ -275,13 +275,13 @@ Rani telah melakukan skill W10: memilih paper, membaca secara teknis, mengekstra
 
 **Pitfall 3 - Paper baru dikejar, paper fondasi dilewat.** Hanya membaca paper 2024-2025 tanpa paper 2015-2018 yang membangun field. *Cara deteksi:* saat membaca related work paper baru, perhatikan rujukan yang sering muncul di banyak paper modern - itu paper fondasi; sisakan satu slot/bulan untuknya.
 
-**Pitfall 4 - Mengimplementasikan seluruh paper sekaligus.** Paper modern berisi banyak komponen: backbone, loss, scheduler, augmentasi, dataset cleaning, dan training trick. *Cara deteksi:* Anda belum bisa menjelaskan satu core contribution dalam satu kalimat sebelum menulis kode.
+**Pitfall 4 - Mengimplementasikan seluruh paper sekaligus.** Paper modern berisi banyak komponen: backbone, loss, scheduler, augmentasi, dataset cleaning, dan training trick. *Cara deteksi:* Anda belum bisa menjelaskan satu kontribusi inti dalam satu kalimat sebelum menulis kode.
 
-**Pitfall 5 - Rutinitas yang tidak proporsional dengan hidupmu.** 6 jam/minggu adalah rekomendasi mahasiswa dengan beban kuliah normal. Pekerja full-time mungkin hanya 3 jam. *Cara deteksi:* jika setelah sebulan rutinitas terhenti, masalahnya mungkin bukan kemalasan, melainkan target yang terlalu tinggi. Pangkas 50%; apa yang bertahan lebih berharga daripada rencana sempurna di atas kertas.
+**Pitfall 5 - Rutinitas yang tidak proporsional dengan hidup Anda.** 6 jam/minggu adalah rekomendasi mahasiswa dengan beban kuliah normal. Pekerja full-time mungkin hanya 3 jam. *Cara deteksi:* jika setelah sebulan rutinitas terhenti, masalahnya mungkin bukan kemalasan, melainkan target yang terlalu tinggi. Pangkas 50%; apa yang bertahan lebih berharga daripada rencana sempurna di atas kertas.
 
 ---
 
-## 5. Lab 9 - Paper Implementation
+## 5. Lab W10 - Implementasi Paper
 
 Buka `template_repo/notebooks/lab_w10_paper_to_code.ipynb`.
 
@@ -292,19 +292,19 @@ Buka `template_repo/notebooks/lab_w10_paper_to_code.ipynb`.
 
 **Tugas:**
 
-1. Three-pass read - tulis catatan dengan template §2.4.
-2. Paper-to-code translation steps 1-6 dari §2.5.
-3. Implementasi core method dalam `src/` atau notebook.
+1. Baca tiga putaran - tulis catatan dengan template §2.4.
+2. Langkah paper-to-code 1-6 dari §2.5.
+3. Implementasi metode inti dalam `src/` atau notebook.
 4. Smoke test pada dataset kecil.
 5. Parity check: apakah angka utama paper bisa direproduksi?
 6. Satu ablation: hapus atau modifikasi satu komponen.
 7. Tulis `experiment_report.md`: apa yang lebih sulit dari yang tampak di paper?
 
 **Checklist:**
-- [ ] Three-pass notes tersimpan di `docs/papers/`.
-- [ ] Core method terimplementasi dan smoke test lulus.
+- [ ] Catatan tiga putaran tersimpan di `docs/papers/`.
+- [ ] Metode inti terimplementasi dan smoke test lulus.
 - [ ] Satu angka dari paper terproduksi (atau selisih < 2% dengan alasan).
-- [ ] Ablation menunjukkan dampak core contribution.
+- [ ] Ablation menunjukkan dampak kontribusi inti.
 - [ ] `experiment_report.md` mencatat "apa yang lebih sulit dari yang tampak".
 
 Target waktu: 6-8 jam.
@@ -317,9 +317,9 @@ Konsep: membaca paper secara terarah, mengubah paper menjadi implementasi kecil,
 
 | Jalur | Tugas minggu ini |
 | --- | --- |
-| **A - Implementasi** | Dari paper Lab 9, implementasikan satu teknik pendukung yang belum ada di template_repo (LR scheduler, metrik evaluasi tambahan, atau augmentasi di appendix). Laporkan apakah hasilnya sesuai klaim paper. |
+| **A - Implementasi** | Dari paper Lab W10, implementasikan satu teknik pendukung yang belum ada di template_repo (LR scheduler, metrik evaluasi tambahan, atau augmentasi di appendix). Laporkan apakah hasilnya sesuai klaim paper. |
 | **B - Analisis** | Pilih satu paper yang klaim utamanya terasa "terlalu bagus". Lakukan analisis kritis 1 halaman: klaim apa yang dibuat, bukti apa yang ditunjukkan, apa yang tidak ditunjukkan, dan apa yang perlu diverifikasi sebelum mengutipnya. |
-| **C - Reproduksi Ringan** | Pilih paper dengan official code. Jalankan konfigurasi terkecil yang tersedia, catat dependency yang dibutuhkan, command yang berhasil, gap hasil terhadap klaim paper, dan penyebab gap yang paling mungkin. |
+| **C - Reproduksi Ringan** | Pilih paper dengan kode resmi. Jalankan konfigurasi terkecil yang tersedia, catat dependency yang dibutuhkan, command yang berhasil, gap hasil terhadap klaim paper, dan penyebab gap yang paling mungkin. |
 | **D - Arsitektur Baru** | Implementasikan satu paper tentang arsitektur yang belum dibahas di modul (mis. ResNeXt, MobileNet, DETR). Forward pass + learning curve + 1 paragraf perbedaan vs arsitektur yang sudah dipelajari. |
 
 **Luaran:** Entri portofolio W10 + sel Refleksi Portofolio di `notebooks/portofolio_mandiri.ipynb`. Presentasi sorotan portofolio 10 menit di awal W11.
@@ -331,13 +331,13 @@ Konsep: membaca paper secara terarah, mengubah paper menjadi implementasi kecil,
 1. Bagian paper mana yang paling sulit diterjemahkan menjadi kode: notasi matematika, detail implementasi, hyperparameter, atau setup eksperimen?
 2. Apa satu klaim paper yang menjadi lebih jelas setelah Anda menjalankan ablation? Apa satu klaim yang justru terasa lebih lemah?
 3. Ketika memakai arXiv, bukti apa yang membuat Anda percaya atau tidak percaya pada klaim paper sebelum ada versi peer-reviewed?
-4. Setelah kelas ini berakhir, apa rutinitas mingguan paling kecil yang realistis untuk menjaga skill paper-to-code tetap hidup?
+4. Setelah kelas ini berakhir, apa rutinitas mingguan paling kecil yang realistis untuk menjaga keterampilan paper-to-code tetap hidup?
 
 ---
 
 ## 7. Bacaan Lanjutan
 
-- **"How to Read a Paper"** oleh S. Keshav (2007, 3 halaman). Metode tiga-pass original; sumber populer dari teknik yang diadaptasi di bab ini. Baca sekali dalam hidupmu, tempel di dekat meja.
+- **"How to Read a Paper"** oleh S. Keshav (2007, 3 halaman). Metode tiga putaran asli; sumber populer dari teknik yang diadaptasi di bab ini. Baca sekali dalam hidup Anda, tempel di dekat meja.
 - **arxiv-sanity-lite** (Andrej Karpathy). Alat kurasi paper sederhana yang Anda host sendiri. Kalau Anda suka mengkurasi dengan preferensi unik, ini menghemat waktu.
 - **Andrej Karpathy - "A Recipe for Training Neural Networks"** (karpathy.github.io, 2019). Bukan tentang membaca paper, tetapi mewakili sikap ilmiah-harian yang diajarkan bab ini: cek unit, bangun baseline yang keras, percaya yang terukur.
 - **OpenReview.net** - baca review publik dari ICLR/NeurIPS untuk paper yang Anda suka. Melihat bagaimana reviewer profesional mengkritik paper adalah satu dari sedikit cara terbaik mempertajam *taste* riset.
@@ -346,6 +346,6 @@ Konsep: membaca paper secara terarah, mengubah paper menjadi implementasi kecil,
 
 ## Lanjut ke W11
 
-Semua skill bootcamp sudah dibangun. W11 menggabungkan semuanya untuk satu tujuan: menyusun framing riset yang siap dipertahankan di W12. Framework Input → Middle → Output, menu framing, dan triage literatur.
+Semua keterampilan bootcamp sudah dibangun. W11 menggabungkan semuanya untuk satu tujuan: menyusun framing riset yang siap dipertahankan di W12. Kerangka Input → Middle → Output, menu framing, dan triage literatur.
 
 Buka [W11 - Research Framing](11_W11_Research_Framing.md) ketika siap.

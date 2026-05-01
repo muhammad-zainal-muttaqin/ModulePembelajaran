@@ -26,42 +26,42 @@
 
 # 11 · W11 - Research Framing
 
-> *Pertanyaan riset bukan sesuatu yang kamu temukan di dalam dataset. Ia adalah sesuatu yang kamu bawa ke sana.*
+> *Pertanyaan riset bukan sesuatu yang Anda temukan di dalam dataset. Ia adalah sesuatu yang Anda bawa ke sana.*
 
 **Minggu:** 11
 **Format:** Sesi kelas (120 menit) + kerja mandiri antarsesi
 **In charge:** Bu Fatma + RA
 
-**Baris Big Map:** konsolidasi - memetakan arah riset ke Big Map yang sudah dibangun
-**Rigor habit:** framing sebelum eksekusi, filter literatur, pertahanan framing
+**Baris peta besar:** konsolidasi - memetakan arah riset ke Big Map yang sudah dibangun
+**Kebiasaan riset:** framing sebelum eksekusi, filter literatur, pertahanan framing
 
 ---
 
 ## 0. Peta Bab
 
-W11 adalah transisi dari bootcamp ke capstone. Keterampilan teknis sudah ada. Minggu ini tentang belajar menggunakannya untuk melayani pertanyaan riset yang sungguh - pertanyaan yang kamu rumuskan sendiri, bisa kamu pertahankan, dan punya gap yang sesungguhnya ada, meskipun kecil, yang belum diisi.
+W11 adalah transisi dari bootcamp ke capstone. Keterampilan teknis sudah ada. Minggu ini tentang belajar menggunakannya untuk menjawab pertanyaan riset yang sungguh - pertanyaan yang Anda rumuskan sendiri, bisa Anda pertahankan, dan punya gap yang sesungguhnya ada, meskipun kecil, yang belum diisi.
 
 **Rencana minggu ini:**
 
 | Fase | Kapan | Isi |
 |---|---|---|
-| Sesi kelas | Sesi W11 | Live demo dekomposisi + walkthrough framework + penugasan dataset |
-| Antarsesi | W11 → W12 | Brainstorming dekomposisi (3-5 framing) + pemeriksaan literatur + daftar pendek |
+| Sesi kelas | Sesi W11 | Demo langsung dekomposisi + penjelasan langkah demi langkah kerangka + penugasan dataset |
+| Antarsesi | W11 → W12 | Curah gagasan dekomposisi (3-5 framing) + pemeriksaan literatur + daftar pendek |
 | Sesi kelas | Sesi W12 | Presentasi framing + bukti literatur + pertahankan pilihan utama + persetujuan |
 
-Kerja minggu ini langsung menjadi input W12. Kamu tiba di W12 dengan menu 3-5 framing kandidat, hasil pemeriksaan literatur untuk masing-masing, dan satu framing utama yang siap dipertahankan.
+Kerja minggu ini langsung menjadi input W12. Anda tiba di W12 dengan menu 3-5 framing kandidat, hasil pemeriksaan literatur untuk masing-masing, dan satu framing utama yang siap dipertahankan.
 
 **Isi bab:**
 
 - **§1** Paruh depan riset
 - **§2** Konteks lab kita
-- **§3** Framework: Input → Middle → Output
+- **§3** Kerangka: Input → Middle → Output
 - **§3.1** Pertanyaan 1: Apa yang diprediksi, tentang apa, dari apa?
-- **§3.2** Pertanyaan 2: Seperti apa Middle-nya, dan di mana gap-nya?
+- **§3.2** Pertanyaan 2: Seperti apa Middle-nya, dan di mana letak gap-nya?
 - **§3.3** Pertanyaan 3: Apakah gap-nya benar-benar ada dan layak diisi?
 - **§4** Dua fase yang harus terpisah
 - **§5** Tentang keahlian dan pemeriksaan literatur
-- **§6** Sesi kelas: live demo + tiga workshop
+- **§6** Sesi kelas: demo langsung + tiga lokakarya
 - **§7** Dataset kelas (Problem A dan B)
 - **§8** Bank dataset tambahan untuk latihan mandiri
 - **§9** Pitfalls & Miskonsepsi
@@ -75,15 +75,15 @@ Kerja minggu ini langsung menjadi input W12. Kamu tiba di W12 dengan menu 3-5 fr
 
 ## 1. Paruh Depan Riset
 
-W1-W10 mengajarkan **paruh belakang** riset: diberi masalah yang sudah didefinisikan, dataset yang sudah ditentukan, dan tugas yang sudah dirumuskan - bagaimana membangun model, melatihnya dengan benar, mengevaluasinya secara jujur, dan melaporkan hasilnya dengan reproduksibilitas? Ini keterampilan yang sesungguhnya diperlukan dan wajib ada. Tanpa ini, kamu tidak bisa melakukan riset sama sekali.
+W1-W10 mengajarkan **paruh belakang** riset: diberi masalah yang sudah didefinisikan, dataset yang sudah ditentukan, dan tugas yang sudah dirumuskan - bagaimana membangun model, melatihnya dengan benar, mengevaluasinya secara jujur, dan melaporkan hasilnya dengan reproduksibilitas? Ini keterampilan yang sesungguhnya diperlukan dan wajib ada. Tanpa ini, Anda tidak bisa melakukan riset sama sekali.
 
 Tapi ini bukan satu-satunya bagian dari riset. Ini adalah separuh eksekusi.
 
-W11 memulai **paruh depan**: diberi situasi yang terbuka - bisa berupa domain yang menarik bagimu, atau dataset yang kamu punya akses ke sana - bagaimana kamu sampai pada pertanyaan riset yang layak ditanyakan? Bagaimana kamu mendefinisikan output, memilih input, membuat sketsa pipeline, mengidentifikasi di mana gap-nya, dan memverifikasi bahwa gap itu benar-benar ada dan layak diisi?
+W11 memulai **paruh depan**: diberi situasi yang terbuka - bisa berupa domain yang menarik bagi Anda, atau dataset yang dapat Anda akses - bagaimana Anda sampai pada pertanyaan riset yang layak ditanyakan? Bagaimana Anda mendefinisikan output, memilih input, membuat sketsa pipeline, mengidentifikasi di mana letak gap-nya, dan memverifikasi bahwa gap itu benar-benar ada dan layak diisi?
 
 Banyak program studi berhenti di paruh belakang dan mengasumsikan paruh depan akan terserap sendiri: dengan mengamati dosen pembimbing, dengan membaca cukup banyak paper sampai insting itu berkembang. Terkadang berhasil. Sering kali tidak - dan mahasiswa menghabiskan bertahun-tahun mengeksekusi dengan kompeten pertanyaan-pertanyaan yang sejak awal sudah salah framing.
 
-Minggu ini membuat paruh depan menjadi eksplisit. Framework dekomposisi, menu framing, dan filter literatur bukan latihan akademik. Ini adalah proses yang sesungguhnya dipakai saat sebuah proyek riset dimulai.
+Minggu ini membuat paruh depan menjadi eksplisit. Kerangka dekomposisi, menu framing, dan filter literatur bukan latihan akademik. Ini adalah proses yang sesungguhnya dipakai saat sebuah proyek riset dimulai.
 
 ---
 
@@ -91,19 +91,19 @@ Minggu ini membuat paruh depan menjadi eksplisit. Framework dekomposisi, menu fr
 
 Penting untuk jujur tentang kondisi yang kita hadapi, karena metodologi minggu ini dirancang spesifik untuk konteks semacam ini.
 
-Kita adalah lab kecil di universitas di Kalimantan. Pendanaan terbatas. Tim riset kecil. Akses ke kluster GPU besar, dataset berlabel besar, dan kolaborator domain yang dalam - semuanya terbatas. Kita bukan lab dengan lima puluh orang di institusi tier 1 dengan kluster GPU khusus dan tim postdoc.
+Kita adalah lab kecil di universitas di Kalimantan. Pendanaan terbatas. Tim riset kecil. Akses ke kluster GPU besar, dataset berlabel besar, dan kolaborator domain yang dalam - semuanya terbatas. Kita bukan lab dengan lima puluh orang di institusi papan atas dengan kluster GPU khusus dan tim postdoc.
 
-Ini bukan permintaan maaf. Ini adalah brief desain.
+Ini bukan permintaan maaf. Ini adalah ringkasan desain.
 
 Metodologi dekomposisi - menghasilkan beberapa framing, memeriksanya ke literatur, mengidentifikasi gap yang sesungguhnya ada, dan menyesuaikan cakupan dengan apa yang bisa dieksekusi - dikembangkan justru untuk konteks seperti ini. Ketika sumber daya terbatas, aktivitas dengan dampak tertinggi adalah memilih pertanyaan yang tepat sebelum menghabiskan waktu untuk eksekusi. Pertanyaan yang framing-nya baik pada dataset kecil menghasilkan riset yang bisa dipublikasikan. Pertanyaan yang framing-nya buruk pada dataset besar tidak menghasilkan sesuatu yang layak dipublikasikan, terlepas dari seberapa hati-hati training loop-nya ditulis.
 
 Keunggulan spesifik konteks kita betul-betul ada: data bahasa lokal (Banjar, dialek Indonesia lainnya), masalah pertanian dan kesehatan yang relevan secara lokal, domain-domain yang belum banyak dieksplorasi di mana gap literaturnya betul-betul ada - bukan buatan. Ini bukan hadiah hiburan. Ini peluang riset yang lab-lab berdana besar di Jakarta atau Singapura tidak sedang kejar, karena masalah-masalah itu tidak terlihat dari sana.
 
-Metodologi minggu ini adalah cara kamu menemukan dan mengklaim peluang-peluang itu.
+Metodologi minggu ini adalah cara Anda menemukan dan mengklaim peluang-peluang itu.
 
 ---
 
-## 3. Framework: Input → Middle → Output
+## 3. Kerangka: Input → Middle → Output
 
 Setiap masalah ML supervised bisa digambarkan sebagai transformasi:
 
@@ -125,7 +125,7 @@ INPUT  ────────────────────────�
 
 ---
 
-### 3.0 Sebelum Mulai: Apakah Kamu Punya Pertanyaan Riset?
+### 3.0 Sebelum Mulai: Apakah Anda Punya Pertanyaan Riset?
 
 Banyak mahasiswa memulai proyek tanpa pertanyaan riset. Mereka punya dataset dan ingin "melakukan machine learning di atasnya." Ini bukan pertanyaan riset. Ini adalah prasyarat untuk satu pertanyaan.
 
@@ -161,34 +161,34 @@ Ini mengubah **Input**. Pertanyaannya kini tentang apakah modalitas tambahan mem
 
 > "Bisakah pengetahuan dari model pengenalan penyakit yang lebih besar ditransfer ke model ringan yang bisa di-deploy di lapangan tanpa kehilangan terlalu banyak performa di bawah variasi pencahayaan dan latar belakang?"
 
-Ini mengubah **Middle**. Pertanyaannya tentang prediksi di bawah constraint yang benar-benar membentuk metode.
+Ini mengubah **Middle**. Pertanyaannya tentang prediksi di bawah batasan yang benar-benar membentuk metode.
 
 Perbedaannya bukan kosmetik. Ini bukan tiga cara menyampaikan hal yang sama. Ini tiga pertanyaan riset berbeda - dengan output berbeda, Middle berbeda, baseline berbeda, kontrol berbeda, dan berpotensi paper yang berbeda.
 
 **Satu dataset tidak berarti satu paper.** Dataset yang sama bisa di-framing melalui berbagai sudut yang sah:
 
-- Ubah **Output** dan kamu mungkin mendapat masalah keputusan yang berbeda
-- Ubah **Input** dan kamu mungkin mendapat pertanyaan representasi yang berbeda
-- Ubah **Middle** dan kamu mungkin mendapat gap metodologis yang berbeda
-- Pertahankan tugasnya tapi ubah **constraint** dan kamu mungkin mendapat kontribusi yang berbeda
+- Ubah **Output** dan Anda mungkin mendapat masalah keputusan yang berbeda
+- Ubah **Input** dan Anda mungkin mendapat pertanyaan representasi yang berbeda
+- Ubah **Middle** dan Anda mungkin mendapat gap metodologis yang berbeda
+- Pertahankan tugasnya tapi ubah **batasan** dan Anda mungkin mendapat kontribusi yang berbeda
 
-**Cek:** sebelum memulai proyek apapun, tulis satu kalimat yang memuat:
+**Cek:** sebelum memulai proyek apa pun, tulis satu kalimat yang memuat:
 
 1. entitas yang diprediksi
 2. apa tepatnya yang diprediksi
-3. perbandingan, constraint, atau keputusan apa yang membuat pertanyaan itu menarik
+3. perbandingan, batasan, atau keputusan apa yang membuat pertanyaan itu menarik
 
-Kalau kamu tidak bisa menulis kalimat itu dengan jelas, kamu belum punya pertanyaan riset.
+Kalau Anda tidak bisa menulis kalimat itu dengan jelas, Anda belum punya pertanyaan riset.
 
 ---
 
 ### 3.1 Pertanyaan 1: Apa yang Diprediksi, tentang Apa, dari Apa?
 
-Pertanyaan ini meminta kamu mendefinisikan **entitas**, **Output**, dan **Input**.
+Pertanyaan ini meminta Anda mendefinisikan **entitas**, **Output**, dan **Input**.
 
 #### Entitas: unit prediksi
 
-Entitas adalah apa yang satu sampel itu wakili. Kamu menghasilkan satu prediksi per entitas.
+Entitas adalah apa yang satu sampel itu wakili. Anda menghasilkan satu prediksi per entitas.
 
 Salah memilih entitas adalah salah satu kesalahan framing yang paling umum. Kesalahan ini tidak gagal dengan berisik; ia gagal secara diam-diam - menghasilkan hasil yang tampak masuk akal tapi mengukur hal yang salah.
 
@@ -249,7 +249,7 @@ Ini adalah cek validitas terpenting. Kalau jawabannya tidak, framing-nya rusak. 
 
 ---
 
-### 3.2 Pertanyaan 2: Seperti Apa Middle-nya, dan Di Mana Gap-nya?
+### 3.2 Pertanyaan 2: Seperti Apa Middle-nya, dan Di Mana Letak Gap-nya?
 
 Setelah Input dan Output terdefinisi, buat sketsa pipeline yang menghubungkannya.
 
@@ -298,14 +298,14 @@ Gap bukan sekadar "kami memakai metode yang berbeda." Gap adalah pilihan desain 
 
 #### Apakah gap-nya benar-benar ada? Literatur sebagai filter, bukan titik awal
 
-Pemeriksaan literatur harus dilakukan **setelah** kamu menghasilkan beberapa framing yang masuk akal dari dekomposisi, bukan sebelumnya.
+Pemeriksaan literatur harus dilakukan **setelah** Anda menghasilkan beberapa framing yang masuk akal dari dekomposisi, bukan sebelumnya.
 
-Kalau mencari terlalu dini, kamu mencari kata kunci yang samar dan terjangkar pada paper apapun yang kebetulan ditemukan. Kalau mencari terlalu lambat, kamu sudah terlanjur melekat pada framing yang mungkin sudah jenuh atau tidak koheren. Urutan yang tepat:
+Kalau mencari terlalu dini, Anda mencari kata kunci yang samar dan terjangkar pada paper apa pun yang kebetulan ditemukan. Kalau mencari terlalu lambat, Anda sudah terlanjur melekat pada framing yang mungkin sudah jenuh atau tidak koheren. Urutan yang tepat:
 
 1. Uraikan dataset menjadi beberapa framing yang masuk akal
 2. Tulis masing-masing framing dalam satu kalimat
 3. Jalankan filter literatur cepat pada setiap framing
-4. Hapus framing yang jenuh, ubah arah yang sebagian terdone, pertahankan kandidat terkuat
+4. Hapus framing yang jenuh, ubah arah yang sebagian terjawab, pertahankan kandidat terkuat
 
 Tahap dekomposisi yang baik **tidak** langsung menghasilkan satu proyek final. Ia menghasilkan **menu framing**.
 
@@ -334,7 +334,7 @@ Untuk setiap framing kandidat:
   Skim maksimal 5-10 abstrak
   Klasifikasikan:
     BARU           → pertahankan
-    SEBAGIAN DONE  → ubah arah
+    SEBAGIAN TERJAWAB  → ubah arah
     JENUH          → hapus
 ```
 
@@ -349,14 +349,14 @@ Ini bukan tinjauan literatur lengkap. Ini adalah **filter**.
 | 5+ paper terbaru tentang (Input, Output, domain) yang persis sama | Kemungkinan jenuh → hapus |
 | 1-2 paper fundamental, tindak lanjut terbaru terbatas | Ada ruang |
 | Tidak ada hasil langsung, beberapa area berdekatan | Kemungkinan gap; verifikasi hati-hati |
-| Metode yang sama tapi populasi/bahasa/constraint berbeda | Sudut pandang kamu mungkin masih berbeda |
+| Metode yang sama tapi populasi/bahasa/batasan berbeda | Sudut pandang Anda mungkin masih berbeda |
 
-**Gerakan ubah arah saat sebagian terdone:** kalau literatur sudah melakukan sesuatu yang dekat, arahkan ke apa yang belum dilakukan.
+**Gerakan ubah arah saat sebagian terjawab:** kalau literatur sudah melakukan sesuatu yang dekat, arahkan ke apa yang belum dilakukan.
 
 | Kalau literatur menunjukkan | Ubah arah ke |
 |---|---|
 | Metode berhasil dalam bahasa Inggris | Versi bahasa dengan sumber daya rendah |
-| Metode divalidasi pada benchmark standar | Setting dengan constraint deployment |
+| Metode divalidasi pada benchmark standar | Setting dengan batasan deployment |
 | Metode mengasumsikan label melimpah | Versi label rendah atau self-supervised |
 | Dua metode ada secara terpisah | Perbandingan sistematis atau kombinasi |
 | Studi populasi umum | Subkelompok spesifik (regional, demografis) |
@@ -374,40 +374,40 @@ Luaran tahap literatur:
 
 Penghapusan berarti filternya bekerja.
 
-#### Apakah gap-nya layak diisi? Jenis-jenis novelty
+#### Apakah gap-nya layak diisi? Jenis-jenis kebaruan
 
 Tidak semua gap sama menariknya.
 
-**Novelty yang lebih kuat:**
+**Kebaruan yang lebih kuat:**
 
 | Jenis | Artinya |
 |---|---|
 | Tugas baru | Memprediksi sesuatu yang benar-benar belum diprediksi sebelumnya pada jenis data ini |
 | Domain baru | Menerapkan metode yang sudah mapan pada domain yang belum pernah diterapkan |
 | Rakitan baru | Menggabungkan komponen dengan cara yang bermotivasi baik dan belum pernah dicoba |
-| Constraint deployment | Metode yang ada didesain ulang untuk bekerja di bawah constraint dunia nyata yang benar-benar membentuk arsitektur |
+| Batasan deployment | Metode yang ada didesain ulang untuk bekerja di bawah batasan dunia nyata yang benar-benar membentuk arsitektur |
 | Definisi Output baru | Melakukan framing ulang dataset yang ada dengan Output baru yang menciptakan masalah yang berbeda dan lebih berguna |
 
-**Novelty yang lemah - hindari:**
+**Kebaruan yang lemah - hindari:**
 
-| Klaim novelty | Mengapa gagal |
+| Klaim kebaruan | Mengapa gagal |
 |---|---|
 | Tuning hyperparameter | Diharapkan; bukan kontribusi |
-| Menerapkan metode yang jarang tanpa motivasi | Bidangnya sudah tahu; penemuanmu tidak mengubah itu |
+| Menerapkan metode yang jarang tanpa motivasi | Bidangnya sudah tahu; penemuan Anda tidak mengubah itu |
 | "Studi pertama di Indonesia" untuk masalah yang sudah diselesaikan secara global | Konteks lokal saja tidak cukup |
-| Akurasi lebih baik pada benchmark yang sudah mapan via metode standar | Akurasi lebih baik adalah tujuan; metodenya harus menjadi kontribusi |
+| Akurasi lebih baik pada benchmark yang sudah mapan lewat metode standar | Akurasi lebih baik adalah tujuan; metodenya harus menjadi kontribusi |
 | Menggabungkan dua metode secara acak | Kombinasi harus bermotivasi: mengapa ini, apa yang memungkinkannya yang tidak bisa dilakukan masing-masing? |
 | Mereproduksi paper dengan variasi kecil | Hanya valid jika di-framing secara eksplisit sebagai studi reproduksi |
 
-**Jebakan "baru bagiku".** Metode standar tampak baru bagi mahasiswa yang baru mempelajarinya. Metode itu tidak baru bagi bidang ini. Fine-tuning CNN alih-alih training dari nol mungkin masuk akal sebagai baseline, tapi dengan sendirinya bukan kontribusi riset. Setelah menyelesaikan bootcamp, kamu harus bisa membedakan "ini baru bagiku" dari "ini baru bagi bidang ini." Pemeriksaan literatur menegakkan perbedaan ini.
+**Jebakan "baru bagi saya".** Metode standar tampak baru bagi mahasiswa yang baru mempelajarinya. Metode itu tidak baru bagi bidang ini. Fine-tuning CNN alih-alih training dari nol mungkin masuk akal sebagai baseline, tapi dengan sendirinya bukan kontribusi riset. Setelah menyelesaikan bootcamp, Anda harus bisa membedakan "ini baru bagi saya" dari "ini baru bagi bidang ini." Pemeriksaan literatur menegakkan perbedaan ini.
 
-**Kalimat cek novelty.** Untuk riset apapun yang diusulkan, lengkapi kalimat ini sebelum melanjutkan:
+**Kalimat cek kebaruan.** Untuk riset apa pun yang diusulkan, lengkapi kalimat ini sebelum melanjutkan:
 
 > *"Literatur yang ada sudah melakukan X. Karya kami melakukan Y, yang berbeda karena Z, dan ini penting karena W."*
 
-Kalau kamu tidak bisa mengisi keempat slot dengan jelas, kamu belum punya klaim novelty yang valid.
+Kalau Anda tidak bisa mengisi keempat slot dengan jelas, Anda belum punya klaim kebaruan yang valid.
 
-#### Kontrol: bagaimana kamu akan membuktikan gap-nya terisi?
+#### Kontrol: bagaimana Anda akan membuktikan gap-nya terisi?
 
 Pipeline yang berfungsi membuktikan bahwa sebuah metode berhasil. Tidak membuktikan *mengapa* ia berhasil. Kontrol membuat "mengapa" itu terlihat.
 
@@ -422,9 +422,9 @@ Setiap kontribusi yang diusulkan butuh setidaknya satu kontrol yang bisa memfals
 | "Metode kami bekerja dalam setting label rendah" | Metode yang sama dengan label penuh |
 | "Transfer lintas bahasa mengungguli model lokal" | Model lokal yang dilatih dengan semua data yang tersedia |
 
-**Rancang kontrol sebelum menjalankan eksperimen.** Kalau kontrol baru dirancang setelah melihat hasil, kamu sedang membangun cerita di sekitar hasilmu - bukan menguji hipotesis.
+**Rancang kontrol sebelum menjalankan eksperimen.** Kalau kontrol baru dirancang setelah melihat hasil, Anda sedang membangun cerita di sekitar hasil Anda - bukan menguji hipotesis.
 
-*Catatan: pemilihan baseline spesifik dan desain matriks eksperimen terjadi di W12, setelah framing disetujui. Kontrol diidentifikasi di sini pada tahap framing supaya kamu tahu klaim kamu bisa diuji. Desain eksperimen persis datang setelahnya.*
+*Catatan: pemilihan baseline spesifik dan desain matriks eksperimen terjadi di W12, setelah framing disetujui. Kontrol diidentifikasi di sini pada tahap framing supaya Anda tahu klaim Anda bisa diuji. Desain eksperimen persis datang setelahnya.*
 
 ---
 
@@ -432,7 +432,7 @@ Setiap kontribusi yang diusulkan butuh setidaknya satu kontrol yang bisa memfals
 
 Minggu ini punya dua fase yang tidak boleh dicampurkan:
 
-**Fase 1: Dekomposisi (brainstorming).** Hasilkan beberapa framing kandidat. Jadilah kreatif. Buat 3-5 kandidat yang berbeda. Jangan filter dulu. Brainstorming sambil memeriksa literatur menghasilkan framing yang aman dan jelas: hal pertama yang terlintas di pikiran, hampir tanpa diperiksa. Hasilkan dulu, filter kemudian.
+**Fase 1: Dekomposisi (curah gagasan).** Hasilkan beberapa framing kandidat. Jadilah kreatif. Buat 3-5 kandidat yang berbeda. Jangan filter dulu. Curah gagasan sambil memeriksa literatur menghasilkan framing yang aman dan jelas: hal pertama yang terlintas di pikiran, hampir tanpa diperiksa. Hasilkan dulu, filter kemudian.
 
 **Fase 2: Pemeriksaan literatur (filtering).** Bawa kandidat ke literatur. Cari tahu mana yang jenuh, mana yang perlu ubah arah, dan mana yang punya gap yang sesungguhnya ada. 2-4 jam filter literatur bisa menghemat berminggu-minggu eksekusi yang terbuang.
 
@@ -440,13 +440,13 @@ Minggu ini punya dua fase yang tidak boleh dicampurkan:
 
 ## 5. Tentang Keahlian dan Pemeriksaan Literatur
 
-Kamu akan menyadari, seiring bertambahnya pengalaman dalam beberapa tahun ke depan, bahwa peneliti senior bergerak melalui proses dekomposisi lebih cepat dari kamu sekarang. Peneliti berpengalaman melihat dataset dan dengan cepat menemukan beberapa framing yang menjanjikan. Mereka juga dengan cepat menolak yang lain sebagai jelas jenuh atau jelas sepele, tanpa memeriksa literatur untuk masing-masing. Pemeriksaan literatur, bagi mereka, lebih cepat dan lebih terarah karena bacaan sebelumnya sudah membangun peta tentang apa yang sudah diketahui.
+Anda akan menyadari, seiring bertambahnya pengalaman dalam beberapa tahun ke depan, bahwa peneliti senior bergerak melalui proses dekomposisi lebih cepat dari Anda sekarang. Peneliti berpengalaman melihat dataset dan dengan cepat menemukan beberapa framing yang menjanjikan. Mereka juga dengan cepat menolak yang lain sebagai jelas jenuh atau jelas sepele, tanpa memeriksa literatur untuk masing-masing. Pemeriksaan literatur, bagi mereka, lebih cepat dan lebih terarah karena bacaan sebelumnya sudah membangun peta tentang apa yang sudah diketahui.
 
-Kamu belum punya peta itu. Itu bukan kritikan. Itu hanya posisimu pada tahap karier ini, dan itu adalah titik awal yang normal.
+Anda belum punya peta itu. Itu bukan kritikan. Itu hanya posisi Anda pada tahap karier ini, dan itu adalah titik awal yang normal.
 
-Pemeriksaan literatur paling penting justru karena kamu masih awal dalam karier riset. Saat membaca literatur tentang framing kandidatmu, kamu akan terkadang menemukan bahwa apa yang tampak sebagai ide baru ternyata sudah menjadi masalah yang dipelajari dengan baik - dengan dua puluh paper terbaru. Kamu juga akan terkadang menemukan bahwa framing yang kamu ragukan ternyata punya gap yang sesungguhnya ada dan belum ditangani. Kedua penemuan ini tidak akan terjadi tanpa pemeriksaan.
+Pemeriksaan literatur paling penting justru karena Anda masih awal dalam karier riset. Saat membaca literatur tentang framing kandidat Anda, Anda akan terkadang menemukan bahwa apa yang tampak sebagai ide baru ternyata sudah menjadi masalah yang dipelajari dengan baik - dengan dua puluh paper terbaru. Anda juga akan terkadang menemukan bahwa framing yang Anda ragukan ternyata punya gap yang sesungguhnya ada dan belum ditangani. Kedua penemuan ini tidak akan terjadi tanpa pemeriksaan.
 
-Kepekaan itu berkembang melalui latihan: membaca banyak paper, menjalankan banyak eksperimen, melihat framing mana yang menghasilkan sesuatu dan mana yang tidak, membangun pengetahuan domain dari waktu ke waktu. Mereka yang melakukan pemeriksaan literatur dengan sungguh-sungguh pada setiap framing - bukan hanya pada yang sudah diputuskan untuk dikejar - merekalah yang mengembangkan kepekaan itu lebih cepat. Melewati pemeriksaan tidak mempercepat perkembanganmu; justru memperlambatnya.
+Kepekaan itu berkembang melalui latihan: membaca banyak paper, menjalankan banyak eksperimen, melihat framing mana yang menghasilkan sesuatu dan mana yang tidak, membangun pengetahuan domain dari waktu ke waktu. Mereka yang melakukan pemeriksaan literatur dengan sungguh-sungguh pada setiap framing - bukan hanya pada yang sudah diputuskan untuk dikejar - merekalah yang mengembangkan kepekaan itu lebih cepat. Melewati pemeriksaan tidak mempercepat perkembangan Anda; justru memperlambatnya.
 
 Jalankan pada setiap framing, bahkan yang tampak jelas menjanjikan. Terutama yang seperti itu.
 
@@ -454,7 +454,7 @@ Jalankan pada setiap framing, bahkan yang tampak jelas menjanjikan. Terutama yan
 
 ## 6. Sesi Kelas
 
-### 6.1 Live Demo: Dekomposisi Dataset
+### 6.1 Demo Langsung: Dekomposisi Dataset
 
 **[Placeholder: sesi live dipimpin Bu Fatma di kelas]**
 
@@ -479,16 +479,16 @@ Dataset yang digunakan akan ditentukan sebelum W11. Sesi ini bekerja bersama sat
 
 ---
 
-### 6.2 Workshop 1: Buat Menu Framing
+### 6.2 Lokakarya 1: Buat Menu Framing
 
 **Format:** Dua kelompok: Kelompok A (2 orang), Kelompok B (3 orang). Diskusi 20 menit.
 
-Setiap kelompok mengerjakan dataset yang berbeda. Dataset ini dipilih karena hampir tidak memerlukan latar belakang domain. Kamu bisa memahami data dan mulai menghasilkan framing segera.
+Setiap kelompok mengerjakan dataset yang berbeda. Dataset ini dipilih karena hampir tidak memerlukan latar belakang domain. Anda bisa memahami data dan mulai menghasilkan framing segera.
 
 - **Kelompok A → Paddy Doctor** (lihat Problem A di §7)
 - **Kelompok B → NusaX** (lihat Problem B di §7)
 
-Tujuan kamu **bukan** langsung berkomitmen pada satu proyek final. Tujuanmu adalah menghasilkan **menu 3 framing kandidat** dari dataset kelompokmu.
+Tujuan Anda **bukan** langsung berkomitmen pada satu proyek final. Tujuan Anda adalah menghasilkan **menu 3 framing kandidat** dari dataset kelompok Anda.
 
 Untuk setiap framing kandidat, tulis cukup detail untuk membuatnya bisa dicari dan dibandingkan:
 
@@ -503,32 +503,32 @@ Framing #N
 - Gap yang diperkirakan
 ```
 
-Menu framing yang baik berisi kandidat yang berbeda secara bermakna. Ubah setidaknya satu dari berikut ini di antara framing-framingmu:
+Menu framing yang baik berisi kandidat yang berbeda secara bermakna. Ubah setidaknya satu dari berikut ini di antara framing-framing Anda:
 
 - entitas
 - output
 - representasi input
-- constraint deployment
+- batasan deployment
 - gap di Middle
 
 **Jangan mulai coding. Jangan terkunci pada satu framing dulu.**
 
-Setelah Workshop 1, masing-masing kelompok mempresentasikan tiga framingnya kepada ruangan secara singkat (5 menit masing-masing). Ini bukan pertahanan, hanya berbagi cepat supaya kedua kelompok melihat gaya framing satu sama lain dan berbagai kemungkinan yang satu dataset bisa dukung.
+Setelah Lokakarya 1, masing-masing kelompok mempresentasikan tiga framingnya kepada ruangan secara singkat (5 menit masing-masing). Ini bukan pertahanan, hanya berbagi cepat supaya kedua kelompok melihat gaya framing satu sama lain dan berbagai kemungkinan yang satu dataset bisa dukung.
 
 ---
 
-### 6.3 Workshop 2: Filter Literatur
+### 6.3 Lokakarya 2: Filter Literatur
 
 **Format:** Individual atau berpasangan, 15 menit.
 
-Ambil **3 framing kandidat** yang dihasilkan di Workshop 1. Jalankan filter literatur cepat pada masing-masing.
+Ambil **3 framing kandidat** yang dihasilkan di Lokakarya 1. Jalankan filter literatur cepat pada masing-masing.
 
 Untuk setiap framing:
 
 1. Buat 2-4 query pencarian dari framing
 2. Skim maksimal 5-10 abstrak
-3. Klasifikasikan framing sebagai **BARU / SEBAGIAN DONE / JENUH**
-4. Kalau sebagian done, tulis satu ubah arah
+3. Klasifikasikan framing sebagai **BARU / SEBAGIAN TERJAWAB / JENUH**
+4. Kalau sebagian terjawab, tulis satu ubah arah
 5. Kalau jenuh, hapus secara eksplisit
 
 Gunakan tabel ini:
@@ -543,19 +543,19 @@ Tujuannya bukan tinjauan yang lengkap. Tujuannya adalah melatih cara memfilter.
 
 ---
 
-### 6.4 Workshop 3: Seleksi dan Komitmen
+### 6.4 Lokakarya 3: Seleksi dan Komitmen
 
 **Format:** Individual, 10 menit.
 
 Ubah menu framing beserta hasil filter literatur menjadi sebuah keputusan.
 
-Luaranmu harus berupa:
+Luaran Anda harus berupa:
 
 - **1 framing utama**
 - **1 framing cadangan**
 - **Framing yang dihapus**, beserta alasan masing-masing
 
-Kemudian tulis satu paragraf pendek untuk framing utamamu:
+Kemudian tulis satu paragraf pendek untuk framing utama Anda:
 
 ```
 Untuk [entitas], kami memprediksi [output] dari [input].
@@ -565,13 +565,13 @@ Karya terkait terdekat sudah melakukan [...].
 Framing kami berbeda karena [...].
 ```
 
-Kalau kamu tidak bisa menulis paragraf itu dengan jelas, framing-nya belum siap.
+Kalau Anda tidak bisa menulis paragraf itu dengan jelas, framing-nya belum siap.
 
 ---
 
-## 7. Dataset Kelas (Workshop 1)
+## 7. Dataset Kelas (Lokakarya 1)
 
-Dua dataset, satu per kelompok. Dipilih untuk aksesibilitas langsung; tidak perlu pengetahuan domain spesialis. Workshop 2 dan 3 beroperasi pada framing yang kelompokmu hasilkan dari dataset ini.
+Dua dataset, satu per kelompok. Dipilih untuk aksesibilitas langsung; tidak perlu pengetahuan domain spesialis. Lokakarya 2 dan 3 beroperasi pada framing yang kelompok Anda hasilkan dari dataset ini.
 
 ### 7.1 Problem A: Paddy Doctor (ACM 2023) [Kelompok A]
 
@@ -579,17 +579,17 @@ Dua dataset, satu per kelompok. Dipilih untuk aksesibilitas langsung; tidak perl
 
 **Situasi:** Seorang mahasiswa mengusulkan: "Saya akan menggunakan dataset ini untuk mengklasifikasikan penyakit padi menggunakan CNN."
 
-**Pertanyaan untuk dijawab kelompokmu:**
+**Pertanyaan untuk dijawab kelompok Anda:**
 
-1. Apa entitasnya? (Daun? Tanaman? Lahan? Kunjungan petani?) Apa yang berubah bergantung pada pilihanmu?
+1. Apa entitasnya? (Daun? Tanaman? Lahan? Kunjungan petani?) Apa yang berubah bergantung pada pilihan Anda?
 
 2. Output yang diusulkan mahasiswa adalah "kelas penyakit." Tapi perhatikan 12 kelas penyakit: mencakup penyakit jamur (Blast, Brown spot, Downy Mildew), penyakit bakteri (Bacterial Leaf Blight, Bacterial Leaf Streak), terkait hama (Hispa, Leaf Roller, berbagai penggerek), dan terkait virus (Tungro). Pilihan Output lain apa yang mungkin pada dataset yang sama? Sebutkan setidaknya tiga alternatif. Apakah salah satunya menciptakan pertanyaan riset yang lebih menarik atau lebih berguna?
 
-3. Mahasiswa mengusulkan klasifikasi CNN. Apakah ada gap di Middle, atau apakah Middle-nya sepenuhnya standar? Kalau standar, apakah masih ada pertanyaan riset yang valid? Apa yang akan kamu ubah untuk menghadirkan gap yang sesungguhnya ada?
+3. Mahasiswa mengusulkan klasifikasi CNN. Apakah ada gap di Middle, atau apakah Middle-nya sepenuhnya standar? Kalau standar, apakah masih ada pertanyaan riset yang valid? Apa yang akan Anda ubah untuk menghadirkan gap yang sesungguhnya ada?
 
 4. Apakah framing yang diusulkan lulus cek temporal/kausal? Kapan model ini akan di-deploy, dan apa yang perlu dilakukan pengguna untuk menggunakannya?
 
-5. Sebelum mencari, apakah kamu menduga "klasifikasi penyakit padi dengan CNN" sudah jenuh? Kalau literatur kemudian mengkonfirmasi bahwa itu jenuh, ubah arah apa yang akan menciptakan framing yang lebih menarik?
+5. Sebelum mencari, apakah Anda menduga "klasifikasi penyakit padi dengan CNN" sudah jenuh? Kalau literatur kemudian mengkonfirmasi bahwa itu jenuh, ubah arah apa yang akan menciptakan framing yang lebih menarik?
 
 ---
 
@@ -599,15 +599,15 @@ Dua dataset, satu per kelompok. Dipilih untuk aksesibilitas langsung; tidak perl
 
 **Situasi:** Seorang mahasiswa berkata: "Saya ingin melakukan analisis sentimen pada teks Banjar menggunakan IndoBERT."
 
-**Pertanyaan untuk dijawab kelompokmu:**
+**Pertanyaan untuk dijawab kelompok Anda:**
 
-1. Definisikan entitas dengan teliti. Apakah satu kalimat? Satu ulasan? Satu paragraf? Apakah dataset asli membatasi pilihanmu?
+1. Definisikan entitas dengan teliti. Apakah satu kalimat? Satu ulasan? Satu paragraf? Apakah dataset asli membatasi pilihan Anda?
 
 2. Mahasiswa mengusulkan klasifikasi sentimen (3 kelas). Pilihan Output lain apa yang mungkin pada dataset yang sama? Pertimbangkan: estimasi kualitas terjemahan, perbandingan transfer lintas bahasa, perbandingan berbasis leksikon vs. berbasis model, generalisasi few-shot ke bahasa yang tidak terlihat.
 
 3. Middle yang diusulkan mahasiswa: "fine-tune IndoBERT pada contoh Banjar." Apakah ada gap? Apakah framing ini baru? Usulkan Middle alternatif yang punya gap yang sesungguhnya ada.
 
-4. Dataset ini dibuat dengan menerjemahkan dari bahasa Indonesia. Apa implikasinya bagi hubungan antara contoh Banjar dalam dataset dan teks Banjar yang terjadi secara alami? Apakah ada potensi masalah validitas? Bagaimana kamu bisa mengatasinya atau mempelajarinya?
+4. Dataset ini dibuat dengan menerjemahkan dari bahasa Indonesia. Apa implikasinya bagi hubungan antara contoh Banjar dalam dataset dan teks Banjar yang terjadi secara alami? Apakah ada potensi masalah validitas? Bagaimana Anda bisa mengatasinya atau mempelajarinya?
 
 5. NusaX mencakup 10 bahasa lokal. Sebagian besar paper tentang dataset ini mempelajari bahasa Indonesia atau bahasa lokal yang paling kaya sumber daya. Sudut framing apa yang dibuka oleh data **khusus Banjar** yang akan relevan secara lokal dan kurang jenuh? (Catatan: Banjar terutama dituturkan di Kalimantan.)
 
@@ -615,7 +615,7 @@ Dua dataset, satu per kelompok. Dipilih untuk aksesibilitas langsung; tidak perl
 
 ## 8. Bank Dataset Tambahan untuk Latihan Mandiri
 
-Dataset di bawah ini untuk tugas di rumah, atau untuk putaran latihan kedua setelah sesi. Masing-masing dijelaskan secara ringkas. Untuk setiap dataset, kamu harus bisa menghasilkan dekomposisi lengkap secara mandiri.
+Dataset di bawah ini untuk tugas di rumah, atau untuk putaran latihan kedua setelah sesi. Masing-masing dijelaskan secara ringkas. Untuk setiap dataset, Anda harus bisa menghasilkan dekomposisi lengkap secara mandiri.
 
 ---
 
@@ -628,8 +628,8 @@ Dataset di bawah ini untuk tugas di rumah, atau untuk putaran latihan kedua sete
 - Entitasnya tidak jelas. Akselerometer merekam sinyal kontinu sepanjang hari penuh. Usulkan setidaknya empat pilihan entitas yang berbeda dan jelaskan apa yang berubah dengan masing-masing.
 - Sebutkan setidaknya lima pilihan Output yang berbeda pada dataset ini. Untuk masing-masing, gambarkan bentuk tensor output. Mana yang regresi? Klasifikasi? Output sequence?
 - Pendekatan umum: ekstrak fitur buatan tangan dari setiap jendela 30 detik, klasifikasikan dengan random forest. Gambarkan Middle ini. Apakah ada gap? Usulkan Middle alternatif yang punya gap yang sesungguhnya ada.
-- Seorang mahasiswa mengusulkan: "Prediksi apakah peserta akan mengembangkan kondisi kesehatan dari pola aktivitas mereka." Apakah lulus cek temporal/kausal? Informasi spesifik apa yang perlu kamu ketahui untuk menyatakannya valid atau tidak valid?
-- Dataset ini punya label untuk 200+ kategori aktivitas. Dokter mungkin hanya peduli dengan 4 kelas kasar. Terapis rehabilitasi peduli apakah latihan yang diresepkan secara spesifik sudah dilakukan. Masing-masing adalah framing yang berbeda. Pilih satu dan tentukan sepenuhnya: entitas, representasi input, bentuk output, dan di mana gap-nya.
+- Seorang mahasiswa mengusulkan: "Prediksi apakah peserta akan mengembangkan kondisi kesehatan dari pola aktivitas mereka." Apakah lulus cek temporal/kausal? Informasi spesifik apa yang perlu Anda ketahui untuk menyatakannya valid atau tidak valid?
+- Dataset ini punya label untuk 200+ kategori aktivitas. Dokter mungkin hanya peduli dengan 4 kelas kasar. Terapis rehabilitasi peduli apakah latihan yang diresepkan secara spesifik sudah dilakukan. Masing-masing adalah framing yang berbeda. Pilih satu dan tentukan sepenuhnya: entitas, representasi input, bentuk output, dan di mana letak gap-nya.
 
 ---
 
@@ -641,8 +641,8 @@ Dataset di bawah ini untuk tugas di rumah, atau untuk putaran latihan kedua sete
 
 - Paper asli menyusun ini sebagai masalah VQA (gambar + pertanyaan → jawaban teks bebas). Apakah itu satu-satunya framing? Pasangan (Input, Output) lain apa yang ada pada data ini?
 - Seorang mahasiswa berkata "Saya ingin mengklasifikasikan jenis penyakit dari gambar, mengabaikan teks." Apa yang sudah dilepaskan oleh mahasiswa ini? Apa yang sudah didapat?
-- Pasangan gambar + tanya-jawab menciptakan input multimodal. Gambarkan Middle untuk memprediksi keparahan penyakit sebagai output ordinal 4-level dari (gambar + pertanyaan terstruktur). Di mana gap-nya?
-- Cek temporal/kausal: kalau kamu adalah petani di lapangan, informasi apa yang benar-benar kamu punya, dan apa yang ingin kamu ketahui?
+- Pasangan gambar + tanya-jawab menciptakan input multimodal. Gambarkan Middle untuk memprediksi keparahan penyakit sebagai output ordinal 4-level dari (gambar + pertanyaan terstruktur). Di mana letak gap-nya?
+- Cek temporal/kausal: kalau Anda adalah petani di lapangan, informasi apa yang benar-benar Anda punya, dan apa yang ingin Anda ketahui?
 - Fine-tuning LoRA dari VLM digunakan sebagai baseline. Middle alternatif apa yang lebih murah untuk di-deploy dan masih berguna?
 
 ---
@@ -657,7 +657,7 @@ Dataset di bawah ini untuk tugas di rumah, atau untuk putaran latihan kedua sete
 - Output "kemungkinan kanker prostat" sudah dinyatakan. Tapi apakah itu biner (kanker / tidak ada kanker), ordinal (skala PI-RADS 1-5), atau probabilitas kontinu? Masing-masing adalah pertanyaan riset yang berbeda. Apa yang berubah di Middle untuk setiap pilihan Output?
 - Sebagian besar dataset gambar medis hanya merilis gambar yang sudah direkonstruksi. Dataset ini menyertakan data k-space mentah. Representasi Input baru apa yang dimungkinkan oleh k-space mentah yang tidak bisa dilakukan gambar DICOM? Komponen Middle baru apa yang diperlukan?
 - Seorang mahasiswa mengusulkan: "Saya akan melatih CNN pada gambar MRI untuk mengklasifikasikan kanker." Cek temporal/kausal: pada titik mana dalam alur kerja klinis prediksi dibutuhkan, dan informasi apa yang tersedia? Apakah framing lulus?
-- Biparametrik berarti dua urutan MRI (T2 + diffusion). Apa tiga kemungkinan pilihan Input mengenai dua urutan ini? Gap Middle apa yang terbuka saat kamu memilih untuk memakai keduanya?
+- Biparametrik berarti dua urutan MRI (T2 + diffusion). Apa tiga kemungkinan pilihan Input mengenai dua urutan ini? Gap Middle apa yang terbuka saat Anda memilih untuk memakai keduanya?
 
 ---
 
@@ -671,7 +671,7 @@ Dataset di bawah ini untuk tugas di rumah, atau untuk putaran latihan kedua sete
 - Peneliti konservasi peduli tentang estimasi populasi, kesehatan spesies, pola perilaku, dan indikator perburuan liar. Petakan masing-masing kebutuhan dunia nyata ini ke (bentuk Output, pilihan entitas) yang spesifik. Apakah semuanya layak dari video camera trap?
 - Seorang mahasiswa berkata: "Saya akan menghitung hewan per spesies per video." Ini terdengar sederhana. Apa sub-masalah di Middle? Gambarkan pipeline langkah demi langkah. Langkah mana yang ada di Big Map, dan mana yang mewakili gap?
 - Distribusi long-tail berarti beberapa spesies muncul dalam ratusan video, yang lain hanya satu atau dua. Ini bukan sekadar masalah ketidakseimbangan kelas. Ini adalah tantangan mendasar untuk generalisasi. Bagaimana ini membentuk pertanyaan riset? Framing Output seperti apa yang secara langsung mengatasi tantangan long-tail?
-- Video camera trap punya proporsi besar frame kosong (tidak ada hewan). "Apakah ada hewan?" adalah masalah klasifikasi biner. "Jika ada, spesies apa?" adalah masalah multikelas. "Jika ada, berapa banyak?" adalah masalah penghitungan/regresi. Ketiganya bisa dirangkai atau diselesaikan bersama. Gambarkan setidaknya dua desain Middle berbeda untuk masalah gabungan dan identifikasi di mana gap setiap desain berada.
+- Video camera trap punya proporsi besar frame kosong (tidak ada hewan). "Apakah ada hewan?" adalah masalah klasifikasi biner. "Jika ada, spesies apa?" adalah masalah multikelas. "Jika ada, berapa banyak?" adalah masalah penghitungan/regresi. Ketiganya bisa dirangkai atau diselesaikan bersama. Gambarkan setidaknya dua desain Middle berbeda untuk masalah gabungan dan identifikasi di mana letak gap setiap desain berada.
 
 ---
 
@@ -683,9 +683,9 @@ Dataset di bawah ini untuk tugas di rumah, atau untuk putaran latihan kedua sete
 
 - Anotasi memberikan peristiwa tawa per video. Apa setidaknya empat pilihan Output yang berbeda dengan anotasi ini? Untuk masing-masing, tentukan bentuk dan entitasnya.
 - Seorang mahasiswa mengusulkan: "Saya akan melatih classifier untuk memprediksi apakah sebuah kalimat lucu." Ini terdengar seperti deteksi humor. Apakah lulus cek temporal/kausal? Apa yang sebenarnya akan dilakukan sistem yang di-deploy, dan siapa yang akan menggunakannya?
-- Dataset ini hanya berisi transkrip. Video asli ada di YouTube dan mencakup informasi audio, visual, dan gestur performer. Framing (Input, Output) baru apa yang menjadi mungkin jika kamu memasukkan audio atau video? Komponen Middle baru apa yang diperlukan?
+- Dataset ini hanya berisi transkrip. Video asli ada di YouTube dan mencakup informasi audio, visual, dan gestur performer. Framing (Input, Output) baru apa yang menjadi mungkin jika Anda memasukkan audio atau video? Komponen Middle baru apa yang diperlukan?
 - "Prediksi tawa" adalah masalah sequence-to-token: memprediksi momen mana dalam pertunjukan komedi yang akan memancing tawa. Definisikan tugas ini secara formal: entitas, bentuk Input, bentuk Output. Apa Middle-nya? Apakah ada gap?
-- Humor bersifat spesifik budaya. Dataset ini adalah stand-up comedy Indonesia dari saluran televisi nasional. Keterbatasan apa yang ini terapkan pada validitas model yang dipelajari apapun? Apakah kekhususan budaya membuatnya lebih atau kurang baru sebagai sudut riset?
+- Humor bersifat spesifik budaya. Dataset ini adalah stand-up comedy Indonesia dari saluran televisi nasional. Keterbatasan apa yang ini terapkan pada validitas model yang dipelajari apa pun? Apakah kekhususan budaya membuatnya lebih atau kurang baru sebagai sudut riset?
 
 ---
 
@@ -698,16 +698,16 @@ Dataset di bawah ini untuk tugas di rumah, atau untuk putaran latihan kedua sete
 - Dataset mendukung tiga granularitas klasifikasi (19 / 73 / 893 kelas). Ini bukan sekadar tiga versi masalah yang sama. Mereka mewakili pertanyaan riset yang berbeda tentang aspek pengenalan makanan yang berbeda. Apa kasus penggunaan hilir yang realistis untuk setiap granularitas? Apakah kasus penggunaan menentukan entitasnya?
 - Taksonomi punya 6 tingkat nutrisi yang mengodekan informasi relevansi kesehatan (mis. "makan setiap hari" vs. "makan jarang"). Tingkat nutrisi ini bukan label klasifikasi dalam benchmark asli, tapi ada dalam data. Framing Output baru apa yang dimungkinkan ini? Apa entitas, bentuk output, dan Middle-nya?
 - Dataset dibuat dengan menyusun ulang 7 dataset yang sudah ada di bawah taksonomi bersama. Apa artinya ini untuk distribusi data? Apakah semua 893 kelas terwakili secara setara? Sudut riset apa yang diciptakan oleh komposisi ulang itu sendiri (petunjuk: domain shift antar dataset sumber)?
-- Seorang mahasiswa ingin memprediksi apakah makanan "sehat" (biner). Ini terdengar sederhana. Apakah lulus cek temporal/kausal? Apa masalah definitional dengan Output ini? Bagaimana kamu akan merumuskannya lebih tepat?
+- Seorang mahasiswa ingin memprediksi apakah makanan "sehat" (biner). Ini terdengar sederhana. Apakah lulus cek temporal/kausal? Apa masalah definitional dengan Output ini? Bagaimana Anda akan merumuskannya lebih tepat?
 - Gambar dalam dataset adalah gambar produk makanan (item yang terisolasi), bukan makanan yang tersaji atau hidangan. Pelacak diet yang sebenarnya perlu menangani foto sepiring makanan campuran. Apa yang diciptakan oleh gap antara dataset dan penggunaan dunia nyata ini sebagai sudut riset?
 
 ---
 
 ## 9. Pitfalls & Miskonsepsi
 
-**"Saya tidak perlu memeriksa literatur - idenya jelas baru."** Metode standar tampak baru bagi yang baru mempelajarinya. Jebakan "baru bagiku" adalah salah satu penyebab paling umum framing yang lemah. Jalankan pemeriksaan literatur pada setiap framing, terutama yang tampak jelas menjanjikan.
+**"Saya tidak perlu memeriksa literatur - idenya jelas baru."** Metode standar tampak baru bagi yang baru mempelajarinya. Jebakan "baru bagi saya" adalah salah satu penyebab paling umum framing yang lemah. Jalankan pemeriksaan literatur pada setiap framing, terutama yang tampak jelas menjanjikan.
 
-**"5 Whys cukup sebagai framework framing."** 5 Whys berguna untuk mempertajam topik yang luas menjadi pertanyaan yang lebih konkret. Tapi ia tidak membantu kamu mengidentifikasi entitas, mendefinisikan bentuk Output, menguraikan Middle, atau menemukan di mana gap-nya. Gunakan 5 Whys sebagai alat pemanasan, bukan sebagai framework utama.
+**"5 Whys cukup sebagai kerangka framing."** 5 Whys berguna untuk mempertajam topik yang luas menjadi pertanyaan yang lebih konkret. Tapi ia tidak membantu Anda mengidentifikasi entitas, mendefinisikan bentuk Output, menguraikan Middle, atau menemukan di mana letak gap-nya. Gunakan 5 Whys sebagai alat pemanasan, bukan sebagai kerangka utama.
 
 **"Satu dataset, satu proyek."** Ini adalah salah satu miskonsepsi paling umum. Seperti yang ditunjukkan oleh contoh Paddy Doctor dan NusaX, satu dataset mendukung banyak pertanyaan riset yang sah. Menghasilkan menu framing - bukan terjun langsung ke satu framing - adalah cara untuk menemukan yang paling menarik.
 
@@ -725,24 +725,24 @@ Ini adalah **kerja mandiri**. Setiap orang bekerja sendiri, meskipun berada dala
 
 ### Memilih Dataset
 
-Kamu punya tiga pilihan. Pilih satu:
+Anda punya tiga pilihan. Pilih satu:
 
 **Pilihan 1: Lanjutkan dari dataset kelas.**
-Jika framing Workshop 1 kelompokmu tampak menjanjikan, kembangkan lebih lanjut secara mandiri. Kamu tidak mulai dari awal. Kamu menambahkan apa yang dibangun kelompok. Hasilkan setidaknya 2 framing baru sendiri (di luar yang dihasilkan kelompok), lalu lakukan pemeriksaan literatur menyeluruh pada keseluruhan set. Daftar pendek individualmu boleh tumpang tindih dengan kerja kelompok, tapi harus menggunakan penalaran yang mandiri.
+Jika framing Lokakarya 1 kelompok Anda tampak menjanjikan, kembangkan lebih lanjut secara mandiri. Anda tidak mulai dari awal. Anda menambahkan apa yang dibangun kelompok. Hasilkan setidaknya 2 framing baru sendiri (di luar yang dihasilkan kelompok), lalu lakukan pemeriksaan literatur menyeluruh pada keseluruhan set. Daftar pendek individual Anda boleh tumpang tindih dengan kerja kelompok, tapi harus menggunakan penalaran yang mandiri.
 
 **Pilihan 2: Pilih dataset dari bank tambahan.**
-Pilih dataset apapun dari bank di §8. Mulai segar: hasilkan 3-5 framingmu sendiri, jalankan filter literatur lengkap, hasilkan daftar pendekmu.
+Pilih dataset apa pun dari bank di §8. Mulai segar: hasilkan 3-5 framing Anda sendiri, jalankan filter literatur lengkap, hasilkan daftar pendek Anda.
 
 **Pilihan 3: Bawa dataset sendiri.**
-Jika kamu sudah tahu proyek mana yang ingin dikejar (mis. dari menu proyek Bu Fatma yang didanai), kamu bisa langsung mengerjakan dataset itu. Persyaratan yang sama: 3-5 framing, filter literatur, daftar pendek.
+Jika Anda sudah tahu proyek mana yang ingin dikejar (mis. dari menu proyek Bu Fatma yang didanai), Anda bisa langsung mengerjakan dataset itu. Persyaratan yang sama: 3-5 framing, filter literatur, daftar pendek.
 
-Apapun pilihannya, luarannya sama: satu set framing kandidat dan daftar pendek untuk dipresentasikan di W12.
+Apa pun pilihannya, luarannya sama: satu set framing kandidat dan daftar pendek untuk dipresentasikan di W12.
 
 ---
 
-### Fase 1: Brainstorming Dekomposisi (3-4 jam)
+### Fase 1: Curah Gagasan Dekomposisi (3-4 jam)
 
-Hasilkan 3-5 framing kandidat. Jadilah kreatif. Buat framing yang benar-benar berbeda - entitas berbeda, output berbeda, Middle berbeda, constraint berbeda. Jangan konsultasikan literatur selama fase ini.
+Hasilkan 3-5 framing kandidat. Jadilah kreatif. Buat framing yang benar-benar berbeda - entitas berbeda, output berbeda, Middle berbeda, batasan berbeda. Jangan konsultasikan literatur selama fase ini.
 
 Gunakan template dekomposisi (§13) untuk setiap framing.
 
@@ -759,11 +759,11 @@ Kirim ke RA sebelum W12:
 1. **Dokumen dekomposisi** (semua 3-5 framing menggunakan template)
 2. **Tabel pemeriksaan literatur** (satu baris per framing)
 3. **Paragraf daftar pendek:**
-   - **Framing utama** (dengan kalimat cek novelty yang dilengkapi)
+   - **Framing utama** (dengan kalimat cek kebaruan yang dilengkapi)
    - **Framing cadangan**
    - **Framing yang dihapus** beserta alasan masing-masing
 
-RA memeriksa kelengkapan. Bu Fatma memeriksa kualitas riset di pertemuan W12. Datang siap mempresentasikan dan mempertahankan framing utamamu.
+RA memeriksa kelengkapan. Bu Fatma memeriksa kualitas riset di pertemuan W12. Datang siap mempresentasikan dan mempertahankan framing utama Anda.
 
 ---
 
@@ -777,12 +777,12 @@ RA memeriksa kelengkapan. Bu Fatma memeriksa kualitas riset di pertemuan W12. Da
 - [ ] Bentuk dan semantik output ditentukan
 - [ ] Cek temporal/kausal lulus
 
-**Novelty:**
+**Kebaruan:**
 
 - [ ] Pemeriksaan literatur dijalankan pada semua framing kandidat
-- [ ] Setiap framing diklasifikasikan (baru / sebagian done / jenuh)
-- [ ] Jenis novelty dinamai untuk framing utama
-- [ ] Kalimat cek novelty dilengkapi
+- [ ] Setiap framing diklasifikasikan (baru / sebagian terjawab / jenuh)
+- [ ] Jenis kebaruan dinamai untuk framing utama
+- [ ] Kalimat cek kebaruan dilengkapi
 
 **Middle:**
 
@@ -820,35 +820,35 @@ Bentuk tensor:
 Alternatif yang dipertimbangkan:
 
 -- MIDDLE ---------------------------------------------------------
-Langkah 1: [nama]  →  Baris Big Map: YA / TIDAK
-Langkah 2: [nama]  →  Baris Big Map: YA / TIDAK
-Langkah 3: [nama]  →  Baris Big Map: YA / TIDAK
+Langkah 1: [nama]  →  Baris peta besar: YA / TIDAK
+Langkah 2: [nama]  →  Baris peta besar: YA / TIDAK
+Langkah 3: [nama]  →  Baris peta besar: YA / TIDAK
 Lokasi gap: [langkah mana yang tidak punya jawaban standar?]
 Deskripsi gap: [apa tepatnya yang belum terselesaikan?]
 
 -- NOVELTY -------------------------------------------------------
-Jenis novelty:
+Jenis kebaruan:
 Karya terkait terdekat:
 Yang membuat framing ini berbeda:
-Cek novelty: "Literatur yang ada sudah melakukan ___.
+Cek kebaruan: "Literatur yang ada sudah melakukan ___.
               Karya kami melakukan ___, yang berbeda karena ___.
               Ini penting karena ___."
 
 -- LITERATUR -----------------------------------------------------
-Klasifikasi: BARU / SEBAGIAN DONE / JENUH
+Klasifikasi: BARU / SEBAGIAN TERJAWAB / JENUH
 Bukti (1-2 paper yang ditemukan, atau ketiadaannya):
-Jika sebagian done: ubah arah ke:
+Jika sebagian terjawab: ubah arah ke:
 ```
 
 ---
 
 ## 14. Refleksi
 
-1. **Latihan dekomposisi.** Ambil topik: "Saya ingin mendeteksi emosi dari audio." Jalankan framework Input → Middle → Output. Gambarkan setidaknya tiga framing yang berbeda dengan entitas, input, output, dan lokasi gap yang berbeda. Mana yang tampak paling menarik, dan mengapa?
+1. **Latihan dekomposisi.** Ambil topik: "Saya ingin mendeteksi emosi dari audio." Jalankan kerangka Input → Middle → Output. Gambarkan setidaknya tiga framing yang berbeda dengan entitas, input, output, dan lokasi gap yang berbeda. Mana yang tampak paling menarik, dan mengapa?
 
 2. **Kejenuhan vs. gap yang terverifikasi.** Pilih satu dari enam dataset di §8. Tanpa mencari literatur dulu, hasilkan tiga framing. Kemudian jalankan filter literatur cepat. Apakah ada yang jenuh? Apakah ada yang mengarah ke gap yang tampaknya ada?
 
-3. **Mengapa cek temporal itu penting.** Cari contoh paper yang kemungkinan punya masalah cek temporal. Apa yang salah dengan framing-nya? Bagaimana kamu akan memperbaikinya?
+3. **Mengapa cek temporal itu penting.** Cari contoh paper yang kemungkinan punya masalah cek temporal. Apa yang salah dengan framing-nya? Bagaimana Anda akan memperbaikinya?
 
 ---
 
@@ -865,6 +865,6 @@ Jika sebagian done: ubah arah ke:
 
 Menu framing sudah siap. Daftar pendek sudah ditulis. Datang ke W12 dengan dokumen dekomposisi, tabel pemeriksaan literatur, dan paragraf daftar pendek.
 
-Di W12, kamu mempresentasikan dan mempertahankan framing utamamu. Setelah disetujui, fase eksekusi dimulai.
+Di W12, Anda mempresentasikan dan mempertahankan framing utama Anda. Setelah disetujui, fase eksekusi dimulai.
 
 Buka [Capstone - Proyek Riset](12_Capstone.md) ketika siap.

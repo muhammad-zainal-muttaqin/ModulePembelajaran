@@ -53,9 +53,9 @@ Mahasiswa tidak akan bisa menyebutkan definisi keempat sikap, tetapi pada akhir 
 
 Modul ini dirancang agar mahasiswa membaca bab *sebelum* sesi tatap muka. Waktu kelas dipakai untuk:
 
-- **Diskusi pitfall** - "Siapa yang pernah mengalami loss tidak turun dari epoch pertama? Apa yang kamu lakukan?"
+- **Diskusi pitfall** - "Siapa yang pernah mengalami loss tidak turun dari epoch pertama? Apa yang Anda lakukan?"
 - **Review protokol** - mahasiswa saling membaca `protocol.md` dan mengkritisi variabel, baseline, dan hipotesis.
-- **Bedah hasil lab** - "Angkamu naik 1.7%. Coba lihat std dev-nya. Apakah itu signifikan?"
+- **Bedah hasil lab** - "AngAnda naik 1.7%. Coba lihat std dev-nya. Apakah itu signifikan?"
 - **Presentasi Komponen Mandiri** - 10 menit per mahasiswa, dua arah: presenter menjelaskan, audiens bertanya.
 
 Anda tidak perlu menjelaskan isi bab. Mahasiswa sudah membacanya. Tugas Anda adalah memastikan mereka *memahami implikasinya*.
@@ -75,7 +75,7 @@ Anda tidak perlu menjelaskan isi bab. Mahasiswa sudah membacanya. Tugas Anda ada
 
 Tabel di bawah adalah panduan mingguan. "Checkpoint" adalah bukti minimal bahwa mahasiswa siap lanjut ke minggu berikutnya.
 
-Ritme sesi: 30 menit prior-week findings | 40 menit materi baru + demo | 10 menit rigor habit | 40 menit assignment walkthrough.
+Ritme sesi: 30 menit temuan minggu sebelumnya | 40 menit materi baru + demo | 10 menit kebiasaan riset | 40 menit pendampingan tugas.
 
 | Minggu | Bab | Lab | Topik | Emphasis Dosen | Sikap Dominan | Checkpoint |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -83,16 +83,16 @@ Ritme sesi: 30 menit prior-week findings | 40 menit materi baru + demo | 10 meni
 | 2 | 02 W2 | Lab 1 | Images, CNN, smoke test | Demo smoke test tiga level secara live. Tunjukkan training yang berhasil vs gagal. Backprop diperkenalkan konseptual saja. | Curiosity | Smoke test 3-level selesai; SimpleCNN forward pass jalan |
 | 3 | 03 W3 | Lab 1 + Lab 2 | Loss, optimizer, galeri run | Mulai dari galeri 5 run - tanya diagnosis sebelum teori. Selesaikan Lab 1 (confusion matrix, error analysis). | Curiosity | Lab 1 checklist selesai; loss curve 5 pola bisa dibedakan |
 | 4 | 04 W4 | Lab 3 | Reproducibility + matriks eksperimen | Wajibkan matriks eksperimen sebelum kode. Periksa timestamp `protocol.md`. Drill: git hash di checkpoint. | Rigor | Matriks tertulis sebelum run; 3 seed baseline selesai |
-| 5 | 05 W5 | Lab 3b | Sequences RNN/LSTM | **Lab 3b wajib**. Tunjukkan gradient flow secara visual - jangan hanya ceritakan. Minta architecture justification statement. | Curiosity + Rigor | Lab 3b selesai; gradient plot ada; justification tertulis |
+| 5 | 05 W5 | Lab 3b | Sequences RNN/LSTM | **Lab 3b wajib**. Tunjukkan gradient flow secara visual - jangan hanya ceritakan. Minta pernyataan justifikasi arsitektur. | Curiosity + Rigor | Lab 3b selesai; gradient plot ada; justification tertulis |
 | 6 | 06 W6 | Lab 6 baru | Representations + temporal leakage | Demo leakage yang menipu: tampilkan F1 tinggi lalu tunjukkan validasi tanpa temporal guard. Delta harus dramatis. | Skepticism | Lab 6 temporal leakage: delta leaky vs causal terdokumentasi |
-| 7 | 07 W7 | Lab 5b + Lab 6 | Text, transformers, repo adoption | 2×2 comparison frozen/fine-tune × [CLS]/mean-pool. Minta `repo_map.md` pertama. Synthesis note AI tools. | Ownership | repo_map.md terisi; 2×2 macro-F1 ada |
-| 8 | 08 W8 | Foundation Map | Foundation models taxonomy | Drill model card reading - 7 pertanyaan wajib. Dorong skeptisisme pada benchmark claims. | Skepticism + Ownership | Foundation model map 3-4 model + selection memo |
-| 9 | 09 W9 | Lab 8 | Multimodal + ablasi per-modalitas | Tunjukkan ignored-modality problem secara empiris. "Hasil bagus" belum cukup - ablation wajib. | Skepticism | 7 kondisi ablation selesai; ignored-modality check selesai |
-| 10 | 10 W10 | Lab 9 | Paper reading + implementation | 3-pass method eksplisit. Minta mahasiswa membawa paper yang sudah di-skim ke kelas. Paper-to-code steps. | Rigor + Curiosity | Three-pass notes + core method terimplementasi |
-| 11 | 11 W11 | Workshop Framing | Research framing (Input → Middle → Output + filter literatur) | **W11 adalah setup capstone**. Live demo dekomposisi dataset. Workshop menu framing + triage literatur. Mahasiswa keluar dengan 3-5 framing kandidat. | Integrasi empat sikap | Dokumen dekomposisi + tabel triage literatur; siap presentasi di W12 |
+| 7 | 07 W7 | Lab 5b + Lab 6 | Text, transformers, repo adoption | 2×2 comparison frozen/fine-tune × [CLS]/mean-pool. Minta `repo_map.md` pertama. Catatan sintesis alat AI. | Ownership | repo_map.md terisi; 2×2 macro-F1 ada |
+| 8 | 08 W8 | Foundation Map | Foundation models taxonomy | Drill model card reading - 7 pertanyaan wajib. Dorong skeptisisme pada klaim benchmark. | Skepticism + Ownership | Foundation model map 3-4 model + selection memo |
+| 9 | 09 W9 | Lab 8 | Multimodal + ablasi per modalitas | Tunjukkan masalah modalitas terabaikan secara empiris. "Hasil bagus" belum cukup - ablation wajib. | Skepticism | 7 kondisi ablation selesai; cek modalitas terabaikan selesai |
+| 10 | 10 W10 | Lab W10 | Membaca paper + implementasi | metode tiga putaran eksplisit. Minta mahasiswa membawa paper yang sudah di-skim ke kelas. Langkah paper-to-code. | Rigor + Curiosity | Catatan tiga putaran + metode inti terimplementasi |
+| 11 | 11 W11 | Lokakarya Framing | Framing riset (Input → Middle → Output + filter literatur) | **W11 adalah setup capstone**. Demo langsung dekomposisi dataset. Lokakarya menu framing + triage literatur. Mahasiswa keluar dengan 3-5 framing kandidat. | Integrasi empat sikap | Dokumen dekomposisi + tabel triage literatur; siap presentasi di W12 |
 | 12 | 12 Capstone | Pertahanan Framing + Eks 1 | Filter dan komitmen framing; mulai Eksperimen 1 | Pimpin pertahanan framing (15 mnt/mahasiswa). Setujui atau kembalikan. Setelah setuju: mahasiswa menulis pre-registration sebelum kode berjalan. | Rigor | Framing disetujui; pre-reg Eksperimen 1 di-commit; Eksperimen 1 mulai jalan |
-| 13 | 12 Capstone | Rethink + Eks 2 | Pikirkan ulang; desain dan jalankan Eksperimen 2 | Fokus pada dokumen rethink: apakah perubahan arah traceable ke angka spesifik? Tanya: "Kalau Eks 1 terbalik, Eks 2 berbeda?" | Skepticism + Rigor | Dokumen rethink jujur; pre-reg Eksperimen 2 di-commit |
-| 14 | 12 Capstone | Presentasi Final | Research talks 20 menit (15+5 Q&A) | Q&A: apakah klaim sesuai bukti? "Proves" harus diganti "suggests". Demo menampilkan failure case? Laporan bisa direproduksi? | Ownership | Laporan draft final; repo + demo siap; feedback dari Q&A dicatat |
+| 13 | 12 Capstone | Tinjauan Ulang + Eks 2 | Tinjau ulang; desain dan jalankan Eksperimen 2 | Fokus pada dokumen tinjauan ulang: apakah perubahan arah dapat dilacak ke angka spesifik? Tanya: "Kalau Eks 1 terbalik, Eks 2 berbeda?" | Skepticism + Rigor | Dokumen tinjauan ulang jujur; pre-reg Eksperimen 2 di-commit |
+| 14 | 12 Capstone | Presentasi Final | Presentasi riset 20 menit (15+5 Q&A) | Q&A: apakah klaim sesuai bukti? Klaim "membuktikan" harus diganti menjadi "mengindikasikan" bila bukti belum cukup kuat. Demo menampilkan kasus gagal? Laporan bisa direproduksi? | Ownership | Laporan draft final; repo + demo siap; umpan balik dari Q&A dicatat |
 | 15 | 12 Capstone | - | Pengumpulan final (tanpa sesi kelas) | Tidak ada sesi tatap muka. Tenggat akhir W15: laporan final + repo bertag `v1.0` + demo berjalan dari lingkungan bersih. | Ownership | Laporan + repo + demo terkumpul; tag `v1.0` di-push |
 
 ### Catatan Pacing
@@ -100,8 +100,8 @@ Ritme sesi: 30 menit prior-week findings | 40 menit materi baru + demo | 10 meni
 - **W1 dan W2 (§1.5 baru):** masing-masing bab memiliki section §1.5 baru ("MLP dari Pintu Depan" di W1 dan "Citra Sebagai Tensor: Dari Pixel ke 4D" di W2). Tambahkan ~20-30 menit ke estimasi waktu membaca untuk dua bab ini. Jika sesi tatap muka 2 jam, kurangi satu pitfall discussion atau tunda demo smoke test yang kedua ke sesi berikutnya.
 - **W4 (Reproducibility):** minggu paling padat infrastruktur (config YAML, seed, checkpoint, matriks eksperimen, komunikasi PI). Jangan tambahkan lab breadth di minggu ini; biarkan Lab 3b masuk W5 sebagai wajib dan Lab 6b/7b paralel di pekan-pekan berikutnya.
 - **W5 (LSTM):** paling padat secara konseptual - lihat §1.5 baru (BPTT primer, vanishing gradient numerik, LSTM annotated). Estimasikan mahasiswa butuh 1-2 jam membaca sebelum sesi. Jika waktu kelas hanya 2 jam, pisahkan: sesi pertama = §2.1-2.2 (RNN + vanishing), sesi kedua = §2.3-2.4 (LSTM + GRU).
-- **W7 (Text + Repo Adoption):** padat karena mengintegrasikan AI tools, transformers, dan repo adoption dari modul lama. Jika mahasiswa terbebani, prioritaskan `repo_map.md` dan 2×2 frozen/fine-tune; demo Streamlit boleh dikerjakan paralel.
-- **W12-W15 (Capstone):** mahasiswa seharusnya sudah punya semua keterampilan teknis. Tugas Anda di fase ini: setujui atau kembalikan framing di W12, uji apakah rethink benar-benar berubah berdasarkan data di W13, pastikan klaim sesuai bukti di W14, dan verifikasi reproducibility repo sebelum W15 ditutup.
+- **W7 (Text + Repo Adoption):** padat karena mengintegrasikan alat AI, transformers, dan repo adoption dari modul lama. Jika mahasiswa terbebani, prioritaskan `repo_map.md` dan 2×2 frozen/fine-tune; demo Streamlit boleh dikerjakan paralel.
+- **W12-W15 (Capstone):** mahasiswa seharusnya sudah punya semua keterampilan teknis. Tugas Anda di fase ini: setujui atau kembalikan framing di W12, uji apakah tinjauan ulang benar-benar berubah berdasarkan data di W13, pastikan klaim sesuai bukti di W14, dan verifikasi reproduksibilitas repositori sebelum W15 ditutup.
 
 ### Peta `<details>Pendalaman</summary>` - Opsional vs Wajib
 
@@ -117,7 +117,7 @@ Setiap bab punya collapsible `<details><summary>Pendalaman</summary>` untuk mate
 | W8 §2.3 | PEFT library details, LoRA hyperparameter sweep | Opsional: hanya jika ada yang melakukan fine-tuning LLM di capstone. |
 | W10 §2.6 | Rutinitas mingguan lengkap | Opsional selama kelas (sudah diberi callout); dibahas saat sesi terakhir W11 sebagai "bekal setelah lulus". |
 
-Konten di luar `<details>` adalah **core content** - wajib untuk semua mahasiswa. Konten di dalam `<details>` adalah pengayaan; tidak muncul di rubrik secara langsung kecuali jika mahasiswa memilihnya sebagai Komponen Mandiri.
+Konten di luar `<details>` adalah **konten inti** - wajib untuk semua mahasiswa. Konten di dalam `<details>` adalah pengayaan; tidak muncul di rubrik secara langsung kecuali jika mahasiswa memilihnya sebagai Komponen Mandiri.
 
 ---
 
@@ -157,7 +157,7 @@ Konten di luar `<details>` adalah **core content** - wajib untuk semua mahasiswa
 
 ### W5 - Sequences: RNN & LSTM
 
-- **Kritis:** **Lab 3b wajib**. Tunjukkan gradient flow secara visual (log-plot vanishing gradient) - jangan hanya ceritakan. Minta architecture justification statement: kenapa LSTM, bukan vanilla RNN.
+- **Kritis:** **Lab 3b wajib**. Tunjukkan gradient flow secara visual (log-plot vanishing gradient) - jangan hanya ceritakan. Minta pernyataan justifikasi arsitektur: kenapa LSTM, bukan vanilla RNN.
 - **Pitfall:** Mahasiswa menghafal LSTM gates tanpa menghubungkan ke gradient flow. Minta gambar gate sambil menjelaskan kenapa cell state tidak vanish.
 - **Refleksi berbobot:** "Dataset mana yang secara default akan Anda tangani dengan LSTM, dan mana yang Transformer? Kapan ragu?"
 - **Kaitan rubrik:** Kompetensi 1 breadth (RNN/LSTM family). Target: Developing.
@@ -173,23 +173,23 @@ Konten di luar `<details>` adalah **core content** - wajib untuk semua mahasiswa
 
 ### W7 - Text, Transformers & Repo Adoption
 
-- **Kritis:** 2×2 comparison frozen/fine-tune × [CLS]/mean-pool. Minta `repo_map.md` pertama: entry point → model → loss → config. Synthesis note AI tools dengan verifikasi (LLM interaction log Lampiran C.3).
+- **Kritis:** 2×2 comparison frozen/fine-tune × [CLS]/mean-pool. Minta `repo_map.md` pertama: entry point → model → loss → config. Catatan sintesis alat AI dengan verifikasi (LLM interaction log Lampiran C.3).
 - **Pitfall:** Mahasiswa menyalin kode LLM yang terlihat benar tetapi mengandung bug halus (mis. normalisasi sebelum split). Latihan: beri kode LLM bermasalah, minta menemukan bug. Untuk repo adoption: 2 jam membaca README lalu tidak berani menyentuh kode - dorong `grep` dulu.
 - **Refleksi berbobot:** "Apa perbedaan strategi membaca repo riset dengan membaca repo software engineering?"
-- **Kaitan rubrik:** Kompetensi 5 (AI tools) + Kompetensi 6 (Adopsi repo). Target: Developing→Proficient.
+- **Kaitan rubrik:** Kompetensi 5 (alat AI) + Kompetensi 6 (Adopsi repo). Target: Developing→Proficient.
 - **Waktu lab:** Lab 5b (IndoNLU teks): 3-4 jam. Lab 6 (repo adoption): 5-7 jam. Lab 6b (Transformer-mini breadth): 4-6 jam opsional.
 
 ### W8 - Foundation Models
 
-- **Kritis:** Model card literacy - 7 pertanyaan wajib (§2). §2.1.1 matriks evaluasi tool 5 dimensi: aturan <12 curigai, 12-18 coba kecil, >18 adopsi. Dorong skeptisisme pada benchmark claims ("SOTA di benchmark X").
+- **Kritis:** Model card literacy - 7 pertanyaan wajib (§2). §2.1.1 matriks evaluasi alat 5 dimensi: aturan <12 curigai, 12-18 coba kecil, >18 adopsi. Dorong skeptisisme pada klaim benchmark ("SOTA di benchmark X").
 - **Pitfall:** Mahasiswa langsung memilih model terbesar atau ter-popular. Drill: "kapan adapter cukup vs full fine-tuning?" sebelum menyentuh GPU.
 - **Refleksi berbobot:** "Anda menemukan model baru yang klaim SOTA. Bagaimana memverifikasi?"
-- **Kaitan rubrik:** Kompetensi 8 (Platform & tool baru, foundation map). Target: Developing.
+- **Kaitan rubrik:** Kompetensi 8 (Platform & alat baru, foundation map). Target: Developing.
 - **Waktu lab:** Foundation Model Map + selection memo: 4-5 jam.
 
 ### W9 - Multimodal Reasoning
 
-- **Kritis:** Ablasi per-modalitas. Tunjukkan ignored-modality problem secara empiris: model "sukses" tanpa benar-benar memakai salah satu modalitas. "Hasil bagus" belum cukup; tujuh kondisi ablation wajib.
+- **Kritis:** Ablasi per modalitas. Tunjukkan masalah modalitas terabaikan secara empiris: model "sukses" tanpa benar-benar memakai salah satu modalitas. "Hasil bagus" belum cukup; tujuh kondisi ablation wajib.
 - **Pitfall:** Fusion strategi dipilih berdasar trend, bukan analisis. Minta justifikasi sebelum implementasi.
 - **Refleksi berbobot:** "Modalitas mana yang seharusnya paling kontributif untuk dataset Anda? Apakah hasil ablation memvalidasi intuisi itu?"
 - **Kaitan rubrik:** Kompetensi 1 breadth (multimodal) + Kompetensi 4 (skeptisisme). Target: Developing→Proficient.
@@ -201,13 +201,13 @@ Konten di luar `<details>` adalah **core content** - wajib untuk semua mahasiswa
 - **Pitfall:** 3-pass dipakai sebagai formalitas, bukan alat. Pass 1 tanpa pertanyaan hanyalah membaca cepat. Minta tulisan satu pertanyaan *sebelum* Pass 1.
 - **Refleksi berbobot:** "Setelah membaca satu paper, apa eksperimen pertama yang akan Anda jalankan?"
 - **Kaitan rubrik:** Kompetensi 9 (paper reading + reproduksi). Target: Developing→Proficient.
-- **Waktu lab:** Lab 9 (paper-to-code): 6-8 jam. Komponen Mandiri W10 = entri portofolio terakhir + Refleksi Portofolio.
+- **Waktu lab:** Lab W10 (paper-to-code): 6-8 jam. Komponen Mandiri W10 = entri portofolio terakhir + Refleksi Portofolio.
 
 ### W11 - Research Framing
 
-- **Kritis:** **W11 adalah setup capstone**. Pimpin live demo dekomposisi dataset di kelas (dataset ditentukan Bu Fatma sebelum W11). Workshop 3 sesi: menu framing, triage literatur, seleksi dan komitmen. Mahasiswa keluar dengan 3-5 framing kandidat dan tabel triage literatur.
+- **Kritis:** **W11 adalah setup capstone**. Pimpin demo langsung dekomposisi dataset di kelas (dataset ditentukan Bu Fatma sebelum W11). Lokakarya 3 sesi: menu framing, triage literatur, seleksi dan komitmen. Mahasiswa keluar dengan 3-5 framing kandidat dan tabel triage literatur.
 - **Pitfall:** Mahasiswa mengambil framing terlalu besar atau tanpa gap yang sesungguhnya ada. Gap yang sesungguhnya ada: sesuatu yang tidak bisa diselesaikan pipeline standar apa adanya. Dorong framing yang bisa ditutup dalam 3 minggu kerja fokus.
-- **Refleksi berbobot:** "Dari 3-5 framing yang kamu buat, mana yang gapnya paling jelas ada dan bisa diisi dalam waktu capstone? Literatur apa yang kamu temukan yang memperkuat atau menggugurkan pilihan itu?"
+- **Refleksi berbobot:** "Dari 3-5 framing yang Anda buat, mana yang gapnya paling jelas ada dan bisa diisi dalam waktu capstone? Literatur apa yang Anda temukan yang memperkuat atau menggugurkan pilihan itu?"
 - **Kaitan rubrik:** Integrasi semua kompetensi (framing + triage literatur). Target: Proficient.
 - **Waktu lab:** W11 menggantikan lab dengan luaran dokumen dekomposisi (3-5 framing) + tabel triage literatur. Estimasi 6-10 jam termasuk penelusuran literatur mandiri.
 
@@ -215,11 +215,11 @@ Konten di luar `<details>` adalah **core content** - wajib untuk semua mahasiswa
 
 - **Kritis per minggu:**
   - W12: pimpin pertahanan framing (15 mnt/mahasiswa); setujui atau kembalikan; jangan biarkan Eksperimen 1 dimulai sebelum framing disetujui dan pre-registration di-commit.
-  - W13: periksa dokumen rethink - apakah perubahan arah traceable ke angka spesifik dari Eksperimen 1? Tanya: "Kalau Eksperimen 1 arahnya terbalik, Eksperimen 2 kamu berbeda?" Jika tidak, rethinknya belum jujur.
-  - W14: Q&A final talks - apakah klaim sesuai bukti? Demo harus bisa menampilkan failure case, bukan hanya sukses.
+  - W13: periksa dokumen tinjauan ulang - apakah perubahan arah dapat dilacak ke angka spesifik dari Eksperimen 1? Tanya: "Kalau Eksperimen 1 arahnya terbalik, Eksperimen 2 Anda berbeda?" Jika tidak, tinjauan ulangnya belum jujur.
+  - W14: Tanya jawab presentasi final - apakah klaim sesuai bukti? Demo harus bisa menampilkan kasus gagal, bukan hanya sukses.
   - W15: tidak ada sesi kelas. Tenggat pengumpulan: laporan final (6-8 halaman) + repo bertag `v1.0` + demo berjalan dari lingkungan bersih.
-- **Pitfall:** Rethink yang tidak berubah - Eksperimen 2 identik dengan yang direncanakan sejak awal, tidak dipengaruhi hasil Eksperimen 1. Tangkap ini di W13. Pitfall lain: laporan ditulis dari nol di W15. Tegakkan penulisan paralel sejak W13.
-- **Refleksi:** Tidak ada refleksi terstruktur di capstone. Gantikan dengan sesi "post-mortem" 15 menit per mahasiswa setelah W14: apa yang berhasil, apa yang gagal, apa yang akan dilakukan berbeda.
+- **Pitfall:** Tinjauan ulang yang tidak berubah - Eksperimen 2 identik dengan yang direncanakan sejak awal, tidak dipengaruhi hasil Eksperimen 1. Tangkap ini di W13. Pitfall lain: laporan ditulis dari nol di W15. Tegakkan penulisan paralel sejak W13.
+- **Refleksi:** Tidak ada refleksi terstruktur di capstone. Gantikan dengan sesi "refleksi akhir" 15 menit per mahasiswa setelah W14: apa yang berhasil, apa yang gagal, apa yang akan dilakukan berbeda.
 - **Kaitan rubrik:** Semua kompetensi dinilai sumatif berdasarkan artefak capstone (lihat §5.1 sub-rubrik 4 fase di `13_Rubrik_Penilaian.md`).
 - **Waktu:** 15-20 jam per mahasiswa per minggu (4 minggu = 60-80 jam).
 
@@ -291,7 +291,7 @@ Entri yang hanya mengulang output lab (`accuracy = 0.78`, `loss turun`) tanpa in
 - Tidak ada koneksi ke materi ("saya menjalankan Lab X" tanpa menjelaskan apa yang dipelajari).
 - Kode identik dengan lab notebook (periksa diff terhadap notebook asli).
 
-### Cara Memberi Feedback yang Actionable
+### Cara Memberi Umpan Balik yang Dapat Ditindaklanjuti
 
 Hindari:
 - "Bagus!" (tidak informatif)
@@ -299,7 +299,7 @@ Hindari:
 - "Perlu ditingkatkan" (tidak ada arah)
 
 Pakai format: **Satu hal yang sudah baik + satu hal yang bisa dipertajam.**
-Contoh: "Analisis F1 per kelas sudah baik karena kamu menghubungkan penurunan ke jumlah sampel. Satu hal: coba tuliskan apa yang TIDAK kamu yakini dari hasil ini - itu akan memperkuat bagian Kejutan."
+Contoh: "Analisis F1 per kelas sudah baik karena Anda menghubungkan penurunan ke jumlah sampel. Satu hal: coba tuliskan apa yang TIDAK Anda yakini dari hasil ini - itu akan memperkuat bagian Kejutan."
 
 ### Tips Grading Portofolio
 
@@ -336,7 +336,7 @@ Contoh: "Analisis F1 per kelas sudah baik karena kamu menghubungkan penurunan ke
 
 **Tindakan:**
 1. Identifikasi apakah ketertinggalan karena konsep atau karena waktu.
-2. Jika konsep: arahkan ke jalur cepat (Pendahuluan §5c). W6-W9 punya komponen opsional (Lab 6b, 6c, 7b breadth) - prioritaskan core content yang paling relevan dengan Capstone mereka.
+2. Jika konsep: arahkan ke jalur cepat (Pendahuluan §5c). W6-W9 punya komponen opsional (Lab 6b, 6c, 7b breadth) - prioritaskan konten inti yang paling relevan dengan Capstone mereka.
 3. Jika waktu: negosiasikan cakupan. Lebih baik mengerjakan W1-W7 + W11 + Capstone dengan dalam daripada semua minggu dengan dangkal.
 4. Breadth Check (4 dari 5 arsitektur) tetap wajib, tetapi bisa dikerjakan paralel.
 
@@ -373,8 +373,8 @@ W5 secara konsisten menjadi titik paling curam di modul - BPTT, vanishing gradie
 **Gejala:** Kode di semua notebook mirip (gaya variabel, komentar, struktur), dan mahasiswa tidak bisa menjelaskan bagian tertentu.
 
 **Tindakan:**
-1. Jangan larang LLM. Alihkan ke W7 (AI tools sebagai pendukung): "Anda boleh pakai LLM, tetapi Anda harus bisa menjelaskan setiap baris."
-2. Uji lisan: panggil mahasiswa secara acak, minta mereka menjelaskan satu fungsi yang mereka submit. Jika tidak bisa, minta mereka menulis ulang dengan gaya sendiri.
+1. Jangan larang LLM. Alihkan ke W7 (alat AI sebagai pendukung): "Anda boleh pakai LLM, tetapi Anda harus bisa menjelaskan setiap baris."
+2. Uji lisan: panggil mahasiswa secara acak, minta mereka menjelaskan satu fungsi yang mereka kumpulkan. Jika tidak bisa, minta mereka menulis ulang dengan gaya sendiri.
 3. Normalisasi: gunakan LLM interaction log (Lampiran C.3). Minta mahasiswa mencatat prompt yang mereka pakai. Transparansi lebih efektif daripada larangan.
 4. Tekankan bahwa nilai berasal dari pemahaman, bukan dari kode yang jalan.
 
@@ -394,4 +394,4 @@ W5 secara konsisten menjadi titik paling curam di modul - BPTT, vanishing gradie
 
 Modul ini dibangun dengan keyakinan bahwa asisten riset yang baik bukanlah yang paling cepat menulis kode, melainkan yang paling jujur pada data, paling disiplin dalam mencatat, dan paling berani mengakui ketidaktahuan. Jika Anda sebagai dosen membawa keyakinan yang sama ke dalam kelas - memperlakukan setiap pertanyaan mahasiswa sebagai awal eksplorasi, bukan akhir jawaban - modul ini akan efektif.
 
-Selamat mengajar. Mulailah dengan Pendahuluan, dan biarkan mahasiswa menyadari sendiri mengapa curiosity, rigor, skepticism, dan ownership lebih penting daripada framework apapun.
+Selamat mengajar. Mulailah dengan Pendahuluan, dan biarkan mahasiswa menyadari sendiri mengapa curiosity, rigor, skepticism, dan ownership lebih penting daripada kerangka apa pun.

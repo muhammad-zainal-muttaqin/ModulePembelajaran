@@ -28,8 +28,8 @@
 
 > *Foundation model bukan "model yang bagus". Model ini sudah mempelajari representasi kaya dari jutaan atau miliaran contoh sehingga Anda tidak harus mulai dari nol. Pertanyaannya bukan "apakah saya boleh memakainya" - pertanyaannya adalah "adaptasi apa yang paling masuk akal untuk skenario ini?"*
 
-**Baris Big Map:** input apa pun dengan prior dari pretrained model
-**Rigor habit:** Literasi model card, pilihan adaptasi, baseline yang adil
+**Baris peta besar:** input apa pun yang memanfaatkan prior dari pretrained model
+**Kebiasaan riset:** Literasi model card, pilihan adaptasi, baseline yang adil
 **Dataset:** Pakai ulang dataset dari minggu sebelumnya untuk perbandingan langsung
 **Lab utama:** Foundation Model Map + selection memo
 
@@ -158,7 +158,7 @@ Model card adalah dokumen yang menemani sebuah model. Tujuh pertanyaan wajib saa
 > [!WARNING]
 > "SOTA di benchmark X" tidak berarti "terbaik untuk tugas saya" jika domain berbeda signifikan. Selalu periksa apakah benchmark dataset punya overlap dengan domain Anda.
 
-### 2.4 Adaptation Choice Decision Tree
+### 2.4 Pohon Keputusan Pemilihan Adaptasi
 
 Pilihan adaptasi bergantung pada tiga faktor: **compute budget**, **jumlah labeled data**, dan **seberapa jauh domain target dari pretraining**.
 
@@ -194,7 +194,7 @@ Contoh:
 - **Auxiliary supervision** - embedding dari CLIP digunakan sebagai target untuk network visual lebih kecil.
 - **Pseudo-label generation** - foundation model menghasilkan pseudo-labels untuk unlabeled data.
 
-Dalam semua kasus ini, foundation model tidak ada dalam model final yang di-deploy. Ia meningkatkan proses training. Pola ini penting karena memungkinkan benefit dari foundation model tanpa inference cost-nya.
+Dalam semua kasus ini, foundation model tidak ada dalam model final yang di-deploy. Ia meningkatkan proses training. Pola ini penting karena memungkinkan manfaat dari foundation model tanpa biaya inferensinya.
 
 #### 2.5.1 Knowledge Distillation: Contoh Numerik dengan Target Lunak
 
@@ -278,11 +278,11 @@ Kelemahan: paling lama, butuh GPU, risiko overfitting pada data kecil.
 
 ---
 
-## 5. Assignment: Foundation Model Map (W8)
+## 5. Tugas: Foundation Model Map (W8)
 
 Buat **Foundation Model Map** untuk 3-4 model yang relevan dengan domain riset Anda:
 
-| Model | Modality | Pretraining | Downstream role | Adaptation | Teacher-only? | Pilihan karena |
+| Model | Modalitas | Pretraining | Downstream role | Adaptation | Teacher-only? | Pilihan karena |
 |---|---|---|---|---|---|---|
 | ... | ... | ... | ... | ... | ... | ... |
 
@@ -299,8 +299,8 @@ Format: [Lampiran C.9](14_Lampiran.md#c9-template-komponen-mandiri).
 | Jalur | Tugas |
 |---|---|
 | **Implementasi** | Implementasikan frozen CLIP visual encoder sebagai feature extractor untuk dataset citra. Bandingkan dengan fine-tuned ResNet dari W2. |
-| **Analisis** | Download 3 model cards dari HuggingFace. Jawab 7 pertanyaan kritis §2.3 untuk masing-masing. |
-| **Desain** | Rancang experiment untuk menentukan kapan domain-specific model lebih baik dari general model pada satu domain spesifik. |
+| **Analisis** | Unduh 3 model card dari HuggingFace. Jawab 7 pertanyaan kritis §2.3 untuk masing-masing. |
+| **Desain** | Rancang eksperimen untuk menentukan kapan domain-specific model lebih baik dari general model pada satu domain spesifik. |
 | **Arsitektur Baru** | Eksplorasi LoRA: implementasikan LoRA sederhana dari scratch untuk satu linear layer, verifikasi parity dengan library PEFT. |
 
 ---

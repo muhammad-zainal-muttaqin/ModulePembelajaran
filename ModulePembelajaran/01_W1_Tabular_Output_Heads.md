@@ -28,8 +28,8 @@
 
 > *Sebelum membahas arsitektur yang rumit, kita mulai dari pertanyaan yang paling sederhana: shape apa yang masuk, dan shape apa yang harus keluar?*
 
-**Baris Big Map:** `(F,) -> (1,)`, `(1,)`, `(N,)`
-**Rigor habit:** Observation before conclusion
+**Baris peta besar:** `(F,) -> (1,)`, `(1,)`, `(N,)`
+**Kebiasaan riset:** Observasi sebelum kesimpulan
 **Dataset:** Tabular bersama sintetis yang mendukung regresi, klasifikasi biner, dan multiclass dari input yang sama
 **Lab utama:** Lab 0 (`lab_w1_tabular_heads.ipynb`)
 
@@ -187,9 +187,9 @@ Setelah memahami ketiga pasangan di atas, gunakan tabel berikut sebagai rujukan 
 
 ### 2.3 Backpropagation: Gambaran Tanpa Derivasi
 
-MLP belajar lewat **backpropagation**: setelah loss dihitung di output, gradient dari loss terhadap setiap parameter dirambatkan **mundur** lewat chain rule, lalu optimizer (mis. AdamW) memperbarui parameter ke arah penurunan loss.
+MLP belajar lewat **backpropagation**: setelah loss dihitung di output, gradient dari loss terhadap setiap parameter dirambatkan **mundur** melalui chain rule, lalu optimizer (mis. AdamW) memperbarui parameter ke arah penurunan loss.
 
-Bayangkan jaringan sebagai rantai operasi: `x → Linear₁ → ReLU₁ → Linear₂ → ReLU₂ → Linear₃ → loss`. Saat `loss.backward()` dipanggil, PyTorch berjalan mundur lewat rantai ini, menghitung kontribusi setiap parameter terhadap loss lewat chain rule (rantai turunan; lihat §0.5.4 di [00_Pendahuluan.md](00_Pendahuluan.md)). Setiap layer memiliki turunan untuk operasinya sendiri; library autograd menggabungkannya menjadi gradient utuh untuk seluruh model. Setelah gradient siap, `optimizer.step()` menggeser parameter sedikit ke arah `-gradient` (penurunan loss).
+Bayangkan jaringan sebagai rantai operasi: `x → Linear₁ → ReLU₁ → Linear₂ → ReLU₂ → Linear₃ → loss`. Saat `loss.backward()` dipanggil, PyTorch berjalan mundur lewat rantai ini, menghitung kontribusi setiap parameter terhadap loss melalui chain rule (rantai turunan; lihat §0.5.4 di [00_Pendahuluan.md](00_Pendahuluan.md)). Setiap layer memiliki turunan untuk operasinya sendiri; library autograd menggabungkannya menjadi gradient utuh untuk seluruh model. Setelah gradient siap, `optimizer.step()` menggeser parameter sedikit ke arah `-gradient` (penurunan loss).
 
 Itu sudah cukup sebagai gambaran W1. Anda **tidak perlu** menurunkan chain rule manual minggu ini. Derivasi 7-langkah yang ketat (`MSE loss + sigmoid` pada dua-layer MLP) tersedia di [Lampiran A.1](14_Lampiran.md#a1-backpropagation-derivasi-manual) untuk dibaca setelah Anda sudah punya gambaran training dari beberapa run sukses. Lab 1c (MLP numpy from-scratch) juga tersedia sebagai breadth lab opsional kapan saja, dan menerapkan backprop secara konkret pada MNIST.
 
@@ -292,18 +292,18 @@ Catat untuk setiap run:
 **Langkah:**
 
 1. **Smoke test.** Jalankan dengan `--dry-run` untuk memastikan pipeline hidup tanpa error.
-2. **Run regression.** Set `task=regression`, `loss=mse`, `num_classes=1`. Latih 20 epoch. Catat MAE val.
-3. **Run binary.** Set `task=binary`, `loss=cross_entropy`, `num_classes=2`. Catat accuracy val.
-4. **Run multiclass.** Set `task=multiclass`, `loss=cross_entropy`, `num_classes=3`. Catat accuracy + macro-F1 val.
+2. **Jalankan regresi.** Set `task=regression`, `loss=mse`, `num_classes=1`. Latih 20 epoch. Catat MAE val.
+3. **Jalankan klasifikasi biner.** Set `task=binary`, `loss=cross_entropy`, `num_classes=2`. Catat accuracy val.
+4. **Jalankan klasifikasi multikelas.** Set `task=multiclass`, `loss=cross_entropy`, `num_classes=3`. Catat accuracy + macro-F1 val.
 5. **Eksperimen mismatch secara sengaja.** Jalankan satu run dengan kombinasi salah (mis. binary task tapi loss=mse). Amati kegagalan. Tuliskan dalam 2 kalimat apa yang gagal.
-6. **Writeup observasi vs interpretasi.** Tulis 1 paragraf observasi murni (apa yang dilihat di angka), 1 paragraf interpretasi (apa yang menurut Anda terjadi).
+6. **Tulisan observasi vs interpretasi.** Tulis 1 paragraf observasi murni (apa yang dilihat di angka), 1 paragraf interpretasi (apa yang menurut Anda terjadi).
 
 **Luaran:**
 
-- 3 run config (regression, binary, multiclass) di `experiments/`
+- 3 konfigurasi run (regression, binary, multiclass) di `experiments/`
 - 1 notebook lab0 dengan output sel terisi
-- 1 writeup `observasi_vs_interpretasi.md` (template di [Lampiran C.6](14_Lampiran.md#c6-template-entri-portofolio))
-- Smoke test repository berhasil
+- 1 tulisan `observasi_vs_interpretasi.md` (template di [Lampiran C.6](14_Lampiran.md#c6-template-entri-portofolio))
+- Smoke test repositori berhasil
 
 ---
 
@@ -313,7 +313,7 @@ Tulis jawaban singkat (1-2 paragraf masing-masing) untuk tiga pertanyaan berikut
 
 1. **Output head yang sama, loss berbeda.** Ada situasi di mana binary classification dijalankan dengan `Linear(D, 1) + BCEWithLogitsLoss` dan situasi lain dengan `Linear(D, 2) + CrossEntropyLoss`. Apa konsekuensi praktisnya? Mana yang Anda pilih untuk Lab 0, dan mengapa?
 2. **Observasi vs interpretasi.** Sebutkan satu pengamatan dari Lab 0 yang tergoda Anda interpretasikan terlalu cepat. Apa pertanyaan tambahan yang seharusnya Anda ajukan sebelum menyimpulkan?
-3. **Big Map awal.** Tulis dua baris Big Map dalam catatan Anda: satu untuk regresi Lab 0 dan satu untuk multiclass Lab 0. Apa bentuk input, bentuk output, dan keluarga model? Tambahkan baris baru pada setiap minggu berikutnya.
+3. **Peta besar awal.** Tulis dua baris peta besar dalam catatan Anda: satu untuk regresi Lab 0 dan satu untuk multiclass Lab 0. Apa bentuk input, bentuk output, dan keluarga model? Tambahkan baris baru pada setiap minggu berikutnya.
 
 ---
 

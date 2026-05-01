@@ -28,8 +28,8 @@
 
 > *Arsitektur bukan daftar definisi untuk dihafalkan. Arsitektur adalah keputusan desain yang berangkat dari pertanyaan: pola apa yang dibawa data Anda, dan struktur model apa yang paling cocok untuk pola itu?*
 
-**Baris Big Map:** `(C, H, W) -> (N,)`
-**Rigor habit:** Three-level smoke test
+**Baris peta besar:** `(C, H, W) -> (N,)`
+**Kebiasaan riset:** Smoke test tiga level
 **Dataset:** CIFAR-10 (image classification)
 **Lab utama:** Lab 1 (`lab_w2_cnn_baseline.ipynb`)
 
@@ -41,7 +41,7 @@ W2 memperkenalkan tensor citra, arsitektur CNN, dan tiga kebiasaan debugging ter
 
 - **2.1** Peta Besar: tensor masuk dan tensor keluar
 - **2.2** Empat keluarga arsitektur sebagai asumsi tentang data (CNN sebagai contoh utama)
-- **2.3** Three-Level Smoke Test
+- **2.3** Smoke Test Tiga Level
 - **2.4** Galeri Training: sebelum membaca teori
 - **2.5** Layer sebagai transformasi: inisialisasi, normalisasi, aktivasi
 - **Lampiran A.1** Backpropagation derivasi manual (opsional, tersedia setelah W2)
@@ -145,7 +145,7 @@ Perhatikan bahwa output tidak selalu `(N,)`: deteksi objek menghasilkan tensor t
 
 Semua keluarga arsitektur neural network, pada level komputasi, adalah **MLP dengan batasan tambahan**: CNN adalah MLP yang dipaksa berbagi bobot antar lokasi spasial, Transformer adalah MLP yang memproses setiap posisi dengan bobot sama, RNN adalah MLP yang dipanggil berulang sepanjang waktu.
 
-Model belajar lewat **backpropagation**: setelah loss dihitung di output, gradient dari loss terhadap setiap parameter dirambatkan mundur via chain rule, lalu optimizer memperbarui parameter ke arah penurunan loss. `loss.backward()` di PyTorch mengerjakan ini secara otomatis.
+Model belajar lewat **backpropagation**: setelah loss dihitung di output, gradient dari loss terhadap setiap parameter dirambatkan mundur melalui chain rule, lalu optimizer memperbarui parameter ke arah penurunan loss. `loss.backward()` di PyTorch mengerjakan ini secara otomatis.
 
 Dua fenomena penting yang sering disebut paper:
 
@@ -155,7 +155,7 @@ Dua fenomena penting yang sering disebut paper:
 > [!NOTE]
 > Derivasi 7-langkah chain rule untuk MLP (MSE loss + sigmoid) tersedia lengkap di [Lampiran A.1](14_Lampiran.md#a1-backpropagation-derivasi-manual). Baca setelah W3, ketika Anda sudah punya beberapa run sukses untuk diinterpretasi. Lab 1c (MLP numpy from-scratch) tersedia sebagai breadth lab opsional dan menerapkan backprop secara konkret pada MNIST.
 
-### 2.3 Three-Level Smoke Test
+### 2.3 Smoke Test Tiga Level
 
 Tiga level smoke test bukan formalitas; masing-masing menargetkan **tiga jenis bug paling sering** di pipeline deep learning, dari yang paling murah dideteksi ke yang paling mahal:
 
@@ -188,7 +188,7 @@ for i in range(100):
     optimizer.step()
     if i % 20 == 0:
         print(f"iter {i}: loss={loss.item():.4f}")
-# Expected: loss turun dari ~2.3 menuju ~0.0 dalam 100 iterasi
+# Ekspektasi: loss turun dari ~2.3 menuju ~0.0 dalam 100 iterasi
 ```
 
 > [!IMPORTANT]

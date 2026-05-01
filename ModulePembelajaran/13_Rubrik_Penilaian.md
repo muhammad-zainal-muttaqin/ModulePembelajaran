@@ -65,10 +65,10 @@ Bobot berikut adalah saran yang dapat disesuaikan dosen menurut fokus kelas. Tot
 | 2   | Menerjemahkan ide menjadi eksperimen | 12%   |
 | 3   | Eksperimen reproduksibel             | 14%   |
 | 4   | Validasi data & pra-pemrosesan       | 12%   |
-| 5   | AI tools sebagai pendukung           | 8%    |
-| 6   | Adopsi repository riset              | 10%   |
+| 5   | alat AI sebagai pendukung           | 8%    |
+| 6   | Adopsi repositori riset              | 10%   |
 | 7   | Alat pendukung ringan                | 4%    |
-| 8   | Platform & tool baru                 | 6%    |
+| 8   | Platform & alat baru                 | 6%    |
 | 9   | Pengembangan mandiri                 | 10%   |
 | –   | **Proyek capstone**                  | 10%   |
 | 10  | Eksplorasi Mandiri & Komunikasi      | 10% (*) |
@@ -140,7 +140,7 @@ Setiap baris di bawah adalah kompetensi; setiap kolom adalah level. Deskriptor d
 | Masterpiece | Menemukan bentuk *leakage* yang tidak dibahas modul (mis. fitur turunan yang memuat target), mendokumentasikan protokol audit yang dapat dipakai ulang. |
 
 
-### Kompetensi 5 - AI Tools Sebagai Pendukung
+### Kompetensi 5 - Alat AI Sebagai Pendukung
 
 
 | Level       | Deskriptor                                                                                                                                                                   |
@@ -158,8 +158,8 @@ Setiap baris di bawah adalah kompetensi; setiap kolom adalah level. Deskriptor d
 | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | Novice      | Clone repo, mengikuti README, berhenti saat ada error setup yang tidak terduga.                                                                                                |
 | Developing  | Mengatasi setup umum (dependency conflict, path), menemukan file model dan loss dengan bantuan `grep`.                                                                         |
-| Proficient  | Memetakan entry point → model → loss → config dalam satu jam; menambahkan argumen CLI atau loss baru dengan modifikasi minimal-invasif.                                        |
-| Masterpiece | Memperbaiki repo orang lain (dokumentasi kecil, perbaikan bug, arg baru) dan men-submit pull request yang diterima; menjelaskan arsitektur repo kepada rekan dalam < 15 menit. |
+| Proficient  | Memetakan entry point → model → loss → config dalam satu jam; menambahkan argumen CLI atau loss baru dengan modifikasi seminimal mungkin.                                        |
+| Masterpiece | Memperbaiki repo orang lain (dokumentasi kecil, perbaikan bug, arg baru) dan mengirim pull request yang diterima; menjelaskan arsitektur repo kepada rekan dalam < 15 menit. |
 
 
 ### Kompetensi 7 - Alat Pendukung Ringan
@@ -169,11 +169,11 @@ Setiap baris di bawah adalah kompetensi; setiap kolom adalah level. Deskriptor d
 | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Novice      | Membuat demo yang hanya menampilkan output mentah tanpa konteks interpretasi.                                                                     |
 | Developing  | Demo Streamlit/Gradio berfungsi; visualisasi loss/accuracy dapat dibaca.                                                                          |
-| Proficient  | Tool dirancang agar dosen/rekan bisa mengeksplorasi hasil tanpa harus bertanya; demo menunjukkan *confusion* atau *failure case* yang informatif. |
-| Masterpiece | Tool membantu menemukan insight baru tentang data atau model yang tidak terlihat di log; reusable lintas eksperimen.                              |
+| Proficient  | Alat dirancang agar dosen/rekan bisa mengeksplorasi hasil tanpa harus bertanya; demo menunjukkan *confusion* atau *kasus gagal* yang informatif. |
+| Masterpiece | Alat membantu menemukan temuan baru tentang data atau model yang tidak terlihat di log; reusable lintas eksperimen.                              |
 
 
-### Kompetensi 8 - Platform & Tool Baru
+### Kompetensi 8 - Platform & Alat Baru
 
 
 | Level       | Deskriptor                                                                                                                                 |
@@ -181,7 +181,7 @@ Setiap baris di bawah adalah kompetensi; setiap kolom adalah level. Deskriptor d
 | Novice      | Menjalankan tutorial RunPod langkah demi langkah, tersendat saat menyimpang dari tutorial.                                                 |
 | Developing  | Menjalankan eksperimen sederhana di RunPod, mengatur port forwarding TensorBoard.                                                          |
 | Proficient  | Mengelola biaya GPU, menyinkronkan data dan checkpoint antar mesin, memulihkan training dari checkpoint remote.                            |
-| Masterpiece | Mengadopsi platform/tool baru (bukan RunPod) secara mandiri dari dokumentasinya; menulis panduan ringkas untuk rekan yang akan memakainya. |
+| Masterpiece | Mengadopsi platform/alat baru (bukan RunPod) secara mandiri dari dokumentasinya; menulis panduan ringkas untuk rekan yang akan memakainya. |
 
 
 ### Kompetensi 9 - Pengembangan Mandiri
@@ -238,39 +238,39 @@ Level capstone berkontribusi 10% ke nilai akhir dengan pemetaan yang sama (Novic
 
 ### 5.1 Sub-Rubrik Per Fase Capstone (4 Minggu)
 
-Penilaian capstone didistribusi ke empat fase untuk memastikan feedback diberikan selama proses, bukan hanya di akhir.
+Penilaian capstone didistribusi ke empat fase untuk memastikan umpan balik diberikan selama proses, bukan hanya di akhir.
 
 **W12 - Filter dan Komitmen (25% dari nilai capstone)**
 
 | Kriteria | Novice | Developing | Proficient | Masterpiece |
 |---|---|---|---|---|
 | **Pertahanan framing** | Framing tidak bisa dipertahankan saat ditanya | Framing ada tapi gap tidak jelas | Gap diidentifikasi; temporal/causal check dilakukan; literatur 2-3 paper | Gap terverifikasi; triage literatur menyeluruh; backup framing siap |
-| **Pre-registration Eksperimen 1** | Tidak ada atau dibuat setelah training | Ada tapi generik, tanpa kondisi kegagalan | Hipotesis falsifiable; kondisi kegagalan eksplisit; seeds ditentukan | Pre-reg merencanakan fallback jika primary gagal; commit sebelum kode berjalan |
+| **Pre-registration Eksperimen 1** | Tidak ada atau dibuat setelah training | Ada tapi generik, tanpa kondisi kegagalan | Hipotesis dapat dipalsukan; kondisi kegagalan eksplisit; seeds ditentukan | Pre-reg merencanakan fallback jika primary gagal; commit sebelum kode berjalan |
 | **Memulai Eksperimen 1** | Eksperimen belum mulai di akhir W12 | Setup berjalan; belum ada hasil | Baseline berjalan dengan ≥1 seed; logging aktif | Baseline + condition awal; hasil pertama sudah ada |
 
 **W13 - Pikirkan Ulang dan Iterasi (35% dari nilai capstone)**
 
 | Kriteria | Novice | Developing | Proficient | Masterpiece |
 |---|---|---|---|---|
-| **Hasil Eksperimen 1** | Tidak ada hasil atau tidak bisa direproduksi | Hasil ada; 1 seed; tanpa variance | Baseline vs kondisi utama; 3 seed; tabel angka | Per-seed variance dilaporkan; hasil dikaitkan ke hipotesis |
-| **Dokumen rethink** | Tidak ada atau menyalin rencana awal | Mencatat hasil tanpa perubahan arah | Perubahan arah traceable ke angka spesifik yang diamati; 2 paper baru ditemukan setelah melihat hasil | Mendiagnosis mengapa hasil berbeda dari ekspektasi; Eksperimen 2 secara eksplisit menjawab pertanyaan yang muncul dari Eksperimen 1 |
-| **Pre-registration Eksperimen 2** | Tidak ada | Ada tapi identik dengan Eksperimen 1 | Eksperimen 2 berbeda dari yang direncanakan semula berdasarkan rethink; kondisi dispecifikasi | Pre-reg bisa menjawab: "kalau Eksperimen 1 arahnya terbalik, Eksperimen 2 juga berbeda?" |
+| **Hasil Eksperimen 1** | Tidak ada hasil atau tidak bisa direproduksi | Hasil ada; 1 seed; tanpa variansi | Baseline vs kondisi utama; 3 seed; tabel angka | Per-seed variansi dilaporkan; hasil dikaitkan ke hipotesis |
+| **Dokumen tinjauan ulang** | Tidak ada atau menyalin rencana awal | Mencatat hasil tanpa perubahan arah | Perubahan arah dapat dilacak ke angka spesifik yang diamati; 2 paper baru ditemukan setelah melihat hasil | Mendiagnosis mengapa hasil berbeda dari ekspektasi; Eksperimen 2 secara eksplisit menjawab pertanyaan yang muncul dari Eksperimen 1 |
+| **Pre-registration Eksperimen 2** | Tidak ada | Ada tapi identik dengan Eksperimen 1 | Eksperimen 2 berbeda dari yang direncanakan semula berdasarkan tinjauan ulang; kondisi dispecifikasi | Pre-reg bisa menjawab: "kalau Eksperimen 1 arahnya terbalik, Eksperimen 2 juga berbeda?" |
 
 **W14 - Presentasi Final (30% dari nilai capstone)**
 
 | Kriteria | Novice | Developing | Proficient | Masterpiece |
 |---|---|---|---|---|
-| **Research talk (15 mnt)** | Presentasi deskriptif; tidak ada argumen | Struktur ada; rethink disebutkan tapi dangkal | Alur logis dari gap → Eks 1 → rethink → Eks 2 → kontribusi; klaim sesuai data | Q&A dijawab dengan bukti spesifik; klaim dibatasi ke kondisi eksperimen |
-| **Klaim vs bukti** | Overclaiming umum; tanpa batasan scope | Klaim ada caveats tapi masih lebar | Klaim dibatasi eksplisit ke dataset dan kondisi yang diuji | Membedakan apa yang terbukti, apa yang disugestikan, dan apa yang masih spekulasi |
-| **Demo (saat presentasi)** | Tidak ada demo | Demo jalan; hanya sukses cases | Demo menampilkan failure cases; bisa dicari kasus yang model gagal | Demo informatif dan memperlihatkan keterbatasan metode |
+| **Presentasi riset (15 mnt)** | Presentasi deskriptif; tidak ada argumen | Struktur ada; tinjauan ulang disebutkan tapi dangkal | Alur logis dari gap → Eks 1 → tinjauan ulang → Eks 2 → kontribusi; klaim sesuai data | Q&A dijawab dengan bukti spesifik; klaim dibatasi ke kondisi eksperimen |
+| **Klaim vs bukti** | Overclaiming umum; tanpa batasan cakupan | Klaim ada catatan batasan tapi masih lebar | Klaim dibatasi eksplisit ke dataset dan kondisi yang diuji | Membedakan apa yang terbukti, apa yang disugestikan, dan apa yang masih spekulasi |
+| **Demo (saat presentasi)** | Tidak ada demo | Demo jalan; hanya kasus sukses | Demo menampilkan kasus gagal; bisa dicari kasus yang model gagal | Demo informatif dan memperlihatkan keterbatasan metode |
 
 **W15 - Pengumpulan Final (10% dari nilai capstone)**
 
 | Kriteria | Novice | Developing | Proficient | Masterpiece |
 |---|---|---|---|---|
-| **Laporan final** | Draf kasar; banyak bagian kosong | Semua bagian ada; penulisan kurang rapi | 6-8 halaman; narasi runtut; limitasi dinyatakan jujur; setiap angka lacak ke eksperimen | Dapat dibaca peneliti lain dalam 30 menit tanpa penjelasan tambahan |
-| **Reproducibility repo** | Kode ada tapi sulit dijalankan | README ada; dependencies tercatat | Clone → setup → hasil utama dalam <30 menit; tag `v1.0` | Smoke test berjalan dari lingkungan bersih; config dan seed terdokumentasi |
-| **Revisi berdasarkan feedback** | Tidak ada revisi dari feedback W14 | Revisi kosmetik saja | Perubahan substantif mengacu feedback spesifik dari sesi W14 | Semua poin Q&A W14 tercermin di laporan atau disebutkan sebagai limitasi |
+| **Laporan final** | Draf kasar; banyak bagian kosong | Semua bagian ada; penulisan kurang rapi | 6-8 halaman; narasi runtut; limitasi dinyatakan jujur; setiap angka dapat dilacak ke eksperimen | Dapat dibaca peneliti lain dalam 30 menit tanpa penjelasan tambahan |
+| **Repositori reproduksibel** | Kode ada tapi sulit dijalankan | README ada; dependencies tercatat | Clone → setup → hasil utama dalam <30 menit; tag `v1.0` | Smoke test berjalan dari lingkungan bersih; config dan seed terdokumentasi |
+| **Revisi berdasarkan umpan balik** | Tidak ada revisi dari umpan balik W14 | Revisi kosmetik saja | Perubahan substantif mengacu umpan balik spesifik dari sesi W14 | Semua poin Q&A W14 tercermin di laporan atau disebutkan sebagai limitasi |
 
 ---
 
