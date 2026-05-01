@@ -26,7 +26,7 @@
 
 # 00 · Pendahuluan
 
-> *Riset yang baik dimulai dari pertanyaan yang jujur. Modul ini mengajak Anda memperlakukan setiap instruksi sebagai awal dari pertanyaan - bukan akhir dari jawaban.*
+> *Riset yang baik berawal dari keberanian bertanya. Modul ini mengajak Anda melihat setiap instruksi bukan sebagai jawaban akhir, melainkan sebagai pintu masuk untuk menyelidiki lebih jauh.*
 
 ---
 
