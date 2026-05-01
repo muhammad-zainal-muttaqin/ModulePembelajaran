@@ -18,7 +18,7 @@ export default function EmailHero() {
             <span className="text-rigor dark:text-curiosity">Semua keputusan ada di tangan Anda.</span>
           </h1>
           <p className="text-lg md:text-xl text-ink/75 dark:text-parchment/80 max-w-xl mb-8 leading-relaxed">
-            Email dua kalimat dari dosen pembimbing menyimpan puluhan keputusan yang tidak disebut: baseline mana, seed berapa, metrik apa, kapan angka layak dilaporkan. Modul ini melatih Anda membuat keputusan-keputusan itu secara sistematis.
+            Email dua kalimat dari dosen pembimbing menyimpan puluhan keputusan yang tidak disebut: focal loss versi apa, blok awal mana, baseline seperti apa yang adil, seed berapa, metrik mana, dan kapan angka layak dilaporkan. Modul ini melatih Anda membuat keputusan-keputusan itu secara sistematis.
           </p>
           <div className="flex flex-wrap gap-3">
             <Link to="/modul/00" className="btn-primary text-base px-5 py-2.5">

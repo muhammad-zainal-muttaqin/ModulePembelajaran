@@ -1,26 +1,25 @@
-<details>
-<summary>📂 Navigasi Modul (klik untuk buka)</summary>
+📂 Navigasi Modul (klik untuk buka)
 
-| # | Modul | Minggu |
-|---|-------|--------|
-| ▶ 00 | Pendahuluan | 1 |
-| 01 | [W1 - Tabular & Output Heads](01_W1_Tabular_Output_Heads.md) | 1 |
-| 02 | [W2 - Images, CNN & Smoke Test](02_W2_Images_CNN_Smoke_Test.md) | 2 |
-| 03 | [W3 - Loss, Optimizer & Evaluasi](03_W3_Loss_Optimizer_Evaluasi.md) | 3 |
-| 04 | [W4 - Reproducibility & Experiment Matrix](04_W4_Reproducibility_Experiment_Matrix.md) | 4 |
-| 05 | [W5 - Sequences: RNN & LSTM](05_W5_Sequences_RNN_LSTM.md) | 5 |
-| 06 | [W6 - Representations & Temporal Leakage](06_W6_Representations_Temporal_Leakage.md) | 6 |
-| 07 | [W7 - Text, Transformers & Repo Adoption](07_W7_Text_Transformers_Repo_Adoption.md) | 7 |
-| 08 | [W8 - Foundation Models](08_W8_Foundation_Models.md) | 8 |
-| 09 | [W9 - Multimodal Reasoning](09_W9_Multimodal_Reasoning.md) | 9 |
-| 10 | [W10 - Paper Reading & Implementation](10_W10_Paper_Reading.md) | 10 |
-| 11 | [W11 - Research Framing](11_W11_Research_Framing.md) | 11 |
-| 12 | [Capstone - Proyek Riset](12_Capstone.md) | 12-15 |
-| 13 | [Rubrik Penilaian](13_Rubrik_Penilaian.md) | – |
-| 14 | [Lampiran](14_Lampiran.md) | – |
-| 15 | [Panduan Instruktur](15_Panduan_Instruktur.md) | – |
 
-</details>
+| #    | Modul                                                                                  | Minggu |
+| ---- | -------------------------------------------------------------------------------------- | ------ |
+| ▶ 00 | Pendahuluan                                                                            | 1      |
+| 01   | [W1 - Tabular & Output Heads](01_W1_Tabular_Output_Heads.md)                           | 1      |
+| 02   | [W2 - Images, CNN & Smoke Test](02_W2_Images_CNN_Smoke_Test.md)                        | 2      |
+| 03   | [W3 - Loss, Optimizer & Evaluasi](03_W3_Loss_Optimizer_Evaluasi.md)                    | 3      |
+| 04   | [W4 - Reproducibility & Experiment Matrix](04_W4_Reproducibility_Experiment_Matrix.md) | 4      |
+| 05   | [W5 - Sequences: RNN & LSTM](05_W5_Sequences_RNN_LSTM.md)                              | 5      |
+| 06   | [W6 - Representations & Temporal Leakage](06_W6_Representations_Temporal_Leakage.md)   | 6      |
+| 07   | [W7 - Text, Transformers & Repo Adoption](07_W7_Text_Transformers_Repo_Adoption.md)    | 7      |
+| 08   | [W8 - Foundation Models](08_W8_Foundation_Models.md)                                   | 8      |
+| 09   | [W9 - Multimodal Reasoning](09_W9_Multimodal_Reasoning.md)                             | 9      |
+| 10   | [W10 - Paper Reading & Implementation](10_W10_Paper_Reading.md)                        | 10     |
+| 11   | [W11 - Research Framing](11_W11_Research_Framing.md)                                   | 11     |
+| 12   | [Capstone - Proyek Riset](12_Capstone.md)                                              | 12-15  |
+| 13   | [Rubrik Penilaian](13_Rubrik_Penilaian.md)                                             | –      |
+| 14   | [Lampiran](14_Lampiran.md)                                                             | –      |
+| 15   | [Panduan Instruktur](15_Panduan_Instruktur.md)                                         | –      |
+
 
 ---
 
@@ -47,13 +46,15 @@ Prasyarat modul ini dibuat seringan mungkin, tetapi tetap ada beberapa istilah d
 
 "Shape" sebuah tensor adalah daftar berapa banyak elemen di tiap sumbu, ditulis sebagai tuple Python:
 
-| Tuple shape | Arti | Contoh data |
-| --- | --- | --- |
-| `(3,)` | satu sumbu, 3 elemen | satu vektor `[a, b, c]` |
-| `(3, 4)` | dua sumbu, 3 baris × 4 kolom | matriks 3×4 |
-| `(3, 4, 5)` | tiga sumbu | "kubus" 3×4×5 |
-| `(B, F)` | B sampel, masing-masing F fitur | satu batch tabular |
-| `(B, C, H, W)` | B gambar, C channel, tinggi H, lebar W | satu batch citra |
+
+| Tuple shape    | Arti                                   | Contoh data             |
+| -------------- | -------------------------------------- | ----------------------- |
+| `(3,)`         | satu sumbu, 3 elemen                   | satu vektor `[a, b, c]` |
+| `(3, 4)`       | dua sumbu, 3 baris × 4 kolom           | matriks 3×4             |
+| `(3, 4, 5)`    | tiga sumbu                             | "kubus" 3×4×5           |
+| `(B, F)`       | B sampel, masing-masing F fitur        | satu batch tabular      |
+| `(B, C, H, W)` | B gambar, C channel, tinggi H, lebar W | satu batch citra        |
+
 
 **Koma akhir.** `(3,)` dengan koma di belakang adalah tuple dengan satu elemen; `(3)` tanpa koma adalah angka biasa di Python. Karena shape selalu tuple, koma akhir wajib saat tensor hanya punya satu sumbu.
 
@@ -67,14 +68,16 @@ np.array([[1, 2, 3]]).shape     # (1, 3) - dua sumbu, satu baris tiga kolom
 
 Modul memakai huruf-huruf berikut secara konsisten. Hafalkan sekali; semua bab pakai yang sama.
 
-| Huruf | Singkatan dari | Contoh konteks |
-| --- | --- | --- |
-| `N` | jumlah kelas (number of classes) atau jumlah sampel sesuai konteks | klasifikasi 10 kelas → output `(N,)` dengan N=10 |
-| `F` | jumlah fitur (features) | data tabular 5 kolom → input `(F,)` dengan F=5 |
-| `B` | ukuran batch (batch size) | 32 sampel sekaligus → batch `(B, F)` dengan B=32 |
-| `C` | jumlah channel (channels) | RGB → C=3, grayscale → C=1 |
-| `H`, `W` | tinggi (height) dan lebar (width) gambar | foto 224×224 → H=W=224 |
-| `T` | panjang sequence atau timestep | kalimat 50 token → T=50 |
+
+| Huruf    | Singkatan dari                                                     | Contoh konteks                                   |
+| -------- | ------------------------------------------------------------------ | ------------------------------------------------ |
+| `N`      | jumlah kelas (number of classes) atau jumlah sampel sesuai konteks | klasifikasi 10 kelas → output `(N,)` dengan N=10 |
+| `F`      | jumlah fitur (features)                                            | data tabular 5 kolom → input `(F,)` dengan F=5   |
+| `B`      | ukuran batch (batch size)                                          | 32 sampel sekaligus → batch `(B, F)` dengan B=32 |
+| `C`      | jumlah channel (channels)                                          | RGB → C=3, grayscale → C=1                       |
+| `H`, `W` | tinggi (height) dan lebar (width) gambar                           | foto 224×224 → H=W=224                           |
+| `T`      | panjang sequence atau timestep                                     | kalimat 50 token → T=50                          |
+
 
 ### 0.5.3 Arti Panah `->` di Shape Map
 
@@ -125,27 +128,29 @@ Broadcasting (PyTorch dan NumPy) secara singkat: jika dua tensor punya shape yan
 
 Daftar ini bukan untuk dihafalkan. Baca sekilas sekali agar istilah-istilah ini tidak menghambat Anda saat masuk W1 dan seterusnya. Definisi penuh dengan contoh dan catatan ada di [Lampiran 14](14_Lampiran.md).
 
-| Istilah | Arti singkat |
-| --- | --- |
-| **loss** | angka yang mengukur seberapa salah prediksi model; semakin kecil, semakin baik |
-| **gradient** | turunan loss terhadap parameter; menunjuk arah penurunan loss |
-| **optimizer** | algoritma yang memakai gradient untuk memperbarui parameter (mis. SGD, Adam, AdamW) |
-| **baseline** | model atau hasil sederhana sebagai titik banding sebelum klaim peningkatan |
-| **freeze** | mengunci sebagian bobot agar tidak ikut dilatih; biasanya pretrained backbone |
-| **fine-tune** | melatih lanjutan pretrained model pada data baru, biasanya dengan learning rate kecil |
-| **ablation** | eksperimen yang sengaja menghilangkan satu komponen untuk melihat kontribusinya |
-| **leakage** | informasi test atau masa depan yang bocor ke training; menyebabkan akurasi palsu tinggi |
-| **pre-registration** | pernyataan hipotesis dan protokol eksperimen yang ditulis sebelum eksperimen dijalankan |
-| **hyperparameter** | parameter yang Anda set manual sebelum training (mis. learning rate, batch size); tidak dipelajari otomatis |
-| **overfitting** | model menghafal data training, gagal generalisasi ke data baru |
-| **epoch** | satu lewatan penuh atas seluruh dataset training |
-| **batch** | sub-grup kecil dari dataset yang diproses sekaligus dalam satu langkah training |
-| **seed** | angka acak yang dikunci agar hasil bisa direproduksi |
-| **checkpoint** | file yang menyimpan bobot model dan state optimizer di titik tertentu |
-| **augmentation** | transformasi data training (rotasi, crop, dll.) untuk memperluas variasi |
-| **dropout** | teknik regularisasi: secara acak menonaktifkan sebagian neuron tiap forward saat training |
-| **batch norm** | layer yang menormalisasi aktivasi per-batch agar distribusi stabil |
-| **regularization** | teknik untuk mencegah overfitting (mis. dropout, weight decay, augmentation) |
+
+| Istilah              | Arti singkat                                                                                                |
+| -------------------- | ----------------------------------------------------------------------------------------------------------- |
+| **loss**             | angka yang mengukur seberapa salah prediksi model; semakin kecil, semakin baik                              |
+| **gradient**         | turunan loss terhadap parameter; menunjuk arah penurunan loss                                               |
+| **optimizer**        | algoritma yang memakai gradient untuk memperbarui parameter (mis. SGD, Adam, AdamW)                         |
+| **baseline**         | model atau hasil sederhana sebagai titik banding sebelum klaim peningkatan                                  |
+| **freeze**           | mengunci sebagian bobot agar tidak ikut dilatih; biasanya pretrained backbone                               |
+| **fine-tune**        | melatih lanjutan pretrained model pada data baru, biasanya dengan learning rate kecil                       |
+| **ablation**         | eksperimen yang sengaja menghilangkan satu komponen untuk melihat kontribusinya                             |
+| **leakage**          | informasi test atau masa depan yang bocor ke training; menyebabkan akurasi palsu tinggi                     |
+| **pre-registration** | pernyataan hipotesis dan protokol eksperimen yang ditulis sebelum eksperimen dijalankan                     |
+| **hyperparameter**   | parameter yang Anda set manual sebelum training (mis. learning rate, batch size); tidak dipelajari otomatis |
+| **overfitting**      | model menghafal data training, gagal generalisasi ke data baru                                              |
+| **epoch**            | satu lewatan penuh atas seluruh dataset training                                                            |
+| **batch**            | sub-grup kecil dari dataset yang diproses sekaligus dalam satu langkah training                             |
+| **seed**             | angka acak yang dikunci agar hasil bisa direproduksi                                                        |
+| **checkpoint**       | file yang menyimpan bobot model dan state optimizer di titik tertentu                                       |
+| **augmentation**     | transformasi data training (rotasi, crop, dll.) untuk memperluas variasi                                    |
+| **dropout**          | teknik regularisasi: secara acak menonaktifkan sebagian neuron tiap forward saat training                   |
+| **batch norm**       | layer yang menormalisasi aktivasi per-batch agar distribusi stabil                                          |
+| **regularization**   | teknik untuk mencegah overfitting (mis. dropout, weight decay, augmentation)                                |
+
 
 ---
 
@@ -153,14 +158,11 @@ Daftar ini bukan untuk dihafalkan. Baca sekilas sekali agar istilah-istilah ini 
 
 Bayangkan Anda baru bergabung di laboratorium riset sebagai asisten. Pada hari ketiga, Anda menerima pesan singkat:
 
-> "Tolong latih model klasifikasi gambar ini. Saya butuh laporan singkat hari Kamis: metrik utama, baseline pembanding, dan alasan kenapa angkanya bisa dipercaya."
+> "Tolong uji focal loss dan freeze blok awal pada backbone. Bandingkan dengan baseline yang adil, lalu kirim ringkasan hasil hari Kamis."
 
-Email ini terdengar sederhana, tetapi setiap fragmen menyimpan keputusan yang tidak disebut: dataset yang mana, "akurasi" pada split mana, bagaimana memastikan dua run tidak berbeda hanya karena seed acak, dan kapan angka layak dilaporkan.
+Email dua kalimat ini terdengar sederhana, tetapi setiap fragmen menyimpan keputusan yang tidak disebut: focal loss versi apa, nilai `gamma` berapa, blok awal mana yang di-freeze, baseline seperti apa yang adil, metrik mana yang menentukan, bagaimana memastikan dua run tidak berbeda hanya karena seed acak, dan kapan angka layak dilaporkan.
 
 Semua keputusan itu ada di tangan Anda. Modul ini melatih Anda membuat keputusan-keputusan tersebut secara sistematis, sehingga email semacam itu menjadi titik awal eksperimen yang terstruktur, bukan sumber kepanikan.
-
-> [!NOTE]
-> W4 menggunakan email PI dengan instruksi teknis yang lebih spesifik sebagai titik awal worked example: *"Tolong uji focal loss dan freeze blok awal pada backbone. Bandingkan dengan baseline yang adil, lalu kirim ringkasan hasil hari Kamis."* Pertanyaan-pertanyaan yang muncul dari email sederhana di atas - dataset mana, split mana, angka bisa dipercaya bagaimana - adalah pertanyaan yang sama yang akan Anda hadapi saat instruksinya lebih teknis sekalipun.
 
 ---
 
@@ -246,17 +248,19 @@ Setiap minggu kembali ke pertanyaan yang sama:
 
 > Tensor shape apa yang masuk, shape apa yang keluar, dan keluarga model apa yang secara alami cocok untuk pemetaan itu?
 
-| Minggu | Baris Big Map |
-|---|---|
-| W1 | `(F,) -> (1,)`, `(1,)`, `(N,)` (tabular) |
-| W2-W3 | `(C, H, W) -> (N,)` (citra) |
-| W4 | sama seperti W2-W3, fokus alur kerja |
-| W5 | `(T, F) -> (1,)`, `(N,)`, `(T'', 1)` (sequence) |
-| W6 | sama seperti W5, fokus representasi & leakage |
-| W7 | `(T,) -> (N,)`, `(1,)`, `(T, N)` (teks) |
-| W8 | input apapun yang memanfaatkan pretrained priors |
-| W9 | multiple tensors -> shared prediction (multimodal) |
-| W10-W11 | sintesis lintas keluarga |
+
+| Minggu  | Baris Big Map                                      |
+| ------- | -------------------------------------------------- |
+| W1      | `(F,) -> (1,)`, `(1,)`, `(N,)` (tabular)           |
+| W2-W3   | `(C, H, W) -> (N,)` (citra)                        |
+| W4      | sama seperti W2-W3, fokus alur kerja               |
+| W5      | `(T, F) -> (1,)`, `(N,)`, `(T'', 1)` (sequence)    |
+| W6      | sama seperti W5, fokus representasi & leakage      |
+| W7      | `(T,) -> (N,)`, `(1,)`, `(T, N)` (teks)            |
+| W8      | input apapun yang memanfaatkan pretrained priors   |
+| W9      | multiple tensors -> shared prediction (multimodal) |
+| W10-W11 | sintesis lintas keluarga                           |
+
 
 Peta ini bertambah lengkap setiap minggu sehingga Anda perlahan melihat deep learning sebagai satu lanskap, bukan banyak teknik yang terputus.
 
@@ -264,19 +268,21 @@ Peta ini bertambah lengkap setiap minggu sehingga Anda perlahan melihat deep lea
 
 Setiap minggu memperkenalkan satu kebiasaan riset yang tetap dipakai setelahnya. Bootcamp dibuat kumulatif, bukan mulai ulang setiap Senin. Kolom "contoh operasional" memberi gambaran konkret tentang penerapan kebiasaan itu dalam pekerjaan sehari-hari.
 
-| Minggu | Rigor habit | Contoh operasional |
-|---|---|---|
-| W1 | Observasi sebelum kesimpulan | Sebelum bilang "model A lebih baik", tulis dulu apa yang dilihat di kurva (angka, bentuk), baru tafsirkan. |
-| W2 | Three-level smoke test | Sebelum training 30 epoch, jalankan import test → dummy forward → overfit one batch. Stop kalau salah satu gagal. |
-| W3 | Change one thing at a time | Saat membandingkan focal vs CE, samakan optimizer, lr, seed, augmentasi. Hanya loss yang berubah. |
-| W4 | Reproducibility, traceability, matriks eksperimen | Setiap run punya `config.yaml + git_hash + seed`; semua ablation tertulis di matriks sebelum eksekusi. |
-| W5 | Long-sequence diagnosis dan justifikasi arsitektur | Saat training LSTM tidak konvergen, plot gradient norm per-layer dulu sebelum tweak hyperparameter. |
-| W6 | Validasi preprocessing dan kewaspadaan leakage | Hitung mean/std HANYA dari train; jangan pernah lihat test sebelum angka final. |
-| W7 | Verifikasi kode AI, inspeksi tokenisasi, repo primer | Sebelum commit kode dari LLM, baca baris demi baris dan jalankan minimal smoke test sederhana. |
-| W8 | Model-card literacy, adaptation choice, fair baseline | Sebelum fine-tune, baca model card: dataset asal, lisensi, batas penggunaan, evaluasi yang sudah ada. |
-| W9 | Per-modality ablation dan multimodal failure analysis | Setelah multimodal model jalan, jalankan run dengan satu modality di-zero atau di-acak; jika metric tidak turun, modality itu diabaikan. |
-| W10 | Three-pass paper reading dan paper-to-code translation | Pass 1 (judul-abstrak-kesimpulan), pass 2 (figur dan tabel), pass 3 (rumus). Stop di pass 1 jika tidak relevan. |
-| W11 | Input→Middle→Output framing, triage literatur, seleksi gap | Tulis hipotesis falsifiable (`Δ ≥ X dengan p < Y`), bukan "saya pikir model A lebih baik". Framing yang baik punya gap yang tidak bisa diisi pipeline standar apa adanya. |
+
+| Minggu | Rigor habit                                                | Contoh operasional                                                                                                                                                        |
+| ------ | ---------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| W1     | Observasi sebelum kesimpulan                               | Sebelum bilang "model A lebih baik", tulis dulu apa yang dilihat di kurva (angka, bentuk), baru tafsirkan.                                                                |
+| W2     | Three-level smoke test                                     | Sebelum training 30 epoch, jalankan import test → dummy forward → overfit one batch. Stop kalau salah satu gagal.                                                         |
+| W3     | Change one thing at a time                                 | Saat membandingkan focal vs CE, samakan optimizer, lr, seed, augmentasi. Hanya loss yang berubah.                                                                         |
+| W4     | Reproducibility, traceability, matriks eksperimen          | Setiap run punya `config.yaml + git_hash + seed`; semua ablation tertulis di matriks sebelum eksekusi.                                                                    |
+| W5     | Long-sequence diagnosis dan justifikasi arsitektur         | Saat training LSTM tidak konvergen, plot gradient norm per-layer dulu sebelum tweak hyperparameter.                                                                       |
+| W6     | Validasi preprocessing dan kewaspadaan leakage             | Hitung mean/std HANYA dari train; jangan pernah lihat test sebelum angka final.                                                                                           |
+| W7     | Verifikasi kode AI, inspeksi tokenisasi, repo primer       | Sebelum commit kode dari LLM, baca baris demi baris dan jalankan minimal smoke test sederhana.                                                                            |
+| W8     | Model-card literacy, adaptation choice, fair baseline      | Sebelum fine-tune, baca model card: dataset asal, lisensi, batas penggunaan, evaluasi yang sudah ada.                                                                     |
+| W9     | Per-modality ablation dan multimodal failure analysis      | Setelah multimodal model jalan, jalankan run dengan satu modality di-zero atau di-acak; jika metric tidak turun, modality itu diabaikan.                                  |
+| W10    | Three-pass paper reading dan paper-to-code translation     | Pass 1 (judul-abstrak-kesimpulan), pass 2 (figur dan tabel), pass 3 (rumus). Stop di pass 1 jika tidak relevan.                                                           |
+| W11    | Input→Middle→Output framing, triage literatur, seleksi gap | Tulis hipotesis falsifiable (`Δ ≥ X dengan p < Y`), bukan "saya pikir model A lebih baik". Framing yang baik punya gap yang tidak bisa diisi pipeline standar apa adanya. |
+
 
 ### 5.3 Representation Choice
 
@@ -301,14 +307,17 @@ Alur ini penting karena banyak masalah riset lanjutan sebenarnya berawal dari pi
 
 Setiap minggu mengikuti format yang stabil 2 jam (120 menit):
 
-| Segmen | Durasi | Tujuan |
-|---|---|---|
-| Prior-week findings | 30 menit | Mahasiswa membagikan temuan minggu sebelumnya |
-| New technical material | 40 menit | Konsep + live demo singkat |
-| Rigor habit of the week | 10 menit | Kebiasaan riset eksplisit yang dikaitkan ke assignment |
-| Assignment walkthrough | 40 menit | Langkah pertama bersama; mahasiswa lanjut mandiri di rumah |
+
+| Segmen                  | Durasi   | Tujuan                                                     |
+| ----------------------- | -------- | ---------------------------------------------------------- |
+| Prior-week findings     | 30 menit | Mahasiswa membagikan temuan minggu sebelumnya              |
+| New technical material  | 40 menit | Konsep + live demo singkat                                 |
+| Rigor habit of the week | 10 menit | Kebiasaan riset eksplisit yang dikaitkan ke assignment     |
+| Assignment walkthrough  | 40 menit | Langkah pertama bersama; mahasiswa lanjut mandiri di rumah |
+
 
 Format ini memastikan setiap sesi:
+
 1. menuntaskan tindak lanjut minggu sebelumnya,
 2. membuka konsep baru,
 3. menanamkan satu kebiasaan riset eksplisit, dan
@@ -361,12 +370,14 @@ Mulai W4, setiap bab juga memiliki satu **Komponen Mandiri** - pilihan jalur eks
 
 **Empat jalur Komponen Mandiri:**
 
-| Jalur | Inti kegiatan | Contoh konkret | Artefak portofolio |
-| --- | --- | --- | --- |
-| **Implementasi** | Tambah/ubah/uji kode di repo eksperimen | Augmentasi baru, scheduler tambahan, flag CLI penukar komponen | Cuplikan kode + benchmark before/after + 1 paragraf interpretasi |
-| **Analisis** | Selidiki perilaku model/data/hasil | Confusion matrix per-kelas, Grad-CAM, studi variansi seed, audit kesalahan | Visualisasi + 2-3 temuan + hipotesis turunan |
-| **Desain** | Rancang eksperimen baru tanpa wajib jalankan | Pre-registration, grid ablation belum jalan, protokol evaluasi baru | Protokol terstruktur + justifikasi + estimasi cost |
-| **Arsitektur Baru** | Replikasi/adaptasi keluarga arsitektur yang belum tercakup di lab wajib | GRU berbasis Lab 3b, multi-head berbasis Lab 6b, VAE berbasis Lab 7b | Forward pass + learning curve + perbedaan vs arsitektur lain. Template `14_Lampiran.md` C.8 |
+
+| Jalur               | Inti kegiatan                                                           | Contoh konkret                                                             | Artefak portofolio                                                                          |
+| ------------------- | ----------------------------------------------------------------------- | -------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
+| **Implementasi**    | Tambah/ubah/uji kode di repo eksperimen                                 | Augmentasi baru, scheduler tambahan, flag CLI penukar komponen             | Cuplikan kode + benchmark before/after + 1 paragraf interpretasi                            |
+| **Analisis**        | Selidiki perilaku model/data/hasil                                      | Confusion matrix per-kelas, Grad-CAM, studi variansi seed, audit kesalahan | Visualisasi + 2-3 temuan + hipotesis turunan                                                |
+| **Desain**          | Rancang eksperimen baru tanpa wajib jalankan                            | Pre-registration, grid ablation belum jalan, protokol evaluasi baru        | Protokol terstruktur + justifikasi + estimasi cost                                          |
+| **Arsitektur Baru** | Replikasi/adaptasi keluarga arsitektur yang belum tercakup di lab wajib | GRU berbasis Lab 3b, multi-head berbasis Lab 6b, VAE berbasis Lab 7b       | Forward pass + learning curve + perbedaan vs arsitektur lain. Template `14_Lampiran.md` C.8 |
+
 
 ---
 
@@ -374,20 +385,22 @@ Mulai W4, setiap bab juga memiliki satu **Komponen Mandiri** - pilihan jalur eks
 
 Modul ini disusun sebagai urutan linier W1 → W11. Tabel berikut menunjukkan minggu mana yang harus Anda selesaikan sebelum minggu tertentu. "Selesai" berarti lab utamanya sudah dijalankan dan Anda bisa menjelaskan ide utamanya.
 
-| Minggu | Prasyarat minimum | Konsep kunci |
-| --- | --- | --- |
-| **W1** Tabular | - (entry point) | - |
-| **W2** Images & CNN | W1 | Tensor I/O, output head + loss matching |
-| **W3** Loss/Opt/Eval | W2 | Smoke test tiga level, baseline yang berjalan |
-| **W4** Reproducibility | W3 | Pipeline training penuh; bisa baca loss curve |
-| **W5** Sequences | W4 | Disiplin alur kerja; matriks eksperimen |
-| **W6** Representations & Leakage | W5 | Sequence model; pemikiran tentang split data |
-| **W7** Text & Repo Adoption | W4, W6 | Reproducibility; pemahaman representasi |
-| **W8** Foundation Models | W7 | Pengalaman fine-tuning pretrained text/image model |
-| **W9** Multimodal | W8 | Pemahaman foundation model dan adaptation |
-| **W10** Paper Reading | W4, W7 | Bisa baca repo; bisa menjalankan eksperimen reproduksibel |
-| **W11** Research Framing | W10 | Pengalaman menerjemahkan paper jadi kode |
-| **W12-15** Capstone | W1-W11 | Seluruh pipeline + research framing matang |
+
+| Minggu                           | Prasyarat minimum | Konsep kunci                                              |
+| -------------------------------- | ----------------- | --------------------------------------------------------- |
+| **W1** Tabular                   | - (entry point)   | -                                                         |
+| **W2** Images & CNN              | W1                | Tensor I/O, output head + loss matching                   |
+| **W3** Loss/Opt/Eval             | W2                | Smoke test tiga level, baseline yang berjalan             |
+| **W4** Reproducibility           | W3                | Pipeline training penuh; bisa baca loss curve             |
+| **W5** Sequences                 | W4                | Disiplin alur kerja; matriks eksperimen                   |
+| **W6** Representations & Leakage | W5                | Sequence model; pemikiran tentang split data              |
+| **W7** Text & Repo Adoption      | W4, W6            | Reproducibility; pemahaman representasi                   |
+| **W8** Foundation Models         | W7                | Pengalaman fine-tuning pretrained text/image model        |
+| **W9** Multimodal                | W8                | Pemahaman foundation model dan adaptation                 |
+| **W10** Paper Reading            | W4, W7            | Bisa baca repo; bisa menjalankan eksperimen reproduksibel |
+| **W11** Research Framing         | W10               | Pengalaman menerjemahkan paper jadi kode                  |
+| **W12-15** Capstone              | W1-W11            | Seluruh pipeline + research framing matang                |
+
 
 > [!NOTE]
 > Dependensi linier W1→W11 memang disengaja. Berbeda dengan modul lama yang punya bab paralel, struktur bootcamp memastikan setiap kebiasaan riset baru bertumpu pada kebiasaan minggu sebelumnya. Hindari melompat: misalnya, W7 (text + repo adoption) menuntut alur kerja reproduksibel dari W4 dan matriks eksperimen dari W5.

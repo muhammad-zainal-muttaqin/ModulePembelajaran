@@ -495,6 +495,6 @@ Pertanyaan yang dijawab setelah lab: Pada dataset terbatas (500 sampel per kelas
 
 ## Lanjut ke Bab 02
 
-Anda sudah bisa memilih arsitektur dan membangun baseline. Bab 02 mengubah fokus dari *memahami sistem* menjadi *merancang eksperimen*: bagaimana menerjemahkan instruksi seperti "coba ubah loss ke focal, freeze conv1" menjadi rancangan konkret dengan variabel, baseline, hipotesis, dan metrik sukses yang dapat dipertanggungjawabkan.
+Anda sudah bisa memilih arsitektur dan membangun baseline. Bab 02 mengubah fokus dari *memahami sistem* menjadi *merancang eksperimen*: bagaimana menerjemahkan instruksi seperti "uji focal loss dan freeze blok awal pada backbone" menjadi rancangan konkret dengan variabel, baseline, hipotesis, dan metrik sukses yang dapat dipertanggungjawabkan.
 
 Buka [Bab 02 - Ide ke Eksperimen](02_Ide_Ke_Eksperimen.md) ketika siap.
