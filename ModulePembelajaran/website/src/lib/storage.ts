@@ -26,7 +26,7 @@ export const useStore = create<Progress>()(
       weeks: {},
       mastery: {},
       journal: {},
-      theme: "system",
+      theme: "light",
       setWeek: (w, done) => set((s) => ({ weeks: { ...s.weeks, [w]: done } })),
       setMastery: (n, level) => set((s) => ({ mastery: { ...s.mastery, [n]: level } })),
       setJournalEntry: (chapterId, questionKey, value) =>
