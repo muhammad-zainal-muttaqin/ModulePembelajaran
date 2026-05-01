@@ -36,13 +36,16 @@
 
 ## 0. Peta Bab
 
-W10 fokus pada dua skill yang sering diasumsikan ada tapi jarang diajarkan eksplisit:
+W10 fokus pada satu skill besar yang sering diasumsikan ada tapi jarang diajarkan eksplisit: membaca paper ML secara teknis dan menerjemahkannya menjadi implementasi kecil yang bisa diuji.
 
-- **2.1** Kurasi paper: dari banjir ke aliran kecil
-- **2.2** Metode membaca paper tiga putaran (Keshav 2007) - eksplisit dengan template
-- **2.3** Alur paper-to-code - 6 langkah dari abstract ke kode minimal yang bisa dijalankan
-- **2.4** Menjalankan satu ablation kecil untuk memahami kontribusi paper
-- **2.5** Peta keluarga model generatif (vocab reference)
+- **2.1** Landscape publikasi ML: preprint, workshop, conference, journal
+- **2.2** Kurasi paper: dari banjir ke aliran kecil
+- **2.3** Metode membaca paper tiga putaran (Keshav 2007) - eksplisit dengan template
+- **2.4** Catatan paper yang berguna untuk implementasi
+- **2.5** Alur paper-to-code - 6 langkah dari abstract ke kode minimal yang bisa dijalankan
+- **2.6** Menjalankan satu ablation kecil untuk memahami kontribusi paper
+- **2.7** Rutinitas mingguan untuk menjaga skill paper-to-code
+- **2.8** Peta keluarga model generatif (vocab reference)
 
 Setelah W10, Anda bisa mengambil paper dari arXiv, membacanya secara terstruktur, dan menjalankan implementasi core method-nya dalam satu minggu.
 
@@ -54,17 +57,37 @@ Bayangkan setahun dari sekarang. Anda sudah lulus atau sedang menjadi TA semeste
 
 Dua mahasiswa menghadapi situasi yang sama dengan dua strategi.
 
-Mahasiswa pertama membuka arXiv, melihat 50 paper baru di bidang itu minggu ini, merasa kewalahan, lalu memilih satu paper yang judulnya paling menarik. Ia membaca dari depan ke belakang, tidak sepenuhnya paham, tutup. Pekan depan, paper lain. Setelah tiga bulan, ia tahu banyak istilah tetapi tidak punya satu pertanyaan sendiri. Pekerjaannya adalah *mengonsumsi*, bukan *berkembang*.
+Mahasiswa pertama membuka arXiv, melihat 50 paper baru di bidang itu minggu ini, merasa kewalahan, lalu memilih satu paper yang judulnya paling menarik. Ia membaca dari depan ke belakang, tidak sepenuhnya paham, tutup. Pekan depan, paper lain. Setelah tiga bulan, ia tahu banyak istilah tetapi belum pernah mengubah satu metode paper menjadi kode yang berjalan. Pekerjaannya adalah *mengonsumsi*, bukan *membangun*.
 
-Mahasiswa kedua menyiapkan rutinitas. Setiap Senin pagi, 30 menit: baca daftar paper baru di arXiv dengan filter ketat (dua kata kunci + kategori). Pilih top-5 berdasarkan abstrak saja. Setiap Selasa-Jumat, 30 menit pagi: baca satu dari top-5 dengan metode tiga putaran. Setiap Sabtu, 60 menit: refleksi mingguan - apa satu pertanyaan baru yang muncul? Bisakah aku membuktikan atau membantahnya dengan eksperimen kecil? Setelah tiga bulan, ia sudah menjalankan dua mini-eksperimen sendiri, menolak lima hipotesis awal, mempertajam pertanyaannya. Ia sudah menjadi peneliti.
+Mahasiswa kedua menyiapkan rutinitas. Setiap Senin pagi, 30 menit: baca daftar paper baru di arXiv dengan filter ketat (dua kata kunci + kategori). Pilih top-5 berdasarkan abstrak saja. Setiap Selasa-Jumat, 30 menit pagi: baca satu dari top-5 dengan metode tiga putaran. Setiap Sabtu, 60 menit: pilih satu komponen kecil dari paper dan tulis versi minimalnya di template repo. Setelah tiga bulan, ia sudah mengimplementasikan beberapa loss, layer, metric, atau trik training dari paper. Ia mulai memahami paper sebagai spesifikasi teknis, bukan bacaan pasif.
 
-Perbedaan bukan bakat. Perbedaannya adalah sistem: filter paper, metode membaca, ritme refleksi, dan *jurnal pertanyaan sendiri*. Bab ini memberimu kerangka itu.
+Perbedaan bukan bakat. Perbedaannya adalah sistem: filter paper, metode membaca, catatan yang bisa dipakai ulang, dan kebiasaan mengubah klaim paper menjadi kode serta ablation kecil. Bab ini memberi kerangka itu.
 
 ---
 
 ## 2. Konsep Inti
 
-### 2.1 Kurasi Paper: Dari Banjir ke Aliran Kecil
+### 2.1 Landscape Publikasi ML: Preprint, Workshop, Conference, Journal
+
+Sebelum membaca paper, Anda perlu tahu status publikasinya. Di ML modern, ide sering beredar lebih cepat daripada proses peer-review. Itu baik untuk belajar cepat, tetapi berbahaya jika semua PDF diperlakukan seolah punya otoritas yang sama.
+
+| Kanal | Apa itu | Kekuatan | Keterbatasan | Cara membaca |
+| --- | --- | --- | --- | --- |
+| **Preprint (arXiv)** | Naskah yang diunggah penulis sebelum, saat, atau setelah proses publikasi resmi. | Sangat cepat; sering menjadi tempat pertama paper penting muncul; memberi akses awal ke ide dari "dapur riset". | Tidak peer-reviewed; kualitas sangat bervariasi; klaim bisa berubah antar versi. | Gunakan sebagai alat akses dan radar ide, bukan sumber otoritas final. Latih skeptisisme: cek eksperimen, baseline, ablation, dan versi terbaru. |
+| **Workshop** | Venue kecil yang biasanya melekat pada konferensi besar. | Bagus untuk ide awal, topik niche, dan diskusi komunitas. | Standar seleksi bervariasi; sering lebih eksploratif daripada konklusif. | Cocok untuk melihat arah baru, tetapi jangan terlalu mengandalkan klaim utama tanpa verifikasi. |
+| **Conference** | Venue utama ML seperti NeurIPS, ICML, ICLR, CVPR, ACL, EMNLP. | Peer-reviewed, kompetitif, dan biasanya menjadi publikasi utama di ML. | Review tetap tidak sempurna; paper bisa overclaim; detail implementasi sering di appendix/code. | Baca sebagai kontribusi yang sudah melewati filter kuat, tetapi tetap cek bukti dan reproducibility. |
+| **Journal** | Publikasi periodik dengan proses review lebih panjang. | Lebih matang; sering memuat versi extended, survei, atau validasi lebih lengkap. | Lebih lambat; di ML tidak selalu menjadi kanal utama untuk paper paling baru. | Bagus untuk fondasi, survei, dan detail metodologis yang lebih stabil. |
+
+**arXiv adalah alat akses, bukan sumber otoritas.** Banyak paper penting muncul di arXiv sebelum atau bersamaan dengan versi konferensi/jurnal. Itu sebabnya arXiv sangat berguna: Anda melihat riset saat masih segar. Tetapi tidak ada peer-review di titik unggah, sehingga paper lemah, eksperimen kurang kuat, atau klaim yang terlalu besar juga masuk. Karena itu W10 memakai arXiv sebagai tempat latihan skeptisisme: cepat menemukan ide, lalu lambat dan hati-hati saat menilai bukti.
+
+Saat mencatat paper arXiv, tulis statusnya:
+
+```markdown
+Status publikasi: arXiv preprint v2; belum menemukan versi peer-reviewed.
+Catatan skeptis: klaim utama bergantung pada satu dataset; belum ada ablation untuk komponen X.
+```
+
+### 2.2 Kurasi Paper: Dari Banjir ke Aliran Kecil
 
 **Navigasi arXiv.** Tiga kategori paling relevan untuk ML/DL: `cs.LG` (Machine Learning), `cs.CV` (Computer Vision), `cs.CL` (NLP/LLM). Untuk medical imaging: `eess.IV`. Cari via `arxiv.org/search` dengan filter kategori + kata kunci. ID paper `2312.01234` berarti Desember 2023, urutan 01234; URL PDF: `arxiv.org/pdf/2312.01234`. Simpan ID, bukan judul. Saat mengutip, gunakan versi yang Anda baca (`v1`, `v2`, dst) karena beda versi bisa punya perbedaan substansial. Papers With Code (`paperswithcode.com`) menghubungkan paper ke kode resmi dan benchmark.
 
@@ -84,7 +107,7 @@ Dari 500 paper/minggu → 5 paper dibaca cepat → 1-2 paper dibaca penuh. Rasio
 
 ![Funnel seleksi paper: dari 500 judul di arXiv hingga 1-2 paper yang dibaca penuh](./figures/fig09a_paper_funnel.svg)
 
-### 2.2 Membaca Paper dalam Tiga Putaran
+### 2.3 Membaca Paper dalam Tiga Putaran
 
 Paper akademik tidak dirancang untuk dibaca linear. Tiga putaran membantu menyerap dengan energi yang masuk akal:
 
@@ -93,9 +116,9 @@ flowchart TB
     A[Putaran 1 - Skim\n10 menit\nJudul + abstrak + figure 1\n+ tabel utama + conclusion] --> B{Lanjut?}
     B -- Ya --> C[Putaran 2 - Close-read\n30-45 menit\nMethod + setup + ablation\nCatat 3-5 pertanyaan kritis]
     B -- Tidak --> D[Pilih paper lain]
-    C --> E{Penting untuk riset?}
+    C --> E{Penting untuk implementasi?}
     E -- Ya --> F[Putaran 3 - Kritis\n30-60 menit\nApa yang hilang? Klaim berlebihan?\nDraft satu paragraf critique]
-    E -- Tidak --> G[Simpan catatan TL;DR\n+ hubungan ke proyek]
+    E -- Tidak --> G[Simpan catatan TL;DR\n+ alasan tidak diimplementasikan]
 ```
 
 **Putaran 1 - Peta (10 menit).** Baca: judul, abstrak, introduction pertama paragraf, headings sections, figure 1, tabel hasil utama, conclusion. Target: jawab tiga pertanyaan - (a) apa yang mereka *klaim* mereka lakukan? (b) apa yang mereka ukur? (c) apakah hasilnya meyakinkan dari tabel saja?
@@ -104,11 +127,11 @@ Bila setelah 10 menit Anda tidak bisa menjawab ketiganya, paper mungkin tidak di
 
 **Putaran 2 - Detail (30-45 menit).** Baca linear tetapi *aktif*: catat pertanyaan di margin. Fokus: method section (bagaimana tepatnya mereka melakukannya?), experimental setup (dataset, baseline, metrik, ablation), dan figure/tabel satu per satu. Lewati related work kecuali bidangnya baru bagimu.
 
-Catat 3-5 pertanyaan yang Anda punya: detail yang tidak jelas, pilihan yang aneh, baseline yang kurang, asumsi yang tidak diuji. Pertanyaan-pertanyaan ini bernilai lebih dari ringkasan paper-nya sendiri; simpan di jurnal pribadimu.
+Catat 3-5 pertanyaan teknis yang Anda punya: detail yang tidak jelas, pilihan yang aneh, baseline yang kurang, asumsi yang tidak diuji, atau bagian yang perlu dicek di kode resmi. Pertanyaan-pertanyaan ini bernilai lebih dari ringkasan paper-nya sendiri karena langsung mengarahkan implementasi.
 
 **Putaran 3 - Kritis (30-60 menit, opsional).** Hanya untuk paper yang benar-benar penting. Cari: apa yang paper *tidak* bahas? Apakah klaim melampaui data? Apa yang Anda minta untuk rebuttal jika mereview di konferensi? Output: satu paragraf critique yang bisa Anda kirim ke rekan satu grup riset.
 
-### 2.3 Catatan Paper yang Berguna
+### 2.4 Catatan Paper yang Berguna
 
 Catatan yang Anda tidak pernah buka lagi tidak berguna. Empat bagian yang cukup untuk setiap paper yang Anda putar-2:
 
@@ -124,166 +147,16 @@ Bagaimana mereka melakukannya. Sisipkan sketsa atau rumus penting.
 ## Bukti (2-3 kalimat)
 Dataset + metrik + hasil utama. Sebut angka konkret.
 
-## Pertanyaan / Kritik (3-5 poin)
-Yang mengganggumu atau yang ingin Anda gali.
+## Pertanyaan / Kritik Teknis (3-5 poin)
+Detail implementasi yang tidak jelas, baseline yang kurang, ablation yang hilang, atau klaim yang perlu dicek ulang.
 
-## Hubungan dengan proyek saya
-Satu kalimat: mengapa paper ini relevan (atau tidak).
+## Rencana Implementasi Minimal
+Komponen mana yang akan diimplementasikan, input/output tensor-nya, dan ablation kecil yang akan dijalankan.
 ```
 
 Simpan di `docs/papers/<short_title>.md`. Setelah 20 paper, Anda punya literatur pribadi yang bisa dicari dengan `grep`/`rg`. Dalam tiga bulan, pencarian ulang seperti ini akan sering terpakai.
 
-### 2.4 5 Whys: Dari Minat ke Pertanyaan yang Dapat Dikerjakan
-
-"Saya tertarik pada medical imaging" bukan pertanyaan riset. Terlalu lebar untuk diubah jadi eksperimen. Teknik *5 Whys* - bertanya "mengapa" lima kali - menajamkannya.
-
-Contoh:
-
-1. Aku tertarik pada medical imaging. *Mengapa?*
-2. Karena modelnya sering gagal di rumah sakit berbeda. *Mengapa?*
-3. Karena distribusi gambar antar rumah sakit berbeda. *Mengapa?*
-4. Karena protokol akuisisi dan peralatan berbeda. *Mengapa?*
-5. Dan mengapa itu penting bagiku sekarang?
-6. Karena aku ingin menguji apakah augmentasi gaya-transfer mengurangi gap antar institusi.
-
-Setelah 5 langkah, pertanyaan berubah dari "aku tertarik X" menjadi "apakah gaya-transfer augmentasi mengurangi domain gap antar rumah sakit pada tugas segmentasi?". Ini sudah dapat diubah menjadi eksperimen: dataset dua rumah sakit (HAM10000 subset + MedMNIST mirip), baseline tanpa augmentasi, varian dengan augmentasi, metrik Dice atau IoU di test yang institusi berbeda. Itu proposal riset mini.
-
-5 Whys tidak selalu perlu lima; kadang tiga cukup, kadang butuh tujuh. Intinya adalah turun dari *motivasi* ke *variabel yang bisa diukur*.
-
-### 2.5 Pre-Registration Ringan
-
-Pre-registration berarti menulis *apa yang akan Anda lakukan dan apa yang akan Anda anggap sebagai sukses* **sebelum** Anda menjalankan eksperimen. Ini kebiasaan yang lazim di bidang yang lebih tua (psikologi, kedokteran) untuk mencegah *outcome switching* - mengganti metrik ketika hasil tidak sesuai harapan.
-
-Di ML, pre-reg ringan adalah dokumen satu halaman dengan lima bagian:
-
-```markdown
-# Pre-Registration: <judul eksperimen>
-Tanggal: <YYYY-MM-DD>   Rencana oleh: <nama>
-
-## 1. Motivasi (2-3 kalimat)
-Mengapa pertanyaan ini layak dijawab sekarang.
-
-## 2. Hipotesis (satu kalimat falsifiable)
-"Aku memprediksi metode X akan menghasilkan Y lebih tinggi dari baseline B pada dataset D, dengan perbedaan >Δ."
-
-## 3. Protokol
-- Dataset: ...
-- Baseline: ...
-- Intervensi (variabel yang diubah): ...
-- Metrik utama: ... (tetapkan SATU metrik utama; sekunder boleh dicatat)
-- Seed: ... (minimum 3)
-- Kriteria sukses: Δ >... dengan |metrik ablation| <...
-
-## 4. Hasil yang diharapkan (satu paragraf)
-Tulis apa yang Anda tebak hasilnya. Ini menjaga kejujuran intuisi.
-
-## 5. Kapan aku akan menganggap hipotesis gagal
-Kondisi konkret yang membuatmu menyatakan H nol benar.
-```
-
-Setelah eksperimen selesai, buka pre-reg, bandingkan dengan hasil aktual, tulis *amendment* bila ada deviasi. Sering kali Anda akan tergoda mengubah metrik atau menambah baseline baru - pre-reg menjaga disiplin untuk melaporkan *ketika itu terjadi*, bukan menyembunyikannya.
-
-Jangan jadikan pre-reg birokrasi. Tujuannya bukan dokumen sempurna; tujuannya agar diri Anda tiga jam kemudian tidak bisa menipu diri Anda yang sekarang.
-
-### 2.6 Rutinitas Mingguan yang Tahan Lama
-
-> [!NOTE]
-> Rutinitas ini dirancang sebagai bekal mandiri **setelah modul berakhir**, bukan sebagai kewajiban tambahan di tengah semester. Selama kelas berjalan, Anda sudah punya lab, Komponen Mandiri, dan capstone sebagai latihan terjadwal. Gunakan bagian ini sebagai referensi untuk membangun kebiasaan jangka panjang setelah lulus atau setelah bootcamp selesai.
-
-Rutinitas praktis yang dapat Anda pakai sendiri setelah kelas berakhir:
-
-| Hari | Aktivitas | Durasi |
-|---|---|---|
-| Senin pagi | Kurasi arXiv: 50 judul → top 5 abstrak | 30 menit |
-| Selasa pagi | Baca paper #1 putaran 1+2 | 45 menit |
-| Rabu pagi | Baca paper #2 putaran 1+2 | 45 menit |
-| Kamis pagi | Eksekusi: satu mini-eksperimen (< 2 jam) | 2 jam |
-| Jumat pagi | Baca paper #3 putaran 1+2 | 45 menit |
-| Sabtu | Refleksi mingguan + update jurnal pertanyaan | 60 menit |
-| Minggu | Istirahat (serius - peneliti yang burn-out tidak produktif) | - |
-
-Total: ~6 jam/minggu. Dalam setahun: ~300 jam fokus = ~40 paper dibaca dalam, ~40 mini-eksperimen, satu atau dua mini-proyek matang. Itu cukup untuk menjadi kompeten di satu sub-bidang.
-
-Rutinitas ini sederhana karena sederhana yang bertahan. Yang rumit ditinggalkan dalam dua minggu.
-
-### 2.7 Peta Keluarga Model Generatif
-
-Modul ini membahas arsitektur diskriminatif secara hands-on (MLP di Lab 1c, CNN di Lab 1, LSTM di Lab 3b, Transformer encoder di Lab 6b, Autoencoder di Lab 7b). Satu keluarga besar yang tidak masuk jadwal hands-on adalah **model generatif** - model yang belajar menghasilkan sampel baru dari distribusi data. Alasannya bukan kurang penting, justru sebaliknya: sekitar sepertiga paper ML modern melibatkan komponen generatif. Alasan praktisnya adalah ongkos latihan dan *tuning*: model generatif yang stabil butuh compute, dataset, dan keterampilan diagnostik yang melebihi cakupan semester ini.
-
-Karena itu, bagian ini memberi Anda **peta mental** agar Anda bisa membaca paper generatif dengan struktur - tahu apa yang sedang dilakukan paper, apa pertanyaan standar yang wajib Anda ajukan, dan kapan harus waspada.
-
-
-| Keluarga | Ide inti | Training signal | Kapan dipakai | Failure mode khas | Paper pembuka |
-| --- | --- | --- | --- | --- | --- |
-| VAE | Encoder ke distribusi Gaussian, decoder dari sampel | Rekonstruksi + KL terhadap prior | Ketika butuh representasi kontinu yang bisa di-sampel; *conditional generation* | *Posterior collapse*: decoder mengabaikan z dan hanya mengandalkan decoder prior - terjadi saat KL term terlalu mendominasi loss, menyebabkan representasi latent tidak informatif | Kingma & Welling 2013 (*Auto-Encoding Variational Bayes*) |
-| GAN | Generator vs discriminator, permainan minimax | Discriminator mengklasifikasi real/fake | Generasi gambar tajam, *style transfer*, *image-to-image* | *Mode collapse*: generator hanya menghasilkan subset kecil dari distribusi data (misalnya hanya wajah dengan ekspresi datar, bukan seluruh variasi) meski training loss terlihat stabil | Goodfellow et al. 2014 (*Generative Adversarial Nets*) |
-| Diffusion | Tambah noise bertahap, belajar un-noise | Prediksi noise pada setiap langkah | State-of-the-art image/video generation, kontrol *conditioning* | Inference lambat (banyak step), butuh compute besar | Ho et al. 2020 (*Denoising Diffusion Probabilistic Models*) |
-| Normalizing Flow | Transformasi bijeksi yang dibalik dari noise ke data | Likelihood eksak | Ketika butuh likelihood eksak (deteksi anomali, kompresi) | Arsitektur terbatas (harus invertible), kapasitas lebih kecil | Rezende & Mohamed 2015 (*Variational Inference with Normalizing Flows*) |
-
-
-**Lab 7b sudah memberi Anda pijakan.** Autoencoder standar di Lab 7b adalah langkah pertama menuju VAE: encoder, decoder, bottleneck, dan reconstruction loss semua ada. VAE hanya menambah tiga hal: encoder mengeluarkan `(μ, σ)` bukan `z` langsung, sampling dengan *reparameterization trick*, dan loss KL terhadap prior. Jalur praktisnya: fork Lab 7b, tambah tiga modifikasi itu - ini adalah jalur yang cocok untuk **Komponen Mandiri Jalur 4 (Arsitektur Baru)**.
-
-Ketika PI Anda menyebutkan "coba diffusion untuk data kita", Anda harus bisa mengenali dari abstrak: apakah paper pakai generator sebagai *augmentation*, *imputation*, atau *end-to-end task*. Tabel sebelumnya memberi Anda kosakata yang cukup untuk percakapan pertama. Tiga paper pembuka di tabel adalah kandidat kuat untuk *paper slot* di rutinitas mingguan Anda di Lab 9.
-
----
-
-## 3. Worked Example: Dari Minat ke Mini-Eksperimen dalam Satu Minggu
-
-Skenario dari seorang mahasiswa fiktif, Rani, yang tertarik pada *label noise robustness*.
-
-**Senin.** Rani berlangganan `cs.LG` dengan filter kata "label noise", "noisy labels". Minggu ini: 47 judul baru. 10 abstrak dibaca; 3 paper terkumpul sebagai top.
-
-**Selasa.** Paper #1: "Early Learning Regularization" (Liu et al., NeurIPS). Putaran 1 dan 2, 45 menit. Catatan: metode regularisasi yang mencegah model menghafal label salah di epoch awal; hasil bagus di CIFAR-10 dengan 40% noise. *Pertanyaan Rani:* apakah berlaku juga untuk noise non-uniform (mis. dua kelas mirip selalu tertukar)?
-
-**Rabu.** Paper #2: paper tentang *confident learning*. Putaran 1 saja; Rani memutuskan paper ini lebih tentang dataset cleaning, bukan robust training - simpan tapi tidak deep-dive.
-
-**Kamis - 5 Whys dan pre-reg:**
-
-1. Aku tertarik robust training di bawah label noise. *Mengapa?*
-2. Karena real-world noise sering non-uniform dan pendekatan mainstream menguji uniform. *Mengapa penting?*
-3. Karena pilihan loss yang robust di uniform bisa gagal di structured noise. *Mengapa aku bisa menjawab?*
-4. Karena aku punya template CIFAR-10 dan dapat men-generate structured noise mudah.
-
-Pertanyaan: "Apakah Early Learning Regularization yang unggul di uniform noise 40% tetap unggul ketika noise terstruktur (20% pasangan kelas mirip ditukar)?"
-
-Rani menulis pre-reg:
-
-```markdown
-# Pre-Reg: ELR di structured noise
-## Hipotesis: ELR akan kehilangan margin keunggulannya terhadap cross-entropy baseline
-##   ketika noise adalah pasangan-spesifik (cat↔dog, deer↔horse) alih-alih uniform.
-## Protokol: CIFAR-10, 3 seed, noise 20% structured vs 20% uniform, metrik: test acc clean-label.
-## Hasil diharapkan: ELR unggul ~3-5% di uniform, ~0-1% di structured.
-## Fail-state: ELR tetap unggul >3% di structured → aku keliru, ELR lebih general dari kuduga.
-```
-
-**Jumat - eksekusi.** Template Rani sudah mendukung varian loss. Menambahkan flag `--noise_mode=[uniform|structured]` butuh 20 menit. Jalankan 2×3=6 training 30-menit di laptop (CIFAR-10 kecil). Total 3 jam.
-
-**Sabtu - refleksi.** Hasil: ELR unggul 4.1% di uniform, 1.3% di structured. Prediksi Rani benar - pattern loss structured noise berbeda. Tetapi perbedaan 1.3% belum nol, jadi ELR *masih* membantu sedikit.
-
-Apa yang Rani tulis di jurnal pertanyaan:
-
-> ELR masih membantu di structured noise tetapi margin menyusut. Pertanyaan baru: apakah teknik yang secara eksplisit memodelkan pair-wise transition (seperti noise-adaptation layer) menghasilkan margin lebih besar di structured noise? Kandidat paper minggu depan: Sukhbaatar et al. 2015, Patrini et al. 2017.
-
-Rani telah menjadi peneliti aktif. Dalam satu minggu - tanpa pembimbing memberi instruksi - ia memilih paper, memformulasikan pertanyaan yang dapat diuji, menjalankan eksperimen kecil, menemukan pola, dan punya pertanyaan berikutnya. Kebiasaan risetnya mulai berjalan mandiri.
-
----
-
-## 4. Pitfalls & Miskonsepsi
-
-**Pitfall 1 - Membaca untuk merasa pintar, bukan untuk membangun sesuatu.** Anda mengonsumsi paper sebanyak 5/minggu tetapi tidak pernah menjalankan eksperimen sendiri. *Cara deteksi:* buka jurnal pertanyaanmu. Jika semua poin berupa ringkasan paper, bukan pertanyaanmu sendiri yang diuji atau akan diuji, Anda sedang mengonsumsi.
-
-**Pitfall 2 - Paper baru dikejar, paper fondasi dilewat.** Hanya membaca paper 2024-2025 tanpa paper 2015-2018 yang membangun field. *Cara deteksi:* saat membaca related work paper baru, perhatikan rujukan yang sering muncul di banyak paper modern - itu paper fondasi; sisakan satu slot/bulan untuknya.
-
-**Pitfall 3 - Pre-reg ditulis setelah melihat hasil.** "Oh ternyata hasilnya begini - biar saya tulis pre-reg yang cocok." Ini merusak tujuan pre-registration. *Cara deteksi:* tanggal file pre-reg harus lebih awal dari tanggal commit pertama kode eksperimen. Bila tidak, Anda sedang membohongi diri.
-
-**Pitfall 4 - 5 Whys berhenti di "karena menarik".** Lima whys yang semuanya tentang *motivasi emosional* tidak pernah mendarat ke variabel yang diukur. *Cara deteksi:* di pertanyaan akhir, harus ada kata kerja konkret ("ukur", "bandingkan", "ablasi") dan variabel konkret ("loss", "augmentasi", "arsitektur"). Bila tidak ada, gali lagi satu why.
-
-**Pitfall 5 - Rutinitas yang tidak proporsional dengan hidupmu.** 6 jam/minggu adalah rekomendasi mahasiswa dengan beban kuliah normal. Pekerja full-time mungkin hanya 3 jam. *Cara deteksi:* jika setelah sebulan rutinitas terhenti, masalahnya mungkin bukan kemalasan, melainkan target yang terlalu tinggi. Pangkas 50%; apa yang bertahan lebih berharga daripada rencana sempurna di atas kertas.
-
----
-
-### 2.3 Alur Paper-to-Code
+### 2.5 Alur Paper-to-Code
 
 Enam langkah dari abstrak paper ke kode minimal yang bisa dijalankan:
 
@@ -310,6 +183,102 @@ Angka-angka ini adalah patokan "apakah pipeline saya terlalu lambat?" - bukan an
 > [!TIP]
 > Paper sering menyembunyikan detail penting di appendix atau code repository. Selalu cek keduanya. Juga perhatikan "implementation details" section - sering ada hyperparameter kritis yang tidak ada di main text.
 
+### 2.6 Ablation Kecil: Cara Menguji Klaim Metode
+
+Ablation bukan eksperimen besar. Untuk W10, ablation berarti satu perubahan terkontrol yang menjawab: "apakah komponen yang diklaim penting memang berdampak?"
+
+Contoh ablation yang realistis:
+
+| Paper/metode | Core contribution | Ablation kecil |
+| --- | --- | --- |
+| Focal Loss | Faktor `(1 - p_t)^γ` menurunkan bobot contoh mudah | Bandingkan `γ=0` (cross-entropy) vs `γ=2` pada dataset kecil |
+| DropBlock | Dropout blok spasial untuk CNN | Bandingkan dropout biasa vs DropBlock dengan keep_prob sama |
+| Mixup | Interpolasi input dan label | Bandingkan `alpha=0` vs `alpha=0.2` dengan seed sama |
+| Label smoothing | Target tidak one-hot penuh | Bandingkan smoothing `0.0` vs `0.1` |
+
+Ablation yang baik punya baseline jelas, satu variabel berubah, metrik sama, dan log yang cukup untuk diulang. Jika hasil tidak cocok dengan klaim paper, itu bukan kegagalan otomatis. Catat gap-nya: dataset berbeda, skala model berbeda, hyperparameter belum sama, atau implementasi belum parity dengan paper.
+
+### 2.7 Rutinitas Mingguan yang Tahan Lama
+
+> [!NOTE]
+> Rutinitas ini dirancang sebagai bekal mandiri **setelah modul berakhir**, bukan sebagai kewajiban tambahan di tengah semester. Selama kelas berjalan, Anda sudah punya lab, Komponen Mandiri, dan capstone sebagai latihan terjadwal. Gunakan bagian ini sebagai referensi untuk membangun kebiasaan jangka panjang setelah lulus atau setelah bootcamp selesai.
+
+Rutinitas praktis yang dapat Anda pakai sendiri setelah kelas berakhir:
+
+| Hari | Aktivitas | Durasi |
+|---|---|---|
+| Senin pagi | Kurasi arXiv: 50 judul → top 5 abstrak | 30 menit |
+| Selasa pagi | Baca paper #1 putaran 1+2 | 45 menit |
+| Rabu pagi | Baca paper #2 putaran 1+2 | 45 menit |
+| Kamis pagi | Eksekusi: implementasi minimal atau ablation kecil (< 2 jam) | 2 jam |
+| Jumat pagi | Baca paper #3 putaran 1+2 | 45 menit |
+| Sabtu | Rapikan catatan, commit kode, dan tulis lesson learned teknis | 60 menit |
+| Minggu | Istirahat (serius - peneliti yang burn-out tidak produktif) | - |
+
+Total: ~6 jam/minggu. Dalam setahun: ~300 jam fokus = ~40 paper dibaca dalam, ~40 implementasi/ablation kecil, satu atau dua mini-proyek matang. Itu cukup untuk menjadi kompeten secara teknis di satu sub-bidang.
+
+Rutinitas ini sederhana karena sederhana yang bertahan. Yang rumit ditinggalkan dalam dua minggu.
+
+### 2.8 Peta Keluarga Model Generatif
+
+Modul ini membahas arsitektur diskriminatif secara hands-on (MLP di Lab 1c, CNN di Lab 1, LSTM di Lab 3b, Transformer encoder di Lab 6b, Autoencoder di Lab 7b). Satu keluarga besar yang tidak masuk jadwal hands-on adalah **model generatif** - model yang belajar menghasilkan sampel baru dari distribusi data. Alasannya bukan kurang penting, justru sebaliknya: sekitar sepertiga paper ML modern melibatkan komponen generatif. Alasan praktisnya adalah ongkos latihan dan *tuning*: model generatif yang stabil butuh compute, dataset, dan keterampilan diagnostik yang melebihi cakupan semester ini.
+
+Karena itu, bagian ini memberi Anda **peta mental** agar Anda bisa membaca paper generatif dengan struktur - tahu apa yang sedang dilakukan paper, apa pertanyaan standar yang wajib Anda ajukan, dan kapan harus waspada.
+
+
+| Keluarga | Ide inti | Training signal | Kapan dipakai | Failure mode khas | Paper pembuka |
+| --- | --- | --- | --- | --- | --- |
+| VAE | Encoder ke distribusi Gaussian, decoder dari sampel | Rekonstruksi + KL terhadap prior | Ketika butuh representasi kontinu yang bisa di-sampel; *conditional generation* | *Posterior collapse*: decoder mengabaikan z dan hanya mengandalkan decoder prior - terjadi saat KL term terlalu mendominasi loss, menyebabkan representasi latent tidak informatif | Kingma & Welling 2013 (*Auto-Encoding Variational Bayes*) |
+| GAN | Generator vs discriminator, permainan minimax | Discriminator mengklasifikasi real/fake | Generasi gambar tajam, *style transfer*, *image-to-image* | *Mode collapse*: generator hanya menghasilkan subset kecil dari distribusi data (misalnya hanya wajah dengan ekspresi datar, bukan seluruh variasi) meski training loss terlihat stabil | Goodfellow et al. 2014 (*Generative Adversarial Nets*) |
+| Diffusion | Tambah noise bertahap, belajar un-noise | Prediksi noise pada setiap langkah | State-of-the-art image/video generation, kontrol *conditioning* | Inference lambat (banyak step), butuh compute besar | Ho et al. 2020 (*Denoising Diffusion Probabilistic Models*) |
+| Normalizing Flow | Transformasi bijeksi yang dibalik dari noise ke data | Likelihood eksak | Ketika butuh likelihood eksak (deteksi anomali, kompresi) | Arsitektur terbatas (harus invertible), kapasitas lebih kecil | Rezende & Mohamed 2015 (*Variational Inference with Normalizing Flows*) |
+
+
+**Lab 7b sudah memberi Anda pijakan.** Autoencoder standar di Lab 7b adalah langkah pertama menuju VAE: encoder, decoder, bottleneck, dan reconstruction loss semua ada. VAE hanya menambah tiga hal: encoder mengeluarkan `(μ, σ)` bukan `z` langsung, sampling dengan *reparameterization trick*, dan loss KL terhadap prior. Jalur praktisnya: fork Lab 7b, tambah tiga modifikasi itu - ini adalah jalur yang cocok untuk **Komponen Mandiri Jalur 4 (Arsitektur Baru)**.
+
+Ketika PI Anda menyebutkan "coba diffusion untuk data kita", Anda harus bisa mengenali dari abstrak: apakah paper pakai generator sebagai *augmentation*, *imputation*, atau *end-to-end task*. Tabel sebelumnya memberi Anda kosakata yang cukup untuk percakapan pertama. Tiga paper pembuka di tabel adalah kandidat kuat untuk *paper slot* di rutinitas mingguan Anda di Lab 9.
+
+---
+
+## 3. Worked Example: Dari Paper ke Implementasi Minimal dalam Satu Minggu
+
+Skenario dari seorang mahasiswa fiktif, Rani, yang ingin belajar teknik *focal loss* dari paper Lin et al. (2017).
+
+**Senin - kurasi.** Rani mencari paper dengan kata kunci "class imbalance", "dense detection", dan "loss function". Ia menemukan paper Focal Loss di arXiv dan mengecek statusnya: ada versi conference di ICCV 2017, jadi arXiv dipakai sebagai akses PDF, bukan sebagai satu-satunya otoritas.
+
+**Selasa - three-pass.** Putaran 1: klaim utama paper adalah cross-entropy terlalu didominasi contoh mudah pada deteksi objek yang sangat imbalanced. Putaran 2: Rani membaca bagian loss dan menemukan bentuk inti: `FL(p_t) = -(1 - p_t)^γ log(p_t)`. Putaran 3 hanya fokus ke ablation `γ`, bukan seluruh RetinaNet.
+
+**Rabu - paper-to-code.** Rani menulis catatan input/output: input loss adalah logits dan target class; output adalah scalar loss. Ia memisahkan essential dari engineering detail: tidak perlu implement RetinaNet, anchor matching, atau FPN. Untuk Lab W10, cukup implement focal loss pada classifier kecil dengan dataset imbalanced.
+
+**Kamis - implementasi.** Rani menambahkan `FocalLoss` di `src/losses.py`, membuat smoke test:
+
+```python
+gamma = 0.0  # should match cross-entropy
+gamma = 2.0  # focal loss setting from the paper
+```
+
+Jika `gamma=0` tidak identik dengan cross-entropy dalam toleransi numerik, implementasi belum boleh dipakai untuk training.
+
+**Jumat - ablation.** Rani menjalankan baseline cross-entropy (`γ=0`) dan focal loss (`γ=2`) pada dataset kecil yang sengaja dibuat imbalanced. Ia memakai seed sama, model sama, augmentasi sama, dan metrik yang sama.
+
+**Sabtu - laporan.** Hasil focal loss sedikit lebih baik pada kelas minoritas tetapi akurasi total turun tipis. Rani menulis gap-nya: paper asli mengevaluasi object detection dengan extreme foreground/background imbalance, sedangkan lab memakai klasifikasi kecil. Ini bukan reproduksi penuh, tetapi cukup untuk memahami mekanisme loss dan batas transfer klaimnya.
+
+Rani telah melakukan skill W10: memilih paper, membaca secara teknis, mengekstrak komponen inti, mengimplementasikan versi minimal, menjalankan ablation, dan menulis batas klaim dengan jujur.
+
+---
+
+## 4. Pitfalls & Miskonsepsi
+
+**Pitfall 1 - Menganggap arXiv sebagai cap otoritas.** Paper di arXiv bisa sangat penting, tetapi status "ada di arXiv" tidak berarti klaimnya benar. *Cara deteksi:* catatan paper tidak menyebut venue, versi, baseline, atau ablation yang hilang.
+
+**Pitfall 2 - Membaca untuk merasa pintar, bukan untuk membangun sesuatu.** Anda mengonsumsi paper sebanyak 5/minggu tetapi tidak pernah menjalankan kode dari satu pun paper. *Cara deteksi:* buka `src/`, notebook, atau laporan eksperimen. Jika tidak ada implementasi kecil, Anda sedang mengonsumsi.
+
+**Pitfall 3 - Paper baru dikejar, paper fondasi dilewat.** Hanya membaca paper 2024-2025 tanpa paper 2015-2018 yang membangun field. *Cara deteksi:* saat membaca related work paper baru, perhatikan rujukan yang sering muncul di banyak paper modern - itu paper fondasi; sisakan satu slot/bulan untuknya.
+
+**Pitfall 4 - Mengimplementasikan seluruh paper sekaligus.** Paper modern berisi banyak komponen: backbone, loss, scheduler, augmentasi, dataset cleaning, dan training trick. *Cara deteksi:* Anda belum bisa menjelaskan satu core contribution dalam satu kalimat sebelum menulis kode.
+
+**Pitfall 5 - Rutinitas yang tidak proporsional dengan hidupmu.** 6 jam/minggu adalah rekomendasi mahasiswa dengan beban kuliah normal. Pekerja full-time mungkin hanya 3 jam. *Cara deteksi:* jika setelah sebulan rutinitas terhenti, masalahnya mungkin bukan kemalasan, melainkan target yang terlalu tinggi. Pangkas 50%; apa yang bertahan lebih berharga daripada rencana sempurna di atas kertas.
+
 ---
 
 ## 5. Lab 9 - Paper Implementation
@@ -323,8 +292,8 @@ Buka `template_repo/notebooks/lab_w10_paper_to_code.ipynb`.
 
 **Tugas:**
 
-1. Three-pass read - tulis catatan dengan template §2.2.
-2. Paper-to-code translation steps 1-6 dari §2.3.
+1. Three-pass read - tulis catatan dengan template §2.4.
+2. Paper-to-code translation steps 1-6 dari §2.5.
 3. Implementasi core method dalam `src/` atau notebook.
 4. Smoke test pada dataset kecil.
 5. Parity check: apakah angka utama paper bisa direproduksi?
@@ -344,13 +313,13 @@ Target waktu: 6-8 jam.
 
 ## Komponen Mandiri (W10)
 
-Konsep: membaca paper secara terarah, merumuskan pertanyaan falsifiable, merancang eksperimen lanjutan. Ini entri portofolio terakhir sebelum capstone - setelah mengisinya, kerjakan juga sel "Refleksi Portofolio" di notebook: lihat kembali semua entri Anda dan tuliskan satu paragraf perjalanan belajar. Format dan kriteria: [Lampiran C.9](14_Lampiran.md#c9-template-komponen-mandiri).
+Konsep: membaca paper secara terarah, mengubah paper menjadi implementasi kecil, dan menilai klaim melalui ablation. Ini entri portofolio terakhir sebelum capstone - setelah mengisinya, kerjakan juga sel "Refleksi Portofolio" di notebook: lihat kembali semua entri Anda dan tuliskan satu paragraf perjalanan belajar. Format dan kriteria: [Lampiran C.9](14_Lampiran.md#c9-template-komponen-mandiri).
 
 | Jalur | Tugas minggu ini |
 | --- | --- |
 | **A - Implementasi** | Dari paper Lab 9, implementasikan satu teknik pendukung yang belum ada di template_repo (LR scheduler, metrik evaluasi tambahan, atau augmentasi di appendix). Laporkan apakah hasilnya sesuai klaim paper. |
 | **B - Analisis** | Pilih satu paper yang klaim utamanya terasa "terlalu bagus". Lakukan analisis kritis 1 halaman: klaim apa yang dibuat, bukti apa yang ditunjukkan, apa yang tidak ditunjukkan, dan apa yang perlu diverifikasi sebelum mengutipnya. |
-| **C - Desain** | Tulis pre-registration untuk ide riset yang muncul dari pengalaman Anda sendiri sepanjang semester (bukan dari paper orang lain). Minimal: motivasi, hipotesis falsifiable, protokol, dan kondisi kegagalan. |
+| **C - Reproduksi Ringan** | Pilih paper dengan official code. Jalankan konfigurasi terkecil yang tersedia, catat dependency yang dibutuhkan, command yang berhasil, gap hasil terhadap klaim paper, dan penyebab gap yang paling mungkin. |
 | **D - Arsitektur Baru** | Implementasikan satu paper tentang arsitektur yang belum dibahas di modul (mis. ResNeXt, MobileNet, DETR). Forward pass + learning curve + 1 paragraf perbedaan vs arsitektur yang sudah dipelajari. |
 
 **Luaran:** Entri portofolio W10 + sel Refleksi Portofolio di `notebooks/portofolio_mandiri.ipynb`. Presentasi sorotan portofolio 10 menit di awal W11.
@@ -359,18 +328,16 @@ Konsep: membaca paper secara terarah, merumuskan pertanyaan falsifiable, meranca
 
 ## 6. Refleksi
 
-1. Apa satu pertanyaan riset yang *hanya Anda* yang menanyakan di lingkunganmu saat ini? Jika jawabannya "tidak ada", apa yang perlu Anda kerjakan untuk menemukannya - lebih banyak paper yang dibaca, lebih banyak orang yang diajak bicara, atau lebih banyak eksperimen untuk menyingkap celah?
-2. Setelah menjalankan Lab 9, bandingkan pre-reg dengan experiment report. Di mana Anda paling tergoda menyimpang? Apa yang bisa Anda ubah di pre-reg berikutnya agar godaan itu lebih sulit dilakukan?
-3. Setelah kelas ini berakhir, apa yang menjadi satu kalimat komitmen belajar mingguanmu - yang realistis dengan jadwalmu dan masih menantang? Tulis, tempel di tempat yang Anda lihat setiap hari. Kembali enam bulan lagi, evaluasi.
-
-4. **Koneksi ke Capstone.** Anda sudah melalui 10 minggu bootcamp dan mengisi entri portofolio mandiri sepanjang jalan. Tulis satu paragraf "proposal Capstone draft 0": satu kalimat pertanyaan riset, satu paragraf justifikasi mengapa Anda yang paling cocok mengerjakannya (berdasar entri portofolio mana), dan daftar 3 bab modul yang paling sering akan Anda rujuk saat mengerjakannya. Paragraf ini akan jadi batu loncatan masuk W11 (proposal capstone).
+1. Bagian paper mana yang paling sulit diterjemahkan menjadi kode: notasi matematika, detail implementasi, hyperparameter, atau setup eksperimen?
+2. Apa satu klaim paper yang menjadi lebih jelas setelah Anda menjalankan ablation? Apa satu klaim yang justru terasa lebih lemah?
+3. Ketika memakai arXiv, bukti apa yang membuat Anda percaya atau tidak percaya pada klaim paper sebelum ada versi peer-reviewed?
+4. Setelah kelas ini berakhir, apa rutinitas mingguan paling kecil yang realistis untuk menjaga skill paper-to-code tetap hidup?
 
 ---
 
 ## 7. Bacaan Lanjutan
 
 - **"How to Read a Paper"** oleh S. Keshav (2007, 3 halaman). Metode tiga-pass original; sumber populer dari teknik yang diadaptasi di bab ini. Baca sekali dalam hidupmu, tempel di dekat meja.
-- **"The Researcher's Bible"** oleh Alan Bundy (University of Edinburgh notes). Bab tentang memformulasikan pertanyaan dan menulis proposal. Tidak spesifik ML tetapi aplicable.
 - **arxiv-sanity-lite** (Andrej Karpathy). Alat kurasi paper sederhana yang Anda host sendiri. Kalau Anda suka mengkurasi dengan preferensi unik, ini menghemat waktu.
 - **Andrej Karpathy - "A Recipe for Training Neural Networks"** (karpathy.github.io, 2019). Bukan tentang membaca paper, tetapi mewakili sikap ilmiah-harian yang diajarkan bab ini: cek unit, bangun baseline yang keras, percaya yang terukur.
 - **OpenReview.net** - baca review publik dari ICLR/NeurIPS untuk paper yang Anda suka. Melihat bagaimana reviewer profesional mengkritik paper adalah satu dari sedikit cara terbaik mempertajam *taste* riset.
