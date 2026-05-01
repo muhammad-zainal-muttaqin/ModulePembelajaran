@@ -14,11 +14,11 @@ export default function EmailHero() {
             Modul 14 minggu untuk asisten riset ML/DL
           </div>
           <h1 className="font-serif font-semibold text-display-lg tracking-tight mb-6">
-            Dua kalimat dari dosen.<br />
-            <span className="text-rigor dark:text-curiosity">Semua keputusan ada di tangan Anda.</span>
+            Instruksi singkat.<br />
+            <span className="text-rigor dark:text-curiosity">Eksekusi kompleks.</span>
           </h1>
           <p className="text-lg md:text-xl text-ink/75 dark:text-parchment/80 max-w-xl mb-8 leading-relaxed">
-            Email dua kalimat dari dosen pembimbing menyimpan puluhan keputusan yang tidak disebut: focal loss versi apa, blok awal mana, baseline seperti apa yang adil, seed berapa, metrik mana, dan kapan angka layak dilaporkan. Modul ini melatih Anda membuat keputusan-keputusan itu secara sistematis.
+            Panduan praktis bagi asisten riset ML/DL untuk menerjemahkan arahan dosen menjadi eksperimen yang terstruktur, adil, dan konsisten.
           </p>
           <div className="flex flex-wrap gap-3">
             <Link to="/modul/00" className="btn-primary text-base px-5 py-2.5">
