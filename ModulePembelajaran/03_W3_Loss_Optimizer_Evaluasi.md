@@ -56,7 +56,7 @@ Ini bukan soal. Ini latihan observasi.
 
 Perhatikan lima loss curve berikut. Masing-masing menampilkan train loss dan val loss selama 20 epoch.
 
-**Run 1 - Konvergensi sehat:** Train loss dan val loss turun sejajar, keduanya mencapai angka rendah. Val sedikit di atas train; gap stabil.
+**Run 1 - Konvergensi normal:** Train loss dan val loss turun sejajar, keduanya mencapai angka rendah. Val sedikit di atas train; gap stabil.
 
 **Run 2 - Overfitting:** Train loss terus turun mulus, val loss turun sampai epoch 6 lalu naik perlahan. Jarak kedua kurva makin lebar.
 
@@ -152,7 +152,7 @@ Salah satu keputusan yang paling sering menentukan performa model bukan pilihan 
 
 **Engineered.** Fitur dirancang manusia dengan pengetahuan domain - statistik agregat, transformasi matematis, atau fitur klasik. Di gambar: histogram warna, HOG, SIFT. Di sinyal CGM: mean, koefisien variasi, *time-in-range*. Representasi *engineered* murah secara komputasi, mudah diinterpretasi, dan sering menjadi baseline yang mengejutkan kuat ketika data latih terbatas.
 
-**Extracted.** Fitur diambil dari *hidden layer* model *pretrained* yang di-freeze. Di visi: *hidden states* dari CNN atau ViT pretrained pada ImageNet. Di teks: token `[CLS]` atau mean pooling dari BERT. Kompromi menarik: representasi kaya dari model besar tanpa biaya training penuh, dengan syarat domain target tidak terlalu jauh dari domain pretraining.
+**Extracted.** Fitur diambil dari *hidden layer* model *pretrained* yang di-freeze. Di visi: *hidden states* dari CNN atau ViT pretrained pada ImageNet. Di teks: token `[CLS]` atau mean pooling dari BERT. Kompromi menarik: representasi yang informatif dari model besar tanpa biaya training penuh, dengan syarat domain target tidak terlalu jauh dari domain pretraining.
 
 **Learned.** Representasi dipelajari langsung dari data melalui training *end-to-end* atau *self-supervised*. Fine-tuning BERT, melatih 1D CNN dari nol pada sinyal ECG, atau fine-tune ResNet pada dataset medis semuanya termasuk kategori ini. Strategi ini biasanya paling kuat ketika data latih memadai, tetapi paling membutuhkan banyak data dan paling mahal dilatih.
 

@@ -26,7 +26,7 @@
 
 # 08 · W8 - Foundation Models
 
-> *Foundation model bukan "model yang bagus". Model ini sudah mempelajari representasi kaya dari jutaan atau miliaran contoh sehingga Anda tidak harus mulai dari nol. Pertanyaannya bukan "apakah saya boleh memakainya" - pertanyaannya adalah "adaptasi apa yang paling masuk akal untuk skenario ini?"*
+> *Foundation model bukan "model yang bagus". Model ini sudah mempelajari representasi yang informatif dari jutaan atau miliaran contoh sehingga Anda tidak harus mulai dari nol. Pertanyaannya bukan "apakah saya boleh memakainya" - pertanyaannya adalah "adaptasi apa yang paling masuk akal untuk skenario ini?"*
 
 **Baris peta besar:** input apa pun yang memanfaatkan prior dari pretrained model
 **Kebiasaan riset:** Literasi model card, pilihan adaptasi, baseline yang adil
@@ -37,7 +37,7 @@
 
 ## 0. Peta Bab
 
-W8 membangun pemahaman sistematis tentang ekosistem foundation model:
+W8 membentuk pemahaman sistematis tentang ekosistem foundation model:
 
 - **2.1** Apa yang membuat sebuah model menjadi "foundation model"?
 - **2.2** Taksonomi modalitas x keluarga model x adaptasi
@@ -323,6 +323,6 @@ Format: [Lampiran C.9](14_Lampiran.md#c9-template-komponen-mandiri).
 
 ## Lanjut ke W9
 
-W8 membangun pemahaman foundation model untuk satu modalitas. W9 memperluas ke wilayah yang lebih kompleks: bagaimana menggabungkan dua atau lebih modalitas, bagaimana mendeteksi apakah model benar-benar menggunakan semua modalitas, dan bagaimana menangani situasi ketika satu modalitas hilang.
+W8 membentuk pemahaman foundation model untuk satu modalitas. W9 memperluas ke wilayah yang lebih kompleks: bagaimana menggabungkan dua atau lebih modalitas, bagaimana mendeteksi apakah model benar-benar menggunakan semua modalitas, dan bagaimana menangani situasi ketika satu modalitas hilang.
 
 Buka [W9 - Multimodal Reasoning](09_W9_Multimodal_Reasoning.md) ketika siap.

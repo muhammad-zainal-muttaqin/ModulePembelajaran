@@ -192,13 +192,13 @@ for i in range(100):
 ```
 
 > [!IMPORTANT]
-> Overfit one batch adalah tes paling diagnostik. Jika gagal: ada bug di kode Anda, bukan di hyperparameter. Jika berhasil: model sehat, masalah performa berasal dari data, augmentasi, atau regularisasi.
+> Overfit one batch adalah tes paling diagnostik. Jika gagal: ada bug di kode Anda, bukan di hyperparameter. Jika berhasil: model berfungsi dengan benar, masalah performa berasal dari data, augmentasi, atau regularisasi.
 
 ### 2.4 Galeri Training: Sebelum Membaca Teori
 
 Sebelum mendalami arsitektur, lihat empat contoh training konkret dan tanyakan diri sendiri: *apa yang berbeda?*
 
-- **Run A:** Loss training dan val turun sejajar, keduanya mencapai angka rendah di epoch 20. Ini training yang sehat.
+- **Run A:** Loss training dan val turun sejajar, keduanya mencapai angka rendah di epoch 20. Ini training yang berjalan baik.
 - **Run B:** Loss training turun mulus tapi loss val stagnan sejak epoch 4. Sesuatu sudah salah di sini - apa?
 - **Run C:** Loss training tidak bergerak sama sekali dari epoch pertama. Apakah ini masalah learning rate atau bug?
 - **Run D:** Loss meledak ke `NaN` di epoch ke-8 setelah awalnya turun normal.

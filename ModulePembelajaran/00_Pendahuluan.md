@@ -179,7 +179,7 @@ Email pembuka tadi tidak berdiri sendiri; ia bergantung pada sembilan kompetensi
 
 Kompetensi teknis cepat tumpul kalau tidak dibiasakan bersama sikap riset yang tepat. Empat sikap berikut ditanamkan sepanjang modul lewat pilihan contoh dan pertanyaan refleksi, sering kali tanpa disebut secara eksplisit.
 
-**Curiosity** - rasa ingin tahu yang gelisah. Ketika angka akurasi meloncat dari 78% ke 80% setelah Anda mengganti loss, sikap ini yang bertanya: "apakah kenaikan ini konsisten jika aku jalankan tiga kali dengan seed berbeda, atau sekadar kebetulan?" Curiosity menuntun Anda ke eksperimen tambahan sebelum menulis laporan.
+**Curiosity** - rasa ingin tahu yang tak kenal lelah. Ketika angka akurasi meloncat dari 78% ke 80% setelah Anda mengganti loss, sikap ini yang bertanya: "apakah kenaikan ini konsisten jika aku jalankan tiga kali dengan seed berbeda, atau sekadar kebetulan?" Curiosity menuntun Anda ke eksperimen tambahan sebelum menulis laporan.
 
 **Rigor** - disiplin dalam prosedur. Bukan sekadar "rapi", tetapi taat pada aturan seperti: satu variabel berubah pada satu waktu, seluruh konfigurasi disimpan bersama checkpoint, setiap angka di laporan dapat dilacak kembali ke run mana. Rigor melelahkan di awal dan menyelamatkan Anda berjam-jam di akhir.
 

@@ -43,7 +43,7 @@ W1 adalah pintu masuk bootcamp. Bab ini memperkenalkan tiga ide fondasi: **MLP s
 
 ## 1. Mengapa Tabular Lebih Dulu?
 
-Tabular adalah konteks paling jujur untuk memperkenalkan deep learning. Tidak ada augmentasi gambar, tidak ada tokenisasi teks, tidak ada timestep yang bergerak. Hanya satu vektor fitur masuk, satu prediksi keluar. Inilah kondisi paling bersih untuk melatih satu refleks yang akan dipakai sepanjang bootcamp:
+Tabular adalah konteks paling langsung untuk memperkenalkan deep learning. Tidak ada augmentasi gambar, tidak ada tokenisasi teks, tidak ada timestep yang bergerak. Hanya satu vektor fitur masuk, satu prediksi keluar. Inilah kondisi paling minim distraksi untuk melatih satu refleks yang akan dipakai sepanjang bootcamp:
 
 > Saat Anda melihat tugas baru, identifikasi **shape input** dan **shape output**, lalu pilih **keluarga model** yang secara alami memetakan keduanya.
 
@@ -112,7 +112,7 @@ ReLU(x)
   -3  -2  -1  0  1  2  3
 ```
 
-Kombinasi `Linear → ReLU → Linear → ReLU → ...` adalah resep MLP standar. Kedalaman menambah kapasitas representasi, ReLU menjaga aliran gradient tetap waras lewat banyak layer.
+Kombinasi `Linear → ReLU → Linear → ReLU → ...` adalah resep MLP standar. Kedalaman menambah kapasitas representasi, ReLU menjaga aliran gradient tetap stabil lewat banyak layer.
 
 #### 2.1.2 Body dan Head: Struktur Dua Bagian
 

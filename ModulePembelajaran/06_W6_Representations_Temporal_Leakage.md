@@ -332,7 +332,7 @@ Di proyek kuliah, shift sering sengaja diperkenalkan sebagai latihan. Lab 4 akan
 
 ### 2.6 Etika Data dan Bias
 
-Sejauh ini kita membahas validasi data dari sudut teknis - leakage, label, pipeline, domain shift. Ada satu dimensi lagi yang sama pentingnya: dimensi etis. Data yang bersih secara teknis belum tentu bersih secara etis. Sebagai asisten riset, Anda tidak hanya bertanggung jawab pada akurasi model, tetapi juga pada dampak dari model yang Anda bangun.
+Sejauh ini kita membahas validasi data dari sudut teknis - leakage, label, pipeline, domain shift. Ada satu dimensi lagi yang sama pentingnya: dimensi etis. Data yang valid secara teknis belum tentu adil secara etis. Sebagai asisten riset, Anda tidak hanya bertanggung jawab pada akurasi model, tetapi juga pada dampak dari model yang Anda bangun.
 
 > [!NOTE]
 > Bagian §2.6.1 (bias dataset), §2.6.2 (fairness), dan §2.6.4 (tanggung jawab asisten) adalah **pendalaman opsional** untuk W6. Yang **wajib** dibaca dan diterapkan adalah §2.6.3 (negative results) karena terkait langsung dengan reproducibility dari W4. Dua bagian opsional dimasukkan ke `<details>` collapsible di bawah; buka kalau Anda ingin pendalaman, atau lewati di first-pass dan kembali sebelum capstone.
