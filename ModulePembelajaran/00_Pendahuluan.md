@@ -160,7 +160,7 @@ Email ini terdengar sederhana, tetapi setiap fragmen menyimpan keputusan yang ti
 Semua keputusan itu ada di tangan Anda. Modul ini melatih Anda membuat keputusan-keputusan tersebut secara sistematis, sehingga email semacam itu menjadi titik awal eksperimen yang terstruktur, bukan sumber kepanikan.
 
 > [!NOTE]
-> Versi teknis dari pesan yang sama muncul lagi di W4: *"Tolong uji focal loss dan freeze blok awal pada backbone. Bandingkan dengan baseline yang adil, lalu kirim ringkasan hasil hari Kamis."* Untuk sekarang, email sederhana di atas sudah cukup memicu pertanyaan-pertanyaan inti.
+> W4 menggunakan email PI dengan instruksi teknis yang lebih spesifik sebagai titik awal worked example: *"Tolong uji focal loss dan freeze blok awal pada backbone. Bandingkan dengan baseline yang adil, lalu kirim ringkasan hasil hari Kamis."* Pertanyaan-pertanyaan yang muncul dari email sederhana di atas - dataset mana, split mana, angka bisa dipercaya bagaimana - adalah pertanyaan yang sama yang akan Anda hadapi saat instruksinya lebih teknis sekalipun.
 
 ---
 

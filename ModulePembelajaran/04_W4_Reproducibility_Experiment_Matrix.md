@@ -263,7 +263,7 @@ Mari kita kerjakan email PI langkah demi langkah, membangun protokol yang baru s
 
 ### 3.1 Membaca Instruksi secara Kritis
 
-Instruksi: *"Uji focal loss dan freeze blok awal; bandingkan dengan baseline yang adil."*
+Instruksi: *"Tolong uji focal loss dan freeze blok awal pada backbone. Bandingkan dengan baseline yang adil, lalu kirim ringkasan hasil hari Kamis."*
 
 Ambiguitas yang harus Anda ajukan ke PI (lewat pesan singkat atau di pertemuan mingguan):
 
