@@ -371,7 +371,7 @@ Keadilan (*fairness*) dalam ML adalah bidang penelitian sendiri. Anda tidak diha
 
 Pilihan definisi fairness bergantung pada konteks aplikasi. Tidak ada definisi yang superior universal; yang penting adalah Anda tahu definisi mana yang dipakai dan mengapa.
 
-**Fairness vs accuracy adalah trade-off nyata.** Mencapai fairness sering (tidak selalu) menurunkan akurasi keseluruhan. Mengabaikan fairness sama sekali demi akurasi adalah keputusan etis, bukan sekadar teknis. Sebagai asisten riset, tugas Anda adalah membuat trade-off ini eksplisit - bukan memilih sendiri, tetapi memberi PI informasi cukup untuk memilih dengan sadar.
+**Fairness vs accuracy adalah trade-off yang sesungguhnya.** Mencapai fairness sering (tidak selalu) menurunkan akurasi keseluruhan. Mengabaikan fairness sama sekali demi akurasi adalah keputusan etis, bukan sekadar teknis. Sebagai asisten riset, tugas Anda adalah membuat trade-off ini eksplisit - bukan memilih sendiri, tetapi memberi PI informasi cukup untuk memilih dengan sadar.
 
 Sumber untuk pendalaman: *Fairness and Machine Learning* (Barocas, Hardt, Narayanan - gratis online) dan *Model Cards for Model Reporting* (Mitchell et al., 2019) - template satu halaman untuk mendokumentasikan bias, asumsi, dan batasan model.
 
@@ -542,7 +542,7 @@ Laporan ini masuk ke `experiments/lab4/audit.md`, dibaca bersama protokol eksper
 
 **"Dataset publik sudah bersih."** Hampir tidak pernah. ImageNet punya label salah; CIFAR-10 punya duplikasi antar split; dataset medis publik sering punya *patient leakage*. Jangan anggap dataset publik bebas dari pemeriksaan.
 
-**"Imbalance berarti harus pakai SMOTE/oversampling."** Tidak selalu. Imbalance yang sesuai dengan realita (misalnya 5% pasien positif kanker) adalah informasi yang valid. Oversampling menipu model agar menganggap distribusi seimbang, yang bisa menurunkan performa di distribusi nyata. Pertimbangkan dulu: apakah loss yang sadar imbalance (focal, weighted CE) atau *metrik* yang tepat (PR-AUC) sudah cukup?
+**"Imbalance berarti harus pakai SMOTE/oversampling."** Tidak selalu. Imbalance yang sesuai dengan realita (misalnya 5% pasien positif kanker) adalah informasi yang valid. Oversampling menipu model agar menganggap distribusi seimbang, yang bisa menurunkan performa di distribusi yang sebenarnya. Pertimbangkan dulu: apakah loss yang sadar imbalance (focal, weighted CE) atau *metrik* yang tepat (PR-AUC) sudah cukup?
 
 **"Normalisasi dilakukan di awal, aman."** Periksa apakah `fit` pada train saja. Jika `fit_transform` dipanggil pada seluruh data sebelum split, Anda punya preprocessing leakage - halus tetapi nyata.
 

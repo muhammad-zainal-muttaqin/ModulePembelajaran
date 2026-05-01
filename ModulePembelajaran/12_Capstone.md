@@ -40,10 +40,10 @@ Capstone adalah proyek riset yang terbatas dan berbasis hipotesis. Kamu masuk de
 
 Sepuluh minggu bootcamp mengajarkan cara mengeksekusi: diberi masalah yang terdefinisi dan dataset yang terdefinisi, bangun model, latih dengan benar, dan evaluasi secara jujur. Capstone meminta kamu melakukan sesuatu yang lebih sulit: memiliki pertanyaan riset dari awal hingga akhir - merumuskannnya, mengujinya, merevisinya saat bukti mendorong balik, dan mengkomunikasikan apa yang benar-benar ditemukan.
 
-Prosesnya tidak akan berjalan persis seperti yang direncanakan. Itu bukan tanda ada yang salah. Proyek riset yang berjalan persis seperti yang direncanakan kemungkinan tidak menanyakan pertanyaan yang nyata. Momen memikirkan ulang - ketika hasil Eksperimen 1 memaksamu merevisi hipotesis dan desain - adalah pusat capstone, bukan jalan menyimpang darinya.
+Prosesnya tidak akan berjalan persis seperti yang direncanakan. Itu bukan tanda ada yang salah. Proyek riset yang berjalan persis seperti yang direncanakan kemungkinan tidak menanyakan pertanyaan yang sesungguhnya. Momen memikirkan ulang - ketika hasil Eksperimen 1 memaksamu merevisi hipotesis dan desain - adalah pusat capstone, bukan jalan menyimpang darinya.
 
 Capstone yang baik punya:
-- Gap nyata di Middle. Sesuatu yang tidak bisa diselesaikan oleh pipeline standar yang diterapkan apa adanya
+- Gap yang sesungguhnya di Middle. Sesuatu yang tidak bisa diselesaikan oleh pipeline standar yang diterapkan apa adanya
 - Cakupan yang bisa ditutup dalam 3 minggu kerja yang fokus
 - Artefak publik: repositori yang bisa di-clone dan dijalankan orang lain, laporan yang bisa dibaca orang lain secara mandiri, demo yang bisa dicoba orang lain
 
@@ -156,7 +156,7 @@ Pertanyaan yang mungkin diajukan kelompok dan Bu Fatma:
 
 Dua pertanyaan terakhir adalah yang paling diagnostik. Peserta yang tidak bisa menjawab "kalau Eksperimen 1 hasilnya terbalik" berarti belum benar-benar terlibat dengan hasilnya. Mereka menulis tinjauan ulang yang sudah direncanakan sebelumnya.
 
-Tinjauan ulang adalah luaran terpenting dari capstone. Tinjauan ulang yang berkata "hasil berjalan sesuai ekspektasi, saya sekarang akan menjalankan yang sudah saya rencanakan dari awal" bukan tinjauan ulang. Tinjauan ulang yang nyata mengubah sesuatu: hipotesis, kondisi, metrik, atau framing output. Perubahan itu bisa dilacak ke sesuatu yang spesifik yang diamati.
+Tinjauan ulang adalah luaran terpenting dari capstone. Tinjauan ulang yang berkata "hasil berjalan sesuai ekspektasi, saya sekarang akan menjalankan yang sudah saya rencanakan dari awal" bukan tinjauan ulang. Tinjauan ulang yang sesungguhnya mengubah sesuatu: hipotesis, kondisi, metrik, atau framing output. Perubahan itu bisa dilacak ke sesuatu yang spesifik yang diamati.
 
 **Pre-registration Eksperimen 2:** pada akhir pertemuan atau segera setelahnya, setiap peserta meng-commit pre-registration untuk Eksperimen 2. Bu Fatma mengkonfirmasi arahnya masuk akal sebelum komputasi besar dijalankan.
 
@@ -241,7 +241,7 @@ Gunakan minggu antara W14 dan tenggat pengumpulan untuk:
 
 Setiap pertemuan tatap muka dalam capstone mengikuti struktur yang sama: setiap peserta mempresentasikan kerja saat ini kepada kelompok, dan kelompok - termasuk Bu Fatma dan RA - menanggapi.
 
-Format ini melayani beberapa tujuan yang lebih sulit dicapai dalam pembimbingan satu-satu. Saat tinjauan ulang satu peserta diidentifikasi sebagai "ini hanya eksperimen berikut yang sudah kamu rencanakan, bukan respons nyata terhadap data," semua peserta di ruangan mengkalibrasi ulang pemikiran mereka sendiri. Saat Bu Fatma menangkap masalah framing di W12, koreksinya terlihat oleh semua orang, bukan hanya satu orang yang framing-nya dikembalikan.
+Format ini melayani beberapa tujuan yang lebih sulit dicapai dalam pembimbingan satu-satu. Saat tinjauan ulang satu peserta diidentifikasi sebagai "ini hanya eksperimen berikut yang sudah kamu rencanakan, bukan respons yang sesungguhnya terhadap data," semua peserta di ruangan mengkalibrasi ulang pemikiran mereka sendiri. Saat Bu Fatma menangkap masalah framing di W12, koreksinya terlihat oleh semua orang, bukan hanya satu orang yang framing-nya dikembalikan.
 
 Presentasi juga memberi Bu Fatma gambaran jelas tentang posisi setiap peserta dibanding yang lain. Siapa yang benar-benar stuck? Siapa yang punya momentum? Siapa yang mengeksekusi dengan baik tapi menanyakan pertanyaan yang ternyata sudah terjawab dalam literatur? Pola-pola ini lebih mudah dilihat saat semua kerja ada di ruangan yang sama.
 
@@ -303,7 +303,7 @@ Ini adalah cara paling umum proyek capstone mengalami kesulitan. Mengetahuinya l
 
 ## Refleksi
 
-1. **Tinjauan ulang yang nyata.** Bayangkan Eksperimen 1 menunjukkan bahwa intervensimu tidak membantu. Tulis satu paragraf tinjauan ulang yang jujur. Apa yang akan diubah untuk Eksperimen 2? Bagaimana cara membedakan "hasil ini mengajarkan sesuatu" dari "hasil ini mengecewakan dan saya akan abaikan"?
+1. **Tinjauan ulang yang sesungguhnya.** Bayangkan Eksperimen 1 menunjukkan bahwa intervensimu tidak membantu. Tulis satu paragraf tinjauan ulang yang jujur. Apa yang akan diubah untuk Eksperimen 2? Bagaimana cara membedakan "hasil ini mengajarkan sesuatu" dari "hasil ini mengecewakan dan saya akan abaikan"?
 
 2. **Klaim vs. bukti.** Ambil satu kesimpulan dari sebuah paper yang dibaca di W10. Tulis ulang kesimpulan itu agar sesuai dengan cakupan eksperimen yang sebenarnya - bukan yang ambisius, tapi yang akurat. Seperti apa kalimatnya?
 

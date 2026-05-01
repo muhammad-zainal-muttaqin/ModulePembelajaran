@@ -229,7 +229,7 @@ Ketika PI Anda menyebutkan "coba diffusion untuk data kita", Anda harus bisa men
 
 ## 3. Worked Example: Dari Minat ke Mini-Eksperimen dalam Satu Minggu
 
-Skenario nyata dari seorang mahasiswa fiktif, Rani, yang tertarik pada *label noise robustness*.
+Skenario dari seorang mahasiswa fiktif, Rani, yang tertarik pada *label noise robustness*.
 
 **Senin.** Rani berlangganan `cs.LG` dengan filter kata "label noise", "noisy labels". Minggu ini: 47 judul baru. 10 abstrak dibaca; 3 paper terkumpul sebagai top.
 

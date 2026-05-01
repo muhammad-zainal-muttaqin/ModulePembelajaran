@@ -229,7 +229,7 @@ Faktor `T²` mengompensasi gradient yang menyusut karena temperature. Total loss
 
 ## 3. Worked Example: IndoBERT dengan Tiga Strategi Adaptasi
 
-Dataset: IndoNLU SmSA (dari Lab 5b). Tiga strategi pada dataset yang sama untuk memperlihatkan trade-off nyata.
+Dataset: IndoNLU SmSA (dari Lab 5b). Tiga strategi pada dataset yang sama untuk memperlihatkan trade-off di antara ketiganya.
 
 **Strategi A - Frozen + Linear Head:**
 ```python
@@ -261,7 +261,7 @@ Kelemahan: paling lama, butuh GPU, risiko overfitting pada data kecil.
 
 **Ekspektasi perbandingan** pada 5000 sampel IndoNLU SmSA:
 - Frozen: macro-F1 ≈ 68-73%. Cepat, tapi sub-optimal.
-- LoRA: macro-F1 ≈ 76-81%. Best efficiency-performance tradeoff.
+- LoRA: macro-F1 ≈ 76-81%. Tradeoff efisiensi-performa terbaik.
 - Full FT: macro-F1 ≈ 80-85%. Paling lambat, paling kuat.
 
 ---

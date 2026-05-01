@@ -203,7 +203,7 @@ Solusi: replikasi minimal tiga seed per kondisi, laporkan rata-rata dan standar 
 
 Di luar seed, sumber noise lain: urutan data, kernel CUDA yang non-deterministik (beberapa operasi konvolusi), optimasi compiler. Untuk reproduksibilitas ketat, Anda juga perlu mengatur `torch.backends.cudnn.deterministic = True` - bab berikutnya membahas teknik ini lebih lengkap.
 
-**Kapan perbedaan cukup besar untuk diklaim?** Mean ± std memberi gambaran variabilitas, tetapi tidak langsung menjawab pertanyaan "apakah ini nyata atau noise?" Dua aturan praktis yang berguna:
+**Kapan perbedaan cukup besar untuk diklaim?** Mean ± std memberi gambaran variabilitas, tetapi tidak langsung menjawab pertanyaan "apakah ini sinyal yang sesungguhnya atau sekadar noise?" Dua aturan praktis yang berguna:
 
 1. **Aturan 2σ**: Jika Δ antara dua kondisi lebih besar dari 2 × σ gabungan keduanya, perbedaannya lebih mungkin bermakna daripada sekadar variasi seed. Ini bukan uji statistik formal, tetapi cukup untuk laporan internal.
 

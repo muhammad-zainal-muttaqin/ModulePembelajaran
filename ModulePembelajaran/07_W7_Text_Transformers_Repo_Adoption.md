@@ -370,7 +370,7 @@ Teknik "overfit one batch" (Karpathy, 2019) lebih kuat: training loop biasa teta
 
 Beberapa teknik pragmatis untuk memahami kode tanpa membaca semuanya:
 
-`**grep` / `rg` untuk menemukan definisi:**
+**`grep`** / **`rg`** untuk menemukan definisi:
 
 ```bash
 rg "class ResNet18" src/
@@ -404,7 +404,7 @@ git log --follow src/losses.py
 
 Commit history memberitahu *mengapa* kode menjadi bentuk sekarang - sering jawaban atas "kenapa ada fungsi aneh ini".
 
-`**git blame` untuk menemukan author:**
+**`git blame`** untuk menemukan author:
 
 ```bash
 git blame src/train.py
@@ -553,7 +553,7 @@ Tabel ringkas untuk referensi cepat:
 
 Misalkan Anda menerima tugas: *"Gunakan repo `vision-baseline` dari lab kita. Tambahkan opsi memakai focal loss. Hasilkan baseline + ablation pada CIFAR-10."*
 
-> **Latihan paralel di repo nyata.** Contoh ini memakai repo hipotetis agar fokus pada pola, bukan detail library. Untuk latihan di kode nyata, clone salah satu berikut dan ikuti langkah yang sama (pemetaan, entry point, peta panggilan, titik injeksi modifikasi) secara paralel:
+> **Latihan paralel di repo yang sebenarnya.** Contoh ini memakai repo hipotetis agar fokus pada pola, bukan detail library. Untuk latihan di kode yang sebenarnya, clone salah satu berikut dan ikuti langkah yang sama (pemetaan, entry point, peta panggilan, titik injeksi modifikasi) secara paralel:
 >
 > - **`rwightman/pytorch-image-models` (timm)** - `github.com/huggingface/pytorch-image-models`. Ratusan model klasifikasi gambar; entry point `train.py` di root. Banyak dipakai di paper visi.
 > - **`huggingface/transformers`** - `github.com/huggingface/transformers`. Skala jauh lebih besar; cocok bila Capstone Anda di domain teks. Mulai dari `examples/pytorch/text-classification/run_classification.py` - itu skeleton yang paling mudah diadaptasi.

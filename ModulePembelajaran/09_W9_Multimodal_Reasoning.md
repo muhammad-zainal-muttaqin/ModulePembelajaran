@@ -135,7 +135,7 @@ Ini yang digunakan oleh BLIP-2, Flamingo, dan model vision-language modern.
 
 Ini adalah failure mode paling umum dan paling sering tidak terdeteksi dalam penelitian multimodal.
 
-**Mekanisme:** Ketika training multimodal, optimizer menemukan jalur gradient yang paling mudah. Jika satu modalitas lebih "informatif" atau lebih mudah dioptimasi (mis. gambar lebih clean dari sensor yang noisy), model belajar mengabaikan modalitas lainnya. Loss tetap turun, performance tampak bagus - tapi model sebenarnya single-modal.
+**Mekanisme:** Ketika training multimodal, optimizer menemukan jalur gradient yang paling mudah. Jika satu modalitas lebih "informatif" atau lebih mudah dioptimasi (mis. gambar lebih bersih dibanding sensor yang *noisy*), model belajar mengabaikan modalitas lainnya. Loss tetap turun, performa tampak bagus - tapi model sebenarnya *single-modal*.
 
 **Cara mendeteksi:**
 
@@ -270,16 +270,16 @@ imu_timestamps = imu_timestamps - 0.250  # koreksi drift 250 ms
 
 Setiap paper dan laporan multimodal harus menjalankan ablation ini sebelum klaim apapun:
 
-| Experiment | Input | Expected finding |
+| Eksperimen | Input | Temuan yang diharapkan |
 |---|---|---|
-| Full model | image + text + sensor | Baseline performance |
-| Image only | image (text+sensor masked) | Single-modal ceiling |
-| Text only | text (image+sensor masked) | Single-modal ceiling |
-| Sensor only | sensor (image+text masked) | Single-modal ceiling |
-| Image + Text | image + text | Does sensor add value? |
-| Image + Sensor | image + sensor | Does text add value? |
-| Text + Sensor | text + sensor | Does image add value? |
-| Random image | random noise (text+sensor real) | Ignored-modality check |
+| Full model | image + text + sensor | Performa baseline |
+| Image only | image (text+sensor dimasking) | Batas single-modal |
+| Text only | text (image+sensor dimasking) | Batas single-modal |
+| Sensor only | sensor (image+text dimasking) | Batas single-modal |
+| Image + Text | image + text | Apakah sensor berkontribusi? |
+| Image + Sensor | image + sensor | Apakah text berkontribusi? |
+| Text + Sensor | text + sensor | Apakah image berkontribusi? |
+| Random image | noise acak (text+sensor asli) | Pengecekan modalitas yang diabaikan |
 
 Template protocol ini tersedia di [Lampiran C.14](14_Lampiran.md#c14-per-modality-ablation-protocol).
 

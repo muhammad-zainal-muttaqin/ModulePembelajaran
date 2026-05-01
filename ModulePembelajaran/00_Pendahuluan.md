@@ -193,7 +193,7 @@ Sisa 30-40% berasal dari: paper reading lanjutan, panduan PI/dosen pembimbing, a
 
 Transisi yang dimaksudkan:
 
-- **Bootcamp (Minggu 1-11):** bangun peta, workflow, dan kebiasaan
+- **Bootcamp (Minggu 1-11):** bangun peta, alur kerja, dan kebiasaan
 - **Capstone (Minggu 12-15):** terapkan dalam satu masalah yang dibatasi
 - **RA research:** lanjutkan belajar mandiri pada masalah di lab
 
@@ -250,7 +250,7 @@ Setiap minggu kembali ke pertanyaan yang sama:
 |---|---|
 | W1 | `(F,) -> (1,)`, `(1,)`, `(N,)` (tabular) |
 | W2-W3 | `(C, H, W) -> (N,)` (citra) |
-| W4 | sama seperti W2-W3, fokus workflow |
+| W4 | sama seperti W2-W3, fokus alur kerja |
 | W5 | `(T, F) -> (1,)`, `(N,)`, `(T'', 1)` (sequence) |
 | W6 | sama seperti W5, fokus representasi & leakage |
 | W7 | `(T,) -> (N,)`, `(1,)`, `(T, N)` (teks) |
@@ -269,7 +269,7 @@ Setiap minggu memperkenalkan satu kebiasaan riset yang tetap dipakai setelahnya.
 | W1 | Observasi sebelum kesimpulan | Sebelum bilang "model A lebih baik", tulis dulu apa yang dilihat di kurva (angka, bentuk), baru tafsirkan. |
 | W2 | Three-level smoke test | Sebelum training 30 epoch, jalankan import test → dummy forward → overfit one batch. Stop kalau salah satu gagal. |
 | W3 | Change one thing at a time | Saat membandingkan focal vs CE, samakan optimizer, lr, seed, augmentasi. Hanya loss yang berubah. |
-| W4 | Reproducibility, traceability, experiment matrix | Setiap run punya `config.yaml + git_hash + seed`; semua ablation tertulis di matrix sebelum eksekusi. |
+| W4 | Reproducibility, traceability, matriks eksperimen | Setiap run punya `config.yaml + git_hash + seed`; semua ablation tertulis di matriks sebelum eksekusi. |
 | W5 | Long-sequence diagnosis dan justifikasi arsitektur | Saat training LSTM tidak konvergen, plot gradient norm per-layer dulu sebelum tweak hyperparameter. |
 | W6 | Validasi preprocessing dan kewaspadaan leakage | Hitung mean/std HANYA dari train; jangan pernah lihat test sebelum angka final. |
 | W7 | Verifikasi kode AI, inspeksi tokenisasi, repo primer | Sebelum commit kode dari LLM, baca baris demi baris dan jalankan minimal smoke test sederhana. |
@@ -338,7 +338,7 @@ Lab dalam modul ini bukan kumpulan latihan terpisah. Lab-lab utama memakai basis
 **Lab Inti (wajib):**
 
 - **Lab 0 (W1)** - Tabular MLP: latih MLP pada satu dataset tabular bersama dengan tiga formulasi tugas (regression, binary classification, multiclass).
-- **Lab 1 (W2-W3)** - Baseline CNN: bangun classifier citra dari nol + pretrained fine-tune; jalankan three-level smoke test ritual.
+- **Lab 1 (W2-W3)** - Baseline CNN: bangun classifier citra dari nol + pretrained fine-tune; jalankan smoke test tiga level.
 - **Lab 2 (W3)** - 3-condition ablation: jalankan satu perbandingan terkontrol (mis. AdamW vs SGD, augmentasi on/off) dengan interpretasi kurva dan confusion matrix.
 - **Lab 3 (W4)** - Reproducibility: pindahkan konfigurasi ke YAML, kunci seed, simpan checkpoint dengan metadata + git hash, refactor jadi struktur eksperimen reproduksibel.
 - **Lab 3b (W5)** - RNN vs LSTM: bandingkan vanilla RNN dan LSTM/GRU pada tugas sequence dengan dependensi panjang; visualisasikan gradient flow.
@@ -361,7 +361,7 @@ Mulai W4, setiap bab juga memiliki satu **Komponen Mandiri** - pilihan jalur eks
 
 **Empat jalur Komponen Mandiri:**
 
-| Jalur | Inti kegiatan | Contoh konkret | Artefak portfolio |
+| Jalur | Inti kegiatan | Contoh konkret | Artefak portofolio |
 | --- | --- | --- | --- |
 | **Implementasi** | Tambah/ubah/uji kode di repo eksperimen | Augmentasi baru, scheduler tambahan, flag CLI penukar komponen | Cuplikan kode + benchmark before/after + 1 paragraf interpretasi |
 | **Analisis** | Selidiki perilaku model/data/hasil | Confusion matrix per-kelas, Grad-CAM, studi variansi seed, audit kesalahan | Visualisasi + 2-3 temuan + hipotesis turunan |
@@ -378,9 +378,9 @@ Modul ini disusun sebagai urutan linier W1 → W11. Tabel berikut menunjukkan mi
 | --- | --- | --- |
 | **W1** Tabular | - (entry point) | - |
 | **W2** Images & CNN | W1 | Tensor I/O, output head + loss matching |
-| **W3** Loss/Opt/Eval | W2 | Smoke test ritual, baseline yang berjalan |
+| **W3** Loss/Opt/Eval | W2 | Smoke test tiga level, baseline yang berjalan |
 | **W4** Reproducibility | W3 | Pipeline training penuh; bisa baca loss curve |
-| **W5** Sequences | W4 | Workflow disiplin; eksperimen matrix |
+| **W5** Sequences | W4 | Disiplin alur kerja; matriks eksperimen |
 | **W6** Representations & Leakage | W5 | Sequence model; pemikiran tentang split data |
 | **W7** Text & Repo Adoption | W4, W6 | Reproducibility; pemahaman representasi |
 | **W8** Foundation Models | W7 | Pengalaman fine-tuning pretrained text/image model |
@@ -390,7 +390,7 @@ Modul ini disusun sebagai urutan linier W1 → W11. Tabel berikut menunjukkan mi
 | **W12-15** Capstone | W1-W11 | Seluruh pipeline + research framing matang |
 
 > [!NOTE]
-> Dependensi linier W1→W11 memang disengaja. Berbeda dengan modul lama yang punya bab paralel, struktur bootcamp memastikan setiap kebiasaan riset baru bertumpu pada kebiasaan minggu sebelumnya. Hindari melompat: misalnya, W7 (text + repo adoption) menuntut workflow reproducibility dari W4 dan eksperimen matrix dari W5.
+> Dependensi linier W1→W11 memang disengaja. Berbeda dengan modul lama yang punya bab paralel, struktur bootcamp memastikan setiap kebiasaan riset baru bertumpu pada kebiasaan minggu sebelumnya. Hindari melompat: misalnya, W7 (text + repo adoption) menuntut alur kerja reproduksibel dari W4 dan matriks eksperimen dari W5.
 
 **Rantai lab breadth arsitektur**: Lab 0 (MLP tabular, W1) atau Lab 1c (MLP numpy, opsional) → Lab 1 (CNN, W2) → Lab 3b (RNN/LSTM, W5) → Lab 5b/Lab 6b (Transformer, W7) → Lab 7b (Autoencoder, breadth opsional). Empat dari lima keluarga sudah tercakup oleh lab wajib W1-W7; Lab 7b melengkapi keluarga Autoencoder untuk Breadth Check di Kontrak Belajar.
 
@@ -432,4 +432,4 @@ Sebelum melangkah ke W1, luangkan waktu sepuluh menit untuk menulis jawaban sing
 
 ## Lanjut ke W1
 
-Setelah menyelesaikan refleksi, buka [W1 - Tabular & Output Heads](01_W1_Tabular_Output_Heads.md). Bab tersebut memperkenalkan MLP sebagai *shape transformer*, output head + loss matching, dan ritme observasi sebelum interpretasi - bukan sebagai daftar definisi, melainkan sebagai keputusan desain yang dimulai dari pertanyaan: data seperti apa yang sedang kita olah, dan struktur apa yang paling cocok untuk data itu?
+Setelah menyelesaikan refleksi, buka [W1 - Tabular & Output Heads](01_W1_Tabular_Output_Heads.md). Bab tersebut memperkenalkan MLP sebagai *pengubah bentuk tensor*, output head + loss matching, dan ritme observasi sebelum interpretasi - bukan sebagai daftar definisi, melainkan sebagai keputusan desain yang dimulai dari pertanyaan: data seperti apa yang sedang kita olah, dan struktur apa yang paling cocok untuk data itu?

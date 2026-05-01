@@ -24,7 +24,7 @@
 
 ---
 
-# 02 · W2 - Images, CNN & Smoke Test Ritual
+# 02 · W2 - Images, CNN & Smoke Test
 
 > *Arsitektur bukan daftar definisi untuk dihafalkan. Arsitektur adalah keputusan desain yang berangkat dari pertanyaan: pola apa yang dibawa data Anda, dan struktur model apa yang paling cocok untuk pola itu?*
 

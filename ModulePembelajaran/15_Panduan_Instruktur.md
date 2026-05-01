@@ -43,7 +43,7 @@ Dokumen ini adalah panduan operasional untuk dosen pengampu, instruktur, atau fa
 Curiosity, Rigor, Skepticism, dan Ownership tidak diajarkan sebagai doktrin. Sikap-sikap ini ditanamkan secara tidak langsung melalui:
 
 - **Cerita pembuka** di setiap bab - skenario riset yang menciptakan kebutuhan terhadap konsep.
-- **Pitfall & miskonsepsi** - kesalahan nyata yang memicu refleksi.
+- **Pitfall & miskonsepsi** - kesalahan yang terjadi di lapangan dan memicu refleksi.
 - **Pertanyaan refleksi** di akhir bab - tiga pertanyaan terbuka yang memaksa mahasiswa mengartikulasikan pemahaman sendiri.
 - **Komponen Mandiri** - pilihan jalur mingguan yang melatih inisiatif.
 
@@ -206,8 +206,8 @@ Konten di luar `<details>` adalah **core content** - wajib untuk semua mahasiswa
 ### W11 - Research Framing
 
 - **Kritis:** **W11 adalah setup capstone**. Pimpin live demo dekomposisi dataset di kelas (dataset ditentukan Bu Fatma sebelum W11). Workshop 3 sesi: menu framing, triage literatur, seleksi dan komitmen. Mahasiswa keluar dengan 3-5 framing kandidat dan tabel triage literatur.
-- **Pitfall:** Mahasiswa mengambil framing terlalu besar atau tanpa gap nyata. Gap yang nyata: sesuatu yang tidak bisa diselesaikan pipeline standar apa adanya. Dorong framing yang bisa ditutup dalam 3 minggu kerja fokus.
-- **Refleksi berbobot:** "Dari 3-5 framing yang kamu buat, mana yang gapnya paling nyata dan bisa diisi dalam waktu capstone? Literatur apa yang kamu temukan yang memperkuat atau menggugurkan pilihan itu?"
+- **Pitfall:** Mahasiswa mengambil framing terlalu besar atau tanpa gap yang sesungguhnya ada. Gap yang sesungguhnya ada: sesuatu yang tidak bisa diselesaikan pipeline standar apa adanya. Dorong framing yang bisa ditutup dalam 3 minggu kerja fokus.
+- **Refleksi berbobot:** "Dari 3-5 framing yang kamu buat, mana yang gapnya paling jelas ada dan bisa diisi dalam waktu capstone? Literatur apa yang kamu temukan yang memperkuat atau menggugurkan pilihan itu?"
 - **Kaitan rubrik:** Integrasi semua kompetensi (framing + triage literatur). Target: Proficient.
 - **Waktu lab:** W11 menggantikan lab dengan luaran dokumen dekomposisi (3-5 framing) + tabel triage literatur. Estimasi 6-10 jam termasuk penelusuran literatur mandiri.
 
