@@ -1,5 +1,5 @@
-📂 Navigasi Modul (klik untuk buka)
-
+<details>
+<summary>📂 Navigasi Modul (klik untuk buka)</summary>
 
 | #    | Modul                                                                                  | Minggu |
 | ---- | -------------------------------------------------------------------------------------- | ------ |
@@ -20,6 +20,7 @@
 | 14   | [Lampiran](14_Lampiran.md)                                                             | –      |
 | 15   | [Panduan Instruktur](15_Panduan_Instruktur.md)                                         | –      |
 
+</details>
 
 ---
 
