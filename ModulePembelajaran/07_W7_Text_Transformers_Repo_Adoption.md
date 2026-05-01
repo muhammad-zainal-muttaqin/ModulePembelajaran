@@ -150,7 +150,7 @@ Tulis satu paragraf synthesis: "Sumber A menyarankan X karena P. Sumber B menyar
 
 ### 2.3 AI untuk Non-Kode
 
-alat AI berguna melampaui kode:
+Alat AI berguna melampaui kode:
 - **Membaca paper** - "tolong rangkum bagian 3.2 dan identifikasi asumsi yang tidak diucapkan eksplisit"
 - **Mendiskusikan hipotesis** - "diberikan bahwa distribusi kelas sangat tidak seimbang, apakah ada alasan untuk tidak memakai focal loss?"
 - **Navigasi repo** - "bagaimana alur data dari DataLoader ke model dalam repo ini?" (dengan memberikan struktur folder sebagai konteks)

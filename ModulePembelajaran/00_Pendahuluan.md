@@ -182,7 +182,7 @@ Itu artinya Anda harus bisa:
 - mengenali perilaku training yang mencurigakan
 - menginspeksi data dan mengantisipasi leakage
 - membaca paper secara terstruktur
-- menulis pre-registration dan mempertahankan hipotesis dapat dipalsukan
+- menulis pre-registration dan mempertahankan hipotesis falsifiable
 
 Itu **bukan** berarti pada akhir bootcamp Anda harus:
 
@@ -282,7 +282,7 @@ Setiap minggu memperkenalkan satu kebiasaan riset yang tetap dipakai setelahnya.
 | W8     | Literasi model card, pilihan adaptasi, baseline yang adil      | Sebelum fine-tune, baca model card: dataset asal, lisensi, batas penggunaan, evaluasi yang sudah ada.                                                                     |
 | W9     | Ablation per modalitas dan multimodal failure analysis      | Setelah multimodal model jalan, jalankan run dengan satu modalitas di-zero atau di-acak; jika metric tidak turun, modalitas itu diabaikan.                                  |
 | W10    | Membaca paper tiga putaran dan menerjemahkannya ke kode     | Putaran 1 (judul-abstrak-kesimpulan), putaran 2 (figur dan tabel), putaran 3 (rumus). Stop di putaran 1 jika tidak relevan.                                                           |
-| W11    | Input→Middle→Output framing, triage literatur, seleksi gap | Tulis hipotesis dapat dipalsukan (`Δ ≥ X dengan p < Y`), bukan "saya pikir model A lebih baik". Framing yang baik punya gap yang tidak bisa diisi pipeline standar apa adanya. |
+| W11    | Input→Middle→Output framing, triage literatur, seleksi gap | Tulis hipotesis falsifiable (`Δ ≥ X dengan p < Y`), bukan "saya pikir model A lebih baik". Framing yang baik punya gap yang tidak bisa diisi pipeline standar apa adanya. |
 
 
 ### 5.3 Representation Choice

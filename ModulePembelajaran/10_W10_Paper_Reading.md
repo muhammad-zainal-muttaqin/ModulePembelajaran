@@ -228,7 +228,7 @@ Karena itu, bagian ini memberi Anda **peta mental** agar Anda bisa membaca paper
 
 | Keluarga | Ide inti | Training signal | Kapan dipakai | Failure mode khas | Paper pembuka |
 | --- | --- | --- | --- | --- | --- |
-| VAE | Encoder ke distribusi Gaussian, decoder dari sampel | Rekonstruksi + KL terhadap prior | Ketika butuh representasi kontinu yang bisa di-sampel; *conditional generation* | *Posterior collapse*: decoder mengabaikan z dan hanya mengandalkan prior decoder - terjadi saat KL term terlalu mendominasi loss, menyebabkan representasi latent tidak informatif | Kingma & Welling 2013 (*Auto-Encoding Variational Bayes*) |
+| VAE | Encoder ke distribusi Gaussian, decoder dari sampel | Rekonstruksi + KL terhadap prior | Ketika butuh representasi kontinu yang bisa di-sampel; *conditional generation* | *Posterior collapse*: decoder mengabaikan z dan hanya mengandalkan decoder prior - terjadi saat KL term terlalu mendominasi loss, menyebabkan representasi latent tidak informatif | Kingma & Welling 2013 (*Auto-Encoding Variational Bayes*) |
 | GAN | Generator vs discriminator, permainan minimax | Discriminator mengklasifikasi real/fake | Generasi gambar tajam, *style transfer*, *image-to-image* | *Mode collapse*: generator hanya menghasilkan subset kecil dari distribusi data (misalnya hanya wajah dengan ekspresi datar, bukan seluruh variasi) meski training loss terlihat stabil | Goodfellow et al. 2014 (*Generative Adversarial Nets*) |
 | Diffusion | Tambah noise bertahap, belajar un-noise | Prediksi noise pada setiap langkah | State-of-the-art image/video generation, kontrol *conditioning* | Inference lambat (banyak step), butuh compute besar | Ho et al. 2020 (*Denoising Diffusion Probabilistic Models*) |
 | Normalizing Flow | Transformasi bijeksi yang dibalik dari noise ke data | Likelihood eksak | Ketika butuh likelihood eksak (deteksi anomali, kompresi) | Arsitektur terbatas (harus invertible), kapasitas lebih kecil | Rezende & Mohamed 2015 (*Variational Inference with Normalizing Flows*) |
@@ -337,10 +337,10 @@ Konsep: membaca paper secara terarah, mengubah paper menjadi implementasi kecil,
 
 ## 7. Bacaan Lanjutan
 
-- **"How to Read a Paper"** oleh S. Keshav (2007, 3 halaman). Metode tiga putaran asli; sumber populer dari teknik yang diadaptasi di bab ini. Baca sekali dalam hidup Anda, tempel di dekat meja.
-- **arxiv-sanity-lite** (Andrej Karpathy). Alat kurasi paper sederhana yang Anda host sendiri. Kalau Anda suka mengkurasi dengan preferensi unik, ini menghemat waktu.
-- **Andrej Karpathy - "A Recipe for Training Neural Networks"** (karpathy.github.io, 2019). Bukan tentang membaca paper, tetapi mewakili sikap ilmiah-harian yang diajarkan bab ini: cek unit, bangun baseline yang keras, percaya yang terukur.
-- **OpenReview.net** - baca review publik dari ICLR/NeurIPS untuk paper yang Anda suka. Melihat bagaimana reviewer profesional mengkritik paper adalah satu dari sedikit cara terbaik mempertajam *taste* riset.
+- **"How to Read a Paper"** oleh S. Keshav (2007, 3 halaman). Memperkenalkan metode tiga tahap (The Three-Pass Approach); sumber populer dari teknik yang diadaptasi di bab ini. Baca sekali seumur hidup, cetak, dan tempel di dekat meja kerja Anda.
+- **arxiv-sanity-lite** (Andrej Karpathy). Alat kurasi *paper* sederhana yang bisa Anda *host* sendiri. Sangat menghemat waktu jika Anda suka mengkurasi literatur dengan preferensi yang spesifik dan unik.
+- **"A Recipe for Training Neural Networks"** oleh Andrej Karpathy (karpathy.github.io, 2019). Memang bukan tentang membaca *paper*, tetapi sangat mewakili sikap ilmiah harian yang diajarkan di bab ini: cek unit, bangun *baseline* yang kuat, dan percayai apa yang bisa diukur.
+- **OpenReview.net**. Baca ulasan (*review*) publik dari konferensi besar seperti ICLR atau NeurIPS untuk *paper* yang Anda suka. Melihat bagaimana *reviewer* profesional mengkritik sebuah *paper* adalah salah satu cara terbaik untuk mempertajam intuisi (*taste*) riset Anda.
 
 ---
 

@@ -177,15 +177,15 @@ Saat training, kosongkan satu modalitas secara acak dengan probabilitas `p_drop`
 
 ```python
 class MultimodalModel(nn.Module):
-    def forward(self, image, text, modalitas_mask=None):
-        if modalitas_mask is None and self.training:
+    def forward(self, image, text, modality_mask=None):
+        if modality_mask is None and self.training:
             # Random dropout saat training
-            modalitas_mask = torch.bernoulli(
+            modality_mask = torch.bernoulli(
                 torch.ones(2) * 0.15  # 15% chance tiap modalitas di-drop
             )
 
-        img_feat = self.image_encoder(image) if modalitas_mask[0] > 0 else torch.zeros(...)
-        txt_feat = self.text_encoder(text) if modalitas_mask[1] > 0 else torch.zeros(...)
+        img_feat = self.image_encoder(image) if modality_mask[0] > 0 else torch.zeros(...)
+        txt_feat = self.text_encoder(text) if modality_mask[1] > 0 else torch.zeros(...)
         return self.fusion(img_feat, txt_feat)
 ```
 
@@ -281,7 +281,7 @@ Setiap paper dan laporan multimodal harus menjalankan ablation ini sebelum klaim
 | Text + Sensor | text + sensor | Apakah image berkontribusi? |
 | Random image | noise acak (text+sensor asli) | Pengecekan modalitas yang diabaikan |
 
-Template protokol ini tersedia di [Lampiran C.14](14_Lampiran.md#c14-per modalitas-ablation-protocol).
+Template protokol ini tersedia di [Lampiran C.14](14_Lampiran.md#c14-per-modalitas-ablation-protocol).
 
 > [!NOTE]
 > **Kelayakan untuk capstone 3-4 minggu.** 7 kondisi sebelumnya adalah protokol penuh (rekomendasi untuk paper atau laporan akhir). Jika waktu terbatas, **5 kondisi minimum** sudah informatif:

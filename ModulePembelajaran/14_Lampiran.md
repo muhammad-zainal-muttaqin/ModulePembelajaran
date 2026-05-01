@@ -113,7 +113,7 @@ Istilah teknis ML/DL sebagian besar berasal dari Bahasa Inggris. Glosarium ini m
 | stride | langkah | Step pergeseran kernel saat convolution. Stride > 1 mereduksi dimensi spasial. | - |
 | teacher forcing | - | Training sequence: ground truth dipakai sebagai input langkah berikutnya, bukan prediksi model. | - |
 | temporal alignment | penyelarasan temporal | Sinkronisasi timestep dari stream data yang berbeda sampling rate. | - |
-| baca tiga putaraning | baca tiga-putaran | Metode Keshav (2007): skim -> close-read -> critical read. | - |
+| three-pass reading | baca tiga-putaran | Metode Keshav (2007): skim -> close-read -> critical read. | - |
 | tokenization | tokenisasi | Pemecahan teks menjadi unit lebih kecil: subword, kata, atau karakter. | - |
 | transfer learning | - | Pengetahuan dari satu tugas dipakai untuk meningkatkan performa di tugas lain. | - |
 | Transformer | - | Arsitektur NN berbasis attention, backbone LLM modern. | Nama diri, jangan diterjemahkan. |
@@ -221,7 +221,7 @@ Istilah teknis ML/DL sebagian besar berasal dari Bahasa Inggris. Glosarium ini m
 | pre-registration | praregistrasi | Mendokumentasikan hipotesis dan protokol sebelum eksperimen. | Dua-duanya diterima. |
 | replicated result | hasil yang direplikasi | Hasil yang dikonfirmasi dengan seed berbeda atau oleh peneliti lain. | - |
 | reproducibility | reproduksibilitas | Eksperimen dapat diulang dengan hasil yang sama jika seed, config, dan komit sama. | - |
-| research question | pertanyaan riset | Pertanyaan spesifik, terukur, dan dapat dipalsukan yang menjadi fokus riset. | - |
+| research question | pertanyaan riset | Pertanyaan spesifik, terukur, dan falsifiable yang menjadi fokus riset. | - |
 | seed | - | Nilai awal untuk random number generator. Kunci reproduksibilitas. | Tidak diterjemahkan. |
 | smoke test (3-level) | - | L1: import modul. L2: forward satu batch. L3: satu epoch training. Verifikasi pipeline. | - |
 | SQRC | - | Situation, Question, Resolution attempt, Call. Kerangka komunikasi riset. | - |
@@ -408,7 +408,7 @@ Salin checklist ini di bagian atas setiap folder eksperimen baru (`experiments/<
 
 ### B.1 Sebelum Menjalankan (Pre-flight)
 
-- Pertanyaan riset ditulis dalam satu kalimat yang dapat dipalsukan.
+- Pertanyaan riset ditulis dalam satu kalimat falsifiable.
 - Baseline jelas dan adil (tanpa "handicap" tersembunyi).
 - Satu metrik utama ditetapkan; metrik sekunder (bila ada) dicatat.
 - Minimum 3 seed direncanakan per kondisi.
@@ -465,7 +465,7 @@ Salin ke `docs/preregs/<YYYY-MM-DD>_<nama_eksperimen>.md` sebelum menulis kode e
 
 <Mengapa pertanyaan ini layak dijawab sekarang. Konteks praktis atau teoretis.>
 
-## 2. Hipotesis (satu kalimat yang dapat dipalsukan)
+## 2. Hipotesis (satu kalimat falsifiable)
 
 Saya memprediksi **<metode X>** akan menghasilkan **<metrik M>** yang lebih **<tinggi/rendah>**
 sebesar **≥ Δ** dibandingkan dengan **<baseline B>** pada **<dataset D>**,
@@ -1138,7 +1138,7 @@ Template untuk luaran wajib W11. Isi semua bagian sebelum pertahanan framing W12
 
 ## 1. Pertanyaan Penelitian
 
-[Satu kalimat dapat dipalsukan. Contoh: "Apakah X lebih baik dari Y pada Z, diukur dengan M, dengan delta minimal D?"]
+[Satu kalimat falsifiable. Contoh: "Apakah X lebih baik dari Y pada Z, diukur dengan M, dengan delta minimal D?"]
 
 ## 2. Baseline dan Intervensi
 
@@ -1213,7 +1213,7 @@ Template untuk W9 Lab 8 dan capstone multimodal. Copy ke `docs/ablation_protocol
 
 ## Diagnosis
 
-- Ignored modalitas ditemukan? [Ya/Tidak]
+- Modalitas terabaikan ditemukan? [Ya/Tidak]
 - Modalitas mana yang diabaikan? [atau "tidak ada yang terkonfirmasi"]
 - Evidence: [gradient norms / ablation delta]
 - Mitigasi yang diterapkan: [modalitas dropout / null token / tidak ada]
@@ -1317,7 +1317,7 @@ runpodctl remove pod [pod-id]
 - **Pohon keputusan adaptasi (frozen/LoRA/full FT)?** -> W8 §2.4
 - **protokol ablation per modalitas?** -> Lampiran §C.14
 - **Strategi fusion multimodal?** -> W9 §2.1
-- **Missing modalitas strategies?** -> W9 §2.3
+- **Strategi modalitas hilang?** -> W9 §2.3
 - **Timeline capstone 4 minggu (W12-W15)?** -> [Capstone - Proyek Riset](12_Capstone.md) §1
 - **Sub-rubrik capstone per fase (W12-W15)?** -> [Rubrik Penilaian](13_Rubrik_Penilaian.md) §5.1
 - **Alat riset ringan (Streamlit/Gradio/RunPod)?** -> Lampiran §C.15

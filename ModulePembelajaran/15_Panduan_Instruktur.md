@@ -55,7 +55,7 @@ Modul ini dirancang agar mahasiswa membaca bab *sebelum* sesi tatap muka. Waktu 
 
 - **Diskusi pitfall** - "Siapa yang pernah mengalami loss tidak turun dari epoch pertama? Apa yang Anda lakukan?"
 - **Review protokol** - mahasiswa saling membaca `protocol.md` dan mengkritisi variabel, baseline, dan hipotesis.
-- **Bedah hasil lab** - "AngAnda naik 1.7%. Coba lihat std dev-nya. Apakah itu signifikan?"
+- **Bedah hasil lab** - "Angka Anda naik 1.7%. Coba lihat std dev-nya. Apakah itu signifikan?"
 - **Presentasi Komponen Mandiri** - 10 menit per mahasiswa, dua arah: presenter menjelaskan, audiens bertanya.
 
 Anda tidak perlu menjelaskan isi bab. Mahasiswa sudah membacanya. Tugas Anda adalah memastikan mereka *memahami implikasinya*.

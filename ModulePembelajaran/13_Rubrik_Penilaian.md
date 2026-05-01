@@ -245,7 +245,7 @@ Penilaian capstone didistribusi ke empat fase untuk memastikan umpan balik diber
 | Kriteria | Novice | Developing | Proficient | Masterpiece |
 |---|---|---|---|---|
 | **Pertahanan framing** | Framing tidak bisa dipertahankan saat ditanya | Framing ada tapi gap tidak jelas | Gap diidentifikasi; temporal/causal check dilakukan; literatur 2-3 paper | Gap terverifikasi; triage literatur menyeluruh; backup framing siap |
-| **Pre-registration Eksperimen 1** | Tidak ada atau dibuat setelah training | Ada tapi generik, tanpa kondisi kegagalan | Hipotesis dapat dipalsukan; kondisi kegagalan eksplisit; seeds ditentukan | Pre-reg merencanakan fallback jika primary gagal; commit sebelum kode berjalan |
+| **Pre-registration Eksperimen 1** | Tidak ada atau dibuat setelah training | Ada tapi generik, tanpa kondisi kegagalan | Hipotesis falsifiable; kondisi kegagalan eksplisit; seeds ditentukan | Pre-reg merencanakan fallback jika primary gagal; commit sebelum kode berjalan |
 | **Memulai Eksperimen 1** | Eksperimen belum mulai di akhir W12 | Setup berjalan; belum ada hasil | Baseline berjalan dengan ≥1 seed; logging aktif | Baseline + condition awal; hasil pertama sudah ada |
 
 **W13 - Pikirkan Ulang dan Iterasi (35% dari nilai capstone)**
