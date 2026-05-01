@@ -37,19 +37,7 @@
 
 ## 0. Peta Bab
 
-W4 adalah titik balik dari "bisa training" menjadi "bisa riset". Materi minggu ini mencakup:
-
-- **2.0** Matriks eksperimen sebelum coding
-- **2.1** Lima pertanyaan sebelum menyentuh kode
-- **2.2** Protokol eksperimen satu halaman
-- **2.3** Mengendalikan variabel: satu hal satu waktu
-- **2.4** Noise, seed, replikasi, kapan perbedaan bermakna
-- **2.5** Hipotesis yang dapat dipalsukan
-- **2.6** Ketika hipotesis tidak terkonfirmasi
-- **2.7** Infrastruktur reproduksibilitas: YAML, seed, checkpoint, git hash
-- **2.8** Platform: kapan pindah dari laptop ke RunPod
-
-Setelah W4, setiap eksperimen yang Anda laporkan punya jejak yang bisa ditunjukkan kepada siapapun.
+W4 adalah titik balik dari "bisa training" menjadi "bisa riset". Minggu ini membangun tiga lapis disiplin: merancang dulu (matriks eksperimen, lima pertanyaan sebelum kode, protokol satu halaman, hipotesis falsifiable), menjalankan dengan kontrol (satu variabel per waktu, replikasi seed, ambang signifikansi praktis), lalu mengikat hasil pada infrastruktur reproduksibilitas (YAML, seed lock, checkpoint metadata, git hash). Setelah W4, setiap eksperimen yang Anda laporkan punya jejak yang bisa ditunjukkan kepada siapapun.
 
 ---
 
@@ -358,50 +346,12 @@ Update mingguan yang baik adalah kebiasaan paling sederhana dan paling berdampak
 
 Template salin-pakai lengkap dengan contoh terisi dan tiga prinsip update yang baik tersedia di [Lampiran §C.11](14_Lampiran.md#c11-template-update-mingguan-ke-pi). Pakai template ini sebagai titik awal, lalu sesuaikan dengan ritme komunikasi dosen Anda - sebagian PI lebih suka email, sebagian lebih suka shared document yang ditambah setiap pekan.
 
-#### 3.5.2 Kerangka SQRC untuk Framing Pertanyaan Teknis
+#### 3.5.2 Tiga Alat Komunikasi: SQRC, Saluran, Ketidakpastian
 
-Saat Anda butuh masukan PI di luar update rutin, pakai kerangka **SQRC** - empat langkah yang membedakan asisten mandiri dari yang bergantung:
+Di luar update rutin, ada tiga alat yang membentuk kebiasaan komunikasi seorang asisten riset. Pertama, kerangka **SQRC** (Situation, Question, Resolution attempt, Call/permintaan) memandu Anda menulis pertanyaan teknis yang menunjukkan Anda sudah berusaha sebelum meminta bantuan; ini membedakan asisten mandiri dari yang bergantung. Kedua, pemilihan saluran komunikasi mengikuti satu aturan praktis: jika butuh jawaban dalam hitungan menit pakai chat, jika butuh pemikiran lebih dalam pakai email, dan diskusi arah riset selalu lebih efisien tatap muka. Ketiga, ekspresi ketidakpastian profesional - melaporkan hasil dengan keterbatasan yang jujur, menahan generalisasi berlebihan, dan menyertai "saya tidak tahu" dengan langkah konkret berikutnya - adalah tanda kompetensi, bukan kelemahan.
 
-| Langkah | Singkatan | Isi | Contoh |
-| --- | --- | --- | --- |
-| **S** | Situasi | Apa yang terjadi? Satu kalimat fakta. | "Loss validation naik sejak epoch 8, sementara train loss terus turun." |
-| **Q** | Pertanyaan | Apa yang ingin dijawab atau dicapai? | "Saya ingin tahu apakah ini overfitting atau ada bug di data split." |
-| **R** | Upaya penyelesaian | Apa yang sudah dicoba? | "Saya sudah kurangi LR 10×, loss tetap naik. Saya sudah overfit satu batch - loss turun ke nol. Saya periksa distribusi label di train/val: seimbang." |
-| **C** | Permintaan | Permintaan spesifik untuk PI. | "Dari ketiga kemungkinan - overfitting, bug split, atau learning rate - mana yang paling mungkin berdasarkan pola ini? Atau ada diagnosis lain yang saya lewatkan?" |
-
-SQRC efektif karena tiga alasan:
-- PI tahu Anda sudah berusaha sendiri (R), sehingga dia tidak perlu memulai dari nol.
-- PI bisa langsung melompat ke inti masalah tanpa bertanya balik "learning rate-nya berapa?".
-- Anda belajar dari pola diagnosis PI - semakin sering Anda memakai SQRC, semakin sedikit Anda perlu bertanya.
-
-**Contoh SQRC yang buruk:** "Model saya tidak belajar. Ada saran?" (tidak ada S, tidak ada R, C terlalu luas).
-
-#### 3.5.3 Memilih Saluran Komunikasi
-
-Tidak semua komunikasi pantas lewat saluran yang sama. Matriks berikut membantu Anda memilih:
-
-| Situasi | Saluran | Mengapa |
-| --- | --- | --- |
-| Update progress rutin | Email / shared doc | Asinkron, tidak perlu respon segera, bisa diarsipkan |
-| Butuh keputusan cepat (deadline < 24 jam) | Chat langsung / Slack DM | PI bisa merespon dalam 1-2 menit |
-| Pertanyaan teknis yang butuh konteks | Email dengan SQRC di subject | PI bisa menjawab saat punya waktu fokus; subject yang jelas memudahkan pencarian ulang |
-| Hasil eksperimen final | Email + lampiran laporan 1 halaman | Menciptakan jejak tertulis; 3 bullet point temuan utama di badan email, detail di lampiran |
-| Diskusi arah riset berikutnya | Tatap muka / video call | Percakapan dua arah lebih efisien untuk eksplorasi ide |
-
-Aturan praktis: jika butuh jawaban < 1 menit dari PI, pakai chat. Jika butuh pemikiran > 5 menit dari PI, pakai email. Jangan kirim pertanyaan analitis via chat - PI akan merespon singkat dan Anda kehilangan kesempatan mendapat masukan mendalam.
-
-#### 3.5.4 Mengekspresikan Ketidakpastian secara Profesional
-
-Asisten riset pemula sering merasa harus terlihat yakin. Padahal, PI yang baik lebih menghargai kejujuran tentang batas pengetahuan daripada kepercayaan diri yang rapuh. Kalimat-kalimat berikut adalah contoh mengekspresikan ketidakpastian tanpa kehilangan kredibilitas:
-
-| Kurang tepat | Lebih tepat | Mengapa |
-| --- | --- | --- |
-| "Modelnya berhasil." | "Hasil preliminary dengan 1 seed menunjukkan F1 minor naik 6 poin. Saya belum mereplikasi dengan seed berbeda, jadi belum bisa memastikan kenaikan ini bukan noise." | Mengakui keterbatasan sambil tetap melaporkan hasil |
-| "Focal loss tidak efektif." | "Pada konfigurasi yang saya uji (γ=2.0, 3 seed, CIFAR-10 balanced), focal loss tidak meningkatkan F1. Mungkin berbeda pada dataset dengan imbalance lebih ekstrem." | Menyatakan hasil tanpa generalisasi berlebihan |
-| "Saya tidak tahu kenapa loss-nya begini." | "Saya menduga penyebabnya salah satu dari dua: LR terlalu tinggi, atau ada bug di normalisasi. Saya akan uji hipotesis pertama dulu dengan LR 10× lebih kecil." | Mengakui ketidaktahuan + langkah konkret |
-| "Menurut paper X, ini solved." | "Paper X melaporkan hasil kuat pada dataset mereka. Saya belum bisa mereproduksi pada dataset kita - mungkin karena perbedaan distribusi kelas." | Menghormati temuan paper tanpa mengabaikan hasil sendiri |
-
-Intinya: ketidakpastian yang disertai langkah konkret adalah tanda kompetensi. Ketidakpastian tanpa tindak lanjut adalah tanda kebingungan.
+> [!TIP]
+> Tabel SQRC dengan contoh kalimat, matriks lima saluran komunikasi, dan empat pasangan kalimat "kurang tepat vs lebih tepat" untuk ekspresi ketidakpastian tersedia lengkap di [Lampiran C.22](14_Lampiran.md#c22-komunikasi-pi). Baca sekali sebelum email pertama Anda ke PI; rujuk kembali ketika menulis pertanyaan teknis yang sulit.
 
 ---
 
@@ -445,32 +395,19 @@ Tugas:
 
 ### 2.7 Infrastruktur Reproduksibilitas: YAML, Seed, Checkpoint, Git Hash
 
-Empat pilar infrastruktur yang harus ada pada setiap eksperimen yang dilaporkan setelah W4:
+Reproduksibilitas berdiri di atas empat pilar yang saling mengunci. Hyperparameter hidup di config YAML deklaratif, bukan di angka ajaib yang berserakan di kode; config disimpan bersama checkpoint sehingga setiap hasil bisa ditelusuri ke konfigurasi persis yang menghasilkannya. Seed dikunci di awal training dengan `set_seed(cfg['seed'])` sebelum operasi apapun, dan untuk reproduksibilitas ketat di GPU disertai `torch.backends.cudnn.deterministic = True`; satu seed per run, variasi seed dipakai antar replikasi sebagai pengukur noise.
 
-**1. Config YAML.** Semua hyperparameter dalam file deklaratif. Config disimpan bersama checkpoint. Tidak ada angka ajaib di kode.
-
-**2. Seed locked.** Panggil `set_seed(cfg['seed'])` di awal sebelum apapun. Untuk reproduksibilitas ketat di GPU, tambahkan `torch.backends.cudnn.deterministic = True`. Satu seed per run; variasikan seed antar replikasi.
-
-**3. Checkpoint dengan metadata.** Simpan lebih dari `model.state_dict()` - sertakan `config`, `git_hash`, `epoch`, `metrics`, `timestamp`. Checkpoint tanpa config adalah setengah bukti.
-
-**4. Git hash.** Ikat setiap run ke commit kode yang menghasilkannya dengan `get_git_hash()`. Commit sebelum run final yang dilaporkan. Flag "dirty" memperingatkan uncommitted changes.
-
-Lihat `template_repo/src/utils.py` untuk implementasi keempat pilar. Lab 3 (`lab_w4_experiment_tracking.ipynb`) membangun keempatnya secara berurutan.
+Dua pilar berikutnya mengikat hasil pada jejak yang bisa diaudit. Checkpoint menyimpan lebih dari sekadar `model.state_dict()` - di dalamnya ada `config`, `git_hash`, `epoch`, `metrics`, dan `timestamp`, karena checkpoint tanpa config hanyalah setengah bukti. Git hash mengikat setiap run ke commit yang menghasilkannya lewat `get_git_hash()`, dan flag "dirty" memperingatkan ketika ada perubahan yang belum di-commit. Implementasi keempat pilar tersedia di `template_repo/src/utils.py`; Lab 3 (`lab_w4_experiment_tracking.ipynb`) membangun keempatnya secara berurutan.
 
 > [!NOTE]
 > Detail mendalam tentang empat sumber non-determinisme, Worker seeding, TensorBoard setup, dan konvensi Git untuk riset eksperimental tersedia di file ini sebagai materi lanjutan - cari bagian §2.1-§2.10 dari konten legacy. Bacaan ini sangat berguna sebelum W4 assignment.
 
 ### 2.8 Platform: Kapan Pindah ke RunPod
 
-Aturan praktis: tetap di laptop/Colab selama training selesai < 30 menit. Pindah ke RunPod ketika:
+Tetap di laptop atau Colab selama training selesai di bawah 30 menit; pindah ke RunPod ketika satu run sudah melewati ambang itu sambil Anda perlu menjalankan enam run atau lebih untuk replikasi, ketika dataset tidak muat di RAM laptop, atau ketika Anda butuh GPU dengan VRAM lebih dari 8 GB. Alur kerja RunPod dasar yang diperkenalkan minggu ini sederhana: launch pod, SSH masuk, jalankan training, pull checkpoint, lalu matikan pod. Konfigurasi minimal dan cara push/pull checkpoint lewat rsync atau rclone tersedia di [Lampiran C.15](14_Lampiran.md#c15-lightweight-research-tools).
 
-- Training satu run > 30 menit (dan Anda perlu menjalankan 6+ run untuk replikasi).
-- Dataset tidak muat di RAM laptop.
-- Anda butuh GPU dengan VRAM > 8GB.
-
-Pada W4, Anda diperkenalkan ke alur kerja RunPod dasar: launch pod → SSH → jalankan training → pull checkpoint → **matikan pod**. Mematikan pod adalah kebiasaan paling kritis - tagihan GPU terus berjalan selama pod hidup.
-
-Konfigurasi RunPod minimal dan cara push/pull checkpoint lewat rsync atau rclone tersedia di [Lampiran C.15](14_Lampiran.md#c15-lightweight-research-tools).
+> [!CAUTION]
+> Mematikan pod setelah training selesai adalah kebiasaan paling kritis di W4. Tagihan GPU terus berjalan selama pod hidup, termasuk saat Anda lupa setelah berhasil pull checkpoint. Pasang pengingat di kalender atau biasakan menutup pod sebelum menutup terminal.
 
 ---
 
@@ -496,15 +433,10 @@ Buka `template_repo/notebooks/lab_w4_experiment_tracking.ipynb`. Tugas:
 
 ## Komponen Mandiri (W4)
 
-Konsep: matriks eksperimen + infrastruktur reproduksibilitas. Format, kriteria, dan panduan presentasi: [Lampiran C.9](14_Lampiran.md#c9-template-komponen-mandiri).
+Konsep minggu ini: matriks eksperimen plus infrastruktur reproduksibilitas. Anda memilih salah satu dari tiga jalur - Implementasi (loss function alternatif lengkap dengan protokol satu halaman), Analisis (membaca tiga paper klasifikasi dan mengekstrak pola rancangan tersirat), atau Desain (menulis protokol lima bagian untuk dataset baru tanpa menjalankannya, dengan justifikasi setiap pilihan). Luaran berupa entri portofolio Pekan 4 di `notebooks/portofolio_mandiri.ipynb` dan presentasi 10 menit di awal Pekan 5.
 
-| Jalur | Tugas minggu ini |
-| --- | --- |
-| **A - Implementasi** | Implementasikan satu loss function berbeda (mis. `LabelSmoothingCrossEntropy` atau `DiceLoss`) pada CIFAR-10. Tulis protokol satu halaman sebelum menjalankan kode. Laporkan apakah hipotesis terkonfirmasi, disanggah, atau tidak konklusif. |
-| **B - Analisis** | Ambil tiga paper klasifikasi gambar dari arXiv. Untuk masing-masing, identifikasi variabel yang diuji, baseline yang dipakai, dan hipotesis tersirat. Simpulkan pola rancangan yang paling sering diabaikan. |
-| **C - Desain** | Pilih satu dataset klasifikasi publik (selain CIFAR-10). Tulis protokol eksperimen lima bagian lengkap tanpa menjalankannya. Justifikasi setiap pilihan desain: mengapa metrik ini, mengapa baseline ini, mengapa delta threshold ini. |
-
-**Luaran:** Entri portofolio Pekan 4 di `notebooks/portofolio_mandiri.ipynb`. Presentasi 10 menit di awal Pekan 5.
+> [!TIP]
+> Detail tugas per jalur, kriteria penilaian, dan panduan presentasi tersedia di [Lampiran C.20](14_Lampiran.md#c20-indeks-lab) dan [Lampiran C.9](14_Lampiran.md#c9-template-komponen-mandiri).
 
 ---
 

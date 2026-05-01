@@ -28,6 +28,36 @@ const ADMONITION_ICONS: Record<AdmonitionKind, string> = {
 
 const ADMONITION_PATTERN = /^\s*\[!(NOTE|TIP|WARNING|IMPORTANT|CAUTION)\]\s*/i;
 
+const HEADING_ID_PATTERN = /\s*\{#([\w-]+)\}\s*$/;
+
+function remarkPandocHeadingId() {
+  return (tree: { children?: unknown[] }) => {
+    const walk = (node: Record<string, unknown>) => {
+      if (node.type === "heading" && Array.isArray(node.children)) {
+        const children = node.children as Array<Record<string, unknown>>;
+        const last = children[children.length - 1];
+        if (last && last.type === "text" && typeof last.value === "string") {
+          const match = last.value.match(HEADING_ID_PATTERN);
+          if (match) {
+            const stripped = last.value.replace(HEADING_ID_PATTERN, "");
+            if (stripped === "") {
+              children.pop();
+            } else {
+              last.value = stripped;
+            }
+            const data = (node.data ??= {}) as Record<string, unknown>;
+            const hProperties = (data.hProperties ??= {}) as Record<string, unknown>;
+            hProperties.id = match[1];
+          }
+        }
+      }
+      const kids = (node.children as Array<Record<string, unknown>> | undefined) ?? [];
+      for (const child of kids) walk(child);
+    };
+    walk(tree as Record<string, unknown>);
+  };
+}
+
 function detectAdmonition(children: ReactNode): {
   kind: AdmonitionKind;
   rest: ReactNode[];
@@ -79,7 +109,7 @@ export default function MarkdownRenderer({ markdown }: Props) {
   return (
     <div className="prose-modul">
       <ReactMarkdown
-        remarkPlugins={[remarkGfm]}
+        remarkPlugins={[remarkGfm, remarkPandocHeadingId]}
         rehypePlugins={[
           rehypeRaw,
           rehypeSlug,
