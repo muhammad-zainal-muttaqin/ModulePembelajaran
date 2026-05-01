@@ -1467,6 +1467,19 @@ Intinya: ketidakpastian yang disertai langkah konkret adalah tanda kompetensi. K
 
 ---
 
+### C.23 Peta Kanal Publikasi ML {#c23-peta-kanal-publikasi-ml}
+
+Di ML modern, ide sering beredar lebih cepat daripada proses peer-review. Tabel berikut membantu Anda mengenali empat kanal publikasi utama dan cara membacanya secara kritis.
+
+| Kanal | Apa itu | Kekuatan | Keterbatasan | Cara membaca |
+| --- | --- | --- | --- | --- |
+| **Preprint (arXiv)** | Naskah yang diunggah penulis sebelum, saat, atau setelah proses publikasi resmi. | Sangat cepat; sering menjadi tempat pertama paper penting muncul; memberi akses awal ke ide dari "dapur riset". | Tidak peer-reviewed; kualitas sangat bervariasi; klaim bisa berubah antar versi. | Gunakan sebagai alat akses dan radar ide, bukan sumber otoritas final. Latih skeptisisme: cek eksperimen, baseline, ablation, dan versi terbaru. |
+| **Workshop** | Venue kecil yang biasanya melekat pada konferensi besar. | Bagus untuk ide awal, topik niche, dan diskusi komunitas. | Standar seleksi bervariasi; sering lebih eksploratif daripada konklusif. | Cocok untuk melihat arah baru, tetapi jangan terlalu mengandalkan klaim utama tanpa verifikasi. |
+| **Conference** | Venue utama ML seperti NeurIPS, ICML, ICLR, CVPR, ACL, EMNLP. | Peer-reviewed, kompetitif, dan biasanya menjadi publikasi utama di ML. | Review tetap tidak sempurna; paper bisa overclaim; detail implementasi sering di appendix/code. | Baca sebagai kontribusi yang sudah melewati filter kuat, tetapi tetap cek bukti dan reproducibility. |
+| **Journal** | Publikasi periodik dengan proses review lebih panjang. | Lebih matang; sering memuat versi extended, survei, atau validasi lebih lengkap. | Lebih lambat; di ML tidak selalu menjadi kanal utama untuk paper paling baru. | Bagus untuk fondasi, survei, dan detail metodologis yang lebih stabil. |
+
+---
+
 ## E. Indeks Cepat - Di Mana Mencari Apa {#e-indeks-cepat}
 
 - **Prasyarat Python/Kalkulus belum solid?** -> Lampiran §F
@@ -1477,6 +1490,7 @@ Intinya: ketidakpastian yang disertai langkah konkret adalah tanda kompetensi. K
 - **Panduan Instruktur (pacing, emphasis, grading)?** -> [Panduan Instruktur](15_Panduan_Instruktur.md)
 - **Template laporan capstone?** -> Lampiran §C.2
 - **Memilih framing capstone?** -> [Capstone - Proyek Riset](12_Capstone.md) §2
+- **Peta kanal publikasi ML (preprint/workshop/conference/journal)?** -> Lampiran §C.23
 - **Membaca paper dalam tiga putaran?** -> W10 §2.2
 - **Alur paper-to-code?** -> W10 §2.3
 - **Audit temporal leakage?** -> W6 §0.6 + Lab 6

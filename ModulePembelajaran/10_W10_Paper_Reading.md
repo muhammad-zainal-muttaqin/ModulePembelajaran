@@ -69,14 +69,7 @@ Perbedaan bukan bakat. Perbedaannya adalah sistem: filter paper, metode membaca,
 
 ### 2.1 Peta Kanal Publikasi ML: Preprint, Workshop, Conference, Journal
 
-Sebelum membaca paper, Anda perlu tahu status publikasinya. Di ML modern, ide sering beredar lebih cepat daripada proses peer-review. Itu baik untuk belajar cepat, tetapi berbahaya jika semua PDF diperlakukan seolah punya otoritas yang sama.
-
-| Kanal | Apa itu | Kekuatan | Keterbatasan | Cara membaca |
-| --- | --- | --- | --- | --- |
-| **Preprint (arXiv)** | Naskah yang diunggah penulis sebelum, saat, atau setelah proses publikasi resmi. | Sangat cepat; sering menjadi tempat pertama paper penting muncul; memberi akses awal ke ide dari "dapur riset". | Tidak peer-reviewed; kualitas sangat bervariasi; klaim bisa berubah antar versi. | Gunakan sebagai alat akses dan radar ide, bukan sumber otoritas final. Latih skeptisisme: cek eksperimen, baseline, ablation, dan versi terbaru. |
-| **Workshop** | Venue kecil yang biasanya melekat pada konferensi besar. | Bagus untuk ide awal, topik niche, dan diskusi komunitas. | Standar seleksi bervariasi; sering lebih eksploratif daripada konklusif. | Cocok untuk melihat arah baru, tetapi jangan terlalu mengandalkan klaim utama tanpa verifikasi. |
-| **Conference** | Venue utama ML seperti NeurIPS, ICML, ICLR, CVPR, ACL, EMNLP. | Peer-reviewed, kompetitif, dan biasanya menjadi publikasi utama di ML. | Review tetap tidak sempurna; paper bisa overclaim; detail implementasi sering di appendix/code. | Baca sebagai kontribusi yang sudah melewati filter kuat, tetapi tetap cek bukti dan reproducibility. |
-| **Journal** | Publikasi periodik dengan proses review lebih panjang. | Lebih matang; sering memuat versi extended, survei, atau validasi lebih lengkap. | Lebih lambat; di ML tidak selalu menjadi kanal utama untuk paper paling baru. | Bagus untuk fondasi, survei, dan detail metodologis yang lebih stabil. |
+Sebelum membaca paper, Anda perlu tahu status publikasinya. Di ML modern, ide sering beredar lebih cepat daripada proses peer-review - baik untuk belajar cepat, tetapi berbahaya jika semua PDF diperlakukan seolah punya otoritas yang sama. Tabel lengkap kanal publikasi (preprint, workshop, conference, journal) beserta kekuatan dan keterbatasan masing-masing tersedia di [Lampiran C.23](14_Lampiran.md#c23-peta-kanal-publikasi-ml).
 
 **arXiv adalah alat akses, bukan sumber otoritas.** Banyak paper penting muncul di arXiv sebelum atau bersamaan dengan versi konferensi/jurnal. Itu sebabnya arXiv sangat berguna: Anda melihat riset saat masih segar. Tetapi tidak ada peer-review di titik unggah, sehingga paper lemah, eksperimen kurang kuat, atau klaim yang terlalu besar juga masuk. Karena itu W10 memakai arXiv sebagai tempat latihan skeptisisme: cepat menemukan ide, lalu lambat dan hati-hati saat menilai bukti.
 

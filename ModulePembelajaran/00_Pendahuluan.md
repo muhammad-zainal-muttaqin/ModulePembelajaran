@@ -150,24 +150,9 @@ Bootcamp ini **bukan** dirancang untuk membuat Anda menjadi ahli penuh di setiap
 
 > Di akhir bootcamp, Anda diharapkan **60-70% siap** mengerjakan topik riset lab secara mandiri.
 
-Itu artinya Anda harus bisa:
+Artinya, Anda sudah mampu mengidentifikasi tipe tugas dan memilih keluarga model baseline yang masuk akal, melakukan fine-tune atau mengadaptasi pretrained model maupun repo riset eksternal, merancang perbandingan terkontrol berskala kecil, mengenali perilaku training yang mencurigakan, menginspeksi data dan mengantisipasi leakage, membaca paper secara terstruktur, serta menulis pre-registration dan mempertahankan hipotesis falsifiable.
 
-- mengidentifikasi tipe tugas dan framing bentuk tensor
-- memilih keluarga model baseline yang masuk akal
-- melakukan fine-tune atau mengadaptasi pretrained model atau repo riset eksternal
-- merancang perbandingan terkontrol berskala kecil
-- mengenali perilaku training yang mencurigakan
-- menginspeksi data dan mengantisipasi leakage
-- membaca paper secara terstruktur
-- menulis pre-registration dan mempertahankan hipotesis falsifiable
-
-Itu **bukan** berarti pada akhir bootcamp Anda harus:
-
-- menguasai literatur domain secara mendalam
-- mengetahui paper baseline terkuat di setiap spesialisasi
-- memahami internal setiap model pada tingkat riset
-- menyelesaikan masalah deployment, distillation, atau multimodal fusion dari nol
-- merancang agenda riset siap publikasi tanpa supervisi
+Ini **bukan** berarti Anda sudah menguasai literatur domain secara mendalam atau mengetahui paper baseline terkuat di setiap spesialisasi. Anda tidak diharapkan memahami internal setiap model pada tingkat riset, menyelesaikan masalah deployment, distillation, atau multimodal fusion dari nol, apalagi merancang agenda riset siap publikasi tanpa supervisi.
 
 Sisa 30-40% berasal dari: pembacaan paper lanjutan, panduan PI/dosen pembimbing, adopsi repo yang ditargetkan, debugging spesifik domain, dan capstone serta kerja mandiri setelahnya.
 
