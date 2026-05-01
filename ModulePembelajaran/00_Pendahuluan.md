@@ -38,7 +38,7 @@ Modul ini adalah **bootcamp 11 minggu + capstone 4 minggu**. Bab ini memperkenal
 
 ## 0.5 Sebelum Mulai: Bahasa dan Prasyarat Modul Ini
 
-Prasyarat modul ini ditetapkan seminimal mungkin, tetapi tetap ada beberapa istilah dasar yang perlu dikenali sejak awal. Sebelum membuka W1, luangkan 20 menit untuk membaca bagian ini agar notasi seperti `(F,)`, `(C, H, W)`, "loss", dan "gradient" tidak terasa asing di halaman berikutnya.
+Prasyarat modul ini ditetapkan seminimal mungkin, tetapi tetap ada beberapa istilah dasar yang perlu dikenali sejak awal. Sebelum membuka W1 (Minggu 1), luangkan 20 menit untuk membaca bagian ini agar notasi seperti `(F,)`, `(C, H, W)`, "loss", dan "gradient" tidak terasa asing di halaman berikutnya.
 
 > [!TIP]
 > Jika Anda sudah terbiasa dengan PyTorch, NumPy, dan kalkulus dasar, lompat ke §0.5.6 (glosarium singkat) untuk baca sekilas, lalu lanjut ke §1. Subbagian §0.5.1-§0.5.5 ditujukan untuk pemula yang baru pertama kali belajar deep learning.
