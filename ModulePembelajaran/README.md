@@ -27,7 +27,7 @@ Jika dua prasyarat pertama belum solid, kerjakan lebih dulu *primer* pada [Lampi
 | Minggu | Topik | Bab | Lab utama | Rigor Habit |
 |---|---|---|---|---|
 | 1 | Tabular, output heads, observasi pertama | [01](01_W1_Tabular_Output_Heads.md) | Lab 0 | Observation before conclusion |
-| 2 | Images, CNN, smoke test ritual | [02](02_W2_Images_CNN_Smoke_Test.md) | Lab 1 | Three-level smoke test |
+| 2 | Images, CNN, smoke test tiga level | [02](02_W2_Images_CNN_Smoke_Test.md) | Lab 1 | Three-level smoke test |
 | 3 | Loss, optimizer, galeri run (example-first) | [03](03_W3_Loss_Optimizer_Evaluasi.md) | Lab 1 + Lab 2 | Change one thing at a time |
 | 4 | Reproducibility + experiment matrix | [04](04_W4_Reproducibility_Experiment_Matrix.md) | Lab 3 | Experiment matrix before coding |
 | 5 | Sequences: RNN vs LSTM, gradient flow | [05](05_W5_Sequences_RNN_LSTM.md) | Lab 3b (wajib) | Long-sequence diagnosis |
@@ -87,7 +87,7 @@ Keempat sikap ini tidak dibahas dalam bab khusus, tetapi dirangkai ke dalam ceri
 ModulePembelajaran/
 ├── README.md
 ├── 00_Pendahuluan.md                          Orientasi, target outcome 60-70%, threads, rhythm
-├── 01_W1_Tabular_Output_Heads.md              W1: MLP as shape transformer, output heads (NEW)
+├── 01_W1_Tabular_Output_Heads.md              W1: MLP sebagai pengubah bentuk tensor, output heads (NEW)
 ├── 02_W2_Images_CNN_Smoke_Test.md             W2: CNN, three-level smoke test
 ├── 03_W3_Loss_Optimizer_Evaluasi.md           W3: Example-first, loss/opt/eval
 ├── 04_W4_Reproducibility_Experiment_Matrix.md W4: Experiment matrix, YAML/seed/checkpoint
