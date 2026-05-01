@@ -93,11 +93,11 @@ Penting untuk jujur tentang kondisi yang kita hadapi, karena metodologi minggu i
 
 Kita adalah lab kecil di universitas di Kalimantan. Pendanaan terbatas. Tim riset kecil. Akses ke kluster GPU besar, dataset berlabel besar, dan kolaborator domain yang dalam - semuanya terbatas. Kita bukan lab dengan lima puluh orang di institusi papan atas dengan kluster GPU khusus dan tim postdoc.
 
-Ini bukan permintaan maaf. Ini adalah ringkasan desain.
+Ini bukan permintaan maaf. Ini adalah batasan perancangan.
 
 Metodologi dekomposisi - menghasilkan beberapa framing, memeriksanya ke literatur, mengidentifikasi gap yang sesungguhnya ada, dan menyesuaikan cakupan dengan apa yang bisa dieksekusi - dikembangkan justru untuk konteks seperti ini. Ketika sumber daya terbatas, aktivitas dengan dampak tertinggi adalah memilih pertanyaan yang tepat sebelum menghabiskan waktu untuk eksekusi. Pertanyaan yang framing-nya baik pada dataset kecil menghasilkan riset yang bisa dipublikasikan. Pertanyaan yang framing-nya buruk pada dataset besar tidak menghasilkan sesuatu yang layak dipublikasikan, terlepas dari seberapa hati-hati training loop-nya ditulis.
 
-Keunggulan spesifik konteks kita betul-betul ada: data bahasa lokal (Banjar, dialek Indonesia lainnya), masalah pertanian dan kesehatan yang relevan secara lokal, domain-domain yang belum banyak dieksplorasi di mana gap literaturnya betul-betul ada - bukan buatan. Ini bukan hadiah hiburan. Ini peluang riset yang lab-lab berdana besar di Jakarta atau Singapura tidak sedang kejar, karena masalah-masalah itu tidak terlihat dari sana.
+Keunggulan spesifik konteks kita betul-betul ada: data bahasa lokal (Banjar, dialek Indonesia lainnya), masalah pertanian dan kesehatan yang relevan secara lokal, domain-domain yang belum banyak dieksplorasi di mana gap literaturnya memang ada, bukan dibuat-buat. Ini bukan hadiah hiburan. Ini peluang riset yang lab-lab berdana besar di Jakarta atau Singapura tidak sedang kejar, karena masalah-masalah itu tidak terlihat dari sana.
 
 Metodologi minggu ini adalah cara Anda menemukan dan mengklaim peluang-peluang itu.
 

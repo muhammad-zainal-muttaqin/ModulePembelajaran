@@ -363,7 +363,7 @@ class PainEstimator(nn.Module):
 
 **"Late fusion cukup untuk semua kasus."** Late fusion mudah diimplementasikan tapi sering menghasilkan masalah modalitas terabaikan. Coba cross-attention jika tugas butuh interaksi antar modalitas.
 
-**"Hasil naik = model menggunakan semua modalitas."** Tidak. Model bisa mencapai peningkatan kecil dari satu modalitas saja, sementara modalitas lain diabaikan. Jalankan ablation!
+**"Hasil yang meningkat belum tentu berarti model memakai semua modalitas."** Tidak. Model bisa mencapai peningkatan kecil dari satu modalitas saja, sementara modalitas lain diabaikan. Jalankan ablation!
 
 **"Temporal alignment otomatis ditangani oleh DataLoader."** Tidak. Anda bertanggung jawab memverifikasi bahwa timestamp dari setiap modalitas benar-benar disinkronkan sebelum dimasukkan ke model.
 

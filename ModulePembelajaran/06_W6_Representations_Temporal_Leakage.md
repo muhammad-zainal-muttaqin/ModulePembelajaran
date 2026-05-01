@@ -544,7 +544,7 @@ Laporan ini masuk ke `experiments/lab4/audit.md`, dibaca bersama protokol eksper
 
 **"Imbalance berarti harus pakai SMOTE/oversampling."** Tidak selalu. Imbalance yang sesuai dengan realita (misalnya 5% pasien positif kanker) adalah informasi yang valid. Oversampling menipu model agar menganggap distribusi seimbang, yang bisa menurunkan performa di distribusi yang sebenarnya. Pertimbangkan dulu: apakah loss yang sadar imbalance (focal, weighted CE) atau *metrik* yang tepat (PR-AUC) sudah cukup?
 
-**"Normalisasi dilakukan di awal, aman."** Periksa apakah `fit` pada train saja. Jika `fit_transform` dipanggil pada seluruh data sebelum split, Anda punya preprocessing leakage - halus tetapi nyata.
+**"Normalisasi dilakukan di awal, aman."** Periksa apakah `fit` pada train saja. Jika `fit_transform` dipanggil pada seluruh data sebelum split, Anda punya preprocessing leakage - sulit dideteksi tetapi berdampak.
 
 **"Test set tidak perlu diinspeksi, kita hanya mengukur di sana."** Salah. Anda perlu memastikan test set punya distribusi yang sama dengan apa yang akan Anda temui di produksi. Jika test set menyimpang, hasilnya tidak dapat diekstrapolasi.
 

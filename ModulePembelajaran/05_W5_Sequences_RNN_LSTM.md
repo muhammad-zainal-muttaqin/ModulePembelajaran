@@ -257,7 +257,7 @@ Template ini akan dipakai kembali di W7 (Transformer) dan W9 (multimodal). Mulai
 
 ### 2.6 Long-Sequence Diagnosis
 
-Ketika model sequence tidak belajar dengan baik, lima hipotesis pertama:
+Ketika model sequence tidak belajar dengan baik, lima hipotesis yang paling mungkin:
 
 1. **Vanishing gradient** - cek gradient norm per layer/timestep; jika turun eksponensial, beralih ke LSTM/GRU.
 2. **Sequence terlalu panjang** - coba potong sequence menjadi lebih pendek; jika performa membaik, dependensi lokal sudah cukup.

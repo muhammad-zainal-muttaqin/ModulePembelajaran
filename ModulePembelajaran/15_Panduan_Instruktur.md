@@ -126,7 +126,7 @@ Konten di luar `<details>` adalah **konten inti** - wajib untuk semua mahasiswa.
 ### W1 - Pendahuluan + Tabular & Output Heads
 
 - **Kritis:** Kontrak Belajar di Pendahuluan - klausul keenam (Breadth Check) dan ketujuh (eksperimen gagal dinilai setara). Mahasiswa harus paham mereka tidak akan dihukum karena hasil negatif. Lab 0 (tabular MLP) sebagai onboarding template_repo.
-- **Pitfall:** Kontrak dianggap formalitas. Minta paragraf: "Apa yang paling membuat saya ragu dari kontrak ini?" Jawaban sering mengungkap miskonsepsi awal. Untuk Lab 0: mahasiswa tergoda langsung lompat ke CNN tanpa MLP tabular dulu.
+- **Pitfall:** Kontrak dianggap formalitas. Minta paragraf: "Apa yang paling membuat saya ragu dari kontrak ini?" Jawaban sering mengungkap miskonsepsi awal. Untuk Lab 0: mahasiswa tergoda langsung beralih ke CNN tanpa MLP tabular dulu.
 - **Refleksi berbobot:** Pertanyaan capstone-style di akhir bab - simpan jawaban, bandingkan di W14.
 - **Kaitan rubrik:** Kompetensi 1 diperkenalkan; belum ada penilaian sumatif.
 - **Waktu lab:** Setup template_repo (1-2 jam) + Lab 0 (2-3 jam).
@@ -337,7 +337,7 @@ Contoh: "Analisis F1 per kelas sudah baik karena Anda menghubungkan penurunan ke
 **Tindakan:**
 1. Identifikasi apakah ketertinggalan karena konsep atau karena waktu.
 2. Jika konsep: arahkan ke jalur cepat (Pendahuluan §5c). W6-W9 punya komponen opsional (Lab 6b, 6c, 7b breadth) - prioritaskan konten inti yang paling relevan dengan Capstone mereka.
-3. Jika waktu: negosiasikan cakupan. Lebih baik mengerjakan W1-W7 + W11 + Capstone dengan dalam daripada semua minggu dengan dangkal.
+3. Jika waktu: negosiasikan cakupan. Lebih baik mengerjakan W1-W7 + W11 + Capstone secara mendalam daripada semua minggu dengan dangkal.
 4. Breadth Check (4 dari 5 arsitektur) tetap wajib, tetapi bisa dikerjakan paralel.
 
 ### Skenario 4: Mahasiswa Mengeluh "Instruksi PI Tidak Jelas" (W4)

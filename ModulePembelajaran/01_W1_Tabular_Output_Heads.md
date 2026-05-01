@@ -50,7 +50,7 @@ Tabular adalah konteks paling langsung untuk memperkenalkan deep learning. Tidak
 Empat alasan tabular dipakai sebagai pintu masuk:
 
 1. **Pipeline minimum.** Tidak perlu transformasi gambar; satu DataFrame sudah cukup.
-2. **Tiga perumusan tugas pada satu data.** Anda bisa merasakan perbedaan output head tanpa harus mengganti dataset.
+2. **Tiga perumusan tugas pada satu data.** Anda bisa mengamati perbedaan output head tanpa harus mengganti dataset.
 3. **Ketidakcocokan loss dan head terlihat jelas.** Salah satu cara paling cepat memahami kenapa CrossEntropy butuh logits dan MSE butuh output kontinu adalah dengan sengaja salah-pasangkan keduanya, lalu mengamati training gagal total.
 4. **Tidak ada distraksi domain.** Anda fokus pada mekanik training, bukan pada pertanyaan "kenapa augmentasi flip horizontal masuk akal untuk CIFAR".
 
