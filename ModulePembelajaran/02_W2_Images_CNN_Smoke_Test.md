@@ -292,13 +292,21 @@ Ukuran area input yang dilihat satu pixel di feature map disebut **receptive fie
 
 Empat keluarga yang paling sering muncul di paper dan repositori riset.
 
-**Feed-Forward Neural Network (FFN/MLP).** Lapisan linear berturut-turut dengan non-linearitas di antaranya. Asumsi: tidak ada struktur khusus pada fitur input - urutan kolom tidak bermakna, tidak ada kedekatan spasial atau temporal. Cocok untuk data tabular dan embedding yang sudah diproses. Kelemahan: tidak efisien ketika data punya struktur yang bisa dimanfaatkan.
+#### Feed-Forward Neural Network (FFN/MLP)
 
-**Convolutional Neural Network (CNN).** Satu *filter* kecil digeser ke seluruh input, berbagi bobot di semua lokasi. Asumsi: pola relevan dapat muncul di lokasi manapun (*translation invariance*) dan bersifat lokal. Komponen khas: `Conv2d → BatchNorm → ReLU → MaxPool`. Kekuatan: sangat efisien parameter untuk gambar dan data grid. Kelemahan: asumsi lokalitas gagal ketika pola penting menyebar luas.
+Lapisan linear berturut-turut dengan non-linearitas di antaranya. Asumsi: tidak ada struktur khusus pada fitur input - urutan kolom tidak bermakna, tidak ada kedekatan spasial atau temporal. Cocok untuk data tabular dan embedding yang sudah diproses. Kelemahan: tidak efisien ketika data punya struktur yang bisa dimanfaatkan.
 
-**Recurrent Neural Network (RNN), LSTM, GRU.** Memproses urutan satu langkah waktu demi satu, menyimpan *hidden state* yang merangkum masa lalu. Asumsi: urutan penting, informasi langkah sebelumnya membantu prediksi berikutnya. LSTM dan GRU memperkenalkan *gate* untuk mengatasi *vanishing gradient* pada RNN polos. Kelemahan: komputasi sekuensial (tidak bisa diparalelkan sepanjang urutan), ketergantungan sangat panjang tetap sulit ditangkap.
+#### Convolutional Neural Network (CNN)
 
-**Transformer.** Menggantikan rekursi dengan *self-attention*: setiap elemen urutan secara langsung melihat semua elemen lain. Komponen utama: `Multi-Head Attention`, `Positional Encoding`, `Feed-Forward` per posisi. Dominan di NLP modern (BERT, GPT), kini juga di visi (ViT) dan audio. Biaya utama: self-attention kuadratik terhadap panjang urutan.
+Satu *filter* kecil digeser ke seluruh input, berbagi bobot di semua lokasi. Asumsi: pola relevan dapat muncul di lokasi manapun (*translation invariance*) dan bersifat lokal. Komponen khas: `Conv2d → BatchNorm → ReLU → MaxPool`. Kekuatan: sangat efisien parameter untuk gambar dan data grid. Kelemahan: asumsi lokalitas gagal ketika pola penting menyebar luas.
+
+#### Recurrent Neural Network (RNN), LSTM, GRU
+
+Memproses urutan satu langkah waktu demi satu, menyimpan *hidden state* yang merangkum masa lalu. Asumsi: urutan penting, informasi langkah sebelumnya membantu prediksi berikutnya. LSTM dan GRU memperkenalkan *gate* untuk mengatasi *vanishing gradient* pada RNN polos. Kelemahan: komputasi sekuensial (tidak bisa diparalelkan sepanjang urutan), ketergantungan sangat panjang tetap sulit ditangkap.
+
+#### Transformer
+
+Menggantikan rekursi dengan *self-attention*: setiap elemen urutan secara langsung melihat semua elemen lain. Komponen utama: `Multi-Head Attention`, `Positional Encoding`, `Feed-Forward` per posisi. Dominan di NLP modern (BERT, GPT), kini juga di visi (ViT) dan audio. Biaya utama: self-attention kuadratik terhadap panjang urutan.
 
 ![Lima keluarga arsitektur neural network: MLP, CNN, RNN/LSTM, Transformer, dan Autoencoder - masing-masing dengan inductive bias dan domain khasnya](./figures/fig01a_nn_families.svg)
 

@@ -257,16 +257,20 @@ Setelah Input dan Output terdefinisi, buat sketsa pipeline yang menghubungkannya
 
 Setiap langkah di Middle mengubah satu tensor menjadi tensor lain. Petakan setiap langkah ke Big Map. Empat kasus muncul:
 
-**Kasus A: Satu baris cocok sepenuhnya.**
+#### Kasus A: Satu baris cocok sepenuhnya
+
 Seluruh Middle adalah satu komponen standar. Misalnya: gambar RGB daun padi → CNN → kelas penyakit. Pertanyaan risetnya valid; kontribusinya sederhana (jika tugas dan dataset sudah standar). Masih bisa dipublikasikan kalau pertanyaannya sendiri baru (domain baru, bahasa baru, konteks baru).
 
-**Kasus B: Rangkaian baris yang sudah dikenal.**
+#### Kasus B: Rangkaian baris yang sudah dikenal
+
 Middle punya beberapa langkah yang sudah dikenal secara berurutan. Setiap langkah standar; pipeline secara keseluruhan mungkin belum pernah diterapkan pada kombinasi Input/Output spesifik ini. Kontribusinya adalah kombinasi itu beserta validasi empirisnya.
 
-**Kasus C: Langkah yang sudah dikenal plus satu gap.**
+#### Kasus C: Langkah yang sudah dikenal plus satu gap
+
 Sebagian langkah Middle standar; satu atau lebih tidak punya baris yang cocok. Gap adalah tempat riset baru berada.
 
-**Kasus D: Tidak ada baris yang cocok.**
+#### Kasus D: Tidak ada baris yang cocok
+
 Pasangan Input/Output tidak punya solusi ML yang ada di level manapun. Ini jarang. Lebih sering, Kasus D berarti pasangan Input/Output tidak terdefinisi dengan baik dan perlu direvisi.
 
 #### Contoh konkret per kasus

@@ -198,12 +198,7 @@ Itu sudah cukup sebagai gambaran W1. Anda **tidak perlu** menurunkan chain rule 
 
 ### 2.4 Pipeline Praktis: Tensor, Batch, Dataloader, Split
 
-Sebelum menjalankan training, Anda harus memahami ritme data:
-
-1. **Tensor.** Vektor input `x` berbentuk `(F,)` per-sampel; batch berbentuk `(B, F)`.
-2. **Batch.** Training tidak memproses satu sampel per langkah, melainkan satu batch (mis. 64-128 sampel). Loss dihitung sebagai rata-rata atas batch.
-3. **Dataloader.** Membungkus dataset, melakukan shuffling, dan menyediakan iterator yang menghasilkan batch.
-4. **Split train/val/test.** `train` melatih parameter; `val` digunakan untuk *early stopping* dan tuning hyperparameter; `test` hanya disentuh sekali di akhir untuk angka final.
+Sebelum menjalankan training, Anda harus memahami ritme data: input per-sampel berbentuk tensor `(F,)` dikelompokkan menjadi batch `(B, F)` untuk efisiensi - loss dihitung sebagai rata-rata atas seluruh batch, bukan per sampel. Dataloader membungkus dataset, melakukan shuffling, dan menyediakan iterator yang menghasilkan batch. Data kemudian dibagi menjadi `train` (melatih parameter), `val` (*early stopping* dan tuning hyperparameter), dan `test` (hanya disentuh sekali di akhir untuk angka final).
 
 Aturan paling penting: **statistik preprocessing (mean, std) dihitung dari train saja**, lalu diterapkan ke val dan test. Tidak boleh sebaliknya. Pelanggaran aturan ini disebut *preprocessing leakage* dan akan dibahas mendalam di W6.
 

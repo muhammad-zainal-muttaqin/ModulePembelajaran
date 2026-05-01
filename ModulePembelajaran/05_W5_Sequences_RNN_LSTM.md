@@ -37,13 +37,7 @@
 
 ## 0. Peta Bab
 
-W5 memperluas Big Map ke domain sequence. Setelah W5, Anda dapat:
-
-- memahami tiga keluarga output head untuk tugas sequence
-- membangun dan melatih RNN vanilla serta LSTM/GRU
-- melihat vanishing gradient secara konkret dalam satu perbandingan
-- memilih arsitektur sequence berdasarkan panjang dependensi
-- menulis pernyataan justifikasi arsitektur yang konkret
+W5 memperluas Big Map ke domain sequence. Setelah W5, Anda memahami tiga keluarga output head untuk tugas sequence, mampu membangun dan melatih RNN vanilla serta LSTM/GRU, melihat vanishing gradient secara konkret dalam satu perbandingan, memilih arsitektur sequence berdasarkan panjang dependensi, dan menulis pernyataan justifikasi arsitektur yang konkret.
 
 ---
 

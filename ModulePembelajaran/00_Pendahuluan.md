@@ -156,11 +156,7 @@ Ini **bukan** berarti Anda sudah menguasai literatur domain secara mendalam atau
 
 Sisa 30-40% berasal dari: pembacaan paper lanjutan, panduan PI/dosen pembimbing, adopsi repo yang ditargetkan, debugging spesifik domain, dan capstone serta kerja mandiri setelahnya.
 
-Transisi yang dimaksudkan:
-
-- **Bootcamp (Minggu 1-11):** bangun peta, alur kerja, dan kebiasaan
-- **Capstone (Minggu 12-15):** terapkan dalam satu masalah yang dibatasi
-- **riset RA:** lanjutkan belajar mandiri pada masalah di lab
+Transisi yang dimaksudkan: Bootcamp (Minggu 1–11) membangun peta, alur kerja, dan kebiasaan; Capstone (Minggu 12–15) menerapkannya dalam satu masalah yang dibatasi; dan kerja riset RA melanjutkan belajar mandiri pada masalah di lab.
 
 ---
 
