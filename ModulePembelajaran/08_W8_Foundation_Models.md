@@ -39,6 +39,7 @@
 
 W8 membentuk pemahaman sistematis tentang ekosistem foundation model:
 
+- **2.0** Dari Pretraining ke Foundation Model — bagaimana evolusi ini terjadi
 - **2.1** Apa yang membuat sebuah model menjadi "foundation model"?
 - **2.2** Taksonomi modalitas x keluarga model x adaptasi
 - **2.3** Membaca model card secara kritis
@@ -63,6 +64,28 @@ Tapi sebelum memilih model, ada pertanyaan yang perlu dijawab:
 3. Apakah model ini punya batasan yang perlu saya waspadai?
 
 W8 memberi kerangka untuk menjawab ketiga pertanyaan ini.
+
+---
+
+### 2.0 Dari Pretraining ke Foundation Model
+
+Sebelum masuk ke "apa itu foundation model", mari kita lihat bagaimana kita sampai di sini. Sejarah ini penting karena menunjukkan bahwa foundation model bukanlah lompatan magis — ia adalah akumulasi dari pola yang sudah terbentuk selama satu dekade.
+
+**Fase 1: Training dari nol per tugas (sebelum 2012).** Setiap tugas dimulai dari bobot acak. Tidak ada berbagi representasi antar tugas; model untuk klasifikasi gambar tidak membantu model untuk deteksi objek. Ini seperti setiap kali belajar membaca, Anda harus belajar alfabet ulang.
+
+**Fase 2: Pretraining supervised + fine-tuning (2012–2017).** AlexNet (2012) dilatih di ImageNet 1.2 juta gambar — terlalu mahal untuk dilatih ulang setiap kali. Pola baru muncul: ambil bobot yang sudah dilatih di ImageNet, lalu *fine-tune* di dataset yang lebih kecil. Ini bekerja karena representasi visual tingkat rendah (edge, tekstur, bentuk) bersifat universal. Pola ini menjadi standar di computer vision: tidak ada lagi training dari nol.
+
+**Fase 3: Pretraining self-supervised pada teks (2018–2020).** BERT (Devlin et al., 2018) dan GPT (Radford et al., 2018) memindahkan paradigma ini ke NLP, dengan dua perbedaan penting. Pertama, pretraining dilakukan secara *self-supervised* — model belajar dari teks tanpa label, cukup dengan memprediksi token yang disembunyikan (masked language modeling) atau token berikutnya (causal language modeling). Kedua, skala data melonjak drastis: BERT dilatih di 3,3 miliar token dari BooksCorpus + Wikipedia; GPT-2 di 8 juta halaman web.
+
+Hasilnya mengejutkan: satu model pretrained bisa di-fine-tune ke puluhan tugas hilir — klasifikasi teks, NER, question answering, summarization — tanpa mengubah arsitektur. Inilah momen di mana istilah *pretrained language model* mulai bergeser menjadi *foundation*.
+
+**Fase 4: Multimodal dan general-purpose (2020–sekarang).** CLIP (Radford et al., 2021) membuktikan bahwa pretraining kontrastif pada pasangan gambar-teks 400M menghasilkan representasi yang bisa melakukan zero-shot klasifikasi gambar — tanpa pernah dilatih khusus untuk ImageNet. Whisper (2022) melakukan hal serupa untuk audio ke teks. Model-model ini bukan lagi spesialis per domain; mereka adalah infrastruktur yang bisa diadaptasi ke banyak tugas.
+
+**Fase 5: Istilah "foundation model" lahir (2021).** Paper Bommasani et al. (2021) "*On the Opportunities and Risks of Foundation Models*" secara resmi memperkenalkan istilah ini. Definisi mereka: model yang dilatih pada data skala besar dan dapat diadaptasi ke berbagai tugas hilir. Dua properti kunci: *emergence* (kemampuan muncul dari skala, bukan dari desain eksplisit) dan *homogenization* (banyak aplikasi bertumpu pada beberapa model yang sama, menciptakan risiko dan efisiensi sekaligus).
+
+**Apa artinya bagi Anda sebagai peneliti pemula?**
+
+Dulu, pertanyaan pertama saat memulai riset adalah "arsitektur apa yang harus saya bangun?" Sekarang pertanyaannya: "apakah sudah ada model yang sudah mempelajari representasi yang relevan?" Inilah pergeseran mindset yang mendasari W8. Anda tidak harus memulai dari nol; Anda memulai dari representasi yang sudah kaya, lalu mengadaptasinya.
 
 ---
 

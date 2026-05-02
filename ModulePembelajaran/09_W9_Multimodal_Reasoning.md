@@ -270,6 +270,8 @@ imu_timestamps = imu_timestamps - 0.250  # koreksi drift 250 ms
 
 ### 2.5 Protokol Ablation Per Modalitas
 
+![Protokol Ablasi Per Modalitas — 7 kondisi: dari Full Model hingga Random Image, menunjukkan modalitas mana yang aktif di setiap eksperimen](figures/fig08b_multimodal_ablation.svg)
+
 Setiap paper dan laporan multimodal harus menjalankan ablation ini sebelum klaim apapun:
 
 | Eksperimen | Input | Temuan yang diharapkan |

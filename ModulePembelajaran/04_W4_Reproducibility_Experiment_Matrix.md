@@ -401,6 +401,56 @@ Reproduksibilitas bertumpu pada empat pilar yang saling mengunci. Hyperparameter
 
 Dua pilar berikutnya mengikat hasil pada jejak yang bisa diaudit. Checkpoint menyimpan lebih dari sekadar `model.state_dict()` - di dalamnya ada `config`, `git_hash`, `epoch`, `metrics`, dan `timestamp`, karena checkpoint tanpa config hanyalah setengah bukti. Git hash mengikat setiap run ke commit yang menghasilkannya lewat `get_git_hash()`, dan flag "dirty" memperingatkan ketika ada perubahan yang belum di-commit. Implementasi keempat pilar tersedia di `template_repo/src/utils.py`; Lab 3 (`lab_w4_experiment_tracking.ipynb`) membangun keempatnya secara berurutan.
 
+**Seperti apa bentuk YAML config yang akan Anda pakai?** Di bawah ini adalah `configs/baseline.yaml` dari template repo — contoh konkret yang dipakai di seluruh modul:
+
+```yaml
+# configs/baseline.yaml — SimpleCNN + CrossEntropy pada CIFAR-10
+experiment_name: baseline
+
+seed: 42                          # ← dikunci satu seed per run
+
+data:
+  name: cifar10
+  root: ./data
+  image_size: 32
+  num_classes: 10
+  batch_size: 128
+  num_workers: 2
+  val_split: 0.1
+  augment: true
+
+model:
+  name: simple_cnn
+  num_classes: 10
+  freeze_until: null               # tidak ada yang di-freeze
+
+loss:
+  name: cross_entropy
+  label_smoothing: 0.0
+
+optim:
+  name: sgd
+  lr: 0.05
+  momentum: 0.9
+  weight_decay: 5.0e-4
+  nesterov: true
+
+scheduler:
+  name: cosine
+  warmup_epochs: 2
+
+train:
+  epochs: 30
+  grad_clip: 1.0
+  log_every: 50
+  save_every: 5
+
+output:
+  root: ./experiments
+```
+
+Setiap hyperparameter dideklarasikan di sini — bukan tersebar di kode Python. Saat menjalankan eksperimen, `src/train.py` membaca YAML ini dan meneruskannya ke seluruh komponen. Untuk ablation, Anda membuat file YAML baru (mis. `focal_freeze.yaml`) yang hanya mengubah bagian yang relevan — arsitektur, data, dan optimizer tetap identik. Dengan begitu, dua hasil bisa dibandingkan secara adil karena perbedaannya diketahui persis.
+
 > [!NOTE]
 > Detail mendalam tentang empat sumber non-determinisme, Worker seeding, TensorBoard setup, dan konvensi Git untuk riset eksperimental tersedia di file ini sebagai materi lanjutan - cari bagian §2.1-§2.10 dari konten legacy. Bacaan ini sangat berguna sebelum W4 assignment.
 

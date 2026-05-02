@@ -213,9 +213,9 @@ Dua "memori" di LSTM sering membingungkan pemula. Perbedaan ringkas:
 
 Dalam kode `nn.LSTM` PyTorch, return value `out, (h_n, c_n)` - `out` adalah `h_t` di seluruh timestep (shape `(B, T, d_h)`), `h_n` adalah `h_t` di timestep terakhir, `c_n` adalah `c_T` di timestep terakhir.
 
-### 2.3.5 GRU: Versi Lebih Ringkas
+### 2.4 GRU: Alternatif Lebih Ringkas
 
-**GRU (Gated Recurrent Unit, Cho et al. 2014)** menggabungkan forget dan input gate menjadi satu *update gate*, dan menghilangkan cell state terpisah:
+**GRU (Gated Recurrent Unit, Cho et al. 2014)** adalah varian LSTM yang lebih sederhana. Ia menggabungkan forget gate dan input gate menjadi satu *update gate*, dan menghilangkan cell state terpisah:
 
 ```
 update gate:  z_t = σ(W_z [h_{t-1}, x_t] + b_z)
@@ -224,9 +224,25 @@ candidate:    h̃_t = tanh(W_h [r_t ⊙ h_{t-1}, x_t] + b_h)
 hidden state: h_t = (1 - z_t) ⊙ h_{t-1} + z_t ⊙ h̃_t
 ```
 
-Perbedaan praktis dari LSTM: hanya 2 gate (vs 3), tidak ada `c_t` terpisah, parameter ~25% lebih sedikit. Performa sering sebanding dengan LSTM pada banyak benchmark; LSTM lebih unggul saat sequence sangat panjang (>200 timestep). Aturan praktis: coba LSTM dulu sebagai default, GRU sebagai alternatif kalau training time atau parameter budget jadi concern.
+**Apa yang disederhanakan?**
 
-### 2.4 Sequence Model dalam Bentuk Alaminya
+- **Hanya 2 gate**, bukan 3 (tanpa forget gate terpisah, fungsinya diserap oleh `z_t`).
+- **Tidak ada cell state** `c_t` — hanya `h_t` yang dipertahankan, sehingga GRU tidak punya mekanisme "memory" terpisah dari output.
+- **Parameter ~25% lebih sedikit** daripada LSTM karena satu gate dihapus.
+
+**Kapan memilih GRU vs LSTM:**
+
+| Situasi | Pilih | Alasan |
+|---|---|---|
+| Dataset kecil (<10k sampel) | GRU | Lebih sedikit parameter, overfitting lebih rendah |
+| Sequence pendek-sedang (<200 timestep) | GRU | Performa sering sebanding dengan LSTM |
+| Sequence sangat panjang (>200 timestep) | LSTM | Gating terpisah membantu dependensi jauh |
+| Anggaran parameter ketat | GRU | ~25% lebih ringan |
+| Tidak yakin | Coba keduanya | Keduanya sebanding di banyak benchmark; bedanya sering <2% |
+
+Aturan praktis: coba LSTM dulu sebagai default, GRU sebagai alternatif kalau training time atau parameter budget jadi concern. Di lab minggu ini, Anda akan membandingkan RNN vs LSTM vs GRU pada sequence sintetis.
+
+### 2.5 Sequence Model dalam Bentuk Alaminya
 
 Empat output head family untuk sequence:
 
@@ -251,7 +267,7 @@ class SequenceClassifier(nn.Module):
         return self.head(h_n[-1])  # ambil hidden state layer terakhir, timestep terakhir
 ```
 
-### 2.5 Justifikasi Arsitektur: Template Statement
+### 2.6 Justifikasi Arsitektur: Template Statement
 
 Setiap pemilihan arsitektur harus bisa dijelaskan. Template minimal:
 
@@ -259,7 +275,7 @@ Setiap pemilihan arsitektur harus bisa dijelaskan. Template minimal:
 
 Template ini akan dipakai kembali di W7 (Transformer) dan W9 (multimodal). Mulai sekarang, biasakan menulis satu kalimat justifikasi untuk setiap pilihan arsitektur yang Anda buat.
 
-### 2.6 Long-Sequence Diagnosis
+### 2.7 Long-Sequence Diagnosis
 
 Ketika model sequence tidak belajar dengan baik, lima hipotesis yang paling mungkin:
 
