@@ -19,7 +19,7 @@ export default function CompetencyGrid() {
                   {c.title}
                 </div>
                 <div className="mt-1 text-xs text-ink/70 dark:text-parchment/60 font-mono">
-                  Bab {c.chapter} · Minggu {c.weeks}
+                  {c.weeks}
                 </div>
               </div>
             </div>

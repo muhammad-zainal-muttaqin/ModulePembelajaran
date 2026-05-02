@@ -194,15 +194,15 @@ export const CHAPTERS: ChapterMeta[] = [
 ];
 
 export const COMPETENCIES = [
-  { n: 1, title: "Memahami sistem ML/DL dalam praktiknya", chapter: "01", weeks: "1" },
-  { n: 2, title: "Menerjemahkan ide menjadi eksperimen", chapter: "02", weeks: "2" },
-  { n: 3, title: "Eksperimen reproduksibel", chapter: "04", weeks: "4" },
-  { n: 4, title: "Validasi data dan pra-pemrosesan", chapter: "06", weeks: "6" },
-  { n: 5, title: "AI tools sebagai pendukung", chapter: "07", weeks: "7" },
-  { n: 6, title: "Adopsi repository riset asing", chapter: "08", weeks: "8" },
-  { n: 7, title: "Membuat alat pendukung riset ringan", chapter: "09", weeks: "9" },
-  { n: 8, title: "Mengadopsi platform dan tool baru", chapter: "10", weeks: "10" },
-  { n: 9, title: "Berkembang mandiri", chapter: "11", weeks: "11" },
+  { n: 1, title: "Memahami sistem ML/DL dalam praktiknya", chapter: "01", weeks: "W1–W9" },
+  { n: 2, title: "Menerjemahkan ide menjadi eksperimen", chapter: "03", weeks: "W3–W4, W11, Capstone" },
+  { n: 3, title: "Eksperimen reproduksibel", chapter: "04", weeks: "W3, W4, Capstone" },
+  { n: 4, title: "Validasi data dan pra-pemrosesan", chapter: "06", weeks: "W3, W6, W9" },
+  { n: 5, title: "AI tools sebagai pendukung", chapter: "07", weeks: "W7–W8" },
+  { n: 6, title: "Adopsi repository riset asing", chapter: "07", weeks: "W7, W10, Capstone" },
+  { n: 7, title: "Membuat alat pendukung riset ringan", chapter: "12", weeks: "W12–W15" },
+  { n: 8, title: "Mengadopsi platform dan tool baru", chapter: "08", weeks: "W8, Capstone" },
+  { n: 9, title: "Berkembang mandiri", chapter: "10", weeks: "W10, W11, Capstone" },
 ];
 
 export const SIKAP_META: Record<Sikap, { label: string; color: string; tagline: string; essence: string }> = {

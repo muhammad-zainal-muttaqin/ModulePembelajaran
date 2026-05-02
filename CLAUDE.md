@@ -36,10 +36,15 @@ ModulePembelajaran/
 - `ModulePembelajaran/Notes - 27 April 2026/revisi_bootcamp.md` → blueprint overhaul 11 minggu bootcamp + 3 minggu capstone (struktur awal)
 - `ModulePembelajaran/Notes - 30 April 2026/11_W11_Research_Framing new.md` → overhaul W11: framework Input→Middle→Output + framing menu + literature triage (terintegrasi 30 April 2026)
 - `ModulePembelajaran/Notes - 30 April 2026/12_Capstone new.md` → overhaul capstone: 3 → 4 minggu, struktur filter/rethink/communicate/submit (terintegrasi 30 April 2026)
+- `ModulePembelajaran/Notes - 2 Mei 2026/attention_primer.md` → §1.3 baru di W7: cara kerja attention (QKV, Transformer block, positional encoding, freeze vs fine-tune) (terintegrasi 2 Mei 2026)
+- `ModulePembelajaran/Notes - 2 Mei 2026/analisis gap.md` → 4 gap konten: gradient clipping mechanism (W5 §4), LSTM gate → vanishing gradient bridge (W5 §1.5.2), residual connection principle (W5 §1.5.2), pretraining rationale (W7 §1.1) (terintegrasi 2 Mei 2026)
+- `ModulePembelajaran/Notes - 2 Mei 2026/scaleddotproductattention.png` → `figures/fig06a_attention_sdp.png` (dipakai di W7 §1.3)
+- `ModulePembelajaran/Notes - 2 Mei 2026/temporalalignment.png` → `figures/fig08c_temporal_alignment.png` (referensi W9)
 
 **Perubahan struktural besar:**
 - **(27 April 2026)** Modul lama 10-bab format-topik → 11-minggu bootcamp (W1-W11) + 3-minggu capstone (W12-W14), format weekly
 - **(30 April 2026)** Overhaul W11: framework 5-Whys diganti Input→Middle→Output + framing menu + literature triage + live demo dataset placeholder; file capstone di-rename `12_Capstone_3_Minggu.md` → `12_Capstone.md`; capstone diperpanjang 3 → 4 minggu (W12-W15); W15 = submission week tanpa sesi tatap muka
+- **(2 Mei 2026)** Integrasi 4 gap konten di W5 (gradient clipping, LSTM-vanishing bridge, residual principle) + W7 (pretraining rationale, §1.3 attention primer baru); pemetaan K1-K9 diperbarui di website (`chapters.ts`), `CompetencyGrid.tsx`, dan `14_Lampiran.md §C.16` mengikuti struktur 11+4 minggu; 2 gambar baru (`fig06a_attention_sdp.png`, `fig08c_temporal_alignment.png`) ditambahkan ke `figures/`
 - File-file lama diarsipkan ke `ModulePembelajaran/_archive/` (sengaja disimpan untuk referensi tabel migrasi di Lampiran §H, tidak dirender website)
 - Mapping bab lama → bab baru terdokumentasi di `14_Lampiran.md` Lampiran H
 - Konvensi penomoran konten: gunakan **W-numbering** (W1-W14) di teks bab; gunakan nama file (mis. `13_Rubrik_Penilaian.md`) saat me-link
@@ -50,9 +55,9 @@ ModulePembelajaran/
 - **W2** (`02_W2_Images_CNN_Smoke_Test.md`): tensor citra, CNN, ritual three-level smoke test
 - **W3** (`03_W3_Loss_Optimizer_Evaluasi.md`): example-first galeri 5 run → loss/optimizer/evaluasi theory; representasi fitur 3 strategi
 - **W4** (`04_W4_Reproducibility_Experiment_Matrix.md`): experiment matrix + YAML/seed/checkpoint; §3.5 Komunikasi Efektif (SQRC, matriks saluran); §2.6 Etika Data dan Bias; Git workflow eksperimental
-- **W5** (`05_W5_Sequences_RNN_LSTM.md`): RNN vs LSTM, gradient flow, Lab 3b mandatory
+- **W5** (`05_W5_Sequences_RNN_LSTM.md`): RNN vs LSTM, gradient flow, Lab 3b mandatory; **§1.5.2**: bridge sentence LSTM cell state → vanishing gradient + residual connection principle; **§4**: gradient clipping mechanism diperluas (norma global, mengapa 1.0, clip_grad_norm_ vs clip_grad_value_)
 - **W6** (`06_W6_Representations_Temporal_Leakage.md`): representasi recap + temporal leakage demo (delta dramatic 0.92 → 0.63 di §0.6); §2.6.3 negative results sebagai kewajiban etis; Lab 6c peer code review
-- **W7** (`07_W7_Text_Transformers_Repo_Adoption.md`): text + Transformers + AI tools + repo adoption (file dual-section: Part 1 ringkas + Part 2 "Pendalaman" deep dive D1-D7)
+- **W7** (`07_W7_Text_Transformers_Repo_Adoption.md`): text + Transformers + AI tools + repo adoption (file dual-section: Part 1 ringkas + Part 2 "Pendalaman" deep dive D1-D7); **§1.1**: 2 paragraf baru mengapa pretraining efektif (transfer learning hierarchy); **§1.3 BARU**: cara kerja attention (QKV formula, kode Python, Transformer block, multi-head, positional encoding, freeze vs fine-tune); §1.3 lama → §1.4, §1.4 lama → §1.5
 - **W8** (`08_W8_Foundation_Models.md`): taxonomy modality×family×adaptation, model card literacy, §2.1.1 matriks evaluasi tool
 - **W9** (`09_W9_Multimodal_Reasoning.md`): fusion strategies, per-modality ablation, missing modality, peta keluarga generatif
 - **W10** (`10_W10_Paper_Reading.md`): 3-pass paper reading + paper-to-code workflow; templates A-E (termasuk LSTM/Transformer dan Autoencoder breadth)
