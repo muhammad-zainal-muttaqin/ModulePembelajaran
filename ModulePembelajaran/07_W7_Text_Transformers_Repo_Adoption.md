@@ -155,6 +155,8 @@ Alat AI berguna melampaui kode:
 - **Mendiskusikan hipotesis** - "diberikan bahwa distribusi kelas sangat tidak seimbang, apakah ada alasan untuk tidak memakai focal loss?"
 - **Navigasi repo** - "bagaimana alur data dari DataLoader ke model dalam repo ini?" (dengan memberikan struktur folder sebagai konteks)
 
+![Alur Kerja LLM: sintesis, verifikasi, dan dokumentasi dalam riset ML](./figures/fig05a_llm_workflow.svg)
+
 ---
 
 ## 3. Pengantar Adopsi Repo

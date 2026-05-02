@@ -53,6 +53,8 @@ Cakupannya boleh sederhana. Proyek kecil yang dieksekusi dengan baik lebih berha
 
 ## 1. Alur Empat Minggu
 
+![Timeline Capstone 4 Minggu: Filter, Rethink, Communicate, Submit](./figures/fig10a_capstone_timeline.svg)
+
 Capstone berjalan empat minggu. W11 adalah framing (dibahas di dokumen Research Framing). W12-W15 adalah capstone yang sebenarnya.
 
 | Minggu | Tema | Yang sedang dikerjakan |

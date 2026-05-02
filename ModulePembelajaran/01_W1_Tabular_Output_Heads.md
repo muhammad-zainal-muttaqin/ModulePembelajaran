@@ -62,6 +62,8 @@ Empat alasan tabular dipakai sebagai pintu masuk:
 
 Multilayer Perceptron (MLP) sederhana mengambil vektor `(F,)` dan menghasilkan vektor `(D_out,)`. Setiap layer `Linear(in, out)` menjalankan transformasi affine `y = W x + b`, lalu diikuti aktivasi non-linear seperti ReLU.
 
+![MLP 2-layer: forward pass dengan dimensi dan backward pass chain rule 7 langkah](./figures/fig01b_mlp_forward_backward.svg)
+
 ```text
 input (F,) -> Linear(F, 64) -> ReLU -> Linear(64, 32) -> ReLU -> Linear(32, D_out) -> output (D_out,)
 ```

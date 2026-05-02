@@ -150,6 +150,8 @@ Penjelasan simbol baris-per-baris:
 
 Hidden state `h_t` berperan sebagai "memori" yang diperbarui setiap langkah. Inisialisasi `h_0 = 0` (default) atau learned. Untuk sequence classification, output diambil dari `h_T` (langkah terakhir). Untuk forecasting, output `y_t = W_o h_t` di setiap langkah.
 
+![RNN Vanilla vs LSTM Cell: perbandingan arsitektur unrolled dan detail gate mechanism pada LSTM](./figures/fig05a_rnn_vs_lstm.svg)
+
 **Vanishing gradient secara konkret.** Sudah dibahas di §1.5.2 dengan tabel angka: dengan `|w_h| = 0.5`, gradient setelah 10 langkah mundur ≈ 0.001; setelah 50 langkah ≈ `9e-16`. Lab 3b memvisualisasikan gejala ini dengan plot log-scale gradient norm per timestep. Penurunan eksponensial terlihat jelas pada RNN vanilla; LSTM menjaga gradient relatif flat.
 
 ### 2.3 LSTM: Gate sebagai Solusi
@@ -183,6 +185,8 @@ Notasi `[h_{t-1}, x_t]` artinya konkatenasi vektor: kalau `h_{t-1}` shape `(d_h,
 Kunci di baris cell state: `c_t = f_t ⊙ c_{t-1} + i_t ⊙ g_t`. Saat backprop, turunan `∂c_t/∂c_{t-1} = f_t` (hanya gate, bukan perkalian matriks `W_h` yang berulang). Kalau forget gate `f_t ≈ 1` di sepanjang sequence, gradient cell state mengalir mundur **tanpa menyusut**. Ini jalur cepat gradient yang menjaga sinyal dari timestep awal tetap hidup walau sequence panjang.
 
 Bandingkan dengan RNN vanilla: setiap langkah mundur, gradient dikalikan dengan `W_h` (matriks belajar, bisa kecil). Setelah 100 langkah, gradient `~ 0`. LSTM tidak punya rantai perkalian matriks ini di cell state - hanya rantai gate, dan gate bisa belajar ke nilai 1 untuk "buka jalur".
+
+![Vanishing Gradient: RNN vs LSTM - gradient norm per timestep saat backprop](./figures/fig05b_gradient_flow.svg)
 
 #### 2.3.3 Forget Gate: Gambaran Konkret
 

@@ -395,6 +395,8 @@ Tugas:
 
 ### 2.7 Infrastruktur Reproduksibilitas: YAML, Seed, Checkpoint, Git Hash
 
+![Empat Pilar Reproduksibilitas: YAML config, Seed locking, Checkpoint metadata, Git hash](./figures/fig03a_reproducibility_sources.svg)
+
 Reproduksibilitas bertumpu pada empat pilar yang saling mengunci. Hyperparameter hidup di config YAML deklaratif, bukan di angka ajaib yang berserakan di kode; config disimpan bersama checkpoint sehingga setiap hasil bisa ditelusuri ke konfigurasi persis yang menghasilkannya. Seed dikunci di awal training dengan `set_seed(cfg['seed'])` sebelum operasi apapun, dan untuk reproduksibilitas ketat di GPU disertai `torch.backends.cudnn.deterministic = True`; satu seed per run, variasi seed dipakai antar replikasi sebagai pengukur noise.
 
 Dua pilar berikutnya mengikat hasil pada jejak yang bisa diaudit. Checkpoint menyimpan lebih dari sekadar `model.state_dict()` - di dalamnya ada `config`, `git_hash`, `epoch`, `metrics`, dan `timestamp`, karena checkpoint tanpa config hanyalah setengah bukti. Git hash mengikat setiap run ke commit yang menghasilkannya lewat `get_git_hash()`, dan flag "dirty" memperingatkan ketika ada perubahan yang belum di-commit. Implementasi keempat pilar tersedia di `template_repo/src/utils.py`; Lab 3 (`lab_w4_experiment_tracking.ipynb`) membangun keempatnya secara berurutan.
@@ -406,12 +408,16 @@ Dua pilar berikutnya mengikat hasil pada jejak yang bisa diaudit. Checkpoint men
 
 Tetap di laptop atau Colab selama training selesai di bawah 30 menit; pindah ke RunPod ketika satu run sudah melewati ambang itu sambil Anda perlu menjalankan enam run atau lebih untuk replikasi, ketika dataset tidak muat di RAM laptop, atau ketika Anda butuh GPU dengan VRAM lebih dari 8 GB. Alur kerja RunPod dasar yang diperkenalkan minggu ini sederhana: launch pod, SSH masuk, jalankan training, pull checkpoint, lalu matikan pod. Konfigurasi minimal dan cara push/pull checkpoint lewat rsync atau rclone tersedia di [Lampiran C.15](14_Lampiran.md#c15-lightweight-research-tools).
 
+![RunPod: Pod Lifecycle + SSH Tunnel - alur kerja cloud GPU untuk training](./figures/fig08a_cloud_workflow.svg)
+
 > [!CAUTION]
 > Mematikan pod setelah training selesai adalah kebiasaan paling kritis di W4. Tagihan GPU terus berjalan selama pod hidup, termasuk saat Anda lupa setelah berhasil pull checkpoint. Pasang pengingat di kalender atau biasakan menutup pod sebelum menutup terminal.
 
 ---
 
 ## 5. Lab 3 - Config, Logging & Reproducibility
+
+![Struktur Folder Eksperimen: config.yaml, train.log, checkpoint, summary.json, TensorBoard](./figures/fig03b_experiment_folder.svg)
 
 Buka `template_repo/notebooks/lab_w4_experiment_tracking.ipynb`. Tugas:
 

@@ -32,6 +32,8 @@
 
 ## 0. Peta Bab
 
+![Peta Dependensi Modul: hubungan antar bab dan jalur pembelajaran](./figures/fig00a_module_map.svg)
+
 Modul ini adalah **bootcamp 11 minggu + capstone 4 minggu**. Bab ini memperkenalkan kosakata dasar, glosarium singkat, target hasil bootcamp, sembilan kompetensi inti, empat sikap riset, tiga alur lintas minggu, ritme sesi, dan kontrak belajar sebelum materi teknis dimulai. Setelah menyelesaikan bab ini, Anda memahami tujuan modul, cara membacanya, dan target realistis di akhir bootcamp.
 
 ---
@@ -196,6 +198,8 @@ Keempat sikap tidak diajarkan sebagai doktrin. Sikap-sikap itu muncul dalam pitf
 Agar bootcamp tidak terasa seperti sebelas topik terputus, tiga alur berjalan dari W1 sampai W11 tanpa disebut sebagai bab tersendiri.
 
 **Big Map** mengembalikan setiap minggu ke pertanyaan yang sama: *tensor shape apa yang masuk, shape apa yang keluar, dan keluarga model apa yang secara alami cocok untuk pemetaan itu?* W1 mulai dari tabular `(F,) → (1,)`, W2-W3 pindah ke citra `(C, H, W) → (N,)`, W5 ke sequence `(T, F) → (N,)`, W7 ke teks, dan W9 ke multimodal. Peta ini bertambah lengkap setiap minggu sehingga deep learning perlahan terlihat sebagai satu lanskap, bukan banyak teknik yang terputus. Tabel rangkuman lintas W1-W11 ada di [Lampiran C.17](14_Lampiran.md#c17-big-map).
+
+![Big Map: framework Input → Middle → Output — tiga kolom yang memetakan tipe input, arsitektur standar, dan tipe output; zona gap di bawah menandai ruang riset](figures/fig00_big_map.svg)
 
 **Alur Praktik Riset** memperkenalkan satu kebiasaan riset baru setiap minggu yang tetap dipakai setelahnya. W1 menanamkan *observasi sebelum kesimpulan*, W2 menambah *smoke test tiga level*, W3 mengunci prinsip *ubah satu hal pada satu waktu*, W4 menggabungkan ketiganya dengan matriks eksperimen dan reproduksibilitas, lalu W5-W11 melapisi diagnosis sequence, validasi preprocessing, verifikasi kode AI, hingga framing riset. Bootcamp dibuat kumulatif, bukan mulai ulang setiap Senin. Tabel kebiasaan per minggu beserta contoh operasionalnya ada di [Lampiran C.18](14_Lampiran.md#c18-kebiasaan-riset).
 

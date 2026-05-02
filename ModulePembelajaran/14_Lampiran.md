@@ -1035,6 +1035,8 @@ Checklist ini melengkapi - bukan menggantikan - rubrik penilaian di [13_Rubrik_P
 
 *Catatan: untuk pemahaman praktis, lihat W2 §2.2. Bagian ini menyediakan derivasi lengkap 7-langkah untuk MLP 2-layer dengan MSE loss + sigmoid.*
 
+![Backpropagation 7 Langkah: MLP 2-Layer dengan MSE Loss - chain rule dari loss mundur ke setiap parameter](./figures/fig14a_backprop_7steps.svg)
+
 ### Setup
 
 MLP 2-layer: `d_in = 2`, `d_h = 2`, `d_out = 1`. Target `y`, prediksi `y_hat`. Aktivasi: sigmoid `σ(z) = 1/(1+e^{-z})`.

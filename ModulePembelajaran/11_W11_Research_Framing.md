@@ -105,6 +105,8 @@ Metodologi minggu ini adalah cara Anda menemukan dan mengklaim peluang-peluang i
 
 ## 3. Kerangka: Input → Middle → Output
 
+![Kerangka Dekomposisi: Input → Middle → Output - tiga pertanyaan untuk membedah setiap masalah ML](./figures/fig10a_input_middle_output.svg)
+
 Setiap masalah ML supervised bisa digambarkan sebagai transformasi:
 
 ```

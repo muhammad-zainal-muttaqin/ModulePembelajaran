@@ -80,6 +80,8 @@ Konsekuensi praktis: ketika Anda mendapat tugas baru, pertanyaan pertama adalah 
 
 ### 2.2 Taksonomi Modalitas x Keluarga Model x Adaptasi
 
+![Taksonomi Foundation Model: Modalitas × Keluarga × Adaptasi - tiga dimensi pilihan model](./figures/fig07a_foundation_taxonomy.svg)
+
 > [!IMPORTANT]
 > **Tiga mode adaptasi yang dipakai berulang di tabel.** Definisi singkat di sini supaya tabel tidak terasa magis. Detail pohon keputusan ada di §2.4.
 >

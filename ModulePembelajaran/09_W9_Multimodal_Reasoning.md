@@ -64,6 +64,8 @@ Sebelum melaporkan hasil multimodal, Anda harus menjalankan ablasi per modalitas
 
 ### 2.1 Strategi Fusion: Tiga Cara Menggabungkan Modalitas
 
+![Tiga Strategi Fusion Multimodal: Late, Early, dan Cross-Attention - kapan menggabungkan modalitas menentukan apa yang bisa dipelajari](./figures/fig08a_fusion_strategies.svg)
+
 #### Late Fusion
 
 Setiap modalitas diproses secara mandiri oleh encodernya masing-masing. Output (embedding atau logits) digabungkan di ujung, biasanya dengan concatenation atau averaging.
