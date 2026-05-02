@@ -1,7 +1,9 @@
 import { Children, isValidElement, type ReactElement, type ReactNode } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import remarkMath from "remark-math";
 import rehypeRaw from "rehype-raw";
+import rehypeKatex from "rehype-katex";
 import rehypeSlug from "rehype-slug";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import CodeBlock from "./CodeBlock";
@@ -109,9 +111,10 @@ export default function MarkdownRenderer({ markdown }: Props) {
   return (
     <div className="prose-modul">
       <ReactMarkdown
-        remarkPlugins={[remarkGfm, remarkPandocHeadingId]}
+        remarkPlugins={[remarkGfm, remarkMath, remarkPandocHeadingId]}
         rehypePlugins={[
           rehypeRaw,
+          rehypeKatex,
           rehypeSlug,
           [
             rehypeAutolinkHeadings,
