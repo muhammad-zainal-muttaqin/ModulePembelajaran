@@ -232,6 +232,8 @@ Banyak dataset multimodal dari dunia nyata punya masalah temporal alignment:
 **Masalah alignment tanpa sinkronisasi:**
 Model mungkin mengasosiasikan event dari waktu yang salah. Jika audio dan video tidak di-align dengan benar, cross-attention akan belajar korelasi yang semu.
 
+![Ilustrasi temporal alignment: dua stream sensor dengan sampling rate dan clock drift berbeda — menunjukkan korespondensi timestep yang bergeser seiring waktu](/figures/fig08c_temporal_alignment.png)
+
 **Tiga pendekatan:**
 
 1. **Resampling/interpolasi** - downsample semua stream ke resolusi temporal terendah. Kehilangan detail tapi mudah.
