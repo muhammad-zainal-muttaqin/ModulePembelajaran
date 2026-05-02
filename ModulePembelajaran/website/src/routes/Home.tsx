@@ -62,7 +62,7 @@ export default function Home() {
             Dari memahami sistem sampai berkembang mandiri.
           </h2>
           <p className="page-lead">
-            Setiap kompetensi dibahas satu bab penuh dengan satu lab pendamping. Klik untuk membuka babnya langsung.
+            Setiap kompetensi dilatih di beberapa minggu. Klik untuk memilih bab yang ingin dibuka.
           </p>
         </div>
         <CompetencyGrid />

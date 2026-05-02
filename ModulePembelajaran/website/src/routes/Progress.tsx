@@ -123,7 +123,7 @@ export default function ProgressPage() {
               <li key={c.n} className="py-3 flex items-center justify-between gap-3">
                 <div className="min-w-0">
                   <div className="font-medium text-sm">{c.n}. {c.title}</div>
-                  <div className="text-xs text-ink/70 dark:text-parchment/60 font-mono">Bab {c.chapter} · Minggu {c.weeks}</div>
+                  <div className="text-xs text-ink/70 dark:text-parchment/60 font-mono">{c.weeks}</div>
                 </div>
                 <div className="shrink-0">
                   {lvl ? (

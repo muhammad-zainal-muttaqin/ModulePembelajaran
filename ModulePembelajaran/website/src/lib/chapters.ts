@@ -193,16 +193,23 @@ export const CHAPTERS: ChapterMeta[] = [
   },
 ];
 
-export const COMPETENCIES = [
-  { n: 1, title: "Memahami sistem ML/DL dalam praktiknya", chapter: "01", weeks: "W1–W9" },
-  { n: 2, title: "Menerjemahkan ide menjadi eksperimen", chapter: "03", weeks: "W3–W4, W11, Capstone" },
-  { n: 3, title: "Eksperimen reproduksibel", chapter: "04", weeks: "W3, W4, Capstone" },
-  { n: 4, title: "Validasi data dan pra-pemrosesan", chapter: "06", weeks: "W3, W6, W9" },
-  { n: 5, title: "AI tools sebagai pendukung", chapter: "07", weeks: "W7–W8" },
-  { n: 6, title: "Adopsi repository riset asing", chapter: "07", weeks: "W7, W10, Capstone" },
-  { n: 7, title: "Membuat alat pendukung riset ringan", chapter: "12", weeks: "W12–W15" },
-  { n: 8, title: "Mengadopsi platform dan tool baru", chapter: "08", weeks: "W8, Capstone" },
-  { n: 9, title: "Berkembang mandiri", chapter: "10", weeks: "W10, W11, Capstone" },
+export type CompetencyMeta = {
+  n: number;
+  title: string;
+  weeks: string;
+  chapters: string[];
+};
+
+export const COMPETENCIES: CompetencyMeta[] = [
+  { n: 1, title: "Memahami sistem ML/DL dalam praktiknya", weeks: "W1–W9",              chapters: ["01","02","03","04","05","06","07","08","09"] },
+  { n: 2, title: "Menerjemahkan ide menjadi eksperimen",   weeks: "W3–W4, W11, Capstone", chapters: ["03","04","11","12"] },
+  { n: 3, title: "Eksperimen reproduksibel",               weeks: "W3, W4, Capstone",     chapters: ["03","04","12"] },
+  { n: 4, title: "Validasi data dan pra-pemrosesan",       weeks: "W3, W6, W9",           chapters: ["03","06","09"] },
+  { n: 5, title: "AI tools sebagai pendukung",             weeks: "W7–W8",                chapters: ["07","08"] },
+  { n: 6, title: "Adopsi repository riset asing",          weeks: "W7, W10, Capstone",    chapters: ["07","10","12"] },
+  { n: 7, title: "Membuat alat pendukung riset ringan",    weeks: "W12–W15",              chapters: ["12"] },
+  { n: 8, title: "Mengadopsi platform dan tool baru",      weeks: "W8, Capstone",         chapters: ["08","12"] },
+  { n: 9, title: "Berkembang mandiri",                     weeks: "W10, W11, Capstone",   chapters: ["10","11","12"] },
 ];
 
 export const SIKAP_META: Record<Sikap, { label: string; color: string; tagline: string; essence: string }> = {
