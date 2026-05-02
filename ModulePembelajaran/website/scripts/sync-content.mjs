@@ -104,7 +104,7 @@ async function copyDir(srcDir, destDir) {
   }
   for (const entry of entries) {
     if (entry.isFile()) {
-      await copyFile(path.join(srcDir, entry.name), path.join(destDir, entry.name));
+      await fs.copyFile(path.join(srcDir, entry.name), path.join(destDir, entry.name));
     }
   }
 }
