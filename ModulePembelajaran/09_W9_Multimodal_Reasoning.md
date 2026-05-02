@@ -398,7 +398,7 @@ Buka `template_repo/notebooks/lab_w9_multimodal_ablation.ipynb`.
 
 ---
 
-## Komponen Mandiri (W9)
+## 6. Komponen Mandiri
 
 Format: [Lampiran C.9](14_Lampiran.md#c9-template-komponen-mandiri).
 
@@ -411,7 +411,7 @@ Format: [Lampiran C.9](14_Lampiran.md#c9-template-komponen-mandiri).
 
 ---
 
-## 6. Refleksi
+## 7. Refleksi
 
 1. Anda mendapatkan dataset multimodal dengan image, audio, dan text. Full fusion mencapai F1 = 0.81. Bagaimana urutan ablation yang akan Anda jalankan, dan apa yang harus terjadi agar Anda yakin ketiga modalitas benar-benar berkontribusi?
 2. Sensor di lab Anda kadang hilang karena koneksi putus. Dari tiga strategi modalitas hilang (§2.3), mana yang paling sesuai untuk skenario ini? Apa trade-off masing-masing?
@@ -419,7 +419,7 @@ Format: [Lampiran C.9](14_Lampiran.md#c9-template-komponen-mandiri).
 
 ---
 
-## 7. Bacaan Lanjutan
+## 8. Bacaan Lanjutan
 
 - **Baltrusaitis et al. - *Multimodal Machine Learning: A Survey and Taxonomy*** (TPAMI, 2019). Survey komprehensif fusion strategies. Baca bagian 3 (Fusion) dan bagian 5 (Co-learning) untuk konteks W9.
 - **Wang et al. - *What Makes Training Multi-Modal Classification Networks Hard?*** (CVPR, 2020). Tentang masalah modalitas terabaikan dan solusinya. Sangat relevan dengan §2.2.

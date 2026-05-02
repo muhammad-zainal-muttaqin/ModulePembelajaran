@@ -317,7 +317,7 @@ Tambahkan **selection memo** (satu paragraf per model): mengapa model ini, asums
 
 ---
 
-## Komponen Mandiri (W8)
+## 6. Komponen Mandiri
 
 Format: [Lampiran C.9](14_Lampiran.md#c9-template-komponen-mandiri).
 
@@ -330,7 +330,7 @@ Format: [Lampiran C.9](14_Lampiran.md#c9-template-komponen-mandiri).
 
 ---
 
-## 6. Refleksi
+## 7. Refleksi
 
 1. Anda mendapat task baru: deteksi emosi dari rekaman suara Bahasa Indonesia. Dari taksonomi §2.2, identifikasi dua kandidat foundation model. Untuk masing-masing, tulis dua argumen mendukung dan satu risiko utama.
 2. Seorang kolaborator mengklaim "model X mencapai SOTA di benchmark Y, jadi kita pakai ini". Apa tiga pertanyaan yang akan Anda tanyakan sebelum menyetujui?
@@ -338,7 +338,7 @@ Format: [Lampiran C.9](14_Lampiran.md#c9-template-komponen-mandiri).
 
 ---
 
-## 7. Bacaan Lanjutan
+## 8. Bacaan Lanjutan
 
 - **Bommasani et al. - *On the Opportunities and Risks of Foundation Models*** (2021). Paper definitif. Baca bagian 1 (Introduction) dan 3 (Capabilities).
 - **Hu et al. - *LoRA: Low-Rank Adaptation of Large Language Models*** (2021). Baca bagian 4 (main experiments).

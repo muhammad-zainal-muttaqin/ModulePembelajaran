@@ -243,6 +243,76 @@ Ini *terutama* membutuhkan skeptisisme. Jika hipotesis "naik 3 poin" tapi aktual
 > [!NOTE]
 > **Hasil negatif yang didokumentasikan dengan baik adalah kontribusi berarti untuk riset** - ia mencegah orang lain membuang waktu di arah yang sama. Di lab Anda sendiri, catatan negatif melindungi Anda dari mengulangi eksperimen yang sama enam bulan kemudian.
 
+### 2.7 Infrastruktur Reproduksibilitas: YAML, Seed, Checkpoint, Git Hash
+
+![Empat Pilar Reproduksibilitas: YAML config, Seed locking, Checkpoint metadata, Git hash](./figures/fig03a_reproducibility_sources.svg)
+
+Reproduksibilitas bertumpu pada empat pilar yang saling mengunci. Hyperparameter hidup di config YAML deklaratif, bukan di angka ajaib yang berserakan di kode; config disimpan bersama checkpoint sehingga setiap hasil bisa ditelusuri ke konfigurasi persis yang menghasilkannya. Seed dikunci di awal training dengan `set_seed(cfg['seed'])` sebelum operasi apapun, dan untuk reproduksibilitas ketat di GPU disertai `torch.backends.cudnn.deterministic = True`; satu seed per run, variasi seed dipakai antar replikasi sebagai pengukur noise.
+
+Dua pilar berikutnya mengikat hasil pada jejak yang bisa diaudit. Checkpoint menyimpan lebih dari sekadar `model.state_dict()` - di dalamnya ada `config`, `git_hash`, `epoch`, `metrics`, dan `timestamp`, karena checkpoint tanpa config hanyalah setengah bukti. Git hash mengikat setiap run ke commit yang menghasilkannya lewat `get_git_hash()`, dan flag "dirty" memperingatkan ketika ada perubahan yang belum di-commit. Implementasi keempat pilar tersedia di `template_repo/src/utils.py`; Lab 3 (`lab_w4_experiment_tracking.ipynb`) membangun keempatnya secara berurutan.
+
+**Seperti apa bentuk YAML config yang akan Anda pakai?** Di bawah ini adalah `configs/baseline.yaml` dari template repo — contoh konkret yang dipakai di seluruh modul:
+
+```yaml
+# configs/baseline.yaml — SimpleCNN + CrossEntropy pada CIFAR-10
+experiment_name: baseline
+
+seed: 42                          # ← dikunci satu seed per run
+
+data:
+  name: cifar10
+  root: ./data
+  image_size: 32
+  num_classes: 10
+  batch_size: 128
+  num_workers: 2
+  val_split: 0.1
+  augment: true
+
+model:
+  name: simple_cnn
+  num_classes: 10
+  freeze_until: null               # tidak ada yang di-freeze
+
+loss:
+  name: cross_entropy
+  label_smoothing: 0.0
+
+optim:
+  name: sgd
+  lr: 0.05
+  momentum: 0.9
+  weight_decay: 5.0e-4
+  nesterov: true
+
+scheduler:
+  name: cosine
+  warmup_epochs: 2
+
+train:
+  epochs: 30
+  grad_clip: 1.0
+  log_every: 50
+  save_every: 5
+
+output:
+  root: ./experiments
+```
+
+Setiap hyperparameter dideklarasikan di sini — bukan tersebar di kode Python. Saat menjalankan eksperimen, `src/train.py` membaca YAML ini dan meneruskannya ke seluruh komponen. Untuk ablation, Anda membuat file YAML baru (mis. `focal_freeze.yaml`) yang hanya mengubah bagian yang relevan — arsitektur, data, dan optimizer tetap identik. Dengan begitu, dua hasil bisa dibandingkan secara adil karena perbedaannya diketahui persis.
+
+> [!NOTE]
+> Detail mendalam tentang empat sumber non-determinisme, Worker seeding, TensorBoard setup, dan konvensi Git untuk riset eksperimental tersedia di file ini sebagai materi lanjutan - cari bagian §2.1-§2.10 dari konten legacy. Bacaan ini sangat berguna sebelum W4 assignment.
+
+### 2.8 Platform: Kapan Pindah ke RunPod
+
+Tetap di laptop atau Colab selama training selesai di bawah 30 menit; pindah ke RunPod ketika satu run sudah melewati ambang itu sambil Anda perlu menjalankan enam run atau lebih untuk replikasi, ketika dataset tidak muat di RAM laptop, atau ketika Anda butuh GPU dengan VRAM lebih dari 8 GB. Alur kerja RunPod dasar yang diperkenalkan minggu ini sederhana: launch pod, SSH masuk, jalankan training, pull checkpoint, lalu matikan pod. Konfigurasi minimal dan cara push/pull checkpoint lewat rsync atau rclone tersedia di [Lampiran C.15](14_Lampiran.md#c15-lightweight-research-tools).
+
+![RunPod: Pod Lifecycle + SSH Tunnel - alur kerja cloud GPU untuk training](./figures/fig08a_cloud_workflow.svg)
+
+> [!CAUTION]
+> Mematikan pod setelah training selesai adalah kebiasaan paling kritis di W4. Tagihan GPU terus berjalan selama pod hidup, termasuk saat Anda lupa setelah berhasil pull checkpoint. Pasang pengingat di kalender atau biasakan menutup pod sebelum menutup terminal.
+
 ---
 
 ## 3. Worked Example: Menerjemahkan Instruksi PI
@@ -371,7 +441,9 @@ Di luar update rutin, ada tiga alat yang membentuk kebiasaan komunikasi seorang 
 
 ---
 
-## 5. Lab 2 - Focal Loss + Freeze Layer dengan Ablation
+## 5. Lab
+
+### 5.1 Focal Loss + Freeze Layer dengan Ablation
 
 Buka [Lab 2 - Focal Loss dan Freeze Layer](template_repo/notebooks/lab_w3_loss_ablation.ipynb).
 
@@ -393,79 +465,7 @@ Tugas:
 
 ---
 
-### 2.7 Infrastruktur Reproduksibilitas: YAML, Seed, Checkpoint, Git Hash
-
-![Empat Pilar Reproduksibilitas: YAML config, Seed locking, Checkpoint metadata, Git hash](./figures/fig03a_reproducibility_sources.svg)
-
-Reproduksibilitas bertumpu pada empat pilar yang saling mengunci. Hyperparameter hidup di config YAML deklaratif, bukan di angka ajaib yang berserakan di kode; config disimpan bersama checkpoint sehingga setiap hasil bisa ditelusuri ke konfigurasi persis yang menghasilkannya. Seed dikunci di awal training dengan `set_seed(cfg['seed'])` sebelum operasi apapun, dan untuk reproduksibilitas ketat di GPU disertai `torch.backends.cudnn.deterministic = True`; satu seed per run, variasi seed dipakai antar replikasi sebagai pengukur noise.
-
-Dua pilar berikutnya mengikat hasil pada jejak yang bisa diaudit. Checkpoint menyimpan lebih dari sekadar `model.state_dict()` - di dalamnya ada `config`, `git_hash`, `epoch`, `metrics`, dan `timestamp`, karena checkpoint tanpa config hanyalah setengah bukti. Git hash mengikat setiap run ke commit yang menghasilkannya lewat `get_git_hash()`, dan flag "dirty" memperingatkan ketika ada perubahan yang belum di-commit. Implementasi keempat pilar tersedia di `template_repo/src/utils.py`; Lab 3 (`lab_w4_experiment_tracking.ipynb`) membangun keempatnya secara berurutan.
-
-**Seperti apa bentuk YAML config yang akan Anda pakai?** Di bawah ini adalah `configs/baseline.yaml` dari template repo — contoh konkret yang dipakai di seluruh modul:
-
-```yaml
-# configs/baseline.yaml — SimpleCNN + CrossEntropy pada CIFAR-10
-experiment_name: baseline
-
-seed: 42                          # ← dikunci satu seed per run
-
-data:
-  name: cifar10
-  root: ./data
-  image_size: 32
-  num_classes: 10
-  batch_size: 128
-  num_workers: 2
-  val_split: 0.1
-  augment: true
-
-model:
-  name: simple_cnn
-  num_classes: 10
-  freeze_until: null               # tidak ada yang di-freeze
-
-loss:
-  name: cross_entropy
-  label_smoothing: 0.0
-
-optim:
-  name: sgd
-  lr: 0.05
-  momentum: 0.9
-  weight_decay: 5.0e-4
-  nesterov: true
-
-scheduler:
-  name: cosine
-  warmup_epochs: 2
-
-train:
-  epochs: 30
-  grad_clip: 1.0
-  log_every: 50
-  save_every: 5
-
-output:
-  root: ./experiments
-```
-
-Setiap hyperparameter dideklarasikan di sini — bukan tersebar di kode Python. Saat menjalankan eksperimen, `src/train.py` membaca YAML ini dan meneruskannya ke seluruh komponen. Untuk ablation, Anda membuat file YAML baru (mis. `focal_freeze.yaml`) yang hanya mengubah bagian yang relevan — arsitektur, data, dan optimizer tetap identik. Dengan begitu, dua hasil bisa dibandingkan secara adil karena perbedaannya diketahui persis.
-
-> [!NOTE]
-> Detail mendalam tentang empat sumber non-determinisme, Worker seeding, TensorBoard setup, dan konvensi Git untuk riset eksperimental tersedia di file ini sebagai materi lanjutan - cari bagian §2.1-§2.10 dari konten legacy. Bacaan ini sangat berguna sebelum W4 assignment.
-
-### 2.8 Platform: Kapan Pindah ke RunPod
-
-Tetap di laptop atau Colab selama training selesai di bawah 30 menit; pindah ke RunPod ketika satu run sudah melewati ambang itu sambil Anda perlu menjalankan enam run atau lebih untuk replikasi, ketika dataset tidak muat di RAM laptop, atau ketika Anda butuh GPU dengan VRAM lebih dari 8 GB. Alur kerja RunPod dasar yang diperkenalkan minggu ini sederhana: launch pod, SSH masuk, jalankan training, pull checkpoint, lalu matikan pod. Konfigurasi minimal dan cara push/pull checkpoint lewat rsync atau rclone tersedia di [Lampiran C.15](14_Lampiran.md#c15-lightweight-research-tools).
-
-![RunPod: Pod Lifecycle + SSH Tunnel - alur kerja cloud GPU untuk training](./figures/fig08a_cloud_workflow.svg)
-
-> [!CAUTION]
-> Mematikan pod setelah training selesai adalah kebiasaan paling kritis di W4. Tagihan GPU terus berjalan selama pod hidup, termasuk saat Anda lupa setelah berhasil pull checkpoint. Pasang pengingat di kalender atau biasakan menutup pod sebelum menutup terminal.
-
----
-
-## 5. Lab 3 - Config, Logging & Reproducibility
+### 5.2 Config, Logging & Reproducibility
 
 ![Struktur Folder Eksperimen: config.yaml, train.log, checkpoint, summary.json, TensorBoard](./figures/fig03b_experiment_folder.svg)
 
@@ -487,7 +487,7 @@ Buka `template_repo/notebooks/lab_w4_experiment_tracking.ipynb`. Tugas:
 
 ---
 
-## Komponen Mandiri (W4)
+## 6. Komponen Mandiri
 
 Konsep minggu ini: matriks eksperimen plus infrastruktur reproduksibilitas. Anda memilih salah satu dari tiga jalur - Implementasi (loss function alternatif lengkap dengan protokol satu halaman), Analisis (membaca tiga paper klasifikasi dan mengekstrak pola rancangan tersirat), atau Desain (menulis protokol lima bagian untuk dataset baru tanpa menjalankannya, dengan justifikasi setiap pilihan). Luaran berupa entri portofolio Pekan 4 di `notebooks/portofolio_mandiri.ipynb` dan presentasi 10 menit di awal Pekan 5.
 
@@ -496,7 +496,7 @@ Konsep minggu ini: matriks eksperimen plus infrastruktur reproduksibilitas. Anda
 
 ---
 
-## 6. Refleksi
+## 7. Refleksi
 
 1. Anda mendapati bahwa baseline di repo riset lab Anda memakai `lr=1e-3`, padahal pengalaman Anda bilang `3e-4` lebih stabil dengan AdamW. Anda ingin membandingkan focal loss dengan baseline. Tuliskan dua rencana eksperimen alternatif untuk menangani ketidakselarasan ini, beserta argumen kapan masing-masing lebih tepat.
 2. Hipotesis Anda gagal: F1 kelas minor tidak naik, akurasi keseluruhan turun. Apa tiga pertanyaan berikutnya yang akan Anda kejar? Urutkan dari yang paling murah (tidak perlu training baru) ke yang paling mahal.
@@ -505,7 +505,7 @@ Konsep minggu ini: matriks eksperimen plus infrastruktur reproduksibilitas. Anda
 
 ---
 
-## 7. Bacaan Lanjutan
+## 8. Bacaan Lanjutan
 
 - **Sebastian Raschka - *Model Evaluation, Model Selection, and Algorithm Selection in Machine Learning*** (2018). Paper panjang tetapi bagian 1-3 saja sudah cukup untuk memperdalam pemahaman tentang replikasi dan baseline yang adil.
 - **Hullman & Gelman - *Designing for Interactive Exploratory Data Analysis Requires Theories of Graphical Inference*** (2021). Relevan untuk poin "hipotesis sebelum melihat data"; argumennya cocok juga ke evaluasi model.

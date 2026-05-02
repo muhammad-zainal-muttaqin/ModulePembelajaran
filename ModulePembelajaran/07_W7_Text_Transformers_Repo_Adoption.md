@@ -203,7 +203,7 @@ Buka `notebooks/lab_w7_repo_adoption.ipynb`.
 
 ---
 
-## Komponen Mandiri (W7)
+## 5. Komponen Mandiri
 
 Format: [Lampiran C.9](14_Lampiran.md#c9-template-komponen-mandiri).
 
@@ -216,7 +216,7 @@ Format: [Lampiran C.9](14_Lampiran.md#c9-template-komponen-mandiri).
 
 ---
 
-## 5. Refleksi
+## 6. Refleksi
 
 1. Anda mendapat dataset teks medis dalam Bahasa Indonesia (10.000 sampel, 5 kelas). IndoBERT atau BioBERT yang akan Anda coba pertama? Tulis justifikasi satu paragraf menggunakan framework dari W8 Foundation Models yang akan datang.
 2. AI tool memberikan kode tokenisasi yang "terlihat benar". Setelah inspeksi, Anda menemukan ia menghilangkan token [CLS] sebelum pooling. Apakah ini selalu salah? Kapan bisa diterima?
@@ -224,7 +224,7 @@ Format: [Lampiran C.9](14_Lampiran.md#c9-template-komponen-mandiri).
 
 ---
 
-## 6. Bacaan Lanjutan
+## 7. Bacaan Lanjutan
 
 - **Devlin et al. - *BERT: Pre-training of Deep Bidirectional Transformers*** (2018). Baca Abstract + bagian 3 (pretraining) + bagian 4.1 (fine-tuning). Lewati appendix.
 - **HuggingFace - *Course Chapter 2: Using Transformers***. Tutorial interaktif untuk tokenizer dan pipeline HuggingFace.

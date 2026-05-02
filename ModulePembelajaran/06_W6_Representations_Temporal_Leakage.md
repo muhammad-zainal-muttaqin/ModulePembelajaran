@@ -575,44 +575,7 @@ Tugas:
 
 ---
 
-## Komponen Mandiri (W6)
-
-Konsep: memeriksa data sebelum mempercayai hasil - distribusi kelas, leakage tersembunyi, kualitas label. Format dan kriteria: [Lampiran C.9](14_Lampiran.md#c9-template-komponen-mandiri).
-
-| Jalur | Tugas minggu ini |
-| --- | --- |
-| **A - Implementasi** | Pilih satu dataset klasifikasi dari HuggingFace (bukan PathMNIST). Jalankan 3-layer EDA: distribusi label + nilai hilang + duplikat, distribusi fitur + outlier, korelasi antar fitur. Laporkan satu temuan konkret yang mengubah cara Anda memakai dataset itu. |
-| **B - Analisis** | Rancang dua skenario leakage hipotetis yang tidak terdeteksi oleh pipeline Lab 4: satu pada split, satu pada fitur turunan. Jelaskan mekanismenya dan langkah tambahan untuk mendeteksinya. |
-| **C - Desain** | Rancang protokol split untuk dataset dengan ID entitas berulang (mis. ID pasien atau ID pembicara). Tulis dua versi: yang mudah-tapi-salah (random split) dan yang benar. Buat argumen mengapa versi salah sering lolos tanpa disadari. |
-
-**Luaran:** Entri portofolio W6 di `notebooks/portofolio_mandiri.ipynb`. Presentasi 10 menit di awal W7.
-
----
-
-## 6. Refleksi
-
-1. Anda mewarisi proyek dari senior yang sudah pindah. Dataset siap, kode siap, akurasi test terlaporkan 91%. Apa tiga pemeriksaan pertama yang akan Anda lakukan sebelum *memakai ulang* angka 91% tersebut di laporan Anda sendiri?
-
-2. Model Anda mencapai 99% akurasi pada val set di hari pertama. Apa lima hipotesis paling mungkin tentang penyebabnya, diurutkan dari yang paling membosankan ke yang paling mengejutkan? Untuk tiga hipotesis teratas, bagaimana Anda menguji masing-masing dalam waktu satu jam?
-
-3. Dataset PathMNIST yang Anda pakai di Lab 4 tidak memiliki informasi pasien - setiap sampel dianggap independen. Bagaimana Anda akan menangani ini jika dataset memiliki ID pasien dan setiap pasien memiliki beberapa slide? Jelaskan protokol split yang benar dan mengapa random split biasa akan gagal.
-
-4. **Koneksi ke Capstone.** Pada Capstone (W12-W15), Anda akan memilih dataset - bisa dari paper, Kaggle, atau repo lab. Tuliskan checklist 5-layer EDA (lihat bagian 2) dalam format yang bisa Anda lampirkan ke draft proposal Capstone Anda. Bagian mana dari checklist yang paling mungkin Anda *skip* karena tekanan waktu, dan apa konsekuensi paling buruk dari skip itu di Capstone?
-
----
-
-## 7. Bacaan Lanjutan
-
-- **Kaufman, Rosset, Perlich - *Leakage in Data Mining: Formulation, Detection, and Avoidance*** (KDD 2011). Taksonomi klasik tentang leakage; panjang tetapi bagian 2-3 cukup untuk memahami konsepnya.
-- **Northcutt et al. - *Pervasive Label Errors in Test Sets Destabilize Machine Learning Benchmarks*** (NeurIPS 2021). Menunjukkan berapa banyak label salah di benchmark populer (ImageNet, CIFAR-10). Tonik skeptisisme.
-- **Geirhos et al. - *Shortcut Learning in Deep Neural Networks*** (Nature Machine Intelligence, 2020). Mengapa model "belajar" dengan cara yang tidak kita harapkan, dan bagaimana mendeteksinya.
-- **Cleanlab documentation** (cleanlab.readthedocs.io). Library praktis untuk deteksi label noise; dibaca sebagai alternatif dari implementasi manual di Lab 4.
-
----
-
----
-
-## Lab W6 - Temporal Leakage Demonstration
+### 5.2 Temporal Leakage Demonstration
 
 Buka `template_repo/notebooks/lab_w6_temporal_leakage.ipynb`.
 
@@ -629,6 +592,41 @@ Buka `template_repo/notebooks/lab_w6_temporal_leakage.ipynb`.
 - Pipeline causal vs leaky dengan kode terdokumentasi.
 - Tabel perbandingan F1 (causal vs leaky vs delta).
 - 1 paragraf "kenapa ini menipu".
+
+---
+
+## 6. Komponen Mandiri
+
+Konsep: memeriksa data sebelum mempercayai hasil - distribusi kelas, leakage tersembunyi, kualitas label. Format dan kriteria: [Lampiran C.9](14_Lampiran.md#c9-template-komponen-mandiri).
+
+| Jalur | Tugas minggu ini |
+| --- | --- |
+| **A - Implementasi** | Pilih satu dataset klasifikasi dari HuggingFace (bukan PathMNIST). Jalankan 3-layer EDA: distribusi label + nilai hilang + duplikat, distribusi fitur + outlier, korelasi antar fitur. Laporkan satu temuan konkret yang mengubah cara Anda memakai dataset itu. |
+| **B - Analisis** | Rancang dua skenario leakage hipotetis yang tidak terdeteksi oleh pipeline Lab 4: satu pada split, satu pada fitur turunan. Jelaskan mekanismenya dan langkah tambahan untuk mendeteksinya. |
+| **C - Desain** | Rancang protokol split untuk dataset dengan ID entitas berulang (mis. ID pasien atau ID pembicara). Tulis dua versi: yang mudah-tapi-salah (random split) dan yang benar. Buat argumen mengapa versi salah sering lolos tanpa disadari. |
+
+**Luaran:** Entri portofolio W6 di `notebooks/portofolio_mandiri.ipynb`. Presentasi 10 menit di awal W7.
+
+---
+
+## 7. Refleksi
+
+1. Anda mewarisi proyek dari senior yang sudah pindah. Dataset siap, kode siap, akurasi test terlaporkan 91%. Apa tiga pemeriksaan pertama yang akan Anda lakukan sebelum *memakai ulang* angka 91% tersebut di laporan Anda sendiri?
+
+2. Model Anda mencapai 99% akurasi pada val set di hari pertama. Apa lima hipotesis paling mungkin tentang penyebabnya, diurutkan dari yang paling membosankan ke yang paling mengejutkan? Untuk tiga hipotesis teratas, bagaimana Anda menguji masing-masing dalam waktu satu jam?
+
+3. Dataset PathMNIST yang Anda pakai di Lab 4 tidak memiliki informasi pasien - setiap sampel dianggap independen. Bagaimana Anda akan menangani ini jika dataset memiliki ID pasien dan setiap pasien memiliki beberapa slide? Jelaskan protokol split yang benar dan mengapa random split biasa akan gagal.
+
+4. **Koneksi ke Capstone.** Pada Capstone (W12-W15), Anda akan memilih dataset - bisa dari paper, Kaggle, atau repo lab. Tuliskan checklist 5-layer EDA (lihat bagian 2) dalam format yang bisa Anda lampirkan ke draft proposal Capstone Anda. Bagian mana dari checklist yang paling mungkin Anda *skip* karena tekanan waktu, dan apa konsekuensi paling buruk dari skip itu di Capstone?
+
+---
+
+## 8. Bacaan Lanjutan
+
+- **Kaufman, Rosset, Perlich - *Leakage in Data Mining: Formulation, Detection, and Avoidance*** (KDD 2011). Taksonomi klasik tentang leakage; panjang tetapi bagian 2-3 cukup untuk memahami konsepnya.
+- **Northcutt et al. - *Pervasive Label Errors in Test Sets Destabilize Machine Learning Benchmarks*** (NeurIPS 2021). Menunjukkan berapa banyak label salah di benchmark populer (ImageNet, CIFAR-10). Tonik skeptisisme.
+- **Geirhos et al. - *Shortcut Learning in Deep Neural Networks*** (Nature Machine Intelligence, 2020). Mengapa model "belajar" dengan cara yang tidak kita harapkan, dan bagaimana mendeteksinya.
+- **Cleanlab documentation** (cleanlab.readthedocs.io). Library praktis untuk deteksi label noise; dibaca sebagai alternatif dari implementasi manual di Lab 4.
 
 ---
 

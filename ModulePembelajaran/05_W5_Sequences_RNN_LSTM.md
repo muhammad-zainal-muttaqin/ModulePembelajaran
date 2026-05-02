@@ -364,7 +364,7 @@ Lab 3b ini juga memenuhi **Breadth Check** untuk keluarga RNN/LSTM (salah satu d
 
 ---
 
-## Komponen Mandiri (W5)
+## 6. Komponen Mandiri
 
 Eksplorasi lebih dalam dari tugas utama. Format: [Lampiran C.9](14_Lampiran.md#c9-template-komponen-mandiri).
 
@@ -377,7 +377,7 @@ Eksplorasi lebih dalam dari tugas utama. Format: [Lampiran C.9](14_Lampiran.md#c
 
 ---
 
-## 6. Refleksi
+## 7. Refleksi
 
 1. **Skenario domain baru.** Anda mendapat dataset EKG: 5000 titik per sampel pada sampling rate 500 Hz, target klasifikasi 4 kelas aritmia. Apakah LSTM adalah arsitektur pertama yang Anda coba? Apa dua alternatif yang akan Anda pertimbangkan, dan apa trade-off masing-masing?
 2. **Gradient flow.** Setelah melihat plot gradient flow di Lab 3b: pada panjang berapa RNN vanilla mulai kehilangan sinyal? Bagaimana angka ini mengubah keputusan Anda tentang kapan harus pakai LSTM vs pendekatan lain?
@@ -385,7 +385,7 @@ Eksplorasi lebih dalam dari tugas utama. Format: [Lampiran C.9](14_Lampiran.md#c
 
 ---
 
-## 7. Bacaan Lanjutan
+## 8. Bacaan Lanjutan
 
 - **Christopher Olah - *Understanding LSTM Networks*** (blog, 2015). Penjelasan visual paling jelas tentang mekanisme gate LSTM dan kenapa vanishing gradient diatasi.
 - **Hochreiter & Schmidhuber - *Long Short-Term Memory*** (Neural Computation, 1997). Paper asli LSTM, termasuk eksperimen yang menunjukkan kegagalan RNN vanilla pada long-range dependency.

@@ -304,7 +304,7 @@ Target waktu: 6-8 jam.
 
 ---
 
-## Komponen Mandiri (W10)
+## 6. Komponen Mandiri
 
 Konsep: membaca paper secara terarah, mengubah paper menjadi implementasi kecil, dan menilai klaim melalui ablation. Ini entri portofolio terakhir sebelum capstone - setelah mengisinya, kerjakan juga sel "Refleksi Portofolio" di notebook: lihat kembali semua entri Anda dan tuliskan satu paragraf perjalanan belajar. Format dan kriteria: [Lampiran C.9](14_Lampiran.md#c9-template-komponen-mandiri).
 
@@ -319,7 +319,7 @@ Konsep: membaca paper secara terarah, mengubah paper menjadi implementasi kecil,
 
 ---
 
-## 6. Refleksi
+## 7. Refleksi
 
 1. Bagian paper mana yang paling sulit diterjemahkan menjadi kode: notasi matematika, detail implementasi, hyperparameter, atau setup eksperimen?
 2. Apa satu klaim paper yang menjadi lebih jelas setelah Anda menjalankan ablation? Apa satu klaim yang justru terasa lebih lemah?
@@ -328,7 +328,7 @@ Konsep: membaca paper secara terarah, mengubah paper menjadi implementasi kecil,
 
 ---
 
-## 7. Bacaan Lanjutan
+## 8. Bacaan Lanjutan
 
 - **"How to Read a Paper"** oleh S. Keshav (2007, 3 halaman). Memperkenalkan metode tiga tahap (The Three-Pass Approach); sumber populer dari teknik yang diadaptasi di bab ini. Baca sekali seumur hidup, cetak, dan tempel di dekat meja kerja Anda.
 - **arxiv-sanity-lite** (Andrej Karpathy). Alat kurasi *paper* sederhana yang bisa Anda *host* sendiri. Sangat menghemat waktu jika Anda suka mengkurasi literatur dengan preferensi yang spesifik dan unik.
