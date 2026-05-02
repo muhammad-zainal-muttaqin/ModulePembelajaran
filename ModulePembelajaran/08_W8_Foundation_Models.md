@@ -179,11 +179,11 @@ Compute budget cukup untuk fine-tuning?
             └── Frozen atau LoRA (r=4-8) sudah cukup
 ```
 
-**Frozen features:** Extract embeddings tanpa gradient. Hanya train linear head. Tercepat, cocok untuk proof-of-concept atau data sedikit.
+**Frozen features:** Extract embeddings tanpa gradient. Hanya latih linear head. Tercepat, cocok untuk proof-of-concept atau data sedikit.
 
-**LoRA:** Tambahkan matriks low-rank parallel dengan weight original. Hanya LoRA matrices dilatih (biasanya < 1% parameter). Efficient, hasil sering comparable dengan full fine-tuning.
+**LoRA:** Tambahkan matriks low-rank parallel dengan weight original. Hanya LoRA matrices dilatih (biasanya < 1% parameter). Efficient, hasil sering sebanding dengan full fine-tuning.
 
-**Full fine-tuning:** Semua parameter diupdate. Paling fleksibel, paling mahal. Butuh data cukup untuk menghindari overfitting.
+**Full fine-tuning:** Semua parameter diperbarui. Paling fleksibel, paling mahal. Butuh data cukup untuk menghindari overfitting.
 
 ### 2.5 Teacher Model dalam Training-Time Supervision
 
@@ -194,18 +194,18 @@ Contoh:
 - **Auxiliary supervision** - embedding dari CLIP digunakan sebagai target untuk network visual lebih kecil.
 - **Pseudo-label generation** - foundation model menghasilkan pseudo-labels untuk unlabeled data.
 
-Dalam semua kasus ini, foundation model tidak ada dalam model final yang di-deploy. Ia meningkatkan proses training. Pola ini penting karena memungkinkan manfaat dari foundation model tanpa biaya inferensinya.
+Dalam semua kasus ini, foundation model tidak ada dalam model final yang di-deploy. Model fondasi ini meningkatkan proses pelatihan. Pola ini penting karena memungkinkan manfaat dari foundation model tanpa biaya inferensinya.
 
 #### 2.5.1 Knowledge Distillation: Contoh Numerik dengan Target Lunak
 
-Untuk task klasifikasi 3 kelas (anjing/kucing/kelinci), teacher menghasilkan logits `z_T = [4.0, 1.0, 0.5]` untuk satu sampel. Student dilatih untuk mereproduksi distribusi probabilitas teacher, **bukan** label keras `[1, 0, 0]`.
+Untuk tugas klasifikasi 3 kelas (anjing/kucing/kelinci), teacher menghasilkan logits `z_T = [4.0, 1.0, 0.5]` untuk satu sampel. Student dilatih untuk mereproduksi distribusi probabilitas teacher, **bukan** label keras `[1, 0, 0]`.
 
 **Hard target** (one-hot label asli):
 ```
 y_hard = [1, 0, 0]
 ```
 
-**Soft target** dengan temperature `T = 4` (smooth distribution):
+**Soft target** dengan temperature `T = 4` (distribusi yang halus):
 ```
 softmax(z_T / T)[i] = exp(z_T[i] / T) / Σ_j exp(z_T[j] / T)
 softmax([4.0, 1.0, 0.5] / 4) = softmax([1.0, 0.25, 0.125])
@@ -217,7 +217,7 @@ softmax([4.0, 1.0, 0.5] / 4) = softmax([1.0, 0.25, 0.125])
 softmax([4.0, 1.0, 0.5]) ≈ [0.939, 0.047, 0.014]   # hampir one-hot, info kelas non-mayoritas hilang
 ```
 
-Temperature tinggi `T > 1` membuka informasi "kelas non-mayoritas yang masih plausible" - student belajar bahwa anjing-vs-kucing lebih mirip daripada anjing-vs-kelinci. Loss distillation:
+Temperature tinggi `T > 1` membuka informasi "kelas non-mayoritas yang masih masuk akal" - student belajar bahwa anjing-vs-kucing lebih mirip daripada anjing-vs-kelinci. Loss distillation:
 
 ```
 L_KD = CE(softmax(z_S / T),  softmax(z_T / T)) * T²
@@ -248,7 +248,7 @@ config = LoraConfig(task_type=TaskType.SEQ_CLS, r=8, lora_alpha=16,
 model = get_peft_model(base_model, config)
 ```
 Keunggulan: 10-20× lebih hemat parameter dari full FT, training 5× lebih cepat.
-Kelemahan: butuh library PEFT; kurang familier.
+Kelemahan: butuh library PEFT; kurang dikenal.
 
 **Strategi C - Full Fine-tuning:**
 ```python

@@ -30,7 +30,7 @@
 
 **Minggu:** 11
 **Format:** Sesi kelas (120 menit) + kerja mandiri antarsesi
-**In charge:** Bu Fatma + RA
+**Penanggung jawab:** Bu Fatma + RA
 
 **Baris peta besar:** konsolidasi - memetakan arah riset ke Big Map yang sudah dibangun
 **Kebiasaan riset:** framing sebelum eksekusi, filter literatur, pertahanan framing
@@ -83,7 +83,7 @@ W11 memulai **paruh depan**: diberi situasi yang terbuka - bisa berupa domain ya
 
 Banyak program studi berhenti di paruh belakang dan mengasumsikan paruh depan akan terserap sendiri: dengan mengamati dosen pembimbing, dengan membaca cukup banyak paper sampai insting itu berkembang. Terkadang berhasil. Sering kali tidak - dan mahasiswa menghabiskan bertahun-tahun mengeksekusi dengan kompeten pertanyaan-pertanyaan yang sejak awal sudah salah framing.
 
-Minggu ini membuat paruh depan menjadi eksplisit. Kerangka dekomposisi, menu framing, dan filter literatur bukan latihan akademik. Ini adalah proses yang sesungguhnya dipakai saat sebuah proyek riset dimulai.
+Di minggu ini, paruh depan dieksplisitkan. Kerangka dekomposisi, menu framing, dan filter literatur bukan latihan akademik. Ini adalah proses yang sesungguhnya dipakai saat sebuah proyek riset dimulai.
 
 ---
 
@@ -127,7 +127,7 @@ INPUT  ────────────────────────�
 
 ### 3.0 Sebelum Mulai: Apakah Anda Punya Pertanyaan Riset?
 
-Banyak mahasiswa memulai proyek tanpa pertanyaan riset. Mereka punya dataset dan ingin "melakukan machine learning di atasnya." Ini bukan pertanyaan riset. Ini adalah prasyarat untuk satu pertanyaan.
+Banyak mahasiswa memulai proyek tanpa pertanyaan riset. Mereka punya dataset dan ingin "melakukan machine learning pada dataset tersebut." Ini bukan pertanyaan riset. Ini adalah prasyarat untuk satu pertanyaan.
 
 Pertanyaan riset punya tiga bagian:
 
@@ -284,7 +284,7 @@ Pasangan Input/Output tidak punya solusi ML yang ada di level manapun. Ini jaran
 
 Perhatikan bahwa batas antara B dan C sering menjadi yang paling penting dalam desain riset. Banyak proyek mahasiswa tampak seperti Kasus C pada awalnya, tapi setelah diperiksa lebih teliti ternyata Kasus B: pipeline yang valid yang dirangkai dari komponen standar, dengan sedikit gap metodologis yang sesungguhnya. Itu bukan riset yang buruk, tapi berbeda dari mengklaim metode baru.
 
-#### Menemukan gap secara tepat
+#### Mengidentifikasi gap secara tepat
 
 Gap bukan sekadar "kami memakai metode yang berbeda." Gap adalah pilihan desain spesifik yang tidak punya jawaban yang sudah mapan di literatur. Bisa berupa:
 
@@ -311,7 +311,7 @@ Kalau mencari terlalu dini, Anda mencari kata kunci yang samar dan terjangkar pa
 3. Jalankan filter literatur cepat pada setiap framing
 4. Hapus framing yang jenuh, ubah arah yang sebagian terjawab, pertahankan kandidat terkuat
 
-Tahap dekomposisi yang baik **tidak** langsung menghasilkan satu proyek final. Ia menghasilkan **menu framing**.
+Tahap dekomposisi yang baik **tidak** langsung menghasilkan satu proyek final. Tahap ini menghasilkan **menu framing**.
 
 #### Menu framing
 
@@ -444,11 +444,11 @@ Minggu ini punya dua fase yang tidak boleh dicampurkan:
 
 ## 5. Tentang Keahlian dan Pemeriksaan Literatur
 
-Anda akan menyadari, seiring bertambahnya pengalaman dalam beberapa tahun ke depan, bahwa peneliti senior bergerak melalui proses dekomposisi lebih cepat dari Anda sekarang. Peneliti berpengalaman melihat dataset dan dengan cepat menemukan beberapa framing yang menjanjikan. Mereka juga dengan cepat menolak yang lain sebagai jelas jenuh atau jelas sepele, tanpa memeriksa literatur untuk masing-masing. Pemeriksaan literatur, bagi mereka, lebih cepat dan lebih terarah karena bacaan sebelumnya sudah membangun peta tentang apa yang sudah diketahui.
+Anda akan menyadari, seiring bertambahnya pengalaman dalam beberapa tahun ke depan, bahwa peneliti senior bergerak melalui proses dekomposisi lebih cepat dari Anda sekarang. Peneliti berpengalaman melihat dataset dan dengan cepat menghasilkan beberapa framing yang menjanjikan. Mereka juga dengan cepat menolak yang lain sebagai jelas jenuh atau jelas sepele, tanpa memeriksa literatur untuk masing-masing. Pemeriksaan literatur, bagi mereka, lebih cepat dan lebih terarah karena bacaan sebelumnya sudah membangun peta tentang apa yang sudah diketahui.
 
 Anda belum punya peta itu. Itu bukan kritikan. Itu hanya posisi Anda pada tahap karier ini, dan itu adalah titik awal yang normal.
 
-Pemeriksaan literatur paling penting justru karena Anda masih awal dalam karier riset. Saat membaca literatur tentang framing kandidat Anda, Anda akan terkadang menemukan bahwa apa yang tampak sebagai ide baru ternyata sudah menjadi masalah yang dipelajari dengan baik - dengan dua puluh paper terbaru. Anda juga akan terkadang menemukan bahwa framing yang Anda ragukan ternyata punya gap yang sesungguhnya ada dan belum ditangani. Kedua penemuan ini tidak akan terjadi tanpa pemeriksaan.
+Pemeriksaan literatur paling penting justru karena Anda masih awal dalam karier riset. Saat membaca literatur tentang framing kandidat Anda, Anda akan terkadang melihat bahwa apa yang tampak sebagai ide baru ternyata sudah menjadi masalah yang dipelajari dengan baik - dengan dua puluh paper terbaru. Anda juga akan terkadang menemukan bahwa framing yang Anda ragukan ternyata punya gap yang sesungguhnya ada dan belum ditangani. Kedua penemuan ini tidak akan terjadi tanpa pemeriksaan.
 
 Kepekaan itu berkembang melalui latihan: membaca banyak paper, menjalankan banyak eksperimen, melihat framing mana yang menghasilkan sesuatu dan mana yang tidak, membangun pengetahuan domain dari waktu ke waktu. Mereka yang melakukan pemeriksaan literatur dengan sungguh-sungguh pada setiap framing - bukan hanya pada yang sudah diputuskan untuk dikejar - merekalah yang mengembangkan kepekaan itu lebih cepat. Melewati pemeriksaan tidak mempercepat perkembangan Anda; justru memperlambatnya.
 
@@ -711,9 +711,9 @@ Dataset di bawah ini untuk tugas di rumah, atau untuk putaran latihan kedua sete
 
 **"Saya tidak perlu memeriksa literatur - idenya jelas baru."** Metode standar tampak baru bagi yang baru mempelajarinya. Jebakan "baru bagi saya" adalah salah satu penyebab paling umum framing yang lemah. Jalankan pemeriksaan literatur pada setiap framing, terutama yang tampak jelas menjanjikan.
 
-**"5 Whys cukup sebagai kerangka framing."** 5 Whys berguna untuk mempertajam topik yang luas menjadi pertanyaan yang lebih konkret. Tapi ia tidak membantu Anda mengidentifikasi entitas, mendefinisikan bentuk Output, menguraikan Middle, atau menemukan di mana letak gap-nya. Gunakan 5 Whys sebagai alat pemanasan, bukan sebagai kerangka utama.
+**"5 Whys cukup sebagai kerangka framing."** 5 Whys berguna untuk mempertajam topik yang luas menjadi pertanyaan yang lebih konkret. Tapi ia tidak membantu Anda mengidentifikasi entitas, mendefinisikan bentuk Output, menguraikan Middle, atau mengidentifikasi di mana letak gap-nya. Gunakan 5 Whys sebagai alat pemanasan, bukan sebagai kerangka utama.
 
-**"Satu dataset, satu proyek."** Ini adalah salah satu miskonsepsi paling umum. Seperti yang ditunjukkan oleh contoh Paddy Doctor dan NusaX, satu dataset mendukung banyak pertanyaan riset yang sah. Menghasilkan menu framing - bukan terjun langsung ke satu framing - adalah cara untuk menemukan yang paling menarik.
+**"Satu dataset, satu proyek."** Ini adalah salah satu miskonsepsi paling umum. Seperti yang ditunjukkan oleh contoh Paddy Doctor dan NusaX, satu dataset mendukung banyak pertanyaan riset yang sah. Menghasilkan menu framing - bukan terjun langsung ke satu framing - adalah cara untuk mendapatkan yang paling menarik.
 
 **"Saya akan mulai menulis kode dan menyusun framing sambil jalan."** Framing yang buruk tidak menjadi lebih baik dengan eksekusi lebih banyak. Tiga minggu capstone dengan framing yang salah menghasilkan tiga minggu kerja yang tidak bisa dipublikasikan. Waktu yang dihabiskan untuk framing di W11 adalah investasi dengan imbal hasil tertinggi.
 

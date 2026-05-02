@@ -232,7 +232,7 @@ for epoch in range(10):
 Lima baris kunci yang perlu Anda kenali setiap kali melihat kode training PyTorch:
 
 1. **`logits = model(x)`** - forward pass; shape input `(B, F)`, shape output sesuai tugas.
-2. **`loss = criterion(logits, y)`** - hitung loss; perhatikan target shape harus cocok loss yang dipakai (lihat tabel §2.2.4).
+2. **`loss = criterion(logits, y)`** - hitung loss; perhatikan target shape harus cocok dengan loss yang dipakai (lihat tabel §2.2.4).
 3. **`optimizer.zero_grad()`** - tanpa ini, gradient batch sebelumnya menumpuk dan training kacau.
 4. **`loss.backward()`** - autograd jalan mundur, isi `.grad` di setiap parameter.
 5. **`optimizer.step()`** - update parameter pakai gradient yang baru dihitung.

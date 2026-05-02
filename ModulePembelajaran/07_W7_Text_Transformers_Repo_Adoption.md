@@ -26,7 +26,7 @@
 
 # 07 · W7 - Text, Transformers & Repo Adoption
 
-> *TF-IDF memberi tahu Anda kata apa yang ada. Contextual embeddings memberi tahu Anda apa yang dimaksud kata itu di konteks spesifik ini. Transformers mengubah teks bukan menjadi fitur, melainkan menjadi makna yang bisa dibandingkan.*
+> *TF-IDF menunjukkan kata apa yang ada. Contextual embeddings menunjukkan apa yang dimaksud kata itu di konteks spesifik ini. Transformers mengubah teks bukan menjadi fitur, melainkan menjadi makna yang bisa dibandingkan.*
 
 **Baris peta besar:** `(T,) -> (N,)`, `(1,)`, `(T, N)`
 **Kebiasaan riset:** Verifikasi kode dari AI, inspeksi tokenisasi, petakan repositori eksternal
@@ -41,7 +41,7 @@ W7 menggabungkan tiga tema yang saling memperkuat:
 
 - **1. Text & Transformers** - dari TF-IDF ke contextual embeddings, tokenization, frozen vs fine-tune, [CLS] vs mean pool
 - **2. Alat AI sebagai Pendukung** - verifikasi kode AI, protokol synthesis, kapan trust copilot
-- **3. Repo Adoption Primer** - membaca repo yang belum dikenal, `repo_map.md`, modifikasi seminimal mungkin
+- **3. Pengantar Adopsi Repo** - membaca repo yang belum dikenal, `repo_map.md`, modifikasi seminimal mungkin
 
 Ketiga tema bertemu dalam satu alur kerja: mengadopsi repo HuggingFace, memakai alat AI untuk memahami bagian yang belum dikenal, dan membuat `repo_map.md` sebagai dokumentasi pemahaman Anda.
 
@@ -59,7 +59,7 @@ TF-IDF adalah baseline yang kuat dan sering diabaikan. Bukan tanpa alasan - ia c
 
 Contextual embeddings (BERT, RoBERTa, IndoBERT) menghasilkan representasi yang berbeda untuk kata yang sama tergantung konteksnya. Setiap token mendapat embedding yang dipengaruhi oleh seluruh sequence di sekitarnya via self-attention.
 
-### 1.2 Tokenization: Sebelum Training Dimulai
+### 1.2 Tokenization: Sebelum Pelatihan Dimulai
 
 **Apa itu tokenizer?** Pretrained Transformer tidak melihat string mentah; ia melihat urutan integer (token ID). **Tokenizer** adalah fungsi yang memetakan string ke urutan integer dan sebaliknya. Tiga gaya tokenisasi utama:
 
@@ -81,12 +81,12 @@ print(tokenizer.convert_ids_to_tokens(tokens['input_ids'][0]))
 # ['[CLS]', 'produk', 'ini', 'sangat', 'bagus', '!', '[SEP]']
 ```
 
-Tugas penting W7: inspeksi tokenizer pada 5-10 sampel dari dataset Anda sebelum training. Cek:
+Tugas penting W7: inspeksi tokenizer pada 5-10 sampel dari dataset Anda sebelum pelatihan. Cek:
 - Apakah kata domain-spesifik ditokenisasi dengan benar (tidak terlalu di-split)?
 - Apakah panjang sequence setelah tokenisasi masuk dalam batas max_length model?
 - Apakah ada subword splits yang mungkin kehilangan makna?
 
-### 1.3 Frozen vs Fine-tuned: 2x2 Experiment
+### 1.3 Frozen vs Fine-tuned: Eksperimen 2x2
 
 Dua keputusan yang perlu dibandingkan:
 
@@ -128,7 +128,7 @@ Tiga formulasi umum di domain teks:
 
 Modul ini tidak melarang AI coding tools. Ia mewajibkan **protokol verifikasi** dan **synthesis sebelum eksekusi**.
 
-### 2.1 Verifikasi Rule
+### 2.1 Aturan Verifikasi
 
 Setiap kode yang dihasilkan AI harus diverifikasi sebelum dipakai:
 
@@ -138,7 +138,7 @@ Setiap kode yang dihasilkan AI harus diverifikasi sebelum dipakai:
 
 Jika tidak bisa menjelaskan baris tertentu setelah membacanya dua kali, itu bukan kode yang harus dikumpulkan dengan nama Anda.
 
-### 2.2 Synthesis Rule: Dua Sumber Sebelum Eksekusi
+### 2.2 Aturan Sintesis: Dua Sumber Sebelum Eksekusi
 
 Sebelum mengeksekusi pendekatan penting (pemilihan model, arsitektur, strategi fine-tuning), kumpulkan setidaknya dua sumber berbeda:
 
@@ -157,7 +157,7 @@ Alat AI berguna melampaui kode:
 
 ---
 
-## 3. Repo Adoption Primer
+## 3. Pengantar Adopsi Repo
 
 Konten repo adoption dari bab ini (urutan membaca, environment setup, modifikasi seminimal mungkin) tersedia pada bagian ini dari file asli. Ringkasan kebiasaan utama:
 
@@ -189,7 +189,7 @@ Buka `notebooks/lab_w7_text_classification.ipynb`.
 - [ ] Synthesis note (2 AI views atau 1 AI + 1 dokumentasi).
 - [ ] **Lab 6b (Transformer-mini, breadth)** dijalankan selesai - WAJIB untuk Breadth Check Transformer (lihat Kontrak Belajar §6 Pendahuluan dan §D5 di bab ini).
 
-### Lab 6 - Repo Adoption Primer
+### Lab 6 - Pengantar Adopsi Repo
 
 Buka `notebooks/lab_w7_repo_adoption.ipynb`.
 
@@ -320,7 +320,7 @@ Peta seperti ini memberi Anda jawaban cepat untuk pertanyaan:
 
 Gambarkan peta di kertas atau `notes.md`. Peta ini akan dirujuk berulang.
 
-### 2.3 Smoke Test Sebelum Training Penuh
+### 2.3 Smoke Test Sebelum Pelatihan Penuh
 
 Setelah environment terpasang, *jangan* langsung training dengan dataset penuh. Jalankan *smoke test* - versi minimal yang memverifikasi seluruh pipeline jalan tanpa error.
 
@@ -412,7 +412,7 @@ git blame src/train.py
 
 Jika satu bagian membingungkan, lihat siapa yang menulisnya dan commit apa yang menambahkannya. Pesan commit sering mengandung konteks.
 
-### 2.5 Modifikasi Minimal-Invasif
+### 2.5 Modifikasi Seminimal Mungkin
 
 Saat Anda menambah fitur atau mengubah perilaku, pilih pola yang *tidak mengganggu* kode orang lain. Ini penting untuk:
 
@@ -612,7 +612,7 @@ def main(cfg):
 
 Loss hardcoded sebagai `CrossEntropyLoss`. Ini titik modifikasi.
 
-### 3.3 Menit 30-60: Setup dan Smoke Test
+### 3.3 Menit 30-60: Persiapan dan Smoke Test
 
 ```bash
 conda create -n visionbase python=3.10 -y
@@ -650,7 +650,7 @@ if args.dry_run:
 
 Jalankan ulang: output `Dry run OK. loss=2.31`. Pipeline jalan.
 
-### 3.4 Menit 60-120: Modifikasi Minimal-Invasif
+### 3.4 Menit 60-120: Modifikasi Seminimal Mungkin
 
 Tambah file baru `vision_baseline/losses.py`:
 
@@ -721,9 +721,9 @@ Total: ~3 jam dari clone sampai laporan pertama. Bandingkan dengan "dua minggu" 
 
 **"Mengedit `train.py` langsung adalah cara tercepat."** Cepat untuk eksperimen sekali, mahal untuk jangka panjang. Setiap perubahan di tengah file besar adalah utang teknis; dalam dua minggu Anda tidak akan ingat mana modifikasi Anda dan mana dari repo asli.
 
-**"PR tidak diterima berarti pekerjaan saya sia-sia."** Tidak. Anda belajar membaca dan memodifikasi kode, yang merupakan keterampilan jangka panjang. PR yang ditolak seringkali tetap dipakai sebagai basis diskusi; maintainer kadang mengambil ide Anda dan mengimplementasi ulang sesuai standar repo.
+**"PR tidak diterima berarti pekerjaan saya sia-sia."** Tidak. Anda belajar membaca dan memodifikasi kode, yang merupakan keterampilan jangka panjang. PR yang ditolak sering kali tetap dipakai sebagai basis diskusi; maintainer kadang mengambil ide Anda dan mengimplementasi ulang sesuai standar repo.
 
-**"Saya tidak perlu commit lokal sampai semua selesai."** Buruk. Commit kecil sepanjang proses adalah save-point - jika modifikasi Anda merusak sesuatu, Anda bisa `git diff HEAD~3` untuk melihat persis apa yang berubah.
+**"Saya tidak perlu commit lokal sampai semua selesai."** Buruk. Commit kecil sepanjang proses adalah titik-simpan - jika modifikasi Anda merusak sesuatu, Anda bisa `git diff HEAD~3` untuk melihat persis apa yang berubah.
 
 **"Saya bisa selesaikan tanpa smoke test, langsung training penuh."** Training penuh 8 jam yang gagal di menit ke-10 karena bug dimensi adalah delapan jam yang hilang. Smoke test level 3 butuh 30 detik; ia menangkap 80% bug setup.
 
@@ -769,7 +769,7 @@ Bila Anda pernah membaca kode Transformer di Hugging Face atau `fairseq` dan mer
 
 ### Lab 6c (pair) - Peer Code Review Repo Eksternal
 
-Setelah Anda lancar membaca repo orang lain, latihan berikutnya adalah membantu orang lain membaca repo - dan dibantu balik. Bekerjalah berpasangan. Jika jumlah mahasiswa ganjil, satu kelompok berisi 3 orang dengan aturan: tiap orang tetap mereview satu repo masing-masing (total 3 repo), tahap *tukar* dilakukan secara melingkar (A→B, B→C, C→A), dan `peer_review_log.md` mencantumkan tiga pemetaan plus tiga set temuan. Waktu kerja bertambah ~10 menit untuk diskusi tiga arah.
+Setelah Anda lancar membaca repo orang lain, latihan berikutnya adalah membantu orang lain membaca repo - dan dibantu balik. Bekerjalah berpasangan. Jika jumlah mahasiswa ganjil, satu kelompok berisi 3 orang dengan aturan: tiap orang tetap meninjau satu repo masing-masing (total 3 repo), tahap *tukar* dilakukan secara melingkar (A→B, B→C, C→A), dan `peer_review_log.md` mencantumkan tiga pemetaan plus tiga set temuan. Waktu kerja bertambah ~10 menit untuk diskusi tiga arah.
 
 **Tugas per orang (30 menit):**
 1. Pilih satu repository publik yang belum pernah Anda baca. Bisa dari daftar rekomendasi di bawah, atau repo riset yang Anda temukan sendiri.
@@ -781,7 +781,7 @@ Setelah Anda lancar membaca repo orang lain, latihan berikutnya adalah membantu 
 5. Tukar repository dengan pasangan. Baca mapping pasangan Anda. Apakah Anda setuju dengan pemetaannya? Ada yang terlewat?
 6. Diskusikan: apa pola paling umum yang Anda berdua temukan? Apa perbedaan paling mencolok antara kedua repo?
 7. Tulis `peer_review_log.md` (bersama, satu file) yang berisi:
-   - Repo yang direview dan siapa mereview apa.
+   - Repo yang ditinjau dan siapa meninjau apa.
    - Temuan utama per orang (minimal 3).
    - Satu hal yang dipelajari dari membaca kode orang lain.
    - Satu saran konkret untuk perbaikan repo masing-masing.
@@ -807,7 +807,7 @@ Konsep: membaca kode orang lain dengan cepat, memetakan arsitektur repo riset, d
 
 | Jalur | Tugas minggu ini |
 | --- | --- |
-| **A - Implementasi** | Pilih satu paper di arXiv dengan repo publik (cek Papers With Code). Reproduksi satu angka dari paper itu. Laporkan berhasil atau tidak, berapa gap-nya, dan apa bottleneck utamanya. |
+| **A - Implementasi** | Pilih satu paper di arXiv dengan repo publik (cek Papers With Code). Reproduksi satu angka dari paper itu. Laporkan berhasil atau tidak, berapa gap-nya, dan apa hambatan utamanya. |
 | **B - Analisis** | Buat diagram komponen arsitektur repo Lab 6 (entry point, model, loss, optimizer, logging). Bandingkan dengan template_repo: apa yang lebih baik, apa yang kurang, apa yang hilang. |
 | **C - Desain** | Tulis laporan adopsi 1 halaman untuk repo Lab 6: apa yang berhasil, apa yang gagal, dan minimal 3 perubahan konkret agar repo ini dapat dipakai tim 5 orang selama 3 bulan. |
 

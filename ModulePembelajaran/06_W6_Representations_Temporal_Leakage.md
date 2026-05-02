@@ -99,14 +99,14 @@ test = df[df['timestamp'] > cutoff]
 # - Window tidak melampaui batas cutoff
 ```
 
-**Demonstrasi inflasi:** Lab 6 akan menunjukkan delta ini secara eksplisit: F1 dengan leakage vs F1 tanpa leakage pada dataset yang sama. Angka leaky akan terlihat lebih menarik, dan itulah persis bahayanya.
+**Demonstrasi inflasi:** Lab 6 akan menunjukkan delta ini secara eksplisit: F1 dengan leakage vs F1 tanpa leakage pada dataset yang sama. Angka bocor akan terlihat lebih menarik, dan itulah persis bahayanya.
 
 > [!WARNING]
-> Leakage temporal seringkali tidak menghasilkan F1 = 1.0 yang jelas mencurigakan. Ia menghasilkan angka "bagus" seperti 0.88 yang "masuk akal" - cukup untuk meyakinkan Anda dan reviewer bahwa modelnya valid. Yang salah bukan angkanya; yang salah adalah cara mendapatkannya.
+> Leakage temporal sering kali tidak menghasilkan F1 = 1.0 yang jelas mencurigakan. Ia menghasilkan angka "bagus" seperti 0.88 yang "masuk akal" - cukup untuk meyakinkan Anda dan peninjau bahwa modelnya valid. Yang salah bukan angkanya; yang salah adalah cara mendapatkannya.
 
 ---
 
-## 1. Motivasi: Data yang Terlihat Baik Bisa Membohongi
+## 1. Motivasi: Data yang Terlihat Baik Bisa Menipu
 
 Seorang mahasiswa pascasarjana melatih model klasifikasi citra medis untuk mendeteksi penyakit paru-paru dari rontgen dada. Akurasi validasi: 97%. Saat review, seorang kolega bertanya: "apakah model belajar mengenali penyakit, atau belajar mengenali rumah sakitnya?" Ternyata setiap rumah sakit memakai mesin rontgen berbeda dengan ciri visual khas di sudut gambar; data positif dan negatif berasal dari sumber yang berbeda. Model tidak pernah melihat paru-paru - ia mengklasifikasi *sumber*. Enam bulan kerja diulang.
 
@@ -255,7 +255,7 @@ Proses ini sering mengejutkan. Saya pernah menemukan 15% label pada dataset publ
 Pipeline pra-pemrosesan harus *fit pada training set saja*, lalu *transform train, val, dan test* dengan parameter yang sudah di-fit. Ini mencegah kebocoran statistik test ke training.
 
 > [!IMPORTANT]
-> **Gambaran preprocessing leakage.** Kalau Anda hitung `mean` dan `std` dari **semua data** (train + val + test) sebelum split, statistik tersebut sudah "tahu" sesuatu tentang val/test - misalnya distribusi outlier di test set akan menggeser mean. Saat training, model menerima input yang sudah dinormalisasi memakai informasi agregat test. Walau label test tidak bocor, **distribusi fitur test sudah bocor**. Efeknya kecil di dataset besar yang distribusinya stabil, tetapi nyata di dataset kecil atau heterogen. Aturan: `fit` hanya pada train; `transform` train + val + test memakai parameter yang sama.
+> **Gambaran preprocessing leakage.** Kalau Anda hitung `mean` dan `std` dari **semua data** (train + val + test) sebelum split, statistik tersebut sudah mengandung informasi tentang val/test - misalnya distribusi outlier di test set akan menggeser mean. Saat training, model menerima input yang sudah dinormalisasi memakai informasi agregat test. Walau label test tidak bocor, **distribusi fitur test sudah bocor**. Efeknya kecil di dataset besar yang distribusinya stabil, tetapi nyata di dataset kecil atau heterogen. Aturan: `fit` hanya pada train; `transform` train + val + test memakai parameter yang sama.
 
 Salah:
 
@@ -623,7 +623,7 @@ Buka `template_repo/notebooks/lab_w6_temporal_leakage.ipynb`.
 3. Rusak kausalitas secara sengaja: gunakan random split + rolling features tanpa pengaman temporal.
 4. Latih model pada kedua pipeline, bandingkan F1.
 5. Hitung dan catat "leakage inflation" = F1_leaky - F1_causal. **Threshold warning yang dipakai modul ini:** inflation ≥ 0.05 absolut **atau** ≥ 10% relatif terhadap F1_causal = leakage signifikan dan harus dilaporkan eksplisit. Inflation < 0.02 absolut bisa noise dari seed.
-6. Tulis satu paragraf: apa yang membuat angka leaky terlihat meyakinkan, dan mengapa tetap salah?
+6. Tulis satu paragraf: apa yang membuat angka bocor terlihat meyakinkan, dan mengapa tetap salah?
 
 **Luaran:**
 - Pipeline causal vs leaky dengan kode terdokumentasi.

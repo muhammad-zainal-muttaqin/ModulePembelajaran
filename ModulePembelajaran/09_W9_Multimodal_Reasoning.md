@@ -140,7 +140,7 @@ Ini adalah failure mode paling umum dan paling sering tidak terdeteksi dalam pen
 **Cara mendeteksi:**
 
 1. **Ablation per modalitas:** Hapus satu modalitas sekaligus. Jika F1 tidak turun signifikan, modalitas itu diabaikan.
-2. **Modalitas acak:** Ganti satu modalitas dengan noise random. Jika performa tidak memburuk, modalitas itu tidak digunakan.
+2. **Modalitas acak:** Ganti satu modalitas dengan noise acak. Jika performa tidak memburuk, modalitas itu tidak digunakan.
 3. **Gradient magnitude check:** Hitung gradient norm terhadap setiap encoder. Jika satu encoder konsisten punya gradient kecil, ia tidak berkontribusi.
 
 ```python
@@ -169,7 +169,7 @@ def check_gradient_flow(model, batch):
 
 ### 2.3 Modalitas Hilang: Penanganan Saat Input Tidak Lengkap
 
-Dalam produksi, satu atau lebih modalitas sering tidak tersedia: sensor rusak, gambar blur tidak layak dipakai, teks tidak terisi. Sistem multimodal yang baik harus menangani ini secara rapi.
+Dalam produksi, satu atau lebih modalitas sering tidak tersedia: sensor rusak, gambar kabur tidak layak dipakai, teks tidak terisi. Sistem multimodal yang baik harus menangani ini secara rapi.
 
 #### Strategi 1: *Modality Dropout* Saat Training
 
@@ -192,7 +192,7 @@ class MultimodalModel(nn.Module):
 Dengan ini model belajar prediksi yang lebih tahan gangguan bahkan ketika satu modalitas hilang.
 
 > [!NOTE]
-> **Kenapa `p_drop = 0.15`?** Bukan angka magis - aturan praktis dari literatur regularisasi (mirip dropout neuron 10-30%, mask language modeling BERT 15%). Rentang yang masuk akal: `p_drop ∈ [0.10, 0.25]`. Lebih kecil → *modality dropout* tidak cukup kuat untuk mencegah modalitas terabaikan. Lebih besar → model jarang melihat sampel multimodal lengkap, performa dengan modalitas lengkap menurun. Untuk dataset dengan satu modalitas yang jauh lebih dominan (mis. image jauh lebih informatif dari sensor), naikkan `p_drop` modalitas dominan ke 0.30-0.40 agar model dipaksa belajar dari sensor lebih sering. Ini hyperparameter yang layak di-sweep di Komponen Mandiri Jalur Analisis.
+> **Kenapa `p_drop = 0.15`?** Bukan angka magis - aturan praktis dari literatur regularisasi (mirip dropout neuron 10-30%, mask language modeling BERT 15%). Rentang yang masuk akal: `p_drop ∈ [0.10, 0.25]`. Lebih kecil → *modality dropout* tidak cukup kuat untuk mencegah modalitas terabaikan. Lebih besar → model jarang melihat sampel multimodal lengkap, performa dengan modalitas lengkap menurun. Untuk dataset dengan satu modalitas yang jauh lebih dominan (mis. image jauh lebih informatif dari sensor), naikkan `p_drop` modalitas dominan ke 0.30-0.40 agar model dipaksa belajar dari sensor lebih sering. Ini hyperparameter yang layak dieksplorasi untuk sweep di Komponen Mandiri Jalur Analisis.
 
 #### Strategi 2: Learnable Null Token
 
@@ -228,7 +228,7 @@ Banyak dataset multimodal dari dunia nyata punya masalah temporal alignment:
 - Event-based data (heartbeat spikes) vs continuous time series.
 
 **Masalah alignment tanpa sinkronisasi:**
-Model mungkin mengasosiasikan event dari waktu yang salah. Jika audio dan video tidak di-align dengan benar, cross-attention akan belajar korelasi yang spurious.
+Model mungkin mengasosiasikan event dari waktu yang salah. Jika audio dan video tidak di-align dengan benar, cross-attention akan belajar korelasi yang semu.
 
 **Tiga pendekatan:**
 
@@ -264,7 +264,7 @@ lags = np.arange(-50, 51)  # ±500 ms dalam unit 10 ms
 imu_timestamps = imu_timestamps - 0.250  # koreksi drift 250 ms
 ```
 
-**Pelajaran:** selalu catat timestamp dari sumber waktu yang sama (tersinkronisasi NTP) untuk semua sensor. Jika sudah terlanjur, sertakan koreksi drift sebagai bagian preprocessing yang terdokumentasi - bukan patch diam-diam.
+**Pelajaran:** selalu catat timestamp dari sumber waktu yang sama (tersinkronisasi NTP) untuk semua sensor. Jika sudah terlanjur, sertakan koreksi drift sebagai bagian preprocessing yang terdokumentasi - bukan perbaikan diam-diam.
 
 ### 2.5 Protokol Ablation Per Modalitas
 

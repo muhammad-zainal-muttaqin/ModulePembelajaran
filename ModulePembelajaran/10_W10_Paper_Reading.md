@@ -59,7 +59,7 @@ Dua mahasiswa menghadapi situasi yang sama dengan dua strategi.
 
 Mahasiswa pertama membuka arXiv, melihat 50 paper baru di bidang itu minggu ini, merasa kewalahan, lalu memilih satu paper yang judulnya paling menarik. Ia membaca dari depan ke belakang, tidak sepenuhnya paham, tutup. Pekan depan, paper lain. Setelah tiga bulan, ia tahu banyak istilah tetapi belum pernah mengubah satu metode paper menjadi kode yang berjalan. Pekerjaannya adalah *mengonsumsi*, bukan *membangun*.
 
-Mahasiswa kedua menyiapkan rutinitas. Setiap Senin pagi, 30 menit: baca daftar paper baru di arXiv dengan filter ketat (dua kata kunci + kategori). Pilih top-5 berdasarkan abstrak saja. Setiap Selasa-Jumat, 30 menit pagi: baca satu dari top-5 dengan metode tiga putaran. Setiap Sabtu, 60 menit: pilih satu komponen kecil dari paper dan tulis versi minimalnya di template repo. Setelah tiga bulan, ia sudah mengimplementasikan beberapa loss, layer, metric, atau trik training dari paper. Ia mulai memahami paper sebagai spesifikasi teknis, bukan bacaan pasif.
+Mahasiswa kedua menyiapkan rutinitas. Setiap Senin pagi, 30 menit: baca daftar paper baru di arXiv dengan filter ketat (dua kata kunci + kategori). Pilih 5 teratas berdasarkan abstrak saja. Setiap Selasa-Jumat, 30 menit pagi: baca satu dari 5 teratas dengan metode tiga putaran. Setiap Sabtu, 60 menit: pilih satu komponen kecil dari paper dan tulis versi minimalnya di template repo. Setelah tiga bulan, ia sudah mengimplementasikan beberapa loss, layer, metric, atau trik training dari paper. Ia mulai memahami paper sebagai spesifikasi teknis, bukan bacaan pasif.
 
 Perbedaan bukan bakat. Perbedaannya adalah sistem: filter paper, metode membaca, catatan yang bisa dipakai ulang, dan kebiasaan mengubah klaim paper menjadi kode serta ablation kecil. Bab ini memberi kerangka itu.
 
@@ -154,7 +154,7 @@ Simpan di `docs/papers/<short_title>.md`. Setelah 20 paper, Anda punya literatur
 Enam langkah dari abstrak paper ke kode minimal yang bisa dijalankan:
 
 1. **Identifikasi kontribusi inti.** Apa satu inovasi terpenting paper ini? Bukan seluruh arsitektur - satu komponen kunci. Tulis dalam satu kalimat.
-2. **Temukan input/output shape.** Apa tensor yang masuk ke metode baru, dan apa yang keluar? Bila tidak eksplisit di paper, cek pseudocode atau codebase.
+2. **Cari input/output shape.** Apa tensor yang masuk ke metode baru, dan apa yang keluar? Bila tidak eksplisit di paper, cek pseudocode atau codebase.
 3. **Pisahkan inti dari detail rekayasa.** Banyak paper punya banyak trik tambahan. Identifikasi mana yang inti untuk kontribusi inti, mana yang optimisasi sekunder.
 4. **Buat versi minimal yang bisa dijalankan.** Implementasikan hanya kontribusi inti pada dataset kecil atau toy dataset. Smoke test dulu.
 5. **Verifikasi kecocokan angka.** Apakah ada angka di paper yang bisa direproduksi dengan implementasi Anda pada konfigurasi yang sama? Jika paper punya kode resmi, bandingkan.
@@ -205,7 +205,7 @@ Rutinitas praktis yang dapat Anda pakai sendiri setelah kelas berakhir:
 | Rabu pagi | Baca paper #2 putaran 1+2 | 45 menit |
 | Kamis pagi | Eksekusi: implementasi minimal atau ablation kecil (< 2 jam) | 2 jam |
 | Jumat pagi | Baca paper #3 putaran 1+2 | 45 menit |
-| Sabtu | Rapikan catatan, commit kode, dan tulis lesson learned teknis | 60 menit |
+| Sabtu | Rapikan catatan, commit kode, dan tulis pelajaran yang dipetik | 60 menit |
 | Minggu | Istirahat (serius - peneliti yang burn-out tidak produktif) | - |
 
 Total: ~6 jam/minggu. Dalam setahun: ~300 jam fokus = ~40 paper dibaca dalam, ~40 implementasi/ablation kecil, satu atau dua mini-proyek matang. Itu cukup untuk menjadi kompeten secara teknis di satu sub-bidang.
@@ -239,7 +239,7 @@ Skenario dari seorang mahasiswa fiktif, Rani, yang ingin belajar teknik *focal l
 
 **Senin - kurasi.** Rani mencari paper dengan kata kunci "class imbalance", "dense detection", dan "loss function". Ia menemukan paper Focal Loss di arXiv dan mengecek statusnya: ada versi conference di ICCV 2017, jadi arXiv dipakai sebagai akses PDF, bukan sebagai satu-satunya otoritas.
 
-**Selasa - three-pass.** Putaran 1: klaim utama paper adalah cross-entropy terlalu didominasi contoh mudah pada deteksi objek yang sangat imbalanced. Putaran 2: Rani membaca bagian loss dan menemukan bentuk inti: `FL(p_t) = -(1 - p_t)^γ log(p_t)`. Putaran 3 hanya fokus ke ablation `γ`, bukan seluruh RetinaNet.
+**Selasa - three-pass.** Putaran 1: klaim utama paper adalah cross-entropy terlalu didominasi contoh mudah pada deteksi objek yang sangat imbalanced. Putaran 2: Rani membaca bagian loss dan mendapatkan bentuk inti: `FL(p_t) = -(1 - p_t)^γ log(p_t)`. Putaran 3 hanya fokus ke ablation `γ`, bukan seluruh RetinaNet.
 
 **Rabu - paper-to-code.** Rani menulis catatan input/output: input loss adalah logits dan target class; output adalah scalar loss. Ia memisahkan inti dari detail rekayasa: tidak perlu implement RetinaNet, anchor matching, atau FPN. Untuk Lab W10, cukup implement focal loss pada classifier kecil dengan dataset imbalanced.
 
@@ -279,8 +279,8 @@ Rani telah melakukan keterampilan W10: memilih paper, membaca secara teknis, men
 Buka `template_repo/notebooks/lab_w10_paper_to_code.ipynb`.
 
 **Menu Paper (pilih satu):**
-- Paper A: Focal Loss (Lin et al., 2017) - implementasi dari scratch pada CIFAR-10.
-- Paper B: DropBlock (Ghiasi et al., 2018) - structured dropout untuk CNN.
+- Paper A: Focal Loss (Lin et al., 2017) - implementasi dari nol pada CIFAR-10.
+- Paper B: DropBlock (Ghiasi et al., 2018) - dropout terstruktur untuk CNN.
 - Paper C: Satu paper dari area riset Anda sendiri (konsultasikan dengan dosen).
 
 **Tugas:**

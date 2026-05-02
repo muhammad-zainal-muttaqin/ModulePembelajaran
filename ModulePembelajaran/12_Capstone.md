@@ -29,7 +29,7 @@
 > *Capstone bukan ujian terakhir. Ini adalah pertama kalinya Anda memiliki pertanyaan riset dari awal framing hingga komunikasi, dan bertanggung jawab atas setiap keputusan di antara keduanya.*
 
 **Minggu:** 12-15
-**In charge:** Bu Fatma + RA
+**Penanggung jawab:** Bu Fatma + RA
 **Format:** Presentasi tatap muka mingguan + kerja mandiri antarsesi
 
 ---
@@ -166,7 +166,7 @@ Tinjauan ulang adalah luaran terpenting dari capstone. Tinjauan ulang yang berka
 
 **Mulai menulis.** Mulai membuat draft selama minggu ini. Jangan menunggu W15. Bahkan draft kasar dari bagian metode dan hasil membuat penulisan final jauh lebih mudah. Pendahuluan dan karya terkait bisa menyusul kemudian, saat kontribusinya sudah jelas.
 
-**Draft demo.** Demo Streamlit atau Gradio yang berfungsi. Tidak harus dipoles. Harus bisa dijalankan. Buat mudah untuk menemukan kasus di mana model gagal, bukan hanya kasus di mana berhasil.
+**Draf demo.** Demo Streamlit atau Gradio yang berfungsi. Tidak harus dipoles. Harus bisa dijalankan. Buat mudah untuk menemukan kasus di mana model gagal, bukan hanya kasus di mana berhasil.
 
 ---
 

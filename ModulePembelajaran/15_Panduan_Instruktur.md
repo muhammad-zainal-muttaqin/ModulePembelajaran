@@ -89,7 +89,7 @@ Ritme sesi: 30 menit temuan minggu sebelumnya | 40 menit materi baru + demo | 10
 | 8 | 08 W8 | Foundation Map | Foundation models taxonomy | Drill model card reading - 7 pertanyaan wajib. Dorong skeptisisme pada klaim benchmark. | Skepticism + Ownership | Foundation model map 3-4 model + selection memo |
 | 9 | 09 W9 | Lab 8 | Multimodal + ablasi per modalitas | Tunjukkan masalah modalitas terabaikan secara empiris. "Hasil bagus" belum cukup - ablation wajib. | Skepticism | 7 kondisi ablation selesai; cek modalitas terabaikan selesai |
 | 10 | 10 W10 | Lab W10 | Membaca paper + implementasi | metode tiga putaran eksplisit. Minta mahasiswa membawa paper yang sudah di-skim ke kelas. Langkah paper-to-code. | Rigor + Curiosity | Catatan tiga putaran + metode inti terimplementasi |
-| 11 | 11 W11 | Lokakarya Framing | Framing riset (Input → Middle → Output + filter literatur) | **W11 adalah setup capstone**. Demo langsung dekomposisi dataset. Lokakarya menu framing + triage literatur. Mahasiswa keluar dengan 3-5 framing kandidat. | Integrasi empat sikap | Dokumen dekomposisi + tabel triage literatur; siap presentasi di W12 |
+| 11 | 11 W11 | Lokakarya Framing | Framing riset (Input → Middle → Output + filter literatur) | **W11 adalah persiapan capstone**. Demo langsung dekomposisi dataset. Lokakarya menu framing + triage literatur. Mahasiswa keluar dengan 3-5 framing kandidat. | Integrasi empat sikap | Dokumen dekomposisi + tabel triage literatur; siap presentasi di W12 |
 | 12 | 12 Capstone | Pertahanan Framing + Eks 1 | Filter dan komitmen framing; mulai Eksperimen 1 | Pimpin pertahanan framing (15 mnt/mahasiswa). Setujui atau kembalikan. Setelah setuju: mahasiswa menulis pre-registration sebelum kode berjalan. | Rigor | Framing disetujui; pre-reg Eksperimen 1 di-commit; Eksperimen 1 mulai jalan |
 | 13 | 12 Capstone | Tinjauan Ulang + Eks 2 | Tinjau ulang; desain dan jalankan Eksperimen 2 | Fokus pada dokumen tinjauan ulang: apakah perubahan arah dapat dilacak ke angka spesifik? Tanya: "Kalau Eks 1 terbalik, Eks 2 berbeda?" | Skepticism + Rigor | Dokumen tinjauan ulang jujur; pre-reg Eksperimen 2 di-commit |
 | 14 | 12 Capstone | Presentasi Final | Presentasi riset 20 menit (15+5 Q&A) | Q&A: apakah klaim sesuai bukti? Klaim "membuktikan" harus diganti menjadi "mengindikasikan" bila bukti belum cukup kuat. Demo menampilkan kasus gagal? Laporan bisa direproduksi? | Ownership | Laporan draft final; repo + demo siap; umpan balik dari Q&A dicatat |
@@ -97,7 +97,7 @@ Ritme sesi: 30 menit temuan minggu sebelumnya | 40 menit materi baru + demo | 10
 
 ### Catatan Pacing
 
-- **W1 dan W2 (§1.5 baru):** masing-masing bab memiliki section §1.5 baru ("MLP dari Pintu Depan" di W1 dan "Citra Sebagai Tensor: Dari Pixel ke 4D" di W2). Tambahkan ~20-30 menit ke estimasi waktu membaca untuk dua bab ini. Jika sesi tatap muka 2 jam, kurangi satu pitfall discussion atau tunda demo smoke test yang kedua ke sesi berikutnya.
+- **W1 dan W2 (§1.5 baru):** masing-masing bab memiliki bagian §1.5 baru ("MLP dari Pintu Depan" di W1 dan "Citra Sebagai Tensor: Dari Pixel ke 4D" di W2). Tambahkan ~20-30 menit ke estimasi waktu membaca untuk dua bab ini. Jika sesi tatap muka 2 jam, kurangi satu pitfall discussion atau tunda demo smoke test yang kedua ke sesi berikutnya.
 - **W4 (Reproducibility):** minggu paling padat infrastruktur (config YAML, seed, checkpoint, matriks eksperimen, komunikasi PI). Jangan tambahkan lab breadth di minggu ini; biarkan Lab 3b masuk W5 sebagai wajib dan Lab 6b/7b paralel di pekan-pekan berikutnya.
 - **W5 (LSTM):** paling padat secara konseptual - lihat §1.5 baru (BPTT primer, vanishing gradient numerik, LSTM annotated). Estimasikan mahasiswa butuh 1-2 jam membaca sebelum sesi. Jika waktu kelas hanya 2 jam, pisahkan: sesi pertama = §2.1-2.2 (RNN + vanishing), sesi kedua = §2.3-2.4 (LSTM + GRU).
 - **W7 (Text + Repo Adoption):** padat karena mengintegrasikan alat AI, transformers, dan repo adoption dari modul lama. Jika mahasiswa terbebani, prioritaskan `repo_map.md` dan 2×2 frozen/fine-tune; demo Streamlit boleh dikerjakan paralel.
@@ -133,7 +133,7 @@ Konten di luar `<details>` adalah **konten inti** - wajib untuk semua mahasiswa.
 
 ### W2 - Images, CNN & Smoke Test
 
-- **Kritis:** Smoke test tiga level (§2.3). Demo live: tunjukkan training yang berhasil vs gagal di proyektor. Backprop diperkenalkan konseptual; derivasi 7-langkah ada di Lampiran A.1 untuk dibaca setelah mahasiswa sudah punya gambaran training.
+- **Kritis:** Smoke test tiga level (§2.3). Demo langsung: tunjukkan training yang berhasil vs gagal di proyektor. Backprop diperkenalkan konseptual; derivasi 7-langkah ada di Lampiran A.1 untuk dibaca setelah mahasiswa sudah punya gambaran training.
 - **Pitfall:** Mahasiswa skip smoke test karena "kelihatannya jalan". Tunjukkan kasus di mana training tampak normal di awal tapi diam-diam memuat label salah.
 - **Refleksi berbobot:** Pertanyaan tentang shape mismatch: "Apa indikator pertama bahwa input/output shape tidak sesuai?"
 - **Kaitan rubrik:** Kompetensi 1 (Memahami sistem ML/DL). Target: Novice→Developing.
@@ -182,7 +182,7 @@ Konten di luar `<details>` adalah **konten inti** - wajib untuk semua mahasiswa.
 ### W8 - Foundation Models
 
 - **Kritis:** Model card literacy - 7 pertanyaan wajib (§2). §2.1.1 matriks evaluasi alat 5 dimensi: aturan <12 curigai, 12-18 coba kecil, >18 adopsi. Dorong skeptisisme pada klaim benchmark ("SOTA di benchmark X").
-- **Pitfall:** Mahasiswa langsung memilih model terbesar atau ter-popular. Drill: "kapan adapter cukup vs full fine-tuning?" sebelum menyentuh GPU.
+- **Pitfall:** Mahasiswa langsung memilih model terbesar atau terpopuler. Drill: "kapan adapter cukup vs full fine-tuning?" sebelum menyentuh GPU.
 - **Refleksi berbobot:** "Anda menemukan model baru yang klaim SOTA. Bagaimana memverifikasi?"
 - **Kaitan rubrik:** Kompetensi 8 (Platform & alat baru, foundation map). Target: Developing.
 - **Waktu lab:** Foundation Model Map + selection memo: 4-5 jam.
@@ -205,7 +205,7 @@ Konten di luar `<details>` adalah **konten inti** - wajib untuk semua mahasiswa.
 
 ### W11 - Research Framing
 
-- **Kritis:** **W11 adalah setup capstone**. Pimpin demo langsung dekomposisi dataset di kelas (dataset ditentukan Bu Fatma sebelum W11). Lokakarya 3 sesi: menu framing, triage literatur, seleksi dan komitmen. Mahasiswa keluar dengan 3-5 framing kandidat dan tabel triage literatur.
+- **Kritis:** **W11 adalah persiapan capstone**. Pimpin demo langsung dekomposisi dataset di kelas (dataset ditentukan Bu Fatma sebelum W11). Lokakarya 3 sesi: menu framing, triage literatur, seleksi dan komitmen. Mahasiswa keluar dengan 3-5 framing kandidat dan tabel triage literatur.
 - **Pitfall:** Mahasiswa mengambil framing terlalu besar atau tanpa gap yang sesungguhnya ada. Gap yang sesungguhnya ada: sesuatu yang tidak bisa diselesaikan pipeline standar apa adanya. Dorong framing yang bisa ditutup dalam 3 minggu kerja fokus.
 - **Refleksi berbobot:** "Dari 3-5 framing yang Anda buat, mana yang gapnya paling jelas ada dan bisa diisi dalam waktu capstone? Literatur apa yang Anda temukan yang memperkuat atau menggugurkan pilihan itu?"
 - **Kaitan rubrik:** Integrasi semua kompetensi (framing + triage literatur). Target: Proficient.
@@ -301,7 +301,7 @@ Hindari:
 Pakai format: **Satu hal yang sudah baik + satu hal yang bisa dipertajam.**
 Contoh: "Analisis F1 per kelas sudah baik karena Anda menghubungkan penurunan ke jumlah sampel. Satu hal: coba tuliskan apa yang TIDAK Anda yakini dari hasil ini - itu akan memperkuat bagian Kejutan."
 
-### Tips Grading Portofolio
+### Kiat Menilai Portofolio
 
 - **Batch per kompetensi, bukan per mahasiswa.** Baca semua entri W4 (Kompetensi 2) dulu, baru lanjut ke W5. Ini lebih cepat dan lebih konsisten daripada menilai per mahasiswa.
 - **Fokus pada progres, bukan absolut.** Mahasiswa yang entri W4-nya Novice tapi W10-nya Proficient lebih baik daripada yang stagnan di Developing sepanjang semester.
@@ -319,7 +319,7 @@ Contoh: "Analisis F1 per kelas sudah baik karena Anda menghubungkan penurunan ke
 1. Periksa apakah mahasiswa paham bahwa Komponen Mandiri adalah bagian dari penilaian (Kompetensi 10).
 2. Tanyakan apakah kebingungan memilih jalur atau kesulitan waktu. Sering kali masalahnya adalah "tidak tahu harus mulai dari mana."
 3. Solusi: arahkan ke satu jalur yang paling sesuai dengan minat mereka dan minta satu entri pendek (cukup 15 menit) minggu itu juga. Momentum awal lebih penting daripada kualitas.
-4. Jika berlanjut, aktifkan Kompetensi 10 sebagai trigger: portofolio kosong = 0 di kompetensi itu, yang mempengaruhi nilai akhir secara signifikan.
+4. Jika berlanjut, aktifkan Kompetensi 10 sebagai pemicu: portofolio kosong = 0 di kompetensi itu, yang mempengaruhi nilai akhir secara signifikan.
 
 ### Skenario 2: Hasil Lab Bagus tapi Mahasiswa Tidak Bisa Menjelaskan
 
@@ -364,9 +364,9 @@ W5 secara konsisten menjadi titik paling curam di modul - BPTT, vanishing gradie
 
 3. **Gunakan §1.5 BPTT primer.** Bagian §1.5 di W5 berisi derivasi BPTT dengan contoh numerik - bukan sekadar rumus. Minta mahasiswa membaca ulang §1.5 sebelum Lab 3b. Jika mereka masih stuck di forward pass LSTM, arahkan ke "satu timestep manual" di §2.3 (hidden_size=4, hitung i_t, f_t, o_t, c_t satu per satu).
 
-4. **Jangan skip Lab 3b.** Lab ini wajib (Breadth Check Kompetensi 1). Jika waktu habis, pangkas satu analisis lain (misalnya analisis lanjutan dari Lab 2), bukan Lab 3b. Gradient flow plot vanishing vs LSTM adalah bukti visual yang tidak bisa diganti narasi.
+4. **Jangan lewatkan Lab 3b.** Lab ini wajib (Breadth Check Kompetensi 1). Jika waktu habis, pangkas satu analisis lain (misalnya analisis lanjutan dari Lab 2), bukan Lab 3b. Gradient flow plot vanishing vs LSTM adalah bukti visual yang tidak bisa diganti narasi.
 
-5. **Frame ulang kesulitan.** Katakan langsung: "W5 memang paling sulit. Jika Anda merasa pusing, itu normal. Yang perlu Anda bawa keluar dari W5 bukan hafalan gate equations, melainkan dua hal: (1) kenapa vanilla RNN gagal di sequence panjang, dan (2) cell state adalah 'jalan tol' yang melindungi gradient."
+5. **Susun ulang kesulitan.** Katakan langsung: "W5 memang paling sulit. Jika Anda merasa pusing, itu normal. Yang perlu Anda petik dari W5 bukan hafalan gate equations, melainkan dua hal: (1) kenapa vanilla RNN gagal di sequence panjang, dan (2) cell state adalah 'jalan tol' yang melindungi gradient."
 
 ### Skenario 6: Semua Mahasiswa Memakai LLM untuk Mengerjakan Lab (W7+)
 

@@ -140,7 +140,7 @@ Bayangkan Anda baru bergabung di laboratorium riset sebagai asisten. Pada hari k
 
 Email dua kalimat ini terdengar sederhana, tetapi setiap fragmen menyimpan keputusan yang tidak disebut: focal loss versi apa, nilai `gamma` berapa, blok awal mana yang di-freeze, baseline seperti apa yang adil, metrik mana yang menentukan, bagaimana memastikan dua run tidak berbeda hanya karena seed acak, dan kapan angka layak dilaporkan.
 
-Semua keputusan itu ada di tangan Anda. Modul ini melatih Anda membuat keputusan-keputusan tersebut secara sistematis, sehingga email semacam itu menjadi titik awal eksperimen yang terstruktur, bukan sumber kepanikan.
+Semua keputusan itu ada di tangan Anda. Modul ini dirancang untuk melatih Anda membuat keputusan-keputusan tersebut secara sistematis, sehingga email semacam itu menjadi titik awal eksperimen yang terstruktur, bukan sumber kepanikan.
 
 ---
 

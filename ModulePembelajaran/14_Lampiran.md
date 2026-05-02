@@ -34,7 +34,7 @@
 
 Istilah teknis ML/DL sebagian besar berasal dari Bahasa Inggris. Glosarium ini mendokumentasikan istilah baku yang dipakai modul. **Aturan utama: istilah teknis ML/DL dipertahankan dalam Bahasa Inggris** (loss, checkpoint, baseline, fine-tune, freeze, layer, confusion matrix, hidden states, dll.). Padanan Indonesia hanya dicantumkan jika benar-benar lazim dan natural dipakai (akurasi, presisi, regularisasi, augmentasi). Hindari padanan kaku seperti "matriks kebingungan", "fungsi kerugian", "garis dasar", "jaringan saraf tiruan" - di prosa modul tetap pakai istilah dalam bahasa Inggris.
 
-**Daftar isi glosarium:** A.1 Arsitektur & Model | A.2 Pelatihan | A.3 Data | A.4 Evaluasi | A.5 Eksperimen & Reproduksibilitas | A.6 Perangkat | A.7 Sikap Riset | A.8 Aktivasi & Normalisasi | A.9 Inisialisasi, Optimizer & Scheduler | A.10 Loss Function | A.11 Indeks First-Use per Bab | A.12 Worked Examples Istilah Prioritas
+**Daftar isi glosarium:** A.1 Arsitektur & Model | A.2 Pelatihan | A.3 Data | A.4 Evaluasi | A.5 Eksperimen & Reproduksibilitas | A.6 Perangkat | A.7 Sikap Riset | A.8 Aktivasi & Normalisasi | A.9 Inisialisasi, Optimizer & Scheduler | A.10 Loss Function | A.11 Indeks Pemakaian Pertama per Bab | A.12 Worked Examples Istilah Prioritas
 
 ### A.1 Arsitektur & Model
 
@@ -77,7 +77,7 @@ Istilah teknis ML/DL sebagian besar berasal dari Bahasa Inggris. Glosarium ini m
 | generative adversarial network (GAN) | - | Dua jaringan (generator + discriminator) dilatih saling berlomba. | Nama diri. |
 | GRU (Gated Recurrent Unit) | - | Varian RNN dengan gate, lebih ringkas dari LSTM. | Nama diri. |
 | hidden state | status tersembunyi | h_t: output LSTM/RNN pada timestep t. Membawa informasi konteks hingga titik itu. | - |
-| in-context learning | - | Perilaku model berubah berdasarkan contoh dalam prompt tanpa update weight. | - |
+| in-context learning | - | Perilaku model berubah berdasarkan contoh dalam prompt tanpa pembaruan bobot. | - |
 | inductive bias | bias induktif | Asumsi arsitektur yang membuat model lebih efisien belajar pola tertentu. | - |
 | kernel / filter | - | Matriks kecil pada convolution. Mendeteksi pola lokal: edge, tekstur, pola sederhana. | - |
 | KL divergence | divergensi KL | Ukuran perbedaan dua distribusi probabilitas. Regularisasi VAE. | - |
@@ -93,7 +93,7 @@ Istilah teknis ML/DL sebagian besar berasal dari Bahasa Inggris. Glosarium ini m
 | multilayer perceptron (MLP) | - | Arsitektur *feed-forward* dasar. | - |
 | neural network (NN) | - | Model komputasi terinspirasi jaringan neuron biologis. | Pakai "neural network" atau "NN", bukan "jaringan saraf tiruan". |
 | normalizing flow | - | Model generatif dengan transformasi invertible bertumpuk. Density estimation exact. | - |
-| padding | - | Penambahan border di sekeliling input sebelum convolution. Menjaga dimensi spasial. | - |
+| padding | - | Penambahan tepi di sekeliling input sebelum convolution. Menjaga dimensi spasial. | - |
 | per-modality ablation | ablation per modalitas | Eksperimen yang menghapus atau mengacak satu modalitas untuk mengukur kontribusinya. | - |
 | perplexity (PPL) | - | exp(CrossEntropy). Metrik language model. Lower = model lebih yakin pada teks. | - |
 | positional encoding | - | Informasi posisi token ditambahkan ke embedding. | Tidak diterjemahkan. |
@@ -131,7 +131,7 @@ Istilah teknis ML/DL sebagian besar berasal dari Bahasa Inggris. Glosarium ini m
 | batch size | - | Jumlah sampel per iterasi training. | Tidak diterjemahkan. |
 | checkpoint | - | Snapshot model (weights + optimizer + config) yang disimpan. | Pakai "checkpoint". Hindari "titik simpan". |
 | device | - | Tempat tensor diproses: CPU atau CUDA GPU. | "Pindahkan model ke device." |
-| dropout | - | Regularisasi: matikan p% neuron secara acak tiap forward. Cegah co-adaptation. | Tidak diterjemahkan. |
+| dropout | - | Regularisasi: matikan p% neuron secara acak tiap forward. Cegah ko-adaptasi. | Tidak diterjemahkan. |
 | dry-run | - | Training dengan 1-2 batch untuk verifikasi pipeline sebelum training penuh. | - |
 | early stopping | - | Hentikan training jika validation metric berhenti membaik. Cegah overfitting. | - |
 | epoch | - | Satu putaran penuh data training. | Tidak diterjemahkan. |
@@ -261,7 +261,7 @@ Istilah teknis ML/DL sebagian besar berasal dari Bahasa Inggris. Glosarium ini m
 | Istilah (English) | Padanan Indonesia (jika lazim) | Pengertian | Catatan Penggunaan |
 |---|---|---|---|
 | batch normalization / BatchNorm | - | Normalisasi per channel dalam satu batch. Stabilkan training, percepat konvergensi. | - |
-| dropout | - | Regularisasi: matikan p% neuron secara acak tiap forward. Cegah co-adaptation. | - |
+| dropout | - | Regularisasi: matikan p% neuron secara acak tiap forward. Cegah ko-adaptasi. | - |
 | GELU (Gaussian Error Linear Unit) | - | Aktivasi halus mirip ReLU. Bobot nilai negatif kecil. Default Transformer modern. | - |
 | group normalization / GroupNorm | - | Normalisasi per group channel. Stabil untuk batch size kecil. | - |
 | layer normalization / LayerNorm | - | Normalisasi per sample. Alternatif BatchNorm untuk sequence dan Transformer. | - |
@@ -305,9 +305,9 @@ Istilah teknis ML/DL sebagian besar berasal dari Bahasa Inggris. Glosarium ini m
 | MSELoss / MSE | - | Mean Squared Error. Loss default regresi. | - |
 | reconstruction loss | loss rekonstruksi | MSE atau BCE antara input dan output autoencoder. Ukur kualitas rekonstruksi. | - |
 
-### A.11 Indeks First-Use per Bab
+### A.11 Indeks Pemakaian Pertama per Bab
 
-Tabel ini menunjukkan di mana istilah Tier-1 **pertama kali muncul** dalam urutan modul. Gunakan untuk mengarahkan mahasiswa yang menemukan istilah yang belum dikenal di tengah bab ke definisi pertamanya.
+Tabel ini menunjukkan di mana istilah Tingkat-1 **pertama kali muncul** dalam urutan modul. Gunakan untuk mengarahkan mahasiswa yang menemukan istilah yang belum dikenal di tengah bab ke definisi pertamanya.
 
 | Istilah | First-use chapter | Link definisi |
 |---|---|---|
@@ -368,7 +368,7 @@ Bagian ini melengkapi definisi glosarium sebelumnya dengan satu contoh angka kon
 
 **receptive field** - Area input yang mempengaruhi satu neuron output. Satu Conv2d(3×3) → receptive field = 3×3. Dua Conv2d(3×3) bertumpuk → receptive field = 5×5 (setiap layer tambah 2 pixel). Semakin dalam, semakin besar area yang "dilihat" neuron.
 
-**Kaiming init** - Inisialisasi bobot dengan `std = sqrt(2/fan_in)`. Angka 2 mengkompensasi bahwa ReLU mematikan ~50% neuron. Tanpa ini, signal cenderung menyusut exponensial setiap layer yang dalam.
+**Kaiming init** - Inisialisasi bobot dengan `std = sqrt(2/fan_in)`. Angka 2 mengompensasi bahwa ReLU mematikan ~50% neuron. Tanpa ini, signal cenderung menyusut exponensial setiap layer yang dalam.
 
 **regularization** - Penalti pada parameter besar untuk mencegah overfitting. L2 regularization (weight decay): loss_total = loss_task + λ × Σ(w²). Dengan λ=1e-4 dan suatu parameter w=0.5: kontribusi penalti = 1e-4 × 0.25 = 2.5×10⁻⁵.
 
@@ -380,7 +380,7 @@ Bagian ini melengkapi definisi glosarium sebelumnya dengan satu contoh angka kon
 
 **seed** - Angka untuk inisialisasi random number generator. `torch.manual_seed(42)` memastikan `torch.randn(3)` selalu menghasilkan angka yang sama di run berikutnya. Wajib set sebelum inisialisasi model, DataLoader shuffle, dan split dataset.
 
-**checkpoint** - Snapshot model yang disimpan ke disk. Minimal berisi: `model.state_dict()`, `optimizer.state_dict()`, epoch, metrik, config, dan git hash. Tanpa git hash, Anda tidak bisa tau kode mana yang menghasilkan checkpoint itu enam bulan kemudian.
+**checkpoint** - Snapshot model yang disimpan ke disk. Minimal berisi: `model.state_dict()`, `optimizer.state_dict()`, epoch, metrik, config, dan git hash. Tanpa git hash, Anda tidak bisa tahu kode mana yang menghasilkan checkpoint itu enam bulan kemudian.
 
 **accuracy / precision / recall** - Pada dataset 100 sampel, 10 positif: TP=8, FP=3, FN=2, TN=87. Accuracy=(8+87)/100=0.95. Precision=8/(8+3)=0.73. Recall=8/(8+2)=0.80. Accuracy bisa menyesatkan di kelas imbalanced (kelas mayoritas mendominasi).
 
@@ -409,7 +409,7 @@ Salin checklist ini di bagian atas setiap folder eksperimen baru (`experiments/<
 ### B.1 Sebelum Menjalankan (Pre-flight)
 
 - Pertanyaan riset ditulis dalam satu kalimat falsifiable.
-- Baseline jelas dan adil (tanpa "handicap" tersembunyi).
+- Baseline jelas dan adil (tanpa "kelemahan" tersembunyi).
 - Satu metrik utama ditetapkan; metrik sekunder (bila ada) dicatat.
 - Minimum 3 seed direncanakan per kondisi.
 - Config YAML lengkap; tidak ada hyperparameter hardcoded di kode.
@@ -439,11 +439,11 @@ Salin checklist ini di bagian atas setiap folder eksperimen baru (`experiments/<
 
 ### B.4 Sebelum Klaim Hasil
 
-- Hasil direplikasi di minimum 3 seed; std dilaporkan.
+- Hasil direplikasi dengan minimal 3 seed; std dilaporkan.
 - Test set *benar-benar* belum pernah dilihat dalam proses tuning (bukan validasi yang dinamai test).
-- Perbedaan antar varian > 2× std (kalau tidak: panggil "inconclusive", bukan "better").
+- Perbedaan antar varian > 2× std (kalau tidak: panggil "tidak konklusif", bukan "lebih baik").
 - Error analysis: minimal 20 sampel salah klasifikasi diperiksa manual.
-- Bila hasil mengejutkan positif: cari *kemungkinan bug yang membantu* sebelum merayakan.
+- Bila hasil mengejutkan positif: cari *kemungkinan bug yang menguntungkan* sebelum merayakan.
 
 ---
 
@@ -723,7 +723,7 @@ Jalur ini dipilih saat Anda ingin mempelajari satu keluarga arsitektur NN yang *
 ```
 
 **Kriteria sukses Jalur 4:**
-- Arsitektur dibangun dengan kode yang Anda pahami (bukan copy-paste utuh). Acceptable: menyalin struktur umum, mengetik ulang dan memodifikasi sendiri. Unacceptable: menempel modul utuh dari Hugging Face tanpa bisa menjelaskan perannya.
+- Arsitektur dibangun dengan kode yang Anda pahami (bukan copy-paste utuh). Diterima: menyalin struktur umum, mengetik ulang dan memodifikasi sendiri. Tidak diterima: menempel modul utuh dari Hugging Face tanpa bisa menjelaskan perannya.
 - Learning curve menunjukkan loss menurun atau metrik sukses meningkat. Arsitektur yang stagnan *juga* dilaporkan - sebutkan hipotesis Anda tentang kenapa (mis. "hyperparameter tidak di-tune", "toy task terlalu mudah").
 - Koneksi eksplisit ke arsitektur yang sudah dibahas di lab wajib. Tidak cukup menulis "GRU lebih ringan dari LSTM"; tulis "GRU saya kurang 1 gate dibanding LSTM, dan parameter berkurang ~25%, tapi pada toy task ini akurasi hampir sama".
 
@@ -742,7 +742,7 @@ Template generik untuk semua Komponen Mandiri (W4-W10). Setiap bab mingguan meny
 
 **Kriteria sukses per entri** (detail di Rubrik Kompetensi 10, [13_Rubrik_Penilaian.md](13_Rubrik_Penilaian.md)):
 - Bukti eksekusi jelas (kode commit, plot, atau dokumen).
-- Temuan dituliskan dengan skeptisisme sehat - apa yang *tidak* Anda yakini juga dicatat.
+- Temuan dituliskan dengan skeptisisme yang wajar - apa yang *tidak* Anda yakini juga dicatat.
 - Koneksi eksplisit ke konsep bab minggu itu.
 - Entri yang hanya mengulang isi lab dinilai Novice; entri yang menunjukkan pilihan berdasarkan *gap* skill sendiri atau pertanyaan riset turunan dinilai Proficient.
 
@@ -911,7 +911,7 @@ Dua belas tabel di bawah adalah alat bantu bagi Anda untuk memeriksa pemahaman s
 | Saya harus bisa... | Belum | Mulai | Sudah |
 |---|---|---|---|
 | Menjelaskan tensor I/O sebagai pasangan shape -> makna untuk MLP, CNN, RNN, Transformer | | | |
-| Menurunkan backprop MLP 7 langkah secara manual (chain rule, tidak lihat catatan) | | | |
+| Menjabarkan backprop MLP 7 langkah secara manual (chain rule, tidak lihat catatan) | | | |
 | Membedakan 4 keluarga arsitektur dan asumsi data masing-masing | | | |
 | Menjelaskan kapan BatchNorm vs LayerNorm vs GroupNorm | | | |
 | Menggambar kurva ReLU, GELU, SiLU dan menyebutkan perbedaan utama | | | |
@@ -1125,7 +1125,7 @@ Salin template ini ke `repo_map.md` di root folder eksperimen Anda setiap kali m
 
 ---
 
-## C.13 Capstone Proposal One-Pager {#c13-capstone-proposal-one-pager}
+## C.13 Proposal Capstone Satu Halaman {#c13-capstone-proposal-one-pager}
 
 Template untuk luaran wajib W11. Isi semua bagian sebelum pertahanan framing W12.
 
@@ -1173,12 +1173,12 @@ Disetujui oleh: _____________  Tanggal: _____________
 
 ---
 
-## C.14 Protokol Ablation Per Modalitas {#c14-per-modalitas-ablation-protocol}
+## C.14 Protokol Ablasi per Modalitas {#c14-per-modalitas-ablation-protocol}
 
 Template untuk W9 Lab 8 dan capstone multimodal. Copy ke `docs/ablation_protocol.md`.
 
 ```markdown
-# Protokol Ablation Per Modalitas
+# Protokol Ablasi per Modalitas
 
 **Experiment:** [nama]  
 **Modalitas:** [daftar modalitas yang digunakan]

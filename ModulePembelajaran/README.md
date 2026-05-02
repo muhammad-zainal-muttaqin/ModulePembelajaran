@@ -70,12 +70,12 @@ Kerjakan lab pada minggu yang sama dengan membaca materinya. Menunda lab membuat
 
 ## Filosofi Singkat
 
-Modul ini dibangun di atas empat sikap yang dianggap lebih penting daripada penguasaan framework apapun:
+Modul ini dibangun bertumpu pada empat sikap yang dianggap lebih penting daripada penguasaan framework apapun:
 
 - **Curiosity** - bertanya "mengapa model berperilaku seperti ini?" sebelum menerima hasil.
 - **Rigor** - mengubah satu variabel pada satu waktu, mencatat apa yang diubah, menyimpan cukup informasi agar orang lain dapat mengulangi.
 - **Skepticism** - tidak percaya pada angka akurasi sebelum memeriksa dari mana angka itu berasal.
-- **Ownership** - memikul tanggung jawab atas hasil akhir, termasuk ketika sebagian kode ditulis oleh LLM atau dicontek dari repository orang lain.
+- **Ownership** - memikul tanggung jawab atas hasil akhir, termasuk ketika sebagian kode ditulis oleh LLM atau disalin dari repositori orang lain.
 
 Keempat sikap ini tidak dibahas dalam bab khusus, tetapi dirangkai ke dalam cerita pembuka, pitfall, dan pertanyaan refleksi di setiap bab. Tujuannya sederhana: sikap dipelajari melalui pembiasaan, bukan ceramah.
 
