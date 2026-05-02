@@ -126,7 +126,7 @@ cross_attn_output  = attention_weights @ V          # (B, T_text, d)
 Ini yang digunakan oleh BLIP-2, Flamingo, dan model vision-language modern.
 
 **Kelebihan:**
-- Memungkinkan interaksi yang jauh lebih kaya - token teks "merah" dapat memberi perhatian pada region merah di gambar.
+- Memungkinkan interaksi pada level yang lebih halus — token teks "merah" dapat memberi perhatian pada region merah di gambar.
 - Sering mengungguli late dan early fusion pada tugas VQA yang kompleks.
 
 **Kelemahan:**

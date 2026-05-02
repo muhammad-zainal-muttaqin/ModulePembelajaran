@@ -152,7 +152,7 @@ Salah satu keputusan yang paling sering menentukan performa model bukan pilihan 
 
 **Engineered.** Fitur dirancang manusia dengan pengetahuan domain - statistik agregat, transformasi matematis, atau fitur klasik. Di gambar: histogram warna, HOG, SIFT. Di sinyal CGM: mean, koefisien variasi, *time-in-range*. Representasi *engineered* murah secara komputasi, mudah diinterpretasi, dan sering menjadi baseline yang mengejutkan kuat ketika data latih terbatas.
 
-**Extracted.** Fitur diambil dari *hidden layer* model *pretrained* yang di-freeze. Di visi: *hidden states* dari CNN atau ViT pretrained pada ImageNet. Di teks: token `[CLS]` atau mean pooling dari BERT. Kompromi menarik: representasi yang informatif dari model besar tanpa biaya training penuh, dengan syarat domain target tidak terlalu jauh dari domain pretraining.
+**Extracted.** Fitur diambil dari *hidden layer* model *pretrained* yang di-freeze. Di visi: *hidden states* dari CNN atau ViT pretrained pada ImageNet. Di teks: token `[CLS]` atau mean pooling dari BERT. Kompromi menarik: Anda mendapat representasi dari model besar tanpa biaya training penuh, dengan syarat domain target tidak terlalu jauh dari domain pretraining.
 
 **Learned.** Representasi dipelajari langsung dari data melalui training *end-to-end* atau *self-supervised*. Fine-tuning BERT, melatih 1D CNN dari nol pada sinyal ECG, atau fine-tune ResNet pada dataset medis semuanya termasuk kategori ini. Strategi ini biasanya paling kuat ketika data latih memadai, tetapi paling membutuhkan banyak data dan paling mahal dilatih.
 

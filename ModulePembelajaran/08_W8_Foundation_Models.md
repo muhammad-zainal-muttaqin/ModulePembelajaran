@@ -26,7 +26,7 @@
 
 # 08 · W8 - Foundation Models
 
-> *Foundation model bukan "model yang bagus". Model ini sudah mempelajari representasi yang informatif dari jutaan atau miliaran contoh sehingga Anda tidak harus mulai dari nol. Pertanyaannya bukan "apakah saya boleh memakainya" - pertanyaannya adalah "adaptasi apa yang paling masuk akal untuk skenario ini?"*
+> *Foundation model bukan sekadar model yang bagus. Ia sudah mempelajari representasi dari jutaan contoh sehingga Anda tidak perlu memulai dari nol. Pertanyaannya bukan "apakah saya boleh memakainya", melainkan "adaptasi apa yang paling masuk akal untuk skenario ini?"*
 
 **Baris peta besar:** input apa pun yang memanfaatkan prior dari pretrained model
 **Kebiasaan riset:** Literasi model card, pilihan adaptasi, baseline yang adil
@@ -85,7 +85,7 @@ Hasilnya mengejutkan: satu model pretrained bisa di-fine-tune ke puluhan tugas h
 
 **Apa artinya bagi Anda sebagai peneliti pemula?**
 
-Dulu, pertanyaan pertama saat memulai riset adalah "arsitektur apa yang harus saya bangun?" Sekarang pertanyaannya: "apakah sudah ada model yang sudah mempelajari representasi yang relevan?" Inilah pergeseran mindset yang mendasari W8. Anda tidak harus memulai dari nol; Anda memulai dari representasi yang sudah kaya, lalu mengadaptasinya.
+Dulu, pertanyaan pertama saat memulai riset adalah "arsitektur apa yang harus saya bangun?" Sekarang pertanyaannya: "apakah sudah ada model yang sudah mempelajari representasi yang relevan?" Inilah pergeseran mindset yang mendasari W8. Anda tidak perlu memulai dari nol. Anda tinggal mengadaptasi representasinya.
 
 ---
 
