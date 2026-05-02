@@ -86,7 +86,8 @@ Keempat sikap ini tidak dibahas dalam bab khusus, tetapi dirangkai ke dalam ceri
 ```
 ModulePembelajaran/
 ├── README.md
-├── 00_Pendahuluan.md                          Orientasi, target outcome 60-70%, threads, rhythm
+├── 00_Pendahuluan.md                          Orientasi, target 3-pilar, kontrak belajar
+├── 00a_Prasyarat.md                           Prasyarat modul: shape tensor, konvensi, kalkulus mini, PyTorch primer
 ├── 01_W1_Tabular_Output_Heads.md              W1: MLP sebagai pengubah bentuk tensor, output heads (NEW)
 ├── 02_W2_Images_CNN_Smoke_Test.md             W2: CNN, three-level smoke test
 ├── 03_W3_Loss_Optimizer_Evaluasi.md           W3: Example-first, loss/opt/eval

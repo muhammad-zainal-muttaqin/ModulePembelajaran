@@ -12,6 +12,7 @@ const OUT = path.resolve(ROOT, "src", "content");
 
 const CHAPTERS = [
   "00_Pendahuluan.md",
+  "00a_Prasyarat.md",
   "01_W1_Tabular_Output_Heads.md",
   "02_W2_Images_CNN_Smoke_Test.md",
   "03_W3_Loss_Optimizer_Evaluasi.md",

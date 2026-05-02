@@ -61,7 +61,7 @@ W5 adalah bab paling padat secara teknis sejauh ini. Sebelum menulis rumus RNN d
 
 ### 1.5.1 BPTT: Chain Rule pada Urutan Waktu
 
-Di W1 §2.3 dan §0.5.4 Pendahuluan, Anda sudah kenal **chain rule** sebagai rantai turunan: kalau `y = f(g(x))`, maka `dy/dx = f'(g(x)) · g'(x)`. Backpropagation di MLP adalah chain rule yang dirantai mundur lewat layer-layer.
+Di W1 §2.3 dan [Prasyarat Modul §4](00a_Prasyarat.md#4-kalkulus-mini-turunan-dan-chain-rule), Anda sudah kenal **chain rule** sebagai rantai turunan: kalau `y = f(g(x))`, maka `dy/dx = f'(g(x)) · g'(x)`. Backpropagation di MLP adalah chain rule yang dirantai mundur lewat layer-layer.
 
 Pada RNN, ada **dua sumbu** tempat chain rule berjalan:
 

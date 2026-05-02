@@ -4,13 +4,14 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Tujuan Proyek
 
-Modul pembelajaran **11 minggu bootcamp + 4 minggu capstone** untuk mahasiswa S1 (semester 4–6) yang menjadi **asisten dosen riset ML/DL**. Target outcome: 60-70% siap untuk topik lab. Fokus bukan pada framework, tetapi pada empat sikap riset: **Curiosity, Rigor, Skepticism, Ownership**. Referensi utama: `EXPECTED_OUTCOME.txt` (9 outcome), `TODO.txt` (konteks dan pesan dosen).
+Modul pembelajaran **11 minggu bootcamp + 4 minggu capstone** untuk mahasiswa S1 (semester 4–6) yang menjadi **asisten dosen riset ML/DL**. Target outcome: 3 pilar (Ketajaman Teknis, Diagnosis & Kemandirian, Perancangan Riset). Fokus bukan pada framework, tetapi pada empat sikap riset: **Curiosity, Rigor, Skepticism, Ownership**. Referensi utama: `EXPECTED_OUTCOME.txt` (9 outcome), `TODO.txt` (konteks dan pesan dosen).
 
 ## Struktur Konten (Post-Revisi April 2026)
 
 ```
 ModulePembelajaran/
-├── 00_Pendahuluan.md              Intro + target outcome + alur lintas minggu + ritme sesi
+├── 00_Pendahuluan.md              Email PI story, Target Hasil 3-pilar, Cara Membaca Modul, 9 kompetensi, Kontrak Belajar
+├── 00a_Prasyarat.md               Shape tensor, konvensi huruf, kalkulus mini, PyTorch primer, glosarium singkat [NEW]
 ├── 01_W1_Tabular_Output_Heads.md  MLP as shape transformer, output head + loss matching (W1)
 ├── 02_W2_Images_CNN_Smoke_Test.md Tensor citra, CNN, three-level smoke test ritual (W2)
 ├── 03_W3_Loss_Optimizer_Evaluasi.md Example-first: galeri 5 run → loss/opt/eval theory (W3)
@@ -40,11 +41,13 @@ ModulePembelajaran/
 - `ModulePembelajaran/Notes - 2 Mei 2026/analisis gap.md` → 4 gap konten: gradient clipping mechanism (W5 §4), LSTM gate → vanishing gradient bridge (W5 §1.5.2), residual connection principle (W5 §1.5.2), pretraining rationale (W7 §1.1) (terintegrasi 2 Mei 2026)
 - `ModulePembelajaran/Notes - 2 Mei 2026/scaleddotproductattention.png` → `figures/fig06a_attention_sdp.png` (dipakai di W7 §1.3)
 - `ModulePembelajaran/Notes - 2 Mei 2026/temporalalignment.png` → `figures/fig08c_temporal_alignment.png` (referensi W9)
+- `ModulePembelajaran/Notes - 2 Mei 2026/Note2.txt` → revisi `00_Pendahuluan.md`: §0.5 prasyarat → `00a_Prasyarat.md` (file baru), §2 Target Hasil diganti 3-pilar Bu Fatma (hapus 60-70%), §3 baru "Cara Membaca Modul Ini" (gabungan §0+§5+§8+§9), §6 Ritme Sesi → `15_Panduan_Instruktur.md`, §10 Pitfalls → absorb ke §6 Kontrak Belajar (terintegrasi 2 Mei 2026)
 
 **Perubahan struktural besar:**
 - **(27 April 2026)** Modul lama 10-bab format-topik → 11-minggu bootcamp (W1-W11) + 3-minggu capstone (W12-W14), format weekly
 - **(30 April 2026)** Overhaul W11: framework 5-Whys diganti Input→Middle→Output + framing menu + literature triage + live demo dataset placeholder; file capstone di-rename `12_Capstone_3_Minggu.md` → `12_Capstone.md`; capstone diperpanjang 3 → 4 minggu (W12-W15); W15 = submission week tanpa sesi tatap muka
-- **(2 Mei 2026)** Integrasi 4 gap konten di W5 (gradient clipping, LSTM-vanishing bridge, residual principle) + W7 (pretraining rationale, §1.3 attention primer baru); pemetaan K1-K9 diperbarui di website (`chapters.ts`), `CompetencyGrid.tsx`, dan `14_Lampiran.md §C.16` mengikuti struktur 11+4 minggu; 2 gambar baru (`fig06a_attention_sdp.png`, `fig08c_temporal_alignment.png`) ditambahkan ke `figures/`
+- **(2 Mei 2026 - Sesi 1)** Integrasi 4 gap konten di W5 (gradient clipping, LSTM-vanishing bridge, residual principle) + W7 (pretraining rationale, §1.3 attention primer baru); pemetaan K1-K9 diperbarui di website (`chapters.ts`), `CompetencyGrid.tsx`, dan `14_Lampiran.md §C.16` mengikuti struktur 11+4 minggu; 2 gambar baru (`fig06a_attention_sdp.png`, `fig08c_temporal_alignment.png`) ditambahkan ke `figures/`; halaman gate kompetensi `/kompetensi/:id` ditambahkan ke website
+- **(2 Mei 2026 - Sesi 2)** Revisi `00_Pendahuluan.md` atas permintaan Bu Fatma: prasyarat dipindahkan ke `00a_Prasyarat.md` (file baru), Target Hasil diganti format 3-pilar (Ketajaman Teknis, Diagnosis & Kemandirian, Perancangan Riset), teks "60-70%" dihapus dari semua file mahasiswa, Ritme Sesi dipindahkan ke `15_Panduan_Instruktur.md`, Pitfalls diintegrasikan ke Kontrak Belajar; website pipeline diperbarui untuk `00a`
 - File-file lama diarsipkan ke `ModulePembelajaran/_archive/` (sengaja disimpan untuk referensi tabel migrasi di Lampiran §H, tidak dirender website)
 - Mapping bab lama → bab baru terdokumentasi di `14_Lampiran.md` Lampiran H
 - Konvensi penomoran konten: gunakan **W-numbering** (W1-W14) di teks bab; gunakan nama file (mis. `13_Rubrik_Penilaian.md`) saat me-link

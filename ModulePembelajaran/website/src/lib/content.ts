@@ -1,6 +1,7 @@
 // Load konten .md sumber via Vite `?raw`. Semua bundled di build; cukup cepat.
 import GithubSlugger from "github-slugger";
 import c00 from "../content/chapters/00_Pendahuluan.md?raw";
+import c00a from "../content/chapters/00a_Prasyarat.md?raw";
 import c01 from "../content/chapters/01_W1_Tabular_Output_Heads.md?raw";
 import c02 from "../content/chapters/02_W2_Images_CNN_Smoke_Test.md?raw";
 import c03 from "../content/chapters/03_W3_Loss_Optimizer_Evaluasi.md?raw";
@@ -28,6 +29,7 @@ export type GlossaryEntry = { id: string; en: string; note: string };
 
 const RAW: Record<string, string> = {
   "00": c00,
+  "00a": c00a,
   "01": c01,
   "02": c02,
   "03": c03,

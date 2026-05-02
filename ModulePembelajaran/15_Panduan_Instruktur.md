@@ -75,11 +75,22 @@ Anda tidak perlu menjelaskan isi bab. Mahasiswa sudah membacanya. Tugas Anda ada
 
 Tabel di bawah adalah panduan mingguan. "Checkpoint" adalah bukti minimal bahwa mahasiswa siap lanjut ke minggu berikutnya.
 
-Ritme sesi: 30 menit temuan minggu sebelumnya | 40 menit materi baru + demo | 10 menit kebiasaan riset | 40 menit pendampingan tugas.
+### Format Sesi Mingguan (120 Menit)
+
+Setiap sesi tatap muka mengikuti format yang stabil:
+
+| Segmen | Durasi | Tujuan |
+| --- | --- | --- |
+| Temuan minggu sebelumnya | 30 menit | Mahasiswa membagikan temuan, pertanyaan, dan hasil lab minggu sebelumnya |
+| Materi teknis baru | 40 menit | Konsep inti bab + live demo singkat (dosen tidak membacakan bab, cukup demo kunci) |
+| Kebiasaan riset minggu ini | 10 menit | Satu kebiasaan riset eksplisit yang dikaitkan ke tugas - mahasiswa catat di portofolio |
+| Pendampingan tugas | 40 menit | Langkah pertama dikerjakan bersama; mahasiswa lanjut mandiri di rumah |
+
+Format ini memastikan setiap sesi: (1) menuntaskan tindak lanjut minggu sebelumnya, (2) membuka konsep baru melalui demo, (3) menanamkan satu kebiasaan riset eksplisit, dan (4) memberi momentum awal untuk tugas minggu itu.
 
 | Minggu | Bab | Lab | Topik | Emphasis Dosen | Sikap Dominan | Checkpoint |
 | --- | --- | --- | --- | --- | --- | --- |
-| 1 | 00 + 01 W1 | Lab 0 | Orientasi + tabular output heads | Tekankan kontrak belajar, target 60-70%, tiga alur lintas minggu. Minta tanda tangan kontrak. Mulai Lab 0 bersama. | Curiosity | Kontrak ditandatangani; Lab 0 smoke test jalan |
+| 1 | 00 + 01 W1 | Lab 0 | Orientasi + tabular output heads | Tekankan kontrak belajar dan tiga alur lintas minggu. Pastikan mahasiswa sudah baca Prasyarat Modul. Minta tanda tangan kontrak. Mulai Lab 0 bersama. | Curiosity | Kontrak ditandatangani; Lab 0 smoke test jalan |
 | 2 | 02 W2 | Lab 1 | Images, CNN, smoke test | Demo smoke test tiga level secara live. Tunjukkan training yang berhasil vs gagal. Backprop diperkenalkan konseptual saja. | Curiosity | Smoke test 3-level selesai; SimpleCNN forward pass jalan |
 | 3 | 03 W3 | Lab 1 + Lab 2 | Loss, optimizer, galeri run | Mulai dari galeri 5 run - tanya diagnosis sebelum teori. Selesaikan Lab 1 (confusion matrix, error analysis). | Curiosity | Lab 1 checklist selesai; loss curve 5 pola bisa dibedakan |
 | 4 | 04 W4 | Lab 3 | Reproducibility + matriks eksperimen | Wajibkan matriks eksperimen sebelum kode. Periksa timestamp `protocol.md`. Drill: git hash di checkpoint. | Rigor | Matriks tertulis sebelum run; 3 seed baseline selesai |
