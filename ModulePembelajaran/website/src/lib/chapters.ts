@@ -167,7 +167,7 @@ export const CHAPTERS: ChapterMeta[] = [
     weekNumbers: [12, 13, 14],
     sikap: ["ownership", "rigor"],
     labName: "Capstone",
-    filename: "12_Capstone_3_Minggu.md",
+    filename: "12_Capstone.md",
   },
   {
     id: "13",

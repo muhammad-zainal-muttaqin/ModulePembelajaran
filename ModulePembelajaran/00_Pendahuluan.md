@@ -48,7 +48,7 @@ Semua keputusan itu ada di tangan Anda. Modul ini dirancang untuk melatih Anda m
 
 ## 2. Target Hasil
 
-Di akhir bootcamp ini, Anda diharapkan mampu menguasai dua pilar utama riset: mengeksekusi eksperimen dengan presisi tinggi sesuai standar industri, sekaligus merumuskan pertanyaan riset dari sebuah permasalahan umum.
+Di akhir bootcamp ini, Anda diharapkan mampu menguasai tiga pilar utama riset: mengeksekusi eksperimen dengan presisi tinggi sesuai standar industri, mendiagnosis masalah secara mandiri, sekaligus merumuskan pertanyaan riset dari sebuah permasalahan umum.
 
 ### 1. Ketajaman Teknis & Rigor Eksperimen
 
