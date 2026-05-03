@@ -396,26 +396,31 @@ import torch.nn as nn
 class SimpleCNN(nn.Module):
     def __init__(self, num_classes: int = 10):
         super().__init__()
-        # Blok 1: 3 channel input (RGB) -> 32 channel; resolusi 32 -> 16
+        # Blok 1: dua Conv → 3→32→64 channel; resolusi 32 → 16 (MaxPool2d(2))
         self.block1 = nn.Sequential(
-            nn.Conv2d(3, 32, kernel_size=3, padding=1),
+            nn.Conv2d(3, 32, kernel_size=3, padding=1, bias=False),
             nn.BatchNorm2d(32),
             nn.ReLU(inplace=True),
-            nn.MaxPool2d(2),
-        )
-        # Blok 2: 32 -> 64 channel; resolusi 16 -> 8
-        self.block2 = nn.Sequential(
-            nn.Conv2d(32, 64, kernel_size=3, padding=1),
+            nn.Conv2d(32, 64, kernel_size=3, padding=1, bias=False),
             nn.BatchNorm2d(64),
             nn.ReLU(inplace=True),
             nn.MaxPool2d(2),
         )
-        self.classifier = nn.Sequential(
-            nn.Flatten(),
-            nn.Linear(64 * 8 * 8, 256),
+        # Blok 2: dua Conv → 64→128→128 channel; resolusi 16 → 8
+        self.block2 = nn.Sequential(
+            nn.Conv2d(64, 128, kernel_size=3, padding=1, bias=False),
+            nn.BatchNorm2d(128),
             nn.ReLU(inplace=True),
+            nn.Conv2d(128, 128, kernel_size=3, padding=1, bias=False),
+            nn.BatchNorm2d(128),
+            nn.ReLU(inplace=True),
+            nn.MaxPool2d(2),
+        )
+        self.classifier = nn.Sequential(
+            nn.AdaptiveAvgPool2d(1),
+            nn.Flatten(),
             nn.Dropout(0.3),
-            nn.Linear(256, num_classes),
+            nn.Linear(128, num_classes),
         )
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
@@ -424,7 +429,7 @@ class SimpleCNN(nn.Module):
         return self.classifier(x)
 ```
 
-Alasan tiap pilihan: `padding=1` mempertahankan dimensi spasial; BatchNorm sebelum ReLU menstabilkan distribusi input; `MaxPool2d(2)` memperluas *receptive field*; `Dropout(0.3)` regularisasi ringan; classifier tidak memakai `Softmax` karena `CrossEntropyLoss` PyTorch sudah melakukan log-softmax secara numerik stabil.
+Alasan tiap pilihan: `padding=1` mempertahankan dimensi spasial; dua Conv per blok memberi kapasitas nonlinier lebih tanpa mengurangi resolusi sebelum pooling; BatchNorm sebelum ReLU menstabilkan distribusi input; `bias=False` pada Conv karena BatchNorm sudah punya parameter bias sendiri; `MaxPool2d(2)` memperluas *receptive field*; `AdaptiveAvgPool2d(1)` melakukan *global average pooling* (meringkas feature map ke satu vektor per channel) sehingga classifier fleksibel terhadap resolusi input; `Dropout(0.3)` regularisasi ringan; classifier tidak memakai `Softmax` karena `CrossEntropyLoss` PyTorch sudah melakukan log-softmax secara numerik stabil.
 
 ### 3.2 Setup Training Minimal
 

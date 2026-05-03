@@ -64,7 +64,7 @@ export default function LadderProgress({ interactive = false, compact = false }:
           const accent = accentMap[sikapKey];
 
           const cell = (
-            <div className="flex flex-col items-center">
+            <div className="flex flex-col items-center w-full">
               <div
                 className={`w-full h-14 rounded-md border-2 transition-all ${
                   done
@@ -78,7 +78,7 @@ export default function LadderProgress({ interactive = false, compact = false }:
               </div>
               {!compact && chapter && (
                 <span
-                  className="mt-1 text-[10px] text-ink/70 dark:text-parchment/50 text-center leading-tight truncate block"
+                  className="mt-1 w-full hidden md:block text-[10px] text-ink/70 dark:text-parchment/50 text-center leading-tight truncate"
                   title={chapter.title}
                 >
                   {chapter.title.replace(/^W\d+\s*-\s*/, "")}
