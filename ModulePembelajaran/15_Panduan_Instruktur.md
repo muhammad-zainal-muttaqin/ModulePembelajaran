@@ -136,7 +136,7 @@ Konten di luar `<details>` adalah **konten inti** - wajib untuk semua mahasiswa.
 
 ### W1 - Pendahuluan + Tabular & Output Heads
 
-- **Kritis:** Kontrak Belajar di Pendahuluan - klausul keenam (Breadth Check) dan ketujuh (eksperimen gagal dinilai setara). Mahasiswa harus paham mereka tidak akan dihukum karena hasil negatif. Lab 0 (tabular MLP) sebagai onboarding template_repo.
+- **Prioritas:** Kontrak Belajar di Pendahuluan - klausul keenam (Breadth Check) dan ketujuh (eksperimen gagal dinilai setara). Mahasiswa harus paham mereka tidak akan dihukum karena hasil negatif. Lab 0 (tabular MLP) sebagai onboarding template_repo.
 - **Pitfall:** Kontrak dianggap formalitas. Minta paragraf: "Apa yang paling membuat saya ragu dari kontrak ini?" Jawaban sering mengungkap miskonsepsi awal. Untuk Lab 0: mahasiswa tergoda langsung beralih ke CNN tanpa MLP tabular dulu.
 - **Refleksi berbobot:** Pertanyaan capstone-style di akhir bab - simpan jawaban, bandingkan di W14.
 - **Kaitan rubrik:** Kompetensi 1 diperkenalkan; belum ada penilaian sumatif.
@@ -144,7 +144,7 @@ Konten di luar `<details>` adalah **konten inti** - wajib untuk semua mahasiswa.
 
 ### W2 - Images, CNN & Smoke Test
 
-- **Kritis:** Smoke test tiga level (§2.3). Demo langsung: tunjukkan training yang berhasil vs gagal di proyektor. Backprop diperkenalkan konseptual; derivasi 7-langkah ada di Lampiran A.1 untuk dibaca setelah mahasiswa sudah punya gambaran training.
+- **Prioritas:** Smoke test tiga level (§2.3). Demo langsung: tunjukkan training yang berhasil vs gagal di proyektor. Backprop diperkenalkan konseptual; derivasi 7-langkah ada di Lampiran A.1 untuk dibaca setelah mahasiswa sudah punya gambaran training.
 - **Pitfall:** Mahasiswa skip smoke test karena "kelihatannya jalan". Tunjukkan kasus di mana training tampak normal di awal tapi diam-diam memuat label salah.
 - **Refleksi berbobot:** Pertanyaan tentang shape mismatch: "Apa indikator pertama bahwa input/output shape tidak sesuai?"
 - **Kaitan rubrik:** Kompetensi 1 (Memahami sistem ML/DL). Target: Novice→Developing.
@@ -152,7 +152,7 @@ Konten di luar `<details>` adalah **konten inti** - wajib untuk semua mahasiswa.
 
 ### W3 - Loss, Optimizer & Evaluasi
 
-- **Kritis:** Galeri 5 run (§1.5) sebagai pintu masuk - tanya diagnosis sebelum teori. Drill diagnostic loss curve: tunjukkan curve anonim, minta diagnosis dalam 2 menit.
+- **Prioritas:** Galeri 5 run (§1.5) sebagai pintu masuk - tanya diagnosis sebelum teori. Drill diagnostic loss curve: tunjukkan curve anonim, minta diagnosis dalam 2 menit.
 - **Pitfall:** "Ganti loss = pasti lebih baik." Focal loss bisa memperburuk performa jika kelas sudah seimbang. Tunjukkan counterexample.
 - **Refleksi berbobot:** "Loss training turun, loss val stagnan. Hipotesis Anda, langkah test pertama Anda?"
 - **Kaitan rubrik:** Kompetensi 1 (lanjutan), Kompetensi 3 (awal). Target: Developing.
@@ -160,7 +160,7 @@ Konten di luar `<details>` adalah **konten inti** - wajib untuk semua mahasiswa.
 
 ### W4 - Reproducibility & Experiment Matrix
 
-- **Kritis:** Wajibkan matriks eksperimen sebelum kode. Periksa timestamp `protocol.md` - jika setelah hasil training, itu rasionalisasi bukan protokol. §3.5 (Komunikasi Efektif PI dengan SQRC) drill role-play. §2.6 (Etika Data) singgung negative results sebagai kewajiban.
+- **Prioritas:** Wajibkan matriks eksperimen sebelum kode. Periksa timestamp `protocol.md` - jika setelah hasil training, itu rasionalisasi bukan protokol. §3.5 (Komunikasi Efektif PI dengan SQRC) drill role-play. §2.6 (Etika Data) singgung negative results sebagai kewajiban.
 - **Pitfall:** Mahasiswa mengira `set_seed(42)` cukup. Tunjukkan non-determinisme CUDA: dua run dengan seed sama bisa berbeda 0.5% akurasi. Solusi: `torch.backends.cudnn.deterministic = True`.
 - **Refleksi berbobot:** Pertanyaan #4 (koneksi ke capstone) - minta mahasiswa membacakan draft 3 bagian protokol.
 - **Kaitan rubrik:** Kompetensi 2 + Kompetensi 3. Target: Developing→Proficient.
@@ -168,7 +168,7 @@ Konten di luar `<details>` adalah **konten inti** - wajib untuk semua mahasiswa.
 
 ### W5 - Sequences: RNN & LSTM
 
-- **Kritis:** **Lab 3b wajib**. Tunjukkan gradient flow secara visual (log-plot vanishing gradient) - jangan hanya ceritakan. Minta pernyataan justifikasi arsitektur: kenapa LSTM, bukan vanilla RNN.
+- **Prioritas:** **Lab 3b wajib**. Tunjukkan gradient flow secara visual (log-plot vanishing gradient) - jangan hanya ceritakan. Minta pernyataan justifikasi arsitektur: kenapa LSTM, bukan vanilla RNN.
 - **Pitfall:** Mahasiswa menghafal LSTM gates tanpa menghubungkan ke gradient flow. Minta gambar gate sambil menjelaskan kenapa cell state tidak vanish.
 - **Refleksi berbobot:** "Dataset mana yang secara default akan Anda tangani dengan LSTM, dan mana yang Transformer? Kapan ragu?"
 - **Kaitan rubrik:** Kompetensi 1 breadth (RNN/LSTM family). Target: Developing.
@@ -176,7 +176,7 @@ Konten di luar `<details>` adalah **konten inti** - wajib untuk semua mahasiswa.
 
 ### W6 - Representations & Temporal Leakage
 
-- **Kritis:** Demo leakage yang menipu: §0.6 menunjukkan delta dramatis 0.92 → 0.63. Tampilkan F1 tinggi dulu, lalu reveal validasi tanpa temporal guard. Lab 6c (peer code review) sebagai aktivitas berpasangan.
+- **Prioritas:** Demo leakage yang menipu: §0.6 menunjukkan delta dramatis 0.92 → 0.63. Tampilkan F1 tinggi dulu, lalu reveal validasi tanpa temporal guard. Lab 6c (peer code review) sebagai aktivitas berpasangan.
 - **Pitfall:** EDA sebagai formalitas (`df.describe()`, histogram, selesai). Minta mahasiswa menulis pertanyaan *sebelum* melihat data.
 - **Refleksi berbobot:** "Anda mendapat akurasi 99% pada dataset baru. Apa tiga hal pertama yang Anda periksa?"
 - **Kaitan rubrik:** Kompetensi 4 (Validasi data) + Kompetensi 6 (peer review). Target: Developing→Proficient.
@@ -184,7 +184,7 @@ Konten di luar `<details>` adalah **konten inti** - wajib untuk semua mahasiswa.
 
 ### W7 - Text, Transformers & Repo Adoption
 
-- **Kritis:** 2×2 comparison frozen/fine-tune × [CLS]/mean-pool. Minta `repo_map.md` pertama: entry point → model → loss → config. Catatan sintesis alat AI dengan verifikasi (LLM interaction log Lampiran C.3).
+- **Prioritas:** 2×2 comparison frozen/fine-tune × [CLS]/mean-pool. Minta `repo_map.md` pertama: entry point → model → loss → config. Catatan sintesis alat AI dengan verifikasi (LLM interaction log Lampiran C.3).
 - **Pitfall:** Mahasiswa menyalin kode LLM yang terlihat benar tetapi mengandung bug halus (mis. normalisasi sebelum split). Latihan: beri kode LLM bermasalah, minta menemukan bug. Untuk repo adoption: 2 jam membaca README lalu tidak berani menyentuh kode - dorong `grep` dulu.
 - **Refleksi berbobot:** "Apa perbedaan strategi membaca repo riset dengan membaca repo software engineering?"
 - **Kaitan rubrik:** Kompetensi 5 (alat AI) + Kompetensi 6 (Adopsi repo). Target: Developing→Proficient.
@@ -192,7 +192,7 @@ Konten di luar `<details>` adalah **konten inti** - wajib untuk semua mahasiswa.
 
 ### W8 - Foundation Models
 
-- **Kritis:** Model card literacy - 7 pertanyaan wajib (§2). §2.1.1 matriks evaluasi alat 5 dimensi: aturan <12 curigai, 12-18 coba kecil, >18 adopsi. Dorong skeptisisme pada klaim benchmark ("SOTA di benchmark X").
+- **Prioritas:** Model card literacy - 7 pertanyaan wajib (§2). §2.1.1 matriks evaluasi alat 5 dimensi: aturan <12 curigai, 12-18 coba kecil, >18 adopsi. Dorong skeptisisme pada klaim benchmark ("SOTA di benchmark X").
 - **Pitfall:** Mahasiswa langsung memilih model terbesar atau terpopuler. Drill: "kapan adapter cukup vs full fine-tuning?" sebelum menyentuh GPU.
 - **Refleksi berbobot:** "Anda menemukan model baru yang klaim SOTA. Bagaimana memverifikasi?"
 - **Kaitan rubrik:** Kompetensi 8 (Platform & alat baru, foundation map). Target: Developing.
@@ -200,7 +200,7 @@ Konten di luar `<details>` adalah **konten inti** - wajib untuk semua mahasiswa.
 
 ### W9 - Multimodal Reasoning
 
-- **Kritis:** Ablasi per modalitas. Tunjukkan masalah modalitas terabaikan secara empiris: model "sukses" tanpa benar-benar memakai salah satu modalitas. "Hasil bagus" belum cukup; tujuh kondisi ablation wajib.
+- **Prioritas:** Ablasi per modalitas. Tunjukkan masalah modalitas terabaikan secara empiris: model "sukses" tanpa benar-benar memakai salah satu modalitas. "Hasil bagus" belum cukup; tujuh kondisi ablation wajib.
 - **Pitfall:** Fusion strategi dipilih berdasar trend, bukan analisis. Minta justifikasi sebelum implementasi.
 - **Refleksi berbobot:** "Modalitas mana yang seharusnya paling kontributif untuk dataset Anda? Apakah hasil ablation memvalidasi intuisi itu?"
 - **Kaitan rubrik:** Kompetensi 1 breadth (multimodal) + Kompetensi 4 (skeptisisme). Target: Developing→Proficient.
@@ -208,7 +208,7 @@ Konten di luar `<details>` adalah **konten inti** - wajib untuk semua mahasiswa.
 
 ### W10 - Paper Reading & Implementation
 
-- **Kritis:** Metode 3-pass eksplisit. Minta mahasiswa membawa paper yang sudah di-skim ke kelas. Alur paper-to-code: dari klaim → kode minimum yang mereproduksi.
+- **Prioritas:** Metode 3-pass eksplisit. Minta mahasiswa membawa paper yang sudah di-skim ke kelas. Alur paper-to-code: dari klaim → kode minimum yang mereproduksi.
 - **Pitfall:** 3-pass dipakai sebagai formalitas, bukan alat. Pass 1 tanpa pertanyaan hanyalah membaca cepat. Minta tulisan satu pertanyaan *sebelum* Pass 1.
 - **Refleksi berbobot:** "Setelah membaca satu paper, apa eksperimen pertama yang akan Anda jalankan?"
 - **Kaitan rubrik:** Kompetensi 9 (paper reading + reproduksi). Target: Developing→Proficient.
@@ -216,7 +216,7 @@ Konten di luar `<details>` adalah **konten inti** - wajib untuk semua mahasiswa.
 
 ### W11 - Research Framing
 
-- **Kritis:** **W11 adalah persiapan capstone**. Pimpin demo langsung dekomposisi dataset di kelas (dataset ditentukan Bu Fatma sebelum W11). Lokakarya 3 sesi: menu framing, triage literatur, seleksi dan komitmen. Mahasiswa keluar dengan 3-5 framing kandidat dan tabel triage literatur.
+- **Prioritas:** **W11 adalah persiapan capstone**. Pimpin demo langsung dekomposisi dataset di kelas (dataset ditentukan Bu Fatma sebelum W11). Lokakarya 3 sesi: menu framing, triage literatur, seleksi dan komitmen. Mahasiswa keluar dengan 3-5 framing kandidat dan tabel triage literatur.
 - **Pitfall:** Mahasiswa mengambil framing terlalu besar atau tanpa gap yang sesungguhnya ada. Gap yang sesungguhnya ada: sesuatu yang tidak bisa diselesaikan pipeline standar apa adanya. Dorong framing yang bisa ditutup dalam 3 minggu kerja fokus.
 - **Refleksi berbobot:** "Dari 3-5 framing yang Anda buat, mana yang gapnya paling jelas ada dan bisa diisi dalam waktu capstone? Literatur apa yang Anda temukan yang memperkuat atau menggugurkan pilihan itu?"
 - **Kaitan rubrik:** Integrasi semua kompetensi (framing + triage literatur). Target: Proficient.
@@ -224,7 +224,7 @@ Konten di luar `<details>` adalah **konten inti** - wajib untuk semua mahasiswa.
 
 ### W12-W15 - Capstone
 
-- **Kritis per minggu:**
+- **Prioritas per minggu:**
   - W12: pimpin pertahanan framing (15 mnt/mahasiswa); setujui atau kembalikan; jangan biarkan Eksperimen 1 dimulai sebelum framing disetujui dan pre-registration di-commit.
   - W13: periksa dokumen tinjauan ulang - apakah perubahan arah dapat dilacak ke angka spesifik dari Eksperimen 1? Tanya: "Kalau Eksperimen 1 arahnya terbalik, Eksperimen 2 Anda berbeda?" Jika tidak, tinjauan ulangnya belum jujur.
   - W14: Tanya jawab presentasi final - apakah klaim sesuai bukti? Demo harus bisa menampilkan kasus gagal, bukan hanya sukses.

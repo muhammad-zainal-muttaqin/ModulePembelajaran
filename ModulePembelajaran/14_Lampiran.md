@@ -1475,7 +1475,7 @@ Intinya: ketidakpastian yang disertai langkah konkret adalah tanda kompetensi. K
 
 ### C.23 Peta Kanal Publikasi ML {#c23-peta-kanal-publikasi-ml}
 
-Di ML modern, ide sering beredar lebih cepat daripada proses peer-review. Tabel berikut membantu Anda mengenali empat kanal publikasi utama dan cara membacanya secara kritis.
+Di ML modern, ide sering beredar lebih cepat daripada proses peer-review. Tabel berikut membantu Anda mengenali empat kanal publikasi utama dan cara membacanya dengan cermat.
 
 | Kanal | Apa itu | Kekuatan | Keterbatasan | Cara membaca |
 | --- | --- | --- | --- | --- |
