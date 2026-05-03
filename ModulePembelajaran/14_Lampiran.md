@@ -403,7 +403,7 @@ Bagian ini melengkapi definisi glosarium sebelumnya dengan satu contoh angka kon
 
 ---
 
-### A.13 Backpropagation Derivasi Manual
+### A.13 Backpropagation Derivasi Manual {#a1-backpropagation-derivasi-manual}
 
 *Catatan: untuk pemahaman praktis, lihat W2 §2.2. Bagian ini menyediakan derivasi lengkap 7-langkah untuk MLP 2-layer dengan MSE loss + sigmoid.*
 
@@ -1532,29 +1532,6 @@ Dua belas tabel di bawah adalah alat bantu bagi Anda untuk memeriksa pemahaman s
 4. **Di akhir semester,** tabel-tabel ini adalah ringkasan kompetensi Anda. Bawa ke sesi evaluasi akhir sebagai bukti pendukung.
 
 Checklist ini melengkapi - bukan menggantikan - rubrik penilaian di [13_Rubrik_Penilaian.md](13_Rubrik_Penilaian.md). Rubrik dipakai dosen untuk menilai; checklist dipakai Anda untuk memantau diri sendiri.
-
----
-
-## H. Migrasi 14 -> 11+4 Minggu {#h-migrasi}
-
-Panduan untuk mahasiswa yang pernah menggunakan modul versi 14 minggu, atau dosen yang mengadaptasi.
-
-| Bab Lama | Minggu Lama | Bab Baru | Minggu Baru | Perubahan utama |
-|---|---|---|---|---|
-| Bab 00 Pendahuluan | 1 | Bab 00 Pendahuluan | 1 | +Target Hasil, +alur lintas minggu, +ritme sesi |
-| Bab 01a Fondasi NN | 2 | 02 W2 Images CNN Smoke Test | 2 | Backprop dipindah ke Lampiran A.13; +bagian Smoke Test |
-| Bab 01b Loss/Opt/Eval | 3 | 03 W3 Loss Optimizer Evaluasi | 3 | +Galeri 5 loss curves opener (example-first) |
-| Bab 02 Ide ke Eksperimen | 4 | 04 W4 Reproducibility | 4 | +bagian Matriks Eksperimen; +Infrastruktur Reproduksibilitas; Bab 03 lama diinline |
-| Bab 03 Eksperimen Reproduksibel | 5-6 | 05 W5 Sequences RNN LSTM | 5 | Konten lama dipindah ke W4; konten sequence baru; Lab 3b jadi wajib |
-| Bab 04 Validasi Data | 7 | 06 W6 Representations Temporal Leakage | 6 | +rekap representasi; +contoh konkret temporal leakage; +Lab 6 temporal leakage |
-| Bab 05 Alat AI | 8 | (merge ke 07 W7) | 7 | Dimerge ke W7; alat AI protocol ringkas |
-| Bab 06 Adopsi Repo Riset | 9 | 07 W7 Text Transformers Repo Adoption | 7 | +Text/Transformer section; alat AI + repo adoption merge |
-| Bab 07 Alat Pendukung Ringan | 10 | (Lampiran D.1) | - | Streamlit/Gradio dipindah ke Lampiran D.1 |
-| Bab 08 Platform & Alat Baru | 11 | (note di W4 §2.8) | 4 | RunPod intro dipindah ke W4; detail di D.1 |
-| Bab 09 Pengembangan Mandiri | 12 | 10 W10 Paper Reading + 11 W11 Research Framing | 10-11 | Split jadi 2 bab; +paper-to-code; +Input→Middle→Output framing; +framing menu; +literature triage |
-| Bab 10 Capstone 2 minggu | 13-14 | 12 Capstone 4 Minggu | 12-15 | Diperluas jadi 4 minggu; W12 filter/pertahanan framing; W13 tinjauan ulang+iterasi; W14 presentasi final; W15 pengumpulan |
-| (tidak ada) | - | 08 W8 Foundation Models | 8 | Baru: taksonomi modalitas x keluarga model x adaptasi |
-| (tidak ada) | - | 09 W9 Multimodal Reasoning | 9 | Baru: fusion, ablation, missing modalitas |
 
 ---
 

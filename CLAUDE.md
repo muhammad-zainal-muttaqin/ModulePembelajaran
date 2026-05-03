@@ -25,7 +25,7 @@ ModulePembelajaran/
 ├── 11_W11_Research_Framing.md     Input→Middle→Output framework, framing menu, filter literatur, live demo dataset, workshop kelas (W11)
 ├── 12_Capstone.md                 W12 filter+framing defense / W13 rethink+iterasi / W14 presentasi final / W15 pengumpulan (W12-15)
 ├── 13_Rubrik_Penilaian.md         4-level mastery + sub-rubrik per capstone phase
-├── 14_Lampiran.md                 Glosarium + Lampiran A.1 backprop + C.12-C.14 + D.1-D.10 + H migration
+├── 14_Lampiran.md                 Glosarium + Lampiran A.1 backprop + C.12-C.14 + D.1-D.10
 ├── 15_Panduan_Instruktur.md            Pacing 11+4 + emphasis per-week + skenario kelas
 └── template_repo/                 Skeleton repo riset
 ```
@@ -48,8 +48,7 @@ ModulePembelajaran/
 - **(30 April 2026)** Overhaul W11: framework 5-Whys diganti Input→Middle→Output + framing menu + literature triage + live demo dataset placeholder; file capstone di-rename `12_Capstone_3_Minggu.md` → `12_Capstone.md`; capstone diperpanjang 3 → 4 minggu (W12-W15); W15 = submission week tanpa sesi tatap muka
 - **(2 Mei 2026 - Sesi 1)** Integrasi 4 gap konten di W5 (gradient clipping, LSTM-vanishing bridge, residual principle) + W7 (pretraining rationale, §1.3 attention primer baru); pemetaan K1-K9 diperbarui di website (`chapters.ts`), `CompetencyGrid.tsx`, dan `14_Lampiran.md §D.2` mengikuti struktur 11+4 minggu; 2 gambar baru (`fig06a_attention_sdp.png`, `fig08c_temporal_alignment.png`) ditambahkan ke `figures/`; halaman gate kompetensi `/kompetensi/:id` ditambahkan ke website
 - **(2 Mei 2026 - Sesi 2)** Revisi `00_Pendahuluan.md` atas permintaan Bu Fatma: prasyarat dipindahkan ke `00a_Prasyarat.md` (file baru), Target Hasil diganti format 3-pilar (Ketajaman Teknis, Diagnosis & Kemandirian, Perancangan Riset), teks "60-70%" dihapus dari semua file mahasiswa, Ritme Sesi dipindahkan ke `15_Panduan_Instruktur.md`, Pitfalls diintegrasikan ke Kontrak Belajar; website pipeline diperbarui untuk `00a`
-- File-file lama diarsipkan ke `ModulePembelajaran/_archive/` (sengaja disimpan untuk referensi tabel migrasi di Lampiran §H, tidak dirender website)
-- Mapping bab lama → bab baru terdokumentasi di `14_Lampiran.md` Lampiran H
+- File-file lama diarsipkan ke `ModulePembelajaran/_archive/` (tidak dirender website)
 - Konvensi penomoran konten: gunakan **W-numbering** (W1-W14) di teks bab; gunakan nama file (mis. `13_Rubrik_Penilaian.md`) saat me-link
 
 **Konten utama per minggu (state saat ini):**
@@ -67,7 +66,7 @@ ModulePembelajaran/
 - **W11** (`11_W11_Research_Framing.md`): framework Input→Middle→Output (3 pertanyaan: entitas/output/input, peta Middle+gap, validasi gap); framing menu (4-6 framing kandidat); literature triage loop; placeholder live demo dataset (Bu Fatma fasilitasi); workshop 3 sesi; deliverable: dokumen dekomposisi + tabel triage + daftar pendek framing untuk W12
 - **W12-W15** (`12_Capstone.md`): timeline 4-minggu capstone - W12 filter+framing defense+Eks1 pre-reg, W13 rethink+Eks2 pre-reg, W14 final research talks (20 mnt), W15 pengumpulan tanpa sesi kelas
 - **Rubrik** (`13_Rubrik_Penilaian.md`): 4-level mastery + Kompetensi 10 (Eksplorasi Mandiri & Komunikasi); bobot Kompetensi 1: 14%, Kompetensi 7: 4%; **Breadth Check Policy** callout di Kompetensi 1 (mana lab wajib vs opsional; Lab 6b = `lab_w7_transformer_mini` wajib untuk breadth; Pendalaman collapsible tidak masuk syarat minimum)
-- **Lampiran** (`14_Lampiran.md`): glosarium ID↔EN; A.1 backprop derivasi 7-langkah; **A.11 Indeks First-Use per Bab** (28 istilah Tier-1 → chapter pertama dipakai + link); **A.12 Worked Examples Istilah Prioritas** (28 istilah dengan contoh angka konkret); C.6-C.11 (entri portofolio, presentasi, lab breadth, Komponen Mandiri, weekly log, weekly update PI); §G Self-Checklist Mingguan; §H tabel migrasi
+- **Lampiran** (`14_Lampiran.md`): glosarium ID↔EN; A.1 backprop derivasi 7-langkah; **A.11 Indeks First-Use per Bab** (28 istilah Tier-1 → chapter pertama dipakai + link); **A.12 Worked Examples Istilah Prioritas** (28 istilah dengan contoh angka konkret); C.6-C.11 (entri portofolio, presentasi, lab breadth, Komponen Mandiri, weekly log, weekly update PI); §G Self-Checklist Mingguan
 - **Panduan Instruktur** (`15_Panduan_Instruktur.md`): pacing 11+4 + emphasis per-W + **peta Pendalaman opsional vs wajib per bab** + skenario kelas (termasuk Skenario 5 "Kelas Berjuang di W5 LSTM")
 
 **Breadth Arsitektur NN (lima keluarga: MLP, CNN, RNN/LSTM, Transformer, Autoencoder):**
