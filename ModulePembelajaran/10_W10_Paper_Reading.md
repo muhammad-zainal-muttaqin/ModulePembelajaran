@@ -30,7 +30,7 @@
 
 **Baris peta besar:** sintesis melalui artefak riset
 **Kebiasaan riset:** Membaca paper tiga putaran dan menerjemahkan paper ke kode
-**Lab utama:** Lab W10 - Paper to Code (`lab_w10_paper_to_code.ipynb`)
+**Lab utama:** Lab W10 - Paper to Code ([lab_w10_paper_to_code.ipynb](https://colab.research.google.com/github/muhammad-zainal-muttaqin/ModulePembelajaran/blob/main/ModulePembelajaran/template_repo/notebooks/lab_w10_paper_to_code.ipynb))
 
 ---
 
@@ -276,7 +276,7 @@ Rani telah melakukan keterampilan W10: memilih paper, membaca secara teknis, men
 
 ## 5. Lab W10 - Implementasi Paper
 
-Buka `template_repo/notebooks/lab_w10_paper_to_code.ipynb`.
+Buka [lab_w10_paper_to_code.ipynb](https://colab.research.google.com/github/muhammad-zainal-muttaqin/ModulePembelajaran/blob/main/ModulePembelajaran/template_repo/notebooks/lab_w10_paper_to_code.ipynb).
 
 **Menu Paper (pilih satu):**
 - Paper A: Focal Loss (Lin et al., 2017) - implementasi dari nol pada CIFAR-10.
