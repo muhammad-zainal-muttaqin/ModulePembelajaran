@@ -96,8 +96,10 @@ export function getAllChapters(): Record<string, string> {
 
 export type HeadingEntry = { depth: number; text: string; slug: string };
 
-// Harus sama dengan `rehype-slug` agar klik ToC cocok dengan id heading.
-// rehype-slug memakai GithubSlugger (with occurrences) per dokumen.
+const CUSTOM_ID_RE = /\s*\{#([\w-]+)\}\s*$/;
+
+// Harus cocok dengan ID yang di-set oleh remarkPandocHeadingId + rehype-slug.
+// Heading dengan {#custom-id} menggunakan ID eksplisit; sisanya pakai GithubSlugger.
 export function extractHeadings(md: string): HeadingEntry[] {
   const lines = md.split(/\r?\n/);
   const out: HeadingEntry[] = [];
@@ -112,8 +114,16 @@ export function extractHeadings(md: string): HeadingEntry[] {
     const m = /^(#{2,4})\s+(.+?)\s*$/.exec(line);
     if (m) {
       const depth = m[1].length;
-      const text = m[2].replace(/[`*_]/g, "").trim();
-      out.push({ depth, text, slug: slugger.slug(text) });
+      let text = m[2].replace(/[`*_]/g, "").trim();
+      const customId = CUSTOM_ID_RE.exec(text);
+      let slug: string;
+      if (customId) {
+        text = text.replace(CUSTOM_ID_RE, "").trim();
+        slug = customId[1];
+      } else {
+        slug = slugger.slug(text);
+      }
+      out.push({ depth, text, slug });
     }
   }
   return out;
