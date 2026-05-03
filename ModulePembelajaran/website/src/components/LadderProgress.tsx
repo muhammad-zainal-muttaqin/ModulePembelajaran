@@ -25,6 +25,51 @@ const WEEK_MAP: Record<number, string> = {
   14: "12",
 };
 
+const SIKAP_RGB: Record<Sikap, string> = {
+  curiosity: "245, 158, 11",
+  rigor: "67, 56, 202",
+  skepticism: "225, 29, 72",
+  ownership: "5, 150, 105",
+};
+
+const accentLite: Record<Sikap, string> = {
+  curiosity: "bg-curiosity/25 border-curiosity/50 text-ink dark:text-parchment",
+  rigor: "bg-rigor/25 border-rigor/50 text-ink dark:text-parchment",
+  skepticism: "bg-skepticism/25 border-skepticism/50 text-ink dark:text-parchment",
+  ownership: "bg-ownership/25 border-ownership/50 text-ink dark:text-parchment",
+};
+
+const accentDone: Record<Sikap, string> = {
+  curiosity: "bg-curiosity border-transparent text-white",
+  rigor: "bg-rigor border-transparent text-white",
+  skepticism: "bg-skepticism border-transparent text-white",
+  ownership: "bg-ownership border-transparent text-white",
+};
+
+function getCellAppearance(sikaps: Sikap[], done: boolean) {
+  const base =
+    "w-full h-14 rounded-md border-2 transition-all flex items-center justify-center font-mono text-xs font-semibold";
+
+  if (sikaps.length < 2) {
+    const key = sikaps[0] || "rigor";
+    return {
+      className: `${base} ${done ? accentDone[key] : accentLite[key]}`,
+      style: {},
+    };
+  }
+
+  const [c1, c2] = sikaps;
+  const alpha = done ? "1" : "0.25";
+  return {
+    className: `${base} text-white split-cell ${
+      done ? "border-transparent" : "border-black/10 dark:border-white/10"
+    }`,
+    style: {
+      background: `linear-gradient(135deg, rgba(${SIKAP_RGB[c1]}, ${alpha}) 50%, rgba(${SIKAP_RGB[c2]}, ${alpha}) 50%)`,
+    },
+  };
+}
+
 export default function LadderProgress({ interactive = false, compact = false }: Props) {
   const weeks = useStore((s) => s.weeks);
   const setWeek = useStore((s) => s.setWeek);
@@ -54,28 +99,13 @@ export default function LadderProgress({ interactive = false, compact = false }:
           const chapterId = WEEK_MAP[w];
           const chapter = CHAPTERS.find((c) => c.id === chapterId);
           const done = !!weeks[w];
-          const sikapKey = chapter?.sikap[0] || "rigor";
+          const sikaps = chapter?.sikap ?? ["rigor"];
 
-          const accentLite: Record<Sikap, string> = {
-            curiosity: "bg-curiosity/25 border-curiosity/50 text-ink dark:text-parchment",
-            rigor: "bg-rigor/25 border-rigor/50 text-ink dark:text-parchment",
-            skepticism: "bg-skepticism/25 border-skepticism/50 text-ink dark:text-parchment",
-            ownership: "bg-ownership/25 border-ownership/50 text-ink dark:text-parchment",
-          };
-          const accentDone: Record<Sikap, string> = {
-            curiosity: "bg-curiosity border-transparent text-white",
-            rigor: "bg-rigor border-transparent text-white",
-            skepticism: "bg-skepticism border-transparent text-white",
-            ownership: "bg-ownership border-transparent text-white",
-          };
+          const { className, style } = getCellAppearance(sikaps, done);
 
           const cell = (
             <div className="flex flex-col items-center w-full">
-              <div
-                className={`w-full h-14 rounded-md border-2 transition-all ${
-                  done ? accentDone[sikapKey] : accentLite[sikapKey]
-                }`}
-              >
+              <div className={className} style={style}>
                 <div className="h-full flex items-center justify-center font-mono text-xs font-semibold">
                   W{w}
                 </div>
