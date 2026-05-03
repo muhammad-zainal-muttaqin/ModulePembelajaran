@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { CHAPTERS } from "../lib/chapters";
+import { CHAPTERS, type Sikap } from "../lib/chapters";
 import { useStore } from "../lib/storage";
 
 type Props = {
@@ -63,13 +63,24 @@ export default function LadderProgress({ interactive = false, compact = false }:
           } as const;
           const accent = accentMap[sikapKey];
 
+          const accentLite: Record<Sikap, string> = {
+            curiosity: "bg-curiosity/25 border-curiosity/50 text-ink dark:text-parchment",
+            rigor: "bg-rigor/25 border-rigor/50 text-ink dark:text-parchment",
+            skepticism: "bg-skepticism/25 border-skepticism/50 text-ink dark:text-parchment",
+            ownership: "bg-ownership/25 border-ownership/50 text-ink dark:text-parchment",
+          };
+          const accentDone: Record<Sikap, string> = {
+            curiosity: "bg-curiosity border-transparent text-white",
+            rigor: "bg-rigor border-transparent text-white",
+            skepticism: "bg-skepticism border-transparent text-white",
+            ownership: "bg-ownership border-transparent text-white",
+          };
+
           const cell = (
             <div className="flex flex-col items-center w-full">
               <div
                 className={`w-full h-14 rounded-md border-2 transition-all ${
-                  done
-                    ? `${accent} border-transparent text-white`
-                    : "bg-white dark:bg-white/5 border-black/10 dark:border-white/10 text-ink/80 dark:text-parchment/80"
+                  done ? accentDone[sikapKey] : accentLite[sikapKey]
                 }`}
               >
                 <div className="h-full flex items-center justify-center font-mono text-xs font-semibold">
