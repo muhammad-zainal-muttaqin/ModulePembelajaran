@@ -42,7 +42,7 @@ W8 membentuk pemahaman sistematis tentang ekosistem foundation model:
 - **2.0** Dari Pretraining ke Foundation Model — bagaimana evolusi ini terjadi
 - **2.1** Apa yang membuat sebuah model menjadi "foundation model"?
 - **2.2** Taksonomi modalitas x keluarga model x adaptasi
-- **2.3** Membaca model card secara kritis
+- **2.3** Mengevaluasi model card
 - **2.4** Pohon keputusan untuk memilih adaptasi
 - **2.5** Teacher model dan training-time supervision
 - **3** Worked Example: IndoBERT dengan tiga strategi adaptasi
@@ -168,7 +168,7 @@ Aturan praktis: encoder-only untuk pemahaman, decoder-only untuk generasi, encod
 | Indonesian NLP | IndoBERT, mBERT, XLM-R | Pilih berdasarkan data size dan domain |
 | Chemistry / proteins | ChemBERTa, ESM-2 | Molecular dan sequence data |
 
-### 2.3 Membaca Model Card Secara Kritis
+### 2.3 Mengevaluasi Model Card
 
 Model card adalah dokumen yang menemani sebuah model. Tujuh pertanyaan wajib saat membaca model card:
 
@@ -324,7 +324,7 @@ Format: [Lampiran C.9](14_Lampiran.md#c9-template-komponen-mandiri).
 | Jalur | Tugas |
 |---|---|
 | **Implementasi** | Implementasikan frozen CLIP visual encoder sebagai feature extractor untuk dataset citra. Bandingkan dengan fine-tuned ResNet dari W2. |
-| **Analisis** | Unduh 3 model card dari HuggingFace. Jawab 7 pertanyaan kritis §2.3 untuk masing-masing. |
+| **Analisis** | Unduh 3 model card dari HuggingFace. Jawab 7 pertanyaan evaluasi §2.3 untuk masing-masing. |
 | **Desain** | Rancang eksperimen untuk menentukan kapan domain-specific model lebih baik dari general model pada satu domain spesifik. |
 | **Arsitektur Baru** | Eksplorasi LoRA: implementasikan LoRA sederhana dari scratch untuk satu linear layer, verifikasi parity dengan library PEFT. |
 

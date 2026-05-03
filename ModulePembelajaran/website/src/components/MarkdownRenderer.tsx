@@ -144,7 +144,7 @@ export default function MarkdownRenderer({ markdown }: Props) {
             return <>{children}</>;
           },
           a({ href, children, ...props }) {
-            if (href && href.startsWith("#")) {
+            if (href && href.startsWith("#") && !href.startsWith("#/")) {
               return (
                 <a
                   href={href}

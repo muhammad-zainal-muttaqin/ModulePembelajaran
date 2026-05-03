@@ -214,7 +214,7 @@ Ini lebih baik dari zero padding karena null token belajar merepresentasikan dis
 
 #### Strategi 3: Fallback Single-Modal Mode
 
-Untuk sistem yang kritis di produksi, desain model sebagai ensemble:
+Untuk sistem yang vital di produksi, desain model sebagai ensemble:
 
 - Default: gunakan semua modalitas yang tersedia.
 - Jika satu modalitas hilang: fallback ke model unimodal untuk modalitas yang tersedia.

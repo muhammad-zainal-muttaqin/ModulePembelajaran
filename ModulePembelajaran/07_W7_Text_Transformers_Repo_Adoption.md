@@ -799,13 +799,13 @@ Total: ~3 jam dari clone sampai laporan pertama. Bandingkan dengan "dua minggu" 
 
 **"Kode orang lain yang rumit pasti bagus."** Tidak selalu. Kadang kompleksitas adalah tumpukan patch atas bug lama. Jangan ragu menyederhanakan jika Anda memahami alasan aslinya.
 
-**"Versi library yang di-pin di `requirements.txt` harus persis diikuti."** Kadang ya (untuk reproduksi hasil), kadang tidak (jika Anda bekerja di proyek downstream yang perlu versi lebih baru). Baca pin dengan kritis - apakah angka eksperimen yang Anda cari bergantung padanya?
+**"Versi library yang di-pin di `requirements.txt` harus persis diikuti."** Kadang ya (untuk reproduksi hasil), kadang tidak (jika Anda bekerja di proyek downstream yang perlu versi lebih baru). Baca pin dengan cermat - apakah angka eksperimen yang Anda cari bergantung padanya?
 
 ---
 
 ## D5. Lab 6 - Mengadopsi dan Memodifikasi Repo Eksternal
 
-Buka [Lab 6 - Adopsi dan Modifikasi Repo Eksternal](template_repo/notebooks/lab_w7_repo_adoption.ipynb).
+Buka `template_repo/notebooks/lab_w7_repo_adoption.ipynb`.
 
 Tugas:
 
@@ -826,7 +826,7 @@ Tugas:
 
 ### Lab 6b (breadth) - Transformer-Mini dari Nol
 
-Buka [Lab 6b - Transformer-Mini dari Nol](template_repo/notebooks/lab_w7_transformer_mini.ipynb). Setelah Anda paham cara membaca repo eksternal, langkah berikutnya adalah paham arsitektur yang paling sering Anda temui di repo riset modern: **Transformer**. Lab ini menyuruh Anda menulis ulang komponen intinya dari nol.
+Buka `template_repo/notebooks/lab_w7_transformer_mini.ipynb`. Setelah Anda paham cara membaca repo eksternal, langkah berikutnya adalah paham arsitektur yang paling sering Anda temui di repo riset modern: **Transformer**. Lab ini menyuruh Anda menulis ulang komponen intinya dari nol.
 
 Fokus:
 

@@ -71,7 +71,7 @@ Bab ini membangun kebiasaan itu.
 ### 2.0 Matriks Eksperimen Sebelum Coding
 
 Sebelum menyentuh kode, tulis **matriks eksperimen** - tabel yang mendaftar semua run yang akan Anda jalankan beserta konfigurasi masing-masing. Ini bukan formalitas; ini alat bantu berpikir yang mencegah tiga masalah umum:
-1. lupa menjalankan satu kondisi kritis,
+1. lupa menjalankan satu kondisi penting,
 2. baru menyadari di tengah jalan bahwa dua kondisi tidak sebanding,
 3. tidak bisa menjelaskan apa yang berubah di antara run.
 
@@ -311,7 +311,7 @@ Tetap di laptop atau Colab selama training selesai di bawah 30 menit; pindah ke 
 ![RunPod: Pod Lifecycle + SSH Tunnel - alur kerja cloud GPU untuk training](./figures/fig08a_cloud_workflow.svg)
 
 > [!CAUTION]
-> Mematikan pod setelah training selesai adalah kebiasaan paling kritis di W4. Tagihan GPU terus berjalan selama pod hidup, termasuk saat Anda lupa setelah berhasil pull checkpoint. Pasang pengingat di kalender atau biasakan menutup pod sebelum menutup terminal.
+> Mematikan pod setelah training selesai adalah kebiasaan paling penting di W4. Tagihan GPU terus berjalan selama pod hidup, termasuk saat Anda lupa setelah berhasil pull checkpoint. Pasang pengingat di kalender atau biasakan menutup pod sebelum menutup terminal.
 
 ---
 
@@ -319,7 +319,7 @@ Tetap di laptop atau Colab selama training selesai di bawah 30 menit; pindah ke 
 
 Mari kita kerjakan email PI langkah demi langkah, membangun protokol yang baru saja kita bahas.
 
-### 3.1 Membaca Instruksi secara Kritis
+### 3.1 Membaca Instruksi dengan Cermat
 
 Instruksi: *"Tolong uji focal loss dan freeze blok awal pada backbone. Bandingkan dengan baseline yang adil, lalu kirim ringkasan hasil hari Kamis."*
 
@@ -445,7 +445,7 @@ Di luar update rutin, ada tiga alat yang membentuk kebiasaan komunikasi seorang 
 
 ### 5.1 Focal Loss + Freeze Layer dengan Ablation
 
-Buka [Lab 2 - Focal Loss dan Freeze Layer](template_repo/notebooks/lab_w3_loss_ablation.ipynb).
+Buka `template_repo/notebooks/lab_w3_loss_ablation.ipynb`.
 
 Tugas:
 

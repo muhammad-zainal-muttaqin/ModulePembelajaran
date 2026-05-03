@@ -217,7 +217,7 @@ Output adalah tensor. Bentuknya mengodekan pertanyaan riset.
 | `(T, N)` | Skor kelas per timestep | Pelabelan level token |
 | `(T', 1)` | Sequence masa depan | Kurva prediksi glukosa |
 
-**Poin kritis:** pilihan Output adalah keputusan desain riset. Entitas dan Input yang sama sering mendukung beberapa pilihan Output, masing-masing mengarah ke masalah riset yang berbeda.
+**Poin penting:** pilihan Output adalah keputusan desain riset. Entitas dan Input yang sama sering mendukung beberapa pilihan Output, masing-masing mengarah ke masalah riset yang berbeda.
 
 #### Input: informasi apa yang tersedia, dan dalam representasi apa?
 

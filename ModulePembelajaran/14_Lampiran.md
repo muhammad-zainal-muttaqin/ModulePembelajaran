@@ -1107,7 +1107,7 @@ Salin template ini ke `repo_map.md` di root folder eksperimen Anda setiap kali m
 
 - Format: [YAML / argparse / hardcoded]
 - File utama: `[file]`
-- Hyperparameter kritis: [list]
+- Hyperparameter penting: [list]
 
 ## DataLoader
 

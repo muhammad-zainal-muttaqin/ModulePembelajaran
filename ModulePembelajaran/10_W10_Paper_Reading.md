@@ -107,10 +107,10 @@ Paper akademik tidak dirancang untuk dibaca linear. Tiga putaran membantu menyer
 ```mermaid
 flowchart TB
     A[Putaran 1 - Skim\n10 menit\nJudul + abstrak + figure 1\n+ tabel utama + conclusion] --> B{Lanjut?}
-    B -- Ya --> C[Putaran 2 - Close-read\n30-45 menit\nMethod + setup + ablation\nCatat 3-5 pertanyaan kritis]
+    B -- Ya --> C[Putaran 2 - Close-read\n30-45 menit\nMethod + setup + ablation\nCatat 3-5 pertanyaan teknis]
     B -- Tidak --> D[Pilih paper lain]
     C --> E{Penting untuk implementasi?}
-    E -- Ya --> F[Putaran 3 - Kritis\n30-60 menit\nApa yang hilang? Klaim berlebihan?\nDraft satu paragraf critique]
+    E -- Ya --> F[Putaran 3 - Mendalam\n30-60 menit\nApa yang hilang? Klaim berlebihan?\nDraft satu paragraf critique]
     E -- Tidak --> G[Simpan catatan TL;DR\n+ alasan tidak diimplementasikan]
 ```
 
@@ -122,7 +122,7 @@ Bila setelah 10 menit Anda tidak bisa menjawab ketiganya, paper mungkin tidak di
 
 Catat 3-5 pertanyaan teknis yang Anda punya: detail yang tidak jelas, pilihan yang aneh, baseline yang kurang, asumsi yang tidak diuji, atau bagian yang perlu dicek di kode resmi. Pertanyaan-pertanyaan ini bernilai lebih dari ringkasan paper-nya sendiri karena langsung mengarahkan implementasi.
 
-**Putaran 3 - Kritis (30-60 menit, opsional).** Hanya untuk paper yang benar-benar penting. Cari: apa yang paper *tidak* bahas? Apakah klaim melampaui data? Apa yang Anda minta untuk rebuttal jika mereview di konferensi? Output: satu paragraf critique yang bisa Anda kirim ke rekan satu grup riset.
+**Putaran 3 - Mendalam (30-60 menit, opsional).** Hanya untuk paper yang benar-benar penting. Cari: apa yang paper *tidak* bahas? Apakah klaim melampaui data? Apa yang Anda minta untuk rebuttal jika mereview di konferensi? Output: satu paragraf critique yang bisa Anda kirim ke rekan satu grup riset.
 
 ### 2.4 Catatan Paper yang Berguna
 
@@ -174,7 +174,7 @@ Enam langkah dari abstrak paper ke kode minimal yang bisa dijalankan:
 Angka-angka ini adalah patokan "apakah pipeline saya terlalu lambat?" - bukan angka pasti. Jika training ResNet Anda 10× lebih lambat dari tabel, periksa: data loading bottleneck, batch size terlalu kecil, atau model yang tidak sengaja dipindah ke CPU. Gunakan `nvidia-smi` untuk memastikan GPU benar-benar dipakai.
 
 > [!TIP]
-> Paper sering menyembunyikan detail penting di appendix atau code repository. Selalu cek keduanya. Juga perhatikan "detail implementasi" section - sering ada hyperparameter kritis yang tidak ada di teks utama.
+> Paper sering menyembunyikan detail penting di appendix atau code repository. Selalu cek keduanya. Juga perhatikan "detail implementasi" section - sering ada hyperparameter penting yang tidak ada di teks utama.
 
 ### 2.6 Ablation Kecil: Cara Menguji Klaim Metode
 
@@ -311,7 +311,7 @@ Konsep: membaca paper secara terarah, mengubah paper menjadi implementasi kecil,
 | Jalur | Tugas minggu ini |
 | --- | --- |
 | **A - Implementasi** | Dari paper Lab W10, implementasikan satu teknik pendukung yang belum ada di template_repo (LR scheduler, metrik evaluasi tambahan, atau augmentasi di appendix). Laporkan apakah hasilnya sesuai klaim paper. |
-| **B - Analisis** | Pilih satu paper yang klaim utamanya terasa "terlalu bagus". Lakukan analisis kritis 1 halaman: klaim apa yang dibuat, bukti apa yang ditunjukkan, apa yang tidak ditunjukkan, dan apa yang perlu diverifikasi sebelum mengutipnya. |
+| **B - Analisis** | Pilih satu paper yang klaim utamanya terasa "terlalu bagus". Lakukan analisis mendalam 1 halaman: klaim apa yang dibuat, bukti apa yang ditunjukkan, apa yang tidak ditunjukkan, dan apa yang perlu diverifikasi sebelum mengutipnya. |
 | **C - Reproduksi Ringan** | Pilih paper dengan kode resmi. Jalankan konfigurasi terkecil yang tersedia, catat dependency yang dibutuhkan, command yang berhasil, gap hasil terhadap klaim paper, dan penyebab gap yang paling mungkin. |
 | **D - Arsitektur Baru** | Implementasikan satu paper tentang arsitektur yang belum dibahas di modul (mis. ResNeXt, MobileNet, DETR). Forward pass + learning curve + 1 paragraf perbedaan vs arsitektur yang sudah dipelajari. |
 

@@ -54,7 +54,7 @@ Setelah W6, Anda memeriksa setiap pipeline preprocessing dengan pertanyaan: "Apa
 
 ## 0.5 Representasi Fitur dalam Konteks Sequence dan Sensor
 
-Di W3, Anda belajar tiga strategi representasi fitur: **engineered**, **extracted**, dan **learned**. Di W6, ketiga strategi ini muncul dalam konteks yang berbeda - domain sensor dan time series - di mana pilihannya jauh lebih kritis karena ada dimensi temporal yang perlu dijaga.
+Di W3, Anda belajar tiga strategi representasi fitur: **engineered**, **extracted**, dan **learned**. Di W6, ketiga strategi ini muncul dalam konteks yang berbeda - domain sensor dan time series - di mana pilihannya jauh lebih menentukan karena ada dimensi temporal yang perlu dijaga.
 
 | Strategi | Contoh di sensor/time-series | Kekuatan | Risiko leakage |
 |---|---|---|---|
@@ -554,7 +554,7 @@ Laporan ini masuk ke `experiments/lab4/audit.md`, dibaca bersama protokol eksper
 
 ## 5. Lab W6 - Audit PathMNIST dan Pipeline Pra-pemrosesan
 
-Buka [Lab 4 - EDA dan Audit Leakage](template_repo/notebooks/lab_w6_eda_leakage.ipynb).
+Buka `template_repo/notebooks/lab_w6_eda_leakage.ipynb`.
 
 Tugas:
 
