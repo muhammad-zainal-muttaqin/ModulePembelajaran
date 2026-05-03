@@ -316,6 +316,9 @@ Tambahkan **selection memo** (satu paragraf per model): mengapa model ini, asums
 
 **File output:** `foundation_model_map.md` di folder eksperimen W8.
 
+> [!TIP]
+> **Lab penunjang — Remote Training.** Untuk pengalaman praktis menjalankan training di cloud GPU (RunPod), buka [lab_w8_remote_training.ipynb](https://colab.research.google.com/github/muhammad-zainal-muttaqin/ModulePembelajaran/blob/main/ModulePembelajaran/template_repo/notebooks/lab_w8_remote_training.ipynb). Lab ini opsional tapi berguna jika foundation model yang Anda pilih butuh GPU besar.
+
 ---
 
 ## 6. Komponen Mandiri

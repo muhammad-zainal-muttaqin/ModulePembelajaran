@@ -226,6 +226,10 @@ Alat AI berguna melampaui kode:
 
 ![Alur Kerja LLM: sintesis, verifikasi, dan dokumentasi dalam riset ML](./figures/fig05a_llm_workflow.svg)
 
+### 2.4 Lab Praktik: AI-Assisted Dev Loop
+
+Untuk pengalaman langsung mengikuti protokol di atas, buka [lab_w7_llm_assisted.ipynb](https://colab.research.google.com/github/muhammad-zainal-muttaqin/ModulePembelajaran/blob/main/ModulePembelajaran/template_repo/notebooks/lab_w7_llm_assisted.ipynb). Lab ini memandu Anda melalui implementasi MixUp augmentation menggunakan bantuan AI — termasuk 4 sanity tests, comparison training, dan log interaksi LLM.
+
 ---
 
 ## 3. Pengantar Adopsi Repo

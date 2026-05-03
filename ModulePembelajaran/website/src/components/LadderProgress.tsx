@@ -47,13 +47,12 @@ const accentDone: Record<Sikap, string> = {
 };
 
 function getCellAppearance(sikaps: Sikap[], done: boolean) {
-  const base =
-    "w-full h-14 rounded-md border-2 transition-all flex items-center justify-center font-mono text-xs font-semibold";
-
   if (sikaps.length < 2) {
     const key = sikaps[0] || "rigor";
     return {
-      className: `${base} ${done ? accentDone[key] : accentLite[key]}`,
+      className: `w-full h-14 rounded-md border-2 transition-all flex items-center justify-center font-mono text-xs font-semibold ${
+        done ? accentDone[key] : accentLite[key]
+      }`,
       style: {},
     };
   }
@@ -61,9 +60,8 @@ function getCellAppearance(sikaps: Sikap[], done: boolean) {
   const [c1, c2] = sikaps;
   const alpha = done ? "1" : "0.25";
   return {
-    className: `${base} text-white split-cell ${
-      done ? "border-transparent" : "border-black/10 dark:border-white/10"
-    }`,
+    className:
+      "w-full h-14 rounded-md transition-all flex items-center justify-center font-mono text-xs font-semibold text-white split-cell",
     style: {
       background: `linear-gradient(135deg, rgba(${SIKAP_RGB[c1]}, ${alpha}) 50%, rgba(${SIKAP_RGB[c2]}, ${alpha}) 50%)`,
     },

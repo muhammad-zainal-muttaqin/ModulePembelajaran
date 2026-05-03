@@ -46,7 +46,6 @@ export default function Home() {
             <span className="inline-flex items-center gap-1.5"><span className="w-3 h-3 rounded bg-rigor" aria-hidden="true" /> Rigor</span>
             <span className="inline-flex items-center gap-1.5"><span className="w-3 h-3 rounded bg-skepticism" aria-hidden="true" /> Skepticism</span>
             <span className="inline-flex items-center gap-1.5"><span className="w-3 h-3 rounded bg-ownership" aria-hidden="true" /> Ownership</span>
-            <span className="inline-flex items-center gap-1.5 ml-2"><span className="w-3 h-3 rounded" style={{ background: "linear-gradient(135deg, #F59E0B 50%, #4338CA 50%)" }} aria-hidden="true" /> Dua sikap sekaligus</span>
           </div>
           <div className="mt-8">
             <Link to="/progres" className="btn-secondary">
