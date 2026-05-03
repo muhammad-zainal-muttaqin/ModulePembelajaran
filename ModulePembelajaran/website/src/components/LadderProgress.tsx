@@ -78,10 +78,10 @@ export default function LadderProgress({ interactive = false, compact = false }:
               </div>
               {!compact && chapter && (
                 <span
-                  className="mt-1 min-h-[2rem] text-[10px] text-ink/70 dark:text-parchment/50 text-center leading-snug line-clamp-2"
+                  className="mt-1 text-[10px] text-ink/70 dark:text-parchment/50 text-center leading-tight truncate block"
                   title={chapter.title}
                 >
-                  {chapter.title}
+                  {chapter.title.replace(/^W\d+\s*-\s*/, "")}
                 </span>
               )}
             </div>
