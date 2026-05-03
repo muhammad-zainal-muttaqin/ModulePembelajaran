@@ -19,12 +19,23 @@ export const CHAPTERS: ChapterMeta[] = [
     id: "00",
     number: 0,
     title: "Pendahuluan",
-    subtitle: "Orientasi bootcamp, sikap riset, kontrak belajar",
+    subtitle: "Orientasi bootcamp, target hasil, kontrak belajar",
     weeks: "1",
     weekNumbers: [1],
     sikap: ["curiosity"],
     labName: null,
     filename: "00_Pendahuluan.md",
+  },
+  {
+    id: "00a",
+    number: 0,
+    title: "Prasyarat Modul",
+    subtitle: "Shape tensor, konvensi huruf, kalkulus mini, PyTorch primer",
+    weeks: "–",
+    weekNumbers: [],
+    sikap: ["curiosity"],
+    labName: null,
+    filename: "00a_Prasyarat.md",
   },
   {
     id: "01",
@@ -156,7 +167,7 @@ export const CHAPTERS: ChapterMeta[] = [
     weekNumbers: [12, 13, 14],
     sikap: ["ownership", "rigor"],
     labName: "Capstone",
-    filename: "12_Capstone_3_Minggu.md",
+    filename: "12_Capstone.md",
   },
   {
     id: "13",
@@ -193,16 +204,23 @@ export const CHAPTERS: ChapterMeta[] = [
   },
 ];
 
-export const COMPETENCIES = [
-  { n: 1, title: "Memahami sistem ML/DL dalam praktiknya", chapter: "01", weeks: "1" },
-  { n: 2, title: "Menerjemahkan ide menjadi eksperimen", chapter: "02", weeks: "2" },
-  { n: 3, title: "Eksperimen reproduksibel", chapter: "04", weeks: "4" },
-  { n: 4, title: "Validasi data dan pra-pemrosesan", chapter: "06", weeks: "6" },
-  { n: 5, title: "AI tools sebagai pendukung", chapter: "07", weeks: "7" },
-  { n: 6, title: "Adopsi repository riset asing", chapter: "08", weeks: "8" },
-  { n: 7, title: "Membuat alat pendukung riset ringan", chapter: "09", weeks: "9" },
-  { n: 8, title: "Mengadopsi platform dan tool baru", chapter: "10", weeks: "10" },
-  { n: 9, title: "Berkembang mandiri", chapter: "11", weeks: "11" },
+export type CompetencyMeta = {
+  n: number;
+  title: string;
+  weeks: string;
+  chapters: string[];
+};
+
+export const COMPETENCIES: CompetencyMeta[] = [
+  { n: 1, title: "Memahami sistem ML/DL dalam praktiknya", weeks: "W1–W9",              chapters: ["01","02","03","04","05","06","07","08","09"] },
+  { n: 2, title: "Menerjemahkan ide menjadi eksperimen",   weeks: "W3–W4, W11, Capstone", chapters: ["03","04","11","12"] },
+  { n: 3, title: "Eksperimen reproduksibel",               weeks: "W3, W4, Capstone",     chapters: ["03","04","12"] },
+  { n: 4, title: "Validasi data dan pra-pemrosesan",       weeks: "W3, W6, W9",           chapters: ["03","06","09"] },
+  { n: 5, title: "AI tools sebagai pendukung",             weeks: "W7–W8",                chapters: ["07","08"] },
+  { n: 6, title: "Adopsi repository riset asing",          weeks: "W7, W10, Capstone",    chapters: ["07","10","12"] },
+  { n: 7, title: "Membuat alat pendukung riset ringan",    weeks: "W12–W15",              chapters: ["12"] },
+  { n: 8, title: "Mengadopsi platform dan tool baru",      weeks: "W8, Capstone",         chapters: ["08","12"] },
+  { n: 9, title: "Berkembang mandiri",                     weeks: "W10, W11, Capstone",   chapters: ["10","11","12"] },
 ];
 
 export const SIKAP_META: Record<Sikap, { label: string; color: string; tagline: string; essence: string }> = {

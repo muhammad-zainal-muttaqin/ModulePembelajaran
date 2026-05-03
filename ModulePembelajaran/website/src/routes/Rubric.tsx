@@ -79,10 +79,10 @@ export default function Rubric() {
                 return (
                   <tr key={c.n}>
                     <td className="py-3 pr-4 align-top">
-                      <Link to={`/modul/${c.chapter}`} className="font-medium hover:underline">
+                      <Link to={`/kompetensi/${c.n}`} className="font-medium hover:underline">
                         {c.n}. {c.title}
                       </Link>
-                      <div className="text-xs font-mono text-ink/70 dark:text-parchment/50">Bab {c.chapter}</div>
+                      <div className="text-xs font-mono text-ink/70 dark:text-parchment/50">{c.weeks}</div>
                     </td>
                     {LEVELS.map((l) => (
                       <td key={l.key} className="py-2 px-1 text-center align-middle">

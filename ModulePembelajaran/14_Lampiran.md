@@ -1286,20 +1286,24 @@ runpodctl remove pod [pod-id]
 
 ## C.16 Sembilan Kompetensi - Detail dan Pemetaan Minggu {#c16-sembilan-kompetensi}
 
-Daftar berikut menguraikan sembilan kompetensi inti yang dilatih sepanjang bootcamp 11 minggu. Pendahuluan §3 membahasnya dalam tiga gelombang naratif; bagian ini menyediakan detail per-kompetensi sebagai rujukan saat Anda menyusun portofolio atau menilai progres mingguan.
+Daftar berikut menguraikan sembilan kompetensi inti yang dilatih sepanjang bootcamp 11 minggu dan 4 minggu capstone. Pendahuluan §3 membahasnya dalam tiga gelombang naratif; bagian ini menyediakan pemetaan minggu per kompetensi sebagai rujukan saat Anda menyusun portofolio atau menilai progres.
 
-1. **Memahami sistem ML/DL dalam praktiknya** (W1-W3). Mengetahui apa yang dilakukan arsitektur, loss, optimizer, dan evaluasi cukup dalam untuk menilai di mana perubahan bermakna.
-2. **Menerjemahkan ide menjadi eksperimen** (W3-W4). Mengubah instruksi terbuka menjadi rancangan konkret dengan variabel, baseline, hipotesis, dan metrik.
-3. **Eksperimen reproduksibel** (W4). Menulis konfigurasi, mengunci seed, mencatat jejak, dan menyusun ablation yang bisa diverifikasi orang lain.
-4. **Validasi data dan kewaspadaan leakage** (W6). Memeriksa data sebelum mempercayai hasilnya, mulai dari distribusi kelas hingga *temporal leakage* yang tersembunyi.
-5. **Alat AI sebagai pendukung** (W7-W8). Memakai LLM dan coding copilot untuk mempercepat kerja tanpa menyerahkan pemahaman dan tanggung jawab.
-6. **Adopsi repositori riset yang belum dikenal** (W7, W9). Membaca kode orang lain dengan cepat, menyiapkan lingkungan, dan memodifikasi secara seminimal mungkin.
-7. **Foundation model dan strategi adaptasi** (W8). Mengenali kapan sebuah pretrained model layak diadopsi, kapan frozen, kapan LoRA, kapan full fine-tuning.
-8. **Penalaran multimodal** (W9). Menganalisis strategi penggabungan, ablation per modalitas, dan fallback saat modalitas hilang.
-9. **Berkembang mandiri** (W10-W11). Membaca paper secara terarah, menyusun pertanyaan yang baik, dan merancang eksperimen lanjutan berikut pre-registration-nya.
+| No | Kompetensi | W Dilatih |
+|:---|:---|:---|
+| K1 | Memahami sistem ML/DL dalam praktiknya | W1–W9 |
+| K2 | Menerjemahkan ide menjadi eksperimen | W3–W4, W11, Capstone |
+| K3 | Eksperimen reproduksibel | W3, W4, Capstone |
+| K4 | Validasi data dan pra-pemrosesan | W3, W6, W9 |
+| K5 | Alat AI sebagai pendukung | W7–W8 |
+| K6 | Adopsi repository riset | W7, W10, Capstone |
+| K7 | Membuat alat pendukung riset ringan | W12–W15 |
+| K8 | Mengadopsi platform dan tool baru | W8, Capstone |
+| K9 | Berkembang mandiri | W10, W11, Capstone |
+
+Catatan: satu kompetensi umumnya dilatih di beberapa minggu, bukan satu bab tunggal. K1 (pemahaman sistem) berlanjut sepanjang bootcamp karena setiap arsitektur baru menambah satu lapisan pemahaman.
 
 > [!TIP]
-> Pengelompokan tiga gelombang: **W1-W4** melatih kompetensi 1-3 (sistem, desain eksperimen, reproduksibilitas), **W6-W8** melatih kompetensi 4-7 (data, AI tools, repo, foundation), **W9-W11** melatih kompetensi 8-9 (multimodal, paper, framing). Bahkan dosen pun mengasah kompetensi 9 sepanjang karier.
+> Pengelompokan tiga gelombang: **W1–W4** melatih K1–K3 (sistem, desain eksperimen, reproduksibilitas), **W6–W9** melatih K4–K6 (data, AI tools, repo, multimodal), **W10–W11 + Capstone** melatih K7–K9 (alat pendukung, platform baru, pengembangan mandiri). Bahkan dosen pun mengasah K9 sepanjang karier.
 
 ---
 

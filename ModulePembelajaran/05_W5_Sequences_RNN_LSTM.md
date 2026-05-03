@@ -61,7 +61,7 @@ W5 adalah bab paling padat secara teknis sejauh ini. Sebelum menulis rumus RNN d
 
 ### 1.5.1 BPTT: Chain Rule pada Urutan Waktu
 
-Di W1 §2.3 dan §0.5.4 Pendahuluan, Anda sudah kenal **chain rule** sebagai rantai turunan: kalau `y = f(g(x))`, maka `dy/dx = f'(g(x)) · g'(x)`. Backpropagation di MLP adalah chain rule yang dirantai mundur lewat layer-layer.
+Di W1 §2.3 dan [Prasyarat Modul §4](00a_Prasyarat.md#4-kalkulus-mini-turunan-dan-chain-rule), Anda sudah kenal **chain rule** sebagai rantai turunan: kalau `y = f(g(x))`, maka `dy/dx = f'(g(x)) · g'(x)`. Backpropagation di MLP adalah chain rule yang dirantai mundur lewat layer-layer.
 
 Pada RNN, ada **dua sumbu** tempat chain rule berjalan:
 
@@ -101,6 +101,10 @@ Tiga rezim:
 - **|w_h| ≈ 1 → titik kritis.** Stabil hanya di pinggiran, sulit dipertahankan tanpa intervensi (LSTM gate, residual connection, normalization).
 
 Inilah "vanishing gradient problem" - bukan masalah teori abstrak, tetapi konsekuensi langsung perkalian berulang di chain rule. LSTM (§2.3) dirancang khusus untuk memutus rantai perkalian ini.
+
+*Cell state* LSTM memutus rantai ini dengan cara yang spesifik: `c_t = f_t ⊙ c_{t-1} + i_t ⊙ g_t`. Turunan `∂c_t/∂c_{t-1} = f_t` adalah hasil elemen per elemen dengan forget gate, bukan perkalian dengan matriks rekurens `W_h` secara penuh. Gradient bisa mengalir jauh ke belakang tanpa teredam. Cara kerjanya secara rinci ada di §2.3.
+
+Prinsip yang sama berlaku pada **residual connections** yang akan Anda jumpai di W7 dan W8: alih-alih mempelajari `H(x)` langsung, blok residual mempelajari `F(x) = H(x) - x`, sehingga output menjadi `F(x) + x`. Penambahan `x` menciptakan jalur langsung bagi gradient dari loss ke layer sebelumnya, tanpa harus melalui transformasi dalam blok. *Cell state* LSTM, residual connections di ResNet, dan skip connections di blok Transformer adalah satu prinsip yang sama: **pembaruan aditif sebagai jalan pintas gradient**. Memahami prinsip ini sekali sudah cukup untuk mengenali bentuknya di W7 dan W8.
 
 > [!NOTE]
 > Untuk vector/matrix `W_h`, ukuran yang relevan adalah **eigenvalue terbesar** (spectral radius). Kalau spectral radius < 1, gradient vanish; kalau > 1, explode. Rumus T-langkah pakai matrix power, bukan skalar power, tetapi prinsipnya sama.
@@ -331,7 +335,20 @@ model:
 
 **"Saya bisa shuffle data time series bebas."** Berbahaya. Untuk forecasting, shuffling antar sequence boleh. Shuffling di dalam sequence atau split data secara acak (bukan temporal) menyebabkan leakage yang akan dibahas di W6.
 
-**Gradient clipping.** RNN/LSTM tanpa gradient clipping sering mengalami exploding gradient. Tambahkan `torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=1.0)` sebelum `optimizer.step()` sebagai default.
+**Gradient clipping.** RNN/LSTM tanpa gradient clipping sering mengalami exploding gradient. Satu hal yang sering disalahpahami: `clip_grad_norm_` tidak memotong setiap gradient secara independen. Fungsi ini menghitung norma global dari seluruh gradien model, lalu menurunkan skalanya secara proporsional jika norma tersebut melewati `max_norm`. Hasilnya: arah relatif antar parameter dipertahankan, hanya besarannya yang disesuaikan.
+
+Tambahkan sebelum `optimizer.step()`:
+
+```python
+torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=1.0)
+optimizer.step()
+```
+
+Mengapa `max_norm=1.0`? Bukan angka yang "benar" - hanya titik awal konservatif yang bisa langsung dipakai. Jika loss masih tidak stabil, naikkan ke 5.0 sebelum mengurangi learning rate. Jika gradient sudah kecil (norma rutin < 0.1), clipping tidak aktif dan tidak berpengaruh sama sekali.
+
+`clip_grad_value_` memotong setiap elemen gradient secara independen ke rentang `[-v, v]` tanpa memperhatikan arah keseluruhan. Perubahan arah yang tidak terduga ini jarang diinginkan; untuk RNN/LSTM, `clip_grad_norm_` hampir selalu lebih tepat.
+
+Pertanyaan diagnosis saat gradient meledak: (1) apakah `clip_grad_norm_` dipanggil sebelum `optimizer.step()`? (2) apakah learning rate terlalu besar? (3) apakah ada nilai ekstrem di data yang belum dinormalisasi?
 
 ---
 

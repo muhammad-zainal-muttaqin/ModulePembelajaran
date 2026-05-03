@@ -17,7 +17,8 @@ export default defineConfig({
       output: {
         manualChunks: {
           react: ["react", "react-dom", "react-router-dom"],
-          markdown: ["react-markdown", "remark-gfm", "rehype-slug", "rehype-autolink-headings", "rehype-raw"],
+          markdown: ["react-markdown", "remark-gfm", "remark-math", "rehype-slug", "rehype-autolink-headings", "rehype-raw", "rehype-katex"],
+          katex: ["katex"],
         },
       },
     },

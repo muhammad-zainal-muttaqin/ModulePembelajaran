@@ -7,7 +7,7 @@ export default function CompetencyGrid() {
       {COMPETENCIES.map((c) => (
         <li key={c.n}>
           <Link
-            to={`/modul/${c.chapter}`}
+            to={`/kompetensi/${c.n}`}
             className="group card-link hover:shadow-card p-5 h-full"
           >
             <div className="flex items-start gap-3">
@@ -19,7 +19,7 @@ export default function CompetencyGrid() {
                   {c.title}
                 </div>
                 <div className="mt-1 text-xs text-ink/70 dark:text-parchment/60 font-mono">
-                  Bab {c.chapter} · Minggu {c.weeks}
+                  {c.weeks}
                 </div>
               </div>
             </div>

@@ -12,6 +12,7 @@ import ProgressPage from "./routes/Progress";
 import ProtocolGenerator from "./routes/tools/ProtocolGenerator";
 import ConfigDiff from "./routes/tools/ConfigDiff";
 import ToolsIndex from "./routes/tools/ToolsIndex";
+import CompetencyDetail from "./routes/CompetencyDetail";
 import NotFound from "./routes/NotFound";
 import { useStore } from "./lib/storage";
 
@@ -39,6 +40,7 @@ export default function App() {
         <Route path="/" element={<Home />} />
         <Route path="/modul" element={<ModuleList />} />
         <Route path="/modul/:id" element={<ModuleReader />} />
+        <Route path="/kompetensi/:id" element={<CompetencyDetail />} />
         <Route path="/rubrik" element={<Rubric />} />
         <Route path="/glosarium" element={<Glossary />} />
         <Route path="/capstone" element={<Capstone />} />
