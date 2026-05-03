@@ -55,13 +55,6 @@ export default function LadderProgress({ interactive = false, compact = false }:
           const chapter = CHAPTERS.find((c) => c.id === chapterId);
           const done = !!weeks[w];
           const sikapKey = chapter?.sikap[0] || "rigor";
-          const accentMap = {
-            curiosity: "bg-curiosity",
-            rigor: "bg-rigor",
-            skepticism: "bg-skepticism",
-            ownership: "bg-ownership",
-          } as const;
-          const accent = accentMap[sikapKey];
 
           const accentLite: Record<Sikap, string> = {
             curiosity: "bg-curiosity/25 border-curiosity/50 text-ink dark:text-parchment",
