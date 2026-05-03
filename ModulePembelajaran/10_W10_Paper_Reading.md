@@ -70,7 +70,7 @@ Perbedaan bukan bakat. Perbedaannya adalah sistem: filter paper, metode membaca,
 
 ### 2.1 Peta Kanal Publikasi ML: Preprint, Workshop, Conference, Journal
 
-Sebelum membaca paper, Anda perlu tahu status publikasinya. Di ML modern, ide sering beredar lebih cepat daripada proses peer-review - baik untuk belajar cepat, tetapi berbahaya jika semua PDF diperlakukan seolah punya otoritas yang sama. Tabel lengkap kanal publikasi (preprint, workshop, conference, journal) beserta kekuatan dan keterbatasan masing-masing tersedia di [Lampiran C.23](14_Lampiran.md#c23-peta-kanal-publikasi-ml).
+Sebelum membaca paper, Anda perlu tahu status publikasinya. Di ML modern, ide sering beredar lebih cepat daripada proses peer-review - baik untuk belajar cepat, tetapi berbahaya jika semua PDF diperlakukan seolah punya otoritas yang sama. Tabel lengkap kanal publikasi (preprint, workshop, conference, journal) beserta kekuatan dan keterbatasan masing-masing tersedia di [Lampiran D.9](14_Lampiran.md#d9-peta-kanal-publikasi-ml).
 
 **arXiv adalah alat akses, bukan sumber otoritas.** Banyak paper penting muncul di arXiv sebelum atau bersamaan dengan versi konferensi/jurnal. Itu sebabnya arXiv sangat berguna: Anda melihat riset saat masih segar. Tetapi tidak ada peer-review di titik unggah, sehingga paper lemah, eksperimen kurang kuat, atau klaim yang terlalu besar juga masuk. Karena itu W10 memakai arXiv sebagai tempat latihan skeptisisme: cepat menemukan ide, lalu lambat dan hati-hati saat menilai bukti.
 

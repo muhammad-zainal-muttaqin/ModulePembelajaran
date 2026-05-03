@@ -490,7 +490,7 @@ Salin checklist ini di bagian atas setiap folder eksperimen baru (`experiments/<
 
 ---
 
-## C. Template Dokumen
+## C. Template dan Panduan Kerja
 
 ### C.1 Template Pre-Registration
 
@@ -882,7 +882,7 @@ Template salin-pakai untuk update rutin ke dosen pembimbing/PI, biasanya dikirim
 
 ---
 
-## C.12 Template Repo Map {#c12-template-repo-map}
+### C.12 Template Repo Map {#c12-template-repo-map}
 
 Salin template ini ke `repo_map.md` di root folder eksperimen Anda setiap kali mengadopsi repo baru.
 
@@ -936,7 +936,7 @@ Salin template ini ke `repo_map.md` di root folder eksperimen Anda setiap kali m
 
 ---
 
-## C.13 Proposal Capstone Satu Halaman {#c13-capstone-proposal-one-pager}
+### C.13 Proposal Capstone Satu Halaman {#c13-capstone-proposal-one-pager}
 
 Template untuk luaran wajib W11. Isi semua bagian sebelum pertahanan framing W12.
 
@@ -984,7 +984,7 @@ Disetujui oleh: _____________  Tanggal: _____________
 
 ---
 
-## C.14 Protokol Ablasi per Modalitas {#c14-per-modalitas-ablation-protocol}
+### C.14 Protokol Ablasi per Modalitas {#c14-per-modalitas-ablation-protocol}
 
 Template untuk W9 Lab 8 dan capstone multimodal. Copy ke `docs/ablation_protocol.md`.
 
@@ -1032,7 +1032,9 @@ Template untuk W9 Lab 8 dan capstone multimodal. Copy ke `docs/ablation_protocol
 
 ---
 
-## C.15 Alat Riset Ringan {#c15-lightweight-research-tools}
+## D. Referensi, Peta, dan Komunikasi
+
+### D.1 Alat Riset Ringan {#d1-alat-riset-ringan}
 
 Alat ringan yang berguna untuk riset sehari-hari, tidak perlu bab penuh.
 
@@ -1093,7 +1095,7 @@ runpodctl remove pod [pod-id]
 
 ---
 
-## C.16 Sembilan Kompetensi - Detail dan Pemetaan Minggu {#c16-sembilan-kompetensi}
+### D.2 Sembilan Kompetensi - Detail dan Pemetaan Minggu {#d2-sembilan-kompetensi}
 
 Daftar berikut menguraikan sembilan kompetensi inti yang dilatih sepanjang bootcamp 11 minggu dan 4 minggu capstone. Pendahuluan §3 membahasnya dalam tiga gelombang naratif; bagian ini menyediakan pemetaan minggu per kompetensi sebagai rujukan saat Anda menyusun portofolio atau menilai progres.
 
@@ -1116,7 +1118,7 @@ Catatan: satu kompetensi umumnya dilatih di beberapa minggu, bukan satu bab tung
 
 ---
 
-## C.17 Big Map Lintas Minggu {#c17-big-map}
+### D.3 Big Map Lintas Minggu {#d3-big-map}
 
 Big Map adalah satu pertanyaan yang dikembalikan setiap minggu: *tensor shape apa yang masuk, shape apa yang keluar, dan keluarga model apa yang secara alami cocok untuk pemetaan itu?* Tabel berikut merangkum baris peta untuk W1-W11.
 
@@ -1136,7 +1138,7 @@ Peta ini bertambah lengkap setiap minggu sehingga deep learning perlahan terliha
 
 ---
 
-## C.18 Kebiasaan Riset per Minggu {#c18-kebiasaan-riset}
+### D.4 Kebiasaan Riset per Minggu {#d4-kebiasaan-riset}
 
 Setiap minggu memperkenalkan satu kebiasaan riset yang tetap dipakai setelahnya. Bootcamp dibuat kumulatif, bukan mulai ulang setiap Senin. Kolom *contoh operasional* memberi gambaran konkret tentang penerapan kebiasaan itu dalam pekerjaan sehari-hari.
 
@@ -1156,7 +1158,7 @@ Setiap minggu memperkenalkan satu kebiasaan riset yang tetap dipakai setelahnya.
 
 ---
 
-## C.19 Kontrak Belajar - Checklist {#c19-kontrak-belajar}
+### D.5 Kontrak Belajar - Checklist {#d5-kontrak-belajar}
 
 Modul ini paling efektif jika Anda mengikuti delapan kesepakatan berikut. Pendahuluan §7 menjelaskan filosofinya dalam paragraf naratif; bagian ini menyediakan checklist yang bisa dicetak atau ditempel di meja kerja.
 
@@ -1171,7 +1173,7 @@ Modul ini paling efektif jika Anda mengikuti delapan kesepakatan berikut. Pendah
 
 ---
 
-## C.20 Indeks Lab Modul + Empat Jalur Komponen Mandiri {#c20-indeks-lab}
+### D.6 Indeks Lab Modul + Empat Jalur Komponen Mandiri {#d6-indeks-lab}
 
 Lab-lab modul memakai basis kode dan dataset yang sama, lalu bertambah kompleks dari minggu ke minggu. Daftar berikut memetakan lab inti, lab breadth (untuk Kontrak Belajar poin 6), dan empat jalur Komponen Mandiri yang dipilih setiap minggu mulai W4.
 
@@ -1208,7 +1210,7 @@ Mulai W4, setiap minggu Anda memilih satu jalur Komponen Mandiri, mengerjakannya
 
 ---
 
-## C.21 Peta Dependensi W1-W11 {#c21-peta-dependensi}
+### D.7 Peta Dependensi W1-W11 {#d7-peta-dependensi}
 
 Modul disusun sebagai urutan linier W1 → W11. Tabel berikut menunjukkan minggu mana yang harus diselesaikan sebelum minggu tertentu. *Selesai* berarti lab utamanya sudah dijalankan dan ide utamanya bisa dijelaskan.
 
@@ -1234,11 +1236,11 @@ Modul disusun sebagai urutan linier W1 → W11. Tabel berikut menunjukkan minggu
 
 ---
 
-## C.22 Komunikasi dengan PI - SQRC, Saluran, Ekspresi Ketidakpastian {#c22-komunikasi-pi}
+### D.8 Komunikasi dengan PI - SQRC, Saluran, Ekspresi Ketidakpastian {#d8-komunikasi-pi}
 
 W4 §3.5 memperkenalkan tiga alat komunikasi yang membedakan asisten mandiri dari yang bergantung. Bagian ini menyimpan detail kerangka dan tabel rujukan. Untuk format update mingguan rutin, gunakan [C.11](#c11-template-update-mingguan-ke-pi).
 
-### C.22.1 Kerangka SQRC untuk Pertanyaan Teknis
+#### D.8.1 Kerangka SQRC untuk Pertanyaan Teknis
 
 Saat butuh masukan PI di luar update rutin, pakai empat langkah **SQRC**: Situasi, Pertanyaan (*Question*), upaya penyelesaian (*Resolution attempt*), permintaan (*Call*).
 
@@ -1253,7 +1255,7 @@ SQRC efektif karena tiga alasan: PI tahu Anda sudah berusaha sendiri (R), sehing
 
 **Contoh SQRC yang buruk:** "Model saya tidak belajar. Ada saran?" (tidak ada S, tidak ada R, C terlalu luas).
 
-### C.22.2 Memilih Saluran Komunikasi
+#### D.8.2 Memilih Saluran Komunikasi
 
 Tidak semua komunikasi pantas lewat saluran yang sama. Matriks berikut membantu Anda memilih.
 
@@ -1267,7 +1269,7 @@ Tidak semua komunikasi pantas lewat saluran yang sama. Matriks berikut membantu 
 
 Aturan praktis: jika butuh jawaban < 1 menit dari PI, pakai chat. Jika butuh pemikiran > 5 menit dari PI, pakai email. Jangan kirim pertanyaan analitis via chat - PI akan merespon singkat dan Anda kehilangan kesempatan mendapat masukan mendalam.
 
-### C.22.3 Mengekspresikan Ketidakpastian secara Profesional
+#### D.8.3 Mengekspresikan Ketidakpastian secara Profesional
 
 Asisten riset pemula sering merasa harus terlihat yakin. Padahal, PI yang baik lebih menghargai kejujuran tentang batas pengetahuan daripada kepercayaan diri yang rapuh. Kalimat-kalimat berikut adalah contoh mengekspresikan ketidakpastian tanpa kehilangan kredibilitas.
 
@@ -1282,7 +1284,7 @@ Intinya: ketidakpastian yang disertai langkah konkret adalah tanda kompetensi. K
 
 ---
 
-### C.23 Peta Kanal Publikasi ML {#c23-peta-kanal-publikasi-ml}
+### D.9 Peta Kanal Publikasi ML {#d9-peta-kanal-publikasi-ml}
 
 Di ML modern, ide sering beredar lebih cepat daripada proses peer-review. Tabel berikut membantu Anda mengenali empat kanal publikasi utama dan cara membacanya dengan cermat.
 
@@ -1295,7 +1297,7 @@ Di ML modern, ide sering beredar lebih cepat daripada proses peer-review. Tabel 
 
 ---
 
-## D. Ringkasan Cepat Empat Sikap Riset
+### D.10 Ringkasan Cepat Empat Sikap Riset
 
 Tabel rujukan saat Anda kehilangan arah.
 
@@ -1320,7 +1322,7 @@ Tabel rujukan saat Anda kehilangan arah.
 - **Panduan Instruktur (pacing, emphasis, grading)?** -> [Panduan Instruktur](15_Panduan_Instruktur.md)
 - **Template laporan capstone?** -> Lampiran §C.2
 - **Memilih framing capstone?** -> [Capstone - Proyek Riset](12_Capstone.md) §2
-- **Peta kanal publikasi ML (preprint/workshop/conference/journal)?** -> Lampiran §C.23
+- **Peta kanal publikasi ML (preprint/workshop/conference/journal)?** -> Lampiran §D.9
 - **Membaca paper dalam tiga putaran?** -> W10 §2.3
 - **Alur paper-to-code?** -> W10 §2.5
 - **Audit temporal leakage?** -> W6 §0.6 + lab_w6_temporal_leakage
@@ -1332,13 +1334,13 @@ Tabel rujukan saat Anda kehilangan arah.
 - **Repo map template?** -> Lampiran §C.12
 - **Verifikasi output LLM?** -> W7 §2.1
 - **Synthesis rule sebelum eksekusi?** -> W7 §2.2
-- **Komunikasi efektif dengan dosen pembimbing (SQRC, saluran, ketidakpastian)?** -> Lampiran §C.22
-- **Sembilan kompetensi inti modul (detail per kompetensi)?** -> Lampiran §C.16
-- **Big Map lintas minggu (tabel tensor I/O)?** -> Lampiran §C.17
-- **Kebiasaan riset per minggu (tabel ringkasan)?** -> Lampiran §C.18
-- **Kontrak Belajar - 8 klausul checklist?** -> Lampiran §C.19
-- **Indeks lengkap lab + 4 jalur Komponen Mandiri?** -> Lampiran §C.20
-- **Peta dependensi W1-W11?** -> Lampiran §C.21
+- **Komunikasi efektif dengan dosen pembimbing (SQRC, saluran, ketidakpastian)?** -> Lampiran §D.8
+- **Sembilan kompetensi inti modul (detail per kompetensi)?** -> Lampiran §D.2
+- **Big Map lintas minggu (tabel tensor I/O)?** -> Lampiran §D.3
+- **Kebiasaan riset per minggu (tabel ringkasan)?** -> Lampiran §D.4
+- **Kontrak Belajar - 8 klausul checklist?** -> Lampiran §D.5
+- **Indeks lengkap lab + 4 jalur Komponen Mandiri?** -> Lampiran §D.6
+- **Peta dependensi W1-W11?** -> Lampiran §D.7
 - **Diagnosis loss curve (decision tree)?** -> W3 §2.5
 - **Smoke test tiga level?** -> W2 §2.3
 - **Output head + loss matching tabel?** -> W1 §2.2
@@ -1355,11 +1357,11 @@ Tabel rujukan saat Anda kehilangan arah.
 - **Strategi modalitas hilang?** -> W9 §2.3
 - **Timeline capstone 4 minggu (W12-W15)?** -> [Capstone - Proyek Riset](12_Capstone.md) §1
 - **Sub-rubrik capstone per fase (W12-W15)?** -> [Rubrik Penilaian](13_Rubrik_Penilaian.md) §5.1
-- **Alat riset ringan (Streamlit/Gradio/RunPod)?** -> Lampiran §C.15
+- **Alat riset ringan (Streamlit/Gradio/RunPod)?** -> Lampiran §D.1
 
 ---
 
-## F. Prasyarat
+## F. Prasyarat {#f-prasyarat}
 
 Bagian ini adalah *primer* singkat untuk mahasiswa yang belum solid pada tiga prasyarat masuk modul. Kerjakan bagian yang relevan sebelum membaca [Prasyarat Modul](00a_Prasyarat.md). Jika sudah solid, lewati.
 
@@ -1547,8 +1549,8 @@ Panduan untuk mahasiswa yang pernah menggunakan modul versi 14 minggu, atau dose
 | Bab 04 Validasi Data | 7 | 06 W6 Representations Temporal Leakage | 6 | +rekap representasi; +contoh konkret temporal leakage; +Lab 6 temporal leakage |
 | Bab 05 Alat AI | 8 | (merge ke 07 W7) | 7 | Dimerge ke W7; alat AI protocol ringkas |
 | Bab 06 Adopsi Repo Riset | 9 | 07 W7 Text Transformers Repo Adoption | 7 | +Text/Transformer section; alat AI + repo adoption merge |
-| Bab 07 Alat Pendukung Ringan | 10 | (Lampiran C.15) | - | Streamlit/Gradio dipindah ke Lampiran C.15 |
-| Bab 08 Platform & Alat Baru | 11 | (note di W4 §2.8) | 4 | RunPod intro dipindah ke W4; detail di C.15 |
+| Bab 07 Alat Pendukung Ringan | 10 | (Lampiran D.1) | - | Streamlit/Gradio dipindah ke Lampiran D.1 |
+| Bab 08 Platform & Alat Baru | 11 | (note di W4 §2.8) | 4 | RunPod intro dipindah ke W4; detail di D.1 |
 | Bab 09 Pengembangan Mandiri | 12 | 10 W10 Paper Reading + 11 W11 Research Framing | 10-11 | Split jadi 2 bab; +paper-to-code; +Input→Middle→Output framing; +framing menu; +literature triage |
 | Bab 10 Capstone 2 minggu | 13-14 | 12 Capstone 4 Minggu | 12-15 | Diperluas jadi 4 minggu; W12 filter/pertahanan framing; W13 tinjauan ulang+iterasi; W14 presentasi final; W15 pengumpulan |
 | (tidak ada) | - | 08 W8 Foundation Models | 8 | Baru: taksonomi modalitas x keluarga model x adaptasi |

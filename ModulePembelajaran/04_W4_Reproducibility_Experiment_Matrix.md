@@ -307,7 +307,7 @@ Setiap hyperparameter dideklarasikan di sini — bukan tersebar di kode Python. 
 
 ### 2.8 Platform: Kapan Pindah ke RunPod
 
-Tetap di laptop atau Colab selama training selesai di bawah 30 menit; pindah ke RunPod ketika satu run sudah melewati ambang itu sambil Anda perlu menjalankan enam run atau lebih untuk replikasi, ketika dataset tidak muat di RAM laptop, atau ketika Anda butuh GPU dengan VRAM lebih dari 8 GB. Alur kerja RunPod dasar yang diperkenalkan minggu ini sederhana: launch pod, SSH masuk, jalankan training, pull checkpoint, lalu matikan pod. Konfigurasi minimal dan cara push/pull checkpoint lewat rsync atau rclone tersedia di [Lampiran C.15](14_Lampiran.md#c15-lightweight-research-tools).
+Tetap di laptop atau Colab selama training selesai di bawah 30 menit; pindah ke RunPod ketika satu run sudah melewati ambang itu sambil Anda perlu menjalankan enam run atau lebih untuk replikasi, ketika dataset tidak muat di RAM laptop, atau ketika Anda butuh GPU dengan VRAM lebih dari 8 GB. Alur kerja RunPod dasar yang diperkenalkan minggu ini sederhana: launch pod, SSH masuk, jalankan training, pull checkpoint, lalu matikan pod. Konfigurasi minimal dan cara push/pull checkpoint lewat rsync atau rclone tersedia di [Lampiran D.1](14_Lampiran.md#d1-alat-riset-ringan).
 
 ![RunPod: Pod Lifecycle + SSH Tunnel - alur kerja cloud GPU untuk training](./figures/fig08a_cloud_workflow.svg)
 
@@ -422,7 +422,7 @@ Template salin-pakai lengkap dengan contoh terisi dan tiga prinsip update yang b
 Di luar update rutin, ada tiga alat yang membentuk kebiasaan komunikasi seorang asisten riset. Pertama, kerangka **SQRC** (Situation, Question, Resolution attempt, Call/permintaan) memandu Anda menulis pertanyaan teknis yang menunjukkan Anda sudah berusaha sebelum meminta bantuan; ini membedakan asisten mandiri dari yang bergantung. Kedua, pemilihan saluran komunikasi mengikuti satu aturan praktis: jika butuh jawaban dalam hitungan menit pakai chat, jika butuh pemikiran lebih dalam pakai email, dan diskusi arah riset selalu lebih efisien tatap muka. Ketiga, ekspresi ketidakpastian profesional - melaporkan hasil dengan keterbatasan yang jujur, menahan generalisasi berlebihan, dan menyertai "saya tidak tahu" dengan langkah konkret berikutnya - adalah tanda kompetensi, bukan kelemahan.
 
 > [!TIP]
-> Tabel SQRC dengan contoh kalimat, matriks lima saluran komunikasi, dan empat pasangan kalimat "kurang tepat vs lebih tepat" untuk ekspresi ketidakpastian tersedia lengkap di [Lampiran C.22](14_Lampiran.md#c22-komunikasi-pi). Baca sekali sebelum email pertama Anda ke PI; rujuk kembali ketika menulis pertanyaan teknis yang sulit.
+> Tabel SQRC dengan contoh kalimat, matriks lima saluran komunikasi, dan empat pasangan kalimat "kurang tepat vs lebih tepat" untuk ekspresi ketidakpastian tersedia lengkap di [Lampiran D.8](14_Lampiran.md#d8-komunikasi-pi). Baca sekali sebelum email pertama Anda ke PI; rujuk kembali ketika menulis pertanyaan teknis yang sulit.
 
 ---
 
@@ -493,7 +493,7 @@ Buka [lab_w4_experiment_tracking.ipynb](https://colab.research.google.com/github
 Konsep minggu ini: matriks eksperimen plus infrastruktur reproduksibilitas. Anda memilih salah satu dari tiga jalur - Implementasi (loss function alternatif lengkap dengan protokol satu halaman), Analisis (membaca tiga paper klasifikasi dan mengekstrak pola rancangan tersirat), atau Desain (menulis protokol lima bagian untuk dataset baru tanpa menjalankannya, dengan justifikasi setiap pilihan). Luaran berupa entri portofolio Pekan 4 di `notebooks/portofolio_mandiri.ipynb` dan presentasi 10 menit di awal Pekan 5.
 
 > [!TIP]
-> Detail tugas per jalur, kriteria penilaian, dan panduan presentasi tersedia di [Lampiran C.20](14_Lampiran.md#c20-indeks-lab) dan [Lampiran C.9](14_Lampiran.md#c9-template-komponen-mandiri).
+> Detail tugas per jalur, kriteria penilaian, dan panduan presentasi tersedia di [Lampiran D.6](14_Lampiran.md#d6-indeks-lab) dan [Lampiran C.9](14_Lampiran.md#c9-template-komponen-mandiri).
 
 ---
 

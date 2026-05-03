@@ -101,7 +101,7 @@ ModulePembelajaran/
 ├── 11_W11_Research_Framing.md                 W11: Input→Middle→Output framing + literature triage
 ├── 12_Capstone.md                             W12-15: Capstone 4 phases (filter/rethink/communicate/submit)
 ├── 13_Rubrik_Penilaian.md                     Rubrik + sub-rubrik 4 fase capstone
-├── 14_Lampiran.md                             Glosarium + A.1 backprop + C.12-C.15 + H
+├── 14_Lampiran.md                             Glosarium + A.1 backprop + C.12-C.14 + D.1-D.10 + H
 ├── 15_Panduan_Instruktur.md                        Pacing 11+4, emphasis per-week
 └── template_repo/                             Skeleton repo riset
 ```

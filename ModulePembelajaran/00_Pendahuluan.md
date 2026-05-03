@@ -72,13 +72,13 @@ Modul ini adalah **bootcamp 11 minggu + capstone 4 minggu** yang disusun sebagai
 
 ![Peta Dependensi Modul: hubungan antar bab dan jalur pembelajaran](./figures/fig00a_module_map.svg)
 
-**Big Map** adalah kerangka berpikir yang mengalir dari W1 sampai W11: setiap minggu menjawab pertanyaan yang sama - *tensor shape apa yang masuk, shape apa yang keluar, dan keluarga model apa yang cocok?* Peta ini bertambah lengkap setiap minggu sehingga deep learning terlihat sebagai satu lanskap, bukan banyak teknik terputus. Tabel rangkuman Big Map ada di [Lampiran C.17](14_Lampiran.md#c17-big-map).
+**Big Map** adalah kerangka berpikir yang mengalir dari W1 sampai W11: setiap minggu menjawab pertanyaan yang sama - *tensor shape apa yang masuk, shape apa yang keluar, dan keluarga model apa yang cocok?* Peta ini bertambah lengkap setiap minggu sehingga deep learning terlihat sebagai satu lanskap, bukan banyak teknik terputus. Tabel rangkuman Big Map ada di [Lampiran D.3](14_Lampiran.md#d3-big-map).
 
 ![Big Map: framework Input → Middle → Output](figures/fig00_big_map.svg)
 
-Dua alur lain berjalan senyap di balik setiap minggu: **Alur Praktik Riset** memperkenalkan satu kebiasaan riset baru per minggu yang tetap dipakai setelahnya (tabel kebiasaan per minggu di [Lampiran C.18](14_Lampiran.md#c18-kebiasaan-riset)); **Representation Choice** mencatat pilihan representasi yang berubah dari minggu ke minggu dan sering menentukan kualitas eksperimen.
+Dua alur lain berjalan senyap di balik setiap minggu: **Alur Praktik Riset** memperkenalkan satu kebiasaan riset baru per minggu yang tetap dipakai setelahnya (tabel kebiasaan per minggu di [Lampiran D.4](14_Lampiran.md#d4-kebiasaan-riset)); **Representation Choice** mencatat pilihan representasi yang berubah dari minggu ke minggu dan sering menentukan kualitas eksperimen.
 
-Lab inti memakai basis kode dan dataset yang sama lalu bertambah kompleks dari W1 sampai W10. Lab breadth (MLP numpy, Transformer-mini, Autoencoder) memenuhi Kontrak Belajar poin breadth. Setiap minggu bergantung pada kebiasaan minggu sebelumnya - hindari melompat. Detail lab, tabel empat jalur Komponen Mandiri, dan peta prasyarat antar minggu ada di [Lampiran C.20-C.21](14_Lampiran.md#c20-indeks-lab).
+Lab inti memakai basis kode dan dataset yang sama lalu bertambah kompleks dari W1 sampai W10. Lab breadth (MLP numpy, Transformer-mini, Autoencoder) memenuhi Kontrak Belajar poin breadth. Setiap minggu bergantung pada kebiasaan minggu sebelumnya - hindari melompat. Detail lab, tabel empat jalur Komponen Mandiri, dan peta prasyarat antar minggu ada di [Lampiran D.6-D.7](14_Lampiran.md#d6-indeks-lab).
 
 ---
 
@@ -93,7 +93,7 @@ Email pembuka tadi tidak berdiri sendiri; ia bergantung pada sembilan kompetensi
 **Gelombang ketiga (W9-W11)** mengarah ke kemandirian riset: penalaran multimodal (strategi fusion, ablation per modalitas, fallback saat modalitas hilang), pembacaan paper terarah, dan perancangan eksperimen lanjutan beserta pre-registration-nya. Bahkan dosen pun mengasah kompetensi terakhir ini sepanjang karier.
 
 > [!TIP]
-> Daftar lengkap sembilan kompetensi dengan deskripsi per kompetensi tersedia di [Lampiran C.16](14_Lampiran.md#c16-sembilan-kompetensi). Tidak perlu khawatir kalau kompetensi gelombang kedua dan ketiga belum terbayang sekarang - modul disusun bertahap, setiap minggu bertumpu pada kebiasaan minggu sebelumnya.
+> Daftar lengkap sembilan kompetensi dengan deskripsi per kompetensi tersedia di [Lampiran D.2](14_Lampiran.md#d2-sembilan-kompetensi). Tidak perlu khawatir kalau kompetensi gelombang kedua dan ketiga belum terbayang sekarang - modul disusun bertahap, setiap minggu bertumpu pada kebiasaan minggu sebelumnya.
 
 ---
 
@@ -124,7 +124,7 @@ Modul ini paling efektif jika tiga komitmen berikut dipegang sepanjang bootcamp.
 **Breadth dan urutan belajar.** Sebelum Capstone, tunjukkan forward pass berjalan dari empat dari lima keluarga arsitektur (MLP, CNN, RNN/LSTM, Transformer, Autoencoder) - ini memastikan Anda lulus sebagai asisten yang bisa mengenali dan memodifikasi keluarga NN yang muncul di paper lintas domain, bukan hanya spesialis CIFAR-10. Modul memperkenalkan ide melalui run konkret terlebih dahulu, baru topangan teori; derivasi berat seperti backprop manual ada di Lampiran A untuk dibaca setelah Anda punya hasil konkret untuk diinterpretasi.
 
 > [!TIP]
-> Delapan klausul Kontrak Belajar dalam bentuk checklist (cocok untuk dicetak dan ditempel) tersedia di [Lampiran C.19](14_Lampiran.md#c19-kontrak-belajar).
+> Delapan klausul Kontrak Belajar dalam bentuk checklist (cocok untuk dicetak dan ditempel) tersedia di [Lampiran D.5](14_Lampiran.md#d5-kontrak-belajar).
 
 > [!WARNING]
 > Empat kebiasaan yang paling sering menghambat kemajuan:

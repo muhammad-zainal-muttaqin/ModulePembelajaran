@@ -25,7 +25,7 @@ ModulePembelajaran/
 ├── 11_W11_Research_Framing.md     Input→Middle→Output framework, framing menu, filter literatur, live demo dataset, workshop kelas (W11)
 ├── 12_Capstone.md                 W12 filter+framing defense / W13 rethink+iterasi / W14 presentasi final / W15 pengumpulan (W12-15)
 ├── 13_Rubrik_Penilaian.md         4-level mastery + sub-rubrik per capstone phase
-├── 14_Lampiran.md                 Glosarium + Lampiran A.1 backprop + C.12-C.15 + H migration
+├── 14_Lampiran.md                 Glosarium + Lampiran A.1 backprop + C.12-C.14 + D.1-D.10 + H migration
 ├── 15_Panduan_Instruktur.md            Pacing 11+4 + emphasis per-week + skenario kelas
 └── template_repo/                 Skeleton repo riset
 ```
@@ -46,7 +46,7 @@ ModulePembelajaran/
 **Perubahan struktural besar:**
 - **(27 April 2026)** Modul lama 10-bab format-topik → 11-minggu bootcamp (W1-W11) + 3-minggu capstone (W12-W14), format weekly
 - **(30 April 2026)** Overhaul W11: framework 5-Whys diganti Input→Middle→Output + framing menu + literature triage + live demo dataset placeholder; file capstone di-rename `12_Capstone_3_Minggu.md` → `12_Capstone.md`; capstone diperpanjang 3 → 4 minggu (W12-W15); W15 = submission week tanpa sesi tatap muka
-- **(2 Mei 2026 - Sesi 1)** Integrasi 4 gap konten di W5 (gradient clipping, LSTM-vanishing bridge, residual principle) + W7 (pretraining rationale, §1.3 attention primer baru); pemetaan K1-K9 diperbarui di website (`chapters.ts`), `CompetencyGrid.tsx`, dan `14_Lampiran.md §C.16` mengikuti struktur 11+4 minggu; 2 gambar baru (`fig06a_attention_sdp.png`, `fig08c_temporal_alignment.png`) ditambahkan ke `figures/`; halaman gate kompetensi `/kompetensi/:id` ditambahkan ke website
+- **(2 Mei 2026 - Sesi 1)** Integrasi 4 gap konten di W5 (gradient clipping, LSTM-vanishing bridge, residual principle) + W7 (pretraining rationale, §1.3 attention primer baru); pemetaan K1-K9 diperbarui di website (`chapters.ts`), `CompetencyGrid.tsx`, dan `14_Lampiran.md §D.2` mengikuti struktur 11+4 minggu; 2 gambar baru (`fig06a_attention_sdp.png`, `fig08c_temporal_alignment.png`) ditambahkan ke `figures/`; halaman gate kompetensi `/kompetensi/:id` ditambahkan ke website
 - **(2 Mei 2026 - Sesi 2)** Revisi `00_Pendahuluan.md` atas permintaan Bu Fatma: prasyarat dipindahkan ke `00a_Prasyarat.md` (file baru), Target Hasil diganti format 3-pilar (Ketajaman Teknis, Diagnosis & Kemandirian, Perancangan Riset), teks "60-70%" dihapus dari semua file mahasiswa, Ritme Sesi dipindahkan ke `15_Panduan_Instruktur.md`, Pitfalls diintegrasikan ke Kontrak Belajar; website pipeline diperbarui untuk `00a`
 - File-file lama diarsipkan ke `ModulePembelajaran/_archive/` (sengaja disimpan untuk referensi tabel migrasi di Lampiran §H, tidak dirender website)
 - Mapping bab lama → bab baru terdokumentasi di `14_Lampiran.md` Lampiran H
