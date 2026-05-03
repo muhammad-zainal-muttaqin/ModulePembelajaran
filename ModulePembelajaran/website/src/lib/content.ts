@@ -59,7 +59,10 @@ function stripTopNav(md: string): string {
 // Rewrite inter-module links: `01_W1_Tabular_Output_Heads.md` -> `#/modul/01`.
 function rewriteLinks(md: string): string {
   return md.replace(/\((\d{2}[a-z]?)_[^)]+?\.md(#[^)]+)?\)/g, (_m, num: string, anchor: string = "") => {
-    return `(#/modul/${num}${anchor})`;
+    if (anchor) {
+      return `(#/modul/${num}?anchor=${anchor.slice(1)})`;
+    }
+    return `(#/modul/${num})`;
   });
 }
 

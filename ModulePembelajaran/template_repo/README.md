@@ -10,7 +10,12 @@ template_repo/
 ├── pyproject.toml              # dependencies + metadata proyek
 ├── configs/
 │   ├── baseline.yaml           # SimpleCNN + CrossEntropy, baseline
-│   └── focal_freeze.yaml       # FocalLoss + freeze layer, varian
+│   ├── focal_freeze.yaml       # FocalLoss + freeze layer, varian
+│   ├── mlp_mnist.yaml          # MLP pada MNIST (tabular/flatten)
+│   ├── mlp_tabular.yaml        # MLP pada dataset tabular sintetis (W1)
+│   ├── lstm_timeseries.yaml    # LSTM pada deret waktu (W5)
+│   ├── transformer_mini.yaml   # TransformerMini pada sequence pendek (W7)
+│   └── ae_cifar.yaml           # Autoencoder pada CIFAR-10 (breadth)
 ├── src/
 │   ├── __init__.py
 │   ├── data.py                 # dataset + transforms
@@ -21,17 +26,28 @@ template_repo/
 ├── experiments/                # output per run (tidak di-commit isinya)
 │   └── .gitkeep
 ├── notebooks/
-│   ├── lab_w2_cnn_baseline.ipynb
-│   ├── lab_w3_loss_ablation.ipynb
-│   ├── lab_w4_experiment_tracking.ipynb
-│   ├── lab_w6_eda_leakage.ipynb
-│   ├── lab_w7_llm_assisted.ipynb
-│   ├── lab_w7_repo_adoption.ipynb
-│   ├── lab_w12_demo_app.ipynb
-│   ├── lab_w8_remote_training.ipynb
-│   └── lab_w10_paper_to_code.ipynb
+│   ├── lab_w1_tabular_heads.ipynb        # W1: task formulation + mismatch
+│   ├── lab_w1_mlp_numpy.ipynb            # W1: MLP from-scratch (breadth)
+│   ├── lab_w2_cnn_baseline.ipynb         # W2: smoke test + baseline CNN
+│   ├── lab_w3_loss_ablation.ipynb        # W3: loss ablation + freeze
+│   ├── lab_w4_experiment_tracking.ipynb  # W4: reproducibility + logging
+│   ├── lab_w5_lstm_sequence.ipynb        # W5: RNN vs LSTM gradient flow
+│   ├── lab_w6_eda_leakage.ipynb          # W6: EDA + leakage audit
+│   ├── lab_w6_feature_representation.ipynb  # W6: 3 strategi representasi
+│   ├── lab_w6_temporal_leakage.ipynb     # W6: temporal leakage demo
+│   ├── lab_w7_llm_assisted.ipynb         # W7: LLM-assisted dev loop
+│   ├── lab_w7_repo_adoption.ipynb        # W7: repo adoption walkthrough
+│   ├── lab_w7_text_classification.ipynb  # W7: BERT IndoNLU fine-tune
+│   ├── lab_w7_transformer_mini.ipynb     # W7: attention from-scratch (breadth)
+│   ├── lab_w8_remote_training.ipynb      # W8: RunPod remote training
+│   ├── lab_w9_multimodal_ablation.ipynb  # W9: per-modality ablation
+│   ├── lab_w10_paper_to_code.ipynb       # W10: paper-to-code
+│   ├── lab_w12_demo_app.ipynb            # W12: demo app
+│   ├── lab_breadth_autoencoder.ipynb     # breadth: AE + t-SNE (opsional)
+│   └── portofolio_mandiri.ipynb          # portofolio log W4-W10
 └── docs/
-    └── experiment_log_template.md
+    ├── experiment_log_template.md
+    └── prereg_template.md
 ```
 
 ## Setup (dengan `bun`-free Python; `uv` direkomendasikan)

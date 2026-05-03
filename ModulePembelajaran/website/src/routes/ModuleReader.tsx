@@ -1,4 +1,4 @@
-import { Link, useParams, useLocation } from "react-router-dom";
+import { Link, useParams, useLocation, useSearchParams } from "react-router-dom";
 import { useEffect, useMemo } from "react";
 import { CHAPTERS, chapterById, nextChapter, prevChapter, SIKAP_META } from "../lib/chapters";
 import { extractHeadings, getChapterMarkdown, readingMinutes } from "../lib/content";
@@ -9,6 +9,7 @@ import ReflectionPrompt from "../components/ReflectionPrompt";
 export default function ModuleReader() {
   const { id = "00" } = useParams<{ id: string }>();
   const location = useLocation();
+  const [searchParams] = useSearchParams();
   const chapter = chapterById(id);
   const markdown = useMemo(() => getChapterMarkdown(id), [id]);
   const headings = useMemo(() => extractHeadings(markdown), [markdown]);
@@ -17,15 +18,16 @@ export default function ModuleReader() {
   const mins = useMemo(() => readingMinutes(markdown), [markdown]);
 
   useEffect(() => {
-    if (location.hash) {
+    const anchorId = searchParams.get("anchor") || location.hash?.slice(1);
+    if (anchorId) {
       setTimeout(() => {
-        const el = document.getElementById(location.hash.slice(1));
+        const el = document.getElementById(anchorId);
         if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
       }, 300);
     } else {
       window.scrollTo({ top: 0, behavior: "instant" as ScrollBehavior });
     }
-  }, [id, location.hash]);
+  }, [id, searchParams, location.hash]);
 
   if (!chapter) {
     return (

@@ -35,7 +35,7 @@
 
 Istilah teknis ML/DL sebagian besar berasal dari Bahasa Inggris. Glosarium ini mendokumentasikan istilah baku yang dipakai modul. **Aturan utama: istilah teknis ML/DL dipertahankan dalam Bahasa Inggris** (loss, checkpoint, baseline, fine-tune, freeze, layer, confusion matrix, hidden states, dll.). Padanan Indonesia hanya dicantumkan jika benar-benar lazim dan natural dipakai (akurasi, presisi, regularisasi, augmentasi). Hindari padanan kaku seperti "matriks kebingungan", "fungsi kerugian", "garis dasar", "jaringan saraf tiruan" - di prosa modul tetap pakai istilah dalam bahasa Inggris.
 
-**Daftar isi glosarium:** A.1 Arsitektur & Model | A.2 Pelatihan | A.3 Data | A.4 Evaluasi | A.5 Eksperimen & Reproduksibilitas | A.6 Perangkat | A.7 Sikap Riset | A.8 Aktivasi & Normalisasi | A.9 Inisialisasi, Optimizer & Scheduler | A.10 Loss Function | A.11 Indeks Pemakaian Pertama per Bab | A.12 Worked Examples Istilah Prioritas
+**Daftar isi glosarium:** A.1 Arsitektur & Model | A.2 Pelatihan | A.3 Data | A.4 Evaluasi | A.5 Eksperimen & Reproduksibilitas | A.6 Perangkat | A.7 Sikap Riset | A.8 Aktivasi & Normalisasi | A.9 Inisialisasi, Optimizer & Scheduler | A.10 Loss Function | A.11 Indeks Pemakaian Pertama per Bab | A.12 Worked Examples Istilah Prioritas | A.13 Backpropagation Derivasi Manual
 
 ### A.1 Arsitektur & Model
 
@@ -400,6 +400,48 @@ Bagian ini melengkapi definisi glosarium sebelumnya dengan satu contoh angka kon
 **Transformer** - Arsitektur berbasis self-attention yang tidak menggunakan recurrence. Input sequence diproses secara paralel: setiap token attend ke semua token lain secara simultan. Kunci: multi-head attention + positional encoding (karena tanpa recurrence model tidak tahu urutan).
 
 **leakage** - Informasi dari test set (atau masa depan) yang "bocor" ke training. Contoh temporal: fit StandardScaler pada semua data sebelum split → scaler sudah "tahu" statistik test set. Konsekuensi: metrik validasi terlalu optimis; model gagal di deployment.
+
+---
+
+### A.13 Backpropagation Derivasi Manual
+
+*Catatan: untuk pemahaman praktis, lihat W2 §2.2. Bagian ini menyediakan derivasi lengkap 7-langkah untuk MLP 2-layer dengan MSE loss + sigmoid.*
+
+![Backpropagation 7 Langkah: MLP 2-Layer dengan MSE Loss - chain rule dari loss mundur ke setiap parameter](./figures/fig14a_backprop_7steps.svg)
+
+### Setup
+
+MLP 2-layer: `d_in = 2`, `d_h = 2`, `d_out = 1`. Target `y`, prediksi `y_hat`. Aktivasi: sigmoid `σ(z) = 1/(1+e^{-z})`.
+
+Forward pass:
+```
+z1 = W1 x + b1       # (d_h,)
+h  = σ(z1)           # (d_h,)  
+z2 = W2 h + b2       # (d_out,)
+y_hat = z2           # untuk regresi; klasifikasi tambahkan sigmoid di sini
+L = ½(y_hat - y)²    # MSE loss
+```
+
+### 7 Langkah Chain Rule
+
+1. `∂L/∂z2 = y_hat - y`  <- turunan MSE terhadap output pre-activation
+2. `∂L/∂W2 = (∂L/∂z2) · h^T`  <- shape `(d_out, d_h)`
+3. `∂L/∂b2 = ∂L/∂z2`
+4. `∂L/∂h = W2^T · (∂L/∂z2)`  <- rambat ke hidden state
+5. `∂L/∂z1 = (∂L/∂h) ⊙ σ'(z1)`  <- terapkan turunan aktivasi; untuk ReLU: `σ'(z) = 1[z>0]`
+6. `∂L/∂W1 = (∂L/∂z1) · x^T`  <- shape `(d_h, d_in)`
+7. `∂L/∂b1 = ∂L/∂z1`
+
+### Update Rule (SGD)
+
+```python
+W1 -= lr * dW1;  b1 -= lr * db1
+W2 -= lr * dW2;  b2 -= lr * db2
+```
+
+Pola ini berulang di setiap layer. Untuk layer lebih dalam, cukup perpanjang langkah 4-6 ke layer sebelumnya. Inilah yang dikomputasi oleh `loss.backward()` dalam PyTorch secara otomatis.
+
+Lab 1c (`lab_w1_mlp_numpy.ipynb`) mengimplementasikan ketujuh langkah ini dalam numpy dengan finite-difference gradient check untuk verifikasi.
 
 ---
 
@@ -840,240 +882,6 @@ Template salin-pakai untuk update rutin ke dosen pembimbing/PI, biasanya dikirim
 
 ---
 
-## D. Ringkasan Cepat Empat Sikap Riset
-
-Tabel rujukan saat Anda kehilangan arah.
-
-
-| Sikap      | Pertanyaan yang menjaga sikap                       | Tanda sikap ini hadir                                                            |
-| ---------- | --------------------------------------------------- | -------------------------------------------------------------------------------- |
-| Curiosity  | "Mengapa model berperilaku begini?"                 | Anda menghabiskan waktu mempertanyakan *yang aneh*, bukan hanya mengejar metrik. |
-| Rigor      | "Bisakah orang lain mereproduksi ini?"              | Seed, config, git hash, pre-reg.                                                 |
-| Skepticism | "Apa penjelasan paling membosankan dari hasil ini?" | Audit leakage, baseline-kuat, error analysis.                                    |
-| Ownership  | "Siapa yang akan menjawab jika saya tidak?"         | Dokumen lengkap, verifikasi LLM, repositori yang bisa dijalankan.                             |
-
-
----
-
-## F. Prasyarat
-
-Bagian ini adalah *primer* singkat untuk mahasiswa yang belum solid pada tiga prasyarat masuk modul. Kerjakan bagian yang relevan sebelum membaca [Prasyarat Modul](00a_Prasyarat.md). Jika sudah solid, lewati.
-
-### F.1 Python Tingkat Menengah
-
-Anda perlu nyaman dengan: fungsi (termasuk `*args`, `**kwargs`, default parameter), kelas dan pewarisan, modul dan impor relatif, virtual environment (`venv` atau `conda`), dan membaca traceback.
-
-**Uji mandiri.** Bisa Anda menulis kelas `Dataset` sederhana dengan `__len__` dan `__getitem__`, lalu mengimpornya dari modul lain di folder yang sama tanpa error `ModuleNotFoundError`? Jika tidak, kerjakan satu tutorial Python OOP (Python docs atau Real Python) sebelum melanjutkan.
-
-**Sumber rujukan.**
-- Python Tutorial resmi - bagian *Classes* dan *Modules* (docs.python.org/3/tutorial).
-- Real Python - "Object-Oriented Programming (OOP) in Python 3".
-- `venv` quickstart: `python -m venv .venv && source .venv/bin/activate` (Linux/Mac) atau `.venv\Scripts\activate` (Windows).
-
-### F.2 Kalkulus Dasar dan Aljabar Linear
-
-Anda perlu memahami: turunan fungsi satu variabel, aturan rantai (*chain rule*), gradien (turunan parsial), dan perkalian matriks.
-
-**Uji mandiri.** Tanpa membuka referensi, bisa Anda turunkan `d/dx [x² + 3x]` dan jelaskan mengapa gradien menunjuk ke arah kenaikan paling curam? Bisa Anda mengalikan matriks 2x3 dengan matriks 3x2 secara manual? Jika tidak, kerjakan dua modul pertama Khan Academy Calculus dan Linear Algebra.
-
-**Sumber rujukan.**
-- Khan Academy - *Derivatives* (khanacademy.org/math/calculus-1).
-- Khan Academy - *Vectors and spaces*, *Matrix transformations* (khanacademy.org/math/linear-algebra).
-- 3Blue1Brown - "Essence of Calculus" dan "Essence of Linear Algebra" (YouTube). Visual, 15-20 menit per video.
-
-### F.3 Model ML Pertama
-
-Anda perlu pernah melatih setidaknya satu model klasifikasi dengan scikit-learn: `fit`, `predict`, `score`. Anda perlu tahu apa itu train/test split dan mengapa diperlukan.
-
-**Uji mandiri.** Bisa Anda melatih `LogisticRegression` pada Iris dataset dan mencetak akurasi test set dalam 15 baris kode? Jika tidak, kerjakan tutorial scikit-learn Getting Started sebelum membaca [Prasyarat Modul](00a_Prasyarat.md).
-
-**Sumber rujukan.**
-- scikit-learn - *Getting Started* (scikit-learn.org/stable/getting_started.html).
-- Kaggle - *Intro to Machine Learning* (gratis, 3 jam, hands-on Jupyter).
-
----
-
-## G. Self-Checklist Mingguan
-
-Dua belas tabel di bawah adalah alat bantu bagi Anda untuk memeriksa pemahaman sendiri setiap akhir minggu. Centang "Sudah" hanya jika benar-benar bisa melakukannya *tanpa melihat catatan*. "Mulai" berarti bisa dengan bantuan atau referensi. Jika ada "Belum" di minggu sebelumnya, selesaikan sebelum lanjut ke minggu berikutnya - konsep di modul ini disusun bertahap.
-
-### Minggu 1 - Orientasi (Bab 00)
-
-| Saya harus bisa... | Belum | Mulai | Sudah |
-|---|---|---|---|
-| Menyebutkan 9 kompetensi dan kaitannya dengan 4 sikap riset | | | |
-| Menjelaskan struktur 8-section yang dipakai semua bab | | | |
-| Menyebutkan 7 klausul Kontrak Belajar, terutama Breadth Check | | | |
-| Memilih jalur capstone awal (masih tentatif) | | | |
-| Menjalankan `python -m src.train --config configs/baseline.yaml --dry-run` tanpa error | | | |
-
-### Minggu 2 - Fondasi Neural Network (02_W2_Images_CNN_Smoke_Test)
-
-| Saya harus bisa... | Belum | Mulai | Sudah |
-|---|---|---|---|
-| Menjelaskan tensor I/O sebagai pasangan shape -> makna untuk MLP, CNN, RNN, Transformer | | | |
-| Menjabarkan backprop MLP 7 langkah secara manual (chain rule, tidak lihat catatan) | | | |
-| Membedakan 4 keluarga arsitektur dan asumsi data masing-masing | | | |
-| Menjelaskan kapan BatchNorm vs LayerNorm vs GroupNorm | | | |
-| Menggambar kurva ReLU, GELU, SiLU dan menyebutkan perbedaan utama | | | |
-| Lab 1c: forward + backward MLP numpy selesai; gradient check lolos | | | |
-
-### W3 - Loss, Optimizer & Evaluasi
-
-| Saya harus bisa... | Belum | Mulai | Sudah |
-|---|---|---|---|
-| Memilih loss function untuk minimal 3 jenis tugas berbeda | | | |
-| Menjelaskan perbedaan Adam vs AdamW dan kapan weight decay penting | | | |
-| Menyebutkan minimal 4 metrik evaluasi dan kapan masing-masing relevan | | | |
-| Membedakan 3 strategi representasi fitur (engineered / extracted / learned) | | | |
-| Mendiagnosis loss curve: menyebutkan 5 pola dan tindakan untuk masing-masing | | | |
-| Menjelaskan mengapa "overfit one batch" adalah alat diagnosis utama | | | |
-| Lab 1: 4 checklist selesai (training loop, loss plot, confusion matrix, sample inspection) | | | |
-
-### W4 - Reproducibility & Experiment Matrix
-
-| Saya harus bisa... | Belum | Mulai | Sudah |
-|---|---|---|---|
-| Menjawab 5 pertanyaan sebelum menyentuh kode untuk instruksi baru | | | |
-| Menulis protokol eksperimen satu halaman (variabel, baseline, hipotesis, metrik, waktu) | | | |
-| Merumuskan hipotesis yang dapat dipalsukan (bukan "loss X lebih baik") | | | |
-| Menyusun update mingguan ke PI dengan format: progress, kendala, rencana, pertanyaan ([Lampiran §C.11](#c11-template-update-mingguan-ke-pi)) | | | |
-| Memakai kerangka SQRC saat mengajukan pertanyaan teknis ke PI | | | |
-| Lab 2: FocalLoss + freeze + ablation selesai; `protocol.md` ditulis sebelum run | | | |
-
-### W5 - Sequences: RNN & LSTM
-
-| Saya harus bisa... | Belum | Mulai | Sudah |
-|---|---|---|---|
-| Mengunci seed di 4 sumber non-determinisme (random, numpy, torch, CUDA) | | | |
-| Memindahkan semua hyperparameter ke file YAML config | | | |
-| Menyimpan checkpoint dengan config + seed + git hash + metrics | | | |
-| Menstruktur folder eksperimen dengan konvensi penamaan yang konsisten | | | |
-| Menjelaskan perbedaan ablation 1-variabel vs multi-faktor | | | |
-| Menulis commit message dengan konvensi riset (`exp:`, `fix:`, `docs:`) | | | |
-| Lab 3: 6 run selesai; checkpoint bisa di-resume; TensorBoard log rapi | | | |
-| Lab 3b (breadth): RNN vs LSTM gradient flow selesai | | | |
-
-### W6 - Representations & Temporal Leakage
-
-| Saya harus bisa... | Belum | Mulai | Sudah |
-|---|---|---|---|
-| Melakukan EDA 3-lapis dengan pertanyaan pemandu (bukan daftar formalitas) | | | |
-| Membedakan 5 jenis data leakage dan menyebutkan tes cepat masing-masing | | | |
-| Mengaudit kualitas label: distribusi, konsistensi, sampel salah | | | |
-| Memverifikasi pipeline preprocessing tidak memakai statistik test set | | | |
-| Menyebutkan 4 jenis dataset bias (selection, measurement, label, historical) | | | |
-| Menjelaskan mengapa hasil negatif yang terdokumentasi adalah kewajiban etis | | | |
-| Lab 4: EDA + leakage audit + label inspection selesai; minimal 1 isu data ditemukan | | | |
-
-### W7 - Text, Transformers & Repo Adoption
-
-| Saya harus bisa... | Belum | Mulai | Sudah |
-|---|---|---|---|
-| Memakai LLM untuk 3 jenis tugas berbeda (boilerplate, debugging, eksplorasi) | | | |
-| Memverifikasi output LLM: baca baris per baris, uji kasus batas, uji minimal | | | |
-| Menjelaskan kapan LLM cocok dipakai dan kapan tidak | | | |
-| Mencatat interaksi LLM di LLM Interaction Log (C.3) | | | |
-| Lab 5: LLM-assisted feature selesai; log verifikasi terisi | | | |
-| Lab 5b (domain teks): klasifikasi sentimen IndoNLU selesai (opsional) | | | |
-
-### W8 - Foundation Models
-
-| Saya harus bisa... | Belum | Mulai | Sudah |
-|---|---|---|---|
-| Memetakan entry point -> model -> loss -> config repo yang belum dikenal dalam 30 menit | | | |
-| Mengatasi error setup umum (dependency, path, CUDA version) | | | |
-| Melakukan modifikasi seminimal mungkin pada repo orang lain | | | |
-| Menulis kategori error analysis (minimal 3 kategori) | | | |
-| Me-review kode rekan: menemukan magic number, hardcoded path, missing docs | | | |
-| Lab 6: satu PR/issue ke repo publik; error analysis selesai | | | |
-| Lab 6b (breadth): Transformer-mini dari nol selesai | | | |
-
-### W9 - Multimodal Reasoning
-
-| Saya harus bisa... | Belum | Mulai | Sudah |
-|---|---|---|---|
-| Membuat demo Streamlit/Gradio yang bisa diakses lewat browser | | | |
-| Menampilkan confusion matrix dan kasus gagal, bukan hanya akurasi | | | |
-| Menjelaskan apa yang bisa disimpulkan pengguna dari alat yang Anda buat | | | |
-| Lab 7: demo interaktif online; link bisa diakses | | | |
-| Lab 7b (breadth): Autoencoder + denoising AE + t-SNE selesai | | | |
-
-### W10 - Paper Reading & Implementation
-
-| Saya harus bisa... | Belum | Mulai | Sudah |
-|---|---|---|---|
-| Mengikuti 5 langkah adopsi alat baru (quickstart -> replikasi -> adaptasi -> integrasi -> catatan) | | | |
-| Menyewa GPU di RunPod, SSH, training, tarik checkpoint, matikan pod | | | |
-| Mengevaluasi alat baru dengan matriks 5 dimensi (dokumentasi, repro, ekosistem, biaya, komunitas) | | | |
-| Mengelola biaya GPU cloud: memilih spot vs on-demand, memantau tagihan | | | |
-| Lab 8: training di RunPod selesai; pod dimatikan; tagihan < $5 | | | |
-
-### W11 - Research Framing
-
-| Saya harus bisa... | Belum | Mulai | Sudah |
-|---|---|---|---|
-| Menghasilkan 3-5 framing kandidat dari satu dataset | | | |
-| Menentukan entitas, input, output, Middle, dan gap untuk tiap framing | | | |
-| Menjalankan filter literatur cepat untuk setiap framing kandidat | | | |
-| Memilah framing menjadi baru, sebagian terjawab, atau jenuh | | | |
-| Menyiapkan framing utama, framing cadangan, dan alasan framing yang dihapus untuk W12 | | | |
-
-### Cara Memakai Checklist Ini
-
-1. **Akhir setiap minggu**, buka tabel minggu yang baru selesai.
-2. **Centang dengan jujur.** "Sudah" = bisa dilakukan tanpa bantuan. "Mulai" = bisa dengan catatan atau bantuan LLM. "Belum" = belum bisa.
-3. **Jika ada "Belum",** selesaikan poin itu sebelum mengerjakan Komponen Mandiri minggu berikutnya. Poin "Belum" yang menumpuk adalah sinyal bahwa Anda perlu bicara dengan dosen.
-4. **Di akhir semester,** tabel-tabel ini adalah ringkasan kompetensi Anda. Bawa ke sesi evaluasi akhir sebagai bukti pendukung.
-
-Checklist ini melengkapi - bukan menggantikan - rubrik penilaian di [13_Rubrik_Penilaian.md](13_Rubrik_Penilaian.md). Rubrik dipakai dosen untuk menilai; checklist dipakai Anda untuk memantau diri sendiri.
-
----
-
----
-
-## A.1 Backpropagation Derivasi Manual
-
-*Catatan: untuk pemahaman praktis, lihat W2 §2.2. Bagian ini menyediakan derivasi lengkap 7-langkah untuk MLP 2-layer dengan MSE loss + sigmoid.*
-
-![Backpropagation 7 Langkah: MLP 2-Layer dengan MSE Loss - chain rule dari loss mundur ke setiap parameter](./figures/fig14a_backprop_7steps.svg)
-
-### Setup
-
-MLP 2-layer: `d_in = 2`, `d_h = 2`, `d_out = 1`. Target `y`, prediksi `y_hat`. Aktivasi: sigmoid `σ(z) = 1/(1+e^{-z})`.
-
-Forward pass:
-```
-z1 = W1 x + b1       # (d_h,)
-h  = σ(z1)           # (d_h,)  
-z2 = W2 h + b2       # (d_out,)
-y_hat = z2           # untuk regresi; klasifikasi tambahkan sigmoid di sini
-L = ½(y_hat - y)²    # MSE loss
-```
-
-### 7 Langkah Chain Rule
-
-1. `∂L/∂z2 = y_hat - y`  <- turunan MSE terhadap output pre-activation
-2. `∂L/∂W2 = (∂L/∂z2) · h^T`  <- shape `(d_out, d_h)`
-3. `∂L/∂b2 = ∂L/∂z2`
-4. `∂L/∂h = W2^T · (∂L/∂z2)`  <- rambat ke hidden state
-5. `∂L/∂z1 = (∂L/∂h) ⊙ σ'(z1)`  <- terapkan turunan aktivasi; untuk ReLU: `σ'(z) = 1[z>0]`
-6. `∂L/∂W1 = (∂L/∂z1) · x^T`  <- shape `(d_h, d_in)`
-7. `∂L/∂b1 = ∂L/∂z1`
-
-### Update Rule (SGD)
-
-```python
-W1 -= lr * dW1;  b1 -= lr * db1
-W2 -= lr * dW2;  b2 -= lr * db2
-```
-
-Pola ini berulang di setiap layer. Untuk layer lebih dalam, cukup perpanjang langkah 4-6 ke layer sebelumnya. Inilah yang dikomputasi oleh `loss.backward()` dalam PyTorch secara otomatis.
-
-Lab 1c (`lab_w1_mlp_numpy.ipynb`) mengimplementasikan ketujuh langkah ini dalam numpy dengan finite-difference gradient check untuk verifikasi.
-
----
-
 ## C.12 Template Repo Map {#c12-template-repo-map}
 
 Salin template ini ke `repo_map.md` di root folder eksperimen Anda setiap kali mengadopsi repo baru.
@@ -1487,6 +1295,21 @@ Di ML modern, ide sering beredar lebih cepat daripada proses peer-review. Tabel 
 
 ---
 
+## D. Ringkasan Cepat Empat Sikap Riset
+
+Tabel rujukan saat Anda kehilangan arah.
+
+
+| Sikap      | Pertanyaan yang menjaga sikap                       | Tanda sikap ini hadir                                                            |
+| ---------- | --------------------------------------------------- | -------------------------------------------------------------------------------- |
+| Curiosity  | "Mengapa model berperilaku begini?"                 | Anda menghabiskan waktu mempertanyakan *yang aneh*, bukan hanya mengejar metrik. |
+| Rigor      | "Bisakah orang lain mereproduksi ini?"              | Seed, config, git hash, pre-reg.                                                 |
+| Skepticism | "Apa penjelasan paling membosankan dari hasil ini?" | Audit leakage, baseline-kuat, error analysis.                                    |
+| Ownership  | "Siapa yang akan menjawab jika saya tidak?"         | Dokumen lengkap, verifikasi LLM, repositori yang bisa dijalankan.                             |
+
+
+---
+
 ## E. Indeks Cepat - Di Mana Mencari Apa {#e-indeks-cepat}
 
 - **Prasyarat Python/Kalkulus belum solid?** -> Lampiran §F
@@ -1500,7 +1323,7 @@ Di ML modern, ide sering beredar lebih cepat daripada proses peer-review. Tabel 
 - **Peta kanal publikasi ML (preprint/workshop/conference/journal)?** -> Lampiran §C.23
 - **Membaca paper dalam tiga putaran?** -> W10 §2.3
 - **Alur paper-to-code?** -> W10 §2.5
-- **Audit temporal leakage?** -> W6 §0.6 + Lab 6
+- **Audit temporal leakage?** -> W6 §0.6 + lab_w6_temporal_leakage
 - **Temporal leakage konkret?** -> W6 §0.6
 - **Etika data dan bias (fairness, negative results)?** -> W6 §2.6
 - **Struktur config YAML?** -> W4 §2.7
@@ -1519,7 +1342,7 @@ Di ML modern, ide sering beredar lebih cepat daripada proses peer-review. Tabel 
 - **Diagnosis loss curve (decision tree)?** -> W3 §2.5
 - **Smoke test tiga level?** -> W2 §2.3
 - **Output head + loss matching tabel?** -> W1 §2.2
-- **Backpropagation derivasi manual?** -> Lampiran §A.1
+- **Backpropagation derivasi manual?** -> Lampiran §I
 - **Template entri portofolio mandiri?** -> Lampiran §C.6
 - **Panduan presentasi Komponen Mandiri?** -> Lampiran §C.7
 - **Template weekly experiment log ringan?** -> Lampiran §C.10
@@ -1536,6 +1359,180 @@ Di ML modern, ide sering beredar lebih cepat daripada proses peer-review. Tabel 
 
 ---
 
+## F. Prasyarat
+
+Bagian ini adalah *primer* singkat untuk mahasiswa yang belum solid pada tiga prasyarat masuk modul. Kerjakan bagian yang relevan sebelum membaca [Prasyarat Modul](00a_Prasyarat.md). Jika sudah solid, lewati.
+
+### F.1 Python Tingkat Menengah
+
+Anda perlu nyaman dengan: fungsi (termasuk `*args`, `**kwargs`, default parameter), kelas dan pewarisan, modul dan impor relatif, virtual environment (`venv` atau `conda`), dan membaca traceback.
+
+**Uji mandiri.** Bisa Anda menulis kelas `Dataset` sederhana dengan `__len__` dan `__getitem__`, lalu mengimpornya dari modul lain di folder yang sama tanpa error `ModuleNotFoundError`? Jika tidak, kerjakan satu tutorial Python OOP (Python docs atau Real Python) sebelum melanjutkan.
+
+**Sumber rujukan.**
+- Python Tutorial resmi - bagian *Classes* dan *Modules* (docs.python.org/3/tutorial).
+- Real Python - "Object-Oriented Programming (OOP) in Python 3".
+- `venv` quickstart: `python -m venv .venv && source .venv/bin/activate` (Linux/Mac) atau `.venv\Scripts\activate` (Windows).
+
+### F.2 Kalkulus Dasar dan Aljabar Linear
+
+Anda perlu memahami: turunan fungsi satu variabel, aturan rantai (*chain rule*), gradien (turunan parsial), dan perkalian matriks.
+
+**Uji mandiri.** Tanpa membuka referensi, bisa Anda turunkan `d/dx [x² + 3x]` dan jelaskan mengapa gradien menunjuk ke arah kenaikan paling curam? Bisa Anda mengalikan matriks 2x3 dengan matriks 3x2 secara manual? Jika tidak, kerjakan dua modul pertama Khan Academy Calculus dan Linear Algebra.
+
+**Sumber rujukan.**
+- Khan Academy - *Derivatives* (khanacademy.org/math/calculus-1).
+- Khan Academy - *Vectors and spaces*, *Matrix transformations* (khanacademy.org/math/linear-algebra).
+- 3Blue1Brown - "Essence of Calculus" dan "Essence of Linear Algebra" (YouTube). Visual, 15-20 menit per video.
+
+### F.3 Model ML Pertama
+
+Anda perlu pernah melatih setidaknya satu model klasifikasi dengan scikit-learn: `fit`, `predict`, `score`. Anda perlu tahu apa itu train/test split dan mengapa diperlukan.
+
+**Uji mandiri.** Bisa Anda melatih `LogisticRegression` pada Iris dataset dan mencetak akurasi test set dalam 15 baris kode? Jika tidak, kerjakan tutorial scikit-learn Getting Started sebelum membaca [Prasyarat Modul](00a_Prasyarat.md).
+
+**Sumber rujukan.**
+- scikit-learn - *Getting Started* (scikit-learn.org/stable/getting_started.html).
+- Kaggle - *Intro to Machine Learning* (gratis, 3 jam, hands-on Jupyter).
+
+---
+
+## G. Self-Checklist Mingguan
+
+Dua belas tabel di bawah adalah alat bantu bagi Anda untuk memeriksa pemahaman sendiri setiap akhir minggu. Centang "Sudah" hanya jika benar-benar bisa melakukannya *tanpa melihat catatan*. "Mulai" berarti bisa dengan bantuan atau referensi. Jika ada "Belum" di minggu sebelumnya, selesaikan sebelum lanjut ke minggu berikutnya - konsep di modul ini disusun bertahap.
+
+### Minggu 1 - Orientasi (Bab 00)
+
+| Saya harus bisa... | Belum | Mulai | Sudah |
+|---|---|---|---|
+| Menyebutkan 9 kompetensi dan kaitannya dengan 4 sikap riset | | | |
+| Menjelaskan struktur 8-section yang dipakai semua bab | | | |
+| Menyebutkan 7 klausul Kontrak Belajar, terutama Breadth Check | | | |
+| Memilih jalur capstone awal (masih tentatif) | | | |
+| Menjalankan `python -m src.train --config configs/baseline.yaml --dry-run` tanpa error | | | |
+
+### Minggu 2 - Fondasi Neural Network (02_W2_Images_CNN_Smoke_Test)
+
+| Saya harus bisa... | Belum | Mulai | Sudah |
+|---|---|---|---|
+| Menjelaskan tensor I/O sebagai pasangan shape -> makna untuk MLP, CNN, RNN, Transformer | | | |
+| Menjabarkan backprop MLP 7 langkah secara manual (chain rule, tidak lihat catatan) | | | |
+| Membedakan 4 keluarga arsitektur dan asumsi data masing-masing | | | |
+| Menjelaskan kapan BatchNorm vs LayerNorm vs GroupNorm | | | |
+| Menggambar kurva ReLU, GELU, SiLU dan menyebutkan perbedaan utama | | | |
+| Lab 1c: forward + backward MLP numpy selesai; gradient check lolos | | | |
+
+### W3 - Loss, Optimizer & Evaluasi
+
+| Saya harus bisa... | Belum | Mulai | Sudah |
+|---|---|---|---|
+| Memilih loss function untuk minimal 3 jenis tugas berbeda | | | |
+| Menjelaskan perbedaan Adam vs AdamW dan kapan weight decay penting | | | |
+| Menyebutkan minimal 4 metrik evaluasi dan kapan masing-masing relevan | | | |
+| Membedakan 3 strategi representasi fitur (engineered / extracted / learned) | | | |
+| Mendiagnosis loss curve: menyebutkan 5 pola dan tindakan untuk masing-masing | | | |
+| Menjelaskan mengapa "overfit one batch" adalah alat diagnosis utama | | | |
+| Lab 1: 4 checklist selesai (training loop, loss plot, confusion matrix, sample inspection) | | | |
+
+### W4 - Reproducibility & Experiment Matrix
+
+| Saya harus bisa... | Belum | Mulai | Sudah |
+|---|---|---|---|
+| Menjawab 5 pertanyaan sebelum menyentuh kode untuk instruksi baru | | | |
+| Menulis protokol eksperimen satu halaman (variabel, baseline, hipotesis, metrik, waktu) | | | |
+| Merumuskan hipotesis yang dapat dipalsukan (bukan "loss X lebih baik") | | | |
+| Menyusun update mingguan ke PI dengan format: progress, kendala, rencana, pertanyaan ([Lampiran §C.11](#c11-template-update-mingguan-ke-pi)) | | | |
+| Memakai kerangka SQRC saat mengajukan pertanyaan teknis ke PI | | | |
+| Lab 2: FocalLoss + freeze + ablation selesai; `protocol.md` ditulis sebelum run | | | |
+
+### W5 - Sequences: RNN & LSTM
+
+| Saya harus bisa... | Belum | Mulai | Sudah |
+|---|---|---|---|
+| Menjelaskan perbedaan RNN vanilla vs LSTM (cell state, forget/input/output gate) | | | |
+| Menjelaskan mengapa vanishing gradient terjadi di RNN dan bagaimana LSTM mengatasinya | | | |
+| Membaca plot gradient flow dan mengidentifikasi vanishing/exploding gradient | | | |
+| Menyebutkan peran gradient clipping dan menjalankan `clip_grad_norm_` di training loop | | | |
+| Membandingkan LSTM vs GRU: parameter count, training speed, kapan memilih mana | | | |
+| Menyebutkan prinsip residual connection dan kaitannya dengan LSTM cell state | | | |
+| Lab W5: RNN vs LSTM gradient flow selesai; plot gradient norm + val MAE | | | |
+
+### W6 - Representations & Temporal Leakage
+
+| Saya harus bisa... | Belum | Mulai | Sudah |
+|---|---|---|---|
+| Melakukan EDA 3-lapis dengan pertanyaan pemandu (bukan daftar formalitas) | | | |
+| Membedakan 5 jenis data leakage dan menyebutkan tes cepat masing-masing | | | |
+| Mengaudit kualitas label: distribusi, konsistensi, sampel salah | | | |
+| Memverifikasi pipeline preprocessing tidak memakai statistik test set | | | |
+| Menyebutkan 4 jenis dataset bias (selection, measurement, label, historical) | | | |
+| Menjelaskan mengapa hasil negatif yang terdokumentasi adalah kewajiban etis | | | |
+| Lab W6: EDA + leakage audit + label inspection selesai; minimal 1 isu data ditemukan | | | |
+
+### W7 - Text, Transformers & Repo Adoption
+
+| Saya harus bisa... | Belum | Mulai | Sudah |
+|---|---|---|---|
+| Memakai LLM untuk 3 jenis tugas berbeda (boilerplate, debugging, eksplorasi) | | | |
+| Memverifikasi output LLM: baca baris per baris, uji kasus batas, uji minimal | | | |
+| Menjelaskan kapan LLM cocok dipakai dan kapan tidak | | | |
+| Mencatat interaksi LLM di LLM Interaction Log (C.3) | | | |
+| Lab W7 (LLM-assisted): LLM-assisted feature selesai; log verifikasi terisi | | | |
+| Lab W7 (teks): klasifikasi sentimen IndoNLU selesai (opsional) | | | |
+
+### W8 - Foundation Models
+
+| Saya harus bisa... | Belum | Mulai | Sudah |
+|---|---|---|---|
+| Memetakan entry point -> model -> loss -> config repo yang belum dikenal dalam 30 menit | | | |
+| Mengatasi error setup umum (dependency, path, CUDA version) | | | |
+| Melakukan modifikasi seminimal mungkin pada repo orang lain | | | |
+| Menulis kategori error analysis (minimal 3 kategori) | | | |
+| Me-review kode rekan: menemukan magic number, hardcoded path, missing docs | | | |
+| Lab W8: training remote di RunPod selesai; pod dimatikan | | | |
+| Breadth: Transformer-mini dari nol selesai (kapan saja) | | | |
+
+### W9 - Multimodal Reasoning
+
+| Saya harus bisa... | Belum | Mulai | Sudah |
+|---|---|---|---|
+| Membuat demo Streamlit/Gradio yang bisa diakses lewat browser | | | |
+| Menampilkan confusion matrix dan kasus gagal, bukan hanya akurasi | | | |
+| Menjelaskan apa yang bisa disimpulkan pengguna dari alat yang Anda buat | | | |
+| Lab W9: ablation per modalitas selesai; tabel 7-kondisi terisi | | | |
+| Breadth: Autoencoder + denoising AE + t-SNE selesai (kapan saja) | | | |
+
+### W10 - Paper Reading & Implementation
+
+| Saya harus bisa... | Belum | Mulai | Sudah |
+|---|---|---|---|
+| Membaca paper dalam tiga putaran (pertama: ide; kedua: klaim+metode; ketiga: reproduksi) | | | |
+| Membuat catatan paper dengan template C.5 (TL;DR, metode, bukti, pertanyaan, koneksi) | | | |
+| Menjalankan alur paper-to-code 6 langkah (abstract → I/O → loss → boilerplate → ablation kecil → bersihkan) | | | |
+| Mengidentifikasi ablation kecil yang menguji klaim spesifik paper | | | |
+| Lab W10: paper-to-code selesai; ablation kecil berhasil | | | |
+
+### W11 - Research Framing
+
+| Saya harus bisa... | Belum | Mulai | Sudah |
+|---|---|---|---|
+| Menghasilkan 3-5 framing kandidat dari satu dataset | | | |
+| Menentukan entitas, input, output, Middle, dan gap untuk tiap framing | | | |
+| Menjalankan filter literatur cepat untuk setiap framing kandidat | | | |
+| Memilah framing menjadi baru, sebagian terjawab, atau jenuh | | | |
+| Menyiapkan framing utama, framing cadangan, dan alasan framing yang dihapus untuk W12 | | | |
+
+### Cara Memakai Checklist Ini
+
+1. **Akhir setiap minggu**, buka tabel minggu yang baru selesai.
+2. **Centang dengan jujur.** "Sudah" = bisa dilakukan tanpa bantuan. "Mulai" = bisa dengan catatan atau bantuan LLM. "Belum" = belum bisa.
+3. **Jika ada "Belum",** selesaikan poin itu sebelum mengerjakan Komponen Mandiri minggu berikutnya. Poin "Belum" yang menumpuk adalah sinyal bahwa Anda perlu bicara dengan dosen.
+4. **Di akhir semester,** tabel-tabel ini adalah ringkasan kompetensi Anda. Bawa ke sesi evaluasi akhir sebagai bukti pendukung.
+
+Checklist ini melengkapi - bukan menggantikan - rubrik penilaian di [13_Rubrik_Penilaian.md](13_Rubrik_Penilaian.md). Rubrik dipakai dosen untuk menilai; checklist dipakai Anda untuk memantau diri sendiri.
+
+---
+
 ## H. Migrasi 14 -> 11+4 Minggu {#h-migrasi}
 
 Panduan untuk mahasiswa yang pernah menggunakan modul versi 14 minggu, atau dosen yang mengadaptasi.
@@ -1543,7 +1540,7 @@ Panduan untuk mahasiswa yang pernah menggunakan modul versi 14 minggu, atau dose
 | Bab Lama | Minggu Lama | Bab Baru | Minggu Baru | Perubahan utama |
 |---|---|---|---|---|
 | Bab 00 Pendahuluan | 1 | Bab 00 Pendahuluan | 1 | +Target Hasil, +alur lintas minggu, +ritme sesi |
-| Bab 01a Fondasi NN | 2 | 02 W2 Images CNN Smoke Test | 2 | Backprop dipindah ke Lampiran A.1; +bagian Smoke Test |
+| Bab 01a Fondasi NN | 2 | 02 W2 Images CNN Smoke Test | 2 | Backprop dipindah ke Lampiran A.13; +bagian Smoke Test |
 | Bab 01b Loss/Opt/Eval | 3 | 03 W3 Loss Optimizer Evaluasi | 3 | +Galeri 5 loss curves opener (example-first) |
 | Bab 02 Ide ke Eksperimen | 4 | 04 W4 Reproducibility | 4 | +bagian Matriks Eksperimen; +Infrastruktur Reproduksibilitas; Bab 03 lama diinline |
 | Bab 03 Eksperimen Reproduksibel | 5-6 | 05 W5 Sequences RNN LSTM | 5 | Konten lama dipindah ke W4; konten sequence baru; Lab 3b jadi wajib |

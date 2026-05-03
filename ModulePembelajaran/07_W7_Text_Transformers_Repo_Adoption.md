@@ -319,6 +319,9 @@ Perbedaan kecepatan tujuh kali lipat bukan karena bakat. Perbedaannya adalah *st
 
 ## D2. Konsep Inti
 
+> [!NOTE]
+> Di Pendalaman ini, semua config file (mis. `configs/cifar10.yaml`, `configs/focal.yaml`, `configs/vit.yaml`) dan package (`vision_baseline`) adalah contoh dari **repo eksternal fiktif**, bukan dari `template_repo/`. Contoh-contoh ini menunjukkan cara membaca dan mengadopsi kode orang lain; jangan dicari di `template_repo/configs/`.
+
 ### 2.1 Urutan Membaca: Dari Luar ke Dalam
 
 Ketika membuka repo baru, tahan godaan untuk langsung menjalankan. Baca dulu, dengan urutan yang dipikirkan:

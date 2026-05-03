@@ -57,11 +57,11 @@ ModulePembelajaran/
 - **W1** (`01_W1_Tabular_Output_Heads.md`): tabular MLP, output heads + loss matching, observation before conclusion
 - **W2** (`02_W2_Images_CNN_Smoke_Test.md`): tensor citra, CNN, ritual three-level smoke test
 - **W3** (`03_W3_Loss_Optimizer_Evaluasi.md`): example-first galeri 5 run → loss/optimizer/evaluasi theory; representasi fitur 3 strategi
-- **W4** (`04_W4_Reproducibility_Experiment_Matrix.md`): experiment matrix + YAML/seed/checkpoint; §3.5 Komunikasi Efektif (SQRC, matriks saluran); §2.6 Etika Data dan Bias; Git workflow eksperimental
+- **W4** (`04_W4_Reproducibility_Experiment_Matrix.md`): experiment matrix + YAML/seed/checkpoint; §3.5 Komunikasi Efektif (SQRC, matriks saluran); §2.6 Ketika Hipotesis Tidak Terkonfirmasi; Git workflow eksperimental
 - **W5** (`05_W5_Sequences_RNN_LSTM.md`): RNN vs LSTM, gradient flow, Lab 3b mandatory; **§1.5.2**: bridge sentence LSTM cell state → vanishing gradient + residual connection principle; **§4**: gradient clipping mechanism diperluas (norma global, mengapa 1.0, clip_grad_norm_ vs clip_grad_value_)
 - **W6** (`06_W6_Representations_Temporal_Leakage.md`): representasi recap + temporal leakage demo (delta dramatic 0.92 → 0.63 di §0.6); §2.6.3 negative results sebagai kewajiban etis; Lab 6c peer code review
 - **W7** (`07_W7_Text_Transformers_Repo_Adoption.md`): text + Transformers + AI tools + repo adoption (file dual-section: Part 1 ringkas + Part 2 "Pendalaman" deep dive D1-D7); **§1.1**: 2 paragraf baru mengapa pretraining efektif (transfer learning hierarchy); **§1.3 BARU**: cara kerja attention (QKV formula, kode Python, Transformer block, multi-head, positional encoding, freeze vs fine-tune); §1.3 lama → §1.4, §1.4 lama → §1.5
-- **W8** (`08_W8_Foundation_Models.md`): taxonomy modality×family×adaptation, model card literacy, §2.1.1 matriks evaluasi tool
+- **W8** (`08_W8_Foundation_Models.md`): taxonomy modality×family×adaptation, model card literacy (§2.3), pohon keputusan adaptasi (§2.4)
 - **W9** (`09_W9_Multimodal_Reasoning.md`): fusion strategies, per-modality ablation, missing modality, peta keluarga generatif
 - **W10** (`10_W10_Paper_Reading.md`): 3-pass paper reading + paper-to-code workflow; templates A-E (termasuk LSTM/Transformer dan Autoencoder breadth)
 - **W11** (`11_W11_Research_Framing.md`): framework Input→Middle→Output (3 pertanyaan: entitas/output/input, peta Middle+gap, validasi gap); framing menu (4-6 framing kandidat); literature triage loop; placeholder live demo dataset (Bu Fatma fasilitasi); workshop 3 sesi; deliverable: dokumen dekomposisi + tabel triage + daftar pendek framing untuk W12
@@ -292,7 +292,7 @@ Hindari konstruksi bertingkat khas English ("there is one X that Y, which Z, so 
 
 - Inline code di dalam bold: `**\`Conv2d(...)`**, bukan ``` **Conv2d(...)**` `` (backtick di luar bold).
 - Checklist pakai `- [ ]` (GitHub task list), bukan bullet polos.
-- Navigasi modul pakai `<details><summary>📂 Navigasi Modul (klik untuk buka)</summary>...</details>` (konsisten di semua 16 file modul aktif).
+- Navigasi modul pakai `<details><summary>📂 Navigasi Modul (klik untuk buka)</summary>...</details>` (konsisten di semua 17 file modul aktif).
 - Tabel boleh tanpa padding alignment, tetapi header-separator wajib ada (`| --- |`).
 - File `.md` wajib diakhiri dengan satu newline.
 
@@ -314,7 +314,7 @@ Modul juga di-render di website (`website/src/components/MarkdownRenderer.tsx`) 
 
 ## Website (`website/`)
 
-SPA React + Vite yang me-render 16 bab modul sebagai hash-router app. Deploy via GitHub Pages (branch `gh-pages`).
+SPA React + Vite yang me-render 17 bab modul sebagai hash-router app. Deploy via GitHub Pages (branch `gh-pages`).
 
 ### Commands
 
@@ -329,7 +329,7 @@ npm run lint     # TypeScript type check
 ### Pipeline Konten
 
 `npm run sync` menjalankan `scripts/sync-content.mjs` yang:
-1. Menyalin 16 file `.md` dari `ModulePembelajaran/` → `website/src/content/chapters/`
+1. Menyalin 17 file `.md` dari `ModulePembelajaran/` → `website/src/content/chapters/`
 2. Menyalin 6 config YAML dari `template_repo/configs/` → `website/src/content/configs/`
 3. Mem-parse tabel glosarium di `14_Lampiran.md` → `website/src/content/glossary.json`
 4. Menyalin figures dari `ModulePembelajaran/figures/` → `website/public/figures/`

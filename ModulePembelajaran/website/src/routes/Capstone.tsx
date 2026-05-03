@@ -3,7 +3,7 @@ import { getChapterMarkdown } from "../lib/content";
 import MarkdownRenderer from "../components/MarkdownRenderer";
 
 export default function Capstone() {
-  const markdown = useMemo(() => getChapterMarkdown("10"), []);
+  const markdown = useMemo(() => getChapterMarkdown("12"), []);
 
   return (
     <div className="page-narrow">
