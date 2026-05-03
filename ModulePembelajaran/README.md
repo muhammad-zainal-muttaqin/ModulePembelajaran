@@ -110,7 +110,7 @@ ModulePembelajaran/
 
 ## Untuk Dosen Pengampu
 
-Baca `15_Panduan_Instruktur.md` untuk panduan operasional lengkap: filosofi modul, pacing 11+4 minggu, emphasis per-bab, cara membaca rubrik, cara menilai portofolio, dan skenario kelas yang umum. Rubrik evaluasi ada di `13_Rubrik_Penilaian.md`. Tabel migrasi dari modul 14-minggu lama tersedia di `14_Lampiran.md` §H.
+Baca [15_Panduan_Instruktur.md](15_Panduan_Instruktur.md) untuk panduan operasional lengkap: filosofi modul, pacing 11+4 minggu, emphasis per-bab, cara membaca rubrik, cara menilai portofolio, dan skenario kelas yang umum. Rubrik evaluasi ada di [13_Rubrik_Penilaian.md](13_Rubrik_Penilaian.md). Tabel migrasi dari modul 14-minggu lama tersedia di [14_Lampiran.md](14_Lampiran.md) §H.
 
 ---
 

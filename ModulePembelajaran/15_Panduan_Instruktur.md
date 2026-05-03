@@ -232,7 +232,7 @@ Konten di luar `<details>` adalah **konten inti** - wajib untuk semua mahasiswa.
   - W15: tidak ada sesi kelas. Tenggat pengumpulan: laporan final (6-8 halaman) + repo bertag `v1.0` + demo berjalan dari lingkungan bersih.
 - **Pitfall:** Tinjauan ulang yang tidak berubah - Eksperimen 2 identik dengan yang direncanakan sejak awal, tidak dipengaruhi hasil Eksperimen 1. Tangkap ini di W13. Pitfall lain: laporan ditulis dari nol di W15. Tegakkan penulisan paralel sejak W13.
 - **Refleksi:** Tidak ada refleksi terstruktur di capstone. Gantikan dengan sesi "refleksi akhir" 15 menit per mahasiswa setelah W14: apa yang berhasil, apa yang gagal, apa yang akan dilakukan berbeda.
-- **Kaitan rubrik:** Semua kompetensi dinilai sumatif berdasarkan artefak capstone (lihat §5.1 sub-rubrik 4 fase di `13_Rubrik_Penilaian.md`).
+- **Kaitan rubrik:** Semua kompetensi dinilai sumatif berdasarkan artefak capstone (lihat §5.1 sub-rubrik 4 fase di [13_Rubrik_Penilaian.md](13_Rubrik_Penilaian.md)).
 - **Waktu:** 15-20 jam per mahasiswa per minggu (4 minggu = 60-80 jam).
 
 ---

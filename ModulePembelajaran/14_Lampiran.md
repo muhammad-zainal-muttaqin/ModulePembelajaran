@@ -1342,7 +1342,7 @@ Tabel rujukan saat Anda kehilangan arah.
 - **Diagnosis loss curve (decision tree)?** -> W3 §2.5
 - **Smoke test tiga level?** -> W2 §2.3
 - **Output head + loss matching tabel?** -> W1 §2.2
-- **Backpropagation derivasi manual?** -> Lampiran §I
+- **Backpropagation derivasi manual?** -> Lampiran §A.13
 - **Template entri portofolio mandiri?** -> Lampiran §C.6
 - **Panduan presentasi Komponen Mandiri?** -> Lampiran §C.7
 - **Template weekly experiment log ringan?** -> Lampiran §C.10
