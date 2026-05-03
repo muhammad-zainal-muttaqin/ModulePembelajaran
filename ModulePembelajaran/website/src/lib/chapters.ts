@@ -1,4 +1,4 @@
-// Metadata 16 bab week-based. Konten aktual dari src/content/chapters/*.md (di-import raw).
+// Metadata 17 bab week-based. Konten aktual dari src/content/chapters/*.md (di-import raw).
 
 export type Sikap = "curiosity" | "rigor" | "skepticism" | "ownership";
 
@@ -40,7 +40,7 @@ export const CHAPTERS: ChapterMeta[] = [
   {
     id: "01",
     number: 1,
-    title: "W1 - Tabular & Output Heads",
+    title: "W1 - Tabular Foundations & Output Heads",
     subtitle: "MLP sebagai shape transformer, output head + loss matching",
     weeks: "1",
     weekNumbers: [1],
@@ -139,7 +139,7 @@ export const CHAPTERS: ChapterMeta[] = [
   {
     id: "10",
     number: 10,
-    title: "W10 - Paper Reading & Implementation",
+    title: "W10 - Paper Reading & Implementasi Paper",
     subtitle: "3-pass paper reading, paper-to-code workflow",
     weeks: "10",
     weekNumbers: [10],
@@ -161,7 +161,7 @@ export const CHAPTERS: ChapterMeta[] = [
   {
     id: "12",
     number: 12,
-    title: "Capstone 4 Minggu",
+    title: "Capstone - Proyek Riset",
     subtitle: "Filter+defense, rethink, final talks, pengumpulan",
     weeks: "12-15",
     weekNumbers: [12, 13, 14, 15],
@@ -221,6 +221,7 @@ export const COMPETENCIES: CompetencyMeta[] = [
   { n: 7, title: "Membuat alat pendukung riset ringan",    weeks: "W12–W15",              chapters: ["12"] },
   { n: 8, title: "Mengadopsi platform dan tool baru",      weeks: "W8, Capstone",         chapters: ["08","12"] },
   { n: 9, title: "Berkembang mandiri",                     weeks: "W10, W11, Capstone",   chapters: ["10","11","12"] },
+  { n: 10, title: "Eksplorasi Mandiri & Komunikasi",       weeks: "W4–W11",                chapters: ["04","05","06","07","08","09","10","11"] },
 ];
 
 export const SIKAP_META: Record<Sikap, { label: string; color: string; tagline: string; essence: string }> = {

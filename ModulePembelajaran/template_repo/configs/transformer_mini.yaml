@@ -12,8 +12,8 @@ data:
   root: ./data
   vocab_size: 1000
   max_len: 64
-  num_train: 4000
-  num_val: 500
+  n_train: 4000
+  n_val: 500
   num_classes: 3
   batch_size: 32
   num_workers: 2

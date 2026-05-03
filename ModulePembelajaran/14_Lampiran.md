@@ -4,6 +4,7 @@
 | # | Modul | Minggu |
 |---|-------|--------|
 | 00 | [Pendahuluan](00_Pendahuluan.md) | 1 |
+| 00a | [Prasyarat Modul](00a_Prasyarat.md) | – |
 | 01 | [W1 - Tabular & Output Heads](01_W1_Tabular_Output_Heads.md) | 1 |
 | 02 | [W2 - Images, CNN & Smoke Test](02_W2_Images_CNN_Smoke_Test.md) | 2 |
 | 03 | [W3 - Loss, Optimizer & Evaluasi](03_W3_Loss_Optimizer_Evaluasi.md) | 3 |
@@ -330,7 +331,7 @@ Tabel ini menunjukkan di mana istilah Tingkat-1 **pertama kali muncul** dalam ur
 | batch norm | W2 §2.4 | [A.8](#a8-aktivasi--normalisasi) |
 | augmentation | W2 §2.4 | [A.3 Data](#a3-data) |
 | seed | W4 §2.1 | [A.5](#a5-eksperimen--reproduksibilitas) |
-| checkpoint | W4 §2.2 | [A.5](#a5-eksperimen--reproduksibilitas) |
+| checkpoint | W4 §2.7 | [A.5](#a5-eksperimen--reproduksibilitas) |
 | accuracy / precision / recall | W3 §2.4 | [A.4 Evaluasi](#a4-evaluasi) |
 | ablation | W3 §2.5 | [A.5](#a5-eksperimen--reproduksibilitas) |
 | momentum / weight decay | W3 §2.3 | [A.9](#a9-inisialisasi-optimizer--scheduler) |
@@ -856,7 +857,7 @@ Tabel rujukan saat Anda kehilangan arah.
 
 ## F. Prasyarat
 
-Bagian ini adalah *primer* singkat untuk mahasiswa yang belum solid pada tiga prasyarat masuk modul. Kerjakan bagian yang relevan sebelum membaca Bab 01a. Jika sudah solid, lewati.
+Bagian ini adalah *primer* singkat untuk mahasiswa yang belum solid pada tiga prasyarat masuk modul. Kerjakan bagian yang relevan sebelum membaca [Prasyarat Modul](00a_Prasyarat.md). Jika sudah solid, lewati.
 
 ### F.1 Python Tingkat Menengah
 
@@ -884,7 +885,7 @@ Anda perlu memahami: turunan fungsi satu variabel, aturan rantai (*chain rule*),
 
 Anda perlu pernah melatih setidaknya satu model klasifikasi dengan scikit-learn: `fit`, `predict`, `score`. Anda perlu tahu apa itu train/test split dan mengapa diperlukan.
 
-**Uji mandiri.** Bisa Anda melatih `LogisticRegression` pada Iris dataset dan mencetak akurasi test set dalam 15 baris kode? Jika tidak, kerjakan tutorial scikit-learn Getting Started sebelum Bab 01a.
+**Uji mandiri.** Bisa Anda melatih `LogisticRegression` pada Iris dataset dan mencetak akurasi test set dalam 15 baris kode? Jika tidak, kerjakan tutorial scikit-learn Getting Started sebelum membaca [Prasyarat Modul](00a_Prasyarat.md).
 
 **Sumber rujukan.**
 - scikit-learn - *Getting Started* (scikit-learn.org/stable/getting_started.html).
@@ -906,7 +907,7 @@ Dua belas tabel di bawah adalah alat bantu bagi Anda untuk memeriksa pemahaman s
 | Memilih jalur capstone awal (masih tentatif) | | | |
 | Menjalankan `python -m src.train --config configs/baseline.yaml --dry-run` tanpa error | | | |
 
-### Minggu 2 - Fondasi Neural Network (Bab 01a)
+### Minggu 2 - Fondasi Neural Network (02_W2_Images_CNN_Smoke_Test)
 
 | Saya harus bisa... | Belum | Mulai | Sudah |
 |---|---|---|---|
@@ -1497,13 +1498,13 @@ Di ML modern, ide sering beredar lebih cepat daripada proses peer-review. Tabel 
 - **Template laporan capstone?** -> Lampiran §C.2
 - **Memilih framing capstone?** -> [Capstone - Proyek Riset](12_Capstone.md) §2
 - **Peta kanal publikasi ML (preprint/workshop/conference/journal)?** -> Lampiran §C.23
-- **Membaca paper dalam tiga putaran?** -> W10 §2.2
-- **Alur paper-to-code?** -> W10 §2.3
+- **Membaca paper dalam tiga putaran?** -> W10 §2.3
+- **Alur paper-to-code?** -> W10 §2.5
 - **Audit temporal leakage?** -> W6 §0.6 + Lab 6
 - **Temporal leakage konkret?** -> W6 §0.6
 - **Etika data dan bias (fairness, negative results)?** -> W6 §2.6
 - **Struktur config YAML?** -> W4 §2.7
-- **Alur kerja Git untuk riset (commit convention, branching)?** -> W4 §2.7 + Bab 03 lama §2.10
+- **Alur kerja Git untuk riset (commit convention, branching)?** -> W4 §2.7
 - **Adopsi repo eksternal?** -> W7 §3
 - **Repo map template?** -> Lampiran §C.12
 - **Verifikasi output LLM?** -> W7 §2.1

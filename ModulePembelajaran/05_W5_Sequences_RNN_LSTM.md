@@ -4,6 +4,7 @@
 | # | Modul | Minggu |
 |---|-------|--------|
 | 00 | [Pendahuluan](00_Pendahuluan.md) | 1 |
+| 00a | [Prasyarat Modul](00a_Prasyarat.md) | – |
 | 01 | [W1 - Tabular & Output Heads](01_W1_Tabular_Output_Heads.md) | 1 |
 | 02 | [W2 - Images, CNN & Smoke Test](02_W2_Images_CNN_Smoke_Test.md) | 2 |
 | 03 | [W3 - Loss, Optimizer & Evaluasi](03_W3_Loss_Optimizer_Evaluasi.md) | 3 |
@@ -364,7 +365,7 @@ Buka [lab_w5_lstm_sequence.ipynb](https://colab.research.google.com/github/muham
 2. Latih RNN vanilla vs LSTM pada `seq_len=50`, plot val MAE comparison.
 3. Ulangi pada `seq_len=200`, amati divergensi performa.
 4. Plot gradient norm per timestep untuk keduanya; simpan gambar ke `experiments/lab3b/`.
-5. Tulis pernyataan justifikasi arsitektur menggunakan template §2.5.
+5. Tulis pernyataan justifikasi arsitektur menggunakan template §2.6.
 6. Coba GRU sebagai alternatif ketiga; bandingkan training time vs LSTM.
 
 **Checklist:**

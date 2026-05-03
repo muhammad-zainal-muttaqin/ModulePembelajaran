@@ -34,6 +34,7 @@ const CONFIGS = [
   ["template_repo/configs/baseline.yaml", "baseline.yaml"],
   ["template_repo/configs/focal_freeze.yaml", "focal_freeze.yaml"],
   ["template_repo/configs/mlp_mnist.yaml", "mlp_mnist.yaml"],
+  ["template_repo/configs/mlp_tabular.yaml", "mlp_tabular.yaml"],
   ["template_repo/configs/lstm_timeseries.yaml", "lstm_timeseries.yaml"],
   ["template_repo/configs/transformer_mini.yaml", "transformer_mini.yaml"],
   ["template_repo/configs/ae_cifar.yaml", "ae_cifar.yaml"],
@@ -81,8 +82,11 @@ function parseGlossary(md) {
       if (inTable) {
         if (cells.every((c) => /^-+$/.test(c))) continue;
         if (cells.length >= 2 && cells[0] && cells[1] && !/^-+$/.test(cells[0])) {
-          const [id, en, note] = cells;
-          entries.push({ id, en, note: note || "" });
+          const id = cells[0];
+          const en = cells[1];
+          const note = cells[2] || "";
+          const usage = cells[3] || "";
+          entries.push({ id, en, note, usage });
         }
       }
     } else if (inTable && trimmed === "") {

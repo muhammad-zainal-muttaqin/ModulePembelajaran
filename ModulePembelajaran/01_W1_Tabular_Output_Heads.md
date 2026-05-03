@@ -4,6 +4,7 @@
 | # | Modul | Minggu |
 |---|-------|--------|
 | 00 | [Pendahuluan](00_Pendahuluan.md) | 1 |
+| 00a | [Prasyarat Modul](00a_Prasyarat.md) | – |
 | ▶ 01 | W1 - Tabular & Output Heads | 1 |
 | 02 | [W2 - Images, CNN & Smoke Test](02_W2_Images_CNN_Smoke_Test.md) | 2 |
 | 03 | [W3 - Loss, Optimizer & Evaluasi](03_W3_Loss_Optimizer_Evaluasi.md) | 3 |
@@ -299,7 +300,7 @@ Catat untuk setiap run:
 
 - 3 konfigurasi run (regression, binary, multiclass) di `experiments/`
 - 1 notebook lab0 dengan output sel terisi
-- 1 tulisan `observasi_vs_interpretasi.md` (template di [Lampiran C.6](14_Lampiran.md#c6-template-entri-portofolio))
+- 1 tulisan `observasi_vs_interpretasi.md` (template di [Lampiran C.6](14_Lampiran.md#c6-template-entri-portofolio-mandiri))
 - Smoke test repositori berhasil
 
 ---

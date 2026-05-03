@@ -95,10 +95,6 @@ export default function ProgressPage() {
       </div>
 
       <section className="section-gap card p-6">
-        <h2 className="card-title mb-2">Tangga 14 Minggu</h2>
-        <p className="text-sm text-ink/70 dark:text-parchment/70 mb-5">
-          Klik anak tangga untuk menandai minggu yang sudah selesai. Warna mengikuti sikap dominan bab minggu itu.
-        </p>
         <LadderProgress interactive />
         <div className="mt-5 flex flex-wrap items-center gap-4 text-xs text-ink/70 dark:text-parchment/70">
           {SIKAP_LIST.map((s) => (

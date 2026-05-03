@@ -15,27 +15,23 @@ import numpy as np
 
 
 def load_run(run_dir: Path) -> dict | None:
-    metrics_file = run_dir / "metrics.csv"
+    summary_file = run_dir / "summary.json"
     config_file = run_dir / "config.yaml"
 
-    if not metrics_file.exists():
+    if not summary_file.exists():
         return None
 
-    rows = []
-    with open(metrics_file, newline="") as f:
-        reader = csv.DictReader(f)
-        rows = list(reader)
+    with open(summary_file, encoding="utf-8") as f:
+        summary = json.load(f)
 
-    if not rows:
-        return None
-
-    last = rows[-1]
     result = {"run": run_dir.name}
-
-    for key, val in last.items():
-        try:
+    # Flatten summary metrics into the result dict.
+    for key, val in summary.items():
+        if key in ("config",):
+            continue
+        if isinstance(val, (int, float)):
             result[key] = float(val)
-        except (ValueError, TypeError):
+        else:
             result[key] = val
 
     if config_file.exists():

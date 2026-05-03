@@ -4,6 +4,7 @@
 | # | Modul | Minggu |
 |---|-------|--------|
 | 00 | [Pendahuluan](00_Pendahuluan.md) | 1 |
+| 00a | [Prasyarat Modul](00a_Prasyarat.md) | – |
 | 01 | [W1 - Tabular & Output Heads](01_W1_Tabular_Output_Heads.md) | 1 |
 | 02 | [W2 - Images, CNN & Smoke Test](02_W2_Images_CNN_Smoke_Test.md) | 2 |
 | ▶ 03 | W3 - Loss, Optimizer & Evaluasi | 3 |

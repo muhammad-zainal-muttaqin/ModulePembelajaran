@@ -2,7 +2,7 @@
 # Lab W1 trains the same MLP on a shared synthetic tabular dataset under three
 # task formulations. To switch tasks, change `data.task` and `loss.name`:
 #   regression  -> mse
-#   binary      -> binary_cross_entropy (with logits)
+#   binary      -> bce (BCEWithLogitsLoss, gunakan num_classes=1)
 #   multiclass  -> cross_entropy
 # Trainees should observe how the SAME input features can support different
 # output heads, and how loss-head mismatches lead to nonsense training.
@@ -25,13 +25,13 @@ model:
   name: simple_mlp
   input_dim: 10
   hidden_sizes: [64, 32]
-  num_classes: 2         # set to 1 for regression/binary; 3 for multiclass
+  num_classes: 2         # 1 for regression/bce; 2 for binary CE; 3 for multiclass
   dropout: 0.0
   activation: relu
   freeze_until: null
 
 loss:
-  name: cross_entropy    # mse | binary_cross_entropy | cross_entropy
+  name: cross_entropy    # mse | bce | bce_with_logits | cross_entropy
   label_smoothing: 0.0
 
 optim:

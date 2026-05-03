@@ -73,12 +73,12 @@ export default function LadderProgress({ interactive = false, compact = false }:
                 }`}
               >
                 <div className="h-full flex items-center justify-center font-mono text-xs font-semibold">
-                  M{w}
+                  W{w}
                 </div>
               </div>
               {!compact && chapter && (
-                <span className="mt-1.5 text-[10px] font-mono text-ink/70 dark:text-parchment/50">
-                  B{chapter.id}
+                <span className="mt-1.5 text-[10px] text-ink/70 dark:text-parchment/50 text-center leading-tight">
+                  {chapter.title}
                 </span>
               )}
             </div>

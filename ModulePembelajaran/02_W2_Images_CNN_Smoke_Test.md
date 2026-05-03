@@ -4,6 +4,7 @@
 | # | Modul | Minggu |
 |---|-------|--------|
 | 00 | [Pendahuluan](00_Pendahuluan.md) | 1 |
+| 00a | [Prasyarat Modul](00a_Prasyarat.md) | – |
 | 01 | [W1 - Tabular & Output Heads](01_W1_Tabular_Output_Heads.md) | 1 |
 | ▶ 02 | W2 - Images, CNN & Smoke Test | 2 |
 | 03 | [W3 - Loss, Optimizer & Evaluasi](03_W3_Loss_Optimizer_Evaluasi.md) | 3 |
@@ -40,10 +41,13 @@
 W2 memperkenalkan tensor citra, arsitektur CNN, dan tiga kebiasaan debugging terpenting yang dipakai sepanjang bootcamp. Bab ini menampilkan contoh training yang berhasil belajar, contoh training yang gagal belajar, dan smoke test yang menangkap error sebelum training berjalan berjam-jam.
 
 - **2.1** Peta Besar: tensor masuk dan tensor keluar
-- **2.2** Empat keluarga arsitektur sebagai asumsi tentang data (CNN sebagai contoh utama)
+- **2.2** MLP dan Backpropagation: ide utama
 - **2.3** Smoke Test Tiga Level
 - **2.4** Galeri Training: sebelum membaca teori
-- **2.5** Layer sebagai transformasi: inisialisasi, normalisasi, aktivasi
+- **2.5** Conv2d: gambaran sebelum kode (kernel, stride, padding, output shape)
+- **2.6** Empat keluarga arsitektur sebagai asumsi tentang data
+- **2.7** Layer sebagai transformasi representasi: inisialisasi, normalisasi, aktivasi
+- **2.8** Augmentation, Dropout, dan Regularization
 - **Lampiran A.1** Backpropagation derivasi manual (opsional, tersedia setelah W2)
 
 Setelah W2, lanjut ke [W3](03_W3_Loss_Optimizer_Evaluasi.md) untuk loss, optimizer, evaluasi, dan diagnosis loss curve.

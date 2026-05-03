@@ -4,6 +4,7 @@
 | # | Modul | Minggu |
 |---|-------|--------|
 | 00 | [Pendahuluan](00_Pendahuluan.md) | 1 |
+| 00a | [Prasyarat Modul](00a_Prasyarat.md) | – |
 | 01 | [W1 - Tabular & Output Heads](01_W1_Tabular_Output_Heads.md) | 1 |
 | 02 | [W2 - Images, CNN & Smoke Test](02_W2_Images_CNN_Smoke_Test.md) | 2 |
 | 03 | [W3 - Loss, Optimizer & Evaluasi](03_W3_Loss_Optimizer_Evaluasi.md) | 3 |
@@ -302,7 +303,7 @@ output:
 Setiap hyperparameter dideklarasikan di sini — bukan tersebar di kode Python. Saat menjalankan eksperimen, `src/train.py` membaca YAML ini dan meneruskannya ke seluruh komponen. Untuk ablation, Anda membuat file YAML baru (mis. `focal_freeze.yaml`) yang hanya mengubah bagian yang relevan — arsitektur, data, dan optimizer tetap identik. Dengan begitu, dua hasil bisa dibandingkan secara adil karena perbedaannya diketahui persis.
 
 > [!NOTE]
-> Detail mendalam tentang empat sumber non-determinisme, Worker seeding, TensorBoard setup, dan konvensi Git untuk riset eksperimental tersedia di file ini sebagai materi lanjutan - cari bagian §2.1-§2.10 dari konten legacy. Bacaan ini sangat berguna sebelum W4 assignment.
+> Reproduksibilitas penuh (empat sumber non-determinisme, Worker seeding, TensorBoard setup, dan konvensi Git untuk riset eksperimental) dibahas di §2.7 di atas. Jika Anda baru di konsep ini, baca §2.2 (Protokol Eksperimen) lalu §2.7 sebelum mengerjakan W4 assignment.
 
 ### 2.8 Platform: Kapan Pindah ke RunPod
 

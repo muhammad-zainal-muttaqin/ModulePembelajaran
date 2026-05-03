@@ -22,10 +22,11 @@ import focalFreezeYaml from "../content/configs/focal_freeze.yaml?raw";
 import mlpMnistYaml from "../content/configs/mlp_mnist.yaml?raw";
 import lstmTimeseriesYaml from "../content/configs/lstm_timeseries.yaml?raw";
 import transformerMiniYaml from "../content/configs/transformer_mini.yaml?raw";
+import mlpTabularYaml from "../content/configs/mlp_tabular.yaml?raw";
 import aeCifarYaml from "../content/configs/ae_cifar.yaml?raw";
 import glossaryJson from "../content/glossary.json";
 
-export type GlossaryEntry = { id: string; en: string; note: string };
+export type GlossaryEntry = { id: string; en: string; note: string; usage: string };
 
 const RAW: Record<string, string> = {
   "00": c00,
@@ -139,6 +140,7 @@ export const CONFIGS = {
   baseline: baselineYaml,
   focal_freeze: focalFreezeYaml,
   mlp_mnist: mlpMnistYaml,
+  mlp_tabular: mlpTabularYaml,
   lstm_timeseries: lstmTimeseriesYaml,
   transformer_mini: transformerMiniYaml,
   ae_cifar: aeCifarYaml,

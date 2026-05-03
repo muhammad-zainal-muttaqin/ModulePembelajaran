@@ -4,6 +4,7 @@
 | # | Modul | Minggu |
 |---|-------|--------|
 | 00 | [Pendahuluan](00_Pendahuluan.md) | 1 |
+| 00a | [Prasyarat Modul](00a_Prasyarat.md) | – |
 | 01 | [W1 - Tabular & Output Heads](01_W1_Tabular_Output_Heads.md) | 1 |
 | 02 | [W2 - Images, CNN & Smoke Test](02_W2_Images_CNN_Smoke_Test.md) | 2 |
 | 03 | [W3 - Loss, Optimizer & Evaluasi](03_W3_Loss_Optimizer_Evaluasi.md) | 3 |
@@ -270,7 +271,7 @@ Jika pada titik tinjauan seorang mahasiswa masih Novice di lebih dari setengah k
 1. Identifikasi pola: apakah masalahnya di konsep (tidak paham) atau di eksekusi (paham tapi tidak mengerjakan)?
 2. Konsep: beri reading tambahan dari Bacaan Lanjutan + sesi tanya jawab 30 menit.
 3. Eksekusi: periksa catatan eksperimen. Sering kali masalahnya bukan kemampuan tetapi kebiasaan menunda.
-4. Jika masalah berlanjut, arahkan ke jalur cepat (Pendahuluan §5c) dan fokuskan pada kompetensi yang paling relevan dengan Capstone.
+4. Jika masalah berlanjut, arahkan ke jalur cepat (Pendahuluan §3) dan fokuskan pada kompetensi yang paling relevan dengan Capstone.
 
 ---
 
@@ -347,7 +348,7 @@ Contoh: "Analisis F1 per kelas sudah baik karena Anda menghubungkan penurunan ke
 
 **Tindakan:**
 1. Identifikasi apakah ketertinggalan karena konsep atau karena waktu.
-2. Jika konsep: arahkan ke jalur cepat (Pendahuluan §5c). W6-W9 punya komponen opsional (Lab 6b, 6c, 7b breadth) - prioritaskan konten inti yang paling relevan dengan Capstone mereka.
+2. Jika konsep: arahkan ke jalur cepat (Pendahuluan §3). W6-W9 punya komponen opsional (Lab 6b, 6c, 7b breadth) - prioritaskan konten inti yang paling relevan dengan Capstone mereka.
 3. Jika waktu: negosiasikan cakupan. Lebih baik mengerjakan W1-W7 + W11 + Capstone secara mendalam daripada semua minggu dengan dangkal.
 4. Breadth Check (4 dari 5 arsitektur) tetap wajib, tetapi bisa dikerjakan paralel.
 
