@@ -62,21 +62,34 @@ function rewriteLinks(md: string): string {
   });
 }
 
-// Rewrite relative figure paths `./figures/` -> `/ModulePembelajaran/figures/`.
+// Rewrite relative figure paths `./figures/` or `figures/` -> `/figures/`.
 function rewriteImagePaths(md: string): string {
-  return md.replace(/\(\.\/figures\//g, "(/figures/");
+  return md
+    .replace(/\(\.\/figures\//g, "(/figures/")
+    .replace(/\(figures\//g, "(/figures/");
+}
+
+const GITHUB_FILE_BASE =
+  "https://github.com/muhammad-zainal-muttaqin/ModulePembelajaran/blob/main/ModulePembelajaran";
+
+// Rewrite relative template_repo links to GitHub URLs.
+// Matches `(template_repo/...)` that are not already absolute URLs.
+function rewriteSourceFileLinks(md: string): string {
+  return md.replace(/\((template_repo\/[^)]+)\)/g, (_m, path: string) => {
+    return `(${GITHUB_FILE_BASE}/${path})`;
+  });
 }
 
 export function getChapterMarkdown(id: string): string {
   const raw = RAW[id];
   if (!raw) return "";
-  return rewriteImagePaths(rewriteLinks(stripTopNav(raw)));
+  return rewriteSourceFileLinks(rewriteImagePaths(rewriteLinks(stripTopNav(raw))));
 }
 
 export function getAllChapters(): Record<string, string> {
   const out: Record<string, string> = {};
   for (const key of Object.keys(RAW)) {
-    out[key] = rewriteImagePaths(rewriteLinks(stripTopNav(RAW[key])));
+    out[key] = rewriteSourceFileLinks(rewriteImagePaths(rewriteLinks(stripTopNav(RAW[key]))));
   }
   return out;
 }
