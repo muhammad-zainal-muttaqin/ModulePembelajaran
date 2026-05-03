@@ -1,4 +1,5 @@
 import { Children, isValidElement, type ReactElement, type ReactNode } from "react";
+import { useNavigate } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
@@ -108,6 +109,7 @@ function detectAdmonition(children: ReactNode): {
 }
 
 export default function MarkdownRenderer({ markdown }: Props) {
+  const navigate = useNavigate();
   return (
     <div className="prose-modul">
       <ReactMarkdown
@@ -152,6 +154,20 @@ export default function MarkdownRenderer({ markdown }: Props) {
                     e.preventDefault();
                     const el = document.getElementById(href.slice(1));
                     if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+                  }}
+                  {...props}
+                >
+                  {children}
+                </a>
+              );
+            }
+            if (href && href.startsWith("#/")) {
+              return (
+                <a
+                  href={href}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    navigate(href.slice(1));
                   }}
                   {...props}
                 >

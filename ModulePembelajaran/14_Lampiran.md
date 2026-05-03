@@ -642,7 +642,7 @@ Salin ke `docs/papers/<short_title>.md`. Format Bab 9.
 <Satu kalimat: mengapa paper ini relevan (atau tidak).>
 ```
 
-### C.6 Template Entri Portofolio Mandiri
+### C.6 Template Entri Portofolio Mandiri {#c6-template-entri-portofolio}
 
 Salin satu blok ini ke sel markdown di `notebooks/portofolio_mandiri.ipynb` untuk setiap pekan. Isi tiap bagian dengan kalimat lengkap - hindari poin-poin kosong.
 
@@ -1388,7 +1388,7 @@ Lab-lab modul memakai basis kode dan dataset yang sama, lalu bertambah kompleks 
 
 ### Empat Jalur Komponen Mandiri
 
-Mulai W4, setiap minggu Anda memilih satu jalur Komponen Mandiri, mengerjakannya secara mandiri di luar sesi tatap muka, dan mempresentasikan 10 menit di awal sesi berikutnya. Portofolio berisi 8 entri (W4-W11) ditutup dengan refleksi perjalanan belajar. Template entri: [C.6](#c6-template-entri-portofolio-mandiri); panduan presentasi: [C.7](#c7-panduan-slot-presentasi-komponen-mandiri-10-menit); format dan kriteria umum: [C.9](#c9-template-komponen-mandiri).
+Mulai W4, setiap minggu Anda memilih satu jalur Komponen Mandiri, mengerjakannya secara mandiri di luar sesi tatap muka, dan mempresentasikan 10 menit di awal sesi berikutnya. Portofolio berisi 8 entri (W4-W11) ditutup dengan refleksi perjalanan belajar. Template entri: [C.6](#c6-template-entri-portofolio); panduan presentasi: [C.7](#c7-panduan-slot-presentasi-komponen-mandiri-10-menit); format dan kriteria umum: [C.9](#c9-template-komponen-mandiri).
 
 | Jalur               | Inti kegiatan                                                           | Contoh konkret                                                             | Artefak portofolio                                                                          |
 | ------------------- | ----------------------------------------------------------------------- | -------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
